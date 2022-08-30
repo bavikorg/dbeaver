@@ -59,7 +59,7 @@ public class PlanNodesTree extends DatabaseObjectListControl<DBCPlanNode> {
 
     @NotNull
     @Override
-    protected String getListConfigId(List<Class<?>> classList) {
+    protected String getListConfigId(/*~~>*/List<Class<?>> classList) {
         return "ExecutionPlan/" + dataSource.getContainer().getDriver().getId();
     }
 
@@ -72,7 +72,7 @@ public class PlanNodesTree extends DatabaseObjectListControl<DBCPlanNode> {
     public void showPlan(DBPDataSource dataSource, DBCPlan plan) {
         this.dataSource = dataSource;
 
-        List<DBCPlanNode> nodes = new ArrayList<>(plan.getPlanNodes(
+        /*~~>*/List<DBCPlanNode> nodes = new ArrayList<>(plan.getPlanNodes(
             Collections.singletonMap(DBCPlan.OPTION_KEEP_ORIGINAL, true)));
 
         final TreeViewer itemsViewer = (TreeViewer) PlanNodesTree.this.getItemsViewer();

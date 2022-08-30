@@ -76,7 +76,7 @@ public class DashboardChartComposite extends BaseChartComposite {
         if (!UIUtils.isInDialog(this)) {
             manager.add(new Separator());
             MenuManager viewMenu = new MenuManager(UIDashboardMessages.dashboard_chart_composite_menu_manager_text);
-            List<DashboardViewType> viewTypes = DashboardRegistry.getInstance().getSupportedViewTypes(dashboardContainer.getDashboardDataType());
+            /*~~>*/List<DashboardViewType> viewTypes = DashboardRegistry.getInstance().getSupportedViewTypes(dashboardContainer.getDashboardDataType());
             for (DashboardViewType viewType : viewTypes) {
                 Action changeViewAction = new Action(viewType.getTitle(), Action.AS_RADIO_BUTTON) {
                     @Override

@@ -27,12 +27,12 @@ import org.jkiss.dbeaver.parser.common.grammar.GrammarRule;
 public class GrammarNfaState {
     private final int id;
     private final GrammarRule rule;
-    private final List<GrammarNfaTransition> next;
+    private final /*~~>*/List<GrammarNfaTransition> next;
 
     public GrammarNfaState(int id, GrammarRule rule) {
         this.id = id;
         this.rule = rule;
-        this.next = new ArrayList<>();
+        /*~~>*/this.next = new ArrayList<>();
     }
 
     @Override
@@ -48,11 +48,11 @@ public class GrammarNfaState {
         return rule;
     }
 
-    public List<GrammarNfaTransition> getNext() {
+    public /*~~>*/List<GrammarNfaTransition> getNext() {
         return next;
     }
 
     public void remove(GrammarNfaTransition t) {
-        this.next.remove(t);
+        /*~~>*/this.next.remove(t);
     }
 }

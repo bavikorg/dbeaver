@@ -43,7 +43,7 @@ public interface DBCEntityMetaData {
      * Meta attributes which belongs to this entity
      */
     @NotNull
-    List<? extends DBCAttributeMetaData> getAttributes();
+    /*~~>*/List<? extends DBCAttributeMetaData> getAttributes();
 
     default int getCompleteScore() {
         int score = 0;

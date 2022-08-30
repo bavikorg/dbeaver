@@ -65,7 +65,7 @@ public class SQLiteTable extends GenericTable implements DBDPseudoAttributeConta
     }
 
     private boolean hasPrimaryKey() throws DBException {
-        List<GenericUniqueKey> constraints = getConstraints(new VoidProgressMonitor());
+        /*~~>*/List<GenericUniqueKey> constraints = getConstraints(new VoidProgressMonitor());
         if (constraints != null) {
             for (DBSTableConstraint cons : constraints) {
                 if (cons.getConstraintType() == DBSEntityConstraintType.PRIMARY_KEY) {
@@ -79,8 +79,8 @@ public class SQLiteTable extends GenericTable implements DBDPseudoAttributeConta
     @SuppressWarnings("unchecked")
     @Nullable
     @Override
-    public List<SQLiteTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
-        return (List<SQLiteTableColumn>) super.getAttributes(monitor);
+    public /*~~>*/List<SQLiteTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
+        return (/*~~>*/List<SQLiteTableColumn>) super.getAttributes(monitor);
     }
 
     @SuppressWarnings("unchecked")

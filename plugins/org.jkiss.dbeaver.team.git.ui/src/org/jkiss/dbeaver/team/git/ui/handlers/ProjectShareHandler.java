@@ -83,7 +83,7 @@ public class ProjectShareHandler extends AbstractHandler implements IElementUpda
     }
 
     private void addProjectContentsToRepository(ExecutionEvent event, IProject project) {
-        List<IResource> resources = new ArrayList<>();
+        /*~~>*/List<IResource> resources = new ArrayList<>();
         try {
             addFolderToIndex(project, resources);
         } catch (CoreException e) {
@@ -94,7 +94,7 @@ public class ProjectShareHandler extends AbstractHandler implements IElementUpda
         ActionUtils.runCommand(GITCommandIds.EGIT_CMD_ADD_TO_INDEX, selection, UIUtils.getActiveWorkbenchWindow());
     }
 
-    private void addFolderToIndex(IContainer container, List<IResource> resources) throws CoreException {
+    private void addFolderToIndex(IContainer container, /*~~>*/List<IResource> resources) throws CoreException {
         for (IResource resource : container.members(IContainer.INCLUDE_HIDDEN)) {
             if (container instanceof IProject && resource instanceof IFolder && resource.getName().equals(DBPProject.METADATA_FOLDER)) {
                 // Add dbeaver configs

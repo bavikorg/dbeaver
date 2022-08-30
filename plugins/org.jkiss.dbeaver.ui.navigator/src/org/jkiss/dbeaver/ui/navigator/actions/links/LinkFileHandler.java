@@ -67,7 +67,7 @@ public class LinkFileHandler extends CreateLinkHandler {
         if (file == null) {
             return NO_TARGETS;
         }
-        List<Path> paths = new ArrayList<>();
+        /*~~>*/List<Path> paths = new ArrayList<>();
         String filterPath = dialog.getFilterPath();
         String[] fileNames = dialog.getFileNames();
         for (int i = 0; i < fileNames.length; i++) {

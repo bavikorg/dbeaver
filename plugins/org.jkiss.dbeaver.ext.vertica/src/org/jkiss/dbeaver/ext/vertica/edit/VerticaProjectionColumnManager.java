@@ -66,7 +66,7 @@ public class VerticaProjectionColumnManager extends SQLTableColumnManager<Vertic
      * TODO: Vertica is originally based on PG. Maybe we should refactor this stuff somehow.
      */
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
     {
         final VerticaProjectionColumn column = command.getObject();
 

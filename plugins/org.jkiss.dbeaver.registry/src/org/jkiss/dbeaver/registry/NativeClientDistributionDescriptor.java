@@ -41,7 +41,7 @@ import java.util.List;
 public class NativeClientDistributionDescriptor {
     private static final Log log = Log.getLog(NativeClientDistributionDescriptor.class);
 
-    private final List<NativeClientFileDescriptor> files = new ArrayList<>();
+    private final /*~~>*/List<NativeClientFileDescriptor> files = new ArrayList<>();
     private OSDescriptor os;
     private String targetPath;
     private String remotePath;
@@ -58,7 +58,7 @@ public class NativeClientDistributionDescriptor {
         this.resourcePath = config.getAttribute("resourcePath");
         for (IConfigurationElement fileElement : config.getChildren("file")) {
             if (DriverUtils.matchesBundle(fileElement)) {
-                this.files.add(new NativeClientFileDescriptor(fileElement));
+                /*~~>*/this.files.add(new NativeClientFileDescriptor(fileElement));
             }
         }
     }
@@ -81,7 +81,7 @@ public class NativeClientDistributionDescriptor {
 
     public boolean downloadFiles(DBRProgressMonitor monitor, DBPNativeClientLocation location) throws DBException, InterruptedException {
         File targetPath = location.getPath();
-        List<NativeClientFileDescriptor> filesToDownload = new ArrayList<>();
+        /*~~>*/List<NativeClientFileDescriptor> filesToDownload = new ArrayList<>();
         for (NativeClientFileDescriptor file : files) {
             String fileName = file.getName();
             File targetFile = new File(targetPath, fileName);

@@ -51,7 +51,7 @@ public class JSONScanner extends RuleBasedScanner {
         IToken defaultText = new Token(new TextAttribute(colorKey));
         //IToken nullValue = new Token(new TextAttribute(colorKey));
 
-        List<IRule> rules = new LinkedList<>();
+        /*~~>*/List<IRule> rules = new LinkedList<>();
 
         rules.add(new NumberRule(value));
 //        rules.add(new MultiLineRule(":\"", "\"", value, '\\'));  //$NON-NLS-1$//$NON-NLS-2$

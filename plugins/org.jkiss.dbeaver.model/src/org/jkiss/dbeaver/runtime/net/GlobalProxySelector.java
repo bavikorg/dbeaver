@@ -49,11 +49,11 @@ public class GlobalProxySelector extends ProxySelector {
     }
 
     @Override
-    public List<Proxy> select(URI uri) {
+    public /*~~>*/List<Proxy> select(URI uri) {
         DBPDataSourceContainer dataSourceContainer = getActiveDataSourceContainer(uri);
 
         if (dataSourceContainer != null) {
-            List<Proxy> proxies = getProxiesForDataSource(uri, dataSourceContainer);
+            /*~~>*/List<Proxy> proxies = getProxiesForDataSource(uri, dataSourceContainer);
             if (proxies != null) {
                 return proxies;
             }
@@ -62,10 +62,10 @@ public class GlobalProxySelector extends ProxySelector {
     }
 
     @Nullable
-    protected List<Proxy> getProxiesForDataSource(@NotNull URI uri, @NotNull DBPDataSourceContainer dataSourceContainer) {
+    protected /*~~>*/List<Proxy> getProxiesForDataSource(@NotNull URI uri, @NotNull DBPDataSourceContainer dataSourceContainer) {
         if (SocksConstants.SOCKET_SCHEME.equals(uri.getScheme())) {
             // 2. Check for connections' proxy config
-            List<Proxy> proxies = null;
+            /*~~>*/List<Proxy> proxies = null;
             for (DBWHandlerConfiguration networkHandler : dataSourceContainer.getConnectionConfiguration().getHandlers()) {
                 if (networkHandler.isEnabled() && networkHandler.getType() == DBWHandlerType.PROXY) {
                     String proxyHost = networkHandler.getStringProperty(SocksConstants.PROP_HOST);

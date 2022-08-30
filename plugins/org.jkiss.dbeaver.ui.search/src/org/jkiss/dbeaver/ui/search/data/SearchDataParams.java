@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class SearchDataParams {
 
-    List<DBSDataContainer> sources = new ArrayList<>();
+    /*~~>*/List<DBSDataContainer> sources = new ArrayList<>();
     String searchString;
     boolean caseSensitive;
     boolean fastSearch; // Indexed
@@ -35,18 +35,18 @@ public class SearchDataParams {
     boolean searchLOBs;
     boolean searchForeignObjects;
     int maxResults;
-    List<DBNNode> selectedNodes = new ArrayList<>();
+    /*~~>*/List<DBNNode> selectedNodes = new ArrayList<>();
 
     public SearchDataParams()
     {
     }
 
-    public List<DBSDataContainer> getSources() {
+    public /*~~>*/List<DBSDataContainer> getSources() {
         return sources;
     }
 
-    public void setSources(List<DBSDataContainer> sources) {
-        this.sources = sources;
+    public void setSources(/*~~>*/List<DBSDataContainer> sources) {
+        /*~~>*/this.sources = sources;
     }
 
     public String getSearchString() {
@@ -105,7 +105,7 @@ public class SearchDataParams {
         this.maxResults = maxResults;
     }
 
-    public List<DBNNode> getSelectedNodes() {
+    public /*~~>*/List<DBNNode> getSelectedNodes() {
         return selectedNodes;
     }
 }

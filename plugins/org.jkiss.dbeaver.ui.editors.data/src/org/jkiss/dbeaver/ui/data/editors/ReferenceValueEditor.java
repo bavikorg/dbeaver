@@ -300,7 +300,7 @@ public class ReferenceValueEditor {
         editorSelector.setRedraw(false);
         try {
             editorSelector.removeAll();
-            for (DBDLabelValuePair entry : valuesData.keyValues) {
+            for (DBDLabelValuePair entry : /*~~>*/valuesData.keyValues) {
                 TableItem discItem = new TableItem(editorSelector, SWT.NONE);
                 discItem.setText(0,
                     valuesData.keyHandler.getValueDisplayString(
@@ -412,12 +412,12 @@ public class ReferenceValueEditor {
     }
 
     private static class EnumValuesData {
-        List<DBDLabelValuePair> keyValues;
+        /*~~>*/List<DBDLabelValuePair> keyValues;
         DBSEntityAttributeRef keyColumn;
         DBDValueHandler keyHandler;
 
         EnumValuesData(Collection<DBDLabelValuePair> keyValues, DBSEntityAttributeRef keyColumn, DBDValueHandler keyHandler) {
-            this.keyValues = new ArrayList<>(keyValues);
+            /*~~>*/this.keyValues = new ArrayList<>(keyValues);
             this.keyColumn = keyColumn;
             this.keyHandler = keyHandler;
         }
@@ -511,13 +511,13 @@ public class ReferenceValueEditor {
         private EnumValuesData getEnumValuesData(DBRProgressMonitor monitor, IAttributeController attributeController,
                                                  DBSEntityAttributeRef fkColumn, DBSEntityAssociation association,
                                                  DBSEntityAttribute refColumn) throws DBException {
-            List<DBDAttributeValue> precedingKeys = null;
-            List<? extends DBSEntityAttributeRef> allColumns = CommonUtils.safeList(refConstraint.getAttributeReferences(
+            /*~~>*/List<DBDAttributeValue> precedingKeys = null;
+            /*~~>*/List<? extends DBSEntityAttributeRef> allColumns = CommonUtils.safeList(refConstraint.getAttributeReferences(
                 monitor));
             if (allColumns.size() > 1 && allColumns.get(0) != fkColumn) {
                 // Our column is not a first on in foreign key.
                 // So, fill uo preceeding keys
-                List<DBDAttributeBinding> rowAttributes = attributeController.getRowController().getRowAttributes();
+                /*~~>*/List<DBDAttributeBinding> rowAttributes = attributeController.getRowController().getRowAttributes();
                 precedingKeys = new ArrayList<>();
                 for (DBSEntityAttributeRef precColumn : allColumns) {
                     if (precColumn == fkColumn) {
@@ -538,7 +538,7 @@ public class ReferenceValueEditor {
             final DBSEntityConstraint refConstraint = association.getReferencedConstraint();
             final DBSDictionary enumConstraint = (DBSDictionary) refConstraint.getParentObject();
             if (fkAttribute != null && enumConstraint != null) {
-                List<DBDLabelValuePair> enumValues = enumConstraint.getDictionaryEnumeration(monitor, refColumn,
+                /*~~>*/List<DBDLabelValuePair> enumValues = enumConstraint.getDictionaryEnumeration(monitor, refColumn,
                     pattern, precedingKeys, false, sortAsc, sortByValue, offset, maxResults);
 //                        for (DBDLabelValuePair pair : enumValues) {
 //                            keyValues.put(pair.getValue(), pair.getLabel());

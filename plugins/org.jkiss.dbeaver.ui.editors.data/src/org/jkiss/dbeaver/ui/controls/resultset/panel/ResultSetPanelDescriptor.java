@@ -51,10 +51,10 @@ public class ResultSetPanelDescriptor extends AbstractContextDescriptor {
     private final ObjectType implClass;
     private final DBPImage icon;
     private final boolean showByDefault;
-    private final List<IResultSetPresentation.PresentationType> supportedPresentationTypes = new ArrayList<>();
-    private final List<String> supportedPresentations = new ArrayList<>();
-    private final List<String> supportedDataSources = new ArrayList<>();
-    private final List<JexlExpression> supportedExpressions = new ArrayList<>();
+    private final /*~~>*/List<IResultSetPresentation.PresentationType> supportedPresentationTypes = new ArrayList<>();
+    private final /*~~>*/List<String> supportedPresentations = new ArrayList<>();
+    private final /*~~>*/List<String> supportedDataSources = new ArrayList<>();
+    private final /*~~>*/List<JexlExpression> supportedExpressions = new ArrayList<>();
 
     public ResultSetPanelDescriptor(IConfigurationElement config) {
         super(config);

@@ -35,6 +35,6 @@ public interface DBPDataFormatterRegistry
     DBDDataFormatterProfile getCustomProfile(String name);
 
     @NotNull
-    List<DBDDataFormatterProfile> getCustomProfiles();
+    /*~~>*/List<DBDDataFormatterProfile> getCustomProfiles();
 
 }

@@ -58,8 +58,8 @@ class PostgreFDWConfigWizardPageConfig extends ActiveWizardPage<PostgreFDWConfig
     private Text targetDataSourceText;
     private Text targetDriverText;
 
-    private List<PostgreSchema> schemaList;
-    private List<PostgreFDWConfigWizard.FDWInfo> fdwList;
+    private /*~~>*/List<PostgreSchema> schemaList;
+    private /*~~>*/List<PostgreFDWConfigWizard.FDWInfo> fdwList;
 
     protected PostgreFDWConfigWizardPageConfig(PostgreFDWConfigWizard wizard)
     {

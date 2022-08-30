@@ -43,7 +43,7 @@ class ApplicationCSSManager {
             return;
         }
         ExtendedDocumentCSS doc = (ExtendedDocumentCSS) engine.getDocumentCSS();
-        List<StyleSheet> sheets = new ArrayList<>();
+        /*~~>*/List<StyleSheet> sheets = new ArrayList<>();
         StyleSheetList list = doc.getStyleSheets();
         for (int i = 0; i < list.getLength(); i++) {
             sheets.add(list.item(i));

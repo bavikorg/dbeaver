@@ -46,7 +46,7 @@ public class AdvancedList extends Canvas {
 
     private Point itemSize = new Point(64, 64);
 
-    private List<AdvancedListItem> items = new ArrayList<>();
+    private /*~~>*/List<AdvancedListItem> items = new ArrayList<>();
     private AdvancedListItem selectedItem;
     private AdvancedListItem hoverItem;
 
@@ -375,7 +375,7 @@ public class AdvancedList extends Canvas {
     }
 
     void removeItem(AdvancedListItem item) {
-        this.items.remove(item);
+        /*~~>*/this.items.remove(item);
     }
 
     public AdvancedListItem[] getItems() {

@@ -49,11 +49,11 @@ public class ActionHistory {
 
     private BinaryContent.Range actionLastRange = null;
     private BinaryContent content = null;
-    private List<Integer> deletedList = null;  // of Integers
+    private /*~~>*/List<Integer> deletedList = null;  // of Integers
     private boolean isBackspace = false;
-    private List<Object[]> actionList = null;  // contains ArrayLists (from currentAction)
+    private /*~~>*/List<Object[]> actionList = null;  // contains ArrayLists (from currentAction)
     private int actionsIndex = 0;
-    private List<Range> currentAction = null;  // contains Ranges
+    private /*~~>*/List<Range> currentAction = null;  // contains Ranges
     private ActionType currentActionType = null;
     private long mergedSinglesTop = -1L;
     private boolean mergingSingles = false;
@@ -113,11 +113,11 @@ public class ActionHistory {
      * @param isSingle    used when integerList.size == 1 to tell whether it is a single or a piece of a block
      *                    delete. When integerList.size() > 1 (a block delete for sure) isSingle is ignored.
      */
-    void addDeleted(long position, List<Integer> integerList, boolean isSingle)
+    void addDeleted(long position, /*~~>*/List<Integer> integerList, boolean isSingle)
     {
         if (integerList.size() > 1L || !isSingle) {  // block delete
             BinaryContent.Range range = newRangeFromIntegerList(position, integerList);
-            List<Range> oneElementList = new ArrayList<>();
+            /*~~>*/List<Range> oneElementList = new ArrayList<>();
             oneElementList.add(range);
             addLostRanges(oneElementList);
         } else {
@@ -157,7 +157,7 @@ public class ActionHistory {
     }
 
 
-    void addLostRanges(java.util.List<Range> ranges)
+    void addLostRanges(/*~~>*//*~~>*/java.util.List<Range> ranges)
     {
         if (ranges == null)
             return;
@@ -218,7 +218,7 @@ public class ActionHistory {
         if (actionList != null) {
             for (Object[] tuple : actionList) {
                 @SuppressWarnings("unchecked")
-				List<Range> ranges = (List<Range>) tuple[1];
+				/*~~>*/List<Range> ranges = (/*~~>*/List<Range>) tuple[1];
                 disposeRanges(ranges);
             }
             actionList = null;
@@ -230,7 +230,7 @@ public class ActionHistory {
     }
 
 
-    private void disposeRanges(java.util.List<Range> ranges)
+    private void disposeRanges(/*~~>*//*~~>*/java.util.List<Range> ranges)
     {
         if (ranges == null) {
             return;
@@ -330,7 +330,7 @@ public class ActionHistory {
     }
 
 
-    private ByteBuffer newBufferFromIntegerList(List<Integer> integerList)
+    private ByteBuffer newBufferFromIntegerList(/*~~>*/List<Integer> integerList)
     {
         ByteBuffer store = ByteBuffer.allocate(integerList.size());
         for (Integer anIntegerList : integerList) {
@@ -342,7 +342,7 @@ public class ActionHistory {
     }
 
 
-    private BinaryContent.Range newRangeFromIntegerList(long position, List<Integer> integerList)
+    private BinaryContent.Range newRangeFromIntegerList(long position, /*~~>*/List<Integer> integerList)
     {
         ByteBuffer store = newBufferFromIntegerList(integerList);
 

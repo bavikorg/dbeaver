@@ -41,7 +41,7 @@ public class GenericTableForeignKey extends JDBCTableForeignKey<GenericTableBase
     private static final Log log = Log.getLog(GenericTableForeignKey.class);
 
     private DBSForeignKeyDeferability deferability;
-    private List<GenericTableForeignKeyColumnTable> columns;
+    private /*~~>*/List<GenericTableForeignKeyColumnTable> columns;
 
     public GenericTableForeignKey(
         GenericTableBase table,
@@ -72,7 +72,7 @@ public class GenericTableForeignKey extends JDBCTableForeignKey<GenericTableBase
     }
 
     @Override
-    public List<GenericTableForeignKeyColumnTable> getAttributeReferences(DBRProgressMonitor monitor) {
+    public /*~~>*/List<GenericTableForeignKeyColumnTable> getAttributeReferences(DBRProgressMonitor monitor) {
         return columns;
     }
 
@@ -80,27 +80,27 @@ public class GenericTableForeignKey extends JDBCTableForeignKey<GenericTableBase
         if (columns == null) {
             columns = new ArrayList<>();
         }
-        this.columns.add(column);
+        /*~~>*/this.columns.add(column);
     }
 
-    void setColumns(DBRProgressMonitor monitor, List<GenericTableForeignKeyColumnTable> columns) {
-        this.columns = columns;
-        final List<? extends DBSEntityAttributeRef> refColumns;
+    void setColumns(DBRProgressMonitor monitor, /*~~>*/List<GenericTableForeignKeyColumnTable> columns) {
+        /*~~>*/this.columns = columns;
+        final /*~~>*/List<? extends DBSEntityAttributeRef> refColumns;
         try {
             refColumns = referencedKey.getAttributeReferences(monitor);
         } catch (DBException e) {
             log.error("Error getting referenced key columns", e);
             return;
         }
-        if (refColumns != null && this.columns.size() > refColumns.size()) {
+        if (refColumns != null && /*~~>*/this.columns.size() > refColumns.size()) {
             // [JDBC: Progress bug. All FK columns are duplicated]
-            for (int i = 0; i < this.columns.size(); ) {
+            for (int i = 0; i < /*~~>*/this.columns.size(); ) {
                 boolean duplicate = false;
-                String colName = this.columns.get(i).getName();
-                for (int k = i + 1; k < this.columns.size(); k++) {
-                    String colName2 = this.columns.get(k).getName();
+                String colName = /*~~>*/this.columns.get(i).getName();
+                for (int k = i + 1; k < /*~~>*/this.columns.size(); k++) {
+                    String colName2 = /*~~>*/this.columns.get(k).getName();
                     if (CommonUtils.equalObjects(colName, colName2)) {
-                        this.columns.remove(k);
+                        /*~~>*/this.columns.remove(k);
                         duplicate = true;
                         break;
                     }

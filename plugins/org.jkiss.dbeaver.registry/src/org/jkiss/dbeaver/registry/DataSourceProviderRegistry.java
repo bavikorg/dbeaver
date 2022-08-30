@@ -61,17 +61,17 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
         return instance;
     }
 
-    private final List<DataSourceProviderDescriptor> dataSourceProviders = new ArrayList<>();
-    private final List<DBPRegistryListener> registryListeners = new ArrayList<>();
-    private final List<DataSourceHandlerDescriptor> dataSourceHandlers = new ArrayList<>();
+    private final /*~~>*/List<DataSourceProviderDescriptor> dataSourceProviders = new ArrayList<>();
+    private final /*~~>*/List<DBPRegistryListener> registryListeners = new ArrayList<>();
+    private final /*~~>*/List<DataSourceHandlerDescriptor> dataSourceHandlers = new ArrayList<>();
     private final Map<String, DBPConnectionType> connectionTypes = new LinkedHashMap<>();
     private final Map<String, ExternalResourceDescriptor> resourceContributions = new LinkedHashMap<>();
 
-    private final List<EditorContributionDescriptor> editorContributors = new ArrayList<>();
-    private final Map<String, List<EditorContributionDescriptor>> contributionCategoryMap = new HashMap<>();
+    private final /*~~>*/List<EditorContributionDescriptor> editorContributors = new ArrayList<>();
+    private final Map<String, /*~~>*/List<EditorContributionDescriptor>> contributionCategoryMap = new HashMap<>();
 
     private final Map<String, DataSourceAuthModelDescriptor> authModels = new LinkedHashMap<>();
-    private final List<DataSourceConfigurationStorageDescriptor> dataSourceConfigurationStorageDescriptors = new ArrayList<>();
+    private final /*~~>*/List<DataSourceConfigurationStorageDescriptor> dataSourceConfigurationStorageDescriptors = new ArrayList<>();
 
     private final DBPPreferenceStore globalDataSourcePreferenceStore;
 
@@ -151,7 +151,7 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
                         // Load tree contributions
                         EditorContributionDescriptor descriptor = new EditorContributionDescriptor(ext);
                         editorContributors.add(descriptor);
-                        List<EditorContributionDescriptor> list = contributionCategoryMap.computeIfAbsent(
+                        /*~~>*/List<EditorContributionDescriptor> list = contributionCategoryMap.computeIfAbsent(
                             descriptor.getCategory(), k -> new ArrayList<>());
                         list.add(descriptor);
                         break;
@@ -201,7 +201,7 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
 
         // Resolve all driver replacements
         {
-            List<DriverDescriptor> allDrivers = new ArrayList<>();
+            /*~~>*/List<DriverDescriptor> allDrivers = new ArrayList<>();
             for (DataSourceProviderDescriptor provider : dataSourceProviders) {
                 allDrivers.addAll(provider.getDrivers());
             }
@@ -286,12 +286,12 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
             }
             registryListeners.clear();
         }
-        for (DataSourceProviderDescriptor providerDescriptor : this.dataSourceProviders) {
+        for (DataSourceProviderDescriptor providerDescriptor : /*~~>*/this.dataSourceProviders) {
             providerDescriptor.dispose();
         }
-        this.dataSourceProviders.clear();
+        /*~~>*/this.dataSourceProviders.clear();
         this.resourceContributions.clear();
-        this.dataSourceConfigurationStorageDescriptors.clear();
+        /*~~>*/this.dataSourceConfigurationStorageDescriptors.clear();
     }
 
     @Override
@@ -313,15 +313,15 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
         return provider;
     }
 
-    public List<DataSourceProviderDescriptor> getDataSourceProviders()
+    public /*~~>*/List<DataSourceProviderDescriptor> getDataSourceProviders()
     {
         return dataSourceProviders;
     }
 
-    public List<DBPDataSourceProviderDescriptor> getEnabledDataSourceProviders()
+    public /*~~>*/List<DBPDataSourceProviderDescriptor> getEnabledDataSourceProviders()
     {
         //IActivityManager activityManager = PlatformUI.getWorkbench().getActivitySupport().getActivityManager();
-        List<DBPDataSourceProviderDescriptor> enabled = new ArrayList<>(dataSourceProviders);
+        /*~~>*/List<DBPDataSourceProviderDescriptor> enabled = new ArrayList<>(dataSourceProviders);
 /*
         enabled.removeIf(p ->
             !activityManager.getIdentifier(p.getFullIdentifier()).isEnabled()
@@ -376,11 +376,11 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
 
     @Override
     public DBPEditorContribution[] getContributedEditors(String category, DBPDataSourceContainer dataSource) {
-        List<EditorContributionDescriptor> ec = contributionCategoryMap.get(category);
+        /*~~>*/List<EditorContributionDescriptor> ec = contributionCategoryMap.get(category);
         if (ec == null) {
             return new DBPEditorContribution[0];
         }
-        List<EditorContributionDescriptor> ecCopy = new ArrayList<>();
+        /*~~>*/List<EditorContributionDescriptor> ecCopy = new ArrayList<>();
         for (EditorContributionDescriptor editor : ec) {
             if (editor.supportsDataSource(dataSource)) {
                 ecCopy.add(editor);
@@ -420,7 +420,7 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
             XMLBuilder xml = new XMLBuilder(os, GeneralUtils.UTF8_ENCODING);
             xml.setButify(true);
             xml.startElement(RegistryConstants.TAG_DRIVERS);
-            for (DataSourceProviderDescriptor provider : this.dataSourceProviders) {
+            for (DataSourceProviderDescriptor provider : /*~~>*/this.dataSourceProviders) {
                 if (provider.isTemporary()) {
                     continue;
                 }
@@ -507,7 +507,7 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
                 xml.addAttribute(RegistryConstants.ATTR_CONFIRM_EXECUTE, connectionType.isConfirmExecute());
                 xml.addAttribute(RegistryConstants.ATTR_CONFIRM_DATA_CHANGE, connectionType.isConfirmDataChange());
                 xml.addAttribute(RegistryConstants.ATTR_AUTO_CLOSE_TRANSACTIONS, connectionType.isAutoCloseTransactions());
-                List<DBPDataSourcePermission> modifyPermission = connectionType.getModifyPermission();
+                /*~~>*/List<DBPDataSourcePermission> modifyPermission = connectionType.getModifyPermission();
                 if (modifyPermission != null) {
                     xml.addAttribute("modifyPermission",
                         modifyPermission.stream().map(DBPDataSourcePermission::name).collect(Collectors.joining(",")));
@@ -526,7 +526,7 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
     //////////////////////////////////////////////
     // Configuration storages
 
-    public List<DataSourceConfigurationStorageDescriptor> getDataSourceConfigurationStorages() {
+    public /*~~>*/List<DataSourceConfigurationStorageDescriptor> getDataSourceConfigurationStorages() {
         return dataSourceConfigurationStorageDescriptors;
     }
 
@@ -547,7 +547,7 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
     //////////////////////////////////////////////
     // Handlers
 
-    public List<DataSourceHandlerDescriptor> getDataSourceHandlers() {
+    public /*~~>*/List<DataSourceHandlerDescriptor> getDataSourceHandlers() {
         return dataSourceHandlers;
     }
 
@@ -558,14 +558,14 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
         return authModels.get(id);
     }
 
-    public List<DataSourceAuthModelDescriptor> getAllAuthModels() {
+    public /*~~>*/List<DataSourceAuthModelDescriptor> getAllAuthModels() {
         return new ArrayList<>(authModels.values());
     }
 
     @Override
-    public List<? extends DBPAuthModelDescriptor> getApplicableAuthModels(DBPDriver driver) {
-        List<DataSourceAuthModelDescriptor> models = new ArrayList<>();
-        List<String> replaced = new ArrayList<>();
+    public /*~~>*/List<? extends DBPAuthModelDescriptor> getApplicableAuthModels(DBPDriver driver) {
+        /*~~>*/List<DataSourceAuthModelDescriptor> models = new ArrayList<>();
+        /*~~>*/List<String> replaced = new ArrayList<>();
         for (DataSourceAuthModelDescriptor amd : authModels.values()) {
             if (amd.appliesTo(driver)) {
                 models.add(amd);
@@ -647,7 +647,7 @@ public class DataSourceProviderRegistry implements DBPDataSourceProviderRegistry
                     CommonUtils.getBoolean(atts.getValue(RegistryConstants.ATTR_AUTO_CLOSE_TRANSACTIONS), origType != null && origType.isAutoCloseTransactions()));
                 String modifyPermissionList = atts.getValue("modifyPermission");
                 if (!CommonUtils.isEmpty(modifyPermissionList)) {
-                    List<DBPDataSourcePermission> permList = new ArrayList<>();
+                    /*~~>*/List<DBPDataSourcePermission> permList = new ArrayList<>();
                     for (String permItem : modifyPermissionList.split(",")) {
                         permList.add(CommonUtils.valueOf(DBPDataSourcePermission.class, permItem, DBPDataSourcePermission.PERMISSION_EDIT_DATA));
                     }

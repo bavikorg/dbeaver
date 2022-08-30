@@ -50,7 +50,7 @@ public class HANAProcedure extends GenericProcedure {
     private static final String PARAMETER_TYPE_OUT = "OUT";
     private static final String PARAMETER_TYPE_RETURN = "RETURN";
     
-    Map<String, List<HANAInplaceTableTypeColumn> > inplaceTableTypes;
+    Map<String, /*~~>*/List<HANAInplaceTableTypeColumn> > inplaceTableTypes;
 
     public HANAProcedure(GenericStructContainer container, String procedureName, String specificName,
             String description, DBSProcedureType procedureType, GenericFunctionResultType functionResultType) {
@@ -81,7 +81,7 @@ public class HANAProcedure extends GenericProcedure {
                         int length = JDBCUtils.safeGetInt(dbResult, 4);
                         int scale = JDBCUtils.safeGetInt(dbResult, 5);
                         
-                        List<HANAInplaceTableTypeColumn> inplaceTableType = inplaceTableTypes.get(parameterName);
+                        /*~~>*/List<HANAInplaceTableTypeColumn> inplaceTableType = inplaceTableTypes.get(parameterName);
                         if (inplaceTableType == null) {
                             inplaceTableType = new LinkedList<HANAInplaceTableTypeColumn>();
                             inplaceTableTypes.put(parameterName, inplaceTableType);
@@ -135,7 +135,7 @@ public class HANAProcedure extends GenericProcedure {
 	                    	default:                    parameterType = DBSProcedureParameterKind.UNKNOWN; break; 
                         }
                         DBSObject tableType = null;
-                        List<HANAInplaceTableTypeColumn> inplaceTableType = null;
+                        /*~~>*/List<HANAInplaceTableTypeColumn> inplaceTableType = null;
                         if(DATA_TYPE_NAME_TABLE_TYPE.equals(typeName)) {
                             if (hasInplaceTableType) {
                                 if (inplaceTableTypes == null) {
@@ -163,7 +163,7 @@ public class HANAProcedure extends GenericProcedure {
     }
 
     @Association
-    public List<HANADependency> getDependencies(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<HANADependency> getDependencies(DBRProgressMonitor monitor) throws DBException {
         return HANADependency.readDependencies(monitor, this);
     }
 

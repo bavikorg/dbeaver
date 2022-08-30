@@ -60,7 +60,7 @@ import java.util.List;
  */
 public class DB2Schema extends DB2GlobalObject implements DBSSchema, DBPRefreshableObject, DBPSystemObject, DBSProcedureContainer, DBPObjectStatisticsCollector, DBPObjectStatistics {
 
-    private static final List<String> SYSTEM_SCHEMA = Arrays.asList(
+    private static final /*~~>*/List<String> SYSTEM_SCHEMA = Arrays.asList(
         "SYS",
         "SYSCAT",
         "SYSFUN",
@@ -271,7 +271,7 @@ public class DB2Schema extends DB2GlobalObject implements DBSSchema, DBPRefresha
     @Override
     public Collection<DBSObject> getChildren(@NotNull DBRProgressMonitor monitor) throws DBException
     {
-        List<DBSObject> allChildren = new ArrayList<>();
+        /*~~>*/List<DBSObject> allChildren = new ArrayList<>();
         allChildren.addAll(aliasCache.getAllObjects(monitor, this));
         allChildren.addAll(tableCache.getAllObjects(monitor, this));
         allChildren.addAll(viewCache.getAllObjects(monitor, this));
@@ -304,7 +304,7 @@ public class DB2Schema extends DB2GlobalObject implements DBSSchema, DBPRefresha
     // -----------------
 
     @Association
-    public List<DB2Table> getTables(DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<DB2Table> getTables(DBRProgressMonitor monitor) throws DBException
     {
         return tableCache.getTypedObjects(monitor, this, DB2Table.class);
     }

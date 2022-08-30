@@ -623,7 +623,7 @@ public class SQLScriptParser {
         return element;
     }
 
-    public static List<SQLQueryParameter> parseParameters(SQLParserContext context, int queryOffset, int queryLength) {
+    public static /*~~>*/List<SQLQueryParameter> parseParameters(SQLParserContext context, int queryOffset, int queryLength) {
         final SQLDialect sqlDialect = context.getDialect();
         IDocument document = context.getDocument();
         if (queryOffset + queryLength > document.getLength()) {
@@ -635,7 +635,7 @@ public class SQLScriptParser {
         boolean execQuery = false;
         boolean ddlQuery = false;
         boolean insideDollarQuote = false;
-        List<SQLQueryParameter> parameters = null;
+        /*~~>*/List<SQLQueryParameter> parameters = null;
         TPRuleBasedScanner ruleScanner = context.getScanner();
         ruleScanner.setRange(document, queryOffset, queryLength);
 
@@ -746,7 +746,7 @@ public class SQLScriptParser {
         return parameters;
     }
 
-    private static SQLQueryParameter getPreviousParameter(List<SQLQueryParameter> parameters, SQLQueryParameter parameter) {
+    private static SQLQueryParameter getPreviousParameter(/*~~>*/List<SQLQueryParameter> parameters, SQLQueryParameter parameter) {
         String varName = parameter.getVarName();
         if (parameter.isNamed()) {
             for (int i = parameters.size(); i > 0; i--) {
@@ -758,8 +758,8 @@ public class SQLScriptParser {
         return null;
     }
 
-    public static List<SQLScriptElement> extractScriptQueries(SQLParserContext parserContext, int startOffset, int length, boolean scriptMode, boolean keepDelimiters, boolean parseParameters) {
-        List<SQLScriptElement> queryList = new ArrayList<>();
+    public static /*~~>*/List<SQLScriptElement> extractScriptQueries(SQLParserContext parserContext, int startOffset, int length, boolean scriptMode, boolean keepDelimiters, boolean parseParameters) {
+        /*~~>*/List<SQLScriptElement> queryList = new ArrayList<>();
 
         IDocument document = parserContext.getDocument();
         if (document.getLength() == 0) {
@@ -793,7 +793,7 @@ public class SQLScriptParser {
         return queryList;
     }
 
-    public static List<SQLScriptElement> parseScript(DBPDataSource dataSource, String sqlScriptContent) {
+    public static /*~~>*/List<SQLScriptElement> parseScript(DBPDataSource dataSource, String sqlScriptContent) {
         SQLSyntaxManager syntaxManager = new SQLSyntaxManager();
         syntaxManager.init(dataSource.getSQLDialect(), dataSource.getContainer().getPreferenceStore());
         SQLRuleManager ruleManager = new SQLRuleManager(syntaxManager);
@@ -805,7 +805,7 @@ public class SQLScriptParser {
         return SQLScriptParser.extractScriptQueries(parserContext, 0, sqlScriptContent.length(), true, false, true);
     }
 
-    public static List<SQLScriptElement> parseScript(SQLDialect dialect, DBPPreferenceStore preferenceStore, String sqlScriptContent) {
+    public static /*~~>*/List<SQLScriptElement> parseScript(SQLDialect dialect, DBPPreferenceStore preferenceStore, String sqlScriptContent) {
         SQLSyntaxManager syntaxManager = new SQLSyntaxManager();
         syntaxManager.init(dialect, preferenceStore);
         SQLRuleManager ruleManager = new SQLRuleManager(syntaxManager);

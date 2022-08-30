@@ -374,19 +374,19 @@ public class JSONUtils {
     }
 
     @NotNull
-    public static List<Map<String, Object>> getObjectList(@NotNull Map<String, Object> map, @NotNull String name) {
+    public static /*~~>*/List<Map<String, Object>> getObjectList(@NotNull Map<String, Object> map, @NotNull String name) {
         Object value = map.get(name);
-        if (value instanceof List) {
-            return  (List<Map<String, Object>>) value;
+        if (value instanceof /*~~>*/List) {
+            return  (/*~~>*/List<Map<String, Object>>) value;
         }
         return Collections.emptyList();
     }
 
     @NotNull
-    public static List<String> getStringList(@NotNull Map<String, Object> map, @NotNull String name) {
+    public static /*~~>*/List<String> getStringList(@NotNull Map<String, Object> map, @NotNull String name) {
         Object value = map.get(name);
-        if (value instanceof List) {
-            return  (List<String>) value;
+        if (value instanceof /*~~>*/List) {
+            return  (/*~~>*/List<String>) value;
         }
         return Collections.emptyList();
     }
@@ -431,8 +431,8 @@ public class JSONUtils {
     }
 
     @NotNull
-    public static List<String> deserializeStringList(Map<String, Object> map, String name) {
-        List<String> result = new ArrayList<>();
+    public static /*~~>*/List<String> deserializeStringList(Map<String, Object> map, String name) {
+        /*~~>*/List<String> result = new ArrayList<>();
         Object propMap = map.get(name);
         if (propMap instanceof Collection) {
             for (Object pe : (Collection<?>) propMap) {

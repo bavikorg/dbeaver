@@ -39,7 +39,7 @@ public class SQLPresentationRegistry
         return instance;
     }
 
-    private final List<SQLPresentationDescriptor> presentations = new ArrayList<>();
+    private final /*~~>*/List<SQLPresentationDescriptor> presentations = new ArrayList<>();
 
     private SQLPresentationRegistry()
     {
@@ -52,7 +52,7 @@ public class SQLPresentationRegistry
             // Load functions
             if (TAG_PRESENTATION.equals(ext.getName())) {
                 SQLPresentationDescriptor presentationDescriptor = new SQLPresentationDescriptor(ext);
-                this.presentations.add(presentationDescriptor);
+                /*~~>*/this.presentations.add(presentationDescriptor);
             }
         }
     }
@@ -62,7 +62,7 @@ public class SQLPresentationRegistry
         presentations.clear();
     }
 
-    public List<SQLPresentationDescriptor> getPresentations() {
+    public /*~~>*/List<SQLPresentationDescriptor> getPresentations() {
         return new ArrayList<>(presentations);
     }
 

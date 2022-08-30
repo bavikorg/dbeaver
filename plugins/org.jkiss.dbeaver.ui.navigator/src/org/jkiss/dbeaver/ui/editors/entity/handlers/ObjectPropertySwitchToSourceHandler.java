@@ -52,7 +52,7 @@ public class ObjectPropertySwitchToSourceHandler extends AbstractHandler {
     public static String findSourceTextEditorId(@NotNull EntityEditor editor) {
         ObjectPropertiesEditor part = (ObjectPropertiesEditor)editor.getPageEditor(EntityEditorDescriptor.DEFAULT_OBJECT_EDITOR_ID);
         if (part != null) {
-            List<EntityEditorDescriptor> descrs = EntityEditorsRegistry.getInstance().getEntityEditors(editor.getDatabaseObject(), part, null);
+            /*~~>*/List<EntityEditorDescriptor> descrs = EntityEditorsRegistry.getInstance().getEntityEditors(editor.getDatabaseObject(), part, null);
             for (EntityEditorDescriptor descr: descrs) {
                 if (BaseTextEditor.class.isAssignableFrom(descr.getEditorType().getObjectClass())) {
                     return descr.getId();

@@ -35,7 +35,7 @@ import java.util.Map;
 public class DB2IConstraintManager extends GenericPrimaryKeyManager {
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
         GenericUniqueKey key = command.getObject();
         GenericStructContainer container = key.getParentObject().getParentObject();
         if (key.getConstraintType() == DBSEntityConstraintType.CHECK && key instanceof DB2IConstraint && container != null) {

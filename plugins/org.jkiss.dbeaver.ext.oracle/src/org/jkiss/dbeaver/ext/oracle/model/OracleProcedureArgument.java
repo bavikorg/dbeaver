@@ -50,7 +50,7 @@ public class OracleProcedureArgument implements DBSProcedureParameter, DBSTypedO
     private int dataLength;
     private int dataScale;
     private int dataPrecision;
-    private List<OracleProcedureArgument> attributes;
+    private /*~~>*/List<OracleProcedureArgument> attributes;
 
     public OracleProcedureArgument(
         DBRProgressMonitor monitor,
@@ -222,7 +222,7 @@ public class OracleProcedureArgument implements DBSProcedureParameter, DBSTypedO
     }
 
     @Association
-    public List<OracleProcedureArgument> getAttributes()
+    public /*~~>*/List<OracleProcedureArgument> getAttributes()
     {
         return attributes;
     }

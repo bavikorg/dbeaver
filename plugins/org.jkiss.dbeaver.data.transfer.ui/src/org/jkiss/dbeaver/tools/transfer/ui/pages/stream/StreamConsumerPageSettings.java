@@ -70,7 +70,7 @@ public class StreamConsumerPageSettings extends DataTransferPageNodeSettings {
     private static final int LOB_ENCODING_BINARY = 2;
     private static final int LOB_ENCODING_NATIVE = 3;
 
-    private final List<StreamMappingContainer> mappings = new ArrayList<>();
+    private final /*~~>*/List<StreamMappingContainer> mappings = new ArrayList<>();
     private PropertyTreeViewer propsEditor;
     private Combo lobExtractType;
     private Label lobEncodingLabel;
@@ -453,7 +453,7 @@ public class StreamConsumerPageSettings extends DataTransferPageNodeSettings {
 
     private void refreshMappings(@NotNull DBRProgressMonitor monitor) {
         final StreamConsumerSettings settings = getWizard().getPageSettings(StreamConsumerPageSettings.this, StreamConsumerSettings.class);
-        final List<DataTransferPipe> pipes = getWizard().getSettings().getDataPipes();
+        final /*~~>*/List<DataTransferPipe> pipes = getWizard().getSettings().getDataPipes();
 
         mappings.clear();
 

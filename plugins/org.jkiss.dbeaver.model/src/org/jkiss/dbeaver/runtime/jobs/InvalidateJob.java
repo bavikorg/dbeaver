@@ -56,7 +56,7 @@ public class InvalidateJob extends DataSourceJob
     }
 
     private long timeSpent;
-    private List<ContextInvalidateResult> invalidateResults = new ArrayList<>();
+    private /*~~>*/List<ContextInvalidateResult> invalidateResults = new ArrayList<>();
     private Runnable feedbackHandler;
 
     public InvalidateJob(
@@ -65,7 +65,7 @@ public class InvalidateJob extends DataSourceJob
         super("Invalidate " + dataSource.getContainer().getName(), DBUtils.getDefaultContext(dataSource.getDefaultInstance(), false));
     }
 
-    public List<ContextInvalidateResult> getInvalidateResults() {
+    public /*~~>*/List<ContextInvalidateResult> getInvalidateResults() {
         return invalidateResults;
     }
 
@@ -88,13 +88,13 @@ public class InvalidateJob extends DataSourceJob
 
         // Disable disconnect on failure. It is the worst case anyway.
         // Not sure that we should force disconnect even here.
-        this.invalidateResults = invalidateDataSource(monitor, dataSource, false, true, feedbackHandler);
+        /*~~>*/this.invalidateResults = invalidateDataSource(monitor, dataSource, false, true, feedbackHandler);
 
         return Status.OK_STATUS;
     }
 
-    public static List<ContextInvalidateResult> invalidateDataSource(DBRProgressMonitor monitor, DBPDataSource dataSource, boolean disconnectOnFailure, boolean showErrors, Runnable feedback) {
-        List<ContextInvalidateResult> invalidateResults = new ArrayList<>();
+    public static /*~~>*/List<ContextInvalidateResult> invalidateDataSource(DBRProgressMonitor monitor, DBPDataSource dataSource, boolean disconnectOnFailure, boolean showErrors, Runnable feedback) {
+        /*~~>*/List<ContextInvalidateResult> invalidateResults = new ArrayList<>();
 
         DBPDataSourceContainer container = dataSource.getContainer();
 

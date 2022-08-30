@@ -191,7 +191,7 @@ public class SessionManagerViewer<SESSION_TYPE extends DBAServerSession>
                 detailsItem.setControl(sessionProps.getControl());
 
                 if (sessionManager instanceof DBAServerSessionDetailsProvider) {
-                    List<DBAServerSessionDetails> sessionDetails = ((DBAServerSessionDetailsProvider) sessionManager).getSessionDetails();
+                    /*~~>*/List<DBAServerSessionDetails> sessionDetails = ((DBAServerSessionDetailsProvider) sessionManager).getSessionDetails();
                     if (sessionDetails != null) {
                         for (DBAServerSessionDetails detailsInfo : sessionDetails) {
                             CTabItem extDetailsItem = new CTabItem(detailsFolder, SWT.NONE);
@@ -365,11 +365,11 @@ public class SessionManagerViewer<SESSION_TYPE extends DBAServerSession>
         return sessionTable.getSuitableSelectedElement(DBAServerSession.class);
     }
 
-    public List<DBAServerSession> getSelectedSessions()
+    public /*~~>*/List<DBAServerSession> getSelectedSessions()
     {
         ISelection selection = sessionTable.getSelectionProvider().getSelection();
         if (selection instanceof IStructuredSelection && !selection.isEmpty()) {
-            List<DBAServerSession> sessions = new ArrayList<>();
+            /*~~>*/List<DBAServerSession> sessions = new ArrayList<>();
             for (Object item : ((IStructuredSelection) selection).toArray()) {
                 if (item instanceof DBAServerSession) {
                     sessions.add((DBAServerSession) item);
@@ -386,7 +386,7 @@ public class SessionManagerViewer<SESSION_TYPE extends DBAServerSession>
         refreshControl.scheduleAutoRefresh(false);
     }
 
-    public void alterSessions(final List<SESSION_TYPE> sessions, Map<String, Object> options) {
+    public void alterSessions(final /*~~>*/List<SESSION_TYPE> sessions, Map<String, Object> options) {
         sessionTable.createAlterService(sessions, options).schedule();
     }
 
@@ -608,7 +608,7 @@ public class SessionManagerViewer<SESSION_TYPE extends DBAServerSession>
 
         @NotNull
         @Override
-        protected String getListConfigId(List<Class<?>> classList) {
+        protected String getListConfigId(/*~~>*/List<Class<?>> classList) {
             return "SessionDetails/" + sessionManager.getDataSource().getContainer().getDriver().getId() + "/" + sessionDetails.getDetailsTitle();
         }
 
@@ -644,8 +644,8 @@ public class SessionManagerViewer<SESSION_TYPE extends DBAServerSession>
             try {
                 DBCExecutionContext context = DBUtils.getDefaultContext(sessionManager.getDataSource(), false);
                 try (DBCSession session = context.openSession(monitor, DBCExecutionPurpose.UTIL, "Load session details (" + sessionDetails.getDetailsTitle() + ")")) {
-                    List<? extends DBPObject> sessionDetails = this.sessionDetails.getSessionDetails(session, curSession);
-                    List<DBPObject> result = new ArrayList<>();
+                    /*~~>*/List<? extends DBPObject> sessionDetails = this.sessionDetails.getSessionDetails(session, curSession);
+                    /*~~>*/List<DBPObject> result = new ArrayList<>();
                     if (sessionDetails != null) {
                         result.addAll(sessionDetails);
                     }

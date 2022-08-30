@@ -179,7 +179,7 @@ public class SQLServerDataSource extends JDBCDataSource implements DBSInstanceCo
     }
 
     @Association
-    public List<SQLServerLogin> getLogins(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<SQLServerLogin> getLogins(@NotNull DBRProgressMonitor monitor) throws DBException {
         return serverLoginCache.getAllObjects(monitor, this);
     }
 
@@ -329,7 +329,7 @@ public class SQLServerDataSource extends JDBCDataSource implements DBSInstanceCo
     }
 
     @Override
-    public List<SQLServerDataType> getLocalDataTypes() {
+    public /*~~>*/List<SQLServerDataType> getLocalDataTypes() {
         return dataTypeCache.getCachedObjects();
     }
 

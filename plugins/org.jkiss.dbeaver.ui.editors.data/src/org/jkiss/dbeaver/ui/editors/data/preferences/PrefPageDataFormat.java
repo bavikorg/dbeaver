@@ -72,7 +72,7 @@ public class PrefPageDataFormat extends TargetPrefPage
     private PropertyTreeViewer propertiesControl;
     private Text sampleText;
 
-    private List<DataFormatterDescriptor> formatterDescriptors;
+    private /*~~>*/List<DataFormatterDescriptor> formatterDescriptors;
     private LocaleSelectorControl localeSelector;
 
     private String profileName;
@@ -559,7 +559,7 @@ public class PrefPageDataFormat extends TargetPrefPage
         private void loadProfiles()
         {
             profileList.removeAll();
-            List<DBDDataFormatterProfile> profiles = DataFormatterRegistry.getInstance().getCustomProfiles();
+            /*~~>*/List<DBDDataFormatterProfile> profiles = DataFormatterRegistry.getInstance().getCustomProfiles();
             for (DBDDataFormatterProfile profile : profiles) {
                 profileList.add(profile.getProfileName());
             }

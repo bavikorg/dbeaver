@@ -133,7 +133,7 @@ public class DB2TableManager extends SQLTableManager<DB2Table, DB2Schema> implem
     }
 
     @Override
-    public void addStructObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, StructCreateCommand command, Map<String, Object> options) throws DBException {
+    public void addStructObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, StructCreateCommand command, Map<String, Object> options) throws DBException {
         super.addStructObjectCreateActions(monitor, executionContext, actions, command, options);
         // Eventually add Comment
         DBEPersistAction commentAction = buildCommentAction(command.getObject());
@@ -147,7 +147,7 @@ public class DB2TableManager extends SQLTableManager<DB2Table, DB2Schema> implem
     // ------
 
     @Override
-    public void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) {
+    public void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) {
         DB2Table db2Table = command.getObject();
 
         if (command.getProperties().size() > 1) {
@@ -171,7 +171,7 @@ public class DB2TableManager extends SQLTableManager<DB2Table, DB2Schema> implem
     // Rename
     // ------
     @Override
-    public void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
+    public void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
         String sql = String.format(SQL_RENAME_TABLE,
             DBUtils.getQuotedIdentifier(command.getObject().getSchema()) + "." + DBUtils.getQuotedIdentifier(command.getObject().getDataSource(), command.getOldName()),
             DBUtils.getQuotedIdentifier(command.getObject().getDataSource(), command.getNewName()));

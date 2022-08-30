@@ -46,7 +46,7 @@ import java.util.List;
 
 public class ExasolCreateSchemaDialog extends BaseDialog {
 
-    private List<ExasolGrantee> grantees;
+    private /*~~>*/List<ExasolGrantee> grantees;
     private String name;
     private ExasolDataSource datasource;
     private ExasolGrantee owner;

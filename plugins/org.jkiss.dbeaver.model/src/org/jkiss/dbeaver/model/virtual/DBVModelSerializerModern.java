@@ -116,7 +116,7 @@ class DBVModelSerializerModern implements DBVModelSerializer
                     if (c.isUseAllColumns()) {
                         JSONUtils.field(json, "useAllColumns", true);
                     } else {
-                        List<DBVEntityConstraintColumn> attrRefs = c.getAttributeReferences(null);
+                        /*~~>*/List<DBVEntityConstraintColumn> attrRefs = c.getAttributeReferences(null);
                         if (!CommonUtils.isEmpty(attrRefs)) {
                             json.name("attributes");
                             json.beginArray();
@@ -140,7 +140,7 @@ class DBVModelSerializerModern implements DBVModelSerializer
                 json.beginObject();
                 JSONUtils.field(json, "entity", fk.getRefEntityId());
                 JSONUtils.field(json, "constraint", fk.getRefConstraintId());
-                List<DBVEntityForeignKeyColumn> refAttrs = fk.getAttributeReferences(null);
+                /*~~>*/List<DBVEntityForeignKeyColumn> refAttrs = fk.getAttributeReferences(null);
                 if (!CommonUtils.isEmpty(refAttrs)) {
                     json.name("attributes");
                     json.beginObject();

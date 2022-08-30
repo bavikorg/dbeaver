@@ -41,12 +41,12 @@ public abstract class NodePart extends PropertyAwarePart implements NodeEditPart
 
 
     @Override
-    protected List<ERDAssociation> getModelSourceConnections() {
+    protected /*~~>*/List<ERDAssociation> getModelSourceConnections() {
         return getElement().getAssociations();
     }
 
     @Override
-    protected List<ERDAssociation> getModelTargetConnections() {
+    protected /*~~>*/List<ERDAssociation> getModelTargetConnections() {
         return getElement().getReferences();
     }
 

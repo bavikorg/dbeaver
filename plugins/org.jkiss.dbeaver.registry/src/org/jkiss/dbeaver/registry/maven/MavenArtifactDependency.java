@@ -38,7 +38,7 @@ public class MavenArtifactDependency extends MavenArtifactReference {
 
     private Scope scope;
     private boolean optional;
-    private List<MavenArtifactReference> exclusions;
+    private /*~~>*/List<MavenArtifactReference> exclusions;
     private boolean broken;
 
     public MavenArtifactDependency(@NotNull String groupId, @NotNull String artifactId, @Nullable String classifier, @NotNull String version, Scope scope, boolean optional) {
@@ -55,7 +55,7 @@ public class MavenArtifactDependency extends MavenArtifactReference {
         return optional;
     }
 
-    public List<MavenArtifactReference> getExclusions() {
+    public /*~~>*/List<MavenArtifactReference> getExclusions() {
         return exclusions;
     }
 

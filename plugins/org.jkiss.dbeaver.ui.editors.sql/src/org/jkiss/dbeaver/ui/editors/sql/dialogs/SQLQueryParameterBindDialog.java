@@ -66,15 +66,15 @@ public class SQLQueryParameterBindDialog extends StatusDialog {
     private final IWorkbenchPartSite site;
     private final SQLScriptContext queryContext;
     private final SQLQuery query;
-    private final List<SQLQueryParameter> parameters;
-    private final Map<String, List<SQLQueryParameter>> dupParameters = new HashMap<>();
+    private final /*~~>*/List<SQLQueryParameter> parameters;
+    private final Map<String, /*~~>*/List<SQLQueryParameter>> dupParameters = new HashMap<>();
 
     private final Map<String, SQLQueryParameterRegistry.ParameterInfo> savedParamValues = new HashMap<>();
     private Button hideIfSetCheck;
     private Table paramTable;
     private Object queryPreviewPanel;
 
-    public SQLQueryParameterBindDialog(IWorkbenchPartSite site, SQLQuery query, List<SQLQueryParameter> parameters)
+    public SQLQueryParameterBindDialog(IWorkbenchPartSite site, SQLQuery query, /*~~>*/List<SQLQueryParameter> parameters)
     {
         super(site.getShell());
         if (!UIUtils.isInDialog()) {
@@ -84,11 +84,11 @@ public class SQLQueryParameterBindDialog extends StatusDialog {
         StringWriter dummyWriter = new StringWriter();
         this.queryContext = new SQLScriptContext(null, new DataSourceContextProvider(query.getDataSource()), null, dummyWriter, null);
         this.query = query;
-        this.parameters = parameters;
+        /*~~>*/this.parameters = parameters;
 
         // Restore saved values from registry
         SQLQueryParameterRegistry registry = SQLQueryParameterRegistry.getInstance();
-        for (SQLQueryParameter param : this.parameters) {
+        for (SQLQueryParameter param : /*~~>*/this.parameters) {
             if (param.isNamed() && param.getValue() == null) {
                 SQLQueryParameterRegistry.ParameterInfo paramInfo = registry.getParameter(param.getName());
                 if (paramInfo != null) {
@@ -214,7 +214,7 @@ public class SQLQueryParameterBindDialog extends StatusDialog {
                     param.setValue(newValue);
                     param.setVariableSet(!CommonUtils.isEmpty(newValue));
                     if (param.isNamed()) {
-                        final List<SQLQueryParameter> dups = dupParameters.get(param.getName());
+                        final /*~~>*/List<SQLQueryParameter> dups = dupParameters.get(param.getName());
                         if (dups != null) {
                             for (SQLQueryParameter dup : dups) {
                                 dup.setValue(newValue);
@@ -287,7 +287,7 @@ public class SQLQueryParameterBindDialog extends StatusDialog {
             }
             if (param.getPrevious() != null) {
                 // Skip duplicates
-                List<SQLQueryParameter> dups = dupParameters.computeIfAbsent(param.getName(), k -> new ArrayList<>());
+                /*~~>*/List<SQLQueryParameter> dups = dupParameters.computeIfAbsent(param.getName(), k -> new ArrayList<>());
                 dups.add(param);
                 continue;
             }
@@ -302,7 +302,7 @@ public class SQLQueryParameterBindDialog extends StatusDialog {
 
     private void updateQueryPreview() {
         SQLQuery queryCopy = new SQLQuery(query.getDataSource(), query.getText(), query);
-        List<SQLQueryParameter> setParams = new ArrayList<>(this.parameters);
+        /*~~>*/List<SQLQueryParameter> setParams = new ArrayList<>(/*~~>*/this.parameters);
         setParams.removeIf(parameter -> !parameter.isVariableSet());
         SQLUtils.fillQueryParameters(queryCopy, setParams);
 

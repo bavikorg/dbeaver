@@ -43,12 +43,12 @@ public class MySQLSequenceManager extends SQLObjectEditor<MySQLSequence, MySQLCa
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
         actions.add(new SQLDatabasePersistAction("Create Sequence", "CREATE SEQUENCE " + command.getObject().getFullyQualifiedName(DBPEvaluationContext.DDL)));
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
         MySQLSequence sequence = command.getObject();
         MySQLCatalog curCatalog = ((MySQLExecutionContext)executionContext).getDefaultCatalog();
         if (curCatalog != sequence.getCatalog()) {
@@ -63,7 +63,7 @@ public class MySQLSequenceManager extends SQLObjectEditor<MySQLSequence, MySQLCa
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
         String sql = "DROP SEQUENCE " + command.getObject().getFullyQualifiedName(DBPEvaluationContext.DDL);
         DBEPersistAction action = new SQLDatabasePersistAction("Drop Sequence", sql);
         actions.add(action);

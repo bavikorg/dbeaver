@@ -61,7 +61,7 @@ public abstract class SQLForeignKeyManager<OBJECT_TYPE extends JDBCTableConstrai
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException
     {
         final TABLE_TYPE table = command.getObject().getTable();
         actions.add(
@@ -72,7 +72,7 @@ public abstract class SQLForeignKeyManager<OBJECT_TYPE extends JDBCTableConstrai
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException
     {
         actions.add(
             new SQLDatabasePersistAction(
@@ -130,7 +130,7 @@ public abstract class SQLForeignKeyManager<OBJECT_TYPE extends JDBCTableConstrai
         if (refConstraint instanceof DBSEntityReferrer) {
             try {
                 boolean firstColumn = true;
-                List<? extends DBSEntityAttributeRef> columns = ((DBSEntityReferrer) refConstraint).getAttributeReferences(new VoidProgressMonitor());
+                /*~~>*/List<? extends DBSEntityAttributeRef> columns = ((DBSEntityReferrer) refConstraint).getAttributeReferences(new VoidProgressMonitor());
                 for (DBSEntityAttributeRef constraintColumn : CommonUtils.safeCollection(columns)) {
                     if (!firstColumn) decl.append(","); //$NON-NLS-1$
                     firstColumn = false;

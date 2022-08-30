@@ -166,7 +166,7 @@ public class PostgreTableColumnManager extends SQLTableColumnManager<PostgreTabl
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
         options.put(OPTION_NON_STRUCT_CREATE_ACTION, true);
         super.addObjectCreateActions(monitor, executionContext, actions, command, options);
         if (!CommonUtils.isEmpty(command.getObject().getDescription())) {
@@ -175,7 +175,7 @@ public class PostgreTableColumnManager extends SQLTableColumnManager<PostgreTabl
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
     {
         final PostgreAttribute column = command.getObject();
         boolean isAtomic = column.getDataSource().getServerType().isAlterTableAtomic();
@@ -212,7 +212,7 @@ public class PostgreTableColumnManager extends SQLTableColumnManager<PostgreTabl
         }
     }
 
-    public static void addColumnCommentAction(List<DBEPersistAction> actionList, PostgreAttribute column) {
+    public static void addColumnCommentAction(/*~~>*/List<DBEPersistAction> actionList, PostgreAttribute column) {
         actionList.add(new SQLDatabasePersistAction("Set column comment", "COMMENT ON COLUMN " +
             DBUtils.getObjectFullName(column.getTable(), DBPEvaluationContext.DDL) + "." + DBUtils.getQuotedIdentifier(column) +
             " IS " + SQLUtils.quoteString(column, CommonUtils.notEmpty(column.getDescription()))));
@@ -229,7 +229,7 @@ public class PostgreTableColumnManager extends SQLTableColumnManager<PostgreTabl
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
     {
         final PostgreAttribute column = command.getObject();
 

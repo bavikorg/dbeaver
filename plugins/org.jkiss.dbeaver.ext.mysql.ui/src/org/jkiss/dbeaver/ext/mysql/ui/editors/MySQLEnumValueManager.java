@@ -42,7 +42,7 @@ public class MySQLEnumValueManager extends EnumValueManager {
     }
 
     @Override
-    protected List<String> getEnumValues(IValueController valueController) {
+    protected /*~~>*/List<String> getEnumValues(IValueController valueController) {
         DBSTypedObject valueType = valueController.getValueType();
         if (valueType instanceof MySQLTableColumn) {
             return ((MySQLTableColumn) valueType).getEnumValues();
@@ -52,9 +52,9 @@ public class MySQLEnumValueManager extends EnumValueManager {
     }
 
     @Override
-    protected List<String> getSetValues(IValueController valueController, Object value) {
+    protected /*~~>*/List<String> getSetValues(IValueController valueController, Object value) {
         String setString = DBValueFormatting.getDefaultValueDisplayString(value, DBDDisplayFormat.UI);
-        List<String> setValues = new ArrayList<String>();
+        /*~~>*/List<String> setValues = new ArrayList<String>();
         if (!CommonUtils.isEmpty(setString)) {
             StringTokenizer st = new StringTokenizer(setString, ",");
             while (st.hasMoreTokens()) {

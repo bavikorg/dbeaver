@@ -362,7 +362,7 @@ public class OracleSchema extends OracleGlobalObject implements DBSSchema, DBPRe
     public Collection<DBSObject> getChildren(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
-        List<DBSObject> children = new ArrayList<>();
+        /*~~>*/List<DBSObject> children = new ArrayList<>();
         children.addAll(tableCache.getAllObjects(monitor, this));
         if (SYNONYMS_AS_CHILDREN) {
             children.addAll(synonymCache.getAllObjects(monitor, this));
@@ -606,7 +606,7 @@ public class OracleSchema extends OracleGlobalObject implements DBSSchema, DBPRe
         }
 
         @Override
-        protected void cacheChildren(OracleTableBase parent, List<OracleTableColumn> oracleTableColumns) {
+        protected void cacheChildren(OracleTableBase parent, /*~~>*/List<OracleTableColumn> oracleTableColumns) {
             oracleTableColumns.sort(DBUtils.orderComparator());
             super.cacheChildren(parent, oracleTableColumns);
         }
@@ -792,7 +792,7 @@ public class OracleSchema extends OracleGlobalObject implements DBSSchema, DBPRe
             //resultset has field COLUMN_NAMES_NUMS - special query was used
             if (JDBCUtils.safeGetString(dbResult, "COLUMN_NAMES_NUMS") != null) {
                 
-                List<SpecialPosition>  positions = parsePositions(JDBCUtils.safeGetString(dbResult, "COLUMN_NAMES_NUMS"));
+                /*~~>*/List<SpecialPosition>  positions = parsePositions(JDBCUtils.safeGetString(dbResult, "COLUMN_NAMES_NUMS"));
                 
                 OracleTableConstraintColumn[] result = new OracleTableConstraintColumn[positions.size()];
                 
@@ -824,7 +824,7 @@ public class OracleSchema extends OracleGlobalObject implements DBSSchema, DBPRe
         }
 
         @Override
-        protected void cacheChildren(DBRProgressMonitor monitor, OracleTableConstraint constraint, List<OracleTableConstraintColumn> rows)
+        protected void cacheChildren(DBRProgressMonitor monitor, OracleTableConstraint constraint, /*~~>*/List<OracleTableConstraintColumn> rows)
         {
             constraint.setColumns(rows);
         }
@@ -861,7 +861,7 @@ public class OracleSchema extends OracleGlobalObject implements DBSSchema, DBPRe
          
     }
     
-    private List<SpecialPosition> parsePositions(String value) {
+    private /*~~>*/List<SpecialPosition> parsePositions(String value) {
         
         if (value == null) {
             return Collections.emptyList();
@@ -871,7 +871,7 @@ public class OracleSchema extends OracleGlobalObject implements DBSSchema, DBPRe
             return Collections.emptyList(); 
         }
         
-        List<SpecialPosition> result = new ArrayList<>(1);
+        /*~~>*/List<SpecialPosition> result = new ArrayList<>(1);
         
         String data[] = value.split(",");
         
@@ -1018,7 +1018,7 @@ public class OracleSchema extends OracleGlobalObject implements DBSSchema, DBPRe
             //resultset has field COLUMN_NAMES_NUMS - special query was used
             if (JDBCUtils.safeGetString(dbResult, "COLUMN_NAMES_NUMS") != null) {
                 
-                List<SpecialPosition>  positions = parsePositions(JDBCUtils.safeGetString(dbResult, "COLUMN_NAMES_NUMS"));
+                /*~~>*/List<SpecialPosition>  positions = parsePositions(JDBCUtils.safeGetString(dbResult, "COLUMN_NAMES_NUMS"));
                 
                 OracleTableForeignKeyColumn[] result = new OracleTableForeignKeyColumn[positions.size()];
                 
@@ -1056,9 +1056,9 @@ public class OracleSchema extends OracleGlobalObject implements DBSSchema, DBPRe
 
         @Override
         @SuppressWarnings("unchecked")
-        protected void cacheChildren(DBRProgressMonitor monitor, OracleTableForeignKey foreignKey, List<OracleTableForeignKeyColumn> rows)
+        protected void cacheChildren(DBRProgressMonitor monitor, OracleTableForeignKey foreignKey, /*~~>*/List<OracleTableForeignKeyColumn> rows)
         {
-            foreignKey.setColumns((List)rows);
+            foreignKey.setColumns((/*~~>*/List)rows);
         }
     }
 
@@ -1139,7 +1139,7 @@ public class OracleSchema extends OracleGlobalObject implements DBSSchema, DBPRe
         }
 
         @Override
-        protected void cacheChildren(DBRProgressMonitor monitor, OracleTableIndex index, List<OracleTableIndexColumn> rows)
+        protected void cacheChildren(DBRProgressMonitor monitor, OracleTableIndex index, /*~~>*/List<OracleTableIndexColumn> rows)
         {
             index.setColumns(rows);
         }
@@ -1419,7 +1419,7 @@ public class OracleSchema extends OracleGlobalObject implements DBSSchema, DBPRe
         }
 
         @Override
-        protected void cacheChildren(DBRProgressMonitor monitor, OracleTableTrigger trigger, List<OracleTriggerColumn> columns) {
+        protected void cacheChildren(DBRProgressMonitor monitor, OracleTableTrigger trigger, /*~~>*/List<OracleTriggerColumn> columns) {
             trigger.setColumns(columns);
         }
 

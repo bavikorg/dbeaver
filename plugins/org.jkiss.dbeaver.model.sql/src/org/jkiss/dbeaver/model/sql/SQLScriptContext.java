@@ -152,7 +152,7 @@ public class SQLScriptContext implements DBCScriptContext {
     }
 
     @Override
-    public List<VariableInfo> getVariables() {
+    public /*~~>*/List<VariableInfo> getVariables() {
         return new ArrayList<>(variables.values());
     }
 
@@ -259,7 +259,7 @@ public class SQLScriptContext implements DBCScriptContext {
         }
 
         // Bind parameters
-        List<SQLQueryParameter> parameters = query.getParameters();
+        /*~~>*/List<SQLQueryParameter> parameters = query.getParameters();
         if (CommonUtils.isEmpty(parameters)) {
             return true;
         }
@@ -307,7 +307,7 @@ public class SQLScriptContext implements DBCScriptContext {
     public void loadVariables(DBPDriver driver, DBPDataSourceContainer dataSource) {
         synchronized (variables) {
             variables.clear();
-            List<VariableInfo> varList;
+            /*~~>*/List<VariableInfo> varList;
             if (dataSource != null) {
                 varList = SQLVariablesRegistry.getInstance().getDataSourceVariables(dataSource);
             } else if (driver != null) {

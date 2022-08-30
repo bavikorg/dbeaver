@@ -113,7 +113,7 @@ class ResultSetFilterPanel extends Composite implements IContentProposalProvider
     private String activeDisplayName = ResultSetViewer.DEFAULT_QUERY_TEXT;
 
     private String prevQuery = null;
-    private final List<String> filtersHistory = new ArrayList<>();
+    private final /*~~>*/List<String> filtersHistory = new ArrayList<>();
     private Menu historyMenu;
     private boolean filterExpanded = false;
 
@@ -338,7 +338,7 @@ class ResultSetFilterPanel extends Composite implements IContentProposalProvider
         if (enableFilters) {
             final boolean supportsDataFilter = viewer.supportsDataFilter();
             int historyPosition = viewer.getHistoryPosition();
-            List<ResultSetViewer.HistoryStateItem> stateHistory = viewer.getStateHistory();
+            /*~~>*/List<ResultSetViewer.HistoryStateItem> stateHistory = viewer.getStateHistory();
 
             String filterText = filtersText.getText();
             filtersText.setEnabled(supportsDataFilter);
@@ -611,7 +611,7 @@ class ResultSetFilterPanel extends Composite implements IContentProposalProvider
             syntaxManager.init(dataSource.getSQLDialect(), dataSource.getContainer().getPreferenceStore());
         }
         SQLWordPartDetector wordDetector = new SQLWordPartDetector(new Document(contents), syntaxManager, position);
-        final List<IContentProposal> proposals = new ArrayList<>();
+        final /*~~>*/List<IContentProposal> proposals = new ArrayList<>();
 
         String attrName = wordDetector.getFullWord().toLowerCase(Locale.ENGLISH);
 
@@ -1160,7 +1160,7 @@ class ResultSetFilterPanel extends Composite implements IContentProposalProvider
         @Override
         public void widgetSelected(SelectionEvent e) {
             int historyPosition = viewer.getHistoryPosition();
-            List<ResultSetViewer.HistoryStateItem> stateHistory = viewer.getStateHistory();
+            /*~~>*/List<ResultSetViewer.HistoryStateItem> stateHistory = viewer.getStateHistory();
             if (e.detail == SWT.ARROW) {
                 ToolItem item = (ToolItem) e.widget;
                 Rectangle rect = item.getBounds();

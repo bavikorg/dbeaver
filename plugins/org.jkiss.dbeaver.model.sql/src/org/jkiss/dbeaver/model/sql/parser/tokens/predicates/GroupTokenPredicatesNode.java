@@ -25,9 +25,9 @@ import java.util.List;
  * Represents any node of token predicate tree carrying a number of children nodes
  */
 abstract class GroupTokenPredicatesNode extends TokenPredicateNode {
-    public final List<TokenPredicateNode> childs;
+    public final /*~~>*/List<TokenPredicateNode> childs;
 
     protected GroupTokenPredicatesNode(@NotNull TokenPredicateNode... childs) {
-        this.childs = Collections.unmodifiableList(List.of(childs));
+        /*~~>*/this.childs = Collections.unmodifiableList(/*~~>*/List.of(childs));
     }
 }

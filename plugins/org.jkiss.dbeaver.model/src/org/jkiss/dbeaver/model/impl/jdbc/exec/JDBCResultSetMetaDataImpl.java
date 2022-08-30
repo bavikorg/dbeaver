@@ -38,7 +38,7 @@ public class JDBCResultSetMetaDataImpl implements JDBCResultSetMetaData
 {
     protected JDBCResultSet resultSet;
     protected ResultSetMetaData original;
-    protected List<DBCAttributeMetaData> columns = new ArrayList<>();
+    protected /*~~>*/List<DBCAttributeMetaData> columns = new ArrayList<>();
     protected Map<String, JDBCTableMetaData> tables = new HashMap<>();
 
     public JDBCResultSetMetaDataImpl(JDBCResultSet resultSet)
@@ -68,7 +68,7 @@ public class JDBCResultSetMetaDataImpl implements JDBCResultSetMetaData
     }
 
     @Override
-    public List<DBCAttributeMetaData> getAttributes()
+    public /*~~>*/List<DBCAttributeMetaData> getAttributes()
     {
         return columns;
     }

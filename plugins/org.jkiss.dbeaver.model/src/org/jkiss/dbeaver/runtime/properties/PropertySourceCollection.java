@@ -34,9 +34,9 @@ import java.util.List;
  */
 public class PropertySourceCollection implements DBPPropertySource {
 
-    private List<DBPPropertyDescriptor> props = new ArrayList<>();
+    private /*~~>*/List<DBPPropertyDescriptor> props = new ArrayList<>();
 
-    private List<Object> items;
+    private /*~~>*/List<Object> items;
 
     public PropertySourceCollection(Collection<?> collection)
     {

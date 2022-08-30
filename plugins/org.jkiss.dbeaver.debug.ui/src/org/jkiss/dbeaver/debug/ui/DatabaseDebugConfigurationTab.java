@@ -119,7 +119,7 @@ public class DatabaseDebugConfigurationTab extends AbstractLaunchConfigurationTa
         if (dataSource == null) {
             UIUtils.createInfoLabel(typesGroup, "Select a connection to see available debug types");
         } else {
-            List<DebugConfigurationPanelDescriptor> panels = DebugConfigurationPanelRegistry.getInstance().getPanels(dataSource);
+            /*~~>*/List<DebugConfigurationPanelDescriptor> panels = DebugConfigurationPanelRegistry.getInstance().getPanels(dataSource);
             if (CommonUtils.isEmpty(panels)) {
                 UIUtils.createInfoLabel(typesGroup, "Driver '" + dataSource.getDriver().getFullName() + "' doesn't support debugging");
             } else {

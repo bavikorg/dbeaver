@@ -191,7 +191,7 @@ public class PostgreLockManager extends LockGraphManager implements DBAServerLoc
         throws DBException {
         try {
 
-            List<PostgreLockItem> locks = new ArrayList<>();
+            /*~~>*/List<PostgreLockItem> locks = new ArrayList<>();
 
             try (JDBCPreparedStatement dbStat = ((JDBCSession) session).prepareStatement(LOCK_ITEM_QUERY)) {
 

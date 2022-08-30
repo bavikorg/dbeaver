@@ -43,7 +43,7 @@ public class DatabaseStackFrame extends DatabaseDebugElement implements IStackFr
 
     private static Log log = Log.getLog(DatabaseStackFrame.class);
 
-    private final List<DatabaseVariable> variables = new ArrayList<>();
+    private final /*~~>*/List<DatabaseVariable> variables = new ArrayList<>();
 
     private final DatabaseThread thread;
     private final DBGStackFrame dbgStackFrame;
@@ -141,7 +141,7 @@ public class DatabaseStackFrame extends DatabaseDebugElement implements IStackFr
         /*if (refreshVariables)*/ {
             try {
                 IDatabaseDebugTarget debugTarget = getDatabaseDebugTarget();
-                List<? extends DBGVariable<?>> variables = debugTarget.getSession().getVariables(dbgStackFrame);
+                /*~~>*/List<? extends DBGVariable<?>> variables = debugTarget.getSession().getVariables(dbgStackFrame);
                 rebuildVariables(variables);
             } catch (DBGException e) {
                 log.debug("Error getting variables", e);
@@ -157,7 +157,7 @@ public class DatabaseStackFrame extends DatabaseDebugElement implements IStackFr
         refreshVariables = true;
     }
 
-    protected void rebuildVariables(List<? extends DBGVariable<?>> dbgVariables) {
+    protected void rebuildVariables(/*~~>*/List<? extends DBGVariable<?>> dbgVariables) {
         try {
             int frameLN = dbgStackFrame.getLineNumber();
             variables.clear();

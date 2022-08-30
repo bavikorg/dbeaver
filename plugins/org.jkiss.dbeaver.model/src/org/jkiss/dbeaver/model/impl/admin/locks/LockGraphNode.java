@@ -49,9 +49,9 @@ public class LockGraphNode  {
 		return this.level;
 	}  
 
-	private List<LockGraphEdge> sourceEdges;
+	private /*~~>*/List<LockGraphEdge> sourceEdges;
 
-	private List<LockGraphEdge> targetEdges;
+	private /*~~>*/List<LockGraphEdge> targetEdges;
 	
 	public LockGraphNode(DBAServerLock lock){
 		
@@ -59,8 +59,8 @@ public class LockGraphNode  {
 		this.level = 0;
 		this.span = 0;
 		this.title = lock.getTitle();
-		this.sourceEdges = new ArrayList<>();
-		this.targetEdges = new ArrayList<>();
+		/*~~>*/this.sourceEdges = new ArrayList<>();
+		/*~~>*/this.targetEdges = new ArrayList<>();
 		
 		this.levelPosition = LevelPosition.CENTER;
 		
@@ -70,32 +70,32 @@ public class LockGraphNode  {
 		this.level = level;
 		this.span = span;
 		this.title = title;
-		this.sourceEdges = new ArrayList<>();
-		this.targetEdges = new ArrayList<>();
+		/*~~>*/this.sourceEdges = new ArrayList<>();
+		/*~~>*/this.targetEdges = new ArrayList<>();
 	}
 
 	public void addSourceEdge(LockGraphEdge sourceEdge) {
-		this.sourceEdges.add(sourceEdge);
+		/*~~>*/this.sourceEdges.add(sourceEdge);
 	}
 
 	public void addTargetEdge(LockGraphEdge targetEdge) {
-		this.targetEdges.add(targetEdge);
+		/*~~>*/this.targetEdges.add(targetEdge);
 	}
 
-	public List<LockGraphEdge> getSourceEdges() {
-		return this.sourceEdges;
+	public /*~~>*/List<LockGraphEdge> getSourceEdges() {
+		return /*~~>*/this.sourceEdges;
 	}
 
-	public List<LockGraphEdge> getTargetEdges() {
-		return this.targetEdges;
+	public /*~~>*/List<LockGraphEdge> getTargetEdges() {
+		return /*~~>*/this.targetEdges;
 	}
 
 	public void removeSourceEdge(LockGraphEdge sourceEdge) {
-		this.sourceEdges.remove(sourceEdge);
+		/*~~>*/this.sourceEdges.remove(sourceEdge);
 	}
 
 	public void removeTargetEdge(LockGraphEdge targetEdge) {
-		this.targetEdges.remove(targetEdge);
+		/*~~>*/this.targetEdges.remove(targetEdge);
 	}
 
 	public int getSpan() {

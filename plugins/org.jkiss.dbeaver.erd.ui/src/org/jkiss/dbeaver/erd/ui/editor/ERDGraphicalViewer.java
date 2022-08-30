@@ -192,19 +192,19 @@ public class ERDGraphicalViewer extends ScrollingGraphicalViewer implements IPro
             super.setContents(editpart);
             // Reset palette contents
             if (editpart instanceof DiagramPart) {
-                List<DBSEntity> tables = new ArrayList<>();
+                /*~~>*/List<DBSEntity> tables = new ArrayList<>();
                 for (Object child : editpart.getChildren()) {
                     if (child instanceof EntityPart) {
                         tables.add(((EntityPart) child).getEntity().getObject());
                     }
                 }
                 tables.sort(DBUtils.nameComparator());
-                Map<PaletteDrawer, List<ToolEntryTable>> toolMap = new LinkedHashMap<>();
+                Map<PaletteDrawer, /*~~>*/List<ToolEntryTable>> toolMap = new LinkedHashMap<>();
                 for (DBSEntity table : tables) {
                     DBPDataSourceContainer container = table.getDataSource().getContainer();
                     PaletteDrawer drawer = getContainerPaletteDrawer(container);
                     if (drawer != null) {
-                        List<ToolEntryTable> tools = toolMap.get(drawer);
+                        /*~~>*/List<ToolEntryTable> tools = toolMap.get(drawer);
                         if (tools == null) {
                             tools = new ArrayList<>(tables.size());
                             toolMap.put(drawer, tools);
@@ -212,7 +212,7 @@ public class ERDGraphicalViewer extends ScrollingGraphicalViewer implements IPro
                         tools.add(new ToolEntryTable(table));
                     }
                 }
-                for (Map.Entry<PaletteDrawer, List<ToolEntryTable>> entry : toolMap.entrySet()) {
+                for (Map.Entry<PaletteDrawer, /*~~>*/List<ToolEntryTable>> entry : toolMap.entrySet()) {
                     entry.getKey().setChildren(entry.getValue());
                 }
                 //editor.getPaletteContents().setChildren(tools);
@@ -245,7 +245,7 @@ public class ERDGraphicalViewer extends ScrollingGraphicalViewer implements IPro
             final PaletteContainer drawer = getContainerPaletteDrawer(table.getDataSource().getContainer());
             if (drawer != null) {
                 // Add entry (with right order)
-                List children = drawer.getChildren();
+                /*~~>*/List children = drawer.getChildren();
                 int index = 0;
                 for (int i = 0, childrenSize = children.size(); i < childrenSize; i++) {
                     Object child = children.get(i);

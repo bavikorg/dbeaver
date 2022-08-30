@@ -284,7 +284,7 @@ public abstract class BaseProjectImpl implements DBPProject {
         loadMetadata();
 
         synchronized (metadataSync) {
-            final List<String> resources = new ArrayList<>();
+            final /*~~>*/List<String> resources = new ArrayList<>();
 
             for (var resource : resourceProperties.entrySet()) {
                 boolean containsRequiredProperties = true;

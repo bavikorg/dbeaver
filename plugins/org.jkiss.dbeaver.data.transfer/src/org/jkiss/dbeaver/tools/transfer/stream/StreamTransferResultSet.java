@@ -48,10 +48,10 @@ public class StreamTransferResultSet implements DBCResultSet {
     private final DBCSession session;
     private final DBCStatement statement;
     private final StreamEntityMapping entityMapping;
-    private final List<DBCAttributeMetaData> metaAttrs;
+    private final /*~~>*/List<DBCAttributeMetaData> metaAttrs;
     // Stream row: values in source attributes order
     private Object[] streamRow;
-    private final List<StreamDataImporterColumnInfo> attributeMappings;
+    private final /*~~>*/List<StreamDataImporterColumnInfo> attributeMappings;
     private DateTimeFormatter dateTimeFormat;
     private ZoneId dateTimeZoneId;
 
@@ -59,13 +59,13 @@ public class StreamTransferResultSet implements DBCResultSet {
         this.session = session;
         this.statement = statement;
         this.entityMapping = entityMapping;
-        this.attributeMappings = this.entityMapping.getStreamColumns();
-        this.metaAttrs = attributeMappings.stream()
+        /*~~>*/this.attributeMappings = this.entityMapping.getStreamColumns();
+        /*~~>*/this.metaAttrs = attributeMappings.stream()
             .map(c -> new LocalResultSetColumn(this, c.getOrdinalPosition(), c.getName(), c))
             .collect(Collectors.toList());
     }
 
-    public List<StreamDataImporterColumnInfo> getAttributeMappings() {
+    public /*~~>*/List<StreamDataImporterColumnInfo> getAttributeMappings() {
         return attributeMappings;
     }
 
@@ -85,7 +85,7 @@ public class StreamTransferResultSet implements DBCResultSet {
 
     @Override
     public Object getAttributeValue(int index) throws DBCException {
-        StreamDataImporterColumnInfo attr = this.attributeMappings.get(index);
+        StreamDataImporterColumnInfo attr = /*~~>*/this.attributeMappings.get(index);
 
         Object value = streamRow[index];
         if (value != null && dateTimeFormat != null && attr.getDataKind() == DBPDataKind.DATETIME && !(value instanceof Date)) {

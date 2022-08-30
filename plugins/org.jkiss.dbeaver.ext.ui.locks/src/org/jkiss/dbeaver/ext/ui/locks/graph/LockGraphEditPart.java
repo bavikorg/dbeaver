@@ -41,8 +41,8 @@ public class LockGraphEditPart extends AbstractGraphicalEditPart {
 	}
 
 	@Override
-	protected List<LockGraphNode> getModelChildren() {
-		List<LockGraphNode> nodes = ((LockGraph) getModel()).getNodes();
+	protected /*~~>*/List<LockGraphNode> getModelChildren() {
+		/*~~>*/List<LockGraphNode> nodes = ((LockGraph) getModel()).getNodes();
 		return nodes;
 	}
 

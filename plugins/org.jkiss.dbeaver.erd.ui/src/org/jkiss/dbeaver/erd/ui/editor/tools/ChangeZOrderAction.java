@@ -66,7 +66,7 @@ public class ChangeZOrderAction extends SelectionAction {
                     if (item instanceof NodePart) {
                         IFigure child = ((NodePart) item).getFigure();
                         final IFigure parent = child.getParent();
-                        final List children = parent.getChildren();
+                        final /*~~>*/List children = parent.getChildren();
                         if (children != null) {
                             children.remove(child);
                             if (front) {

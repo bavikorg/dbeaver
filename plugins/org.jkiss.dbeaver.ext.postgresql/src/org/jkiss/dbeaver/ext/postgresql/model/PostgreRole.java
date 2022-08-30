@@ -359,7 +359,7 @@ public class PostgreRole implements
 
         if (CommonUtils.getOption(options, DBPScriptObject.OPTION_INCLUDE_PERMISSIONS)) {
             ddl.append("\n");
-            List<DBEPersistAction> actions = new ArrayList<>();
+            /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
             PostgreUtils.getObjectGrantPermissionActions(monitor, this, actions, options);
             ddl.append("\n").append(SQLUtils.generateScript(dataSource, actions.toArray(new DBEPersistAction[0]), false));
         }
@@ -377,8 +377,8 @@ public class PostgreRole implements
     }
 
     @Override
-    public List<PostgrePrivilege> getPrivileges(DBRProgressMonitor monitor, boolean includeNestedObjects) {
-        List<PostgrePrivilege> permissions = new ArrayList<>();
+    public /*~~>*/List<PostgrePrivilege> getPrivileges(DBRProgressMonitor monitor, boolean includeNestedObjects) {
+        /*~~>*/List<PostgrePrivilege> permissions = new ArrayList<>();
         try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Read role privileges")) {
             try (JDBCPreparedStatement dbStat = session.prepareStatement(
                     "SELECT * FROM information_schema.table_privileges WHERE table_catalog=? AND grantee=?")) {
@@ -448,7 +448,7 @@ public class PostgreRole implements
                         }
                         PostgreSchema schema = getDatabase().getSchema(monitor, schemaId);
                         if (schema != null) {
-                            List<PostgrePrivilege> privileges = null;
+                            /*~~>*/List<PostgrePrivilege> privileges = null;
                             PostgrePrivilegeGrant.Kind pKind = null;
                             if (supportsOnlySchemasPermissions) {
                                 pKind = PostgrePrivilegeGrant.Kind.SCHEMA;
@@ -469,7 +469,7 @@ public class PostgreRole implements
                             }
                             for (PostgrePrivilege p : CommonUtils.safeCollection(privileges)) {
                                 if (p instanceof PostgreObjectPrivilege && getName().equals(((PostgreObjectPrivilege) p).getGrantee())) {
-                                    List<PostgrePrivilegeGrant> grants = new ArrayList<>();
+                                    /*~~>*/List<PostgrePrivilegeGrant> grants = new ArrayList<>();
                                     for (PostgrePrivilege.ObjectPermission perm : p.getPermissions()) {
                                         grants.add(new PostgrePrivilegeGrant(perm.getGrantor(), getName(), getDatabase().getName(),
                                                 schema.getName(), objectName, perm.getPrivilegeType(), false, false));
@@ -506,7 +506,7 @@ public class PostgreRole implements
         @NotNull JDBCPreparedStatement dbStat) throws SQLException
     {
         try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-            Map<String, List<PostgrePrivilegeGrant>> privs = new LinkedHashMap<>();
+            Map<String, /*~~>*/List<PostgrePrivilegeGrant>> privs = new LinkedHashMap<>();
             while (dbResult.next()) {
                 PostgrePrivilegeGrant privilege = new PostgrePrivilegeGrant(kind, dbResult);
                 String privilegeObjectName = privilege.getObjectName();
@@ -518,12 +518,12 @@ public class PostgreRole implements
                     changeRoutineFullName(monitor, role, privilege, privilegeObjectName, objectSchema);
                 }
                 String tableId = objectSchema + "." + privilege.getObjectName();
-                List<PostgrePrivilegeGrant> privList = privs.computeIfAbsent(tableId, k -> new ArrayList<>());
+                /*~~>*/List<PostgrePrivilegeGrant> privList = privs.computeIfAbsent(tableId, k -> new ArrayList<>());
                 privList.add(privilege);
             }
             // Pack to permission list
-            List<PostgrePrivilege> result = new ArrayList<>(privs.size());
-            for (List<PostgrePrivilegeGrant> priv : privs.values()) {
+            /*~~>*/List<PostgrePrivilege> result = new ArrayList<>(privs.size());
+            for (/*~~>*/List<PostgrePrivilegeGrant> priv : privs.values()) {
                 PostgrePrivilegeGrant privilegeGrant = priv.get(0);
                 result.add(new PostgreRolePrivilege(
                     role,

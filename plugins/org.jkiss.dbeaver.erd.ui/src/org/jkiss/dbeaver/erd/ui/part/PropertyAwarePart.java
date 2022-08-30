@@ -196,7 +196,7 @@ public abstract class PropertyAwarePart extends AbstractGraphicalEditPart implem
         } else {
 
             //remove connection
-            List<?> children = getTargetConnections();
+            /*~~>*/List<?> children = getTargetConnections();
 
             ConnectionEditPart partToRemove = null;
             for (Object child : children) {
@@ -207,9 +207,9 @@ public abstract class PropertyAwarePart extends AbstractGraphicalEditPart implem
                 }
             }
 
-            List<PropertyAwarePart> childrenParts = getChildren();
+            /*~~>*/List<PropertyAwarePart> childrenParts = getChildren();
             for (PropertyAwarePart next : childrenParts) {
-                List<?> childrenConnections = next.getTargetConnections();
+                /*~~>*/List<?> childrenConnections = next.getTargetConnections();
                 ConnectionEditPart childConnectionPartToRemove;
                 for (Object childrenConnection : childrenConnections) {
                     ConnectionEditPart childConnectionPart = (ConnectionEditPart) childrenConnection;
@@ -258,7 +258,7 @@ public abstract class PropertyAwarePart extends AbstractGraphicalEditPart implem
         } else {
 
             //remove connection
-            List<?> children = getSourceConnections();
+            /*~~>*/List<?> children = getSourceConnections();
 
             ConnectionEditPart partToRemove = null;
             for (Object child : children) {
@@ -268,9 +268,9 @@ public abstract class PropertyAwarePart extends AbstractGraphicalEditPart implem
                     break;
                 }
             }
-            List<PropertyAwarePart> childrenParts = getChildren();
+            /*~~>*/List<PropertyAwarePart> childrenParts = getChildren();
             for (PropertyAwarePart next : childrenParts) {
-                List<?> childrenConnections = next.getSourceConnections();
+                /*~~>*/List<?> childrenConnections = next.getSourceConnections();
                 ConnectionEditPart childConnectionPartToRemove;
                 for (Object childrenConnection : childrenConnections) {
                     ConnectionEditPart childConnectionPart = (ConnectionEditPart) childrenConnection;
@@ -313,7 +313,7 @@ public abstract class PropertyAwarePart extends AbstractGraphicalEditPart implem
 
         } else {
 
-            List<?> children = getChildren();
+            /*~~>*/List<?> children = getChildren();
 
             EditPart partToRemove = null;
             for (Iterator<?> iter = children.iterator(); iter.hasNext(); ) {

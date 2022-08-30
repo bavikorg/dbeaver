@@ -65,7 +65,7 @@ class SQLToolTaskWizardPageStatus extends ActiveWizardPage<SQLToolTaskWizard> im
     private MessageConsole console;
     private ObjectListControl<SQLToolStatistics> statusTable;
     private AbstractJob statusUpdateJob;
-    private final List<SQLToolStatistics> toolStatistics = new ArrayList<>();
+    private final /*~~>*/List<SQLToolStatistics> toolStatistics = new ArrayList<>();
 
     SQLToolTaskWizardPageStatus(SQLToolTaskWizard wizard) {
         super(TasksSQLUIMessages.sql_tool_task_wizard_page_status_name);
@@ -96,7 +96,7 @@ class SQLToolTaskWizardPageStatus extends ActiveWizardPage<SQLToolTaskWizard> im
         statusTable = new ObjectListControl<SQLToolStatistics>(partDivider, SWT.SHEET, new ListContentProvider()) {
             @NotNull
             @Override
-            protected String getListConfigId(List<Class<?>> classList) {
+            protected String getListConfigId(/*~~>*/List<Class<?>> classList) {
                 return "SQLToolStatus." + getWizard().getTaskType().getId();
             }
 
@@ -143,7 +143,7 @@ class SQLToolTaskWizardPageStatus extends ActiveWizardPage<SQLToolTaskWizard> im
         writer.flush();
     }
 
-    void addStatistics(DBPObject object, List<? extends SQLToolStatistics> statistics) {
+    void addStatistics(DBPObject object, /*~~>*/List<? extends SQLToolStatistics> statistics) {
         synchronized (toolStatistics) {
             toolStatistics.addAll(statistics);
         }
@@ -155,10 +155,10 @@ class SQLToolTaskWizardPageStatus extends ActiveWizardPage<SQLToolTaskWizard> im
                 }
                 @Override
                 protected IStatus run(DBRProgressMonitor monitor) {
-                    List<SQLToolStatistics> statsCopy;
+                    /*~~>*/List<SQLToolStatistics> statsCopy;
                     synchronized (toolStatistics) {
-                        statsCopy = new ArrayList<>(SQLToolTaskWizardPageStatus.this.toolStatistics);
-                        SQLToolTaskWizardPageStatus.this.toolStatistics.clear();
+                        statsCopy = new ArrayList<>(/*~~>*/SQLToolTaskWizardPageStatus.this.toolStatistics);
+                        /*~~>*/SQLToolTaskWizardPageStatus.this.toolStatistics.clear();
                     }
                     UIUtils.asyncExec(() -> {
                         statusTable.appendListData(statsCopy);

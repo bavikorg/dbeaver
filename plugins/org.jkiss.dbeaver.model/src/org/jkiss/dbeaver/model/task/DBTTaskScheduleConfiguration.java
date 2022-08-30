@@ -51,9 +51,9 @@ public class DBTTaskScheduleConfiguration {
     public int recurrence;
 
     // Specifies day(s) of the week (for WEEKLY) or days of the month (for MONTHLY)
-    public List<Short> days;
+    public /*~~>*/List<Short> days;
     // Specifies month(s) of the year
-    public List<Short> months;
+    public /*~~>*/List<Short> months;
 
     // Repetition interval in minutes
     public int repetitionInterval;

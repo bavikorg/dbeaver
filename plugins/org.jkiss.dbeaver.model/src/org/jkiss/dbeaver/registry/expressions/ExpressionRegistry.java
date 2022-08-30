@@ -38,7 +38,7 @@ public class ExpressionRegistry {
         return instance;
     }
 
-    private final List<ExpressionNamespaceDescriptor> expressionNamespaces = new ArrayList<>();
+    private final /*~~>*/List<ExpressionNamespaceDescriptor> expressionNamespaces = new ArrayList<>();
 
     private ExpressionRegistry() {
     }
@@ -49,7 +49,7 @@ public class ExpressionRegistry {
             for (IConfigurationElement ext : extConfigs) {
                 // Load expression functions
                 if (TAG_NAMESPACE.equals(ext.getName())) {
-                    this.expressionNamespaces.add(new ExpressionNamespaceDescriptor(ext));
+                    /*~~>*/this.expressionNamespaces.add(new ExpressionNamespaceDescriptor(ext));
                 }
             }
         }
@@ -59,7 +59,7 @@ public class ExpressionRegistry {
         expressionNamespaces.clear();
     }
 
-    public List<ExpressionNamespaceDescriptor> getExpressionNamespaces() {
+    public /*~~>*/List<ExpressionNamespaceDescriptor> getExpressionNamespaces() {
         return expressionNamespaces;
     }
 

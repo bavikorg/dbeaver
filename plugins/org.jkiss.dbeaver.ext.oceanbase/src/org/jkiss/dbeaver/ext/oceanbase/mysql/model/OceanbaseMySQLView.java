@@ -40,13 +40,13 @@ public class OceanbaseMySQLView extends MySQLView {
     }
 
     @Override
-    public List<MySQLTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
-        List<MySQLTableColumn> childColumns = getContainer().getOceanbaseTableCache().getChildren(monitor,
+    public /*~~>*/List<MySQLTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
+        /*~~>*/List<MySQLTableColumn> childColumns = getContainer().getOceanbaseTableCache().getChildren(monitor,
                 getContainer(), this);
         if (childColumns == null) {
             return Collections.emptyList();
         }
-        List<MySQLTableColumn> columns = new ArrayList<>(childColumns);
+        /*~~>*/List<MySQLTableColumn> columns = new ArrayList<>(childColumns);
         columns.sort(DBUtils.orderComparator());
         return columns;
     }

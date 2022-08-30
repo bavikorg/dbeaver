@@ -64,10 +64,10 @@ public class SQLContextInformer
 
     private String[] keywords;
     private DBPKeywordType keywordType;
-    private List<DBSObjectReference> objectReferences;
+    private /*~~>*/List<DBSObjectReference> objectReferences;
 
     private static class ObjectLookupCache {
-        List<DBSObjectReference> references;
+        /*~~>*/List<DBSObjectReference> references;
         boolean loading = true;
     }
 
@@ -104,7 +104,7 @@ public class SQLContextInformer
         return keywordType;
     }
 
-    public synchronized List<DBSObjectReference> getObjectReferences() {
+    public synchronized /*~~>*/List<DBSObjectReference> getObjectReferences() {
         return objectReferences;
     }
 
@@ -214,7 +214,7 @@ public class SQLContextInformer
         }
         if (!tlc.loading) {
             synchronized (this) {
-                objectReferences = tlc.references;
+                objectReferences = /*~~>*/tlc.references;
             }
         }
     }
@@ -299,7 +299,7 @@ public class SQLContextInformer
         @Nullable
         private boolean findTables(DBRProgressMonitor monitor) throws DBException {
             monitor.beginTask("Read metadata information", 1);
-            cache.references = new ArrayList<>();
+            /*~~>*/cache.references = new ArrayList<>();
             try {
 
                 DBSObjectContainer container = null;
@@ -330,7 +330,7 @@ public class SQLContextInformer
                                     );
                                     params.setGlobalSearch(true);
                                     params.setMaxResults(1);
-                                    List<DBSObjectReference> objReferences = structureAssistant.findObjectsByMask(monitor, executionContext, params);
+                                    /*~~>*/List<DBSObjectReference> objReferences = structureAssistant.findObjectsByMask(monitor, executionContext, params);
                                     if (objReferences.size() == 1) {
                                         childContainer = objReferences.get(0).resolveObject(monitor);
                                     }
@@ -378,7 +378,7 @@ public class SQLContextInformer
                     }
                 }
                 if (targetObject != null) {
-                    cache.references.add(new DirectObjectReference(container, null, targetObject));
+                    /*~~>*/cache.references.add(new DirectObjectReference(container, null, targetObject));
                 } else if (structureAssistant != null) {
                     DBSObjectType[] objectTypes = structureAssistant.getHyperlinkObjectTypes();
                     DBCExecutionContext executionContext = editor.getExecutionContext();
@@ -389,7 +389,7 @@ public class SQLContextInformer
                         params.setMaxResults(10);
                         Collection<DBSObjectReference> objects = structureAssistant.findObjectsByMask(monitor, executionContext, params);
                         if (!CommonUtils.isEmpty(objects)) {
-                            cache.references.addAll(objects);
+                            /*~~>*/cache.references.addAll(objects);
                         }
                     }
                 }

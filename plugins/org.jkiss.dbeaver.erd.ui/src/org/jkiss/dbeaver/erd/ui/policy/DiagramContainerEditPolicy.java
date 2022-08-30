@@ -66,7 +66,7 @@ public class DiagramContainerEditPolicy extends ContainerEditPolicy {
         if (newObject instanceof ERDNote) {
             return new NoteCreateCommand(diagramPart, (ERDNote)newObject, location, request.getSize());
         }
-        List<ERDEntity> entities = null;
+        /*~~>*/List<ERDEntity> entities = null;
         if (newObject instanceof ERDEntity) {
             entities = Collections.singletonList((ERDEntity) newObject);
         } else if (newObject instanceof Collection) {

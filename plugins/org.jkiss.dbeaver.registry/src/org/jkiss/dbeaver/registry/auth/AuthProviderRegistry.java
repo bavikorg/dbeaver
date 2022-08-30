@@ -74,7 +74,7 @@ public class AuthProviderRegistry {
         }
     }
 
-    public List<AuthProviderDescriptor> getAuthProviders() {
+    public /*~~>*/List<AuthProviderDescriptor> getAuthProviders() {
         return new ArrayList<>(authProviders.values());
     }
 

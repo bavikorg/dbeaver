@@ -66,7 +66,7 @@ public class ReferencesPanel implements IResultSetPanel {
 
         if (presentation instanceof ISelectionProvider) {
             ISelectionChangedListener selectionListener = new ISelectionChangedListener() {
-                private List<ResultSetRow> prevSelection;
+                private /*~~>*/List<ResultSetRow> prevSelection;
                 @Override
                 public void selectionChanged(SelectionChangedEvent event) {
                     if (presentation.getController().getVisiblePanel() != ReferencesPanel.this) {
@@ -75,11 +75,11 @@ public class ReferencesPanel implements IResultSetPanel {
                     if (!(event.getSelection() instanceof IResultSetSelection)) {
                         return;
                     }
-                    List<ResultSetRow> selectedItems = ((IResultSetSelection) event.getSelection()).getSelectedRows();
+                    /*~~>*/List<ResultSetRow> selectedItems = ((IResultSetSelection) event.getSelection()).getSelectedRows();
                     if (CommonUtils.equalObjects(prevSelection, selectedItems)) {
                         return;
                     }
-                    this.prevSelection = selectedItems;
+                    /*~~>*/this.prevSelection = selectedItems;
                     getResultsContainer().refreshReferences();
                 }
             };

@@ -31,7 +31,7 @@ public class DataSourceViewRegistry
 
     private static DataSourceViewRegistry instance = null;
 
-    private final List<DataSourceViewDescriptor> views = new ArrayList<>();
+    private final /*~~>*/List<DataSourceViewDescriptor> views = new ArrayList<>();
 
     public synchronized static DataSourceViewRegistry getInstance()
     {
@@ -46,7 +46,7 @@ public class DataSourceViewRegistry
         IConfigurationElement[] extElements = registry.getConfigurationElementsFor(EXTENSION_ID);
         for (IConfigurationElement viewElement : extElements) {
             if (viewElement.getName().equals(RegistryConstants.TAG_VIEW)) {
-                this.views.add(
+                /*~~>*/this.views.add(
                     new DataSourceViewDescriptor(viewElement));
             }
         }
@@ -64,9 +64,9 @@ public class DataSourceViewRegistry
         return null;
     }
 
-    public List<DataSourceViewDescriptor> getViews(DBPDataSourceProviderDescriptor provider, String targetID)
+    public /*~~>*/List<DataSourceViewDescriptor> getViews(DBPDataSourceProviderDescriptor provider, String targetID)
     {
-        List<DataSourceViewDescriptor> result = new ArrayList<>();
+        /*~~>*/List<DataSourceViewDescriptor> result = new ArrayList<>();
         for (DBPDataSourceProviderDescriptor pd = provider; pd != null; pd = pd.getParentProvider()) {
             for (DataSourceViewDescriptor view : views) {
                 if (view.getDataSources().contains(pd.getId()) && targetID.equals(view.getTargetID())) {

@@ -43,12 +43,12 @@ import java.util.List;
 public class DBNRoot extends DBNNode implements DBNContainer, DBNNodeExtendable, DBPProjectListener {
     private final DBNModel model;
     private DBNProject[] projects = new DBNProject[0];
-    private final List<DBNNode> extraNodes = new ArrayList<>();
+    private final /*~~>*/List<DBNNode> extraNodes = new ArrayList<>();
 
     public DBNRoot(DBNModel model) {
         super();
         this.model = model;
-        List<? extends DBPProject> globalProjects = model.getModelProjects();
+        /*~~>*/List<? extends DBPProject> globalProjects = model.getModelProjects();
         if (globalProjects != null) {
             for (DBPProject project : globalProjects) {
                 addProject(project, false);
@@ -160,7 +160,7 @@ public class DBNRoot extends DBNNode implements DBNContainer, DBNNodeExtendable,
 
     @Override
     @NotNull
-    public List<DBNNode> getExtraNodes() {
+    public /*~~>*/List<DBNNode> getExtraNodes() {
         return extraNodes;
     }
 

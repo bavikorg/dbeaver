@@ -208,7 +208,7 @@ public class StatisticsNavigatorNodeRenderer extends DefaultNavigatorNodeRendere
     }
 
     private INavigatorNodeActionHandler getActionButtonFor(DBNNode element, Tree tree, Event event) {
-        List<INavigatorNodeActionHandler> nodeActions = NavigatorExtensionsRegistry.getInstance().getNodeActions(getView(), element);
+        /*~~>*/List<INavigatorNodeActionHandler> nodeActions = NavigatorExtensionsRegistry.getInstance().getNodeActions(getView(), element);
         if (isHorizontalScrollbarEnabled(tree)) {
             return null;
         }
@@ -302,7 +302,7 @@ public class StatisticsNavigatorNodeRenderer extends DefaultNavigatorNodeRendere
     // Node actions
 
     private int renderDataSourceNodeActions(DBNDatabaseNode element, Tree tree, GC gc, Event event) {
-        List<INavigatorNodeActionHandler> nodeActions = NavigatorExtensionsRegistry.getInstance().getNodeActions(getView(), element);
+        /*~~>*/List<INavigatorNodeActionHandler> nodeActions = NavigatorExtensionsRegistry.getInstance().getNodeActions(getView(), element);
 
         int xWidth = getTreeWidth(tree);
         int xPos = xWidth;
@@ -356,7 +356,7 @@ public class StatisticsNavigatorNodeRenderer extends DefaultNavigatorNodeRendere
     }
 
     private boolean isOverActionButton(DBNDatabaseNode element, Tree tree, TreeItem item, GC gc, Event event) {
-        List<INavigatorNodeActionHandler> nodeActions = NavigatorExtensionsRegistry.getInstance().getNodeActions(getView(), element);
+        /*~~>*/List<INavigatorNodeActionHandler> nodeActions = NavigatorExtensionsRegistry.getInstance().getNodeActions(getView(), element);
         int xPos = getTreeWidth(tree);
         for (INavigatorNodeActionHandler nah : nodeActions) {
             if (!nah.isSticky(view, element)) {

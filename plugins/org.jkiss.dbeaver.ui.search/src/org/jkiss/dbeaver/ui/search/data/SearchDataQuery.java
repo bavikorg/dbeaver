@@ -99,7 +99,7 @@ public class SearchDataQuery implements ISearchQuery {
 
             //monitor.subTask("Collect tables");
             Set<DBPDataSource> dataSources = new HashSet<>();
-            for (DBSDataContainer searcher : params.sources) {
+            for (DBSDataContainer searcher : /*~~>*/params.sources) {
                 dataSources.add(searcher.getDataSource());
             }
 
@@ -111,10 +111,10 @@ public class SearchDataQuery implements ISearchQuery {
             int totalObjects = 0;
 
             monitor.beginTask(
-                "Search \"" + searchString + "\" in " + params.sources.size() + " table(s) / " + dataSources.size() + " database(s)",
-                params.sources.size());
+                "Search \"" + searchString + "\" in " + /*~~>*/params.sources.size() + " table(s) / " + dataSources.size() + " database(s)",
+                /*~~>*/params.sources.size());
             try {
-                for (DBSDataContainer dataContainer : params.sources) {
+                for (DBSDataContainer dataContainer : /*~~>*/params.sources) {
                     if (monitor.isCanceled()) {
                         break;
                     }
@@ -184,7 +184,7 @@ public class SearchDataQuery implements ISearchQuery {
         }
         try {
 
-            List<DBDAttributeConstraint> constraints = new ArrayList<>();
+            /*~~>*/List<DBDAttributeConstraint> constraints = new ArrayList<>();
             DBDDataFilter dataFilter = searchDataFilterForContainer(dataContainer, session.getProgressMonitor());
             for (DBSEntityAttribute attribute : CommonUtils.safeCollection(entity.getAttributes(session.getProgressMonitor()))) {
                 if (params.fastSearch) {

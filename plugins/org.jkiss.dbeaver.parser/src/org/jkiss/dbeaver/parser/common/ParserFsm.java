@@ -23,12 +23,12 @@ import java.util.stream.Collectors;
  * Parser finite state machine
  */
 class ParserFsm {
-    private final List<ParserFsmNode> initialStates;
-    private final List<ParserFsmNode> allStates;
+    private final /*~~>*/List<ParserFsmNode> initialStates;
+    private final /*~~>*/List<ParserFsmNode> allStates;
 
-    public ParserFsm(List<ParserFsmNode> initialStates, List<ParserFsmNode> parseFsmStates) {
-        this.initialStates = initialStates;
-        this.allStates = parseFsmStates;
+    public ParserFsm(/*~~>*/List<ParserFsmNode> initialStates, /*~~>*/List<ParserFsmNode> parseFsmStates) {
+        /*~~>*/this.initialStates = initialStates;
+        /*~~>*/this.allStates = parseFsmStates;
     }
 
     public Iterable<ParserFsmNode> getInitialStates() {
@@ -40,7 +40,7 @@ class ParserFsm {
      * for all finite state machine states
      */
     public void prepare() {
-        for (ParserFsmNode state : this.allStates) {
+        for (ParserFsmNode state : /*~~>*/this.allStates) {
             state.prepare();
         }
     }
@@ -49,7 +49,7 @@ class ParserFsm {
         StringBuilder sb = new StringBuilder();
         for (var s : allStates) {
             sb.append("state").append(s).append(":");
-            if (this.initialStates.contains(s)) {
+            if (/*~~>*/this.initialStates.contains(s)) {
                 sb.append("<START>");
             }
             if (s.isEnd()) {

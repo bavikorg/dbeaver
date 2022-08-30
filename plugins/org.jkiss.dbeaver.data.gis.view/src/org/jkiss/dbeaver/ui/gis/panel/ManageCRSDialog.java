@@ -127,7 +127,7 @@ public class ManageCRSDialog extends BaseDialog {
                 if (parentElement == crsLoader) {
                     return crsLoader.crsMap.keySet().toArray(new Object[0]);
                 } else if (parentElement instanceof String) {
-                    List<CRSInfo> crsInfos = crsLoader.crsMap.get(parentElement);
+                    /*~~>*/List<CRSInfo> crsInfos = crsLoader.crsMap.get(parentElement);
                     return crsInfos == null ? null : crsInfos.toArray(new Object[0]);
                 } else {
                     return new Object[0];
@@ -148,7 +148,7 @@ public class ManageCRSDialog extends BaseDialog {
                 if (element == crsLoader) {
                     return !crsLoader.crsMap.isEmpty();
                 } else if (element instanceof String) {
-                    List<CRSInfo> crsInfos = crsLoader.crsMap.get(element);
+                    /*~~>*/List<CRSInfo> crsInfos = crsLoader.crsMap.get(element);
                     return crsInfos != null && !crsInfos.isEmpty();
                 } else {
                     return false;
@@ -260,7 +260,7 @@ public class ManageCRSDialog extends BaseDialog {
 
     private class CRSLoader implements DBRRunnableWithProgress {
 
-        private Map<String, List<CRSInfo>> crsMap = new LinkedHashMap<>();
+        private Map<String, /*~~>*/List<CRSInfo>> crsMap = new LinkedHashMap<>();
 
         @Override
         public void run(DBRProgressMonitor monitor) {
@@ -268,7 +268,7 @@ public class ManageCRSDialog extends BaseDialog {
             //String[] allRegistries = crsFactory.getRegistryManager().getRegistryNames();
             String regName = GisConstants.GIS_REG_EPSG;
             {
-                List<Integer> crsCodes = GisTransformUtils.getSortedEPSGCodes();
+                /*~~>*/List<Integer> crsCodes = GisTransformUtils.getSortedEPSGCodes();
 
                 monitor.beginTask(GISMessages.panel_manage_crs_dialog_monitor_begin_task_load_crs, crsCodes.size());
                 for (Integer code : crsCodes) {
@@ -277,7 +277,7 @@ public class ManageCRSDialog extends BaseDialog {
                     try {
                         CoordinateReferenceSystem crs = crsFactory.getCRS(crsID);
 
-                        List<CRSInfo> crsInfoList = crsMap.computeIfAbsent(regName, s -> new ArrayList<>());
+                        /*~~>*/List<CRSInfo> crsInfoList = crsMap.computeIfAbsent(regName, s -> new ArrayList<>());
                         CRSInfo crsInfo = new CRSInfo();
                         crsInfo.code = code;
                         crsInfo.name = crs.getName();

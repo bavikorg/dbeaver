@@ -39,7 +39,7 @@ public class DriverLibraryMavenDependency extends DriverLibraryMavenArtifact
     }
 
     protected boolean isDependencyExcluded(DBRProgressMonitor monitor, MavenArtifactDependency dependency) {
-        List<MavenArtifactReference> exclusions = source.getExclusions();
+        /*~~>*/List<MavenArtifactReference> exclusions = source.getExclusions();
         if (exclusions != null) {
             for (MavenArtifactReference exReference : exclusions) {
                 if (exReference.getGroupId().equals(dependency.getGroupId()) && exReference.getArtifactId().equals(dependency.getArtifactId())) {

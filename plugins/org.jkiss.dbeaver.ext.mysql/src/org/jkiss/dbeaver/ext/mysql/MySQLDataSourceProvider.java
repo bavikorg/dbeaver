@@ -152,7 +152,7 @@ public class MySQLDataSourceProvider extends JDBCDataSourceProvider implements D
     // Client manager
 
     @Override
-    public List<DBPNativeClientLocation> findLocalClientLocations()
+    public /*~~>*/List<DBPNativeClientLocation> findLocalClientLocations()
     {
         findLocalClients();
         return new ArrayList<>(localServers.values());

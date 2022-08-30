@@ -49,7 +49,7 @@ public class SQLSymbolInserter implements VerifyKeyListener, ILinkedModeListener
 
     private final String CATEGORY = toString();
     private IPositionUpdater positionUpdater = new ExclusivePositionUpdater(CATEGORY);
-    private List<SymbolLevel> bracketLevelStack = new ArrayList<>();
+    private /*~~>*/List<SymbolLevel> bracketLevelStack = new ArrayList<>();
     private SQLEditorBase editor;
     private ISourceViewer sourceViewer;
 
@@ -359,15 +359,15 @@ public class SQLSymbolInserter implements VerifyKeyListener, ILinkedModeListener
 
         final char exitCharacter;
         final char escapeCharacter;
-        final List<SymbolLevel> stack;
+        final /*~~>*/List<SymbolLevel> stack;
         final int size;
 
-        public ExitPolicy(char exitCharacter, char escapeCharacter, List<SymbolLevel> stack)
+        public ExitPolicy(char exitCharacter, char escapeCharacter, /*~~>*/List<SymbolLevel> stack)
         {
             this.exitCharacter = exitCharacter;
             this.escapeCharacter = escapeCharacter;
-            this.stack = stack;
-            size = this.stack.size();
+            /*~~>*/this.stack = stack;
+            size = /*~~>*/this.stack.size();
         }
 
         @Override

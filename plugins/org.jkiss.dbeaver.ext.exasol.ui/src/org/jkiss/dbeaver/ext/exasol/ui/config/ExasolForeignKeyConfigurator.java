@@ -49,7 +49,7 @@ public class ExasolForeignKeyConfigurator implements DBEObjectConfigurator<Exaso
                 foreignKey.setReferencedConstraint((ExasolTableUniqueKey)editPage.getUniqueConstraint());
                 foreignKey.setEnabled(editPage.isEnabled());
 
-                List<ExasolTableForeignKeyColumn> columns = new ArrayList<>();
+                /*~~>*/List<ExasolTableForeignKeyColumn> columns = new ArrayList<>();
                 int cnt = 0;
                 for (ExasolCreateForeignKeyDialog.FKColumnInfo column : editPage.getColumns()) {
                     try {

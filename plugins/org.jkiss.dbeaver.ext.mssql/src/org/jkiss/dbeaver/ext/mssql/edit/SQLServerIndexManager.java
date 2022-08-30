@@ -69,7 +69,7 @@ public class SQLServerIndexManager extends SQLIndexManager<SQLServerTableIndex, 
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
         SQLServerTableIndex index = command.getObject();
         SQLServerTableBase indexTable = index.getTable();
         if (indexTable instanceof SQLServerTableType) {
@@ -104,7 +104,7 @@ public class SQLServerIndexManager extends SQLIndexManager<SQLServerTableIndex, 
             ddl.append(sqlServerIndexType).append(" ");
         }
         ddl.append("INDEX ").append(index.getName()).append(" ON ").append(indexTable.getFullyQualifiedName(DBPEvaluationContext.DDL));
-        List<SQLServerTableIndexColumn> indexColumns = index.getAttributeReferences(monitor);
+        /*~~>*/List<SQLServerTableIndexColumn> indexColumns = index.getAttributeReferences(monitor);
         if (indexColumns != null) {
             ddl.append(indexColumns.stream()
                 .filter(x -> !x.isIncluded())

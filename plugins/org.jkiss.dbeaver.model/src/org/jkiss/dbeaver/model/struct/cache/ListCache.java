@@ -34,21 +34,21 @@ public class ListCache<OWNER extends DBSObject, OBJECT extends DBSObject>
 {
 
     @NotNull
-    private final List<OBJECT> objectList;
+    private final /*~~>*/List<OBJECT> objectList;
 
-    public ListCache(List<OBJECT> objectList) {
-        this.objectList = (objectList == null ? new ArrayList<>() : objectList);
+    public ListCache(/*~~>*/List<OBJECT> objectList) {
+        /*~~>*/this.objectList = (objectList == null ? new ArrayList<>() : objectList);
     }
 
     @NotNull
     @Override
-    public List<OBJECT> getAllObjects(@NotNull DBRProgressMonitor monitor, OWNER owner) throws DBException {
+    public /*~~>*/List<OBJECT> getAllObjects(@NotNull DBRProgressMonitor monitor, OWNER owner) throws DBException {
         return objectList;
     }
 
     @NotNull
     @Override
-    public List<OBJECT> getCachedObjects()
+    public /*~~>*/List<OBJECT> getCachedObjects()
     {
         return objectList;
     }
@@ -90,13 +90,13 @@ public class ListCache<OWNER extends DBSObject, OBJECT extends DBSObject>
     @Override
     public void clearCache()
     {
-        this.objectList.clear();
+        /*~~>*/this.objectList.clear();
     }
 
-    public void setCache(List<OBJECT> objects)
+    public void setCache(/*~~>*/List<OBJECT> objects)
     {
-        this.objectList.clear();
-        this.objectList.addAll(objects);
+        /*~~>*/this.objectList.clear();
+        /*~~>*/this.objectList.addAll(objects);
     }
 
 }

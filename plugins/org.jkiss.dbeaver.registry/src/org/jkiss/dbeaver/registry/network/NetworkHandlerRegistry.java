@@ -36,7 +36,7 @@ public class NetworkHandlerRegistry {
         return instance;
     }
 
-    private final List<NetworkHandlerDescriptor> descriptors = new ArrayList<>();
+    private final /*~~>*/List<NetworkHandlerDescriptor> descriptors = new ArrayList<>();
 
     private NetworkHandlerRegistry(IExtensionRegistry registry) {
         // Load data descriptors from external plugins
@@ -61,8 +61,8 @@ public class NetworkHandlerRegistry {
         }
     }
 
-    public List<NetworkHandlerDescriptor> getDescriptors() {
-        List<NetworkHandlerDescriptor> descList = new ArrayList<>(descriptors);
+    public /*~~>*/List<NetworkHandlerDescriptor> getDescriptors() {
+        /*~~>*/List<NetworkHandlerDescriptor> descList = new ArrayList<>(descriptors);
         descList.removeIf(nhd -> nhd.getReplacedBy() != null);
         return descList;
     }
@@ -79,12 +79,12 @@ public class NetworkHandlerRegistry {
         return null;
     }
 
-    public List<NetworkHandlerDescriptor> getDescriptors(DBPDataSourceContainer dataSource) {
+    public /*~~>*/List<NetworkHandlerDescriptor> getDescriptors(DBPDataSourceContainer dataSource) {
         return getDescriptors(dataSource.getDriver());
     }
 
-    public List<NetworkHandlerDescriptor> getDescriptors(DBPDriver driver) {
-        List<NetworkHandlerDescriptor> result = new ArrayList<>();
+    public /*~~>*/List<NetworkHandlerDescriptor> getDescriptors(DBPDriver driver) {
+        /*~~>*/List<NetworkHandlerDescriptor> result = new ArrayList<>();
         for (NetworkHandlerDescriptor d : descriptors) {
             if (d.getReplacedBy() == null && !d.hasObjectTypes() || d.matches(driver)) {
                 result.add(d);

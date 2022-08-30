@@ -141,7 +141,7 @@ public class PostgreDataSource extends JDBCDataSource implements DBSInstanceCont
         settingCache = new SettingCache();
         DBPConnectionConfiguration configuration = getContainer().getActualConnectionConfiguration();
         final boolean showNDD = isReadDatabaseList(configuration);
-        List<PostgreDatabase> dbList = new ArrayList<>();
+        /*~~>*/List<PostgreDatabase> dbList = new ArrayList<>();
         if (!showNDD) {
             PostgreDatabase defDatabase = createDatabaseImpl(monitor, activeDatabaseName);
             dbList.add(defDatabase);
@@ -159,7 +159,7 @@ public class PostgreDataSource extends JDBCDataSource implements DBSInstanceCont
         }
     }
 
-    private void loadAvailableDatabases(@NotNull DBRProgressMonitor monitor, DBPConnectionConfiguration configuration, List<PostgreDatabase> dbList) throws DBException {
+    private void loadAvailableDatabases(@NotNull DBRProgressMonitor monitor, DBPConnectionConfiguration configuration, /*~~>*/List<PostgreDatabase> dbList) throws DBException {
         DBExecUtils.startContextInitiation(getContainer());
         try (Connection bootstrapConnection = openConnection(monitor, null, "Read PostgreSQL database list")) {
             // Read server version info here - it is needed during database metadata fetch (#8061)
@@ -358,7 +358,7 @@ public class PostgreDataSource extends JDBCDataSource implements DBSInstanceCont
         return databaseCache;
     }
 
-    public List<PostgreDatabase> getDatabases()
+    public /*~~>*/List<PostgreDatabase> getDatabases()
     {
         return databaseCache.getCachedObjects();
     }
@@ -414,7 +414,7 @@ public class PostgreDataSource extends JDBCDataSource implements DBSInstanceCont
     }
 
     @Override
-    public List<? extends DBSObject> getChildren(@NotNull DBRProgressMonitor monitor) {
+    public /*~~>*/List<? extends DBSObject> getChildren(@NotNull DBRProgressMonitor monitor) {
         return getDatabases();
     }
 
@@ -555,7 +555,7 @@ public class PostgreDataSource extends JDBCDataSource implements DBSInstanceCont
             defDatabase = databaseCache.getCachedObject(PostgreConstants.DEFAULT_DATABASE);
         }
         if (defDatabase == null) {
-            final List<PostgreDatabase> allDatabases = databaseCache.getCachedObjects();
+            final /*~~>*/List<PostgreDatabase> allDatabases = databaseCache.getCachedObjects();
             if (allDatabases.isEmpty()) {
                 // Looks like we are not connected or in connection process right now - no instance then
                 throw new IllegalStateException("No databases found on the server");
@@ -567,7 +567,7 @@ public class PostgreDataSource extends JDBCDataSource implements DBSInstanceCont
 
     @NotNull
     @Override
-    public List<PostgreDatabase> getAvailableInstances() {
+    public /*~~>*/List<PostgreDatabase> getAvailableInstances() {
         return databaseCache.getCachedObjects();
     }
 
@@ -620,11 +620,11 @@ public class PostgreDataSource extends JDBCDataSource implements DBSInstanceCont
         oldDatabase.shutdown(monitor, true);
     }
 
-    public List<String> getTemplateDatabases(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<String> getTemplateDatabases(DBRProgressMonitor monitor) throws DBException {
         try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load template databases")) {
             try (PreparedStatement dbStat = session.prepareStatement("SELECT db.datname FROM pg_catalog.pg_database db WHERE datistemplate")) {
                 try (ResultSet resultSet = dbStat.executeQuery()) {
-                    List<String> dbNames = new ArrayList<>();
+                    /*~~>*/List<String> dbNames = new ArrayList<>();
                     while (resultSet.next()) {
                         dbNames.add(resultSet.getString(1));
                     }

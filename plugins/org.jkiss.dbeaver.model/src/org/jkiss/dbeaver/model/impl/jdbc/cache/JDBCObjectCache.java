@@ -66,7 +66,7 @@ public abstract class JDBCObjectCache<OWNER extends DBSObject, OBJECT extends DB
 
     @NotNull
     @Override
-    public List<OBJECT> getAllObjects(@NotNull DBRProgressMonitor monitor, @Nullable OWNER owner)
+    public /*~~>*/List<OBJECT> getAllObjects(@NotNull DBRProgressMonitor monitor, @Nullable OWNER owner)
         throws DBException
     {
         if (!isFullyCached()) {
@@ -92,7 +92,7 @@ public abstract class JDBCObjectCache<OWNER extends DBSObject, OBJECT extends DB
             return;
         }
 
-        List<OBJECT> tmpObjectList = new ArrayList<>();
+        /*~~>*/List<OBJECT> tmpObjectList = new ArrayList<>();
 
         DBPDataSource dataSource = owner.getDataSource();
         if (dataSource == null) {

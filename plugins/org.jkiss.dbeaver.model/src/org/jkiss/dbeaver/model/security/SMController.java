@@ -113,7 +113,7 @@ public interface SMController extends SMAuthCredentialsManager {
     SMAuthProviderDescriptor[] getAvailableAuthProviders() throws DBException;
 
     @NotNull
-    List<SMObjectPermissions> getAllAvailableObjectsPermissions(
+    /*~~>*/List<SMObjectPermissions> getAllAvailableObjectsPermissions(
         @NotNull String subjectId,
         @NotNull SMObjectType objectType
     ) throws DBException;
@@ -127,7 +127,7 @@ public interface SMController extends SMAuthCredentialsManager {
     ) throws DBException;
 
     @NotNull
-    List<SMObjectPermissionsGrant> getObjectPermissionGrants(
+    /*~~>*/List<SMObjectPermissionsGrant> getObjectPermissionGrants(
         @NotNull String objectId,
         @NotNull SMObjectType smObjectType
     ) throws DBException;

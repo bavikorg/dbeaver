@@ -102,7 +102,7 @@ public class XMLEditor extends BaseTextEditor {
         return viewer;
     }
 
-    void updateFoldingStructure(List<Position> positions) {
+    void updateFoldingStructure(/*~~>*/List<Position> positions) {
         Annotation[] annotations = new Annotation[positions.size()];
 
         //this will hold the new annotations along

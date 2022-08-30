@@ -35,7 +35,7 @@ public class ExasolToolTableTruncate extends SQLToolExecuteHandler<ExasolTable, 
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, ExasolToolTableTruncateSettings settings, List<DBEPersistAction> queries, ExasolTable object) {
+    public void generateObjectQueries(DBCSession session, ExasolToolTableTruncateSettings settings, /*~~>*/List<DBEPersistAction> queries, ExasolTable object) {
         queries.add(new SQLDatabasePersistAction("TRUNCATE TABLE " + object.getFullyQualifiedName(DBPEvaluationContext.DDL)));
     }
 

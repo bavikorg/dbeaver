@@ -48,7 +48,7 @@ public class ExasolVirtualSchema extends ExasolSchema  {
 		this.lastRefresh = JDBCUtils.safeGetTimestamp(dbResult, "LAST_REFRESH");
 		this.refreshBy = JDBCUtils.safeGetString(dbResult, "LAST_REFRESH_BY");
 		
-		List<String> fqnAdapter = CommonUtils.splitString(JDBCUtils.safeGetString(dbResult, "ADAPTER_SCRIPT"),'.');
+		/*~~>*/List<String> fqnAdapter = CommonUtils.splitString(JDBCUtils.safeGetString(dbResult, "ADAPTER_SCRIPT"),'.');
 		adapterScriptSchema = fqnAdapter.get(0);
 		adapterScriptName = fqnAdapter.get(1);
 		

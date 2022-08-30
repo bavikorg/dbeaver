@@ -34,13 +34,13 @@ import java.util.List;
  */
 class SelectContentPartDialog extends Dialog {
 
-    private List<IEditorPart> dirtyParts;
+    private /*~~>*/List<IEditorPart> dirtyParts;
     private IEditorPart selectedPart;
 
-    private SelectContentPartDialog(Shell parentShell, List<IEditorPart> dirtyParts)
+    private SelectContentPartDialog(Shell parentShell, /*~~>*/List<IEditorPart> dirtyParts)
     {
         super(parentShell);
-        this.dirtyParts = dirtyParts;
+        /*~~>*/this.dirtyParts = dirtyParts;
     }
 
     @Override
@@ -99,7 +99,7 @@ class SelectContentPartDialog extends Dialog {
         return selectedPart;
     }
 
-    public static IEditorPart selectContentPart(Shell parentShell, List<IEditorPart> dirtyParts)
+    public static IEditorPart selectContentPart(Shell parentShell, /*~~>*/List<IEditorPart> dirtyParts)
     {
         SelectContentPartDialog scDialog = new SelectContentPartDialog(parentShell, dirtyParts);
         if (scDialog.open() == IDialogConstants.OK_ID) {

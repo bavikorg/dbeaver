@@ -31,7 +31,7 @@ public class ImportDriverInfo {
     private String name;
     private String sampleURL;
     private String driverClass;
-    private List<String> libraries = new ArrayList<>();
+    private /*~~>*/List<String> libraries = new ArrayList<>();
     private Map<String, Object> properties = new HashMap<>();
     private String defaultPort, defaultDatabase, defaultServer, defaultUser;
     private String description;
@@ -103,7 +103,7 @@ public class ImportDriverInfo {
         this.defaultUser = defaultUser;
     }
 
-    public List<String> getLibraries()
+    public /*~~>*/List<String> getLibraries()
     {
         return libraries;
     }

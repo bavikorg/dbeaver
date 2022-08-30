@@ -49,15 +49,15 @@ import java.util.*;
  */
 public class DriverTreeViewer extends TreeViewer {
 
-    private List<DBPDataSourceProviderDescriptor> providers;
+    private /*~~>*/List<DBPDataSourceProviderDescriptor> providers;
     private Font boldFont;
     private final Map<String,DriverCategory> categories = new HashMap<>();
-    private final List<Object> driverList = new ArrayList<>();
+    private final /*~~>*/List<Object> driverList = new ArrayList<>();
     private boolean sortByName = false;
 
     public static class DriverCategory {
         final String name;
-        final List<DriverDescriptor> drivers = new ArrayList<>();
+        final /*~~>*/List<DriverDescriptor> drivers = new ArrayList<>();
 
         DriverCategory(String name)
         {
@@ -69,7 +69,7 @@ public class DriverTreeViewer extends TreeViewer {
             return name;
         }
 
-        public List<DriverDescriptor> getDrivers()
+        public /*~~>*/List<DriverDescriptor> getDrivers()
         {
             return drivers;
         }
@@ -116,12 +116,12 @@ public class DriverTreeViewer extends TreeViewer {
         parent.addDisposeListener(e -> UIUtils.dispose(boldFont));
     }
 
-    public void initDrivers(List<DBPDataSourceProviderDescriptor> providers, boolean expandRecent)
+    public void initDrivers(/*~~>*/List<DBPDataSourceProviderDescriptor> providers, boolean expandRecent)
     {
         getTree().setHeaderVisible(true);
-        this.providers = providers;
-        if (this.providers == null) {
-            this.providers = DataSourceProviderRegistry.getInstance().getEnabledDataSourceProviders();
+        /*~~>*/this.providers = providers;
+        if (/*~~>*/this.providers == null) {
+            /*~~>*/this.providers = DataSourceProviderRegistry.getInstance().getEnabledDataSourceProviders();
         }
 
         TreeColumn nameColumn = new TreeColumn(getTree(), SWT.LEFT);
@@ -182,12 +182,12 @@ public class DriverTreeViewer extends TreeViewer {
     private Collection<Object> collectDrivers()
     {
         for (DriverCategory category : categories.values()) {
-            category.drivers.clear();
+            /*~~>*/category.drivers.clear();
         }
 
         driverList.clear();
         for (DBPDataSourceProviderDescriptor provider : providers) {
-            List<? extends DBPDriver> drivers = provider.getEnabledDrivers();
+            /*~~>*/List<? extends DBPDriver> drivers = provider.getEnabledDrivers();
             for (DBPDriver driver : drivers) {
                 String category = driver.getCategory();
                 if (CommonUtils.isEmpty(category)) {
@@ -201,7 +201,7 @@ public class DriverTreeViewer extends TreeViewer {
                     if (!driverList.contains(driverCategory)) {
                         driverList.add(driverCategory);
                     }
-                    driverCategory.drivers.add((DriverDescriptor) driver);
+                    /*~~>*/driverCategory.drivers.add((DriverDescriptor) driver);
                 }
             }
         }
@@ -217,14 +217,14 @@ public class DriverTreeViewer extends TreeViewer {
             }
         });
         for (DriverCategory category : categories.values()) {
-            category.drivers.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+            /*~~>*/category.drivers.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
         }
         return driverList;
     }
 
     private int getConnectionCount(Object obj)
     {
-        List<DBPDataSourceContainer> allDataSources = DataSourceRegistry.getAllDataSources();
+        /*~~>*/List<DBPDataSourceContainer> allDataSources = DataSourceRegistry.getAllDataSources();
 
         if (obj instanceof DataSourceProviderDescriptor) {
             int count = 0;
@@ -234,7 +234,7 @@ public class DriverTreeViewer extends TreeViewer {
             return count;
         } else if (obj instanceof DriverCategory) {
             int count = 0;
-            for (DBPDriver driver : ((DriverCategory) obj).drivers) {
+            for (DBPDriver driver : /*~~>*/((DriverCategory) obj).drivers) {
                 count += DriverUtils.getUsedBy(driver, allDataSources).size();
             }
             return count;
@@ -291,7 +291,7 @@ public class DriverTreeViewer extends TreeViewer {
         public boolean hasChildren(Object parent)
         {
             if (parent instanceof DriverCategory) {
-                return !((DriverCategory) parent).drivers.isEmpty();
+                return !/*~~>*/((DriverCategory) parent).drivers.isEmpty();
             }
             return false;
         }

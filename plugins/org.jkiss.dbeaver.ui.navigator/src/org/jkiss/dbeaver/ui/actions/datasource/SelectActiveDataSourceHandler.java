@@ -127,7 +127,7 @@ public class SelectActiveDataSourceHandler extends AbstractDataSourceHandler imp
         element.setTooltip(UINavigatorMessages.toolbar_datasource_selector_combo_datasource_tooltip);
     }
 
-    private static List<? extends DBPDataSourceContainer> getAvailableDataSources() {
+    private static /*~~>*/List<? extends DBPDataSourceContainer> getAvailableDataSources() {
         //Get project from active editor
         IWorkbenchWindow workbenchWindow = UIUtils.getActiveWorkbenchWindow();
         if (workbenchWindow != null && workbenchWindow.getActivePage() != null) {
@@ -159,7 +159,7 @@ public class SelectActiveDataSourceHandler extends AbstractDataSourceHandler imp
     public static class MenuContributor extends DataSourceMenuContributor {
 
         @Override
-        protected void fillContributionItems(List<IContributionItem> menuItems) {
+        protected void fillContributionItems(/*~~>*/List<IContributionItem> menuItems) {
             IWorkbenchWindow workbenchWindow = UIUtils.getActiveWorkbenchWindow();
             if (workbenchWindow == null || workbenchWindow.getActivePage() == null) {
                 return;
@@ -169,19 +169,19 @@ public class SelectActiveDataSourceHandler extends AbstractDataSourceHandler imp
                 return;
             }
 
-            List<? extends DBPDataSourceContainer> dataSources = getAvailableDataSources();
-            List<? extends DBPDataSourceContainer> connectedDataSources = new ArrayList<>(dataSources);
+            /*~~>*/List<? extends DBPDataSourceContainer> dataSources = getAvailableDataSources();
+            /*~~>*/List<? extends DBPDataSourceContainer> connectedDataSources = new ArrayList<>(dataSources);
             connectedDataSources.removeIf(o -> !o.isConnected());
             dataSources.removeAll(connectedDataSources);
 
-            List<DBPDataSourceContainer> singleDataSources = new ArrayList<>();
-            Map<DBPDriver, List<DBPDataSourceContainer>> driverMap = new TreeMap<>(DBUtils.nameComparator());
+            /*~~>*/List<DBPDataSourceContainer> singleDataSources = new ArrayList<>();
+            Map<DBPDriver, /*~~>*/List<DBPDataSourceContainer>> driverMap = new TreeMap<>(DBUtils.nameComparator());
             for (DBPDataSourceContainer ds : dataSources) {
-                List<DBPDataSourceContainer> driverDS = driverMap.computeIfAbsent(ds.getDriver(), k -> new ArrayList<>());
+                /*~~>*/List<DBPDataSourceContainer> driverDS = driverMap.computeIfAbsent(ds.getDriver(), k -> new ArrayList<>());
                 driverDS.add(ds);
             }
-            for (Iterator<Map.Entry<DBPDriver, List<DBPDataSourceContainer>>> driverIter = driverMap.entrySet().iterator(); driverIter.hasNext(); ) {
-                List<DBPDataSourceContainer> dsList = driverIter.next().getValue();
+            for (Iterator<Map.Entry<DBPDriver, /*~~>*/List<DBPDataSourceContainer>>> driverIter = driverMap.entrySet().iterator(); driverIter.hasNext(); ) {
+                /*~~>*/List<DBPDataSourceContainer> dsList = driverIter.next().getValue();
                 if (dsList.size() == 1) {
                     singleDataSources.add(dsList.get(0));
                     driverIter.remove();
@@ -198,7 +198,7 @@ public class SelectActiveDataSourceHandler extends AbstractDataSourceHandler imp
             }
             if (!driverMap.isEmpty()) {
                 menuItems.add(new Separator());
-                for (Map.Entry<DBPDriver, List<DBPDataSourceContainer>> de : driverMap.entrySet()) {
+                for (Map.Entry<DBPDriver, /*~~>*/List<DBPDataSourceContainer>> de : driverMap.entrySet()) {
                     DBPDriver driver = de.getKey();
                     MenuManager driverMenu = new MenuManager(
                         driver.getName(),

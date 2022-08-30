@@ -55,7 +55,7 @@ public class JDBCDataSourceInfo extends AbstractDataSourceInfo
     private String catalogTerm;
 
     private boolean supportsTransactions;
-    private List<DBPTransactionIsolation> supportedIsolations;
+    private /*~~>*/List<DBPTransactionIsolation> supportedIsolations;
 
     private boolean supportsReferences = true;
     private boolean supportsIndexes = true;
@@ -78,8 +78,8 @@ public class JDBCDataSourceInfo extends AbstractDataSourceInfo
         this.supportsBatchUpdates = false;
 
         this.supportsTransactions = false;
-        this.supportedIsolations = new ArrayList<>();
-        this.supportedIsolations.add(0, JDBCTransactionIsolation.NONE);
+        /*~~>*/this.supportedIsolations = new ArrayList<>();
+        /*~~>*/this.supportedIsolations.add(0, JDBCTransactionIsolation.NONE);
         this.supportsScroll = true;
     }
 
@@ -183,7 +183,7 @@ public class JDBCDataSourceInfo extends AbstractDataSourceInfo
         supportsScroll = true;
     }
 
-    protected void addCustomTransactionIsolationLevels(List<DBPTransactionIsolation> isolations) {
+    protected void addCustomTransactionIsolationLevels(/*~~>*/List<DBPTransactionIsolation> isolations) {
         // to be overrided in implementors
     }
 

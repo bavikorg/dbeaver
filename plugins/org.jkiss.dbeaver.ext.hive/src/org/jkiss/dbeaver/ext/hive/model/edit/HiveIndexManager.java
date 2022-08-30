@@ -51,13 +51,13 @@ public class HiveIndexManager extends GenericIndexManager {
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
         HiveIndex tableIndex = (HiveIndex) command.getObject();
         DBSIndexType indexType = tableIndex.getIndexType();
         String indexName = tableIndex.getName();
         String tableName = tableIndex.getTable().getName();
         String hiveIndexType;
-        List<GenericTableIndexColumn> indexColumns = tableIndex.getAttributeReferences(monitor);
+        /*~~>*/List<GenericTableIndexColumn> indexColumns = tableIndex.getAttributeReferences(monitor);
         if (indexType.getId().equals("COMPACT")) {
             hiveIndexType = "\'COMPACT\'";
         } else {
@@ -80,7 +80,7 @@ public class HiveIndexManager extends GenericIndexManager {
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
         GenericTableIndex tableIndex = command.getObject();
         actions.add(new SQLDatabasePersistAction("Drop index table", "DROP INDEX " + tableIndex.getName() +
                             " ON " + tableIndex.getTable().getFullyQualifiedName(DBPEvaluationContext.DDL))); //$NON-NLS-2$

@@ -67,9 +67,9 @@ public class DataSourceProviderDescriptor extends AbstractDescriptor implements 
     private DBXTreeDescriptor treeDescriptor;
     private final Map<String, DBXTreeNode> treeNodeMap = new HashMap<>();
     private boolean driversManagable;
-    private final List<DBPPropertyDescriptor> driverProperties = new ArrayList<>();
-    private final List<DriverDescriptor> drivers = new ArrayList<>();
-    private final List<NativeClientDescriptor> nativeClients = new ArrayList<>();
+    private final /*~~>*/List<DBPPropertyDescriptor> driverProperties = new ArrayList<>();
+    private final /*~~>*/List<DriverDescriptor> drivers = new ArrayList<>();
+    private final /*~~>*/List<NativeClientDescriptor> nativeClients = new ArrayList<>();
     @NotNull
     private SQLDialectMetadata scriptDialect;
     private boolean inheritClients;
@@ -135,7 +135,7 @@ public class DataSourceProviderDescriptor extends AbstractDescriptor implements 
         // Load driver properties
         {
             if (parentProvider != null) {
-                driverProperties.addAll(parentProvider.driverProperties);
+                driverProperties.addAll(/*~~>*/parentProvider.driverProperties);
             }
             for (IConfigurationElement propsElement : config.getChildren(RegistryConstants.TAG_DRIVER_PROPERTIES)) {
                 for (IConfigurationElement prop : propsElement.getChildren(PropertyDescriptor.TAG_PROPERTY_GROUP)) {
@@ -151,7 +151,7 @@ public class DataSourceProviderDescriptor extends AbstractDescriptor implements 
                     CommonUtils.getBoolean(driversElement.getAttribute(RegistryConstants.ATTR_MANAGABLE));
                 for (IConfigurationElement driverElement : driversElement.getChildren(RegistryConstants.TAG_DRIVER)) {
                     try {
-                        this.drivers.add(loadDriver(driverElement));
+                        /*~~>*/this.drivers.add(loadDriver(driverElement));
                     } catch (Exception e) {
                         log.error("Error loading driver", e);
                     }
@@ -161,11 +161,11 @@ public class DataSourceProviderDescriptor extends AbstractDescriptor implements 
                 {
                     for (IConfigurationElement propsElement : driversElement.getChildren(RegistryConstants.TAG_PROVIDER_PROPERTIES)) {
                         String driversSpec = propsElement.getAttribute("drivers");
-                        List<DBPPropertyDescriptor> providerProperties = new ArrayList<>();
+                        /*~~>*/List<DBPPropertyDescriptor> providerProperties = new ArrayList<>();
                         for (IConfigurationElement prop : propsElement.getChildren(PropertyDescriptor.TAG_PROPERTY_GROUP)) {
                             providerProperties.addAll(PropertyDescriptor.extractProperties(prop));
                         }
-                        List<DriverDescriptor> appDrivers;
+                        /*~~>*/List<DriverDescriptor> appDrivers;
                         if (CommonUtils.isEmpty(driversSpec) || driversSpec.equals("*")) {
                             appDrivers = drivers;
                         } else {
@@ -185,7 +185,7 @@ public class DataSourceProviderDescriptor extends AbstractDescriptor implements 
 
             for (IConfigurationElement nativeClientsElement : config.getChildren("nativeClients")) {
                 for (IConfigurationElement clientElement : nativeClientsElement.getChildren("client")) {
-                    this.nativeClients.add(new NativeClientDescriptor(clientElement));
+                    /*~~>*/this.nativeClients.add(new NativeClientDescriptor(clientElement));
                 }
             }
         }
@@ -303,7 +303,7 @@ public class DataSourceProviderDescriptor extends AbstractDescriptor implements 
         return driversManagable;
     }
 
-    public List<DBPPropertyDescriptor> getDriverProperties()
+    public /*~~>*/List<DBPPropertyDescriptor> getDriverProperties()
     {
         return driverProperties;
     }
@@ -318,14 +318,14 @@ public class DataSourceProviderDescriptor extends AbstractDescriptor implements 
         return null;
     }
 
-    public List<DriverDescriptor> getDrivers()
+    public /*~~>*/List<DriverDescriptor> getDrivers()
     {
         return drivers;
     }
 
-    public List<DriverDescriptor> getEnabledDrivers()
+    public /*~~>*/List<DriverDescriptor> getEnabledDrivers()
     {
-        List<DriverDescriptor> eDrivers = new ArrayList<>();
+        /*~~>*/List<DriverDescriptor> eDrivers = new ArrayList<>();
         for (DriverDescriptor driver : drivers) {
             if (!driver.isDisabled() && driver.getReplacedBy() == null && driver.isSupportedByLocalSystem()) {
                 eDrivers.add(driver);
@@ -364,7 +364,7 @@ public class DataSourceProviderDescriptor extends AbstractDescriptor implements 
 
     public void addDriver(DriverDescriptor driver)
     {
-        this.drivers.add(driver);
+        /*~~>*/this.drivers.add(driver);
     }
 
     public boolean removeDriver(DriverDescriptor driver)
@@ -374,16 +374,16 @@ public class DataSourceProviderDescriptor extends AbstractDescriptor implements 
             driver.setModified(true);
             return true;
         } else {
-            return this.drivers.remove(driver);
+            return /*~~>*/this.drivers.remove(driver);
         }
     }
 
     //////////////////////////////////////
     // Native clients
 
-    public List<NativeClientDescriptor> getNativeClients() {
+    public /*~~>*/List<NativeClientDescriptor> getNativeClients() {
         if (inheritClients && parentProvider != null) {
-            List<NativeClientDescriptor> clients = new ArrayList<>(nativeClients);
+            /*~~>*/List<NativeClientDescriptor> clients = new ArrayList<>(nativeClients);
             clients.addAll(parentProvider.getNativeClients());
             return clients;
         }

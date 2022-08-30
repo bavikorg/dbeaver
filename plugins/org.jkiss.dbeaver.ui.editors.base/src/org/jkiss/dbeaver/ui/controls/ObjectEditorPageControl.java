@@ -153,7 +153,7 @@ public class ObjectEditorPageControl extends ProgressPageControl {
 
     public class ObjectsLoadVisualizer<OBJECT_TYPE> extends ProgressVisualizer<OBJECT_TYPE> {
 
-        private List<DBRRunnableParametrized<OBJECT_TYPE>> listeners = new ArrayList<>();
+        private /*~~>*/List<DBRRunnableParametrized<OBJECT_TYPE>> listeners = new ArrayList<>();
 
         public ObjectsLoadVisualizer() {
         }

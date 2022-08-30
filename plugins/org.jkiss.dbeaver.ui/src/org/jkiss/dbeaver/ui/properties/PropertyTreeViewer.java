@@ -101,7 +101,7 @@ public class PropertyTreeViewer extends TreeViewer {
     private ObjectViewerRenderer renderer;
     private ExpandMode expandMode = ExpandMode.ALL;
 
-    private final List<IPropertyChangeListener> propertyListeners = new ArrayList<>();
+    private final /*~~>*/List<IPropertyChangeListener> propertyListeners = new ArrayList<>();
 
     public PropertyTreeViewer(Composite parent, int style)
     {
@@ -400,7 +400,7 @@ public class PropertyTreeViewer extends TreeViewer {
             if (treeNode.propertySource != null) {
                 treeNode.propertySource.resetPropertyValueToDefault(treeNode.property.getId());
             }
-            treeNode.parent.children.remove(treeNode);
+            /*~~>*/treeNode.parent.children.remove(treeNode);
             handlePropertyRemove(treeNode);
         }
     }
@@ -470,14 +470,14 @@ public class PropertyTreeViewer extends TreeViewer {
                         TreeItem lastItem = allItems[allItems.length - 1];
                         if (lastItem.getData() instanceof TreeNode) {
                             TreeNode lastNode = (TreeNode) lastItem.getData();
-                            if (!CommonUtils.isEmpty(lastNode.children)) {
-                                lastNode = lastNode.children.get(lastNode.children.size() - 1);
+                            if (!CommonUtils.isEmpty(/*~~>*/lastNode.children)) {
+                                lastNode = /*~~>*/lastNode.children.get(/*~~>*/lastNode.children.size() - 1);
                             }
                             if (lastNode.property != null && CommonUtils.isEmpty(lastNode.property.getDisplayName())) {
                                 return;
                             }
                             if (lastNode.parent != null) lastNode = lastNode.parent;
-                            addProperty(lastNode, new PropertyDescriptor(lastNode.category, "prop" + lastNode.children.size(), "", "", false, String.class, "", null), true);
+                            addProperty(lastNode, new PropertyDescriptor(lastNode.category, "prop" + /*~~>*/lastNode.children.size(), "", "", false, String.class, "", null), true);
                             allItems = treeControl.getItems();
                             TreeItem newItem = allItems[allItems.length - 1];
                             treeControl.setSelection(newItem);
@@ -740,7 +740,7 @@ public class PropertyTreeViewer extends TreeViewer {
     {
         super.update(prop, null);
 
-        List<IPropertyChangeListener> listenersCopy;
+        /*~~>*/List<IPropertyChangeListener> listenersCopy;
         synchronized (propertyListeners) {
             listenersCopy = new ArrayList<>(propertyListeners);
         }
@@ -862,7 +862,7 @@ public class PropertyTreeViewer extends TreeViewer {
         final DBPPropertySource propertySource;
         final DBPPropertyDescriptor property;
         final String category;
-        final List<TreeNode> children = new ArrayList<>();
+        final /*~~>*/List<TreeNode> children = new ArrayList<>();
 
         private TreeNode(TreeNode parent, DBPPropertySource propertySource, DBPPropertyDescriptor property, String category)
         {
@@ -871,7 +871,7 @@ public class PropertyTreeViewer extends TreeViewer {
             this.property = property;
             this.category = category;
             if (parent != null) {
-                parent.children.add(this);
+                /*~~>*/parent.children.add(this);
             }
         }
 
@@ -966,7 +966,7 @@ public class PropertyTreeViewer extends TreeViewer {
                 return ((Collection<?>) parent).toArray();
             } else if (parent instanceof TreeNode) {
                 // Add all available property groups
-                return ((TreeNode) parent).children.toArray();
+                return /*~~>*/((TreeNode) parent).children.toArray();
             } else {
                 return new Object[0];
             }

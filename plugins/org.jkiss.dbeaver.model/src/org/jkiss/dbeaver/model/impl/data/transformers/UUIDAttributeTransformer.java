@@ -56,7 +56,7 @@ public class UUIDAttributeTransformer implements DBDAttributeTransformer {
     }
 
     @Override
-    public void transformAttribute(@NotNull DBCSession session, @NotNull DBDAttributeBinding attribute, @NotNull List<Object[]> rows, @NotNull Map<String, Object> options) throws DBException {
+    public void transformAttribute(@NotNull DBCSession session, @NotNull DBDAttributeBinding attribute, @NotNull /*~~>*/List<Object[]> rows, @NotNull Map<String, Object> options) throws DBException {
         boolean isUpperCase = CommonUtils.equalObjects(options.get(PROP_CASE), PROP_UPPER_CASE);
         UUIDVersion uuidVersion = getUUIDVersion(options);
         attribute.setPresentationAttribute(

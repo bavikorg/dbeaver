@@ -26,7 +26,7 @@ import java.util.List;
 
 public interface DBSDocumentAttributeEnumerable extends DBSDocumentContainer {
     @NotNull
-    List<DBDLabelValuePair> getValueEnumeration(
+    /*~~>*/List<DBDLabelValuePair> getValueEnumeration(
         @NotNull DBCSession session,
         @NotNull DBSAttributeBase attribute,
         @Nullable String pattern,

@@ -35,7 +35,7 @@ public abstract class OracleTableConstraintBase extends JDBCTableConstraint<Orac
     private static final Log log = Log.getLog(OracleTableConstraintBase.class);
 
     private OracleObjectStatus status;
-    private List<OracleTableConstraintColumn> columns;
+    private /*~~>*/List<OracleTableConstraintColumn> columns;
 
     public OracleTableConstraintBase(OracleTableBase oracleTable, String name, DBSEntityConstraintType constraintType, OracleObjectStatus status, boolean persisted)
     {
@@ -70,7 +70,7 @@ public abstract class OracleTableConstraintBase extends JDBCTableConstraint<Orac
     }
 
     @Override
-    public List<OracleTableConstraintColumn> getAttributeReferences(DBRProgressMonitor monitor)
+    public /*~~>*/List<OracleTableConstraintColumn> getAttributeReferences(DBRProgressMonitor monitor)
     {
         return columns;
     }
@@ -80,12 +80,12 @@ public abstract class OracleTableConstraintBase extends JDBCTableConstraint<Orac
         if (columns == null) {
             columns = new ArrayList<>();
         }
-        this.columns.add(column);
+        /*~~>*/this.columns.add(column);
     }
 
-    void setColumns(List<OracleTableConstraintColumn> columns)
+    void setColumns(/*~~>*/List<OracleTableConstraintColumn> columns)
     {
-        this.columns = columns;
+        /*~~>*/this.columns = columns;
     }
 
 }

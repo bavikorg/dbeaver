@@ -350,7 +350,7 @@ public final class DBUtils {
         @NotNull DBRProgressMonitor monitor,
         @NotNull DBCExecutionContext executionContext,
         @NotNull DBSObjectContainer parent,
-        @NotNull List<String> names)
+        @NotNull /*~~>*/List<String> names)
         throws DBException
     {
         for (int i = 0; i < names.size(); i++) {
@@ -434,10 +434,10 @@ public final class DBUtils {
      * @return object or null
      */
     @Nullable
-    public static <T extends DBPNamedObject> List<T> findObjects(@Nullable Collection<T> theList, @Nullable String objectName)
+    public static <T extends DBPNamedObject> /*~~>*/List<T> findObjects(@Nullable Collection<T> theList, @Nullable String objectName)
     {
         if (theList != null && !theList.isEmpty()) {
-            List<T> result = new ArrayList<>();
+            /*~~>*/List<T> result = new ArrayList<>();
             for (T object : theList) {
                 if (object.getName().equalsIgnoreCase(objectName)) {
                     result.add(object);
@@ -622,7 +622,7 @@ public final class DBUtils {
                 return attribute;
             }
             if (finalEntity instanceof DBSTable) {
-                List<? extends DBSTrigger> triggers = ((DBSTable) finalEntity).getTriggers(monitor);
+                /*~~>*/List<? extends DBSTrigger> triggers = ((DBSTable) finalEntity).getTriggers(monitor);
                 if (triggers != null) {
                     DBSTrigger trigger = DBUtils.findObject(triggers, objectName);
                     if (trigger != null) {
@@ -667,7 +667,7 @@ public final class DBUtils {
 
     @NotNull
     public static DBDAttributeBinding[] getAttributeBindings(@NotNull DBCSession session, @NotNull DBSDataContainer dataContainer, @NotNull DBCResultSetMetaData metaData) {
-        List<DBCAttributeMetaData> metaAttributes = metaData.getAttributes();
+        /*~~>*/List<DBCAttributeMetaData> metaAttributes = metaData.getAttributes();
         int columnsCount = metaAttributes.size();
         DBDAttributeBinding[] bindings = new DBDAttributeBinding[columnsCount];
         for (int i = 0; i < columnsCount; i++) {
@@ -680,7 +680,7 @@ public final class DBUtils {
         // Add custom attributes
         DBVEntity vEntity = DBVUtils.getVirtualEntity(dataContainer, false);
         if (vEntity != null) {
-            List<DBVEntityAttribute> customAttributes = DBVUtils.getCustomAttributes(vEntity);
+            /*~~>*/List<DBVEntityAttribute> customAttributes = DBVUtils.getCustomAttributes(vEntity);
             if (!CommonUtils.isEmpty(customAttributes)) {
                 DBDAttributeBinding[] customBindings = new DBDAttributeBinding[customAttributes.size()];
                 for (int i = 0; i < customAttributes.size(); i++) {
@@ -712,14 +712,14 @@ public final class DBUtils {
      */
     @NotNull
     public static DBDAttributeBinding[] makeLeafAttributeBindings(@NotNull DBCSession session, @NotNull DBSDataContainer dataContainer, @NotNull DBCResultSet resultSet) throws DBCException {
-        List<DBDAttributeBinding> metaColumns = new ArrayList<>();
-        List<DBCAttributeMetaData> attributes = resultSet.getMeta().getAttributes();
+        /*~~>*/List<DBDAttributeBinding> metaColumns = new ArrayList<>();
+        /*~~>*/List<DBCAttributeMetaData> attributes = resultSet.getMeta().getAttributes();
         boolean isDocumentAttribute = attributes.size() == 1 && attributes.get(0).getDataKind() == DBPDataKind.DOCUMENT;
         if (isDocumentAttribute) {
             DBCAttributeMetaData attributeMeta = attributes.get(0);
             DBDAttributeBindingMeta docBinding = DBUtils.getAttributeBinding(dataContainer, session, attributeMeta);
             try {
-                List<Object[]> sampleRows = Collections.emptyList();
+                /*~~>*/List<Object[]> sampleRows = Collections.emptyList();
                 if (resultSet instanceof DBCResultSetSampleProvider) {
                     session.getProgressMonitor().subTask("Read sample rows");
                     sampleRows = ((DBCResultSetSampleProvider) resultSet).getSampleRows(session, MAX_SAMPLE_ROWS);
@@ -729,7 +729,7 @@ public final class DBUtils {
             } catch (Exception e) {
                 log.error("Document attribute '" + docBinding.getName() + "' binding error", e);
             }
-            List<DBDAttributeBinding> nested = docBinding.getNestedBindings();
+            /*~~>*/List<DBDAttributeBinding> nested = docBinding.getNestedBindings();
             if (!CommonUtils.isEmpty(nested)) {
                 metaColumns.addAll(nested);
             } else {
@@ -756,7 +756,7 @@ public final class DBUtils {
             }
         }
 
-        List<DBDAttributeBinding> result = new ArrayList<>(metaColumns.size());
+        /*~~>*/List<DBDAttributeBinding> result = new ArrayList<>(metaColumns.size());
         for (DBDAttributeBinding binding : metaColumns) {
             addLeafBindings(result, binding);
         }
@@ -768,8 +768,8 @@ public final class DBUtils {
             true);
     }
 
-    private static void addLeafBindings(List<DBDAttributeBinding> result, DBDAttributeBinding binding) {
-        List<DBDAttributeBinding> nestedBindings = binding.getNestedBindings();
+    private static void addLeafBindings(/*~~>*/List<DBDAttributeBinding> result, DBDAttributeBinding binding) {
+        /*~~>*/List<DBDAttributeBinding> nestedBindings = binding.getNestedBindings();
         if (CommonUtils.isEmpty(nestedBindings)) {
             result.add(binding);
         } else {
@@ -857,7 +857,7 @@ public final class DBUtils {
     }
 
     private static boolean isValidIndex(@NotNull Object value, int index) {
-        return (!(value instanceof List<?>) || ((List<?>) value).size() > index)
+        return (!(value instanceof List<?>) || ((/*~~>*/List<?>) value).size() > index)
             && (!(value instanceof DBDComposite) || ((DBDComposite) value).getAttributeCount() > index);
     }
 
@@ -874,8 +874,8 @@ public final class DBUtils {
             }
         }
 
-        if (value instanceof List<?> && ((List<?>) value).size() > index) {
-            return ((List<?>) value).get(index);
+        if (value instanceof List<?> && ((/*~~>*/List<?>) value).size() > index) {
+            return ((/*~~>*/List<?>) value).get(index);
         }
 
         return null;
@@ -943,7 +943,7 @@ public final class DBUtils {
             return false;
         }
         // Migrating association is: if all referenced attributes are included in some unique key
-        List<DBSEntityAttribute> ownAttrs = getEntityAttributes(monitor, referrer);
+        /*~~>*/List<DBSEntityAttribute> ownAttrs = getEntityAttributes(monitor, referrer);
         Collection<? extends DBSEntityConstraint> constraints = ownerEntity.getConstraints(monitor);
         if (constraints != null) {
             boolean hasPrimaryKey = false;
@@ -958,7 +958,7 @@ public final class DBUtils {
                     ((hasPrimaryKey && constraint.getConstraintType() == DBSEntityConstraintType.PRIMARY_KEY) ||
                     (!hasPrimaryKey && constraint.getConstraintType().isUnique())))
                 {
-                    List<DBSEntityAttribute> constAttrs = getEntityAttributes(monitor, (DBSEntityReferrer) constraint);
+                    /*~~>*/List<DBSEntityAttribute> constAttrs = getEntityAttributes(monitor, (DBSEntityReferrer) constraint);
 
                     boolean included = true;
                     for (DBSEntityAttribute attr : ownAttrs) {
@@ -1010,7 +1010,7 @@ public final class DBUtils {
             if (binding.matches(attribute, true)) {
                 return binding;
             }
-            List<DBDAttributeBinding> nestedBindings = binding.getNestedBindings();
+            /*~~>*/List<DBDAttributeBinding> nestedBindings = binding.getNestedBindings();
             if (nestedBindings != null) {
                 DBDAttributeBinding subBinding = findBinding(nestedBindings, attribute);
                 if (subBinding != null) {
@@ -1031,7 +1031,7 @@ public final class DBUtils {
             if (binding.matches(attribute, true)) {
                 return binding;
             }
-            List<DBDAttributeBinding> nestedBindings = binding.getNestedBindings();
+            /*~~>*/List<DBDAttributeBinding> nestedBindings = binding.getNestedBindings();
             if (nestedBindings != null) {
                 DBDAttributeBinding subBinding = findBinding(nestedBindings, attribute);
                 if (subBinding != null) {
@@ -1043,13 +1043,13 @@ public final class DBUtils {
     }
 
     @NotNull
-    public static List<DBSEntityReferrer> getAttributeReferrers(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntityAttribute entityAttribute, boolean includeVirtual)
+    public static /*~~>*/List<DBSEntityReferrer> getAttributeReferrers(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntityAttribute entityAttribute, boolean includeVirtual)
         throws DBException
     {
         DBSEntity entity = entityAttribute.getParentObject();
         Collection<? extends DBSEntityAssociation> associations = includeVirtual ? DBVUtils.getAllAssociations(monitor, entity) : entity.getAssociations(monitor);
         if (associations != null) {
-            List<DBSEntityReferrer> refs = new ArrayList<>();
+            /*~~>*/List<DBSEntityReferrer> refs = new ArrayList<>();
             for (DBSEntityAssociation fk : associations) {
                 if (fk instanceof DBSEntityReferrer && DBUtils.getConstraintAttribute(monitor, (DBSEntityReferrer) fk, entityAttribute) != null) {
                     refs.add((DBSEntityReferrer)fk);
@@ -1061,7 +1061,7 @@ public final class DBUtils {
     }
 
     @NotNull
-    public static List<? extends DBSEntityAttribute> getBestTableIdentifier(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntity entity)
+    public static /*~~>*/List<? extends DBSEntityAttribute> getBestTableIdentifier(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntity entity)
         throws DBException
     {
         if (entity instanceof DBSTable && ((DBSTable) entity).isView()) {
@@ -1071,7 +1071,7 @@ public final class DBUtils {
             return Collections.emptyList();
         }
 
-        List<DBSEntityConstraint> identifiers = new ArrayList<>();
+        /*~~>*/List<DBSEntityConstraint> identifiers = new ArrayList<>();
         //List<DBSEntityConstraint> nonIdentifyingConstraints = null;
 
         // Check indexes
@@ -1133,7 +1133,7 @@ public final class DBUtils {
         if (!index.isUnique()) {
             return false;
         }
-        List<? extends DBSTableIndexColumn> attrs = index.getAttributeReferences(monitor);
+        /*~~>*/List<? extends DBSTableIndexColumn> attrs = index.getAttributeReferences(monitor);
         if (attrs == null || attrs.isEmpty()) {
             return false;
         }
@@ -1149,7 +1149,7 @@ public final class DBUtils {
     public static boolean isIdentifierConstraint(DBRProgressMonitor monitor, DBSEntityConstraint constraint) throws DBException {
         if (constraint.getConstraintType().isUnique()) {
             if (constraint instanceof DBSEntityReferrer) {
-                List<? extends DBSEntityAttributeRef> attrs = ((DBSEntityReferrer) constraint).getAttributeReferences(monitor);
+                /*~~>*/List<? extends DBSEntityAttributeRef> attrs = ((DBSEntityReferrer) constraint).getAttributeReferences(monitor);
                 if (attrs == null || attrs.isEmpty()) {
                     return false;
                 }
@@ -1196,7 +1196,7 @@ public final class DBUtils {
     }
 
     public static boolean referrerMatches(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntityReferrer referrer, @NotNull Collection<? extends DBSEntityAttribute> attributes) throws DBException {
-        final List<? extends DBSEntityAttributeRef> refs = referrer.getAttributeReferences(monitor);
+        final /*~~>*/List<? extends DBSEntityAttributeRef> refs = referrer.getAttributeReferences(monitor);
         if (refs != null && !refs.isEmpty() && attributes.size() == refs.size()) {
             Iterator<? extends DBSEntityAttribute> attrIterator = attributes.iterator();
             for (DBSEntityAttributeRef ref : refs) {
@@ -1215,7 +1215,7 @@ public final class DBUtils {
     }
 
     @NotNull
-    public static List<DBSEntityAttribute> getEntityAttributes(@NotNull DBRProgressMonitor monitor, @Nullable DBSEntityReferrer referrer)
+    public static /*~~>*/List<DBSEntityAttribute> getEntityAttributes(@NotNull DBRProgressMonitor monitor, @Nullable DBSEntityReferrer referrer)
     {
         try {
             if (referrer instanceof DBVEntityConstraint && ((DBVEntityConstraint) referrer).isUseAllColumns()) {
@@ -1239,7 +1239,7 @@ public final class DBUtils {
         if (constraintColumns == null) {
             return Collections.emptyList();
         }
-        List<DBSEntityAttribute> attributes = new ArrayList<>(constraintColumns.size());
+        /*~~>*/List<DBSEntityAttribute> attributes = new ArrayList<>(constraintColumns.size());
         for (DBSEntityAttributeRef column : constraintColumns) {
             final DBSEntityAttribute attribute = column.getAttribute();
             if (attribute != null) {
@@ -1736,7 +1736,7 @@ public final class DBUtils {
 
     @NotNull
     public static DBCLogicalOperator[] getDefaultOperators(DBSTypedObject attribute) {
-        List<DBCLogicalOperator> operators = new ArrayList<>();
+        /*~~>*/List<DBCLogicalOperator> operators = new ArrayList<>();
         DBPDataKind dataKind = attribute.getDataKind();
         if (attribute instanceof DBSAttributeBase && !((DBSAttributeBase)attribute).isRequired()) {
             operators.add(DBCLogicalOperator.IS_NULL);
@@ -2022,20 +2022,20 @@ public final class DBUtils {
         return Comparator.comparingInt(DBSAttributeBase::getOrdinalPosition);
     }
 
-    public static <T extends DBPNamedObject> List<T> makeOrderedObjectList(@NotNull Collection<T> objects) {
-        List<T> ordered = new ArrayList<>(objects);
+    public static <T extends DBPNamedObject> /*~~>*/List<T> makeOrderedObjectList(@NotNull Collection<T> objects) {
+        /*~~>*/List<T> ordered = new ArrayList<>(objects);
         orderObjects(ordered);
         return ordered;
     }
 
-    public static <T extends DBPNamedObject> List<T> makeOrderedObjectList(@NotNull T[] objects) {
-        List<T> ordered = new ArrayList<>();
+    public static <T extends DBPNamedObject> /*~~>*/List<T> makeOrderedObjectList(@NotNull T[] objects) {
+        /*~~>*/List<T> ordered = new ArrayList<>();
         Collections.addAll(ordered, objects);
         orderObjects(ordered);
         return ordered;
     }
 
-    public static <T extends DBPNamedObject> void orderObjects(@NotNull List<T> objects) {
+    public static <T extends DBPNamedObject> void orderObjects(@NotNull /*~~>*/List<T> objects) {
         objects.sort((o1, o2) -> {
             String name1 = o1.getName();
             String name2 = o2.getName();
@@ -2110,8 +2110,8 @@ public final class DBUtils {
         }
         return context;
     }
-    public static List<DBPDataSourceRegistry> getAllRegistries(boolean forceLoad) {
-        List<DBPDataSourceRegistry> result = new ArrayList<>();
+    public static /*~~>*/List<DBPDataSourceRegistry> getAllRegistries(boolean forceLoad) {
+        /*~~>*/List<DBPDataSourceRegistry> result = new ArrayList<>();
         for (DBPProject project : DBWorkbench.getPlatform().getWorkspace().getProjects()) {
             if (forceLoad || (project.isOpen() && project.isRegistryLoaded())) {
                 project.ensureOpen();
@@ -2412,10 +2412,10 @@ public final class DBUtils {
      * @return List of data containers (tables, views etc.) from the parent container (schema, catalog, datasource etc.)
      * @throws DBException if connection is lost or something is going wrong during children loading
      */
-    public static List<DBSDataContainer> getAllDataContainersFromParentContainer(
+    public static /*~~>*/List<DBSDataContainer> getAllDataContainersFromParentContainer(
         @NotNull DBRProgressMonitor monitor,
         @NotNull DBSObject parent) throws DBException {
-        List<DBSDataContainer> result = new ArrayList<>();
+        /*~~>*/List<DBSDataContainer> result = new ArrayList<>();
         if (parent instanceof DBSDataContainer) {
             result.add((DBSDataContainer) parent);
         } else if (parent instanceof DBSObjectContainer) {
@@ -2446,7 +2446,7 @@ public final class DBUtils {
         } else if (parent instanceof DBNDatabaseFolder) {
             Collection<DBSObject> dbsObjects = ((DBNDatabaseFolder) parent).getChildrenObjects(monitor);
             for (DBSObject dbsObject : dbsObjects) {
-                List<DBSDataContainer> containers = getAllDataContainersFromParentContainer(monitor, dbsObject);
+                /*~~>*/List<DBSDataContainer> containers = getAllDataContainersFromParentContainer(monitor, dbsObject);
                 if (!CommonUtils.isEmpty(containers)) {
                     result.addAll(containers);
                 }
@@ -2454,7 +2454,7 @@ public final class DBUtils {
         } else if (parent instanceof DBPDataSourceContainer) {
             DBPDataSource dataSource = ((DBPDataSourceContainer) parent).getDataSource();
             if (dataSource instanceof DBSObjectContainer) {
-                List<DBSDataContainer> containers = getAllDataContainersFromParentContainer(monitor, dataSource);
+                /*~~>*/List<DBSDataContainer> containers = getAllDataContainersFromParentContainer(monitor, dataSource);
                 if (!CommonUtils.isEmpty(containers)) {
                     result.addAll(containers);
                 }

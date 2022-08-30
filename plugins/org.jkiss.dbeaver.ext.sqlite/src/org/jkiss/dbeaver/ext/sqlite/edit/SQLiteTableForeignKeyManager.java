@@ -46,7 +46,7 @@ public class SQLiteTableForeignKeyManager extends GenericForeignKeyManager {
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
         SQLiteUtils.createTableAlterActions(
             monitor,
             "Create foreign key " + DBUtils.getQuotedIdentifier(command.getObject()),
@@ -57,7 +57,7 @@ public class SQLiteTableForeignKeyManager extends GenericForeignKeyManager {
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
         SQLiteUtils.createTableAlterActions(
             monitor,
             "Alter foreign key " + DBUtils.getQuotedIdentifier(command.getObject()),
@@ -68,7 +68,7 @@ public class SQLiteTableForeignKeyManager extends GenericForeignKeyManager {
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
         SQLiteUtils.createTableAlterActions(
             monitor,
             "Drop foreign key " + DBUtils.getQuotedIdentifier(command.getObject()),

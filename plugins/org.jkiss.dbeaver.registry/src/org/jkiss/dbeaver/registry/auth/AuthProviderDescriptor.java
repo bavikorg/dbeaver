@@ -46,7 +46,7 @@ public class AuthProviderDescriptor extends AbstractDescriptor {
     private SMAuthProvider<?> instance;
     private final DBPImage icon;
     private final Map<String, PropertyDescriptor> configurationParameters = new LinkedHashMap<>();
-    private final List<SMAuthCredentialsProfile> credentialProfiles = new ArrayList<>();
+    private final /*~~>*/List<SMAuthCredentialsProfile> credentialProfiles = new ArrayList<>();
     private final boolean configurable;
     private final boolean trusted;
     private final String[] requiredFeatures;
@@ -106,15 +106,15 @@ public class AuthProviderDescriptor extends AbstractDescriptor {
         return trusted;
     }
 
-    public List<PropertyDescriptor> getConfigurationParameters() {
+    public /*~~>*/List<PropertyDescriptor> getConfigurationParameters() {
         return new ArrayList<>(configurationParameters.values());
     }
 
-    public List<SMAuthCredentialsProfile> getCredentialProfiles() {
+    public /*~~>*/List<SMAuthCredentialsProfile> getCredentialProfiles() {
         return new ArrayList<>(credentialProfiles);
     }
 
-    public List<AuthPropertyDescriptor> getCredentialParameters(Set<String> keySet) {
+    public /*~~>*/List<AuthPropertyDescriptor> getCredentialParameters(Set<String> keySet) {
         if (credentialProfiles.size() > 1) {
             for (SMAuthCredentialsProfile profile : credentialProfiles) {
                 if (profile.getCredentialParameters().size() == keySet.size()) {

@@ -250,9 +250,9 @@ public class CSVReader implements Closeable {
      * file.
      * @throws IOException if bad things happen during the read
      */
-    public List<String[]> readAll() throws IOException {
+    public /*~~>*/List<String[]> readAll() throws IOException {
 
-        List<String[]> allElements = new ArrayList<>();
+        /*~~>*/List<String[]> allElements = new ArrayList<>();
         while (hasNext) {
             String[] nextLineAsTokens = readNext();
             if (nextLineAsTokens != null) {

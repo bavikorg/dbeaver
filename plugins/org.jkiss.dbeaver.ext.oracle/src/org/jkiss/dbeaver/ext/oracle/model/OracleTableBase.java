@@ -166,7 +166,7 @@ public abstract class OracleTableBase extends JDBCTable<OracleDataSource, Oracle
     }
 
     @Association
-    public List<? extends OracleTableColumn> getCachedAttributes()
+    public /*~~>*/List<? extends OracleTableColumn> getCachedAttributes()
     {
         final DBSObjectCache<OracleTableBase, OracleTableColumn> childrenCache = getContainer().getTableCache().getChildrenCache(this);
         if (childrenCache != null) {
@@ -227,7 +227,7 @@ public abstract class OracleTableBase extends JDBCTable<OracleDataSource, Oracle
     }
 
     @Override
-    public List<OracleTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<OracleTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
         return getContainer().tableCache.getChildren(monitor, getContainer(), this);
@@ -251,7 +251,7 @@ public abstract class OracleTableBase extends JDBCTable<OracleDataSource, Oracle
 
     @Nullable
     @Association
-    public List<OracleTableTrigger> getTriggers(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<OracleTableTrigger> getTriggers(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
         return getSchema().tableTriggerCache.getObjects(monitor, getSchema(), this);

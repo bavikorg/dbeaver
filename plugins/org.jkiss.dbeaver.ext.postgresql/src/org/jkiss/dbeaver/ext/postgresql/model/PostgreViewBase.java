@@ -111,7 +111,7 @@ public abstract class PostgreViewBase extends PostgreTableReal implements DBSVie
             }
         }
 
-        List<DBEPersistAction> actions = new ArrayList<>();
+        /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
         if (CommonUtils.getOption(options, DBPScriptObject.OPTION_INCLUDE_COMMENTS)) {
             if (getDescription() != null) {
                 actions.add(

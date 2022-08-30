@@ -71,7 +71,7 @@ public class PrefPageDatabaseEditors extends AbstractPrefPage implements IWorkbe
     private Button showPreviewOnSave;
     private Button syncEditorDataSourceWithNavigator;
 
-    private final List<Consumer<BooleanStyleSet>> booleanStylesChangeListeners = new ArrayList<>();
+    private final /*~~>*/List<Consumer<BooleanStyleSet>> booleanStylesChangeListeners = new ArrayList<>();
     private BooleanPanel booleanCheckedPanel;
     private BooleanPanel booleanUncheckedPanel;
     private BooleanPanel booleanNullPanel;

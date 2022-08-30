@@ -97,14 +97,14 @@ public class PostgreConstraintManager extends SQLConstraintManager<PostgreTableC
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
     {
         if (command.getProperty(DBConstants.PROP_ID_DESCRIPTION) != null) {
             addConstraintCommentAction(actionList, command.getObject());
         }
     }
 
-    static void addConstraintCommentAction(List<DBEPersistAction> actionList, PostgreTableConstraintBase constr) {
+    static void addConstraintCommentAction(/*~~>*/List<DBEPersistAction> actionList, PostgreTableConstraintBase constr) {
         actionList.add(new SQLDatabasePersistAction(
             "Comment sequence",
             "COMMENT ON CONSTRAINT " + DBUtils.getQuotedIdentifier(constr) + " ON " + constr.getTable().getFullyQualifiedName(DBPEvaluationContext.DDL) +
@@ -123,7 +123,7 @@ public class PostgreConstraintManager extends SQLConstraintManager<PostgreTableC
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
         PostgreTableConstraintBase constraint = command.getObject();
         actions.add(
                 new SQLDatabasePersistAction(

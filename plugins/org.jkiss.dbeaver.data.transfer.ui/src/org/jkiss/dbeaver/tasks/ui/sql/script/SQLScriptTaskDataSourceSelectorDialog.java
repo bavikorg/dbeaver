@@ -47,7 +47,7 @@ class SQLScriptTaskDataSourceSelectorDialog extends BaseDialog {
 
     private DBNProject projectNode;
     private DatabaseNavigatorTree dataSourceTree;
-    private List<DBNDataSource> selectedDataSources = new ArrayList<>();
+    private /*~~>*/List<DBNDataSource> selectedDataSources = new ArrayList<>();
 
     SQLScriptTaskDataSourceSelectorDialog(Shell parentShell, DBNProject projectNode) {
         super(parentShell, DTMessages.sql_script_task_page_settings_group_connections, null);
@@ -100,7 +100,7 @@ class SQLScriptTaskDataSourceSelectorDialog extends BaseDialog {
         getButton(IDialogConstants.OK_ID).setEnabled(!selectedDataSources.isEmpty());
     }
 
-    public List<DBNDataSource> getSelectedDataSources() {
+    public /*~~>*/List<DBNDataSource> getSelectedDataSources() {
         return selectedDataSources;
     }
 

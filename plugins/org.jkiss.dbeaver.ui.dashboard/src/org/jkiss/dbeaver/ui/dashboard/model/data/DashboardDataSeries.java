@@ -26,7 +26,7 @@ public class DashboardDataSeries {
 
     private String title;
     private String description;
-    private List<Number> values = new ArrayList<>();
+    private /*~~>*/List<Number> values = new ArrayList<>();
 
     public DashboardDataSeries(String title, String description) {
         this.title = title;
@@ -41,7 +41,7 @@ public class DashboardDataSeries {
         return description;
     }
 
-    public List<Number> getValues() {
+    public /*~~>*/List<Number> getValues() {
         return values;
     }
 

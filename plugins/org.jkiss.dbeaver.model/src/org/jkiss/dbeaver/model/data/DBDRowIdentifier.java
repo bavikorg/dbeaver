@@ -43,7 +43,7 @@ public class DBDRowIdentifier implements DBPObject {
 
     private final DBSEntity entity;
     private final DBSEntityConstraint entityIdentifier;
-    private final List<DBDAttributeBinding> attributes = new ArrayList<>();
+    private final /*~~>*/List<DBDAttributeBinding> attributes = new ArrayList<>();
 
     public DBDRowIdentifier(@NotNull DBSEntity entity, @NotNull DBSEntityConstraint entityIdentifier)
     {
@@ -70,7 +70,7 @@ public class DBDRowIdentifier implements DBPObject {
     }
 
     @NotNull
-    public List<DBDAttributeBinding> getAttributes() {
+    public /*~~>*/List<DBDAttributeBinding> getAttributes() {
         return attributes;
     }
 
@@ -83,20 +83,20 @@ public class DBDRowIdentifier implements DBPObject {
 
     public void reloadAttributes(@NotNull DBRProgressMonitor monitor, @NotNull DBDAttributeBinding[] bindings) throws DBException
     {
-        this.attributes.clear();
+        /*~~>*/this.attributes.clear();
         if (entityIdentifier instanceof DBVEntityConstraint && ((DBVEntityConstraint) entityIdentifier).isUseAllColumns()) {
-            Collections.addAll(this.attributes, bindings);
+            Collections.addAll(/*~~>*/this.attributes, bindings);
         } else if (entityIdentifier instanceof DBSEntityReferrer) {
             DBSEntityReferrer referrer = (DBSEntityReferrer) entityIdentifier;
             Collection<? extends DBSEntityAttributeRef> refs = CommonUtils.safeCollection(referrer.getAttributeReferences(monitor));
             for (DBSEntityAttributeRef cColumn : refs) {
                 DBDAttributeBinding binding = DBUtils.findBinding(bindings, cColumn.getAttribute());
                 if (binding != null) {
-                    this.attributes.add(binding);
+                    /*~~>*/this.attributes.add(binding);
                 } else {
                     // If at least one attribute is missing - this ID won't work anyway
                     // so let's just clean it up
-                    this.attributes.clear();
+                    /*~~>*/this.attributes.clear();
                     break;
                 }
             }

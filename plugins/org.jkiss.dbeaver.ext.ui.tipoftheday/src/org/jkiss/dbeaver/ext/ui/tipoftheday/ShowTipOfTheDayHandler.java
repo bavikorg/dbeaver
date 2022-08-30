@@ -47,13 +47,13 @@ public class ShowTipOfTheDayHandler extends AbstractHandler {
     public static final String UI_SHOW_TIP_OF_THE_DAY_ON_STARTUP = "ui.show.tip.of.the.day.on.startup";
 
     static void showTipOfTheDay(IWorkbenchWindow window) {
-        List<String> tips = loadTips();
+        /*~~>*/List<String> tips = loadTips();
         if (!CommonUtils.isEmpty(tips)) {
             showTipOfTheDayDialog(tips, window);
         }
     }
 
-    private static void showTipOfTheDayDialog(List<String> tips, IWorkbenchWindow window) {
+    private static void showTipOfTheDayDialog(/*~~>*/List<String> tips, IWorkbenchWindow window) {
         final ShowTipOfTheDayDialog tipDialog = new ShowTipOfTheDayDialog(window.getShell());
         tipDialog.setDisplayShowOnStartup(true);
         tipDialog.setShowOnStartup(
@@ -70,8 +70,8 @@ public class ShowTipOfTheDayHandler extends AbstractHandler {
             setValue(UI_SHOW_TIP_OF_THE_DAY_ON_STARTUP, String.valueOf(tipDialog.isShowOnStartup()));
     }
 
-    private static List<String> loadTips() {
-        List<String> result = new ArrayList<>();
+    private static /*~~>*/List<String> loadTips() {
+        /*~~>*/List<String> result = new ArrayList<>();
 
         String pathToTipsFile = Platform.getProduct().getProperty("tipsFile");
         if (pathToTipsFile == null) {

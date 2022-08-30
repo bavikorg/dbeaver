@@ -64,7 +64,7 @@ public class GenericDataSource extends JDBCDataSource implements DBPTermProvider
 
     private final TableTypeCache tableTypeCache;
     private final JDBCBasicDataTypeCache<GenericStructContainer, ? extends JDBCDataType> dataTypeCache;
-    private List<GenericCatalog> catalogs;
+    private /*~~>*/List<GenericCatalog> catalogs;
     private SimpleObjectCache<GenericStructContainer, GenericSchema> schemas;
     private final GenericMetaModel metaModel;
     private GenericObjectContainer structureContainer;
@@ -315,7 +315,7 @@ public class GenericDataSource extends JDBCDataSource implements DBPTermProvider
         return tableTypeCache.getAllObjects(monitor, this);
     }
 
-    public List<GenericCatalog> getCatalogs() {
+    public /*~~>*/List<GenericCatalog> getCatalogs() {
         return catalogs;
     }
 
@@ -338,7 +338,7 @@ public class GenericDataSource extends JDBCDataSource implements DBPTermProvider
     }
 
     @Association
-    public List<GenericSchema> getSchemas() {
+    public /*~~>*/List<GenericSchema> getSchemas() {
         return schemas == null ? null : schemas.getCachedObjects();
     }
 
@@ -403,17 +403,17 @@ public class GenericDataSource extends JDBCDataSource implements DBPTermProvider
     }
 
     @Override
-    public List<? extends GenericView> getViews(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<? extends GenericView> getViews(DBRProgressMonitor monitor) throws DBException {
         return structureContainer == null ? null : structureContainer.getViews(monitor);
     }
 
     @Override
-    public List<? extends GenericTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<? extends GenericTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException {
         return structureContainer == null ? null : structureContainer.getPhysicalTables(monitor);
     }
 
     @Override
-    public List<? extends GenericTableBase> getTables(DBRProgressMonitor monitor)
+    public /*~~>*/List<? extends GenericTableBase> getTables(DBRProgressMonitor monitor)
         throws DBException {
         return structureContainer == null ? null : structureContainer.getTables(monitor);
     }
@@ -509,12 +509,12 @@ public class GenericDataSource extends JDBCDataSource implements DBPTermProvider
                 monitor.worked(1);
                 final GenericMetaObject catalogObject = getMetaObject(GenericConstants.OBJECT_CATALOG);
                 final DBSObjectFilter catalogFilters = getContainer().getObjectFilter(GenericCatalog.class, null, false);
-                final List<String> catalogNames = getCatalogsNames(monitor, metaData, catalogObject, catalogFilters);
+                final /*~~>*/List<String> catalogNames = getCatalogsNames(monitor, metaData, catalogObject, catalogFilters);
                 if (!catalogNames.isEmpty() || catalogsFiltered) {
-                    this.catalogs = new ArrayList<>();
+                    /*~~>*/this.catalogs = new ArrayList<>();
                     for (String catalogName : catalogNames) {
                         GenericCatalog catalog = metaModel.createCatalogImpl(this, catalogName);
-                        this.catalogs.add(catalog);
+                        /*~~>*/this.catalogs.add(catalog);
                     }
                 }
             }
@@ -524,7 +524,7 @@ public class GenericDataSource extends JDBCDataSource implements DBPTermProvider
                 monitor.worked(1);
 
                 try {
-                    List<GenericSchema> tmpSchemas = metaModel.loadSchemas(session, this, null);
+                    /*~~>*/List<GenericSchema> tmpSchemas = metaModel.loadSchemas(session, this, null);
                     if (tmpSchemas != null) {
                         this.schemas = new SimpleObjectCache<>();
                         this.schemas.setCaseSensitive(getSQLDialect().storesUnquotedCase() == DBPIdentifierCase.MIXED);
@@ -553,8 +553,8 @@ public class GenericDataSource extends JDBCDataSource implements DBPTermProvider
         }
     }
 
-    public List<String> getCatalogsNames(@NotNull DBRProgressMonitor monitor, @NotNull JDBCDatabaseMetaData metaData, GenericMetaObject catalogObject, @Nullable DBSObjectFilter catalogFilters) throws DBException {
-        final List<String> catalogNames = new ArrayList<>();
+    public /*~~>*/List<String> getCatalogsNames(@NotNull DBRProgressMonitor monitor, @NotNull JDBCDatabaseMetaData metaData, GenericMetaObject catalogObject, @Nullable DBSObjectFilter catalogFilters) throws DBException {
+        final /*~~>*/List<String> catalogNames = new ArrayList<>();
         try {
             try (JDBCResultSet dbResult = metaData.getCatalogs()) {
                 int totalCatalogs = 0;
@@ -622,7 +622,7 @@ public class GenericDataSource extends JDBCDataSource implements DBPTermProvider
 
         this.structureContainer = null;
         this.tableTypeCache.clearCache();
-        this.catalogs = null;
+        /*~~>*/this.catalogs = null;
         this.schemas = null;
 
         this.initialize(monitor);

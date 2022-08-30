@@ -57,7 +57,7 @@ public abstract class AbstractSearchResultsPage <OBJECT_TYPE> extends Page imple
 
     public AbstractSearchResultsPage() {
         this.resultListener = e -> {
-            List objects = null;
+            /*~~>*/List objects = null;
             if (e instanceof AbstractSearchResult.DatabaseSearchResultEvent) {
                 objects = ((AbstractSearchResult.DatabaseSearchResultEvent) e).getObjects();
             } else if (e instanceof AbstractSearchResult.DatabaseSearchFinishEvent) {
@@ -69,7 +69,7 @@ public abstract class AbstractSearchResultsPage <OBJECT_TYPE> extends Page imple
                 objects = result.getObjects();
             }
             if (objects != null) {
-                final List newObjects = objects;
+                final /*~~>*/List newObjects = objects;
                 UIUtils.syncExec(() -> populateObjects(newObjects));
             }
 
@@ -114,13 +114,13 @@ public abstract class AbstractSearchResultsPage <OBJECT_TYPE> extends Page imple
     public void populateObjects(Collection<OBJECT_TYPE> objects)
     {
         if (itemList != null && !itemList.isDisposed()) {
-            List<DBNNode> nodes = new ArrayList<>(objects.size());
+            /*~~>*/List<DBNNode> nodes = new ArrayList<>(objects.size());
             for (OBJECT_TYPE object : objects) {
                 nodes.add(getNodeFromObject(object));
             }
             TreeViewer itemsViewer = (TreeViewer) itemList.getItemsViewer();
             Collection<DBNNode> oldNodes = itemList.getListData();
-            List<DBNNode> newNodes = new ArrayList<>();
+            /*~~>*/List<DBNNode> newNodes = new ArrayList<>();
             if (!CommonUtils.isEmpty(oldNodes)) {
                 newNodes.addAll(oldNodes);
             }
@@ -248,7 +248,7 @@ public abstract class AbstractSearchResultsPage <OBJECT_TYPE> extends Page imple
     private static class ResultsNode {
         DBNNode node;
         ResultsNode parent;
-        final List<ResultsNode> children = new ArrayList<>();
+        final /*~~>*/List<ResultsNode> children = new ArrayList<>();
 
         ResultsNode(DBNNode node, ResultsNode parent)
         {
@@ -298,7 +298,7 @@ public abstract class AbstractSearchResultsPage <OBJECT_TYPE> extends Page imple
         {
             if (parentElement instanceof DBNNode) {
                 ResultsNode results = nodeMap.get(parentElement);
-                return results != null && !results.children.isEmpty();
+                return results != null && !/*~~>*/results.children.isEmpty();
             }
             return false;
         }
@@ -325,7 +325,7 @@ public abstract class AbstractSearchResultsPage <OBJECT_TYPE> extends Page imple
         {
             rootResults = new ResultsNode(getRootNode(), null);
             nodeMap = new IdentityHashMap<>();
-            final List<DBNNode> allParents = new ArrayList<>();
+            final /*~~>*/List<DBNNode> allParents = new ArrayList<>();
             for (DBNNode node : nodeList) {
                 // Collect parent nodes
                 allParents.clear();
@@ -342,14 +342,14 @@ public abstract class AbstractSearchResultsPage <OBJECT_TYPE> extends Page imple
                     if (parentResults == null) {
                         parentResults = new ResultsNode(parent, curParentResults);
                         nodeMap.put(parent, parentResults);
-                        curParentResults.children.add(parentResults);
+                        /*~~>*/curParentResults.children.add(parentResults);
                     }
                     curParentResults = parentResults;
                 }
                 // Make leaf
                 ResultsNode leaf = new ResultsNode(node, curParentResults);
                 nodeMap.put(node, leaf);
-                curParentResults.children.add(leaf);
+                /*~~>*/curParentResults.children.add(leaf);
             }
         }
 

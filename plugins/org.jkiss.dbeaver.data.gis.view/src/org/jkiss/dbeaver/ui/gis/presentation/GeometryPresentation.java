@@ -124,11 +124,11 @@ public class GeometryPresentation extends AbstractPresentation {
     public void refreshData(boolean refreshMetadata, boolean append, boolean keepState) {
         controller.updateEditControls();
 
-        List<GeometryDataUtils.GeomAttrs> result = GeometryDataUtils.extractGeometryAttributes(getController());
+        /*~~>*/List<GeometryDataUtils.GeomAttrs> result = GeometryDataUtils.extractGeometryAttributes(getController());
         ResultSetModel model = getController().getModel();
 
         // Now extract all geom values from data
-        List<DBGeometry> geometries = new ArrayList<>();
+        /*~~>*/List<DBGeometry> geometries = new ArrayList<>();
         for (int i = 0; i < result.size(); i++) {
             GeometryDataUtils.GeomAttrs geomAttrs = result.get(i);
             for (ResultSetRow row : model.getAllRows()) {

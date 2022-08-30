@@ -70,7 +70,7 @@ public abstract class BasePlatformImpl implements DBPPlatform, DBPPlatformLangua
 
     private DBNModel navigatorModel;
 
-    private final List<IPluginService> activatedServices = new ArrayList<>();
+    private final /*~~>*/List<IPluginService> activatedServices = new ArrayList<>();
 
     protected void initialize() {
         log.debug("Initialize base platform...");

@@ -114,8 +114,8 @@ public class ERDUtils
         return null;
     }
 
-    public static <T> List<T> getObjectsFromERD(List<? extends ERDObject<T>> erdObjects) {
-        List<T> result = null;
+    public static <T> /*~~>*/List<T> getObjectsFromERD(/*~~>*/List<? extends ERDObject<T>> erdObjects) {
+        /*~~>*/List<T> result = null;
         if (erdObjects != null) {
             result = new ArrayList<>();
             for (ERDObject<T> erdObject : erdObjects) {
@@ -125,7 +125,7 @@ public class ERDUtils
         return result;
     }
 
-    public static ERDEntity makeEntityFromObject(DBRProgressMonitor monitor, ERDDiagram diagram, List<ERDEntity> otherEntities, DBSEntity entity, Object userData) {
+    public static ERDEntity makeEntityFromObject(DBRProgressMonitor monitor, ERDDiagram diagram, /*~~>*/List<ERDEntity> otherEntities, DBSEntity entity, Object userData) {
         ERDEntity erdEntity = new ERDEntity(entity);
         erdEntity.setUserData(userData);
         try {
@@ -229,7 +229,7 @@ public class ERDUtils
             }
             try {
                 monitor.subTask("Read associations");
-                List<DBSEntity> secondLevelEntities = new ArrayList<>();
+                /*~~>*/List<DBSEntity> secondLevelEntities = new ArrayList<>();
                 for (DBSEntity entity : result) {
                     if (entity != rootTable && entity.getEntityType() == DBSEntityType.ASSOCIATION) {
                         // Read all association's associations

@@ -53,11 +53,11 @@ public interface DBSDictionary
      * @return statement with result set which contains valid enumeration values.
      */
     @NotNull
-    List<DBDLabelValuePair> getDictionaryEnumeration(
+    /*~~>*/List<DBDLabelValuePair> getDictionaryEnumeration(
         @NotNull DBRProgressMonitor monitor,
         @NotNull DBSEntityAttribute keyColumn,
         Object keyPattern,
-        @Nullable List<DBDAttributeValue> preceedingKeys,
+        @Nullable /*~~>*/List<DBDAttributeValue> preceedingKeys,
         boolean caseInsensitiveSearch,
         boolean sortAsc,
         boolean sortByValue,
@@ -66,11 +66,11 @@ public interface DBSDictionary
     ) throws DBException;
 
     @NotNull
-    List<DBDLabelValuePair> getDictionaryValues(
+    /*~~>*/List<DBDLabelValuePair> getDictionaryValues(
         @NotNull DBRProgressMonitor monitor,
         @NotNull DBSEntityAttribute keyColumn,
-        @NotNull List<Object> keyValues,
-        @Nullable List<DBDAttributeValue> preceedingKeys,
+        @NotNull /*~~>*/List<Object> keyValues,
+        @Nullable /*~~>*/List<DBDAttributeValue> preceedingKeys,
         boolean sortByValue,
         boolean sortAsc
     ) throws DBException;

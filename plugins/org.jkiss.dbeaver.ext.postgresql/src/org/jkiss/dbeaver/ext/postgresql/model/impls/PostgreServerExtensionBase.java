@@ -254,7 +254,7 @@ public abstract class PostgreServerExtensionBase implements PostgreServerExtensi
             PostgreTable table = (PostgreTable) tableBase;
             if (!alter) {
                 try {
-                    final List<PostgreTableInheritance> superTables = table.getSuperInheritance(monitor);
+                    final /*~~>*/List<PostgreTableInheritance> superTables = table.getSuperInheritance(monitor);
                     if (!CommonUtils.isEmpty(superTables) && ! tableBase.isPartition()) {
                         ddl.append("\nINHERITS (");
                         for (int i = 0; i < superTables.size(); i++) {
@@ -337,8 +337,8 @@ public abstract class PostgreServerExtensionBase implements PostgreServerExtensi
     }
 
     @Override
-    public List<PostgrePrivilege> readObjectPermissions(DBRProgressMonitor monitor, PostgreTableBase object, boolean includeNestedObjects) throws DBException {
-        List<PostgrePrivilege> tablePermissions = PostgreUtils.extractPermissionsFromACL(monitor, object, object.getAcl());
+    public /*~~>*/List<PostgrePrivilege> readObjectPermissions(DBRProgressMonitor monitor, PostgreTableBase object, boolean includeNestedObjects) throws DBException {
+        /*~~>*/List<PostgrePrivilege> tablePermissions = PostgreUtils.extractPermissionsFromACL(monitor, object, object.getAcl());
         if (!includeNestedObjects) {
             return tablePermissions;
         }
@@ -422,7 +422,7 @@ public abstract class PostgreServerExtensionBase implements PostgreServerExtensi
         boolean hasExtraOptions = dataSource.isServerVersionAtLeast(8, 2) && table.getRelOptions() != null;
         boolean tableSupportOids = table.getDataSource().getServerType().supportsOids() && table.isHasOids() && table.getDataSource().getServerType().supportsHasOidsColumn();
 
-        List<String> extraOptions = new ArrayList<>();
+        /*~~>*/List<String> extraOptions = new ArrayList<>();
 
         if (tableSupportOids) {
             extraOptions.add("OIDS=TRUE");

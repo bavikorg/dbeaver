@@ -75,7 +75,7 @@ public class SearchMetadataPage extends AbstractSearchPage {
     private Set<DBSObjectType> checkedTypes = new HashSet<>();
     private Set<String> searchHistory = new LinkedHashSet<>();
     private Set<String> savedTypeNames = new HashSet<>();
-    private List<DBNNode> sourceNodes = new ArrayList<>();
+    private /*~~>*/List<DBNNode> sourceNodes = new ArrayList<>();
     private DBPProject currentProject;
 
     public SearchMetadataPage() {
@@ -438,7 +438,7 @@ public class SearchMetadataPage extends AbstractSearchPage {
         if (dataSource == null || assistant == null) {
             throw new IllegalStateException("No active datasource");
         }
-        java.util.List<DBSObjectType> objectTypes = new ArrayList<>();
+        /*~~>*//*~~>*/java.util.List<DBSObjectType> objectTypes = new ArrayList<>();
         for (TableItem item : typesTable.getItems()) {
             if (item.getChecked()) {
                 objectTypes.add((DBSObjectType) item.getData());

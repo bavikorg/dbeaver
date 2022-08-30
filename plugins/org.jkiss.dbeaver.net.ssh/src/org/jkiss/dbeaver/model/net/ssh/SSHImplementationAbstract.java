@@ -91,7 +91,7 @@ public abstract class SSHImplementationAbstract implements SSHImplementation {
         }
 
         final SSHPortForwardConfiguration portForwardConfiguration = new SSHPortForwardConfiguration(sshLocalHost, sshLocalPort, sshRemoteHost, sshRemotePort);
-        final List<SSHHostConfiguration> hostConfigurations = new ArrayList<>();
+        final /*~~>*/List<SSHHostConfiguration> hostConfigurations = new ArrayList<>();
 
         // primary host
         hostConfigurations.add(loadConfiguration(configuration, ""));
@@ -157,7 +157,7 @@ public abstract class SSHImplementationAbstract implements SSHImplementation {
     }
 
     @NotNull
-    protected List<SSHAgentIdentity> getAgentData() {
+    protected /*~~>*/List<SSHAgentIdentity> getAgentData() {
         return Arrays.stream(agentProxy.getIdentities())
             .map(i -> {
                 SSHAgentIdentity id = new SSHAgentIdentity();

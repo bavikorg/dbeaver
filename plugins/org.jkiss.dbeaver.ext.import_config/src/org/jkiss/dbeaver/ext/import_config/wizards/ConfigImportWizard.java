@@ -111,7 +111,7 @@ public abstract class ConfigImportWizard extends Wizard implements IImportWizard
             }
         }
         final DataSourceProviderRegistry registry = DataSourceProviderRegistry.getInstance();
-        List<DriverDescriptor> matchedDrivers = new ArrayList<>();
+        /*~~>*/List<DriverDescriptor> matchedDrivers = new ArrayList<>();
         for (DataSourceProviderDescriptor dataSourceProvider : registry.getDataSourceProviders()) {
             for (DriverDescriptor driver : dataSourceProvider.getEnabledDrivers()) {
                 final String driverClassName = driver.getDriverClassName();
@@ -214,7 +214,7 @@ public abstract class ConfigImportWizard extends Wizard implements IImportWizard
             // Parse url
             final JDBCURL.MetaURL metaURL = JDBCURL.parseSampleURL(sampleURL);
             int sourceOffset = 0;
-            List<String> urlComponents = metaURL.getUrlComponents();
+            /*~~>*/List<String> urlComponents = metaURL.getUrlComponents();
             for (int i = 0, urlComponentsSize = urlComponents.size(); i < urlComponentsSize; i++) {
                 String component = urlComponents.get(i);
                 if (component.length() > 2 && component.charAt(0) == '{' && component.charAt(component.length() - 1) == '}' &&

@@ -49,27 +49,27 @@ public class GeometryDataUtils {
 
     public static class GeomAttrs {
         public final DBDAttributeBinding geomAttr;
-        public final List<DBDAttributeBinding> descAttrs;
+        public final /*~~>*/List<DBDAttributeBinding> descAttrs;
 
-        public GeomAttrs(DBDAttributeBinding geomAttr, List<DBDAttributeBinding> descAttrs) {
+        public GeomAttrs(DBDAttributeBinding geomAttr, /*~~>*/List<DBDAttributeBinding> descAttrs) {
             this.geomAttr = geomAttr;
-            this.descAttrs = descAttrs;
+            /*~~>*/this.descAttrs = descAttrs;
         }
 
         public DBDAttributeBinding getGeomAttr() {
             return geomAttr;
         }
 
-        public List<DBDAttributeBinding> getDescAttrs() {
+        public /*~~>*/List<DBDAttributeBinding> getDescAttrs() {
             return descAttrs;
         }
     }
 
-    public static List<GeomAttrs> extractGeometryAttributes(IResultSetController controller) {
-        List<GeomAttrs> result = new ArrayList<>();
+    public static /*~~>*/List<GeomAttrs> extractGeometryAttributes(IResultSetController controller) {
+        /*~~>*/List<GeomAttrs> result = new ArrayList<>();
         ResultSetModel model = controller.getModel();
-        List<DBDAttributeBinding> attributes = model.getVisibleAttributes();
-        List<DBDAttributeBinding> descAttrs = new ArrayList<>();
+        /*~~>*/List<DBDAttributeBinding> attributes = model.getVisibleAttributes();
+        /*~~>*/List<DBDAttributeBinding> descAttrs = new ArrayList<>();
         for (DBDAttributeBinding attr : attributes) {
             if (attr.getValueHandler().getValueObjectType(attr.getAttribute()) == DBGeometry.class) {
                 GeomAttrs geomAttrs = new GeomAttrs(attr, descAttrs);
@@ -87,7 +87,7 @@ public class GeometryDataUtils {
     public static void setGeometryProperties(@NotNull IResultSetController controller, @NotNull GeomAttrs geomAttrs, @NotNull DBGeometry geometry, @NotNull RGB geometryColor, @NotNull ResultSetRow row) {
         final ResultSetModel model = controller.getModel();
         final Map<String, Object> info = new LinkedHashMap<>();
-        for (DBDAttributeBinding binding : geomAttrs.descAttrs) {
+        for (DBDAttributeBinding binding : /*~~>*/geomAttrs.descAttrs) {
             final Object description = model.getCellValue(binding, row);
             if (!DBUtils.isNullValue(description)) {
                 info.put(binding.getName(), binding.getValueHandler().getValueDisplayString(binding, description, DBDDisplayFormat.NATIVE));

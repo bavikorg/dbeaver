@@ -52,7 +52,7 @@ public class DB2TableReference extends JDBCTableConstraint<DB2Table> implements 
     private DB2DeleteUpdateRule deleteRule;
     private DB2DeleteUpdateRule updateRule;
 
-    private List<DB2TableKeyColumn> columns;
+    private /*~~>*/List<DB2TableKeyColumn> columns;
 
     private DB2TableForeignKey referencedKey;
 
@@ -105,14 +105,14 @@ public class DB2TableReference extends JDBCTableConstraint<DB2Table> implements 
     // Columns
     // -----------------
     @Override
-    public List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException
     {
         return columns;
     }
 
-    public void setColumns(List<DB2TableKeyColumn> columns)
+    public void setColumns(/*~~>*/List<DB2TableKeyColumn> columns)
     {
-        this.columns = columns;
+        /*~~>*/this.columns = columns;
     }
 
     // -----------------

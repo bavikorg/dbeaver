@@ -26,9 +26,9 @@ public class MySQLPlanNodeJoin extends MySQLPlanNodePlain {
     public MySQLPlanNodeJoin(MySQLPlanNodePlain parent, MySQLPlanNodePlain left, MySQLPlanNodePlain right) {
         super(parent, "JOIN");
         this.id = left.id;
-        this.nested = new ArrayList<>(2);
-        this.nested.add(left);
-        this.nested.add(right);
+        /*~~>*/this.nested = new ArrayList<>(2);
+        /*~~>*/this.nested.add(left);
+        /*~~>*/this.nested.add(right);
         left.parent = this;
         right.parent = this;
     }

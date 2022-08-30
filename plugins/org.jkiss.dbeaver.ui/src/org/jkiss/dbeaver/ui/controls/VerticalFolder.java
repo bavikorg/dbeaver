@@ -34,7 +34,7 @@ import java.util.List;
 public class VerticalFolder extends Canvas {
 
     private boolean isLeft;
-    private List<VerticalButton> items = new ArrayList<>();
+    private /*~~>*/List<VerticalButton> items = new ArrayList<>();
     private VerticalButton selectedItem;
     private boolean checkCommandEnablement;
 
@@ -96,7 +96,7 @@ public class VerticalFolder extends Canvas {
     }
 
     public void removeItem(VerticalButton item) {
-        this.items.remove(item);
+        /*~~>*/this.items.remove(item);
     }
 
     public void removeAll() {

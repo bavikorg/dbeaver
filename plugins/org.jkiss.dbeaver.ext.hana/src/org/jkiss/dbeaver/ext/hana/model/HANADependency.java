@@ -124,8 +124,8 @@ public class HANADependency implements DBSObject {
     }
 
 
-    public static List<HANADependency> readDependencies(DBRProgressMonitor monitor, DBSObject object) throws DBException {
-        List<HANADependency> dependencies = new ArrayList<>();
+    public static /*~~>*/List<HANADependency> readDependencies(DBRProgressMonitor monitor, DBSObject object) throws DBException {
+        /*~~>*/List<HANADependency> dependencies = new ArrayList<>();
         try (JDBCSession session = DBUtils.openMetaSession(monitor, object.getDataSource(), "Read dependencies")) {
             try (JDBCPreparedStatement dbStat = session.prepareStatement(
                     "SELECT BASE_OBJECT_TYPE, BASE_SCHEMA_NAME, BASE_OBJECT_NAME" +

@@ -250,7 +250,7 @@ public class PostgreJobStep implements PostgreObject, PostgreScriptObject, DBPNa
 
         @Override
         public Object[] getPossibleValues(PostgreJobStep object) {
-            final List<PostgreDatabase> objects = new ArrayList<>(object.getDataSource().getDatabases());
+            final /*~~>*/List<PostgreDatabase> objects = new ArrayList<>(object.getDataSource().getDatabases());
             objects.add(null);
             return objects.toArray();
         }

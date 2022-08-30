@@ -42,8 +42,8 @@ public class SQLScriptExecuteSettings implements DBTTaskSettings<IResource> {
 
     private static final Log log = Log.getLog(SQLScriptExecuteSettings.class);
 
-    private List<DBPDataSourceContainer> dataSources = new ArrayList<>();
-    private List<String> scriptFiles = new ArrayList<>();
+    private /*~~>*/List<DBPDataSourceContainer> dataSources = new ArrayList<>();
+    private /*~~>*/List<String> scriptFiles = new ArrayList<>();
 
     private boolean autoCommit;
     private DBPTransactionIsolation transactionIsolation;
@@ -51,20 +51,20 @@ public class SQLScriptExecuteSettings implements DBTTaskSettings<IResource> {
     private boolean ignoreErrors;
     private boolean dumpQueryResultsToLog;
 
-    public List<String> getScriptFiles() {
+    public /*~~>*/List<String> getScriptFiles() {
         return scriptFiles;
     }
 
-    public void setScriptFiles(List<String> scriptFiles) {
-        this.scriptFiles = scriptFiles;
+    public void setScriptFiles(/*~~>*/List<String> scriptFiles) {
+        /*~~>*/this.scriptFiles = scriptFiles;
     }
 
-    public List<DBPDataSourceContainer> getDataSources() {
+    public /*~~>*/List<DBPDataSourceContainer> getDataSources() {
         return dataSources;
     }
 
-    public void setDataSources(List<DBPDataSourceContainer> dataSources) {
-        this.dataSources = dataSources;
+    public void setDataSources(/*~~>*/List<DBPDataSourceContainer> dataSources) {
+        /*~~>*/this.dataSources = dataSources;
     }
 
     public boolean isIgnoreErrors() {
@@ -113,7 +113,7 @@ public class SQLScriptExecuteSettings implements DBTTaskSettings<IResource> {
             }
         } else {
             // Modern config (datasource list)
-            List<Map<String, Object>> dsConfig = JSONUtils.getObjectList(config, "dataSources");
+            /*~~>*/List<Map<String, Object>> dsConfig = JSONUtils.getObjectList(config, "dataSources");
             for (Map<String, Object> dsInfo : dsConfig) {
                 projectName = JSONUtils.getString(dsInfo, "project");
                 project = CommonUtils.isEmpty(projectName) ? null : DBWorkbench.getPlatform().getWorkspace().getProject(projectName);
@@ -138,7 +138,7 @@ public class SQLScriptExecuteSettings implements DBTTaskSettings<IResource> {
 
     public void saveConfiguration(Map<String, Object> config) {
         config.put("scriptFiles", scriptFiles);
-        List<Map<String, Object>> dsConfig = new ArrayList<>();
+        /*~~>*/List<Map<String, Object>> dsConfig = new ArrayList<>();
         config.put("dataSources", dsConfig);
         for (DBPDataSourceContainer ds : dataSources) {
             Map<String, Object> dsInfo = new LinkedHashMap<>();

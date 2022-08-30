@@ -88,7 +88,7 @@ public class DBNUtils {
         }
         DBNNode[] result;
         if (forTree) {
-            List<DBNNode> filtered = new ArrayList<>();
+            /*~~>*/List<DBNNode> filtered = new ArrayList<>();
             for (int i = 0; i < children.length; i++) {
                 DBNNode node = children[i];
                 if (node instanceof DBPHiddenObject && ((DBPHiddenObject) node).isHidden()) {

@@ -39,7 +39,7 @@ public class DebugConfigurationPanelDescriptor extends AbstractContextDescriptor
     private final String name;
     private final String description;
     private final ObjectType implType;
-    private List<String> supportedDataSources = new ArrayList<>();
+    private /*~~>*/List<String> supportedDataSources = new ArrayList<>();
 
     public DebugConfigurationPanelDescriptor(
         IConfigurationElement config)

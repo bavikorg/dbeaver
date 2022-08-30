@@ -70,8 +70,8 @@ public class HANAMetaModel extends GenericMetaModel
     }
 
     @Override
-    public List<GenericSchema> loadSchemas(JDBCSession session, GenericDataSource dataSource, GenericCatalog catalog) throws DBException {
-        List<GenericSchema> schemas = super.loadSchemas(session, dataSource, catalog);
+    public /*~~>*/List<GenericSchema> loadSchemas(JDBCSession session, GenericDataSource dataSource, GenericCatalog catalog) throws DBException {
+        /*~~>*/List<GenericSchema> schemas = super.loadSchemas(session, dataSource, catalog);
         // throws exception if password or license expired
 
         HANASchema publicSchema = new HANASchema(dataSource, catalog, HANAConstants.SCHEMA_PUBLIC);
@@ -236,7 +236,7 @@ public class HANAMetaModel extends GenericMetaModel
     }
 
     @Override
-    public List<? extends GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
+    public /*~~>*/List<? extends GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
         if (table == null) {
             return Collections.emptyList();
         }
@@ -244,7 +244,7 @@ public class HANAMetaModel extends GenericMetaModel
             try (JDBCPreparedStatement dbStat = session.prepareStatement("SELECT TRIGGER_NAME FROM SYS.TRIGGERS WHERE SUBJECT_TABLE_SCHEMA=? AND SUBJECT_TABLE_NAME=?")) {
                 dbStat.setString(1, table.getSchema().getName());
                 dbStat.setString(2, table.getName());
-                List<GenericTrigger> result = new ArrayList<>();
+                /*~~>*/List<GenericTrigger> result = new ArrayList<>();
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
                     while (dbResult.next()) {
                         String name = JDBCUtils.safeGetString(dbResult, 1);

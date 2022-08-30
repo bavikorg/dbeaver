@@ -47,7 +47,7 @@ public abstract class SQLObjectResolver<T extends DBSObject> extends TemplateVar
     @Override
     protected String[] resolveAll(final TemplateContext context)
     {
-        final List<T> entities = new ArrayList<>();
+        final /*~~>*/List<T> entities = new ArrayList<>();
         if (context instanceof DBPContextProvider) {
             final DBCExecutionContext executionContext = ((DBPContextProvider) context).getExecutionContext();
             if (executionContext != null) {
@@ -75,5 +75,5 @@ public abstract class SQLObjectResolver<T extends DBSObject> extends TemplateVar
         return super.resolveAll(context);
     }
 
-    protected abstract void resolveObjects(DBRProgressMonitor monitor, DBCExecutionContext executionContext, TemplateContext context, List<T> entities) throws DBException;
+    protected abstract void resolveObjects(DBRProgressMonitor monitor, DBCExecutionContext executionContext, TemplateContext context, /*~~>*/List<T> entities) throws DBException;
 }

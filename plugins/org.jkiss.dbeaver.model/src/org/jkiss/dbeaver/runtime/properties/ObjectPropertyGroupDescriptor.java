@@ -32,7 +32,7 @@ import java.util.List;
 public class ObjectPropertyGroupDescriptor extends ObjectAttributeDescriptor
 {
     private PropertyGroup groupInfo;
-    private List<ObjectPropertyDescriptor> children = new ArrayList<ObjectPropertyDescriptor>();
+    private /*~~>*/List<ObjectPropertyDescriptor> children = new ArrayList<ObjectPropertyDescriptor>();
 
     public ObjectPropertyGroupDescriptor(
         DBPPropertySource source,

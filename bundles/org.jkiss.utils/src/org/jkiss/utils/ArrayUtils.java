@@ -164,7 +164,7 @@ public class ArrayUtils {
     }
 
     @NotNull
-    public static <T> List<T> safeArray(@Nullable T[] array)
+    public static <T> /*~~>*/List<T> safeArray(@Nullable T[] array)
     {
         if (array == null) {
             return Collections.emptyList();

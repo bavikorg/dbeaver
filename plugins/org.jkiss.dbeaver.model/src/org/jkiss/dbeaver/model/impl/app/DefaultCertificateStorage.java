@@ -120,7 +120,7 @@ public class DefaultCertificateStorage implements DBACertificateStorage {
         final KeyStore keyStore = getKeyStore(dataSource, certType);
         try {
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
-            List<Certificate> certChain = new ArrayList<>();
+            /*~~>*/List<Certificate> certChain = new ArrayList<>();
             if (caCertData != null) {
                 Certificate caCert = cf.generateCertificate(new ByteArrayInputStream(caCertData));
                 keyStore.setCertificateEntry(CA_CERT_ALIAS, caCert);
@@ -158,7 +158,7 @@ public class DefaultCertificateStorage implements DBACertificateStorage {
         }
         final KeyStore keyStore = getKeyStore(dataSource, certType);
         try {
-            List<Certificate> certChain = new ArrayList<>();
+            /*~~>*/List<Certificate> certChain = new ArrayList<>();
 
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
             KeyPair keyPair = keyPairGenerator.generateKeyPair();

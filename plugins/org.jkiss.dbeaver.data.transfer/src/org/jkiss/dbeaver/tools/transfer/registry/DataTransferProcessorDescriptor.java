@@ -42,7 +42,7 @@ public class DataTransferProcessorDescriptor extends AbstractDescriptor implemen
     private final DataTransferNodeDescriptor node;
     private final String id;
     private final ObjectType processorType;
-    private final List<ObjectType> sourceTypes = new ArrayList<>();
+    private final /*~~>*/List<ObjectType> sourceTypes = new ArrayList<>();
     private final String name;
     private final String description;
     private final String contentType;

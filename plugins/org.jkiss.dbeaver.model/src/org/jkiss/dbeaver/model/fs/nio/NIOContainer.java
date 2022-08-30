@@ -103,7 +103,7 @@ public abstract class NIOContainer extends NIOResource implements IContainer {
     }
 
     public IResource[] members() throws CoreException {
-        List<IResource> members = new ArrayList<IResource>();
+        /*~~>*/List<IResource> members = new ArrayList<IResource>();
 
         try {
             Files.list(getNioPath()).forEach(member -> {

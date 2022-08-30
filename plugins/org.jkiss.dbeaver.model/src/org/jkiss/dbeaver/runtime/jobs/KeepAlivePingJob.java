@@ -65,7 +65,7 @@ class KeepAlivePingJob extends AbstractJob {
         }
         if (hasDeadContexts) {
             // Invalidate whole datasource. Do not log errors (as it can spam tons of logs)
-            final List<InvalidateJob.ContextInvalidateResult> results = InvalidateJob.invalidateDataSource(
+            final /*~~>*/List<InvalidateJob.ContextInvalidateResult> results = InvalidateJob.invalidateDataSource(
                 monitor,
                 dataSource,
                 disconnectOnError,
@@ -91,7 +91,7 @@ class KeepAlivePingJob extends AbstractJob {
         return Status.OK_STATUS;
     }
 
-    private boolean isSuccess(List<InvalidateJob.ContextInvalidateResult> results) {
+    private boolean isSuccess(/*~~>*/List<InvalidateJob.ContextInvalidateResult> results) {
         for (InvalidateJob.ContextInvalidateResult result : results) {
             switch (result.result) {
                 case ALIVE:

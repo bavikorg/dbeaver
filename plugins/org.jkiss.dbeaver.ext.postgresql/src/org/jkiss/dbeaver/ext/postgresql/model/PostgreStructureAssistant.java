@@ -103,7 +103,7 @@ public class PostgreStructureAssistant implements DBSStructureAssistant<PostgreE
 
     @NotNull
     @Override
-    public List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull PostgreExecutionContext executionContext,
+    public /*~~>*/List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull PostgreExecutionContext executionContext,
                                                       @NotNull ObjectsSearchParams params) throws DBException {
         DBSObject parentObject = params.getParentObject();
         PostgreSchema ownerSchema = parentObject instanceof PostgreSchema ? (PostgreSchema) parentObject : null;
@@ -114,7 +114,7 @@ public class PostgreStructureAssistant implements DBSStructureAssistant<PostgreE
         if (database == null) {
             database = dataSource.getDefaultInstance();
         }
-        List<PostgreSchema> nsList = new ArrayList<>();
+        /*~~>*/List<PostgreSchema> nsList = new ArrayList<>();
         if (ownerSchema != null) {
             nsList.add(0, ownerSchema);
         } else if (!params.isGlobalSearch()) {
@@ -145,7 +145,7 @@ public class PostgreStructureAssistant implements DBSStructureAssistant<PostgreE
             executionContext = database.getMetaContext();
         }
 
-        List<DBSObjectReference> references = new ArrayList<>();
+        /*~~>*/List<DBSObjectReference> references = new ArrayList<>();
         try (JDBCSession session = executionContext.openSession(monitor, DBCExecutionPurpose.META, ModelMessages.model_jdbc_find_objects_by_name)) {
             for (DBSObjectType type : params.getObjectTypes()) {
                 if (type == RelationalObjectType.TYPE_TABLE) {
@@ -167,7 +167,7 @@ public class PostgreStructureAssistant implements DBSStructureAssistant<PostgreE
         return references;
     }
 
-    private static void findTablesByMask(@NotNull JDBCSession session, @NotNull PostgreDatabase database, @NotNull final List<PostgreSchema> schemas,
+    private static void findTablesByMask(@NotNull JDBCSession session, @NotNull PostgreDatabase database, @NotNull final /*~~>*/List<PostgreSchema> schemas,
                                          @NotNull ObjectsSearchParams params, @NotNull Collection<? super DBSObjectReference> objects)
                                             throws SQLException, DBException {
         DBRProgressMonitor monitor = session.getProgressMonitor();
@@ -224,7 +224,7 @@ public class PostgreStructureAssistant implements DBSStructureAssistant<PostgreE
     }
 
     private static void findProceduresByMask(@NotNull JDBCSession session, @NotNull PostgreDatabase database,
-                                             @NotNull final List<PostgreSchema> schemas, @NotNull ObjectsSearchParams params,
+                                             @NotNull final /*~~>*/List<PostgreSchema> schemas, @NotNull ObjectsSearchParams params,
                                              @NotNull Collection<? super DBSObjectReference> objects) throws SQLException, DBException {
         DBRProgressMonitor monitor = session.getProgressMonitor();
 
@@ -280,7 +280,7 @@ public class PostgreStructureAssistant implements DBSStructureAssistant<PostgreE
         }
     }
 
-    private static void findConstraintsByMask(@NotNull JDBCSession session, @NotNull PostgreDatabase database, @NotNull final List<PostgreSchema> schemas,
+    private static void findConstraintsByMask(@NotNull JDBCSession session, @NotNull PostgreDatabase database, @NotNull final /*~~>*/List<PostgreSchema> schemas,
                                               @NotNull ObjectsSearchParams params, @NotNull Collection<? super DBSObjectReference> objects)
                                                 throws SQLException, DBException {
         DBRProgressMonitor monitor = session.getProgressMonitor();
@@ -331,7 +331,7 @@ public class PostgreStructureAssistant implements DBSStructureAssistant<PostgreE
         }
     }
 
-    private static void findTableColumnsByMask(@NotNull JDBCSession session, @NotNull PostgreDatabase database, @NotNull List<PostgreSchema> schemas,
+    private static void findTableColumnsByMask(@NotNull JDBCSession session, @NotNull PostgreDatabase database, @NotNull /*~~>*/List<PostgreSchema> schemas,
                                                @NotNull ObjectsSearchParams objectsSearchParams,
                                                @NotNull Collection<? super DBSObjectReference> objects) throws SQLException, DBException {
         DBRProgressMonitor monitor = session.getProgressMonitor();
@@ -411,7 +411,7 @@ public class PostgreStructureAssistant implements DBSStructureAssistant<PostgreE
     }
 
     private static void fillParams(@NotNull JDBCPreparedStatement statement, @NotNull ObjectsSearchParams params,
-                                   @Nullable List<? extends PostgreSchema> schema, boolean fillSearchInDefinitions) throws SQLException {
+                                   @Nullable /*~~>*/List<? extends PostgreSchema> schema, boolean fillSearchInDefinitions) throws SQLException {
         statement.setString(1, params.getMask());
         int idx = 2;
         if (params.isSearchInComments()) {

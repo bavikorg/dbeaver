@@ -53,7 +53,7 @@ public class PluginServiceRegistry
         return instance;
     }
 
-    private final List<IPluginService> services = new ArrayList<>();
+    private final /*~~>*/List<IPluginService> services = new ArrayList<>();
 
     private PluginServiceRegistry(IExtensionRegistry registry)
     {
@@ -69,7 +69,7 @@ public class PluginServiceRegistry
         }
     }
 
-    public List<IPluginService> getServices()
+    public /*~~>*/List<IPluginService> getServices()
     {
         return services;
     }

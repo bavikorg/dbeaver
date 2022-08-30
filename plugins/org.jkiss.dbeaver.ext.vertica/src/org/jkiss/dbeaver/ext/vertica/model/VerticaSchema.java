@@ -75,19 +75,19 @@ public class VerticaSchema extends GenericSchema implements DBPSystemObject, DBP
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<VerticaTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException {
-        return (List<VerticaTable>) super.getPhysicalTables(monitor);
+    public /*~~>*/List<VerticaTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException {
+        return (/*~~>*/List<VerticaTable>) super.getPhysicalTables(monitor);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<VerticaTable> getTables(DBRProgressMonitor monitor) throws DBException {
-        return (List<VerticaTable>) super.getTables(monitor);
+    public /*~~>*/List<VerticaTable> getTables(DBRProgressMonitor monitor) throws DBException {
+        return (/*~~>*/List<VerticaTable>) super.getTables(monitor);
     }
 
     @Override
     public Collection<? extends DBSObject> getChildren(@NotNull DBRProgressMonitor monitor) throws DBException {
-        List<DBSObject> children = new ArrayList<>(getTables(monitor));
+        /*~~>*/List<DBSObject> children = new ArrayList<>(getTables(monitor));
         //children.addAll(getProjections(monitor));
         return children;
     }
@@ -129,10 +129,10 @@ public class VerticaSchema extends GenericSchema implements DBPSystemObject, DBP
 
 * */
     @Association
-    public List<VerticaFlexTable> getFlexTables(DBRProgressMonitor monitor) throws DBException {
-        List<? extends GenericTableBase> tables = getTables(monitor);
+    public /*~~>*/List<VerticaFlexTable> getFlexTables(DBRProgressMonitor monitor) throws DBException {
+        /*~~>*/List<? extends GenericTableBase> tables = getTables(monitor);
         if (tables != null) {
-            List<VerticaFlexTable> filtered = new ArrayList<>();
+            /*~~>*/List<VerticaFlexTable> filtered = new ArrayList<>();
             for (GenericTableBase table : tables) {
                 if (table instanceof VerticaFlexTable) {
                     filtered.add((VerticaFlexTable) table);

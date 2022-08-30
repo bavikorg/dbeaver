@@ -33,7 +33,7 @@ public class OracleToolTableTruncate extends SQLToolExecuteHandler<OracleTableBa
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, OracleToolTableTruncateSettings settings, List<DBEPersistAction> queries, OracleTableBase object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, OracleToolTableTruncateSettings settings, /*~~>*/List<DBEPersistAction> queries, OracleTableBase object) throws DBCException {
         String sql = "TRUNCATE TABLE " + object.getFullyQualifiedName(DBPEvaluationContext.DDL);
         if(settings.isReusable()) sql += " REUSE STORAGE";
         queries.add(new SQLDatabasePersistAction(sql));

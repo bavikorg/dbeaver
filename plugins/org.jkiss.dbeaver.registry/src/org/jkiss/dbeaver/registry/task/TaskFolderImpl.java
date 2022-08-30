@@ -29,18 +29,18 @@ public class TaskFolderImpl implements DBTTaskFolder {
 
     private String folderName;
     private DBPProject folderProject;
-    private List<DBTTask> folderTasks;
+    private /*~~>*/List<DBTTask> folderTasks;
     private DBTTaskFolder parentFolder;
-    private List<DBTTaskFolder> nestedFolders = new ArrayList<>();
+    private /*~~>*/List<DBTTaskFolder> nestedFolders = new ArrayList<>();
 
     TaskFolderImpl(@NotNull String folderName,
                    @Nullable DBTTaskFolder parentFolder,
                    @NotNull DBPProject folderProject,
-                   @Nullable List<DBTTask> folderTasks) {
+                   @Nullable /*~~>*/List<DBTTask> folderTasks) {
         this.folderName = folderName;
         this.parentFolder = parentFolder;
         this.folderProject = folderProject;
-        this.folderTasks = folderTasks;
+        /*~~>*/this.folderTasks = folderTasks;
     }
 
     @NotNull
@@ -56,7 +56,7 @@ public class TaskFolderImpl implements DBTTaskFolder {
 
     @Nullable
     @Override
-    public List<DBTTask> getTasks() {
+    public /*~~>*/List<DBTTask> getTasks() {
         return folderTasks;
     }
 
@@ -72,7 +72,7 @@ public class TaskFolderImpl implements DBTTaskFolder {
 
     @Nullable
     @Override
-    public List<DBTTaskFolder> getNestedTaskFolders() {
+    public /*~~>*/List<DBTTaskFolder> getNestedTaskFolders() {
         return nestedFolders;
     }
 

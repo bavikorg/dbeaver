@@ -32,7 +32,7 @@ public class SQLServerToolTableTriggerEnable extends SQLServerToolWithStatus<SQL
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, SQLServerToolTableTriggerSettings settings, List<DBEPersistAction> queries, SQLServerTableTrigger object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, SQLServerToolTableTriggerSettings settings, /*~~>*/List<DBEPersistAction> queries, SQLServerTableTrigger object) throws DBCException {
         String sql = "ALTER TABLE " + object.getTable() + " ENABLE TRIGGER " + DBUtils.getQuotedIdentifier(object);
         queries.add(new SQLDatabasePersistAction(sql));
     }

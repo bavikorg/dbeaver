@@ -28,7 +28,7 @@ public interface DBPDataSourcePermissionOwner
 {
     boolean hasModifyPermission(DBPDataSourcePermission permission);
 
-    List<DBPDataSourcePermission> getModifyPermission();
+    /*~~>*/List<DBPDataSourcePermission> getModifyPermission();
 
     void setModifyPermissions(@Nullable Collection<DBPDataSourcePermission> permissions);
 

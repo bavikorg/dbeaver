@@ -43,7 +43,7 @@ public class ExasolLock implements DBAServerLock {
 	 private Timestamp waitLoginTime;
     
     private DBAServerLock hold = null;
-    private List<DBAServerLock> waiters = new ArrayList<>(0);
+    private /*~~>*/List<DBAServerLock> waiters = new ArrayList<>(0);
     
     public ExasolLock(ResultSet dbResult) {
    	 this.waitSessionId = JDBCUtils.safeGetLong(dbResult, "W_SESSION_ID");
@@ -82,8 +82,8 @@ public class ExasolLock implements DBAServerLock {
 
 
  	@Override
- 	public List<DBAServerLock> waitThis() {
- 		return this.waiters;
+ 	public /*~~>*/List<DBAServerLock> waitThis() {
+ 		return /*~~>*/this.waiters;
  	}
 
  	@Override

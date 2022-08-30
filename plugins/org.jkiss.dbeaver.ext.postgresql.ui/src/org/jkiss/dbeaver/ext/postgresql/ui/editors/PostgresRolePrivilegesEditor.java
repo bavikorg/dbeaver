@@ -209,7 +209,7 @@ public class PostgresRolePrivilegesEditor extends AbstractDatabaseObjectEditor<P
     }
 
     private void handleSelectionChange() {
-        List<DBSObject> selectedObjects = NavigatorUtils.getSelectedObjects(roleOrObjectTable.getViewer().getSelection());
+        /*~~>*/List<DBSObject> selectedObjects = NavigatorUtils.getSelectedObjects(roleOrObjectTable.getViewer().getSelection());
         if (CommonUtils.isEmpty(selectedObjects)) {
             updateObjectPermissions(null);
         } else {
@@ -339,7 +339,7 @@ public class PostgresRolePrivilegesEditor extends AbstractDatabaseObjectEditor<P
         }
     }
 
-    private void updateObjectPermissions(List<DBSObject> objects) {
+    private void updateObjectPermissions(/*~~>*/List<DBSObject> objects) {
 
         boolean hasBadObjects = CommonUtils.isEmpty(objects);
 

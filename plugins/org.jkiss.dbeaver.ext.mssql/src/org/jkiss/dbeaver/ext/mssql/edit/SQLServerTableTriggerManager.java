@@ -62,7 +62,7 @@ public class SQLServerTableTriggerManager extends SQLTriggerManager<SQLServerTab
         return newTrigger;
     }
 
-    protected void createOrReplaceTriggerQuery(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, SQLServerTableTrigger trigger, boolean create) {
+    protected void createOrReplaceTriggerQuery(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, SQLServerTableTrigger trigger, boolean create) {
         DBSObject defaultDatabase = ((SQLServerExecutionContext)executionContext).getDefaultCatalog();
         if (defaultDatabase != trigger.getTable().getDatabase()) {
             actions.add(new SQLDatabasePersistAction("Set current database", "USE " + DBUtils.getQuotedIdentifier(trigger.getTable().getDatabase()), false)); //$NON-NLS-2$
@@ -81,7 +81,7 @@ public class SQLServerTableTriggerManager extends SQLTriggerManager<SQLServerTab
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
         SQLServerTableTrigger trigger = command.getObject();
         DBSObject defaultDatabase = ((SQLServerExecutionContext)executionContext).getDefaultCatalog();
         if (defaultDatabase != trigger.getTable().getDatabase()) {

@@ -27,19 +27,19 @@ import java.util.List;
 public abstract class Builder<T, C> {
     protected final DBPDataSource dataSource;
     protected final DBSObject parent;
-    protected final List<C> children;
+    protected final /*~~>*/List<C> children;
 
     protected Builder(@NotNull DBPDataSource dataSource, @NotNull DBSObject parent) {
         this.dataSource = dataSource;
         this.parent = parent;
-        this.children = new ArrayList<>();
+        /*~~>*/this.children = new ArrayList<>();
     }
 
     @NotNull
     public abstract T build() throws DBException;
 
     @NotNull
-    public List<C> getChildren() {
+    public /*~~>*/List<C> getChildren() {
         return children;
     }
 

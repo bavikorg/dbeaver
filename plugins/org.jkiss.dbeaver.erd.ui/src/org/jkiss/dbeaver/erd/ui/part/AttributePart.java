@@ -87,12 +87,12 @@ public class AttributePart extends NodePart {
     }
 
     @Override
-    protected List<ERDAssociation> getModelSourceConnections() {
+    protected /*~~>*/List<ERDAssociation> getModelSourceConnections() {
         final DBPPreferenceStore store = ERDUIActivator.getDefault().getPreferences();
         if (!store.getString(ERDUIConstants.PREF_ROUTING_TYPE).equals(ERDUIConstants.ROUTING_MIKAMI) || ERDAttributeVisibility.isHideAttributeAssociations(store)) {
             return Collections.emptyList();
         }
-        List<ERDAssociation> list = new ArrayList<>();
+        /*~~>*/List<ERDAssociation> list = new ArrayList<>();
         for (ERDAssociation erdAssociation : super.getModelSourceConnections()) {
             if (erdAssociation.getSourceAttributes().contains(getAttribute()) && erdAssociation.getSourceEntity() != null) {
                 list.add(erdAssociation);
@@ -102,12 +102,12 @@ public class AttributePart extends NodePart {
     }
 
     @Override
-    protected List<ERDAssociation> getModelTargetConnections() {
+    protected /*~~>*/List<ERDAssociation> getModelTargetConnections() {
         final DBPPreferenceStore store = ERDUIActivator.getDefault().getPreferences();
         if (!store.getString(ERDUIConstants.PREF_ROUTING_TYPE).equals(ERDUIConstants.ROUTING_MIKAMI) || ERDAttributeVisibility.isHideAttributeAssociations(store)) {
             return Collections.emptyList();
         }
-        List<ERDAssociation> list = new ArrayList<>();
+        /*~~>*/List<ERDAssociation> list = new ArrayList<>();
         for (ERDAssociation erdAssociation : super.getModelTargetConnections()) {
             if (erdAssociation.getTargetAttributes().contains(getAttribute()) && erdAssociation.getTargetEntity() != null) {
                 list.add(erdAssociation);

@@ -29,7 +29,7 @@ import java.util.List;
  * GenericTableConstraint
  */
 public class GenericUniqueKey extends GenericTableConstraint {
-    private List<GenericTableConstraintColumn> columns;
+    private /*~~>*/List<GenericTableConstraintColumn> columns;
 
     public GenericUniqueKey(GenericTableBase table, String name, @Nullable String remarks, DBSEntityConstraintType constraintType, boolean persisted) {
         super(table, name, remarks, constraintType, persisted);
@@ -42,16 +42,16 @@ public class GenericUniqueKey extends GenericTableConstraint {
      */
     GenericUniqueKey(GenericUniqueKey constraint) {
         super(constraint.getTable(), constraint.getName(), constraint.getDescription(), constraint.getConstraintType(), constraint.isPersisted());
-        if (constraint.columns != null) {
-            this.columns = new ArrayList<>(constraint.columns.size());
-            for (GenericTableConstraintColumn sourceColumn : constraint.columns) {
-                this.columns.add(new GenericTableConstraintColumn(this, sourceColumn));
+        if (/*~~>*/constraint.columns != null) {
+            /*~~>*/this.columns = new ArrayList<>(/*~~>*/constraint.columns.size());
+            for (GenericTableConstraintColumn sourceColumn : /*~~>*/constraint.columns) {
+                /*~~>*/this.columns.add(new GenericTableConstraintColumn(this, sourceColumn));
             }
         }
     }
 
     @Override
-    public List<GenericTableConstraintColumn> getAttributeReferences(DBRProgressMonitor monitor) {
+    public /*~~>*/List<GenericTableConstraintColumn> getAttributeReferences(DBRProgressMonitor monitor) {
         return columns;
     }
 
@@ -59,18 +59,18 @@ public class GenericUniqueKey extends GenericTableConstraint {
         if (columns == null) {
             columns = new ArrayList<>();
         }
-        this.columns.add(column);
+        /*~~>*/this.columns.add(column);
     }
 
-    public void setColumns(List<GenericTableConstraintColumn> columns) {
-        this.columns = columns;
-        if (!CommonUtils.isEmpty(this.columns) && this.columns.size() > 1) {
+    public void setColumns(/*~~>*/List<GenericTableConstraintColumn> columns) {
+        /*~~>*/this.columns = columns;
+        if (!CommonUtils.isEmpty(/*~~>*/this.columns) && /*~~>*/this.columns.size() > 1) {
             columns.sort(Comparator.comparingInt(GenericTableConstraintColumn::getOrdinalPosition));
         }
     }
 
     public boolean hasColumn(GenericTableColumn column) {
-        if (this.columns != null) {
+        if (/*~~>*/this.columns != null) {
             for (GenericTableConstraintColumn constColumn : columns) {
                 if (constColumn.getAttribute() == column) {
                     return true;

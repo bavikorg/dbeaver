@@ -39,7 +39,7 @@ public class TaskHandlerDelete extends AbstractHandler {
     public Object execute(ExecutionEvent event) {
         final ISelection selection = HandlerUtil.getCurrentSelection(event);
 
-        List<DBPNamedObject> objectsToDelete = new ArrayList<>();
+        /*~~>*/List<DBPNamedObject> objectsToDelete = new ArrayList<>();
 
         if (selection instanceof IStructuredSelection) {
             IStructuredSelection structSelection = (IStructuredSelection)selection;

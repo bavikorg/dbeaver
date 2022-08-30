@@ -126,7 +126,7 @@ public class AssociationPart extends PropertyAwareConnectionPart {
         ConnectionLayer cLayer = (ConnectionLayer) getLayer(LayerConstants.CONNECTION_LAYER);
         conn.setConnectionRouter(cLayer.getConnectionRouter());
         if (!CommonUtils.isEmpty(association.getInitBends())) {
-            List<AbsoluteBendpoint> connBends = new ArrayList<>();
+            /*~~>*/List<AbsoluteBendpoint> connBends = new ArrayList<>();
             for (int[] bend : association.getInitBends()) {
                 connBends.add(new AbsoluteBendpoint(bend[0], bend[1]));
             }
@@ -146,7 +146,7 @@ public class AssociationPart extends PropertyAwareConnectionPart {
                 int entityWidth = figureSize.width;
                 int entityHeight = figureSize.height;
 
-                List<RelativeBendpoint> bends = new ArrayList<>();
+                /*~~>*/List<RelativeBendpoint> bends = new ArrayList<>();
                 {
                     RelativeBendpoint bp1 = new RelativeBendpoint(conn);
                     bp1.setRelativeDimensions(new Dimension(entityWidth, entityHeight / 2), new Dimension(entityWidth / 2, entityHeight / 2));
@@ -260,13 +260,13 @@ public class AssociationPart extends PropertyAwareConnectionPart {
 
     public void addBendpoint(int bendpointIndex, Point location) {
         Bendpoint bendpoint = new AbsoluteBendpoint(location);
-        List<Bendpoint> bendpoints = getBendpointsCopy();
+        /*~~>*/List<Bendpoint> bendpoints = getBendpointsCopy();
         bendpoints.add(bendpointIndex, bendpoint);
         updateBendpoints(bendpoints);
     }
 
     public void removeBendpoint(int bendpointIndex) {
-        List<Bendpoint> bendpoints = getBendpointsCopy();
+        /*~~>*/List<Bendpoint> bendpoints = getBendpointsCopy();
         if (bendpointIndex < bendpoints.size()) {
             bendpoints.remove(bendpointIndex);
             updateBendpoints(bendpoints);
@@ -275,35 +275,35 @@ public class AssociationPart extends PropertyAwareConnectionPart {
 
     public void moveBendpoint(int bendpointIndex, Point location) {
         Bendpoint bendpoint = new AbsoluteBendpoint(location);
-        List<Bendpoint> bendpoints = getBendpointsCopy();
+        /*~~>*/List<Bendpoint> bendpoints = getBendpointsCopy();
         if (bendpointIndex < bendpoints.size()) {
             bendpoints.set(bendpointIndex, bendpoint);
             updateBendpoints(bendpoints);
         }
     }
 
-    public List<Bendpoint> getBendpoints() {
+    public /*~~>*/List<Bendpoint> getBendpoints() {
         Object constraint = getConnectionFigure().getRoutingConstraint();
-        if (constraint instanceof List) {
+        if (constraint instanceof /*~~>*/List) {
             // Make constraint copy
-            return (List<Bendpoint>) constraint;
+            return (/*~~>*/List<Bendpoint>) constraint;
         } else {
             return Collections.emptyList();
         }
     }
 
-    private List<Bendpoint> getBendpointsCopy() {
+    private /*~~>*/List<Bendpoint> getBendpointsCopy() {
         Object constraint = getConnectionFigure().getRoutingConstraint();
-        if (constraint instanceof List) {
+        if (constraint instanceof /*~~>*/List) {
             // Make constraint copy
-            List<Bendpoint> curList = (List<Bendpoint>) constraint;
+            /*~~>*/List<Bendpoint> curList = (/*~~>*/List<Bendpoint>) constraint;
             return new ArrayList<>(curList);
         } else {
             return new ArrayList<>();
         }
     }
 
-    private void updateBendpoints(List<Bendpoint> bendpoints) {
+    private void updateBendpoints(/*~~>*/List<Bendpoint> bendpoints) {
         getConnectionFigure().setRoutingConstraint(bendpoints);
     }
 

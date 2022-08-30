@@ -593,7 +593,7 @@ public class JDBCStatementImpl<STATEMENT extends Statement> extends AbstractStat
     @Override
     public Throwable[] getStatementWarnings() throws DBCException {
         try {
-            List<Throwable> warnings = null;
+            /*~~>*/List<Throwable> warnings = null;
             for (SQLWarning warning = getWarnings(); warning != null; warning = warning.getNextWarning()) {
                 if (warning.getMessage() == null && warning.getErrorCode() == 0) {
                     // Skip trash [Excel driver]

@@ -234,14 +234,14 @@ public class DriverLibraryMavenArtifact extends DriverLibraryAbstract
     @Nullable
     @Override
     public Collection<? extends DBPDriverLibrary> getDependencies(@NotNull DBRProgressMonitor monitor) throws IOException {
-        List<DriverLibraryMavenDependency> dependencies = new ArrayList<>();
+        /*~~>*/List<DriverLibraryMavenDependency> dependencies = new ArrayList<>();
         if (ignoreDependencies) {
             return dependencies;
         }
         MavenArtifactVersion localVersion = resolveLocalVersion(monitor, false);
         if (localVersion != null) {
 
-            List<MavenArtifactDependency> artifactDeps = localVersion.getDependencies();
+            /*~~>*/List<MavenArtifactDependency> artifactDeps = localVersion.getDependencies();
             if (!CommonUtils.isEmpty(artifactDeps)) {
                 for (MavenArtifactDependency dependency : artifactDeps) {
                     if (isDependencyExcluded(monitor, dependency)) {

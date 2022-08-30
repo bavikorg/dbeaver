@@ -46,7 +46,7 @@ public class ProjectSelectorPanel {
     public ProjectSelectorPanel(@NotNull Composite parent, @Nullable DBPProject activeProject, int style) {
         this.selectedProject = activeProject;
 
-        final List<DBPProject> projects = DBWorkbench.getPlatform().getWorkspace().getProjects();
+        final /*~~>*/List<DBPProject> projects = DBWorkbench.getPlatform().getWorkspace().getProjects();
         if (projects.size() == 1) {
             if (selectedProject == null) {
                 selectedProject = projects.get(0);

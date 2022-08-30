@@ -54,7 +54,7 @@ public class SQLServerTable extends SQLServerTableBase
 
     private CheckConstraintCache checkConstraintCache = new CheckConstraintCache();
 
-    private transient volatile List<SQLServerTableForeignKey> references;
+    private transient volatile /*~~>*/List<SQLServerTableForeignKey> references;
 
     private transient volatile long totalBytes = -1;
     private transient volatile long usedBytes = -1;
@@ -118,7 +118,7 @@ public class SQLServerTable extends SQLServerTableBase
 
     @Override
     @Association
-    public List<SQLServerTableForeignKey> getReferences(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<SQLServerTableForeignKey> getReferences(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
         if (references != null) {
@@ -135,7 +135,7 @@ public class SQLServerTable extends SQLServerTableBase
                     "ORDER BY 1,2,3")) {
                 dbStat.setLong(1, getObjectId());
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                    List<SQLServerTableForeignKey> result = new ArrayList<>();
+                    /*~~>*/List<SQLServerTableForeignKey> result = new ArrayList<>();
                     while (dbResult.next()) {
                         long schemaId = JDBCUtils.safeGetLong(dbResult, "schema_id");
                         String tableName = JDBCUtils.safeGetString(dbResult, "table_name");
@@ -152,7 +152,7 @@ public class SQLServerTable extends SQLServerTableBase
                             }
                         }
                     }
-                    this.references = result;
+                    /*~~>*/this.references = result;
                     return result;
                 }
             } catch (SQLException e) {

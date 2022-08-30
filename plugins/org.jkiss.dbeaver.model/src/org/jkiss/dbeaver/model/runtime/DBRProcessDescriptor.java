@@ -65,7 +65,7 @@ public class DBRProcessDescriptor {
 
     public String getName()
     {
-        final List<String> command = processBuilder.command();
+        final /*~~>*/List<String> command = processBuilder.command();
         return command.isEmpty() ? "?" : command.get(0);
     }
 

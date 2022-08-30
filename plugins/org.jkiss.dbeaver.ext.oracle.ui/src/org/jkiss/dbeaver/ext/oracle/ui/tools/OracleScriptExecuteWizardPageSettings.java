@@ -82,7 +82,7 @@ class OracleScriptExecuteWizardPageSettings extends AbstractNativeToolWizardPage
         super.saveState();
 
         OracleScriptExecuteSettings settings = wizard.getSettings();
-        List<DBSObject> selectedConnections = settings.getDatabaseObjects();
+        /*~~>*/List<DBSObject> selectedConnections = settings.getDatabaseObjects();
         settings.setDataSourceContainer(selectedConnections.isEmpty() ? null : selectedConnections.get(0).getDataSource().getContainer());
         settings.setInputFile(inputFileText.getText());
     }

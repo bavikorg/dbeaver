@@ -66,8 +66,8 @@ public class DatabaseTasksTree {
     private TreeViewer taskViewer;
     private ViewerColumnController<?, ?> taskColumnController;
 
-    private final List<DBTTask> allTasks = new ArrayList<>();
-    private final List<DBTTaskFolder> allTasksFolders = new ArrayList<>();
+    private final /*~~>*/List<DBTTask> allTasks = new ArrayList<>();
+    private final /*~~>*/List<DBTTaskFolder> allTasksFolders = new ArrayList<>();
 
     private boolean groupByProject = false;
     private boolean groupByType = false;
@@ -340,13 +340,13 @@ public class DatabaseTasksTree {
     void regroupTasks(ExpansionOptions options) {
         taskViewer.getTree().setRedraw(false);
         try {
-            List<Object> rootObjects = new ArrayList<>();
+            /*~~>*/List<Object> rootObjects = new ArrayList<>();
             if (groupByProject) {
                 rootObjects.addAll(getTaskProjects(allTasks));
             } else {
                 // Add task folders as parent elements, task from these folders will be added in children list
                 if (!CommonUtils.isEmpty(allTasksFolders)) {
-                    List<DBTTaskFolder> sortedFoldersWithoutParents = allTasksFolders.stream()
+                    /*~~>*/List<DBTTaskFolder> sortedFoldersWithoutParents = allTasksFolders.stream()
                         .filter(e -> e.getParentFolder() == null)
                         .sorted(DBUtils.nameComparatorIgnoreCase())
                         .collect(Collectors.toList());
@@ -354,7 +354,7 @@ public class DatabaseTasksTree {
                 }
 
                 // Collect all tasks without folders
-                List<DBTTask> allTasksWithoutFolders = allTasks.stream()
+                /*~~>*/List<DBTTask> allTasksWithoutFolders = allTasks.stream()
                     .filter(task -> task.getTaskFolder() == null)
                     .sorted(DBUtils.nameComparatorIgnoreCase())
                     .collect(Collectors.toList());
@@ -394,13 +394,13 @@ public class DatabaseTasksTree {
         }
     }
 
-    private List<DBPProject> getTaskProjects(List<DBTTask> tasks) {
+    private /*~~>*/List<DBPProject> getTaskProjects(/*~~>*/List<DBTTask> tasks) {
         Set<DBPProject> projects = new LinkedHashSet<>();
         tasks.forEach(task -> projects.add(task.getProject()));
         return new ArrayList<>(projects);
     }
 
-    private static List<DBTTaskCategory> getTaskCategories(DBPProject project, DBTTaskCategory parentCategory, List<DBTTask> tasks) {
+    private static /*~~>*/List<DBTTaskCategory> getTaskCategories(DBPProject project, DBTTaskCategory parentCategory, /*~~>*/List<DBTTask> tasks) {
         Set<DBTTaskCategory> categories = new LinkedHashSet<>();
         tasks.forEach(task -> {
             if (project == null || project == task.getProject()) {
@@ -415,7 +415,7 @@ public class DatabaseTasksTree {
         return new ArrayList<>(categories);
     }
 
-    private static List<DBTTaskType> getTaskTypes(DBPProject project, DBTTaskCategory category, List<DBTTask> tasks) {
+    private static /*~~>*/List<DBTTaskType> getTaskTypes(DBPProject project, DBTTaskCategory category, /*~~>*/List<DBTTask> tasks) {
         Set<DBTTaskType> types = new LinkedHashSet<>();
         tasks.forEach(task -> {
             if (project == null || project == task.getProject()) {
@@ -424,14 +424,14 @@ public class DatabaseTasksTree {
                 }
             }
         });
-        List<DBTTaskType> sortedTypes = new ArrayList<>(types);
+        /*~~>*/List<DBTTaskType> sortedTypes = new ArrayList<>(types);
         sortedTypes.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
         return sortedTypes;
     }
 
-    private static List<DBTTaskType> getNotEmptyTaskTypes(DBPProject project, DBTTaskCategory category, List<DBTTask> tasks, DBTTaskFolder taskFolder) {
-        List<DBTTaskType> taskTypes = getTaskTypes(project, category, tasks);
-        List<DBTTaskType> resultTaskTypes = new ArrayList<>();
+    private static /*~~>*/List<DBTTaskType> getNotEmptyTaskTypes(DBPProject project, DBTTaskCategory category, /*~~>*/List<DBTTask> tasks, DBTTaskFolder taskFolder) {
+        /*~~>*/List<DBTTaskType> taskTypes = getTaskTypes(project, category, tasks);
+        /*~~>*/List<DBTTaskType> resultTaskTypes = new ArrayList<>();
         // We need to find all types with tasks for current folder or if no folder at all. We do not need empty types without tasks.
         for (DBTTaskType taskType : taskTypes) {
             if (tasks.stream().anyMatch(task -> task.getType() == taskType && task.getTaskFolder() == taskFolder)) {
@@ -498,15 +498,15 @@ public class DatabaseTasksTree {
         return false;
     }
 
-    public List<DBTTask> getCheckedTasks() {
-        List<DBTTask> tasks = new ArrayList<>();
+    public /*~~>*/List<DBTTask> getCheckedTasks() {
+        /*~~>*/List<DBTTask> tasks = new ArrayList<>();
         for (TreeItem item : taskViewer.getTree().getItems()) {
             addCheckedItem(item, tasks);
         }
         return tasks;
     }
 
-    private void addCheckedItem(TreeItem item, List<DBTTask> tasks) {
+    private void addCheckedItem(TreeItem item, /*~~>*/List<DBTTask> tasks) {
         if (item.getChecked()) {
             if (item.getData() instanceof DBTTask) {
                 tasks.add((DBTTask) item.getData());
@@ -531,7 +531,7 @@ public class DatabaseTasksTree {
 
         @Override
         public Object[] getChildren(Object parentElement) {
-            List<Object> children = new ArrayList<>();
+            /*~~>*/List<Object> children = new ArrayList<>();
             if (parentElement instanceof DBPProject) {
                 DBPProject project = (DBPProject) parentElement;
 
@@ -542,7 +542,7 @@ public class DatabaseTasksTree {
                     .collect(Collectors.toList()));
 
                 // Then check all tasks belonging to this project without folder
-                List<DBTTask> thisProjectTasksWithoutFolder = allTasks.stream()
+                /*~~>*/List<DBTTask> thisProjectTasksWithoutFolder = allTasks.stream()
                     .filter(task -> task.getTaskFolder() == null && task.getProject() == parentElement)
                     .sorted(DBUtils.nameComparatorIgnoreCase())
                     .collect(Collectors.toList());
@@ -565,12 +565,12 @@ public class DatabaseTasksTree {
                 DBPProject folderProject = null;
 
                 // First add nested task folders to elements list
-                List<DBTTaskFolder> nestedTaskFolders = taskFolder.getNestedTaskFolders();
+                /*~~>*/List<DBTTaskFolder> nestedTaskFolders = taskFolder.getNestedTaskFolders();
                 if (!CommonUtils.isEmpty(nestedTaskFolders)) {
                     children.addAll(new ArrayList<>(nestedTaskFolders));
                 }
 
-                List<DBTTask> thisFolderTasks;
+                /*~~>*/List<DBTTask> thisFolderTasks;
                 if (groupByProject) {
                     folderProject = taskFolder.getProject();
                     DBPProject finalFolderProject = folderProject;
@@ -605,7 +605,7 @@ public class DatabaseTasksTree {
                     }
                 } else {
                     // Tasks
-                    List<DBTTask> allTasksThisCategory = getSortedByCategoryTasks(parentCat);
+                    /*~~>*/List<DBTTask> allTasksThisCategory = getSortedByCategoryTasks(parentCat);
                     allTasksThisCategory.sort(DBUtils.nameComparatorIgnoreCase());
                     if (parentCat.taskFolder != null) {
                         children.addAll(allTasksThisCategory.stream().filter(task -> task.getTaskFolder() == parentCat.taskFolder).collect(Collectors.toList()));
@@ -634,8 +634,8 @@ public class DatabaseTasksTree {
         }
 
         // Sort all tasks into list by task category
-        private List<DBTTask> getSortedByCategoryTasks(TaskCategoryNode taskCategory) {
-            List<DBTTask> sortedByDescriptorList = new ArrayList<>();
+        private /*~~>*/List<DBTTask> getSortedByCategoryTasks(TaskCategoryNode taskCategory) {
+            /*~~>*/List<DBTTask> sortedByDescriptorList = new ArrayList<>();
             for (DBTTask task : allTasks) {
                 if ((taskCategory.project == null || task.getProject() == taskCategory.project) && (task.getType().getCategory() == taskCategory.category)) {
                     sortedByDescriptorList.add(task);
@@ -804,7 +804,7 @@ public class DatabaseTasksTree {
             @Override
             public void dragSetData (DragSourceEvent event) {
                 if (!selection.isEmpty()) {
-                    List<DBTTask> tasks = new ArrayList<>();
+                    /*~~>*/List<DBTTask> tasks = new ArrayList<>();
                     StringBuilder buf = new StringBuilder();
                     for (Object nextSelected : selection.toArray()) {
                         if (draggableChecker != null && !draggableChecker.select(nextSelected)) {
@@ -934,7 +934,7 @@ public class DatabaseTasksTree {
                     }
 
                     if (event.data instanceof DatabaseTaskTransfer.Data) {
-                        List<DBTTask> tasksToDrop = ((DatabaseTaskTransfer.Data) event.data).getTasks();
+                        /*~~>*/List<DBTTask> tasksToDrop = ((DatabaseTaskTransfer.Data) event.data).getTasks();
                         if (!CommonUtils.isEmpty(tasksToDrop)) {
                             for (DBTTask task : tasksToDrop) {
                                 if (task instanceof TaskImpl && task.getProject() == taskFolder.getProject()) { // Do not move tasks into another project

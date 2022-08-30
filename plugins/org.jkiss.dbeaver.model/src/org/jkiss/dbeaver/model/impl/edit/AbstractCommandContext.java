@@ -38,12 +38,12 @@ public abstract class AbstractCommandContext implements DBECommandContext {
     private static final Log log = Log.getLog(AbstractCommandContext.class);
 
     private final DBCExecutionContext executionContext;
-    private final List<CommandInfo> commands = new ArrayList<>();
-    private final List<CommandInfo> undidCommands = new ArrayList<>();
-    private List<CommandQueue> commandQueues;
+    private final /*~~>*/List<CommandInfo> commands = new ArrayList<>();
+    private final /*~~>*/List<CommandInfo> undidCommands = new ArrayList<>();
+    private /*~~>*/List<CommandQueue> commandQueues;
 
     private final Map<Object, Object> userParams = new HashMap<>();
-    private final List<DBECommandListener> listeners = new ArrayList<>();
+    private final /*~~>*/List<DBECommandListener> listeners = new ArrayList<>();
 
     private final boolean atomic;
 
@@ -95,7 +95,7 @@ public abstract class AbstractCommandContext implements DBECommandContext {
         {
             Map<String, Object> validateOptions = new HashMap<>();
             for (CommandQueue queue : getCommandQueues()) {
-                for (CommandInfo cmd : queue.commands) {
+                for (CommandInfo cmd : /*~~>*/queue.commands) {
                     cmd.command.validateCommand(monitor, validateOptions);
                 }
             }
@@ -155,19 +155,19 @@ public abstract class AbstractCommandContext implements DBECommandContext {
     }
 
     private void executeCommands(DBRProgressMonitor monitor, Map<String, Object> options, DBCTransactionManager txnManager) throws DBException {
-        List<CommandQueue> commandQueues = getCommandQueues();
+        /*~~>*/List<CommandQueue> commandQueues = getCommandQueues();
 
         // Execute commands
-        List<CommandInfo> executedCommands = new ArrayList<>();
+        /*~~>*/List<CommandInfo> executedCommands = new ArrayList<>();
         try {
             for (CommandQueue queue : commandQueues) {
                 // Make list of not-executed commands
-                for (int i = 0; i < queue.commands.size(); i++) {
+                for (int i = 0; i < /*~~>*/queue.commands.size(); i++) {
                     if (monitor.isCanceled()) {
                         break;
                     }
 
-                    CommandInfo cmd = queue.commands.get(i);
+                    CommandInfo cmd = /*~~>*/queue.commands.get(i);
                     while (cmd.mergedBy != null) {
                         cmd = cmd.mergedBy;
                     }
@@ -176,16 +176,16 @@ public abstract class AbstractCommandContext implements DBECommandContext {
                         //if (CommonUtils.isEmpty(cmd.persistActions)) {
                             DBEPersistAction[] persistActions = cmd.command.getPersistActions(monitor, executionContext, options);
                             if (!ArrayUtils.isEmpty(persistActions)) {
-                                cmd.persistActions = new ArrayList<>(persistActions.length);
+                                /*~~>*/cmd.persistActions = new ArrayList<>(persistActions.length);
                                 for (DBEPersistAction action : persistActions) {
-                                    cmd.persistActions.add(new PersistInfo(action));
+                                    /*~~>*/cmd.persistActions.add(new PersistInfo(action));
                                 }
                             }
                         //}
-                        if (!CommonUtils.isEmpty(cmd.persistActions)) {
+                        if (!CommonUtils.isEmpty(/*~~>*/cmd.persistActions)) {
                             try (DBCSession session = openCommandPersistContext(monitor, cmd.command)) {
                                 DBException error = null;
-                                for (PersistInfo persistInfo : cmd.persistActions) {
+                                for (PersistInfo persistInfo : /*~~>*/cmd.persistActions) {
                                     DBEPersistAction.ActionType actionType = persistInfo.action.getType();
                                     if (actionType == DBEPersistAction.ActionType.COMMENT) {
                                         // Skip pure comments
@@ -324,9 +324,9 @@ public abstract class AbstractCommandContext implements DBECommandContext {
     public Collection<? extends DBECommand<?>> getFinalCommands()
     {
         synchronized (commands) {
-            List<DBECommand<?>> cmdCopy = new ArrayList<>(commands.size());
+            /*~~>*/List<DBECommand<?>> cmdCopy = new ArrayList<>(commands.size());
             for (CommandQueue queue : getCommandQueues()) {
-                for (CommandInfo cmdInfo : queue.commands) {
+                for (CommandInfo cmdInfo : /*~~>*/queue.commands) {
                     while (cmdInfo.mergedBy != null) {
                         cmdInfo = cmdInfo.mergedBy;
                     }
@@ -343,7 +343,7 @@ public abstract class AbstractCommandContext implements DBECommandContext {
     public Collection<? extends DBECommand<?>> getUndoCommands()
     {
         synchronized (commands) {
-            List<DBECommand<?>> result = new ArrayList<>();
+            /*~~>*/List<DBECommand<?>> result = new ArrayList<>();
             for (int i = commands.size() - 1; i >= 0; i--) {
                 CommandInfo cmd = commands.get(i);
                 while (cmd.prevInBatch != null) {
@@ -362,8 +362,8 @@ public abstract class AbstractCommandContext implements DBECommandContext {
     @Override
     public Collection<DBPObject> getEditedObjects()
     {
-        final List<CommandQueue> queues = getCommandQueues();
-        List<DBPObject> result = new ArrayList<>(queues.size());
+        final /*~~>*/List<CommandQueue> queues = getCommandQueues();
+        /*~~>*/List<DBPObject> result = new ArrayList<>(queues.size());
         for (CommandQueue queue : queues) {
             result.add(queue.getObject());
         }
@@ -535,7 +535,7 @@ public abstract class AbstractCommandContext implements DBECommandContext {
         if (getUndoCommand() == null) {
             throw new IllegalStateException("Can't undo command");
         }
-        List<CommandInfo> processedCommands = new ArrayList<>();
+        /*~~>*/List<CommandInfo> processedCommands = new ArrayList<>();
         synchronized (commands) {
             CommandInfo lastCommand = commands.get(commands.size() - 1);
             if (!lastCommand.command.isUndoable()) {
@@ -567,7 +567,7 @@ public abstract class AbstractCommandContext implements DBECommandContext {
         if (getRedoCommand() == null) {
             throw new IllegalStateException("Can't redo command");
         }
-        List<CommandInfo> processedCommands = new ArrayList<>();
+        /*~~>*/List<CommandInfo> processedCommands = new ArrayList<>();
         synchronized (commands) {
             // Just redo UI changes and put command on the top of stack
             CommandInfo commandInfo = null;
@@ -598,7 +598,7 @@ public abstract class AbstractCommandContext implements DBECommandContext {
         undidCommands.clear();
     }
 
-    private List<CommandQueue> getCommandQueues()
+    private /*~~>*/List<CommandQueue> getCommandQueues()
     {
         if (commandQueues != null) {
             return commandQueues;
@@ -635,9 +635,9 @@ public abstract class AbstractCommandContext implements DBECommandContext {
         // Merge commands
         for (CommandQueue queue : commandQueues) {
             final Map<DBECommand, CommandInfo> mergedByMap = new IdentityHashMap<>();
-            final List<CommandInfo> mergedCommands = new ArrayList<>();
-            for (int i = 0; i < queue.commands.size(); i++) {
-                CommandInfo lastCommand = queue.commands.get(i);
+            final /*~~>*/List<CommandInfo> mergedCommands = new ArrayList<>();
+            for (int i = 0; i < /*~~>*/queue.commands.size(); i++) {
+                CommandInfo lastCommand = /*~~>*/queue.commands.get(i);
                 lastCommand.mergedBy = null;
                 CommandInfo firstCommand = null;
                 DBECommand<?> result = lastCommand.command;
@@ -675,8 +675,8 @@ public abstract class AbstractCommandContext implements DBECommandContext {
                     if (mergedBy == null) {
                         // Try to find in command stack
                         for (int k = i; k >= 0; k--) {
-                            if (queue.commands.get(k).command == result) {
-                                mergedBy = queue.commands.get(k);
+                            if (/*~~>*/queue.commands.get(k).command == result) {
+                                mergedBy = /*~~>*/queue.commands.get(k);
                                 break;
                             }
                         }
@@ -692,7 +692,7 @@ public abstract class AbstractCommandContext implements DBECommandContext {
                     }
                 }
             }
-            queue.commands = mergedCommands;
+            /*~~>*/queue.commands = mergedCommands;
         }
 
         // Filter commands
@@ -706,7 +706,7 @@ public abstract class AbstractCommandContext implements DBECommandContext {
         if (aggregator != null) {
             ((DBECommandAggregator)aggregator.command).resetAggregatedCommands();
             for (CommandQueue queue : commandQueues) {
-                for (CommandInfo cmd : queue.commands) {
+                for (CommandInfo cmd : /*~~>*/queue.commands) {
                     if (cmd.command != aggregator.command && cmd.mergedBy == null && ((DBECommandAggregator)aggregator.command).aggregateCommand(cmd.command)) {
                         cmd.mergedBy = aggregator;
                     }
@@ -717,10 +717,10 @@ public abstract class AbstractCommandContext implements DBECommandContext {
         // Move rename commands in the head (#7512)
         for (CommandQueue queue : commandQueues) {
             int headIndex = 0;
-            for (CommandInfo cmd : new ArrayList<>(queue.commands)) {
+            for (CommandInfo cmd : new ArrayList<>(/*~~>*/queue.commands)) {
                 if (cmd.mergedBy == null && cmd.command instanceof DBECommandRename) {
-                    queue.commands.remove(cmd);
-                    queue.commands.add(headIndex++, cmd);
+                    /*~~>*/queue.commands.remove(cmd);
+                    /*~~>*/queue.commands.add(headIndex++, cmd);
                 }
             }
         }
@@ -763,7 +763,7 @@ public abstract class AbstractCommandContext implements DBECommandContext {
     public static class CommandInfo {
         final DBECommand<?> command;
         final DBECommandReflector<?, DBECommand<?>> reflector;
-        List<PersistInfo> persistActions;
+        /*~~>*/List<PersistInfo> persistActions;
         CommandInfo mergedBy = null;
         CommandInfo prevInBatch = null;
         boolean executed = false;
@@ -782,10 +782,10 @@ public abstract class AbstractCommandContext implements DBECommandContext {
 
     private static class CommandQueue extends AbstractCollection<DBECommand<DBPObject>> implements DBECommandQueue<DBPObject> {
         private final CommandQueue parent;
-        private List<DBECommandQueue> subQueues;
+        private /*~~>*/List<DBECommandQueue> subQueues;
         private final DBPObject object;
         private final DBEObjectManager objectManager;
-        private List<CommandInfo> commands = new ArrayList<>();
+        private /*~~>*/List<CommandInfo> commands = new ArrayList<>();
 
         private CommandQueue(DBEObjectManager objectManager, CommandQueue parent, DBPObject object)
         {

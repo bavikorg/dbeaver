@@ -43,7 +43,7 @@ public abstract class DataTypeAbstractDescriptor<DESCRIPTOR> extends AbstractDes
     private final String id;
     private ObjectType implType;
     private Set<Object> supportedTypes = new HashSet<>();
-    private List<String> supportedDataSources = new ArrayList<>();
+    private /*~~>*/List<String> supportedDataSources = new ArrayList<>();
 
     private boolean hasAll, hasTypeIds, hasDataKinds, hasTypeNames;
 

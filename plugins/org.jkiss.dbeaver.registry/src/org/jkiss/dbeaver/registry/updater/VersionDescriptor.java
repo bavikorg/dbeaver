@@ -46,8 +46,8 @@ public class VersionDescriptor {
     private String downloadURL;
     private String releaseNotes;
 
-    private final List<DistributionDescriptor> distributions = new ArrayList<>();
-    private final List<UpdateSiteDescriptor> updateSites = new ArrayList<>();
+    private final /*~~>*/List<DistributionDescriptor> distributions = new ArrayList<>();
+    private final /*~~>*/List<UpdateSiteDescriptor> updateSites = new ArrayList<>();
 
     public VersionDescriptor(DBPPlatform platform, String fileAddr)
         throws IOException {

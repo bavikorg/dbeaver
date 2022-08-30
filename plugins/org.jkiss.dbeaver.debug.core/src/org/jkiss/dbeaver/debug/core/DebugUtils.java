@@ -75,8 +75,8 @@ public class DebugUtils {
         }
     }
 
-    public static List<DBSObject> extractLaunchable(Object[] scope) {
-        List<DBSObject> extracted = new ArrayList<>();
+    public static /*~~>*/List<DBSObject> extractLaunchable(Object[] scope) {
+        /*~~>*/List<DBSObject> extracted = new ArrayList<>();
         if (scope == null) {
             return extracted;
         }
@@ -172,8 +172,8 @@ public class DebugUtils {
                 configuration.setAttribute(entry.getKey(), (Integer) value);
             } else if (value instanceof Boolean) {
                 configuration.setAttribute(entry.getKey(), (Boolean) value);
-            } else if (value instanceof List) {
-                configuration.setAttribute(entry.getKey(), (List<String>)value);
+            } else if (value instanceof /*~~>*/List) {
+                configuration.setAttribute(entry.getKey(), (/*~~>*/List<String>)value);
             } else {
                 configuration.setAttribute(entry.getKey(), value.toString());
             }

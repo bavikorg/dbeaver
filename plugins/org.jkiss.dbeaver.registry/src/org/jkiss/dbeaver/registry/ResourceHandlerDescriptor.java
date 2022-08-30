@@ -52,9 +52,9 @@ public class ResourceHandlerDescriptor extends AbstractDescriptor implements DBP
     private DBPImage icon;
     private ObjectType handlerType;
     private DBPResourceHandler handler;
-    private List<IContentType> contentTypes = new ArrayList<>();
-    private List<ObjectType> resourceTypes = new ArrayList<>();
-    private List<String> roots = new ArrayList<>();
+    private /*~~>*/List<IContentType> contentTypes = new ArrayList<>();
+    private /*~~>*/List<ObjectType> resourceTypes = new ArrayList<>();
+    private /*~~>*/List<String> roots = new ArrayList<>();
     private String defaultRoot;
     private final Map<String, String> projectRoots = new HashMap<>();
 
@@ -231,7 +231,7 @@ public class ResourceHandlerDescriptor extends AbstractDescriptor implements DBP
         }
     }
 
-    public List<String> getRoots() {
+    public /*~~>*/List<String> getRoots() {
         return roots;
     }
 

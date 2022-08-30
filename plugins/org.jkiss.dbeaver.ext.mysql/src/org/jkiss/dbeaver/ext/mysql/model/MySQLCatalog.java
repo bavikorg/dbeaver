@@ -720,7 +720,7 @@ public class MySQLCatalog implements
         }
 
         @Override
-        protected void cacheChildren(DBRProgressMonitor monitor, MySQLTableIndex index, List<MySQLTableIndexColumn> rows)
+        protected void cacheChildren(DBRProgressMonitor monitor, MySQLTableIndex index, /*~~>*/List<MySQLTableIndexColumn> rows)
         {
             index.setColumns(rows);
         }
@@ -793,7 +793,7 @@ public class MySQLCatalog implements
         }
 
         @Override
-        protected void cacheChildren(DBRProgressMonitor monitor, MySQLTableConstraint constraint, List<MySQLTableConstraintColumn> rows)
+        protected void cacheChildren(DBRProgressMonitor monitor, MySQLTableConstraint constraint, /*~~>*/List<MySQLTableConstraintColumn> rows)
         {
             constraint.setColumns(rows);
         }
@@ -850,7 +850,7 @@ public class MySQLCatalog implements
         }
 
         @Override
-        protected void cacheChildren(DBRProgressMonitor monitor, MySQLTableConstraint object, List<MySQLTableConstraintColumn> children) {
+        protected void cacheChildren(DBRProgressMonitor monitor, MySQLTableConstraint object, /*~~>*/List<MySQLTableConstraintColumn> children) {
 
         }
     }

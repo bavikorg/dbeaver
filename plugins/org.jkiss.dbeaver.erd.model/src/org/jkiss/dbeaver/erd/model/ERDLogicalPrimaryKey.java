@@ -34,7 +34,7 @@ public class ERDLogicalPrimaryKey implements DBSEntityConstraint,DBSEntityReferr
     private final Object entity;
     private final String name;
     private final String description;
-    private final List<? extends DBSTableConstraintColumn> columns = new ArrayList<>();
+    private final /*~~>*/List<? extends DBSTableConstraintColumn> columns = new ArrayList<>();
 
     public ERDLogicalPrimaryKey(ERDElement<?> entity, String name, String description)
     {
@@ -85,7 +85,7 @@ public class ERDLogicalPrimaryKey implements DBSEntityConstraint,DBSEntityReferr
     }
 
     @Override
-    public List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor)
+    public /*~~>*/List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor)
     {
         return columns;
     }

@@ -89,7 +89,7 @@ public class CustomFormEditor {
     //
 
     public void updateOtherPropertyValues(Object excludePropId) {
-        List<DBPPropertyDescriptor> allProps = filterProperties(propertySource.getProperties());
+        /*~~>*/List<DBPPropertyDescriptor> allProps = filterProperties(propertySource.getProperties());
 
         Map<DBPPropertyDescriptor, Object> propValues = new HashMap<>();
         for (DBPPropertyDescriptor prop : allProps) {
@@ -436,8 +436,8 @@ public class CustomFormEditor {
             BeanUtils.isNumericType(propertyType);
     }
 
-    public List<DBPPropertyDescriptor> filterProperties(DBPPropertyDescriptor[] props) {
-        List<DBPPropertyDescriptor> result = new ArrayList<>();
+    public /*~~>*/List<DBPPropertyDescriptor> filterProperties(DBPPropertyDescriptor[] props) {
+        /*~~>*/List<DBPPropertyDescriptor> result = new ArrayList<>();
         for (DBPPropertyDescriptor prop : props) {
             String category = prop.getCategory();
             if (!CommonUtils.isEmpty(category)) {

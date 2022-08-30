@@ -40,7 +40,7 @@ public class CompareObjectsSettings {
         }
     }
 
-    private final List<DBNDatabaseNode> nodes;
+    private final /*~~>*/List<DBNDatabaseNode> nodes;
     private boolean skipSystemObjects = true;
     private boolean compareLazyProperties = false;
     private boolean compareOnlyStructure = false;
@@ -49,11 +49,11 @@ public class CompareObjectsSettings {
     private OutputType outputType = OutputType.BROWSER;
     private String outputFolder;
 
-    public CompareObjectsSettings(List<DBNDatabaseNode> nodes) {
-        this.nodes = nodes;
+    public CompareObjectsSettings(/*~~>*/List<DBNDatabaseNode> nodes) {
+        /*~~>*/this.nodes = nodes;
     }
 
-    public List<DBNDatabaseNode> getNodes() {
+    public /*~~>*/List<DBNDatabaseNode> getNodes() {
         return nodes;
     }
 

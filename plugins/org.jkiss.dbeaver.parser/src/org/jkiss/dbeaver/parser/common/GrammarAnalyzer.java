@@ -26,7 +26,7 @@ import org.jkiss.dbeaver.parser.common.grammar.nfa.GrammarNfaBuilder.NfaFragment
  */
 class GrammarAnalyzer {
 
-    private final List<GrammarNfaTransition> terminalTransitions;
+    private final /*~~>*/List<GrammarNfaTransition> terminalTransitions;
     private final NfaFragment root;
 
     /*
@@ -89,8 +89,8 @@ class GrammarAnalyzer {
 
     }
 
-    public GrammarAnalyzer(List<GrammarNfaTransition> terminalTransitions, NfaFragment root) {
-        this.terminalTransitions = terminalTransitions;
+    public GrammarAnalyzer(/*~~>*/List<GrammarNfaTransition> terminalTransitions, NfaFragment root) {
+        /*~~>*/this.terminalTransitions = terminalTransitions;
         this.root = root;
     }
 
@@ -99,9 +99,9 @@ class GrammarAnalyzer {
      * @return parser finite state machine
      */
     public ParserFsm buildTerminalsGraph() {
-        int fsmsStatesCount = this.root.getFrom().getNext().size() + this.terminalTransitions.size();
+        int fsmsStatesCount = this.root.getFrom().getNext().size() + /*~~>*/this.terminalTransitions.size();
         Map<GrammarNfaTransition, ParserFsmNode> states = new HashMap<>(fsmsStatesCount);
-        List<ParserFsmNode> initialStates = new ArrayList<>();
+        /*~~>*/List<ParserFsmNode> initialStates = new ArrayList<>();
 
         // map each by-text-part transition to finite state machine node
         for (GrammarNfaTransition startTransition : this.root.getFrom().getNext()) {
@@ -110,7 +110,7 @@ class GrammarAnalyzer {
             initialStates.add(initialState);
         }
         ParserFsmNode endState = new ParserFsmNode(states.size(), true);
-        for (GrammarNfaTransition transition : this.terminalTransitions) {
+        for (GrammarNfaTransition transition : /*~~>*/this.terminalTransitions) {
             //System.out.println("#" + states.size() + " for " + transition.getOperation());
             states.put(transition, new ParserFsmNode(states.size(), false));
         }
@@ -120,11 +120,11 @@ class GrammarAnalyzer {
             discoverPathsFrom(states, startTransition);
         }
         // discover and register all transitions between terminals
-        for (GrammarNfaTransition transition : this.terminalTransitions) {
+        for (GrammarNfaTransition transition : /*~~>*/this.terminalTransitions) {
             discoverPathsFrom(states, transition);
         }
 
-        List<ParserFsmNode> parseFsmStates = new ArrayList<>(states.values());
+        /*~~>*/List<ParserFsmNode> parseFsmStates = new ArrayList<>(states.values());
         parseFsmStates.add(endState);
         return new ParserFsm(initialStates, parseFsmStates);
     }
@@ -136,9 +136,9 @@ class GrammarAnalyzer {
      */
     private void discoverPathsFrom(Map<GrammarNfaTransition, ParserFsmNode> states, GrammarNfaTransition transition) {
         //System.out.println("starting from " + transition);
-        List<Step> paths = this.findPaths(transition);
+        /*~~>*/List<Step> paths = this.findPaths(transition);
         for (Step path : paths) {
-            List<GrammarNfaOperation> ops = new ArrayList<>();
+            /*~~>*/List<GrammarNfaOperation> ops = new ArrayList<>();
             for (GrammarNfaTransition step : path) {
                 GrammarNfaOperation op = step.getOperation();
                 if (op.getKind() != ParseOperationKind.TERM && op.getKind() != ParseOperationKind.NONE) {
@@ -157,10 +157,10 @@ class GrammarAnalyzer {
      * @param transition of grammar graph
      * @return list of path ending steps
      */
-    private List<Step> findPaths(GrammarNfaTransition transition) {
+    private /*~~>*/List<Step> findPaths(GrammarNfaTransition transition) {
         ArrayDeque<Step> stack = new ArrayDeque<>();
         stack.push(Step.initial(transition));
-        List<Step> result = new ArrayList<>();
+        /*~~>*/List<Step> result = new ArrayList<>();
         BitSet active = new BitSet();
 
         while (stack.size() > 0) {

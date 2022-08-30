@@ -43,7 +43,7 @@ public interface DBSEntity extends DBSObject
      * @param monitor progress monitor
      */
     @Nullable
-    List<? extends DBSEntityAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException;
+    /*~~>*/List<? extends DBSEntityAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException;
 
     /**
      * Retrieve attribute by it's name (case insensitive)

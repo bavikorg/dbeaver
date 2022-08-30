@@ -121,7 +121,7 @@ public class SQLCompletionProcessor implements IContentAssistProcessor
 
         request.setContentType(contentType);
 
-        List<SQLCompletionProposalBase> proposals;
+        /*~~>*/List<SQLCompletionProposalBase> proposals;
         switch (contentType) {
         case IDocument.DEFAULT_CONTENT_TYPE:
         case SQLParserPartitions.CONTENT_TYPE_SQL_STRING:
@@ -157,7 +157,7 @@ public class SQLCompletionProcessor implements IContentAssistProcessor
             proposals = Collections.emptyList();
         }
 
-        List<ICompletionProposal> result = new ArrayList<>();
+        /*~~>*/List<ICompletionProposal> result = new ArrayList<>();
         for (SQLCompletionProposalBase cp : proposals) {
             if (cp instanceof ICompletionProposal) {
                 result.add((ICompletionProposal) cp);
@@ -171,7 +171,7 @@ public class SQLCompletionProcessor implements IContentAssistProcessor
         if (prefix.startsWith(controlCommandPrefix)) {
             prefix = prefix.substring(controlCommandPrefix.length());
         }
-        final List<SQLCommandCompletionProposal> commandProposals = new ArrayList<>();
+        final /*~~>*/List<SQLCommandCompletionProposal> commandProposals = new ArrayList<>();
         for (SQLCommandHandlerDescriptor command : SQLCommandsRegistry.getInstance().getCommandHandlers()) {
             if (command.getId().startsWith(prefix)) {
                 commandProposals.add(new SQLCommandCompletionProposal(request, command));
@@ -183,7 +183,7 @@ public class SQLCompletionProcessor implements IContentAssistProcessor
     @NotNull
     private ICompletionProposal[] makeTemplateProposals(ITextViewer viewer, SQLCompletionRequest request) {
         String wordPart = request.getWordPart().toLowerCase();
-        final List<SQLTemplateCompletionProposal> templateProposals = new ArrayList<>();
+        final /*~~>*/List<SQLTemplateCompletionProposal> templateProposals = new ArrayList<>();
         // Templates
         for (Template template : editor.getTemplatesPage().getTemplateStore().getTemplates()) {
             if (template.getName().toLowerCase().startsWith(wordPart)) {

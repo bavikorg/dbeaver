@@ -166,7 +166,7 @@ public class PendingTransactionsDialog extends TransactionInfoDialog {
                 if (ArrayUtils.isEmpty(allContexts)) {
                     continue;
                 }
-                List<DBCExecutionContext> txnContexts = new ArrayList<>();
+                /*~~>*/List<DBCExecutionContext> txnContexts = new ArrayList<>();
                 for (DBCExecutionContext context : allContexts) {
                     if (showAllContexts || QMUtils.isTransactionActive(context, false)) {
                         txnContexts.add(context);

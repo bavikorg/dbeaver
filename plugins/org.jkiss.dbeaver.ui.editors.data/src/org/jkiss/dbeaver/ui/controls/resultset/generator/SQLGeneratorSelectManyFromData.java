@@ -52,7 +52,7 @@ public class SQLGeneratorSelectManyFromData extends SQLGeneratorResultSet {
         if (multiKey) sql.append(")");
         sql.append(" IN (");
         if (multiKey) sql.append("\n");
-        List<ResultSetRow> selectedRows = getSelectedRows();
+        /*~~>*/List<ResultSetRow> selectedRows = getSelectedRows();
         for (int i = 0; i < selectedRows.size(); i++) {
             ResultSetRow firstRow = selectedRows.get(i);
             if (multiKey) sql.append("(");

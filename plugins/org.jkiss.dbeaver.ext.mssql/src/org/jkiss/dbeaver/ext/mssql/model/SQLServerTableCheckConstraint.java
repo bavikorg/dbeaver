@@ -127,7 +127,7 @@ public class SQLServerTableCheckConstraint implements DBSEntityConstraint, SQLSe
 
     @Nullable
     @Override
-    public List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
         return null;
     }
 

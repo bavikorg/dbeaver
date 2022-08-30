@@ -24,9 +24,9 @@ import java.util.List;
  */
 public class DashboardDataMultiChart extends DashboardDataAbstract {
 
-    private List<DashboardDataChart> charts = new ArrayList<>();
+    private /*~~>*/List<DashboardDataChart> charts = new ArrayList<>();
 
-    public List<DashboardDataChart> getCharts() {
+    public /*~~>*/List<DashboardDataChart> getCharts() {
         return charts;
     }
 

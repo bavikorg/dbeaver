@@ -33,12 +33,12 @@ import java.util.List;
  */
 public class TasksJob extends AbstractJob
 {
-    private final List<DBRRunnableWithProgress> tasks;
+    private final /*~~>*/List<DBRRunnableWithProgress> tasks;
 
     private TasksJob(String name, Collection<DBRRunnableWithProgress> tasks) {
         super(name);
         setUser(true);
-        this.tasks = new ArrayList<>(tasks);
+        /*~~>*/this.tasks = new ArrayList<>(tasks);
     }
 
     private TasksJob(String name, DBRRunnableWithProgress task) {

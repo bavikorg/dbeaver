@@ -41,17 +41,17 @@ public class MapAttributeTransformer implements DBDAttributeTransformer {
     private static final boolean FILTER_SIMPLE_COLLECTIONS = false;
 
     @Override
-    public void transformAttribute(@NotNull DBCSession session, @NotNull DBDAttributeBinding attribute, @NotNull List<Object[]> rows, @NotNull Map<String, Object> options) throws DBException {
+    public void transformAttribute(@NotNull DBCSession session, @NotNull DBDAttributeBinding attribute, @NotNull /*~~>*/List<Object[]> rows, @NotNull Map<String, Object> options) throws DBException {
         if (!session.getDataSource().getContainer().getPreferenceStore().getBoolean(ModelPreferences.RESULT_TRANSFORM_COMPLEX_TYPES)) {
             return;
         }
         resolveMapsFromData(session, attribute, rows);
     }
 
-    static void resolveMapsFromData(DBCSession session, DBDAttributeBinding attribute, List<Object[]> rows) throws DBException {
+    static void resolveMapsFromData(DBCSession session, DBDAttributeBinding attribute, /*~~>*/List<Object[]> rows) throws DBException {
 
         // Analyse rows and extract meta information from values
-        List<Pair<DBSAttributeBase, Object[]>> valueAttributes = null;
+        /*~~>*/List<Pair<DBSAttributeBase, Object[]>> valueAttributes = null;
         for (int i = 0; i < rows.size(); i++) {
             Object value = rows.get(i)[attribute.getOrdinalPosition()];
             if (value instanceof DBDCollection) {
@@ -94,7 +94,7 @@ public class MapAttributeTransformer implements DBDAttributeTransformer {
 
     private static Pair<DBSAttributeBase, Object[]> findAttributeValue(
         @NotNull DBSAttributeBase attr,
-        @Nullable List<Pair<DBSAttributeBase, Object[]>> valueAttributes)
+        @Nullable /*~~>*/List<Pair<DBSAttributeBase, Object[]>> valueAttributes)
     {
         if (valueAttributes == null) {
             return null;
@@ -111,11 +111,11 @@ public class MapAttributeTransformer implements DBDAttributeTransformer {
     private static void createNestedMapBindings(
         DBCSession session,
         DBDAttributeBinding topAttribute,
-        List<Pair<DBSAttributeBase, Object[]>> nestedAttributes,
-        List<Object[]> rows) throws DBException
+        /*~~>*/List<Pair<DBSAttributeBase, Object[]>> nestedAttributes,
+        /*~~>*/List<Object[]> rows) throws DBException
     {
         int maxPosition = 0;
-        List<DBDAttributeBinding> nestedBindings = topAttribute.getNestedBindings();
+        /*~~>*/List<DBDAttributeBinding> nestedBindings = topAttribute.getNestedBindings();
         if (nestedBindings == null) {
             nestedBindings = new ArrayList<>();
         }
@@ -133,7 +133,7 @@ public class MapAttributeTransformer implements DBDAttributeTransformer {
 
         Object[] fakeRow = new Object[maxPosition + 1];
 
-        List<Object[]> fakeRows = Collections.singletonList(fakeRow);
+        /*~~>*/List<Object[]> fakeRows = Collections.singletonList(fakeRow);
         for (Pair<DBSAttributeBase, Object[]> nestedAttr : nestedAttributes) {
             DBSAttributeBase attribute = nestedAttr.getFirst();
             Object[] values = nestedAttr.getSecond();

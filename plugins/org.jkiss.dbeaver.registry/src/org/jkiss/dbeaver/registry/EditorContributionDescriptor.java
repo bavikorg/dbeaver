@@ -50,8 +50,8 @@ public class EditorContributionDescriptor extends AbstractContextDescriptor impl
     private final DBPImage icon;
     private JexlExpression visibleIf;
 
-    private final List<String> supportedDataSources = new ArrayList<>();
-    private final List<String> supportedDrivers = new ArrayList<>();
+    private final /*~~>*/List<String> supportedDataSources = new ArrayList<>();
+    private final /*~~>*/List<String> supportedDrivers = new ArrayList<>();
 
     public EditorContributionDescriptor(IConfigurationElement config)
     {

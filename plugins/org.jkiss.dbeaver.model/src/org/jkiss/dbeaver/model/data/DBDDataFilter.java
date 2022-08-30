@@ -29,22 +29,22 @@ import java.util.*;
  */
 public class DBDDataFilter {
 
-    private final List<DBDAttributeConstraint> constraints;
+    private final /*~~>*/List<DBDAttributeConstraint> constraints;
     private boolean anyConstraint; // means OR condition
     private String order;
     private String where;
 
     public DBDDataFilter() {
-        this.constraints = new ArrayList<>();
+        /*~~>*/this.constraints = new ArrayList<>();
     }
 
-    public DBDDataFilter(List<DBDAttributeConstraint> constraints) {
-        this.constraints = constraints;
+    public DBDDataFilter(/*~~>*/List<DBDAttributeConstraint> constraints) {
+        /*~~>*/this.constraints = constraints;
     }
 
     public DBDDataFilter(DBDDataFilter source) {
-        constraints = new ArrayList<>(source.constraints.size());
-        for (DBDAttributeConstraint column : source.constraints) {
+        constraints = new ArrayList<>(/*~~>*/source.constraints.size());
+        for (DBDAttributeConstraint column : /*~~>*/source.constraints) {
             constraints.add(new DBDAttributeConstraint(column));
         }
         this.order = source.order;
@@ -52,7 +52,7 @@ public class DBDDataFilter {
         this.anyConstraint = source.anyConstraint;
     }
 
-    public List<DBDAttributeConstraint> getConstraints() {
+    public /*~~>*/List<DBDAttributeConstraint> getConstraints() {
         return constraints;
     }
 
@@ -86,19 +86,19 @@ public class DBDDataFilter {
         return null;
     }
 
-    public void addConstraints(List<DBDAttributeConstraint> constraints) {
-        this.constraints.addAll(constraints);
+    public void addConstraints(/*~~>*/List<DBDAttributeConstraint> constraints) {
+        /*~~>*/this.constraints.addAll(constraints);
     }
 
-    public List<DBSAttributeBase> getOrderedVisibleAttributes() {
-        List<DBDAttributeConstraint> visibleConstraints = new ArrayList<>();
+    public /*~~>*/List<DBSAttributeBase> getOrderedVisibleAttributes() {
+        /*~~>*/List<DBDAttributeConstraint> visibleConstraints = new ArrayList<>();
         for (DBDAttributeConstraint constraint : constraints) {
             if (constraint.isVisible()) {
                 visibleConstraints.add(constraint);
             }
         }
         visibleConstraints.sort(Comparator.comparingInt(DBDAttributeConstraintBase::getVisualPosition));
-        List<DBSAttributeBase> attributes = new ArrayList<>(visibleConstraints.size());
+        /*~~>*/List<DBSAttributeBase> attributes = new ArrayList<>(visibleConstraints.size());
         for (DBDAttributeConstraint constraint : visibleConstraints) {
             attributes.add(constraint.getAttribute());
         }
@@ -177,8 +177,8 @@ public class DBDDataFilter {
         return false;
     }
 
-    public List<DBDAttributeConstraint> getOrderConstraints() {
-        List<DBDAttributeConstraint> result = null;
+    public /*~~>*/List<DBDAttributeConstraint> getOrderConstraints() {
+        /*~~>*/List<DBDAttributeConstraint> result = null;
         for (DBDAttributeConstraint constraint : constraints) {
             if (constraint.getOrderPosition() > 0) {
                 if (result == null) {
@@ -237,14 +237,14 @@ public class DBDDataFilter {
             return false;
         }
         DBDDataFilter source = (DBDDataFilter) obj;
-        if (constraints.size() != source.constraints.size()) {
+        if (constraints.size() != /*~~>*/source.constraints.size()) {
             return false;
         }
         if (anyConstraint != source.anyConstraint) {
             return false;
         }
-        for (int i = 0, orderColumnsSize = source.constraints.size(); i < orderColumnsSize; i++) {
-            if (!constraints.get(i).equals(source.constraints.get(i))) {
+        for (int i = 0, orderColumnsSize = /*~~>*/source.constraints.size(); i < orderColumnsSize; i++) {
+            if (!constraints.get(i).equals(/*~~>*/source.constraints.get(i))) {
                 return false;
             }
         }
@@ -262,11 +262,11 @@ public class DBDDataFilter {
         if (anyConstraint != source.anyConstraint) {
             return false;
         }
-        if (constraints.size() != source.constraints.size()) {
+        if (constraints.size() != /*~~>*/source.constraints.size()) {
             return false;
         }
-        for (int i = 0; i < source.constraints.size(); i++) {
-            if (!constraints.get(i).equalFilters(source.constraints.get(i), compareOrders)) {
+        for (int i = 0; i < /*~~>*/source.constraints.size(); i++) {
+            if (!constraints.get(i).equalFilters(/*~~>*/source.constraints.get(i), compareOrders)) {
                 return false;
             }
         }
@@ -275,11 +275,11 @@ public class DBDDataFilter {
     }
 
     public boolean equalVisibility(DBDDataFilter dataFilter) {
-        if (dataFilter.constraints.size() != constraints.size()) {
+        if (/*~~>*/dataFilter.constraints.size() != constraints.size()) {
             return false;
         }
-        for (int i = 0; i < dataFilter.constraints.size(); i++) {
-            if (!constraints.get(i).equalVisibility(dataFilter.constraints.get(i))) {
+        for (int i = 0; i < /*~~>*/dataFilter.constraints.size(); i++) {
+            if (!constraints.get(i).equalVisibility(/*~~>*/dataFilter.constraints.get(i))) {
                 return false;
             }
 

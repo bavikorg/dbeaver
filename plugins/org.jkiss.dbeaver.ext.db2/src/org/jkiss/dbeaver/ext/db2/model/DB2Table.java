@@ -77,7 +77,7 @@ public class DB2Table extends DB2TableBase
     // Dependent of DB2 Version. OK because the folder is hidden in plugin.xml
     private DBSObjectCache<DB2Table, DB2TablePartition> partitionCache;
     private DBSObjectCache<DB2Table, DB2TablePeriod> periodCache;
-    private volatile List<DB2TableForeignKey> referenceCache = null;
+    private volatile /*~~>*/List<DB2TableForeignKey> referenceCache = null;
 
     private DB2TableStatus status;
     private DB2TableType type;
@@ -188,7 +188,7 @@ public class DB2Table extends DB2TableBase
         getContainer().getConstraintCache().clearObjectCache(this);
         getContainer().getAssociationCache().clearObjectCache(this);
         getContainer().getReferenceCache().clearObjectCache(this);
-        this.referenceCache = null;
+        /*~~>*/this.referenceCache = null;
 
         super.refreshObject(monitor);
 
@@ -219,7 +219,7 @@ public class DB2Table extends DB2TableBase
 
     @Nullable
     @Association
-    public List<DB2Trigger> getTriggers(@NotNull DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<DB2Trigger> getTriggers(@NotNull DBRProgressMonitor monitor) throws DBException
     {
         return tableTriggerCache.getAllObjects(monitor, this);
     }
@@ -273,7 +273,7 @@ public class DB2Table extends DB2TableBase
 
     @Override
     @Association
-    public List<DB2TableForeignKey> getReferences(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<DB2TableForeignKey> getReferences(@NotNull DBRProgressMonitor monitor) throws DBException {
         if (referenceCache != null) {
             return new ArrayList<>(referenceCache);
         }
@@ -286,7 +286,7 @@ public class DB2Table extends DB2TableBase
             dbStat.setString(1, this.getSchema().getName());
             dbStat.setString(2, this.getName());
             try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                List<DB2TableForeignKey> result = new ArrayList<>();
+                /*~~>*/List<DB2TableForeignKey> result = new ArrayList<>();
                 while (dbResult.nextRow()) {
                     String ownerSchemaName = JDBCUtils.safeGetStringTrimmed(dbResult, "TABSCHEMA");
                     String ownerTableName = JDBCUtils.safeGetString(dbResult, "TABNAME");

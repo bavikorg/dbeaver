@@ -43,7 +43,7 @@ public class DataTransferAttributeTransformerDescriptor extends AbstractDescript
     @NotNull
     private final DBPImage icon;
     private final ObjectType implType;
-    private final List<DBPPropertyDescriptor> properties = new ArrayList<>();
+    private final /*~~>*/List<DBPPropertyDescriptor> properties = new ArrayList<>();
 
     public DataTransferAttributeTransformerDescriptor(IConfigurationElement config) {
         super(config);
@@ -80,7 +80,7 @@ public class DataTransferAttributeTransformerDescriptor extends AbstractDescript
     }
 
     @NotNull
-    public List<DBPPropertyDescriptor> getProperties() {
+    public /*~~>*/List<DBPPropertyDescriptor> getProperties() {
         return properties;
     }
 

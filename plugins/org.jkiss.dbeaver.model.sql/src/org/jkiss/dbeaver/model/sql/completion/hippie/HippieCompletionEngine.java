@@ -153,7 +153,7 @@ public final class HippieCompletionEngine {
      * @return a {@link List} of possible completions (as {@link String}s),
      * excluding the common prefix
      */
-    public List<String> getCompletionsForward(IDocument document, CharSequence prefix,
+    public /*~~>*/List<String> getCompletionsForward(IDocument document, CharSequence prefix,
                                               int firstPosition, boolean currentWordLast) {
         ArrayList<String> res = new ArrayList<>();
         for (Iterator<String> it = getForwardIterator(document, prefix, firstPosition, currentWordLast); it.hasNext(); ) {
@@ -174,7 +174,7 @@ public final class HippieCompletionEngine {
      * from the caret position to the beginning of the document.
      * The empty suggestion is not included in the results.
      */
-    public List<String> getCompletionsBackwards(IDocument document, CharSequence prefix, int firstPosition) {
+    public /*~~>*/List<String> getCompletionsBackwards(IDocument document, CharSequence prefix, int firstPosition) {
         ArrayList<String> res = new ArrayList<>();
         for (Iterator<String> it = getBackwardIterator(document, prefix, firstPosition); it.hasNext(); ) {
             res.add(it.next());
@@ -214,7 +214,7 @@ public final class HippieCompletionEngine {
      * @param suggestions a list of suggestions ({@link String}).
      * @return a list of unique completion suggestions.
      */
-    public List<String> makeUnique(List<String> suggestions) {
+    public /*~~>*/List<String> makeUnique(/*~~>*/List<String> suggestions) {
         HashSet<String> seenAlready = new HashSet<>();
         ArrayList<String> uniqueSuggestions = new ArrayList<>();
 
@@ -277,7 +277,7 @@ public final class HippieCompletionEngine {
      * the other documents (in the same sequence the documents are available).
      * @since 3.6
      */
-    public Iterator<String> getMultipleDocumentsIterator(IDocument document, List<IDocument> otherDocuments, CharSequence prefix, int firstPosition) {
+    public Iterator<String> getMultipleDocumentsIterator(IDocument document, /*~~>*/List<IDocument> otherDocuments, CharSequence prefix, int firstPosition) {
         return new MultipleDocumentsIterator(document, otherDocuments, prefix, firstPosition);
     }
 
@@ -303,7 +303,7 @@ public final class HippieCompletionEngine {
         /**
          * These are the suggestions which we already loaded.
          */
-        private final List<String> fSuggestions;
+        private final /*~~>*/List<String> fSuggestions;
 
         /**
          * This marks the current suggestion to be returned
@@ -318,7 +318,7 @@ public final class HippieCompletionEngine {
         /**
          * The list of IDocuments that we should search
          */
-        private final List<IDocument> fOtherDocuments;
+        private final /*~~>*/List<IDocument> fOtherDocuments;
 
         /**
          * The document that's currently opened (that's the 1st we should look and we should 1st
@@ -346,11 +346,11 @@ public final class HippieCompletionEngine {
          */
         private Iterator<String> fCompletionsBackwardIterator;
 
-        private MultipleDocumentsIterator(IDocument openDocument, List<IDocument> otherDocuments,
+        private MultipleDocumentsIterator(IDocument openDocument, /*~~>*/List<IDocument> otherDocuments,
                                           CharSequence prefix, int selectionOffset) {
             this.fPrefix = prefix;
-            this.fSuggestions = new ArrayList<>();
-            this.fOtherDocuments = otherDocuments;
+            /*~~>*/this.fSuggestions = new ArrayList<>();
+            /*~~>*/this.fOtherDocuments = otherDocuments;
             this.fSelectionOffset = selectionOffset;
             this.fOpenDocument = openDocument;
             calculateNext();
@@ -382,9 +382,9 @@ public final class HippieCompletionEngine {
             }
 
 
-            while (fCurrLocation < this.fOtherDocuments.size()) {
+            while (fCurrLocation < /*~~>*/this.fOtherDocuments.size()) {
                 fCompletionsForwardIterator = getForwardIterator(
-                    (this.fOtherDocuments.get(fCurrLocation)), fPrefix, 0, false);
+                    (/*~~>*/this.fOtherDocuments.get(fCurrLocation)), fPrefix, 0, false);
                 fCurrLocation++;
                 if (checkNext()) {
                     return;

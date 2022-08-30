@@ -107,7 +107,7 @@ public class DatabaseObjectsSelectorPanel extends Composite {
         return project;
     }
 
-    public void setSelection(List<DBNNode> nodes) {
+    public void setSelection(/*~~>*/List<DBNNode> nodes) {
 //        for (DBNNode node : nodes) {
 //            dataSourceTree.getViewer().reveal(node);
 //        }
@@ -146,9 +146,9 @@ public class DatabaseObjectsSelectorPanel extends Composite {
         return false;
     }
 
-    public List<DBNNode> getCheckedNodes() {
+    public /*~~>*/List<DBNNode> getCheckedNodes() {
         Object[] checkedElements = dataSourceTree.getCheckboxViewer().getCheckedElements();
-        List<DBNNode> result = new ArrayList<>(checkedElements.length);
+        /*~~>*/List<DBNNode> result = new ArrayList<>(checkedElements.length);
         for (Object element : checkedElements) {
             if (element instanceof DBNNode) {
                 result.add((DBNNode) element);

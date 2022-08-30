@@ -283,7 +283,7 @@ public class ObjectPropertyTester extends PropertyTester
         }
 
         // Check whether only single object type can be created or multiple ones
-        List<IContributionItem> createItems = NavigatorHandlerObjectCreateNew.fillCreateMenuItems(null, node);
+        /*~~>*/List<IContributionItem> createItems = NavigatorHandlerObjectCreateNew.fillCreateMenuItems(null, node);
 
         if (onlySingle) {
             return createItems.size() == 1;

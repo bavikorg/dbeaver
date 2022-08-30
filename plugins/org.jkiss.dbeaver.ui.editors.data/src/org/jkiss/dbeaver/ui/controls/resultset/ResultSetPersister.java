@@ -101,15 +101,15 @@ class ResultSetPersister {
     @NotNull
     private final DBDAttributeBinding[] columns;
 
-    private final List<ResultSetRow> deletedRows = new ArrayList<>();
-    private final List<ResultSetRow> addedRows = new ArrayList<>();
-    private final List<ResultSetRow> changedRows = new ArrayList<>();
+    private final /*~~>*/List<ResultSetRow> deletedRows = new ArrayList<>();
+    private final /*~~>*/List<ResultSetRow> addedRows = new ArrayList<>();
+    private final /*~~>*/List<ResultSetRow> changedRows = new ArrayList<>();
     private final Map<ResultSetRow, DBDRowIdentifier> rowIdentifiers = new LinkedHashMap<>();
-    private final List<DataStatementInfo> insertStatements = new ArrayList<>();
-    private final List<DataStatementInfo> deleteStatements = new ArrayList<>();
-    private final List<DataStatementInfo> updateStatements = new ArrayList<>();
+    private final /*~~>*/List<DataStatementInfo> insertStatements = new ArrayList<>();
+    private final /*~~>*/List<DataStatementInfo> deleteStatements = new ArrayList<>();
+    private final /*~~>*/List<DataStatementInfo> updateStatements = new ArrayList<>();
 
-    private final List<DBEPersistAction> script = new ArrayList<>();
+    private final /*~~>*/List<DBEPersistAction> script = new ArrayList<>();
 
     ResultSetPersister(@NotNull ResultSetViewer viewer) {
         this.viewer = viewer;
@@ -131,7 +131,7 @@ class ResultSetPersister {
         return !changedRows.isEmpty();
     }
 
-    public List<DBDAttributeBinding> getUpdatedAttributes() {
+    public /*~~>*/List<DBDAttributeBinding> getUpdatedAttributes() {
         Set<DBDAttributeBinding> attrs = new LinkedHashSet<>();
         for (ResultSetRow row : changedRows) {
             attrs.addAll(row.changes.keySet());
@@ -188,7 +188,7 @@ class ResultSetPersister {
         if (!viewer.getModel().isSingleSource()) {
             return false;
         }
-        List<ResultSetRow> refreshRows = new ArrayList<>();
+        /*~~>*/List<ResultSetRow> refreshRows = new ArrayList<>();
         refreshRows.addAll(addedRows);
         refreshRows.addAll(changedRows);
         if (refreshRows.isEmpty()) {
@@ -238,7 +238,7 @@ class ResultSetPersister {
         return report;
     }
 
-    public List<DBEPersistAction> getScript() {
+    public /*~~>*/List<DBEPersistAction> getScript() {
         return script;
     }
 
@@ -284,9 +284,9 @@ class ResultSetPersister {
 
         for (ResultSetRow row : deletedRows) {
             DataStatementInfo statement = new DataStatementInfo(DBSManipulationType.DELETE, row, rowIdentifier.getEntity());
-            List<DBDAttributeBinding> keyColumns = rowIdentifier.getAttributes();
+            /*~~>*/List<DBDAttributeBinding> keyColumns = rowIdentifier.getAttributes();
             for (DBDAttributeBinding binding : keyColumns) {
-                statement.keyAttributes.add(
+                /*~~>*/statement.keyAttributes.add(
                     new DBDAttributeValue(
                         binding,
                         model.getCellValue(binding, row)));
@@ -296,7 +296,7 @@ class ResultSetPersister {
 
         if (supportsRI && deleteCascade) {
             try {
-                List<DataStatementInfo> cascadeStats = prepareDeleteCascade(monitor, rowIdentifier, deleteStatements, deepCascade);
+                /*~~>*/List<DataStatementInfo> cascadeStats = prepareDeleteCascade(monitor, rowIdentifier, deleteStatements, deepCascade);
                 deleteStatements.clear();
                 deleteStatements.addAll(cascadeStats);
             } catch (DBException e) {
@@ -305,8 +305,8 @@ class ResultSetPersister {
         }
     }
 
-    private List<DataStatementInfo> prepareDeleteCascade(@NotNull DBRProgressMonitor monitor, DBDRowIdentifier rowIdentifier, List<DataStatementInfo> statements, boolean deepCascade) throws DBException {
-        List<DataStatementInfo> result = new ArrayList<>();
+    private /*~~>*/List<DataStatementInfo> prepareDeleteCascade(@NotNull DBRProgressMonitor monitor, DBDRowIdentifier rowIdentifier, /*~~>*/List<DataStatementInfo> statements, boolean deepCascade) throws DBException {
+        /*~~>*/List<DataStatementInfo> result = new ArrayList<>();
 
         DBSEntity entity = rowIdentifier.getEntity();
         Collection<? extends DBSEntityAssociation> references = entity.getReferences(monitor);
@@ -314,7 +314,7 @@ class ResultSetPersister {
             // Now iterate over all statements and make cascade delete for each
             for (DataStatementInfo stat : statements) {
 
-                List<DataStatementInfo> cascadeStats = new ArrayList<>();
+                /*~~>*/List<DataStatementInfo> cascadeStats = new ArrayList<>();
 
                 for (DBSEntityAssociation ref : references) {
                     if (ref instanceof DBSTableForeignKey && ((DBSTableForeignKey) ref).getDeleteRule() == DBSForeignKeyModifyRule.CASCADE) {
@@ -323,15 +323,15 @@ class ResultSetPersister {
                     }
                     DBSEntity refEntity = ref.getParentObject();
                     if (ref instanceof DBSEntityReferrer) {
-                        List<? extends DBSEntityAttributeRef> attrRefs = ((DBSEntityReferrer) ref).getAttributeReferences(monitor);
+                        /*~~>*/List<? extends DBSEntityAttributeRef> attrRefs = ((DBSEntityReferrer) ref).getAttributeReferences(monitor);
                         if (attrRefs != null) {
 
-                            List<DBDAttributeValue> refKeyValues = new ArrayList<>();
+                            /*~~>*/List<DBDAttributeValue> refKeyValues = new ArrayList<>();
 
                             for (DBSEntityAttributeRef attrRef : attrRefs) {
                                 DBSEntityAttribute attribute = attrRef.getAttribute();
                                 if (attribute != null) {
-                                    DBDAttributeValue value = DBDAttributeValue.getAttributeValue(stat.keyAttributes, attribute);
+                                    DBDAttributeValue value = DBDAttributeValue.getAttributeValue(/*~~>*/stat.keyAttributes, attribute);
                                     if (value == null) {
                                         log.debug("Can't find attribute value for '" + attribute.getName() + "' recursive delete");
                                     } else {
@@ -343,7 +343,7 @@ class ResultSetPersister {
                             if (refKeyValues.size() > 0) {
                                 // We have a key. Let's delete
                                 DataStatementInfo cascadeStat = new DataStatementInfo(DBSManipulationType.DELETE, stat.row, refEntity);
-                                cascadeStat.keyAttributes.addAll(refKeyValues);
+                                /*~~>*/cascadeStat.keyAttributes.addAll(refKeyValues);
                                 cascadeStats.add(cascadeStat);
 /*
                                 System.out.println("DELETE! " + entity.getName());
@@ -373,12 +373,12 @@ class ResultSetPersister {
             DataStatementInfo statement = new DataStatementInfo(DBSManipulationType.INSERT, row, table);
             DBDAttributeBinding docAttr = model.getDocumentAttribute();
             if (docAttr != null) {
-                statement.keyAttributes.add(new DBDAttributeValue(docAttr, model.getCellValue(docAttr, row)));
+                /*~~>*/statement.keyAttributes.add(new DBDAttributeValue(docAttr, model.getCellValue(docAttr, row)));
             } else {
                 for (int i = 0; i < columns.length; i++) {
                     DBDAttributeBinding column = columns[i];
                     if (!isVirtualColumn(column)) {
-                        statement.keyAttributes.add(new DBDAttributeValue(column, model.getCellValue(column, row)));
+                        /*~~>*/statement.keyAttributes.add(new DBDAttributeValue(column, model.getCellValue(column, row)));
                     }
                 }
             }
@@ -409,7 +409,7 @@ class ResultSetPersister {
                 // Updated columns
                 for (DBDAttributeBinding changedAttr : row.changes.keySet()) {
                     if (!isVirtualColumn(changedAttr)) {
-                        statement.updateAttributes.add(
+                        /*~~>*/statement.updateAttributes.add(
                             new DBDAttributeValue(
                                 changedAttr,
                                 model.getCellValue(changedAttr, row)));
@@ -417,7 +417,7 @@ class ResultSetPersister {
                 }
                 if (rowIdentifier != null) {
                     // Key columns
-                    List<DBDAttributeBinding> idColumns = rowIdentifier.getAttributes();
+                    /*~~>*/List<DBDAttributeBinding> idColumns = rowIdentifier.getAttributes();
                     for (DBDAttributeBinding metaColumn : idColumns) {
                         Object keyValue = model.getCellValue(metaColumn, row);
                         // Try to find old key oldValue
@@ -432,7 +432,7 @@ class ResultSetPersister {
                                 }
                             }
                         }
-                        statement.keyAttributes.add(new DBDAttributeValue(metaColumn, keyValue));
+                        /*~~>*/statement.keyAttributes.add(new DBDAttributeValue(metaColumn, keyValue));
                     }
                 }
                 updateStatements.add(statement);
@@ -571,7 +571,7 @@ class ResultSetPersister {
             }
         }
 
-        List<DBDAttributeBinding> updatedAttributes = this.getUpdatedAttributes();
+        /*~~>*/List<DBDAttributeBinding> updatedAttributes = this.getUpdatedAttributes();
         if (this.hasDeletes()) {
             DBDRowIdentifier defIdentifier = model.getDefaultRowIdentifier();
             if (defIdentifier == null) {
@@ -680,7 +680,7 @@ class ResultSetPersister {
         private Throwable executeStatements(DBRProgressMonitor monitor) {
             monitor.beginTask(
                 ResultSetMessages.controls_resultset_viewer_monitor_aply_changes,
-                ResultSetPersister.this.deleteStatements.size() + ResultSetPersister.this.insertStatements.size() + ResultSetPersister.this.updateStatements.size() + 1);
+                /*~~>*/ResultSetPersister.this.deleteStatements.size() + /*~~>*/ResultSetPersister.this.insertStatements.size() + /*~~>*/ResultSetPersister.this.updateStatements.size() + 1);
 
             try (DBCSession session = getExecutionContext().openSession(monitor, DBCExecutionPurpose.USER, ResultSetMessages.controls_resultset_viewer_job_update)) {
 
@@ -737,15 +737,15 @@ class ResultSetPersister {
                 }
             }
             try {
-                for (DataStatementInfo statement : ResultSetPersister.this.deleteStatements) {
+                for (DataStatementInfo statement : /*~~>*/ResultSetPersister.this.deleteStatements) {
                     if (monitor.isCanceled()) break;
                     try {
                         DBSDataManipulator dataContainer = getDataManipulator(statement.entity);
                         try (DBSDataManipulator.ExecuteBatch batch = dataContainer.deleteData(
                             session,
-                            DBDAttributeValue.getAttributes(statement.keyAttributes),
+                            DBDAttributeValue.getAttributes(/*~~>*/statement.keyAttributes),
                             new ExecutionSource(dataContainer))) {
-                            batch.add(DBDAttributeValue.getValues(statement.keyAttributes));
+                            batch.add(DBDAttributeValue.getValues(/*~~>*/statement.keyAttributes));
                             if (generateScript) {
                                 batch.generatePersistActions(session, script, options);
                             } else {
@@ -763,17 +763,17 @@ class ResultSetPersister {
                     }
                     monitor.worked(1);
                 }
-                for (DataStatementInfo statement : ResultSetPersister.this.insertStatements) {
+                for (DataStatementInfo statement : /*~~>*/ResultSetPersister.this.insertStatements) {
                     if (monitor.isCanceled()) break;
                     try {
                         DBSDataManipulator dataContainer = getDataManipulator(statement.entity);
                         try (DBSDataManipulator.ExecuteBatch batch = dataContainer.insertData(
                             session,
-                            DBDAttributeValue.getAttributes(statement.keyAttributes),
+                            DBDAttributeValue.getAttributes(/*~~>*/statement.keyAttributes),
                             statement.needKeys() ? new KeyDataReceiver(statement) : null,
                             new ExecutionSource(dataContainer),
                             options)) {
-                            batch.add(DBDAttributeValue.getValues(statement.keyAttributes));
+                            batch.add(DBDAttributeValue.getValues(/*~~>*/statement.keyAttributes));
                             if (generateScript) {
                                 batch.generatePersistActions(session, script, options);
                             } else {
@@ -791,23 +791,23 @@ class ResultSetPersister {
                     }
                     monitor.worked(1);
                 }
-                for (DataStatementInfo statement : ResultSetPersister.this.updateStatements) {
+                for (DataStatementInfo statement : /*~~>*/ResultSetPersister.this.updateStatements) {
                     if (monitor.isCanceled()) break;
                     try {
                         DBSDataManipulator dataContainer = getDataManipulator(statement.entity);
                         try (DBSDataManipulator.ExecuteBatch batch = dataContainer.updateData(
                             session,
-                            DBDAttributeValue.getAttributes(statement.updateAttributes),
-                            DBDAttributeValue.getAttributes(statement.keyAttributes),
+                            DBDAttributeValue.getAttributes(/*~~>*/statement.updateAttributes),
+                            DBDAttributeValue.getAttributes(/*~~>*/statement.keyAttributes),
                             null,
                             new ExecutionSource(dataContainer))) {
                             // Make single array of values
-                            Object[] attributes = new Object[statement.updateAttributes.size() + statement.keyAttributes.size()];
-                            for (int i = 0; i < statement.updateAttributes.size(); i++) {
-                                attributes[i] = statement.updateAttributes.get(i).getValue();
+                            Object[] attributes = new Object[/*~~>*/statement.updateAttributes.size() + /*~~>*/statement.keyAttributes.size()];
+                            for (int i = 0; i < /*~~>*/statement.updateAttributes.size(); i++) {
+                                attributes[i] = /*~~>*/statement.updateAttributes.get(i).getValue();
                             }
-                            for (int i = 0; i < statement.keyAttributes.size(); i++) {
-                                attributes[statement.updateAttributes.size() + i] = statement.keyAttributes.get(i).getValue();
+                            for (int i = 0; i < /*~~>*/statement.keyAttributes.size(); i++) {
+                                attributes[/*~~>*/statement.updateAttributes.size() + i] = /*~~>*/statement.keyAttributes.get(i).getValue();
                             }
                             // Execute
                             batch.add(attributes);
@@ -883,7 +883,7 @@ class ResultSetPersister {
         public void fetchRow(DBCSession session, DBCResultSet resultSet)
             throws DBCException {
             DBCResultSetMetaData rsMeta = resultSet.getMeta();
-            List<DBCAttributeMetaData> keyAttributes = rsMeta.getAttributes();
+            /*~~>*/List<DBCAttributeMetaData> keyAttributes = rsMeta.getAttributes();
             for (int i = 0; i < keyAttributes.size(); i++) {
                 DBCAttributeMetaData keyAttribute = keyAttributes.get(i);
                 DBDValueHandler valueHandler = DBUtils.findValueHandler(session, keyAttribute);
@@ -947,8 +947,8 @@ class ResultSetPersister {
         final ResultSetRow row;
         @NotNull
         final DBSEntity entity;
-        final List<DBDAttributeValue> keyAttributes = new ArrayList<>();
-        final List<DBDAttributeValue> updateAttributes = new ArrayList<>();
+        final /*~~>*/List<DBDAttributeValue> keyAttributes = new ArrayList<>();
+        final /*~~>*/List<DBDAttributeValue> updateAttributes = new ArrayList<>();
         boolean executed = false;
         final Map<Integer, Object> updatedCells = new HashMap<>();
 
@@ -986,7 +986,7 @@ class ResultSetPersister {
             throws DBCException {
             DBCResultSetMetaData rsMeta = resultSet.getMeta();
             // Compare attributes with existing model attributes
-            List<DBCAttributeMetaData> attributes = rsMeta.getAttributes();
+            /*~~>*/List<DBCAttributeMetaData> attributes = rsMeta.getAttributes();
             if (attributes.size() != curAttributes.length) {
                 log.debug("Wrong meta attributes count (" + attributes.size() + " <> " + curAttributes.length + ") - can't refresh");
                 return;
@@ -1023,17 +1023,17 @@ class ResultSetPersister {
     private class RowRefreshJob extends ResultSetJobAbstract {
 
         private final DBDRowIdentifier rowIdentifier;
-        private final List<ResultSetRow> rows;
+        private final /*~~>*/List<ResultSetRow> rows;
 
         RowRefreshJob(
             @NotNull DBCExecutionContext executionContext,
             @NotNull ResultSetExecutionSource executionSource,
             @NotNull DBDRowIdentifier rowIdentifier,
-            @NotNull List<ResultSetRow> rows
+            @NotNull /*~~>*/List<ResultSetRow> rows
         ) {
             super("Refresh rows", executionSource, executionContext);
             this.rowIdentifier = rowIdentifier;
-            this.rows = new ArrayList<>(rows);
+            /*~~>*/this.rows = new ArrayList<>(rows);
         }
 
         @Override
@@ -1048,14 +1048,14 @@ class ResultSetPersister {
 
                 final DBDAttributeBinding[] curAttributes = viewer.getModel().getAttributes();
                 final AbstractExecutionSource executionSource = new AbstractExecutionSource(dataContainer, getExecutionContext(), this);
-                List<DBDAttributeBinding> idAttributes = rowIdentifier.getAttributes();
+                /*~~>*/List<DBDAttributeBinding> idAttributes = rowIdentifier.getAttributes();
                 if (idAttributes.isEmpty()) {
                     return Status.OK_STATUS;
                 }
                 try (DBCSession session = getExecutionContext().openSession(monitor, DBCExecutionPurpose.UTIL, "Refresh row(s) after insert/update")) {
                     for (int i = 0; i < rows.size(); i++) {
                         ResultSetRow row = rows.get(i);
-                        List<DBDAttributeConstraint> constraints = new ArrayList<>();
+                        /*~~>*/List<DBDAttributeConstraint> constraints = new ArrayList<>();
                         boolean hasKey = true;
                         for (DBDAttributeBinding keyAttr : idAttributes) {
                             final Object keyValue = viewer.getModel().getCellValue(keyAttr, row);

@@ -48,8 +48,8 @@ public abstract class OracleTaskHandler extends AbstractHandler implements IElem
 {
     private static final Log log = Log.getLog(OracleTaskHandler.class);
 
-    protected List<OracleSourceObject> getOracleSourceObjects(UIElement element) {
-        List<OracleSourceObject> objects = new ArrayList<>();
+    protected /*~~>*/List<OracleSourceObject> getOracleSourceObjects(UIElement element) {
+        /*~~>*/List<OracleSourceObject> objects = new ArrayList<>();
         IWorkbenchPartSite partSite = UIUtils.getWorkbenchPartSite(element.getServiceLocator());
         if (partSite != null) {
             final ISelectionProvider selectionProvider = partSite.getSelectionProvider();

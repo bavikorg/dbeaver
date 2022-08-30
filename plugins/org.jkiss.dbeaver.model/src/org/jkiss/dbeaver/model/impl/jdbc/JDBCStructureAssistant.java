@@ -63,9 +63,9 @@ public abstract class JDBCStructureAssistant<CONTEXT extends JDBCExecutionContex
 
     @NotNull
     @Override
-    public List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull CONTEXT executionContext,
+    public /*~~>*/List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull CONTEXT executionContext,
                                                       @NotNull ObjectsSearchParams params) throws DBException {
-        List<DBSObjectReference> references = new ArrayList<>();
+        /*~~>*/List<DBSObjectReference> references = new ArrayList<>();
         try (JDBCSession session = executionContext.openSession(monitor, DBCExecutionPurpose.META, ModelMessages.model_jdbc_find_objects_by_name)) {
             for (DBSObjectType type : params.getObjectTypes()) {
                 findObjectsByMask(executionContext, session, type, params, references);
@@ -80,5 +80,5 @@ public abstract class JDBCStructureAssistant<CONTEXT extends JDBCExecutionContex
     }
 
     protected abstract void findObjectsByMask(@NotNull CONTEXT executionContext, @NotNull JDBCSession session, @NotNull DBSObjectType objectType,
-                                  @NotNull ObjectsSearchParams params, @NotNull List<DBSObjectReference> references) throws DBException, SQLException;
+                                  @NotNull ObjectsSearchParams params, @NotNull /*~~>*/List<DBSObjectReference> references) throws DBException, SQLException;
 }

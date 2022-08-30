@@ -34,7 +34,7 @@ public class PostgreTableConstraint extends PostgreTableConstraintBase {
     private static final Log log = Log.getLog(PostgreTableConstraint.class);
 
     private String source;
-    private List<PostgreTableConstraintColumn> columns = new ArrayList<>();
+    private /*~~>*/List<PostgreTableConstraintColumn> columns = new ArrayList<>();
 
     public PostgreTableConstraint(PostgreTableBase table, String name, DBSEntityConstraintType constraintType, JDBCResultSet resultSet) throws DBException {
         super(table, name, constraintType, resultSet);
@@ -53,16 +53,16 @@ public class PostgreTableConstraint extends PostgreTableConstraintBase {
     public PostgreTableConstraint(DBRProgressMonitor monitor, PostgreTableReal owner, PostgreTableConstraint srcConstr) throws DBException {
         super(monitor, owner, srcConstr);
         this.source = srcConstr.source;
-        for (PostgreTableConstraintColumn srcCol : srcConstr.columns) {
+        for (PostgreTableConstraintColumn srcCol : /*~~>*/srcConstr.columns) {
             PostgreTableColumn ownAttr = owner.getAttribute(monitor, srcCol.getAttribute().getName());
             if (ownAttr != null) {
-                this.columns.add(new PostgreTableConstraintColumn(this, ownAttr, this.columns.size()));
+                /*~~>*/this.columns.add(new PostgreTableConstraintColumn(this, ownAttr, /*~~>*/this.columns.size()));
             }
         }
     }
 
     @Override
-    void cacheAttributes(DBRProgressMonitor monitor, List<? extends PostgreTableConstraintColumn> children, boolean secondPass) {
+    void cacheAttributes(DBRProgressMonitor monitor, /*~~>*/List<? extends PostgreTableConstraintColumn> children, boolean secondPass) {
         if (secondPass) {
             return;
         }
@@ -71,17 +71,17 @@ public class PostgreTableConstraint extends PostgreTableConstraintBase {
     }
 
     @Override
-    public List<PostgreTableConstraintColumn> getAttributeReferences(DBRProgressMonitor monitor)
+    public /*~~>*/List<PostgreTableConstraintColumn> getAttributeReferences(DBRProgressMonitor monitor)
     {
         return columns;
     }
 
-    public List<PostgreTableConstraintColumn> getColumns() {
+    public /*~~>*/List<PostgreTableConstraintColumn> getColumns() {
         return columns;
     }
 
     public void addColumn(PostgreTableConstraintColumn column) {
-        this.columns.add(column);
+        /*~~>*/this.columns.add(column);
     }
 
     @Property(viewable = true, editable = true, order = 10)

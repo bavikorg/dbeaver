@@ -36,7 +36,7 @@ public class OracleToolTableTriggerEnable extends SQLToolExecuteHandler<OracleTa
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, OracleToolTableTriggerSettings settings, List<DBEPersistAction> queries, OracleTableTrigger object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, OracleToolTableTriggerSettings settings, /*~~>*/List<DBEPersistAction> queries, OracleTableTrigger object) throws DBCException {
         String sql = "ALTER TRIGGER " + object.getFullyQualifiedName(DBPEvaluationContext.DDL) + " ENABLE";
         queries.add(new SQLDatabasePersistAction(sql));
     }

@@ -44,13 +44,13 @@ final class MessageBoxModern extends Dialog {
     @Nullable
     private String message;
     @Nullable
-    private List<String> labels;
+    private /*~~>*/List<String> labels;
     private int defaultAnswerIdx;
     @Nullable
     private DBPImage primaryImage;
 
     @Nullable
-    private List<Button> buttons;
+    private /*~~>*/List<Button> buttons;
 
     MessageBoxModern(@Nullable Shell parentShell) {
         super(parentShell);
@@ -68,8 +68,8 @@ final class MessageBoxModern extends Dialog {
         this.primaryImage = primaryImage;
     }
 
-    void setLabels(@NotNull List<String> labels) {
-        this.labels = labels;
+    void setLabels(@NotNull /*~~>*/List<String> labels) {
+        /*~~>*/this.labels = labels;
     }
 
     void setDefaultAnswerIdx(int defaultAnswerIdx) {

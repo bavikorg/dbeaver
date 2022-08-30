@@ -40,33 +40,33 @@ public class SQLToolExecuteSettings<OBJECT_TYPE extends DBSObject> implements DB
 
     private static final Log log = Log.getLog(SQLToolExecuteSettings.class);
 
-    private List<OBJECT_TYPE> objectList = new ArrayList<>();
-    private final List<Throwable> warnings = new ArrayList<>();
+    private /*~~>*/List<OBJECT_TYPE> objectList = new ArrayList<>();
+    private final /*~~>*/List<Throwable> warnings = new ArrayList<>();
 
     protected SQLToolExecuteSettings() {
     }
 
-    public List<OBJECT_TYPE> getObjectList() {
+    public /*~~>*/List<OBJECT_TYPE> getObjectList() {
         return objectList;
     }
 
-    public void setObjectList(List<OBJECT_TYPE> objectList) {
-        this.objectList = objectList;
+    public void setObjectList(/*~~>*/List<OBJECT_TYPE> objectList) {
+        /*~~>*/this.objectList = objectList;
     }
 
-    public List<Throwable> getWarnings() {
+    public /*~~>*/List<Throwable> getWarnings() {
         return warnings;
     }
 
         @Override
-    public void loadSettingsFromInput(List<OBJECT_TYPE> inputObjects) {
+    public void loadSettingsFromInput(/*~~>*/List<OBJECT_TYPE> inputObjects) {
         objectList.addAll(inputObjects);
     }
 
     public void loadConfiguration(DBRRunnableContext runnableContext, Map<String, Object> config) {
         try {
             runnableContext.run(true, true, monitor -> {
-                List<OBJECT_TYPE> objList = new ArrayList<>();
+                /*~~>*/List<OBJECT_TYPE> objList = new ArrayList<>();
                 for (Map<String, Object> objectConfig : JSONUtils.getObjectList(config, "objects")) {
                     String projectName = CommonUtils.toString(objectConfig.get("project"));
                     DBPProject project = CommonUtils.isEmpty(projectName) ? null : DBWorkbench.getPlatform().getWorkspace().getProject(projectName);
@@ -95,7 +95,7 @@ public class SQLToolExecuteSettings<OBJECT_TYPE extends DBSObject> implements DB
     }
 
     public void saveConfiguration(Map<String, Object> config) {
-        List<Map<String, Object>> objectsConfig = new ArrayList<>();
+        /*~~>*/List<Map<String, Object>> objectsConfig = new ArrayList<>();
         config.put("objects", objectsConfig);
         for (OBJECT_TYPE obj : objectList) {
             Map<String, Object> objectInfo = new LinkedHashMap<>();

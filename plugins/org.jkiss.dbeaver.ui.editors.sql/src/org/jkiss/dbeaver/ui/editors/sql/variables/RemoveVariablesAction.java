@@ -29,12 +29,12 @@ public class RemoveVariablesAction extends Action {
     static protected final Log log = Log.getLog(RemoveVariablesAction.class);
 
     private final SQLEditor editor;
-    private final List<String> varNames;
+    private final /*~~>*/List<String> varNames;
 
-    public RemoveVariablesAction(SQLEditor editor, List<String> varNames) {
+    public RemoveVariablesAction(SQLEditor editor, /*~~>*/List<String> varNames) {
         super(SQLEditorMessages.action_result_tabs_assign_variable);
         this.editor = editor;
-        this.varNames = varNames;
+        /*~~>*/this.varNames = varNames;
     }
 
     @Override

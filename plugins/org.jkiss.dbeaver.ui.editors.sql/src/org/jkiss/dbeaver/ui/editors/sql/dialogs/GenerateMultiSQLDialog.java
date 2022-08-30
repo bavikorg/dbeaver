@@ -103,8 +103,8 @@ public abstract class GenerateMultiSQLDialog<T extends DBSObject> extends Genera
 
     protected String[] generateSQLScript()
     {
-        List<T> checkedObjects = getCheckedObjects();
-        List<String> lines = new ArrayList<>();
+        /*~~>*/List<T> checkedObjects = getCheckedObjects();
+        /*~~>*/List<String> lines = new ArrayList<>();
         for (T object : checkedObjects) {
             generateObjectCommand(lines, object);
         }
@@ -112,8 +112,8 @@ public abstract class GenerateMultiSQLDialog<T extends DBSObject> extends Genera
         return lines.toArray(new String[0]);
     }
 
-    public List<T> getCheckedObjects() {
-        List<T> checkedObjects = new ArrayList<>();
+    public /*~~>*/List<T> getCheckedObjects() {
+        /*~~>*/List<T> checkedObjects = new ArrayList<>();
         if (objectsTable != null) {
             for (TableItem item : objectsTable.getItems()) {
                 if (item.getChecked()) {
@@ -158,10 +158,10 @@ public abstract class GenerateMultiSQLDialog<T extends DBSObject> extends Genera
     protected void executeSQL() {
         final String jobName = getShell().getText();
         final SQLScriptProgressListener<T> scriptListener = getScriptListener();
-        final List<T> objects = getCheckedObjects();
-        final Map<T, List<String>> objectsSQL = new LinkedHashMap<>();
+        final /*~~>*/List<T> objects = getCheckedObjects();
+        final Map<T, /*~~>*/List<String>> objectsSQL = new LinkedHashMap<>();
         for (T object : objects) {
-            final List<String> lines = new ArrayList<>();
+            final /*~~>*/List<String> lines = new ArrayList<>();
             generateObjectCommand(lines, object);
             objectsSQL.put(object, lines);
         }
@@ -188,7 +188,7 @@ public abstract class GenerateMultiSQLDialog<T extends DBSObject> extends Genera
                         objectProcessingError = null;
                         UIUtils.asyncExec(() -> scriptListener.beginObjectProcessing(object, objectNumber));
                         try {
-                            final List<String> lines = objectsSQL.get(object);
+                            final /*~~>*/List<String> lines = objectsSQL.get(object);
                             for (String line : lines) {
                                 try (final DBCStatement statement = DBUtils.makeStatement(session, line, false)) {
                                     if (statement.executeStatement()) {
@@ -239,7 +239,7 @@ public abstract class GenerateMultiSQLDialog<T extends DBSObject> extends Genera
             @Override
             public void done(IJobChangeEvent event) {
                 if (needsRefreshOnFinish()) {
-                    List<T> objectToRefresh = new ArrayList<>(selectedObjects);
+                    /*~~>*/List<T> objectToRefresh = new ArrayList<>(selectedObjects);
                     UIUtils.asyncExec(() -> {
                         try {
                             UIUtils.runInProgressDialog(monitor -> {
@@ -274,7 +274,7 @@ public abstract class GenerateMultiSQLDialog<T extends DBSObject> extends Genera
         return false;
     }
 
-    protected abstract void generateObjectCommand(List<String> sql, T object);
+    protected abstract void generateObjectCommand(/*~~>*/List<String> sql, T object);
 
     private static <T extends DBSObject> DBCExecutionContext getContextFromObjects(@NotNull Collection<T> objects, boolean meta) {
         Iterator<T> iterator = objects.iterator();

@@ -71,10 +71,10 @@ public class WMIClass extends WMIContainer
     private WMIClass superClass;
     private WMIObject classObject;
     private String name;
-    private List<WMIClass> subClasses = null;
-    private List<WMIClassAttribute> attributes = null;
-    private List<WMIClassReference> referenceAttributes = null;
-    private List<WMIClassMethod> methods = null;
+    private /*~~>*/List<WMIClass> subClasses = null;
+    private /*~~>*/List<WMIClassAttribute> attributes = null;
+    private /*~~>*/List<WMIClassReference> referenceAttributes = null;
+    private /*~~>*/List<WMIClassMethod> methods = null;
 
     public WMIClass(WMINamespace parent, WMIClass superClass, WMIObject classObject)
     {
@@ -120,7 +120,7 @@ public class WMIClass extends WMIContainer
     }
 
     @Association
-    public List<WMIClass> getSubClasses()
+    public /*~~>*/List<WMIClass> getSubClasses()
     {
         return subClasses;
     }
@@ -209,7 +209,7 @@ public class WMIClass extends WMIContainer
     }
 
     @Override
-    public List<WMIClassAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<WMIClassAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException
     {
         if (attributes == null) {
             readAttributes(monitor);
@@ -221,7 +221,7 @@ public class WMIClass extends WMIContainer
     @Override
     public Collection<? extends DBSEntityConstraint> getConstraints(@NotNull DBRProgressMonitor monitor) throws DBException
     {
-        List<WMIClassConstraint> constraints = null;
+        /*~~>*/List<WMIClassConstraint> constraints = null;
         for (WMIClassAttribute attr : getAllAttributes(monitor)) {
             if (attr.isKey()) {
                 if (constraints == null) {
@@ -245,7 +245,7 @@ public class WMIClass extends WMIContainer
         if (superClass == null) {
             return getAttributes(monitor);
         } else {
-            List<WMIClassAttribute> allAttrs = new ArrayList<>();
+            /*~~>*/List<WMIClassAttribute> allAttrs = new ArrayList<>();
             for (WMIClass c = this; c != null; c = c.superClass) {
                 for (WMIClassAttribute attr : c.getAttributes(monitor)) {
                     boolean overridden = false;
@@ -309,7 +309,7 @@ public class WMIClass extends WMIContainer
     }
 
     @Association
-    public List<WMIClassMethod> getMethods(DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<WMIClassMethod> getMethods(DBRProgressMonitor monitor) throws DBException
     {
         if (methods == null) {
             readMethods(monitor);
@@ -345,14 +345,14 @@ public class WMIClass extends WMIContainer
     }
 
     @Override
-    public List<? extends DBSEntityAssociation> getAssociations(@NotNull DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<? extends DBSEntityAssociation> getAssociations(@NotNull DBRProgressMonitor monitor) throws DBException
     {
         // Read attributes and references
         getAttributes(monitor);
         if (superClass == null && CommonUtils.isEmpty(referenceAttributes)) {
             return null;
         }
-        List<DBSEntityAssociation> associations = new ArrayList<>();
+        /*~~>*/List<DBSEntityAssociation> associations = new ArrayList<>();
         if (superClass != null) {
             associations.add(new WMIClassInheritance(superClass, this));
         }
@@ -363,9 +363,9 @@ public class WMIClass extends WMIContainer
     }
 
     @Override
-    public List<? extends DBSEntityAssociation> getReferences(@NotNull DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<? extends DBSEntityAssociation> getReferences(@NotNull DBRProgressMonitor monitor) throws DBException
     {
-        List<DBSEntityAssociation> references = new ArrayList<>();
+        /*~~>*/List<DBSEntityAssociation> references = new ArrayList<>();
         if (subClasses != null) {
             for (WMIClass ss : subClasses) {
                 references.add(new WMIClassInheritance(this, ss));

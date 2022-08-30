@@ -65,7 +65,7 @@ public class SelectDatabaseDialog extends ObjectListDialog<DBNDatabaseNode>
     private volatile String currentInstanceName;
 
     private DatabaseObjectListControl<DBNDatabaseNode> instanceList;
-    private final List<DBNDatabaseNode> selectedInstances = new ArrayList<>();
+    private final /*~~>*/List<DBNDatabaseNode> selectedInstances = new ArrayList<>();
 
     public SelectDatabaseDialog(
         Shell parentShell,
@@ -116,7 +116,7 @@ public class SelectDatabaseDialog extends ObjectListDialog<DBNDatabaseNode>
 
     private void createInstanceSelector(Composite group, DBSObjectContainer instanceContainer) {
         ((GridLayout)group.getLayout()).numColumns++;
-        instanceList = createObjectSelector(group, true, "DatabaseInstanceSelector", selectedInstances, new DBRRunnableWithResult<List<DBNDatabaseNode>>() {
+        instanceList = createObjectSelector(group, true, "DatabaseInstanceSelector", selectedInstances, new DBRRunnableWithResult</*~~>*/List<DBNDatabaseNode>>() {
             @Override
             public void run(DBRProgressMonitor monitor) throws InvocationTargetException {
                 try {
@@ -157,7 +157,7 @@ public class SelectDatabaseDialog extends ObjectListDialog<DBNDatabaseNode>
         closeOnFocusLost(instanceList);
     }
 
-    protected List<DBNDatabaseNode> getObjects(DBRProgressMonitor monitor) throws DBException {
+    protected /*~~>*/List<DBNDatabaseNode> getObjects(DBRProgressMonitor monitor) throws DBException {
         DBSObject rootObject;
         if (selectedInstances != null && currentInstanceName != null && getContextDefaults() != null
             && getContextDefaults().supportsSchemaChange()) {
@@ -187,13 +187,13 @@ public class SelectDatabaseDialog extends ObjectListDialog<DBNDatabaseNode>
     }
 
     @NotNull
-    private static List<DBNDatabaseNode> getNodeList(@NotNull DBRProgressMonitor monitor, @Nullable Collection<? extends DBSObject> objectList) {
+    private static /*~~>*/List<DBNDatabaseNode> getNodeList(@NotNull DBRProgressMonitor monitor, @Nullable Collection<? extends DBSObject> objectList) {
         if (CommonUtils.isEmpty(objectList)) {
             return Collections.emptyList();
         }
         int nodesLimit = DBWorkbench.getPlatform().getPreferenceStore().getInt(NavigatorPreferences.NAVIGATOR_LONG_LIST_FETCH_SIZE);
 
-        List<DBNDatabaseNode> nodeList = new ArrayList<>(objectList.size());
+        /*~~>*/List<DBNDatabaseNode> nodeList = new ArrayList<>(objectList.size());
         for (DBSObject object : objectList) {
             if (object instanceof DBSObjectContainer) {
                 DBNDatabaseNode databaseNode = DBNUtils.getNodeByObject(monitor, object, false);

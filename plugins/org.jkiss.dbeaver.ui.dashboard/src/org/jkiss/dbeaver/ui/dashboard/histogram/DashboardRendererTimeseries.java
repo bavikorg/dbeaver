@@ -210,7 +210,7 @@ public class DashboardRendererTimeseries extends DashboardRendererBase {
 
         DashboardDatasetRow lastRow = (DashboardDatasetRow) chartComposite.getData("last_row");
 
-        List<DashboardDatasetRow> rows = dataset.getRows();
+        /*~~>*/List<DashboardDatasetRow> rows = dataset.getRows();
 
         String[] srcSeries = dataset.getColumnNames();
         for (int i = 0; i < srcSeries.length; i++) {

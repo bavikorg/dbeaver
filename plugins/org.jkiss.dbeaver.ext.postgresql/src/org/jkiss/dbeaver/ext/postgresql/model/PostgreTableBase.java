@@ -128,7 +128,7 @@ public abstract class PostgreTableBase extends JDBCTable<PostgreDataSource, Post
     }
 
     @Association
-    public List<PostgreDependency> getDependencies(DBRProgressMonitor monitor) throws DBCException {
+    public /*~~>*/List<PostgreDependency> getDependencies(DBRProgressMonitor monitor) throws DBCException {
         return PostgreDependency.readDependencies(monitor, this, true);
     }
 
@@ -194,7 +194,7 @@ public abstract class PostgreTableBase extends JDBCTable<PostgreDataSource, Post
      * @param monitor progress monitor
      */
     @Override
-    public List<? extends PostgreTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<? extends PostgreTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
         return getContainer().getSchema().getTableCache().getChildren(monitor, getContainer(), this);
@@ -210,7 +210,7 @@ public abstract class PostgreTableBase extends JDBCTable<PostgreDataSource, Post
     }
 
     @Association
-    public List<? extends PostgreTableColumn> getCachedAttributes()
+    public /*~~>*/List<? extends PostgreTableColumn> getCachedAttributes()
     {
         final DBSObjectCache<PostgreTableBase, PostgreTableColumn> childrenCache = getContainer().getSchema().getTableCache().getChildrenCache(this);
         if (childrenCache != null) {

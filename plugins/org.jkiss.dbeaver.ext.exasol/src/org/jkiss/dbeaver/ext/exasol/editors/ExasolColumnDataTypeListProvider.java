@@ -38,7 +38,7 @@ public class ExasolColumnDataTypeListProvider implements IPropertyValueListProvi
 
     @Override
     public Object[] getPossibleValues(ExasolTableColumn column) {
-        List<DBSDataType> dataTypes = new ArrayList<DBSDataType>(column.getTable().getDataSource().getLocalDataTypes());
+        /*~~>*/List<DBSDataType> dataTypes = new ArrayList<DBSDataType>(column.getTable().getDataSource().getLocalDataTypes());
         if (!dataTypes.contains(column.getDataType())) {
             dataTypes.add(column.getDataType());
         }

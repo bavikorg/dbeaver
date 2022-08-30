@@ -42,8 +42,8 @@ public class ExasolImportTableTool implements IUserInterfaceTool {
 	public void execute(IWorkbenchWindow window, IWorkbenchPart activePart,
 			Collection<DBSObject> objects) throws DBException
 	{
-		List<ExasolTable> tables = CommonUtils.filterCollection(objects, ExasolTable.class);
-		List<ExasolSchema> schemas = CommonUtils.filterCollection(objects, ExasolSchema.class);
+		/*~~>*/List<ExasolTable> tables = CommonUtils.filterCollection(objects, ExasolTable.class);
+		/*~~>*/List<ExasolSchema> schemas = CommonUtils.filterCollection(objects, ExasolSchema.class);
 		
 		//add tables for all Schemas but ignore views in schema
 		for(ExasolSchema schema : schemas)

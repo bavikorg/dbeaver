@@ -143,7 +143,7 @@ public class GraphAnimation
 		if (!PLAYBACK)
 			return false;
 
-		List<IFigure> children = container.getChildren();
+		/*~~>*/List<IFigure> children = container.getChildren();
 		Rectangle rect1, rect2;
 		for (IFigure child : children) {
 			rect1 = (Rectangle) initialStates.get(child);
@@ -272,7 +272,7 @@ public class GraphAnimation
 		if (!RECORDING)
 			return;
 
-		List<IFigure> children = container.getChildren();
+		/*~~>*/List<IFigure> children = container.getChildren();
 		for (IFigure child : children) {
 			initialStates.put(child, child.getBounds().getCopy());
 		}

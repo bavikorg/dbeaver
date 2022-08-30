@@ -32,22 +32,22 @@ public class RMEvent {
     @NotNull
     private final RMProject project;
     @NotNull
-    private final List<RMResource> resourceTree;
+    private final /*~~>*/List<RMResource> resourceTree;
     @NotNull
     private final Map<String, Object> parameters;
 
-    public RMEvent(@NotNull Action action, @NotNull RMProject project, @NotNull List<RMResource> resourceTree, @NotNull Map<String, Object> parameters) {
+    public RMEvent(@NotNull Action action, @NotNull RMProject project, @NotNull /*~~>*/List<RMResource> resourceTree, @NotNull Map<String, Object> parameters) {
         this.action = action;
         this.project = project;
-        this.resourceTree = resourceTree;
+        /*~~>*/this.resourceTree = resourceTree;
         this.parameters = parameters;
     }
 
     public RMEvent(@NotNull Action action, @NotNull RMProject project) {
-        this(action, project, List.of(), Map.of());
+        this(action, project, /*~~>*/List.of(), Map.of());
     }
 
-    public RMEvent(@NotNull Action action, @NotNull RMProject project, @NotNull List<RMResource> resourceTree) {
+    public RMEvent(@NotNull Action action, @NotNull RMProject project, @NotNull /*~~>*/List<RMResource> resourceTree) {
         this(action, project, resourceTree, Map.of());
     }
 
@@ -62,7 +62,7 @@ public class RMEvent {
     }
 
     @NotNull
-    public List<RMResource> getResourceTree() {
+    public /*~~>*/List<RMResource> getResourceTree() {
         return resourceTree;
     }
 

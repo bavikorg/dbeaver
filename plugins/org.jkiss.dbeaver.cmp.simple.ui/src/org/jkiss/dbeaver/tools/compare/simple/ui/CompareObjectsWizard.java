@@ -53,7 +53,7 @@ public class CompareObjectsWizard extends Wizard implements IExportWizard {
 
     private CompareObjectsSettings settings;
 
-    public CompareObjectsWizard(List<DBNDatabaseNode> nodes)
+    public CompareObjectsWizard(/*~~>*/List<DBNDatabaseNode> nodes)
     {
         this.settings = new CompareObjectsSettings(nodes);
         this.settings.setOutputFolder(DialogUtils.getCurDialogFolder());

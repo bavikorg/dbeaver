@@ -52,11 +52,11 @@ public class SQLiteTableColumnManager extends GenericTableColumnManager implemen
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
         final GenericTableColumn column = command.getObject();
         final GenericTableBase table = column.getTable();
 
-        final List<? extends GenericTableColumn> attributes = table.getAttributes(monitor);
+        final /*~~>*/List<? extends GenericTableColumn> attributes = table.getAttributes(monitor);
         if (CommonUtils.isEmpty(attributes)) {
             throw new DBException("Table has no attributes");
         }
@@ -79,7 +79,7 @@ public class SQLiteTableColumnManager extends GenericTableColumnManager implemen
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
         final GenericTableColumn column = command.getObject();
 
         actions.add(

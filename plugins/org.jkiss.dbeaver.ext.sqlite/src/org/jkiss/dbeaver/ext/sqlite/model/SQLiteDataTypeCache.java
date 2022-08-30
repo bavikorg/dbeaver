@@ -36,7 +36,7 @@ public class SQLiteDataTypeCache extends JDBCBasicDataTypeCache<GenericStructCon
 
     @Override
     protected synchronized void loadObjects(DBRProgressMonitor monitor, GenericStructContainer dataSource) throws DBException {
-        List<SQLiteDataType> types = new ArrayList<>();
+        /*~~>*/List<SQLiteDataType> types = new ArrayList<>();
         for (SQLiteAffinity affinity : SQLiteAffinity.values()) {
             SQLiteDataType dataType = new SQLiteDataType((SQLiteDataSource) dataSource, affinity);
             types.add(dataType);

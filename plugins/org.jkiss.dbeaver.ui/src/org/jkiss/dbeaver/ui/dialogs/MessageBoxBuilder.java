@@ -31,7 +31,7 @@ public final class MessageBoxBuilder {
     private final MessageBoxModern dialog;
 
     @Nullable
-    private List<Reply> replies;
+    private /*~~>*/List<Reply> replies;
     @Nullable
     private Reply defaultReply;
 
@@ -69,7 +69,7 @@ public final class MessageBoxBuilder {
 
     @NotNull
     public MessageBoxBuilder setReplies(@NotNull Reply... replies) {
-        this.replies = new ArrayList<>(Arrays.asList(replies));
+        /*~~>*/this.replies = new ArrayList<>(Arrays.asList(replies));
         return this;
     }
 
@@ -84,7 +84,7 @@ public final class MessageBoxBuilder {
     @Nullable
     public Reply showMessageBox() {
         // create labels from replies, find default reply
-        List<String> labels;
+        /*~~>*/List<String> labels;
         int defaultIdx = 0;
         if (replies != null) {
             labels = new ArrayList<>(replies.size());

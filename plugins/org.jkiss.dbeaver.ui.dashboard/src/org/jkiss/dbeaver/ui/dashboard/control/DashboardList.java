@@ -45,7 +45,7 @@ public class DashboardList extends Composite implements DashboardGroupContainer 
 
     private IWorkbenchSite site;
     private DashboardViewContainer viewContainer;
-    private List<DashboardItem> items = new ArrayList<>();
+    private /*~~>*/List<DashboardItem> items = new ArrayList<>();
     private final Font boldFont;
     private DashboardItem selectedItem;
     private int listRowCount = 1;
@@ -195,7 +195,7 @@ public class DashboardList extends Composite implements DashboardGroupContainer 
         return viewContainer;
     }
 
-    public List<DashboardItem> getItems() {
+    public /*~~>*/List<DashboardItem> getItems() {
         return items;
     }
 
@@ -227,7 +227,7 @@ public class DashboardList extends Composite implements DashboardGroupContainer 
     }
 
     void createDefaultDashboards() {
-        List<DashboardDescriptor> dashboards = DashboardRegistry.getInstance().getDashboards(
+        /*~~>*/List<DashboardDescriptor> dashboards = DashboardRegistry.getInstance().getDashboards(
             viewContainer.getDataSourceContainer(), true);
         for (DashboardDescriptor dd : dashboards) {
             addDashboard(dd);
@@ -249,11 +249,11 @@ public class DashboardList extends Composite implements DashboardGroupContainer 
     void addItem(DashboardItem item) {
         addDragAndDropSupport(item);
 
-        this.items.add(item);
+        /*~~>*/this.items.add(item);
     }
 
     void removeItem(DashboardItem item) {
-        this.items.remove(item);
+        /*~~>*/this.items.remove(item);
     }
 
     public int getItemSpacing() {
@@ -404,7 +404,7 @@ public class DashboardList extends Composite implements DashboardGroupContainer 
                     return;
                 }
 
-                List<DashboardItem> newList = new ArrayList<>(items);
+                /*~~>*/List<DashboardItem> newList = new ArrayList<>(items);
                 int newIndex = newList.indexOf(overItem);
                 newList.remove(selectedItem);
                 newList.add(newIndex, selectedItem);
@@ -457,7 +457,7 @@ public class DashboardList extends Composite implements DashboardGroupContainer 
 
     }
 
-    public final static class DashboardTransfer extends LocalObjectTransfer<List<Object>> {
+    public final static class DashboardTransfer extends LocalObjectTransfer</*~~>*/List<Object>> {
 
         public static final DashboardTransfer INSTANCE = new DashboardTransfer();
         private static final String TYPE_NAME = "DashboardTransfer.Item Transfer" + System.currentTimeMillis() + ":" + INSTANCE.hashCode();//$NON-NLS-1$

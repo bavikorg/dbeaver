@@ -76,7 +76,7 @@ public abstract class BaseProgressMonitor implements DBRProgressMonitor {
     }
 
     @Override
-    public List<DBRBlockingObject> getActiveBlocks()
+    public /*~~>*/List<DBRBlockingObject> getActiveBlocks()
     {
         return null;
     }

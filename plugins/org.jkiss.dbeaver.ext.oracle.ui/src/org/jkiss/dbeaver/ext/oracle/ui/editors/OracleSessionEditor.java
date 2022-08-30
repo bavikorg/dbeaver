@@ -154,7 +154,7 @@ public class OracleSessionEditor extends AbstractSessionEditor
         @Override
         public void run()
         {
-            final List<DBAServerSession> sessions = getSessionsViewer().getSelectedSessions();
+            final /*~~>*/List<DBAServerSession> sessions = getSessionsViewer().getSelectedSessions();
             final String action = (kill ? OracleUIMessages.editors_oracle_session_editor_action_kill : OracleUIMessages.editors_oracle_session_editor_action_disconnect) + OracleUIMessages.editors_oracle_session_editor_action__session;
             ConfirmationDialog dialog = new ConfirmationDialog(
                 getSite().getShell(),

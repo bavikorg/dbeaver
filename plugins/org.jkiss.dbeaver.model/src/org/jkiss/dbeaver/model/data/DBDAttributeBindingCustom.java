@@ -42,7 +42,7 @@ public class DBDAttributeBindingCustom extends DBDAttributeBinding {
     private DBSDataContainer dataContainer;
     @NotNull
     private final DBVEntityAttribute vAttribute;
-    private List<DBSEntityReferrer> referrers;
+    private /*~~>*/List<DBSEntityReferrer> referrers;
     private int ordinalPosition;
 
     public DBDAttributeBindingCustom(
@@ -192,7 +192,7 @@ public class DBDAttributeBindingCustom extends DBDAttributeBinding {
 
     @Nullable
     @Override
-    public List<DBSEntityReferrer> getReferrers() {
+    public /*~~>*/List<DBSEntityReferrer> getReferrers() {
         return referrers;
     }
 
@@ -203,7 +203,7 @@ public class DBDAttributeBindingCustom extends DBDAttributeBinding {
     }
 
     @Override
-    public void lateBinding(@NotNull DBCSession session, List<Object[]> rows) throws DBException {
+    public void lateBinding(@NotNull DBCSession session, /*~~>*/List<Object[]> rows) throws DBException {
         referrers = findVirtualReferrers();
         super.lateBinding(session, rows);
     }

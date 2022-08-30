@@ -33,7 +33,7 @@ public interface DBDRegistry
     DBDValueHandlerProvider getValueHandlerProvider(DBPDataSource dataSource, DBSTypedObject typedObject);
 
     @Nullable
-    List<? extends DBDAttributeTransformerDescriptor> findTransformers(DBPDataSource dataSource, DBSTypedObject typedObject, Boolean custom);
+    /*~~>*/List<? extends DBDAttributeTransformerDescriptor> findTransformers(DBPDataSource dataSource, DBSTypedObject typedObject, Boolean custom);
 
     DBDAttributeTransformerDescriptor getTransformer(String id);
 

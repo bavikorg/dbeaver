@@ -44,7 +44,7 @@ public class OracleLock implements DBAServerLock {
      private String event;
      
      private DBAServerLock hold = null;
-     private List<DBAServerLock> waiters = new ArrayList<>(0);
+     private /*~~>*/List<DBAServerLock> waiters = new ArrayList<>(0);
 
 	 private OracleDataSource dataSource;
      
@@ -92,8 +92,8 @@ public class OracleLock implements DBAServerLock {
 
 
  	@Override
- 	public List<DBAServerLock> waitThis() {
- 		return this.waiters;
+ 	public /*~~>*/List<DBAServerLock> waitThis() {
+ 		return /*~~>*/this.waiters;
  	}
 
  	@Override

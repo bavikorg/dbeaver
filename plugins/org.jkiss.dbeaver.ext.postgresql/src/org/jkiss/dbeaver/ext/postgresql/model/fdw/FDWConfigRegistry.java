@@ -45,7 +45,7 @@ public class FDWConfigRegistry {
         return instance;
     }
 
-    private List<FDWConfigDescriptor> configDescriptors = new ArrayList<>();
+    private /*~~>*/List<FDWConfigDescriptor> configDescriptors = new ArrayList<>();
 
     private FDWConfigRegistry(IExtensionRegistry registry)
     {
@@ -59,7 +59,7 @@ public class FDWConfigRegistry {
         }
     }
 
-    public List<FDWConfigDescriptor> getConfigDescriptors() {
+    public /*~~>*/List<FDWConfigDescriptor> getConfigDescriptors() {
         return configDescriptors;
     }
 

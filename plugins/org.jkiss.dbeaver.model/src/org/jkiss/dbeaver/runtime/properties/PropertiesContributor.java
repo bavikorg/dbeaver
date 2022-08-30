@@ -40,7 +40,7 @@ public class PropertiesContributor {
         return instance;
     }
 
-    private final List<ILazyPropertyLoadListener> lazyListeners = new ArrayList<ILazyPropertyLoadListener>();
+    private final /*~~>*/List<ILazyPropertyLoadListener> lazyListeners = new ArrayList<ILazyPropertyLoadListener>();
 
     public void addLazyListener(ILazyPropertyLoadListener listener)
     {

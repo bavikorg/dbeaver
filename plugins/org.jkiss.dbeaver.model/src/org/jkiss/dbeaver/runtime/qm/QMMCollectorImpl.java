@@ -53,17 +53,17 @@ public class QMMCollectorImpl extends DefaultExecutionHandler implements QMMColl
 
     // Session map
     private LongKeyMap<QMMConnectionInfo> connectionMap = new LongKeyMap<>();
-    private List<Long> closedConnections = new ArrayList<>();
+    private /*~~>*/List<Long> closedConnections = new ArrayList<>();
 
     // External listeners
-    private final List<QMMetaListener> listeners = new ArrayList<>();
+    private final /*~~>*/List<QMMetaListener> listeners = new ArrayList<>();
 
     // Temporary event pool
-    private List<QMMetaEvent> eventPool = new ArrayList<>();
+    private /*~~>*/List<QMMetaEvent> eventPool = new ArrayList<>();
     // Sync object
     private final Object historySync = new Object();
     // History (may be purged when limit reached)
-    private List<QMMetaEvent> pastEvents = new ArrayList<>();
+    private /*~~>*/List<QMMetaEvent> pastEvents = new ArrayList<>();
     private boolean running = true;
 
     public QMMCollectorImpl()
@@ -74,7 +74,7 @@ public class QMMCollectorImpl extends DefaultExecutionHandler implements QMMColl
     public synchronized void dispose()
     {
         if (!connectionMap.isEmpty()) {
-            List<QMMConnectionInfo> openSessions = new ArrayList<>();
+            /*~~>*/List<QMMConnectionInfo> openSessions = new ArrayList<>();
             for (QMMConnectionInfo connection : connectionMap.values()) {
                 if (!connection.isClosed()) {
                     openSessions.add(connection);
@@ -121,7 +121,7 @@ public class QMMCollectorImpl extends DefaultExecutionHandler implements QMMColl
         }
     }
 
-    private List<QMMetaListener> getListeners()
+    private /*~~>*/List<QMMetaListener> getListeners()
     {
         synchronized (listeners) {
             if (listeners.isEmpty()) {
@@ -155,11 +155,11 @@ public class QMMCollectorImpl extends DefaultExecutionHandler implements QMMColl
         }
     }
 
-    private synchronized List<QMMetaEvent> obtainEvents() {
+    private synchronized /*~~>*/List<QMMetaEvent> obtainEvents() {
         if (eventPool.isEmpty()) {
             return Collections.emptyList();
         }
-        List<QMMetaEvent> events = eventPool;
+        /*~~>*/List<QMMetaEvent> events = eventPool;
         eventPool = new ArrayList<>();
         return events;
     }
@@ -172,7 +172,7 @@ public class QMMCollectorImpl extends DefaultExecutionHandler implements QMMColl
         return connectionInfo;
     }
 
-    public List<QMMetaEvent> getPastEvents() {
+    public /*~~>*/List<QMMetaEvent> getPastEvents() {
         synchronized (historySync) {
             return new ArrayList<>(pastEvents);
         }
@@ -331,15 +331,15 @@ public class QMMCollectorImpl extends DefaultExecutionHandler implements QMMColl
         @Override
         protected IStatus run(DBRProgressMonitor monitor)
         {
-            final List<QMMetaEvent> events;
-            List<Long> sessionsToClose;
+            final /*~~>*/List<QMMetaEvent> events;
+            /*~~>*/List<Long> sessionsToClose;
             synchronized (QMMCollectorImpl.this) {
                 events = obtainEvents();
                 sessionsToClose = closedConnections;
                 closedConnections.clear();
             }
             if (!events.isEmpty()) {
-                final List<QMMetaListener> listeners = getListeners();
+                final /*~~>*/List<QMMetaListener> listeners = getListeners();
                 if (!listeners.isEmpty() && !events.isEmpty()) {
                     // Reverse collection. Fresh events must come first.
                     Collections.reverse(events);

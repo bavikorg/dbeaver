@@ -69,7 +69,7 @@ public class ClickhouseViewManager extends GenericViewManager {
     protected void addObjectModifyActions(
         @Nullable DBRProgressMonitor monitor,
         @Nullable DBCExecutionContext executionContext,
-        @NotNull List<DBEPersistAction> actionList, 
+        @NotNull /*~~>*/List<DBEPersistAction> actionList, 
         @NotNull SQLObjectEditor<GenericTableBase, GenericStructContainer>.ObjectChangeCommand command,
         @Nullable Map<String, Object> options
     ) {

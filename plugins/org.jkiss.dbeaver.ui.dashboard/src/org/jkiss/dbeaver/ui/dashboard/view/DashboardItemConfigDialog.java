@@ -142,7 +142,7 @@ public class DashboardItemConfigDialog extends BaseDialog {
             Combo typeCombo = UIUtils.createLabelCombo(viewGroup, UIDashboardMessages.dialog_dashboard_item_config_dashboardview_combos_view, UIDashboardMessages.dialog_dashboard_item_config_dashboardview_combos_view_tooltip, SWT.BORDER | SWT.READ_ONLY);
             typeCombo.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
             {
-                List<DashboardViewType> viewTypes = DashboardRegistry.getInstance().getSupportedViewTypes(dashboardConfig.getDashboardDescriptor().getDataType());
+                /*~~>*/List<DashboardViewType> viewTypes = DashboardRegistry.getInstance().getSupportedViewTypes(dashboardConfig.getDashboardDescriptor().getDataType());
                 for (DashboardViewType viewType : viewTypes) {
                     typeCombo.add(viewType.getTitle());
                 }

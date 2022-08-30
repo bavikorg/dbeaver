@@ -32,7 +32,7 @@ public class HANAView extends GenericView {
     }
 
     @Association
-    public List<HANADependency> getDependencies(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<HANADependency> getDependencies(DBRProgressMonitor monitor) throws DBException {
         return HANADependency.readDependencies(monitor, this);
     }
 }

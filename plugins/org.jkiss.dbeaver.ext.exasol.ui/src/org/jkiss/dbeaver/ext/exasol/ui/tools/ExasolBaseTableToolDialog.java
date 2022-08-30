@@ -160,10 +160,10 @@ public abstract class ExasolBaseTableToolDialog extends GenerateMultiSQLDialog<E
     protected void executeSQL() {
         final String jobName = getShell().getText();
         final SQLScriptProgressListener<ExasolTableBase> scriptListener = getScriptListener();
-        final List<ExasolTableBase> objects = getCheckedObjects();
-        final Map<ExasolTableBase, List<String>> objectsSQL = new LinkedHashMap<>();
+        final /*~~>*/List<ExasolTableBase> objects = getCheckedObjects();
+        final Map<ExasolTableBase, /*~~>*/List<String>> objectsSQL = new LinkedHashMap<>();
         for (ExasolTableBase object : objects) {
-            final List<String> lines = new ArrayList<>();
+            final /*~~>*/List<String> lines = new ArrayList<>();
             generateObjectCommand(lines, object);
             objectsSQL.put(object, lines);
         }
@@ -188,7 +188,7 @@ public abstract class ExasolBaseTableToolDialog extends GenerateMultiSQLDialog<E
                         objectProcessingError = null;
                         UIUtils.asyncExec(() -> scriptListener.beginObjectProcessing(object, objectNumber));
                         try {
-                            final List<String> lines = objectsSQL.get(object);
+                            final /*~~>*/List<String> lines = objectsSQL.get(object);
                             for (String line : lines) {
                                 try (final Statement statement = ((JDBCSession) session).getOriginal().createStatement()) {
                                 	int affectedRows = statement.executeUpdate(line);

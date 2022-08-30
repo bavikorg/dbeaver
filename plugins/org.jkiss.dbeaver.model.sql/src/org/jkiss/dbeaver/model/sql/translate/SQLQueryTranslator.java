@@ -40,8 +40,8 @@ public final class SQLQueryTranslator {
     {
         SQLTranslateContext context = new SQLTranslateContext(sourceDialect, targetDialect, preferenceStore);
 
-        List<SQLScriptElement> sqlScriptElements = SQLScriptParser.parseScript(sourceDialect, preferenceStore, script);
-        List<SQLScriptElement> result = new ArrayList<>();
+        /*~~>*/List<SQLScriptElement> sqlScriptElements = SQLScriptParser.parseScript(sourceDialect, preferenceStore, script);
+        /*~~>*/List<SQLScriptElement> result = new ArrayList<>();
         for (SQLScriptElement element : sqlScriptElements) {
             result.addAll(
                 context.translateCommand(element));

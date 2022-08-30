@@ -137,7 +137,7 @@ public abstract class DatabaseLaunchShortcut implements ILaunchShortcut2 {
     }
 
     protected void searchAndLaunch(Object[] scope, String mode, String emptyMessage) {
-        List<DBSObject> extracted = DebugUtils.extractLaunchable(scope);
+        /*~~>*/List<DBSObject> extracted = DebugUtils.extractLaunchable(scope);
         DBSObject launchable = null;
         if (extracted.size() == 0) {
             MessageDialog.openError(getShell(), DebugUIMessages.DatabaseLaunchShortcut_e_launch, emptyMessage);
@@ -157,7 +157,7 @@ public abstract class DatabaseLaunchShortcut implements ILaunchShortcut2 {
 
     protected void launch(DBSObject launchable, String mode) throws CoreException {
         Map<String, Object> databaseContext = DebugUtils.resolveDatabaseContext(launchable);
-        List<ILaunchConfiguration> configs = getCandidates(launchable, getConfigurationType(), databaseContext);
+        /*~~>*/List<ILaunchConfiguration> configs = getCandidates(launchable, getConfigurationType(), databaseContext);
         if (configs != null) {
             ILaunchConfiguration config = null;
             int count = configs.size();
@@ -198,7 +198,7 @@ public abstract class DatabaseLaunchShortcut implements ILaunchShortcut2 {
         return launchObjectName;
     }
 
-    protected DBSObject selectLaunchable(Shell shell, List<DBSObject> launchables, String mode) {
+    protected DBSObject selectLaunchable(Shell shell, /*~~>*/List<DBSObject> launchables, String mode) {
         String title = getLaunchableSelectionTitle(mode);
         String message = getLaunchableSelectionMessage(mode);
         ILabelProvider renderer = getLaunchableSelectionRenderer();
@@ -215,8 +215,8 @@ public abstract class DatabaseLaunchShortcut implements ILaunchShortcut2 {
         return (DBSObject) dialog.getFirstResult();
     }
 
-    protected List<ILaunchConfiguration> getCandidates(DBSObject launchable, ILaunchConfigurationType configType, Map<String, Object> databaseContext) throws CoreException {
-        List<ILaunchConfiguration> candidateConfigs = new ArrayList<>();
+    protected /*~~>*/List<ILaunchConfiguration> getCandidates(DBSObject launchable, ILaunchConfigurationType configType, Map<String, Object> databaseContext) throws CoreException {
+        /*~~>*/List<ILaunchConfiguration> candidateConfigs = new ArrayList<>();
 
         ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
         ILaunchConfiguration[] configs = launchManager.getLaunchConfigurations(configType);
@@ -241,7 +241,7 @@ public abstract class DatabaseLaunchShortcut implements ILaunchShortcut2 {
         return true;
     }
 
-    protected ILaunchConfiguration chooseConfiguration(List<ILaunchConfiguration> configList, String mode) {
+    protected ILaunchConfiguration chooseConfiguration(/*~~>*/List<ILaunchConfiguration> configList, String mode) {
         IDebugModelPresentation labelProvider = DebugUITools.newDebugModelPresentation();
         ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
         dialog.setElements(configList.toArray());

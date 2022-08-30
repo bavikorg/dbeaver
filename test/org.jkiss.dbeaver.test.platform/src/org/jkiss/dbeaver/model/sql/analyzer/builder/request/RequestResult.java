@@ -49,12 +49,12 @@ public class RequestResult {
     }
 
     @NotNull
-    public List<SQLCompletionProposalBase> request(@NotNull String sql) throws DBException {
+    public /*~~>*/List<SQLCompletionProposalBase> request(@NotNull String sql) throws DBException {
         return request(sql, true);
     }
 
     @NotNull
-    public List<SQLCompletionProposalBase> request(@NotNull String sql, boolean simpleMode) throws DBException {
+    public /*~~>*/List<SQLCompletionProposalBase> request(@NotNull String sql, boolean simpleMode) throws DBException {
         final DBCExecutionContext executionContext = mock(DBCExecutionContext.class);
         when(executionContext.getDataSource()).thenReturn(dataSource);
 

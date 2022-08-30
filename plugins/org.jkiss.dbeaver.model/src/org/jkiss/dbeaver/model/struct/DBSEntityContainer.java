@@ -29,7 +29,7 @@ public interface DBSEntityContainer extends DBSObjectContainer {
 
     DBSEntityTypeMapping[] getNestedEntityTypes();
 
-    List<? extends DBSObject> getEntities(DBRProgressMonitor monitor, DBSEntityType entityType)
+    /*~~>*/List<? extends DBSObject> getEntities(DBRProgressMonitor monitor, DBSEntityType entityType)
         throws DBException;
 
 }

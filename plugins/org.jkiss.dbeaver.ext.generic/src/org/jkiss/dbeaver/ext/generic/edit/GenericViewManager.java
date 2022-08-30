@@ -98,13 +98,13 @@ public class GenericViewManager extends SQLObjectEditor<GenericTableBase, Generi
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options)
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options)
     {
         createOrReplaceViewQuery(actions, command);
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options)
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options)
     {
         actions.add(
             new SQLDatabasePersistAction(
@@ -118,14 +118,14 @@ public class GenericViewManager extends SQLObjectEditor<GenericTableBase, Generi
         return "VIEW";
     }
 
-    private void createOrReplaceViewQuery(List<DBEPersistAction> actions, DBECommandComposite<GenericTableBase, PropertyHandler> command)
+    private void createOrReplaceViewQuery(/*~~>*/List<DBEPersistAction> actions, DBECommandComposite<GenericTableBase, PropertyHandler> command)
     {
         final GenericView view = (GenericView)command.getObject();
         actions.add(new SQLDatabasePersistAction("Create view", view.getDDL()));
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
     {
         final GenericView view = (GenericView)command.getObject();
         boolean hasComment = command.hasProperty(DBConstants.PROP_ID_DESCRIPTION);

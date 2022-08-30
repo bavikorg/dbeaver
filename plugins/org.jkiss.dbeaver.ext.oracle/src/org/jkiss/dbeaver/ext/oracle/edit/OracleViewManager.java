@@ -92,28 +92,28 @@ public class OracleViewManager extends SQLTableManager<OracleView, OracleSchema>
     }
 
     @Override
-    protected void addStructObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, StructCreateCommand command, Map<String, Object> options) throws DBException {
+    protected void addStructObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, StructCreateCommand command, Map<String, Object> options) throws DBException {
         createOrReplaceViewQuery(monitor, actions, command, options);
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
         createOrReplaceViewQuery(monitor, actionList, command, options);
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
         actions.add(
             new SQLDatabasePersistAction("Drop view", "DROP VIEW " + command.getObject().getFullyQualifiedName(DBPEvaluationContext.DDL)) //$NON-NLS-2$
         );
     }
 
-    private void createOrReplaceViewQuery(DBRProgressMonitor monitor, @NotNull List<DBEPersistAction> actions, DBECommandComposite<OracleView, PropertyHandler> command, Map<String, Object> options) throws DBException {
+    private void createOrReplaceViewQuery(DBRProgressMonitor monitor, @NotNull /*~~>*/List<DBEPersistAction> actions, DBECommandComposite<OracleView, PropertyHandler> command, Map<String, Object> options) throws DBException {
         final OracleView view = command.getObject();
         boolean hasComment = command.hasProperty("comment");
         if (!hasComment || command.getProperties().size() > 1) {
             String viewText = view.getViewText().trim();
-            List<SQLScriptElement> sqlScriptElements = SQLScriptParser.parseScript(view.getDataSource(), viewText);
+            /*~~>*/List<SQLScriptElement> sqlScriptElements = SQLScriptParser.parseScript(view.getDataSource(), viewText);
             if (sqlScriptElements.size() > 1) {
                 // In this case we already have and view definition, and view/columns comments
                 for (SQLScriptElement scriptElement : sqlScriptElements) {

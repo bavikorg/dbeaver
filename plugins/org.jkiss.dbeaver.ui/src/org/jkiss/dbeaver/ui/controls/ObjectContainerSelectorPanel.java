@@ -63,7 +63,7 @@ public abstract class ObjectContainerSelectorPanel extends Composite
     private final Label containerIcon;
     private final Combo containerNameCombo;
 
-    private final List<HistoryItem> historyItems = new ArrayList<>();
+    private final /*~~>*/List<HistoryItem> historyItems = new ArrayList<>();
 
     private static class HistoryItem {
         private String containerName;

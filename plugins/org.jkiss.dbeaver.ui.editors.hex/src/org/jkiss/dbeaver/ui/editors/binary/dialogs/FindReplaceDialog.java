@@ -86,8 +86,8 @@ public class FindReplaceDialog extends Dialog {
         }
     };
 
-    private static final List<Object[]> findReplaceFindList = new ArrayList<>();
-    private static final List<Object[]> findReplaceReplaceList = new ArrayList<>();
+    private static final /*~~>*/List<Object[]> findReplaceFindList = new ArrayList<>();
+    private static final /*~~>*/List<Object[]> findReplaceReplaceList = new ArrayList<>();
 
     private HexEditControl editControl = null;
     private TextHexInputGroup lastFocused = null;
@@ -121,7 +121,7 @@ public class FindReplaceDialog extends Dialog {
      * Group with text/hex selector and text input
      */
     class TextHexInputGroup {
-        private List<Object[]> items = null;  // list of tuples {String, Boolean}
+        private /*~~>*/List<Object[]> items = null;  // list of tuples {String, Boolean}
         // visual components
         private Group group = null;
         private Composite composite = null;
@@ -129,7 +129,7 @@ public class FindReplaceDialog extends Dialog {
         private Button textRadioButton = null;
         private Combo textCombo = null;
 
-        public TextHexInputGroup(List<Object[]> oldItems)
+        public TextHexInputGroup(/*~~>*/List<Object[]> oldItems)
         {
             items = oldItems;
         }

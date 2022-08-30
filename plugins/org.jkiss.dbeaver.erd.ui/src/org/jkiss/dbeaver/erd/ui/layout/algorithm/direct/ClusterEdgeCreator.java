@@ -41,8 +41,8 @@ public class ClusterEdgeCreator {
     private DirectedGraph graph;
 
     //List edgesAdded;
-    private List<Node> encountered = new ArrayList<>();
-    private List<Cluster> clusters = new ArrayList<>();
+    private /*~~>*/List<Node> encountered = new ArrayList<>();
+    private /*~~>*/List<Cluster> clusters = new ArrayList<>();
 
     private Cluster currentCluster = null;
 
@@ -69,7 +69,7 @@ public class ClusterEdgeCreator {
                     currentCluster = new Cluster();
                     clusters.add(currentCluster);
                     encountered.add(node);
-                    currentCluster.set.add(node);
+                    /*~~>*/currentCluster.set.add(node);
 
                     // recursively add any other nodes reachable from it
                     int depth = INITIAL_RECURSION_DEPTH;
@@ -115,13 +115,13 @@ public class ClusterEdgeCreator {
                 Cluster cluster = iter.next();
                 if (sourceNode != null) {
                     //use first node in set as target node
-                    targetNode = cluster.set.get(0);
+                    targetNode = /*~~>*/cluster.set.get(0);
                     newDummyEdge(sourceNode, targetNode);
                 }
 
                 //set up source node for the next iteration using last node in
                 // set
-                sourceNode = cluster.set.get(cluster.set.size() - 1);
+                sourceNode = /*~~>*/cluster.set.get(/*~~>*/cluster.set.size() - 1);
 
             }
 
@@ -141,7 +141,7 @@ public class ClusterEdgeCreator {
 
                 if (!encountered.contains(incomingNode)) {
                     encountered.add(incomingNode);
-                    currentCluster.set.add(incomingNode);
+                    /*~~>*/currentCluster.set.add(incomingNode);
                     recursivelyAddToCluster(incomingNode, depth);
                 }
             }
@@ -153,7 +153,7 @@ public class ClusterEdgeCreator {
 
                 if (!encountered.contains(outgoingNode)) {
                     encountered.add(outgoingNode);
-                    currentCluster.set.add(outgoingNode);
+                    /*~~>*/currentCluster.set.add(outgoingNode);
                     recursivelyAddToCluster(outgoingNode, depth);
                 }
             }
@@ -183,7 +183,7 @@ public class ClusterEdgeCreator {
      */
     private class Cluster {
 
-        List<Node> set = new ArrayList<>();
+        /*~~>*/List<Node> set = new ArrayList<>();
 
         public String toString() {
             return set.toString();

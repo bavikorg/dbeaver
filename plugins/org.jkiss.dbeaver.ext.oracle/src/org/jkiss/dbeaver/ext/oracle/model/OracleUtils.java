@@ -220,9 +220,9 @@ public class OracleUtils {
         }
 
         try {
-            List<OracleTableColumn> attributes = object.getAttributes(monitor);
+            /*~~>*/List<OracleTableColumn> attributes = object.getAttributes(monitor);
             if (!CommonUtils.isEmpty(attributes)) {
-                List<DBEPersistAction> actions = new ArrayList<>();
+                /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
                 if (CommonUtils.isEmpty(objectComment)) {
                     ddlBuilder.append("\n");
                 }
@@ -286,7 +286,7 @@ public class OracleUtils {
         }
     }
 
-    public static void addSchemaChangeActions(DBCExecutionContext executionContext, List<DBEPersistAction> actions, OracleSourceObject object)
+    public static void addSchemaChangeActions(DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, OracleSourceObject object)
     {
         OracleSchema schema = object.getSchema();
         if (schema == null) {

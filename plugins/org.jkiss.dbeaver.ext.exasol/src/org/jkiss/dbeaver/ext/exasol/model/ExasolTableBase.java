@@ -113,7 +113,7 @@ public abstract class ExasolTableBase extends JDBCTable<ExasolDataSource, Exasol
     // Columns
     // -----------------
     @Override
-    public List<ExasolTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<ExasolTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
         if (this instanceof ExasolTable)
             return getContainer().getTableCache().getChildren(monitor, getContainer(), (ExasolTable) this);
 

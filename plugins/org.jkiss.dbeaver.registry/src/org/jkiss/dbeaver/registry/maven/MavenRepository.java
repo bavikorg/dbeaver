@@ -59,7 +59,7 @@ public class MavenRepository
     private final RepositoryType type;
     private String name;
     private String url;
-    private final List<String> scopes = new ArrayList<>();
+    private final /*~~>*/List<String> scopes = new ArrayList<>();
     private int order;
     private boolean enabled = true;
     private String description;
@@ -99,7 +99,7 @@ public class MavenRepository
         this.type = source.type;
         this.name = source.name;
         this.url = source.url;
-        this.scopes.addAll(source.scopes);
+        /*~~>*/this.scopes.addAll(/*~~>*/source.scopes);
 
         this.order = source.order;
         this.enabled = source.enabled;
@@ -133,13 +133,13 @@ public class MavenRepository
     }
 
     @NotNull
-    public List<String> getScopes() {
+    public /*~~>*/List<String> getScopes() {
         return scopes;
     }
 
-    public void setScopes(List<String> scopes) {
-        this.scopes.clear();
-        this.scopes.addAll(scopes);
+    public void setScopes(/*~~>*/List<String> scopes) {
+        /*~~>*/this.scopes.clear();
+        /*~~>*/this.scopes.addAll(scopes);
     }
 
     public RepositoryType getType() {

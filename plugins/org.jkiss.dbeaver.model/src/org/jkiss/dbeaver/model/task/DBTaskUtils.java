@@ -198,7 +198,7 @@ public class DBTaskUtils {
             String dbObjectNames = "";
             Object dbObjectIdsObj = task.getProperties().get("databaseObjects");
             if (dbObjectIdsObj != null) {
-                List<String> dbObjectIds = (List<String>)dbObjectIdsObj;
+                /*~~>*/List<String> dbObjectIds = (/*~~>*/List<String>)dbObjectIdsObj;
                 dbObjectNames = dbObjectIds.stream().map(id -> DBUtils.getObjectNameFromId(id)).collect(Collectors.joining(", "));
             }
             messageBuilder.append(NLS.bind(messageOrNull, dbObjectNames, inputFile)).append("\n");

@@ -49,7 +49,7 @@ public class JDBCRemoteInstance implements DBSInstance {
     @Nullable
     protected JDBCExecutionContext metaContext;
     @NotNull
-    private final List<JDBCExecutionContext> allContexts = new ArrayList<>();
+    private final /*~~>*/List<JDBCExecutionContext> allContexts = new ArrayList<>();
     private final DBPExclusiveResource exclusiveLock = new SimpleExclusiveLock();
 
     protected JDBCRemoteInstance(@NotNull DBRProgressMonitor monitor, @NotNull JDBCDataSource dataSource, boolean initContext)
@@ -208,7 +208,7 @@ public class JDBCRemoteInstance implements DBSInstance {
     public void shutdown(DBRProgressMonitor monitor, boolean keepMeta) {
         // [JDBC] Need sync here because real connection close could take some time
         // while UI may invoke callbacks to operate with connection
-        List<JDBCExecutionContext> ctxCopy;
+        /*~~>*/List<JDBCExecutionContext> ctxCopy;
         synchronized (allContexts) {
             ctxCopy = new ArrayList<>(allContexts);
         }

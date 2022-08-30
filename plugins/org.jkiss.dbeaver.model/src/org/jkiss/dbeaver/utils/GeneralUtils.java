@@ -477,7 +477,7 @@ public class GeneralUtils {
             return string;
         }
         // We save resolved vars here to avoid resolve recursive cycles
-        List<String> resolvedVars = null;
+        /*~~>*/List<String> resolvedVars = null;
         try {
             Matcher matcher = VAR_PATTERN.matcher(string);
             int pos = 0;
@@ -541,7 +541,7 @@ public class GeneralUtils {
                 ex);
         } else {
             if (nextError != null) {
-                List<IStatus> errorChain = new ArrayList<>();
+                /*~~>*/List<IStatus> errorChain = new ArrayList<>();
                 if (cause != null) {
                     errorChain.add(makeExceptionStatus(severity, cause, true));
                 }

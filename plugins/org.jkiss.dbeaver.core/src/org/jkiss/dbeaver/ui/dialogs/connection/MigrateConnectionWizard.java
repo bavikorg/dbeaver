@@ -101,7 +101,7 @@ public class MigrateConnectionWizard extends Wizard
     @Override
     public boolean performFinish()
     {
-        final List<DataSourceDescriptor> connections = pageConnections.getSelectedConnections();
+        final /*~~>*/List<DataSourceDescriptor> connections = pageConnections.getSelectedConnections();
         final DriverDescriptor targetDriver = pageDriver.selectedDriver;
 
         for (DataSourceDescriptor conn : connections) {
@@ -165,9 +165,9 @@ public class MigrateConnectionWizard extends Wizard
             return false;
         }
 
-        public List<DataSourceDescriptor> getSelectedConnections()
+        public /*~~>*/List<DataSourceDescriptor> getSelectedConnections()
         {
-            final List<DataSourceDescriptor> result = new ArrayList<>();
+            final /*~~>*/List<DataSourceDescriptor> result = new ArrayList<>();
             for (TableItem item : connectionsViewer.getItems()) {
                 if (item.getChecked()) {
                     result.add((DataSourceDescriptor) item.getData());

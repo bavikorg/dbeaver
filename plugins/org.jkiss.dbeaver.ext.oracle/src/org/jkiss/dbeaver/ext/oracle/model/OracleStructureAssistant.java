@@ -102,12 +102,12 @@ public class OracleStructureAssistant implements DBSStructureAssistant<OracleExe
 
     @NotNull
     @Override
-    public List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull OracleExecutionContext executionContext,
+    public /*~~>*/List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull OracleExecutionContext executionContext,
                                                       @NotNull ObjectsSearchParams params) throws DBException {
         OracleSchema schema = params.getParentObject() instanceof OracleSchema ? (OracleSchema) params.getParentObject() : null;
 
         try (JDBCSession session = executionContext.openSession(monitor, DBCExecutionPurpose.META, "Find objects by name")) {
-            List<DBSObjectReference> objects = new ArrayList<>();
+            /*~~>*/List<DBSObjectReference> objects = new ArrayList<>();
 
             if (ArrayUtils.containsAny(params.getObjectTypes(), OracleObjectType.CONSTRAINT, OracleObjectType.FOREIGN_KEY)) {
                 // Search constraints
@@ -146,10 +146,10 @@ public class OracleStructureAssistant implements DBSStructureAssistant<OracleExe
     }
 
     private void findConstraintsByMask(JDBCSession session, final OracleSchema schema, @NotNull ObjectsSearchParams params,
-                                       List<DBSObjectReference> objects) throws SQLException, DBException {
+                                       /*~~>*/List<DBSObjectReference> objects) throws SQLException, DBException {
         DBRProgressMonitor monitor = session.getProgressMonitor();
 
-        List<DBSObjectType> objectTypesList = Arrays.asList(params.getObjectTypes());
+        /*~~>*/List<DBSObjectType> objectTypesList = Arrays.asList(params.getObjectTypes());
         final boolean hasFK = objectTypesList.contains(OracleObjectType.FOREIGN_KEY);
         final boolean hasConstraints = objectTypesList.contains(OracleObjectType.CONSTRAINT);
 
@@ -205,8 +205,8 @@ public class OracleStructureAssistant implements DBSStructureAssistant<OracleExe
     }
 
     private void searchAllObjects(final JDBCSession session, final OracleSchema schema, @NotNull ObjectsSearchParams params,
-                                  List<DBSObjectReference> objects) throws SQLException, DBException {
-        final List<OracleObjectType> oracleObjectTypes = new ArrayList<>(params.getObjectTypes().length + 2);
+                                  /*~~>*/List<DBSObjectReference> objects) throws SQLException, DBException {
+        final /*~~>*/List<OracleObjectType> oracleObjectTypes = new ArrayList<>(params.getObjectTypes().length + 2);
         boolean searchViewsByDefinition = false;
         for (DBSObjectType objectType : params.getObjectTypes()) {
             if (objectType instanceof OracleObjectType) {
@@ -349,7 +349,7 @@ public class OracleStructureAssistant implements DBSStructureAssistant<OracleExe
     }
 
     private void searchInTableComments(@NotNull JDBCSession session, @Nullable OracleSchema schema, @NotNull ObjectsSearchParams params,
-                                       @NotNull List<DBSObjectReference> objects) throws SQLException, DBException {
+                                       @NotNull /*~~>*/List<DBSObjectReference> objects) throws SQLException, DBException {
         if (objects.size() >= params.getMaxResults() || !ArrayUtils.contains(params.getObjectTypes(), OracleObjectType.TABLE)) {
             return;
         }

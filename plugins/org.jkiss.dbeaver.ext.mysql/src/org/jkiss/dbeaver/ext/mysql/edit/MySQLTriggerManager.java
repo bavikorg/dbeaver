@@ -56,7 +56,7 @@ public class MySQLTriggerManager extends SQLTriggerManager<MySQLTrigger, MySQLTa
         return new MySQLTrigger(table.getContainer(), table, "NewTrigger");
     }
 
-    protected void createOrReplaceTriggerQuery(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, MySQLTrigger trigger, boolean create) {
+    protected void createOrReplaceTriggerQuery(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, MySQLTrigger trigger, boolean create) {
         if (trigger.isPersisted()) {
             actions.add(
                 new SQLDatabasePersistAction("Drop trigger",

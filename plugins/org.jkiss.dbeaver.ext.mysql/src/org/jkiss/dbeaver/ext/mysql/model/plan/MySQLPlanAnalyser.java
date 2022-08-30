@@ -160,12 +160,12 @@ public class MySQLPlanAnalyser extends AbstractExecutionPlanSerializer implement
 
         if (savedVersion.equals("classic")) {
             ExecutionPlanDeserializer<MySQLPlanNodePlain> loader = new ExecutionPlanDeserializer<>();
-            List<MySQLPlanNodePlain> rootNodes = loader.loadRoot(dataSource, jo,
+            /*~~>*/List<MySQLPlanNodePlain> rootNodes = loader.loadRoot(dataSource, jo,
                 (datasource, node, parent) -> new MySQLPlanNodePlain(parent, getNodeAttributes(node)));
             return new MySQLPlanClassic(dataSource, query, rootNodes);
         } else {
             ExecutionPlanDeserializer<MySQLPlanNodeJSON> loader = new ExecutionPlanDeserializer<>();
-            List<MySQLPlanNodeJSON> rootNodes = loader.loadRoot(dataSource, jo,
+            /*~~>*/List<MySQLPlanNodeJSON> rootNodes = loader.loadRoot(dataSource, jo,
                 (datasource, node, parent) -> new MySQLPlanNodeJSON(parent, getNodeAttributes(node)));
             return new MySQLPlanJSON(dataSource,query,rootNodes);
         }

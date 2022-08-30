@@ -27,7 +27,7 @@ import java.util.List;
 public interface DBNNodeExtendable
 {
     @NotNull
-    List<DBNNode> getExtraNodes();
+    /*~~>*/List<DBNNode> getExtraNodes();
 
     void addExtraNode(@NotNull DBNNode node, boolean reflect);
 

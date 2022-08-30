@@ -34,7 +34,7 @@ public class OracleToolTableValidateStructure extends SQLToolExecuteHandler<Orac
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, OracleToolTableValidateStructureSettings settings, List<DBEPersistAction> queries, OracleTableBase object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, OracleToolTableValidateStructureSettings settings, /*~~>*/List<DBEPersistAction> queries, OracleTableBase object) throws DBCException {
         String sql = "ANALYZE TABLE " + object.getFullyQualifiedName(DBPEvaluationContext.DDL) + " VALIDATE STRUCTURE";
         String option = settings.getOption();
         if (!CommonUtils.isEmpty(option)) sql += " " + option;

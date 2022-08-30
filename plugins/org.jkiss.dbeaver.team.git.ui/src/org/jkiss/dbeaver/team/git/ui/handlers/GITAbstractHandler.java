@@ -171,9 +171,9 @@ public abstract class GITAbstractHandler extends AbstractHandler {
         return ret.toArray(new IProject[0]);
     }
 
-    private static <T> List<T> getSelectedAdaptables(ISelection selection,
+    private static <T> /*~~>*/List<T> getSelectedAdaptables(ISelection selection,
                                                      Class<T> c) {
-        List<T> result;
+        /*~~>*/List<T> result;
         if (selection != null && !selection.isEmpty()) {
             result = new ArrayList<>();
             Iterator elements = ((IStructuredSelection) selection).iterator();
@@ -199,7 +199,7 @@ public abstract class GITAbstractHandler extends AbstractHandler {
                 // Some mappings (WorkingSetResourceMapping) return the projects
                 // in unpredictable order. Sort them like the navigator to
                 // correspond to the order the user usually sees.
-                List<IProject> projects = new ArrayList<>(Arrays.asList(mappedProjects));
+                /*~~>*/List<IProject> projects = new ArrayList<>(Arrays.asList(mappedProjects));
                 projects.sort(CommonUtils.RESOURCE_NAME_COMPARATOR);
                 ret.addAll(projects);
             }

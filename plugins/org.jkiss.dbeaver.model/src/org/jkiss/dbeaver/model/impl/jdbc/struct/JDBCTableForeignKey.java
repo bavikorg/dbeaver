@@ -78,7 +78,7 @@ public abstract class JDBCTableForeignKey<
                     if (tableContainer instanceof DBSObjectContainer) {
                         DBSObject refTable = ((DBSObjectContainer)tableContainer).getChild(monitor, refEntity.getName());
                         if (refTable instanceof DBSEntity && referencedKey instanceof DBSEntityReferrer) {
-                            List<DBSEntityAttribute> refAttrs = DBUtils.getEntityAttributes(monitor, (DBSEntityReferrer) referencedKey);
+                            /*~~>*/List<DBSEntityAttribute> refAttrs = DBUtils.getEntityAttributes(monitor, (DBSEntityReferrer) referencedKey);
                             this.referencedKey = (PRIMARY_KEY) DBUtils.findEntityConstraint(monitor, (DBSEntity) refTable, refAttrs);
                         }
                     }

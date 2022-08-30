@@ -36,7 +36,7 @@ import java.util.*;
  */
 public class DBNProjectDatabases extends DBNNode implements DBNContainer, DBPEventListener
 {
-    private List<DBNDataSource> dataSources = new ArrayList<>();
+    private /*~~>*/List<DBNDataSource> dataSources = new ArrayList<>();
     private DBPDataSourceRegistry dataSourceRegistry;
     private volatile DBNNode[] children;
     private final IdentityHashMap<DBPDataSourceFolder, DBNLocalFolder> folderNodes = new IdentityHashMap<>();
@@ -47,7 +47,7 @@ public class DBNProjectDatabases extends DBNNode implements DBNContainer, DBPEve
         this.dataSourceRegistry = dataSourceRegistry;
         this.dataSourceRegistry.addDataSourceListener(this);
 
-        List<? extends DBPDataSourceContainer> projectDataSources = this.dataSourceRegistry.getDataSources();
+        /*~~>*/List<? extends DBPDataSourceContainer> projectDataSources = this.dataSourceRegistry.getDataSources();
         for (DBPDataSourceContainer ds : projectDataSources) {
             addDataSource(ds, false, false);
         }
@@ -142,7 +142,7 @@ public class DBNProjectDatabases extends DBNNode implements DBNContainer, DBPEve
     public DBNNode[] getChildren(DBRProgressMonitor monitor)
     {
         if (children == null) {
-            List<DBNNode> childNodes = new ArrayList<>();
+            /*~~>*/List<DBNNode> childNodes = new ArrayList<>();
             // Add root folders
             for (DBPDataSourceFolder folder : dataSourceRegistry.getAllFolders()) {
                 DBNLocalFolder folderNode = folderNodes.get(folder);
@@ -241,7 +241,7 @@ public class DBNProjectDatabases extends DBNNode implements DBNContainer, DBPEve
         }
     }
 
-    public List<DBNDataSource> getDataSources()
+    public /*~~>*/List<DBNDataSource> getDataSources()
     {
         return dataSources;
     }

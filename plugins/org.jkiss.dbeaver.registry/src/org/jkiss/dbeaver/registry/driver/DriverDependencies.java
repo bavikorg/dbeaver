@@ -32,12 +32,12 @@ public class DriverDependencies implements DBPDriverDependencies
 {
     private static final Log log = Log.getLog(DriverDependencies.class);
 
-    private final List<DBPDriverLibrary> rootLibraries;
-    private final List<DependencyNode> rootNodes = new ArrayList<>();
-    private final List<DependencyNode> libraryList = new ArrayList<>();
+    private final /*~~>*/List<DBPDriverLibrary> rootLibraries;
+    private final /*~~>*/List<DependencyNode> rootNodes = new ArrayList<>();
+    private final /*~~>*/List<DependencyNode> libraryList = new ArrayList<>();
 
     public DriverDependencies(Collection<? extends DBPDriverLibrary> rootLibraries) {
-        this.rootLibraries = new ArrayList<>(rootLibraries);
+        /*~~>*/this.rootLibraries = new ArrayList<>(rootLibraries);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class DriverDependencies implements DBPDriverDependencies
         }
         for (int i = 0; i < level; i++) System.out.print("\t");
         System.out.println(node.library.getId() + ":" + node.library.getVersion());
-        for (DependencyNode child : node.dependencies) {
+        for (DependencyNode child : /*~~>*/node.dependencies) {
             dumpNode(child, level + 1);
         }
     }
@@ -120,9 +120,9 @@ public class DriverDependencies implements DBPDriverDependencies
                 } else {
                     node.duplicate = true;
                 }
-                ownerNode.dependencies.add(node);
+                /*~~>*/ownerNode.dependencies.add(node);
             }
-            for (DependencyNode node : ownerNode.dependencies) {
+            for (DependencyNode node : /*~~>*/ownerNode.dependencies) {
                 if (!node.duplicate) {
                     resolveDependencies(monitor, node, libMap);
                 }
@@ -131,12 +131,12 @@ public class DriverDependencies implements DBPDriverDependencies
     }
 
     @Override
-    public List<DependencyNode> getLibraryList() {
+    public /*~~>*/List<DependencyNode> getLibraryList() {
         return libraryList;
     }
 
     @Override
-    public List<DependencyNode> getLibraryMap() {
+    public /*~~>*/List<DependencyNode> getLibraryMap() {
         return rootNodes;
     }
 

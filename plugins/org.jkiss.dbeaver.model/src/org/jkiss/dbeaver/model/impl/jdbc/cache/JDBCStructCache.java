@@ -90,7 +90,7 @@ public abstract class JDBCStructCache<OWNER extends DBSObject, OBJECT extends DB
             throw new DBException(ModelMessages.error_not_connected_to_database);
         }
         try (JDBCSession session = DBUtils.openMetaSession(monitor, owner, "Load child objects")) {
-            Map<OBJECT, List<CHILD>> objectMap = new HashMap<>();
+            Map<OBJECT, /*~~>*/List<CHILD>> objectMap = new HashMap<>();
 
             // Load columns
             try (JDBCStatement dbStat = prepareChildrenStatement(session, owner, forObject)) {
@@ -132,7 +132,7 @@ public abstract class JDBCStructCache<OWNER extends DBSObject, OBJECT extends DB
                             }
 
                             // Add to map
-                            List<CHILD> children = objectMap.get(object);
+                            /*~~>*/List<CHILD> children = objectMap.get(object);
                             if (children == null) {
                                 children = new ArrayList<>();
                                 objectMap.put(object, children);
@@ -145,7 +145,7 @@ public abstract class JDBCStructCache<OWNER extends DBSObject, OBJECT extends DB
                         }
 
                         // All children are read. Now assign them to parents
-                        for (Map.Entry<OBJECT, List<CHILD>> colEntry : objectMap.entrySet()) {
+                        for (Map.Entry<OBJECT, /*~~>*/List<CHILD>> colEntry : objectMap.entrySet()) {
                             if (!isChildrenCached(colEntry.getKey())) {
                                 // isChildrenCached may return true if the same cache was read in other thread
                                 // just skip
@@ -216,7 +216,7 @@ public abstract class JDBCStructCache<OWNER extends DBSObject, OBJECT extends DB
     }
 
     @Nullable
-    public List<CHILD> getChildren(DBRProgressMonitor monitor, OWNER owner, final OBJECT forObject) throws DBException
+    public /*~~>*/List<CHILD> getChildren(DBRProgressMonitor monitor, OWNER owner, final OBJECT forObject) throws DBException
     {
         loadChildren(monitor, owner, forObject);
         synchronized (childrenCache) {
@@ -256,7 +256,7 @@ public abstract class JDBCStructCache<OWNER extends DBSObject, OBJECT extends DB
         }
     }
 
-    protected void cacheChildren(OBJECT parent, List<CHILD> children)
+    protected void cacheChildren(OBJECT parent, /*~~>*/List<CHILD> children)
     {
         synchronized (childrenCache) {
             SimpleObjectCache<OBJECT, CHILD> nestedCache = childrenCache.get(parent);

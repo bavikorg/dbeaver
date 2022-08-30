@@ -174,7 +174,7 @@ public class QMUtils {
 
         Collection<QMObjectType> objectTypes = QMObjectType.fromString(store.getString(QMConstants.PROP_OBJECT_TYPES));
         criteria.setObjectTypes(objectTypes.toArray(new QMObjectType[0]));
-        List<DBCExecutionPurpose> queryTypes = new ArrayList<>();
+        /*~~>*/List<DBCExecutionPurpose> queryTypes = new ArrayList<>();
         for (String queryType : CommonUtils.splitString(store.getString(QMConstants.PROP_QUERY_TYPES), ',')) {
             try {
                 queryTypes.add(DBCExecutionPurpose.valueOf(queryType));
@@ -188,11 +188,11 @@ public class QMUtils {
 
     public static class ListCursorImpl implements QMEventCursor {
 
-        private final List<QMMetaEvent> events;
+        private final /*~~>*/List<QMMetaEvent> events;
         private int position;
 
-        public ListCursorImpl(List<QMMetaEvent> events) {
-            this.events = events;
+        public ListCursorImpl(/*~~>*/List<QMMetaEvent> events) {
+            /*~~>*/this.events = events;
             this.position = 0;
         }
 

@@ -109,7 +109,7 @@ public class DashboardView extends ViewPart implements IDataSourceContainerProvi
     public void setFocus() {
         if (dashboardListViewer != null) {
             DashboardGroupContainer group = dashboardListViewer.getDefaultGroup();
-            List<? extends DashboardContainer> items = group.getItems();
+            /*~~>*/List<? extends DashboardContainer> items = group.getItems();
             if (!items.isEmpty()) {
                 group.selectItem(items.get(0));
             }

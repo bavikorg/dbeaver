@@ -58,14 +58,14 @@ public class SQLServerView extends SQLServerTableBase implements DBSView {
     }
 
     @Override
-    public List<SQLServerTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<SQLServerTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
-        List<SQLServerTableColumn> childColumns = getContainer().getTableCache().getChildren(monitor, getContainer(), this);
+        /*~~>*/List<SQLServerTableColumn> childColumns = getContainer().getTableCache().getChildren(monitor, getContainer(), this);
         if (childColumns == null) {
             return Collections.emptyList();
         }
-        List<SQLServerTableColumn> columns = new ArrayList<>(childColumns);
+        /*~~>*/List<SQLServerTableColumn> columns = new ArrayList<>(childColumns);
         columns.sort(DBUtils.orderComparator());
         return columns;
     }

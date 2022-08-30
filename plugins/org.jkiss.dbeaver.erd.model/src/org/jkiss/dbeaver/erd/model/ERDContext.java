@@ -34,7 +34,7 @@ public class ERDContext {
     private final DBPDataSourceContainer dataSourceContainer;
     private final DBNModel navigatorModel;
 
-    private final List<String> icons = new ArrayList<>();
+    private final /*~~>*/List<String> icons = new ArrayList<>();
     private final Map<ERDElement<?>, ElementSaveInfo> elementInfoMap = new IdentityHashMap<>();
 
     public ERDContext(DBRProgressMonitor monitor, DBPDataSourceContainer dataSourceContainer, DBNModel navigatorModel) {
@@ -51,7 +51,7 @@ public class ERDContext {
         return dataSourceContainer;
     }
 
-    public List<String> getIcons() {
+    public /*~~>*/List<String> getIcons() {
         return icons;
     }
 

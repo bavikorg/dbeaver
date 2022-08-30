@@ -38,7 +38,7 @@ public class HANAPlanAnalyser extends AbstractExecutionPlan {
 
     private HANADataSource dataSource;
     private String query;
-    private List<HANAPlanNode> rootNodes;
+    private /*~~>*/List<HANAPlanNode> rootNodes;
 
     public HANAPlanAnalyser(HANADataSource dataSource, String query) {
         this.dataSource = dataSource;
@@ -56,13 +56,13 @@ public class HANAPlanAnalyser extends AbstractExecutionPlan {
     }
 
     @Override
-    public List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
+    public /*~~>*/List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
         return rootNodes;
     }
 
     public void explain(DBCSession session)  throws DBCException {
         rootNodes = new ArrayList<>();
-        List<HANAPlanNode> allNodes = new ArrayList<>();
+        /*~~>*/List<HANAPlanNode> allNodes = new ArrayList<>();
         JDBCSession connection = (JDBCSession) session;
         boolean oldAutoCommit = false;
         try {

@@ -199,7 +199,7 @@ public class SQLVariablesPanel extends Composite implements DBCScriptContextList
         SQLScriptContext context = mainEditor.getGlobalScriptContext();
 
         //varsTable.removeAll();
-        List<DBCScriptContext.VariableInfo> variables = context.getVariables();
+        /*~~>*/List<DBCScriptContext.VariableInfo> variables = context.getVariables();
         if (showParameters) {
             for (SQLQueryParameterRegistry.ParameterInfo param : SQLQueryParameterRegistry.getInstance().getAllParameters()) {
                 if (context.hasVariable(param.name)) {
@@ -364,7 +364,7 @@ public class SQLVariablesPanel extends Composite implements DBCScriptContextList
                 public void run() {
                     if (!varsTable.getSelection().isEmpty()) {
                         final StructuredSelection selection = (StructuredSelection) varsTable.getSelection();
-                        List<String> varsList = Arrays.stream(selection.toArray()).map(el -> ((DBCScriptContext.VariableInfo) el).name).collect(Collectors.toList());
+                        /*~~>*/List<String> varsList = Arrays.stream(selection.toArray()).map(el -> ((DBCScriptContext.VariableInfo) el).name).collect(Collectors.toList());
                         new RemoveVariablesAction(mainEditor, varsList).run();
 
                     }

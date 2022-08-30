@@ -25,7 +25,7 @@ import java.util.List;
 
 public class LockGraph {
 
-	private List<LockGraphNode> nodes = new ArrayList<>();
+	private /*~~>*/List<LockGraphNode> nodes = new ArrayList<>();
 	private int maxWidth = 0;
 	private LockGraphNode selection;
 	//private LockManagerViewer lockManagerViewer;
@@ -60,8 +60,8 @@ public class LockGraph {
 	}
 
 
-	public List<LockGraphNode> getNodes() {
-		return this.nodes;
+	public /*~~>*/List<LockGraphNode> getNodes() {
+		return /*~~>*/this.nodes;
 	}
 
 

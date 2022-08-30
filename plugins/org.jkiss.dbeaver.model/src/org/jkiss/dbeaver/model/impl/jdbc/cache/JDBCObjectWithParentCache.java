@@ -51,7 +51,7 @@ public abstract class JDBCObjectWithParentCache<OWNER extends DBSObject, PARENT 
     private Object parentColumnName;
     private Object objectColumnName;
 
-    private final Map<PARENT, List<OBJECT>> objectCache = new IdentityHashMap<>();
+    private final Map<PARENT, /*~~>*/List<OBJECT>> objectCache = new IdentityHashMap<>();
 
     protected JDBCObjectWithParentCache(
             JDBCStructCache<OWNER,?,?> parentCache,
@@ -80,13 +80,13 @@ public abstract class JDBCObjectWithParentCache<OWNER extends DBSObject, PARENT 
 
     @NotNull
     @Override
-    public List<OBJECT> getAllObjects(@NotNull DBRProgressMonitor monitor, @Nullable OWNER owner)
+    public /*~~>*/List<OBJECT> getAllObjects(@NotNull DBRProgressMonitor monitor, @Nullable OWNER owner)
             throws DBException
     {
         return getObjects(monitor, owner, null);
     }
 
-    public List<OBJECT> getObjects(DBRProgressMonitor monitor, OWNER owner, PARENT forParent)
+    public /*~~>*/List<OBJECT> getObjects(DBRProgressMonitor monitor, OWNER owner, PARENT forParent)
             throws DBException
     {
         loadObjects(monitor, owner, forParent);
@@ -94,7 +94,7 @@ public abstract class JDBCObjectWithParentCache<OWNER extends DBSObject, PARENT 
     }
 
     @Override
-    public List<OBJECT> getCachedObjects(PARENT forParent)
+    public /*~~>*/List<OBJECT> getCachedObjects(PARENT forParent)
     {
         if (forParent == null) {
             return getCachedObjects();
@@ -133,7 +133,7 @@ public abstract class JDBCObjectWithParentCache<OWNER extends DBSObject, PARENT 
         super.cacheObject(object);
         synchronized (objectCache) {
             PARENT parent = getParent(object);
-            List<OBJECT> objects = objectCache.computeIfAbsent(parent, k -> new ArrayList<>());
+            /*~~>*/List<OBJECT> objects = objectCache.computeIfAbsent(parent, k -> new ArrayList<>());
             objects.add(object);
         }
     }
@@ -147,7 +147,7 @@ public abstract class JDBCObjectWithParentCache<OWNER extends DBSObject, PARENT 
             if (resetFullCache) {
                 objectCache.remove(parent);
             } else {
-                List<OBJECT> subCache = objectCache.get(parent);
+                /*~~>*/List<OBJECT> subCache = objectCache.get(parent);
                 if (subCache != null) {
                     subCache.remove(object);
                 }
@@ -162,7 +162,7 @@ public abstract class JDBCObjectWithParentCache<OWNER extends DBSObject, PARENT 
             super.clearCache();
             objectCache.clear();
         } else {
-            List<OBJECT> removedObjects = objectCache.remove(forParent);
+            /*~~>*/List<OBJECT> removedObjects = objectCache.remove(forParent);
             if (removedObjects != null) {
                 for (OBJECT obj : removedObjects) {
                     super.removeObject(obj, false);
@@ -181,13 +181,13 @@ public abstract class JDBCObjectWithParentCache<OWNER extends DBSObject, PARENT 
     }
 
     @Override
-    public void setCache(List<OBJECT> objects) {
+    public void setCache(/*~~>*/List<OBJECT> objects) {
         super.setCache(objects);
         synchronized (objectCache) {
             objectCache.clear();
             for (OBJECT object : objects) {
                 PARENT parent = getParent(object);
-                List<OBJECT> parentObjects = objectCache.computeIfAbsent(parent, k -> new ArrayList<>());
+                /*~~>*/List<OBJECT> parentObjects = objectCache.computeIfAbsent(parent, k -> new ArrayList<>());
                 parentObjects.add(object);
             }
         }
@@ -299,14 +299,14 @@ public abstract class JDBCObjectWithParentCache<OWNER extends DBSObject, PARENT 
                 if (forParent != null || !parentObjectMap.isEmpty()) {
                     if (forParent == null) {
                         // Cache global object list
-                        List<OBJECT> globalCache = new ArrayList<>();
+                        /*~~>*/List<OBJECT> globalCache = new ArrayList<>();
                         for (Map<String, OBJECT> objMap : parentObjectMap.values()) {
                             if (objMap != null) {
                                 globalCache.addAll(objMap.values());
                             }
                         }
                         // Save precached objects in global cache
-                        for (List<OBJECT> objects : objectCache.values()) {
+                        for (/*~~>*/List<OBJECT> objects : objectCache.values()) {
                             globalCache.addAll(objects);
                         }
                         // Add precached objects to global cache too

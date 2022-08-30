@@ -91,7 +91,7 @@ public class ExasolStructureAssistant extends JDBCStructureAssistant<ExasolExecu
     @Override
     protected void findObjectsByMask(@NotNull ExasolExecutionContext executionContext, @NotNull JDBCSession session,
                                      @NotNull DBSObjectType objectType, @NotNull ObjectsSearchParams params,
-                                     @NotNull List<DBSObjectReference> references) throws DBException, SQLException {
+                                     @NotNull /*~~>*/List<DBSObjectReference> references) throws DBException, SQLException {
         String objectNameMask = params.getMask();
         DBSObject parentObject = params.getParentObject();
         log.debug("Search Mask:" + objectNameMask + " Object Type:" + objectType.getTypeName());
@@ -117,7 +117,7 @@ public class ExasolStructureAssistant extends JDBCStructureAssistant<ExasolExecu
     }
 
     private void findTableColumnsByMask(@NotNull JDBCSession session, @Nullable ExasolSchema schema, @NotNull ObjectsSearchParams params,
-                                        @NotNull List<DBSObjectReference> references) throws SQLException, DBException {
+                                        @NotNull /*~~>*/List<DBSObjectReference> references) throws SQLException, DBException {
         DBRProgressMonitor monitor = session.getProgressMonitor();
 
         //don't use parameter marks because of performance
@@ -175,7 +175,7 @@ public class ExasolStructureAssistant extends JDBCStructureAssistant<ExasolExecu
     }
 
     private void findProceduresByMask(@NotNull JDBCSession session, @Nullable ExasolSchema schema, @NotNull ObjectsSearchParams params,
-                                      @NotNull List<DBSObjectReference> references) throws SQLException, DBException {
+                                      @NotNull /*~~>*/List<DBSObjectReference> references) throws SQLException, DBException {
 //      /*snapshot execution*/
 //      SELECT
 //          SCRIPT_SCHEMA,
@@ -192,7 +192,7 @@ public class ExasolStructureAssistant extends JDBCStructureAssistant<ExasolExecu
         String mask = ExasolUtils.quoteString(params.getMask());
         StringBuilder sql = new StringBuilder("/*snapshot execution*/ SELECT SCRIPT_SCHEMA, SCRIPT_NAME FROM SYS.");
         sql.append(dataSource.getTablePrefix(ExasolSysTablePrefix.ALL)).append("_SCRIPTS WHERE ");
-        List<String> clause = new ArrayList<>(3);
+        /*~~>*/List<String> clause = new ArrayList<>(3);
         clause.add(getLikeClause("SCRIPT_NAME", mask, params.isCaseSensitive()));
         if (params.isSearchInDefinitions()) {
             clause.add(getLikeClause("SCRIPT_TEXT", mask, params.isCaseSensitive()));
@@ -244,7 +244,7 @@ public class ExasolStructureAssistant extends JDBCStructureAssistant<ExasolExecu
     }
 
     private void findConstraintsByMask(@NotNull JDBCSession session, @Nullable ExasolSchema schema, @NotNull ObjectsSearchParams params,
-                                       @NotNull List<DBSObjectReference> references, String constType) throws SQLException, DBException {
+                                       @NotNull /*~~>*/List<DBSObjectReference> references, String constType) throws SQLException, DBException {
         DBRProgressMonitor monitor = session.getProgressMonitor();
         //don't use parameter marks because of performance
         String sql = "";
@@ -383,7 +383,7 @@ public class ExasolStructureAssistant extends JDBCStructureAssistant<ExasolExecu
             sql.append(viewSchemaColumn).append(", ");
         }
         sql.append(viewNameColumn).append(" FROM ").append(getMetadataTableName("VIEWS")).append(" WHERE ");
-        List<String> clause = new ArrayList<>(3);
+        /*~~>*/List<String> clause = new ArrayList<>(3);
         String mask = ExasolUtils.quoteString(params.getMask());
         clause.add(getLikeClause(viewNameColumn, mask, params.isCaseSensitive()));
         if (params.isSearchInDefinitions()) {

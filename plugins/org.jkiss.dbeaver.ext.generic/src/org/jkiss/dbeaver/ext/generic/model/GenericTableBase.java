@@ -60,7 +60,7 @@ public abstract class GenericTableBase extends JDBCTable<GenericDataSource, Gene
     private boolean isSystem;
     private String description;
     private Long rowCount;
-    private List<? extends GenericTrigger> triggers;
+    private /*~~>*/List<? extends GenericTrigger> triggers;
     private final String tableCatalogName;
     private final String tableSchemaName;
 
@@ -178,7 +178,7 @@ public abstract class GenericTableBase extends JDBCTable<GenericDataSource, Gene
 
     @Nullable
     @Override
-    public List<? extends GenericTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<? extends GenericTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
         throws DBException {
         return this.getContainer().getTableCache().getChildren(monitor, getContainer(), this);
     }
@@ -209,7 +209,7 @@ public abstract class GenericTableBase extends JDBCTable<GenericDataSource, Gene
 
     @Nullable
     @Override
-    public List<GenericUniqueKey> getConstraints(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<GenericUniqueKey> getConstraints(@NotNull DBRProgressMonitor monitor)
         throws DBException {
         if (getDataSource().getInfo().supportsReferentialIntegrity() || getDataSource().getInfo().supportsIndexes()) {
             // ensure all columns are already cached
@@ -346,7 +346,7 @@ public abstract class GenericTableBase extends JDBCTable<GenericDataSource, Gene
 
     public abstract String getDDL();
 
-    private List<GenericTableForeignKey> loadReferences(DBRProgressMonitor monitor)
+    private /*~~>*/List<GenericTableForeignKey> loadReferences(DBRProgressMonitor monitor)
         throws DBException {
         if (!isPersisted() || !getDataSource().getInfo().supportsReferentialIntegrity()) {
             return new ArrayList<>();
@@ -356,9 +356,9 @@ public abstract class GenericTableBase extends JDBCTable<GenericDataSource, Gene
             // First read entire resultset to prevent recursive metadata requests
             // some drivers don't like it
             final GenericMetaObject fkObject = getDataSource().getMetaObject(GenericConstants.OBJECT_FOREIGN_KEY);
-            final List<ForeignKeyInfo> fkInfos = loadReferenceInfoList(session, fkObject);
+            final /*~~>*/List<ForeignKeyInfo> fkInfos = loadReferenceInfoList(session, fkObject);
 
-            List<GenericTableForeignKey> fkList = new ArrayList<>();
+            /*~~>*/List<GenericTableForeignKey> fkList = new ArrayList<>();
             Map<String, GenericTableForeignKey> fkMap = new HashMap<>();
             for (ForeignKeyInfo info : fkInfos) {
                 DBSForeignKeyModifyRule deleteRule = JDBCUtils.getCascadeFromNum(info.deleteRuleNum);
@@ -469,8 +469,8 @@ public abstract class GenericTableBase extends JDBCTable<GenericDataSource, Gene
         }
     }
 
-    public List<ForeignKeyInfo> loadReferenceInfoList(@NotNull JDBCSession session, GenericMetaObject fkObject) throws SQLException {
-        final List<ForeignKeyInfo> fkInfos = new ArrayList<>();
+    public /*~~>*/List<ForeignKeyInfo> loadReferenceInfoList(@NotNull JDBCSession session, GenericMetaObject fkObject) throws SQLException {
+        final /*~~>*/List<ForeignKeyInfo> fkInfos = new ArrayList<>();
         JDBCDatabaseMetaData metaData = session.getMetaData();
         // Load indexes
         try (JDBCResultSet dbResult = metaData.getExportedKeys(
@@ -488,7 +488,7 @@ public abstract class GenericTableBase extends JDBCTable<GenericDataSource, Gene
 
     @Nullable
     @Association
-    public List<? extends GenericTrigger> getTriggers(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<? extends GenericTrigger> getTriggers(@NotNull DBRProgressMonitor monitor) throws DBException {
         if (triggers == null) {
             GenericStructContainer parentObject = getParentObject();
             if (parentObject != null) {
@@ -512,7 +512,7 @@ public abstract class GenericTableBase extends JDBCTable<GenericDataSource, Gene
         }
     }
 
-    public List<? extends GenericTrigger> getTriggerCache() {
+    public /*~~>*/List<? extends GenericTrigger> getTriggerCache() {
         return triggers;
     }
 

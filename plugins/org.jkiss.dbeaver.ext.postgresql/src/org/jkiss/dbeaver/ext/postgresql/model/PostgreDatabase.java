@@ -923,7 +923,7 @@ public class PostgreDatabase extends JDBCRemoteInstance
 
         // Check schemas in search path
         PostgreExecutionContext metaContext = getMetaContext();
-        List<String> searchPath = metaContext == null ? Collections.singletonList(PostgreConstants.CATALOG_SCHEMA_NAME) : metaContext.getSearchPath();
+        /*~~>*/List<String> searchPath = metaContext == null ? Collections.singletonList(PostgreConstants.CATALOG_SCHEMA_NAME) : metaContext.getSearchPath();
         for (String schemaName : searchPath) {
             final PostgreSchema schema = schemaCache.getCachedObject(schemaName);
             if (schema != null) {
@@ -1277,7 +1277,7 @@ public class PostgreDatabase extends JDBCRemoteInstance
                 } else {
                     catalogFilters = new DBSObjectFilter(catalogFilters);
                     // Always read catalog schema
-                    List<String> includeFilters = catalogFilters.getInclude();
+                    /*~~>*/List<String> includeFilters = catalogFilters.getInclude();
                     if (!CommonUtils.isEmpty(includeFilters) && !includeFilters.contains(PostgreConstants.CATALOG_SCHEMA_NAME)) {
                         catalogFilters.addInclude(PostgreConstants.CATALOG_SCHEMA_NAME);
                     }

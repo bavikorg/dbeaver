@@ -106,9 +106,9 @@ public class CoreApplicationActivator extends AbstractUIPlugin {
     private void activateHooks(BundleContext context) {
         EquinoxContainer container = ((BundleContextImpl)context).getContainer();
         HookRegistry registry = container.getConfiguration().getHookRegistry();
-        List<ClassLoaderHook> hooks = new ArrayList<>(registry.getClassLoaderHooks());
+        /*~~>*/List<ClassLoaderHook> hooks = new ArrayList<>(registry.getClassLoaderHooks());
         hooks.add(new PatchClassLoaderHook());
-        List<ClassLoaderHook> newHooks = Collections.unmodifiableList(hooks);
+        /*~~>*/List<ClassLoaderHook> newHooks = Collections.unmodifiableList(hooks);
 
         try {
             Field hooksField = registry.getClass().getDeclaredField("classLoaderHooksRO");

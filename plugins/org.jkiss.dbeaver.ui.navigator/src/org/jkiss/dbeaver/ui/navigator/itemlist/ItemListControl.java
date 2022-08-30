@@ -167,7 +167,7 @@ public class ItemListControl extends NodeListControl
                         @Override
                         public IMenuCreator getMenuCreator() {
                             return new MenuCreator(control -> {
-                                List<IContributionItem> items = NavigatorHandlerObjectCreateNew.fillCreateMenuItems((IWorkbenchPartSite) workbenchSite, rootNode);
+                                /*~~>*/List<IContributionItem> items = NavigatorHandlerObjectCreateNew.fillCreateMenuItems((IWorkbenchPartSite) workbenchSite, rootNode);
                                 MenuManager menuManager = new MenuManager();
                                 for (IContributionItem cc : items) {
                                     menuManager.add(cc);
@@ -187,7 +187,7 @@ public class ItemListControl extends NodeListControl
 
         if (rootNode instanceof DBNDatabaseNode && rootNode.isPersisted()) {
             boolean hasReorder = false;
-            List<Class<?>> childrenTypes = ((DBNDatabaseNode) rootNode).getChildrenTypes(null);
+            /*~~>*/List<Class<?>> childrenTypes = ((DBNDatabaseNode) rootNode).getChildrenTypes(null);
             for (Class<?> chilType : childrenTypes) {
                 if (DBWorkbench.getPlatform().getEditorsRegistry().getObjectManager(chilType, DBEObjectReorderer.class) != null) {
                     hasReorder = true;
@@ -205,7 +205,7 @@ public class ItemListControl extends NodeListControl
 
         if (rootNode instanceof DBNDatabaseNode) {
             // Expand/collapse
-            final List<DBXTreeNode> inlineMetas = collectInlineMetas((DBNDatabaseNode) rootNode, ((DBNDatabaseNode) rootNode).getMeta());
+            final /*~~>*/List<DBXTreeNode> inlineMetas = collectInlineMetas((DBNDatabaseNode) rootNode, ((DBNDatabaseNode) rootNode).getMeta());
             if (!inlineMetas.isEmpty()) {
                 contributionManager.add(new Separator());
                 contributionManager.add(
@@ -287,7 +287,7 @@ public class ItemListControl extends NodeListControl
             throws InvocationTargetException, InterruptedException
         {
             try {
-                List<DBNNode> items = new ArrayList<>();
+                /*~~>*/List<DBNNode> items = new ArrayList<>();
                 DBNNode parentNode = getRootNode();
                 DBNNode[] children = DBNUtils.getNodeChildrenFiltered(monitor, parentNode, false);
                 if (ArrayUtils.isEmpty(children)) {
@@ -297,7 +297,7 @@ public class ItemListControl extends NodeListControl
                 DBPDataSourceContainer ds = getDataSourceContainer();
                 // If we in folder-less mode then filter children by meta
                 if (ds != null && ds.getNavigatorSettings().isHideFolders()) {
-                    List<DBNNode> filteredChildrenList = new ArrayList<>();
+                    /*~~>*/List<DBNNode> filteredChildrenList = new ArrayList<>();
                     for (DBNNode child : children) {
                         if (child instanceof DBNDatabaseNode) {
                             DBXTreeNode meta = ((DBNDatabaseNode) child).getMeta();

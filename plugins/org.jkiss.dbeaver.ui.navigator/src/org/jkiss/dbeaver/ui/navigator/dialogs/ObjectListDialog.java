@@ -62,8 +62,8 @@ public class ObjectListDialog<T extends DBPObject> extends AbstractPopupPanel {
     private String listId;
     private boolean singleSelection;
 
-    protected List<T> objects;
-    protected List<T> selectedObjects = new ArrayList<>();
+    protected /*~~>*/List<T> objects;
+    protected /*~~>*/List<T> selectedObjects = new ArrayList<>();
     protected DatabaseObjectListControl<T> objectList;
 
     public ObjectListDialog(Shell parentShell, String title, boolean singleSelection, String listId, Collection<T> objects, Collection<T> selected)
@@ -71,7 +71,7 @@ public class ObjectListDialog<T extends DBPObject> extends AbstractPopupPanel {
         super(parentShell, title);
         this.singleSelection = singleSelection;
         this.listId = listId;
-        this.objects = new ArrayList<>(objects);
+        /*~~>*/this.objects = new ArrayList<>(objects);
         if (selected != null) {
             selectedObjects.addAll(selected);
         }
@@ -92,7 +92,7 @@ public class ObjectListDialog<T extends DBPObject> extends AbstractPopupPanel {
 
         createUpperControls(group);
 
-        objectList = createObjectSelector(group, singleSelection, listId, selectedObjects, new DBRRunnableWithResult<List<T>>() {
+        objectList = createObjectSelector(group, singleSelection, listId, selectedObjects, new DBRRunnableWithResult</*~~>*/List<T>>() {
             @Override
             public void run(DBRProgressMonitor monitor) throws InvocationTargetException {
                 try {
@@ -133,8 +133,8 @@ public class ObjectListDialog<T extends DBPObject> extends AbstractPopupPanel {
         Composite group,
         boolean singleSelection,
         String listId,
-        List<T> selectedObjects,
-        DBRRunnableWithResult<List<T>> objectReader)
+        /*~~>*/List<T> selectedObjects,
+        DBRRunnableWithResult</*~~>*/List<T>> objectReader)
     {
         return new DatabaseObjectListControl<T>(
             group,
@@ -147,7 +147,7 @@ public class ObjectListDialog<T extends DBPObject> extends AbstractPopupPanel {
 
             @NotNull
             @Override
-            protected String getListConfigId(List<Class<?>> classList) {
+            protected String getListConfigId(/*~~>*/List<Class<?>> classList) {
                 return listId;
             }
 
@@ -246,7 +246,7 @@ public class ObjectListDialog<T extends DBPObject> extends AbstractPopupPanel {
         };
     }
 
-    protected List<T> getObjects(DBRProgressMonitor monitor) throws DBException {
+    protected /*~~>*/List<T> getObjects(DBRProgressMonitor monitor) throws DBException {
         return objects;
     }
 
@@ -269,7 +269,7 @@ public class ObjectListDialog<T extends DBPObject> extends AbstractPopupPanel {
         return ctl;
     }
 
-    public List<T> getSelectedObjects()
+    public /*~~>*/List<T> getSelectedObjects()
     {
         return selectedObjects;
     }
@@ -283,7 +283,7 @@ public class ObjectListDialog<T extends DBPObject> extends AbstractPopupPanel {
     {
         ObjectListDialog<T> scDialog = new ObjectListDialog<>(parentShell, title, true, listId, objects, null);
         if (scDialog.open() == IDialogConstants.OK_ID) {
-            final List<T> selectedObjects = scDialog.getSelectedObjects();
+            final /*~~>*/List<T> selectedObjects = scDialog.getSelectedObjects();
             return CommonUtils.isEmpty(selectedObjects) ? null : selectedObjects.get(0);
         } else {
             return null;

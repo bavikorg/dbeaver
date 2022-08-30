@@ -30,12 +30,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditConnectionPermissionsDialog extends BaseDialog {
-    private List<DBPDataSourcePermission> accessRestrictions;
-    private List<Button> restrictedPermissionButtons = new ArrayList<>();
+    private /*~~>*/List<DBPDataSourcePermission> accessRestrictions;
+    private /*~~>*/List<Button> restrictedPermissionButtons = new ArrayList<>();
 
-    public EditConnectionPermissionsDialog(Shell shell, List<DBPDataSourcePermission> accessRestrictions) {
+    public EditConnectionPermissionsDialog(Shell shell, /*~~>*/List<DBPDataSourcePermission> accessRestrictions) {
         super(shell, CoreMessages.dialog_connection_wizard_final_group_security, null);
-        this.accessRestrictions = CommonUtils.safeList(accessRestrictions);
+        /*~~>*/this.accessRestrictions = CommonUtils.safeList(accessRestrictions);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class EditConnectionPermissionsDialog extends BaseDialog {
 
     @Override
     protected void okPressed() {
-        List<DBPDataSourcePermission> restrictions = new ArrayList<>();
+        /*~~>*/List<DBPDataSourcePermission> restrictions = new ArrayList<>();
         for (Button permButton : restrictedPermissionButtons) {
             if (permButton.getSelection()) {
                 restrictions.add((DBPDataSourcePermission) permButton.getData());
@@ -67,7 +67,7 @@ public class EditConnectionPermissionsDialog extends BaseDialog {
         super.okPressed();
     }
 
-    public List<DBPDataSourcePermission> getAccessRestrictions() {
+    public /*~~>*/List<DBPDataSourcePermission> getAccessRestrictions() {
         return accessRestrictions;
     }
 }

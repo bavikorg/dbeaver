@@ -64,7 +64,7 @@ public class MySQLUser implements DBAUser, DBARole, DBPRefreshableObject, DBPSav
     private int maxConnections;
     private int maxUserConnections;
 
-    private List<MySQLGrant> grants;
+    private /*~~>*/List<MySQLGrant> grants;
     private boolean persisted;
 
     public MySQLUser(MySQLDataSource dataSource, ResultSet resultSet) {
@@ -156,26 +156,26 @@ public class MySQLUser implements DBAUser, DBARole, DBPRefreshableObject, DBPSav
 
     public void clearGrantsCache()
     {
-        this.grants = null;
+        /*~~>*/this.grants = null;
     }
 
-    public List<MySQLGrant> getGrants(DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLGrant> getGrants(DBRProgressMonitor monitor)
         throws DBException
     {
-        if (this.grants != null) {
-            return this.grants;
+        if (/*~~>*/this.grants != null) {
+            return /*~~>*/this.grants;
         }
         if (!isPersisted()) {
-            this.grants = new ArrayList<>();
-            return this.grants;
+            /*~~>*/this.grants = new ArrayList<>();
+            return /*~~>*/this.grants;
         }
 
         try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Read catalog privileges")) {
             try (JDBCPreparedStatement dbStat = session.prepareStatement("SHOW GRANTS FOR " + getFullName())) {
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                    List<MySQLGrant> grants = new ArrayList<>();
+                    /*~~>*/List<MySQLGrant> grants = new ArrayList<>();
                     while (dbResult.next()) {
-                        List<MySQLPrivilege> privileges = new ArrayList<>();
+                        /*~~>*/List<MySQLPrivilege> privileges = new ArrayList<>();
                         boolean allPrivilegesFlag = false;
                         boolean grantOption = false;
                         String catalog = null;
@@ -224,8 +224,8 @@ public class MySQLUser implements DBAUser, DBARole, DBPRefreshableObject, DBPSav
                                 allPrivilegesFlag,
                                 grantOption));
                     }
-                    this.grants = grants;
-                    return this.grants;
+                    /*~~>*/this.grants = grants;
+                    return /*~~>*/this.grants;
                 }
             }
         } catch (SQLException e) {

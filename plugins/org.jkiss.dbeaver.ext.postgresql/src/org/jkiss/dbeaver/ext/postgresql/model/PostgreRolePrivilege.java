@@ -38,7 +38,7 @@ public class PostgreRolePrivilege extends PostgrePrivilege {
     private String schemaName;
     private String objectName;
 
-    public PostgreRolePrivilege(PostgrePrivilegeOwner owner, PostgrePrivilegeGrant.Kind kind, String schemaName, String objectName, List<PostgrePrivilegeGrant> privileges) {
+    public PostgreRolePrivilege(PostgrePrivilegeOwner owner, PostgrePrivilegeGrant.Kind kind, String schemaName, String objectName, /*~~>*/List<PostgrePrivilegeGrant> privileges) {
         super(owner, privileges);
         this.kind = kind;
         this.schemaName = schemaName;

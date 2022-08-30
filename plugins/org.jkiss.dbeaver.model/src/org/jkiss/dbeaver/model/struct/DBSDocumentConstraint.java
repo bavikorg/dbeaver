@@ -73,7 +73,7 @@ public class DBSDocumentConstraint implements DBSEntityConstraint, DBSEntityRefe
 
     @Nullable
     @Override
-    public List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
         DBSEntityAttribute attribute = entity.getDocumentAttribute(monitor);
         return Collections.singletonList(() -> attribute);
     }

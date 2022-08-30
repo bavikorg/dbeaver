@@ -55,7 +55,7 @@ import java.util.stream.Collectors;
 
 public class ExasolSchema extends ExasolGlobalObject implements DBSSchema, DBPNamedObject2,  DBPRefreshableObject, DBPSystemObject, DBSProcedureContainer, DBPScriptObject {
 
-    private static final List<String> SYSTEM_SCHEMA = Arrays.asList("SYS","EXA_STATISTICS");
+    private static final /*~~>*/List<String> SYSTEM_SCHEMA = Arrays.asList("SYS","EXA_STATISTICS");
     private static final Log log = Log.getLog(ExasolSchema.class);    
     private String name;
     private String owner;
@@ -143,7 +143,7 @@ public class ExasolSchema extends ExasolGlobalObject implements DBSSchema, DBPNa
     
     @Override
     public Collection<ExasolTableBase> getChildren(@NotNull DBRProgressMonitor monitor) throws DBException {
-        List<ExasolTableBase> allChildren = new ArrayList<>();
+        /*~~>*/List<ExasolTableBase> allChildren = new ArrayList<>();
         allChildren.addAll(tableCache.getAllObjects(monitor, this));
         allChildren.addAll(viewCache.getAllObjects(monitor, this));
         return allChildren;

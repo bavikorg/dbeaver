@@ -101,7 +101,7 @@ public class ContentExpressionFunctions {
             XPath xPath = XPathFactory.newInstance().newXPath();
             Object result = xPath.evaluate(expression, document, resultType.getConstant());
             if (result instanceof NodeList) {
-                List<String> valuesList = new ArrayList<>();
+                /*~~>*/List<String> valuesList = new ArrayList<>();
                 NodeList nodeList = (NodeList) result;
                 for (int i = 0; i < nodeList.getLength(); i++) {
                     valuesList.add(nodeList.item(i).getNodeValue());

@@ -83,7 +83,7 @@ public class DBNBookmark extends DBNResource
 
     @Override
     public String getNodeTargetName() {
-        List<String> dsPath = storage.getDataSourcePath();
+        /*~~>*/List<String> dsPath = storage.getDataSourcePath();
         return CommonUtils.isEmpty(dsPath) ? super.getNodeName() : dsPath.get(dsPath.size() - 1);
     }
 

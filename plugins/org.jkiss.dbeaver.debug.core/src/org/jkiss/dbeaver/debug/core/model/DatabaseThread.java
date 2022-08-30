@@ -44,7 +44,7 @@ public class DatabaseThread extends DatabaseDebugElement implements IThread {
 
     private String name = DebugCoreMessages.DatabaseThread_name;
 
-    private List<DatabaseStackFrame> frames = new ArrayList<>(1);
+    private /*~~>*/List<DatabaseStackFrame> frames = new ArrayList<>(1);
 
     public DatabaseThread(IDatabaseDebugTarget target) {
         super(target);
@@ -161,7 +161,7 @@ public class DatabaseThread extends DatabaseDebugElement implements IThread {
             IDatabaseDebugTarget debugTarget = getDatabaseDebugTarget();
             DBGSession session = debugTarget.getSession();
             if (session != null) {
-                List<? extends DBGStackFrame> stackFrames = session.getStack();
+                /*~~>*/List<? extends DBGStackFrame> stackFrames = session.getStack();
                 rebuildStack(stackFrames);
             }
         } catch (DBGException e) {
@@ -176,7 +176,7 @@ public class DatabaseThread extends DatabaseDebugElement implements IThread {
         return true;
     }
 
-    public void rebuildStack(List<? extends DBGStackFrame> stackFrames) {
+    public void rebuildStack(/*~~>*/List<? extends DBGStackFrame> stackFrames) {
         for (DBGStackFrame dbgStackFrame : stackFrames) {
             addFrame(dbgStackFrame);
         }

@@ -53,7 +53,7 @@ public class ExpressionPrinter implements ExpressionVisitor<StringBuilder, Strin
     }
 
     private StringBuilder visitGroup(GroupExpression group, StringBuilder sb, String separator) {
-        Iterator<RuleExpression> it = group.children.iterator();
+        Iterator<RuleExpression> it = /*~~>*/group.children.iterator();
         if (it.hasNext()) {
             this.visit(group, it.next(), sb);
             while (it.hasNext()) {

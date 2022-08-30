@@ -161,8 +161,8 @@ public class DTUtils {
     }
 
     @NotNull
-    public static List<DBSAttributeBase> getAttributes(@NotNull DBRProgressMonitor monitor, @NotNull DBSDataContainer container, @NotNull Object controller) throws DBException {
-        final List<DBSAttributeBase> attributes = new ArrayList<>();
+    public static /*~~>*/List<DBSAttributeBase> getAttributes(@NotNull DBRProgressMonitor monitor, @NotNull DBSDataContainer container, @NotNull Object controller) throws DBException {
+        final /*~~>*/List<DBSAttributeBase> attributes = new ArrayList<>();
         if (container instanceof DBSEntity && !(container instanceof DBSDocumentContainer)) {
             for (DBSEntityAttribute attr : CommonUtils.safeList(((DBSEntity) container).getAttributes(monitor))) {
                 if (DBUtils.isHiddenObject(attr)) {

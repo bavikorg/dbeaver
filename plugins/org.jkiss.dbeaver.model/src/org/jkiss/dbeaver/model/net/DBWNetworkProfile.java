@@ -30,10 +30,10 @@ import java.util.Objects;
 public class DBWNetworkProfile extends DBPConfigurationProfile {
 
     @NotNull
-    private final List<DBWHandlerConfiguration> configurations = new ArrayList<>();
+    private final /*~~>*/List<DBWHandlerConfiguration> configurations = new ArrayList<>();
 
     @NotNull
-    public List<DBWHandlerConfiguration> getConfigurations() {
+    public /*~~>*/List<DBWHandlerConfiguration> getConfigurations() {
         return configurations;
     }
 

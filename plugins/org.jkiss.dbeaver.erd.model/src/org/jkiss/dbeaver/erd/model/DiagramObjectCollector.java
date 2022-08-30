@@ -40,7 +40,7 @@ public class DiagramObjectCollector {
     private static final Log log = Log.getLog(DiagramObjectCollector.class);
 
     private final ERDDiagram diagram;
-    private final List<ERDEntity> erdEntities = new ArrayList<>();
+    private final /*~~>*/List<ERDEntity> erdEntities = new ArrayList<>();
     private boolean showViews;
     private boolean showPartitions;
 
@@ -182,12 +182,12 @@ public class DiagramObjectCollector {
         return false;
     }
 
-    public List<ERDEntity> getDiagramEntities()
+    public /*~~>*/List<ERDEntity> getDiagramEntities()
     {
         return erdEntities;
     }
 
-    public static List<ERDEntity> generateEntityList(
+    public static /*~~>*/List<ERDEntity> generateEntityList(
         DBRProgressMonitor monitor,
         final ERDDiagram diagram,
         DBPProject diagramProject,
@@ -195,7 +195,7 @@ public class DiagramObjectCollector {
         DiagramCollectSettings settings,
         boolean forceShowViews)
     {
-        final List<DBSObject> roots = new ArrayList<>();
+        final /*~~>*/List<DBSObject> roots = new ArrayList<>();
         for (DBPNamedObject object : objects) {
             if (!(object instanceof DBSObject)) {
                 continue;
@@ -215,9 +215,9 @@ public class DiagramObjectCollector {
         if (roots.isEmpty()) {
             return Collections.emptyList();
         }
-        for (Map.Entry<DBPProject, List<DBSObject>> entry : CommonUtils.group(roots, r -> r.getDataSource().getContainer().getProject()).entrySet()) {
+        for (Map.Entry<DBPProject, /*~~>*/List<DBSObject>> entry : CommonUtils.group(roots, r -> r.getDataSource().getContainer().getProject()).entrySet()) {
             final DBPProject project = entry.getKey();
-            final List<DBSObject> values = entry.getValue();
+            final /*~~>*/List<DBSObject> values = entry.getValue();
             if (project != diagramProject) {
                 final StringJoiner joiner = new StringJoiner(", ");
                 for (DBSObject value : values) {
@@ -228,7 +228,7 @@ public class DiagramObjectCollector {
             }
         }
 
-        final List<ERDEntity> entities = new ArrayList<>();
+        final /*~~>*/List<ERDEntity> entities = new ArrayList<>();
 
         monitor.beginTask("Collect diagram objects", 1);
         DiagramObjectCollector collector = new DiagramObjectCollector(diagram);

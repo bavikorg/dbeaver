@@ -28,12 +28,12 @@ import java.util.List;
  * Plain list of token predicate conditions for a comparison with trie-based predicates set
  */
 public class TokenPredicatesList {
-    private final List<TokenPredicatesCondition> conditions;
+    private final /*~~>*/List<TokenPredicatesCondition> conditions;
     private final int maxHeadLength;
     private final int maxTailLength;
 
-    public TokenPredicatesList(List<TokenPredicatesCondition> conditions) {
-        this.conditions = Collections.unmodifiableList(conditions);
+    public TokenPredicatesList(/*~~>*/List<TokenPredicatesCondition> conditions) {
+        /*~~>*/this.conditions = Collections.unmodifiableList(conditions);
         this.maxHeadLength = conditions.stream().mapToInt(c -> c.maxPrefixLength).max().orElse(0);
         this.maxTailLength = conditions.stream().mapToInt(c -> c.maxSuffixLength).max().orElse(0);
     }
@@ -48,7 +48,7 @@ public class TokenPredicatesList {
 
     @NotNull
     public static TokenPredicatesList of(@NotNull TokenPredicatesCondition... conditions) {
-        return new TokenPredicatesList(List.of(conditions));
+        return new TokenPredicatesList(/*~~>*/List.of(conditions));
     }
 
     public boolean anyMatches(@NotNull Deque<TokenEntry> head, @NotNull Deque<TokenEntry> tail) {
@@ -62,7 +62,7 @@ public class TokenPredicatesList {
 
     private boolean conditionMatches(@NotNull TokenPredicatesCondition cond, @NotNull Deque<TokenEntry> head, @NotNull Deque<TokenEntry> tail) {
         boolean tailMatch = false;
-        for (List<TokenEntry> condTail : cond.getSuffixes()) {
+        for (/*~~>*/List<TokenEntry> condTail : cond.getSuffixes()) {
             int condTailLen = condTail.size();
             if (condTailLen <= tail.size()) {
                 boolean matched = true;
@@ -85,7 +85,7 @@ public class TokenPredicatesList {
         }
 
         boolean headMatch = false;
-        for (List<TokenEntry> condHead : cond.getPrefixes()) {
+        for (/*~~>*/List<TokenEntry> condHead : cond.getPrefixes()) {
             int condHeadLen = condHead.size();
             if (condHeadLen <= head.size()) {
                 boolean matched = true;

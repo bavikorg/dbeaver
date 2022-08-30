@@ -45,16 +45,16 @@ public class WMIObject extends WMIQualifiedObject {
         writeAttributeValue(name, value);
     }
 
-    public List<WMIObjectAttribute> getAttributes(long flags) throws WMIException
+    public /*~~>*/List<WMIObjectAttribute> getAttributes(long flags) throws WMIException
     {
-        List<WMIObjectAttribute> attributes = new ArrayList<>();
+        /*~~>*/List<WMIObjectAttribute> attributes = new ArrayList<>();
         readAttributes(flags, attributes);
         return attributes;
     }
 
-    public List<WMIObjectMethod> getMethods(long flags) throws WMIException
+    public /*~~>*/List<WMIObjectMethod> getMethods(long flags) throws WMIException
     {
-        List<WMIObjectMethod> methods = new ArrayList<>();
+        /*~~>*/List<WMIObjectMethod> methods = new ArrayList<>();
         readMethods(flags, methods);
         return methods;
     }
@@ -72,7 +72,7 @@ public class WMIObject extends WMIQualifiedObject {
     }
 
     @Override
-    protected void readObjectQualifiers(List<WMIQualifier> qualifiers)
+    protected void readObjectQualifiers(/*~~>*/List<WMIQualifier> qualifiers)
         throws WMIException
     {
         readQualifiers(false, null, qualifiers);
@@ -93,13 +93,13 @@ public class WMIObject extends WMIQualifiedObject {
     private native void writeAttributeValue(String name, Object value)
         throws WMIException;
 
-    private native void readAttributes(long flags, List<WMIObjectAttribute> attributes)
+    private native void readAttributes(long flags, /*~~>*/List<WMIObjectAttribute> attributes)
         throws WMIException;
 
-    private native void readMethods(long flags, List<WMIObjectMethod> method)
+    private native void readMethods(long flags, /*~~>*/List<WMIObjectMethod> method)
         throws WMIException;
 
-    native void readQualifiers(boolean isAttribute, String attrName, List<WMIQualifier> qualifiers)
+    native void readQualifiers(boolean isAttribute, String attrName, /*~~>*/List<WMIQualifier> qualifiers)
         throws WMIException;
 
     native void releaseObject();

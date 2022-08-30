@@ -55,11 +55,11 @@ public class SQLVariablesRegistry {
         .create();
 
     private static SQLVariablesRegistry registry;
-    private final Map<DBPDriver, List<DBCScriptContext.VariableInfo>> driverVariables = new HashMap<>();
-    private final Map<String, List<DBCScriptContext.VariableInfo>> connectionVariables = new HashMap<>();
+    private final Map<DBPDriver, /*~~>*/List<DBCScriptContext.VariableInfo>> driverVariables = new HashMap<>();
+    private final Map<String, /*~~>*/List<DBCScriptContext.VariableInfo>> connectionVariables = new HashMap<>();
 
     private ConfigSaver configSaver;
-    private final List<Object> saveLock = new ArrayList<>();
+    private final /*~~>*/List<Object> saveLock = new ArrayList<>();
 
     private SQLVariablesRegistry() {
     }
@@ -107,7 +107,7 @@ public class SQLVariablesRegistry {
                 String dataSourceId = JSONUtils.getString(map, "datasource");
                 Map<String, Object> varSrc = JSONUtils.getObject(map, "variables");
 
-                List<DBCScriptContext.VariableInfo> variables = new ArrayList<>();
+                /*~~>*/List<DBCScriptContext.VariableInfo> variables = new ArrayList<>();
 
                 for (Map.Entry<String, Object> entry : varSrc.entrySet()) {
                     DBCScriptContext.VariableInfo variableInfo;
@@ -159,18 +159,18 @@ public class SQLVariablesRegistry {
     }
 
     @NotNull
-    public List<DBCScriptContext.VariableInfo> getDriverVariables(DBPDriver driver) {
-        List<DBCScriptContext.VariableInfo> variables = driverVariables.get(driver);
+    public /*~~>*/List<DBCScriptContext.VariableInfo> getDriverVariables(DBPDriver driver) {
+        /*~~>*/List<DBCScriptContext.VariableInfo> variables = driverVariables.get(driver);
         return variables == null ? Collections.emptyList() : new ArrayList<>(variables);
     }
 
     @NotNull
-    public List<DBCScriptContext.VariableInfo> getDataSourceVariables(DBPDataSourceContainer dataSource) {
-        List<DBCScriptContext.VariableInfo> variables = connectionVariables.get(dataSource);
+    public /*~~>*/List<DBCScriptContext.VariableInfo> getDataSourceVariables(DBPDataSourceContainer dataSource) {
+        /*~~>*/List<DBCScriptContext.VariableInfo> variables = connectionVariables.get(dataSource);
         if (variables == null) {
             return getDriverVariables(dataSource.getDriver());
         }
-        List<DBCScriptContext.VariableInfo> result = new ArrayList<>(variables);
+        /*~~>*/List<DBCScriptContext.VariableInfo> result = new ArrayList<>(variables);
         result.addAll(getDriverVariables(dataSource.getDriver()));
         return result;
     }
@@ -178,17 +178,17 @@ public class SQLVariablesRegistry {
     public void updateVariables(
         @Nullable DBPDriver driver,
         @Nullable DBPDataSourceContainer dataSource,
-        @NotNull List<DBCScriptContext.VariableInfo> variables)
+        @NotNull /*~~>*/List<DBCScriptContext.VariableInfo> variables)
     {
         if (dataSource != null) {
-            List<DBCScriptContext.VariableInfo> vars = connectionVariables.get(dataSource.getId());
+            /*~~>*/List<DBCScriptContext.VariableInfo> vars = connectionVariables.get(dataSource.getId());
             if (vars == null) {
                 connectionVariables.put(dataSource.getId(), new ArrayList<>(variables));
             } else {
                 vars.addAll(variables);
             }
         } else if (driver != null) {
-            List<DBCScriptContext.VariableInfo> vars = driverVariables.get(driver.getId());
+            /*~~>*/List<DBCScriptContext.VariableInfo> vars = driverVariables.get(driver.getId());
             if (vars == null) {
                 driverVariables.put(driver, new ArrayList<>(variables));
             } else {
@@ -223,7 +223,7 @@ public class SQLVariablesRegistry {
 
         @Override
         protected IStatus run(DBRProgressMonitor monitor) {
-            List<Object> toSave;
+            /*~~>*/List<Object> toSave;
             synchronized (saveLock) {
                 toSave = new ArrayList<>(saveLock);
                 saveLock.clear();
@@ -232,7 +232,7 @@ public class SQLVariablesRegistry {
             return Status.OK_STATUS;
         }
 
-        private void flushConfig(List<Object> toSave) {
+        private void flushConfig(/*~~>*/List<Object> toSave) {
             File configLocation = getConfigLocation();
             if (!configLocation.exists()) {
                 if (!configLocation.mkdirs()) {
@@ -264,7 +264,7 @@ public class SQLVariablesRegistry {
 
         private void saveConfigToFile(File configFile, DBPDriver driver, DBPDataSourceContainer con) {
             Map<String, Object> map = new LinkedHashMap<>();
-            List<DBCScriptContext.VariableInfo> variables;
+            /*~~>*/List<DBCScriptContext.VariableInfo> variables;
             if (driver != null) {
                 map.put("driver", driver.getFullId());
                 variables = driverVariables.get(driver);

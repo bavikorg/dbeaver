@@ -36,19 +36,19 @@ public class SQLCompletionAnalyzerTest {
             .prepare();
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SEL|");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SEL|");
             Assert.assertEquals(1, proposals.size());
             Assert.assertEquals("SELECT", proposals.get(0).getReplacementString());
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * |");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * |");
             Assert.assertEquals(1, proposals.size());
             Assert.assertEquals("FROM", proposals.get(0).getReplacementString());
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM T |");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM T |");
             Assert.assertEquals(1, proposals.size());
             Assert.assertEquals("WHERE", proposals.get(0).getReplacementString());
         }
@@ -77,7 +77,7 @@ public class SQLCompletionAnalyzerTest {
             .prepare();
 
         {
-            final List<SQLCompletionProposalBase> proposals = request
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request
                 .request("SELECT | FROM Table1");
 
             Assert.assertEquals(3, proposals.size());
@@ -87,7 +87,7 @@ public class SQLCompletionAnalyzerTest {
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request
                 .request("SELECT * FROM Table1 WHERE |");
 
             Assert.assertEquals(3, proposals.size());
@@ -97,7 +97,7 @@ public class SQLCompletionAnalyzerTest {
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request
                 .request("SELECT * FROM Table1 WHERE Table1.|");
 
             Assert.assertEquals(3, proposals.size());
@@ -107,7 +107,7 @@ public class SQLCompletionAnalyzerTest {
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request
                 .request("SELECT * FROM Table1 t WHERE t.|");
 
             Assert.assertEquals(3, proposals.size());
@@ -117,7 +117,7 @@ public class SQLCompletionAnalyzerTest {
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request
                     .request("SELECT * FROM \"Table 3\" t WHERE t.|");
 
             Assert.assertEquals(3, proposals.size());
@@ -127,7 +127,7 @@ public class SQLCompletionAnalyzerTest {
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request
                 .request("SELECT t.| FROM Table1 t");
 
             Assert.assertEquals(3, proposals.size());
@@ -137,7 +137,7 @@ public class SQLCompletionAnalyzerTest {
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request
                 .request("SELECT t2.| FROM Table1 t, Table2 t2");
 
             Assert.assertEquals(3, proposals.size());
@@ -160,12 +160,12 @@ public class SQLCompletionAnalyzerTest {
             });
         }).prepare();
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Table1 join Table2 t on t.|", false);
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Table1 join Table2 t on t.|", false);
             Assert.assertEquals("Col4", proposals.get(0).getReplacementString());
             Assert.assertEquals("Col5", proposals.get(1).getReplacementString());
         }
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Table1 b join Table2 on b.|", false);
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Table1 b join Table2 on b.|", false);
             Assert.assertEquals("Col1", proposals.get(0).getReplacementString());
             Assert.assertEquals("Col2", proposals.get(1).getReplacementString());
         }
@@ -184,7 +184,7 @@ public class SQLCompletionAnalyzerTest {
             .prepare();
 
         {
-            final List<SQLCompletionProposalBase> proposals = request
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request
                 .request("SELECT *| FROM Table1", false);
 
             Assert.assertEquals(1, proposals.size());
@@ -192,7 +192,7 @@ public class SQLCompletionAnalyzerTest {
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request
                 .request("SELECT t.*| FROM Table1 t", false);
 
             Assert.assertEquals(1, proposals.size());
@@ -200,7 +200,7 @@ public class SQLCompletionAnalyzerTest {
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request
                 .request("SELECT Table1.*| FROM Table1", false);
 
             Assert.assertEquals(1, proposals.size());
@@ -222,7 +222,7 @@ public class SQLCompletionAnalyzerTest {
             .prepare();
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM |");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM |");
             Assert.assertTrue(proposals.size() >= 3);
             Assert.assertEquals("Table1", proposals.get(0).getReplacementString());
             Assert.assertEquals("Table2", proposals.get(1).getReplacementString());
@@ -233,7 +233,7 @@ public class SQLCompletionAnalyzerTest {
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Tb|");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Tb|");
             Assert.assertEquals(3, proposals.size());
             Assert.assertEquals("Tbl4", proposals.get(0).getReplacementString());
             Assert.assertEquals("Tbl5", proposals.get(1).getReplacementString());
@@ -259,14 +259,14 @@ public class SQLCompletionAnalyzerTest {
             .prepare();
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Sch|");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Sch|");
             Assert.assertEquals(2, proposals.size());
             Assert.assertEquals("Schema1", proposals.get(0).getReplacementString());
             Assert.assertEquals("Schema2", proposals.get(1).getReplacementString());
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Schema1.|");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Schema1.|");
             Assert.assertEquals(3, proposals.size());
             Assert.assertEquals("Table1", proposals.get(0).getReplacementString());
             Assert.assertEquals("Table2", proposals.get(1).getReplacementString());
@@ -296,20 +296,20 @@ public class SQLCompletionAnalyzerTest {
             .prepare();
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Da|");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Da|");
             Assert.assertEquals(2, proposals.size());
             Assert.assertEquals("Database1", proposals.get(0).getReplacementString());
             Assert.assertEquals("Database2", proposals.get(1).getReplacementString());
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Database1.|");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Database1.|");
             Assert.assertEquals(1, proposals.size());
             Assert.assertEquals("Schema1", proposals.get(0).getReplacementString());
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Database1.Schema1.|");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM Database1.Schema1.|");
             Assert.assertEquals(3, proposals.size());
             Assert.assertEquals("Table1", proposals.get(0).getReplacementString());
             Assert.assertEquals("Table2", proposals.get(1).getReplacementString());
@@ -335,25 +335,25 @@ public class SQLCompletionAnalyzerTest {
             .prepare();
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM \"Dat|\"");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM \"Dat|\"");
             Assert.assertEquals(1, proposals.size());
             Assert.assertEquals("Database1", proposals.get(0).getReplacementString());
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM \"Database1\".\"Sch|\"");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM \"Database1\".\"Sch|\"");
             Assert.assertEquals(1, proposals.size());
             Assert.assertEquals("Schema1", proposals.get(0).getReplacementString());
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM \"Database1\".\"Schema1\".\"Tab|\"");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM \"Database1\".\"Schema1\".\"Tab|\"");
             Assert.assertEquals(1, proposals.size());
             Assert.assertEquals("Table1", proposals.get(0).getReplacementString());
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM \"Database1\".\"Schema1\".\"Table1\".\"Col|\"");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT * FROM \"Database1\".\"Schema1\".\"Table1\".\"Col|\"");
             Assert.assertEquals(3, proposals.size());
             Assert.assertEquals("Col1", proposals.get(0).getReplacementString());
             Assert.assertEquals("Col2", proposals.get(1).getReplacementString());
@@ -378,7 +378,7 @@ public class SQLCompletionAnalyzerTest {
             .prepare();
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT | FROM Database1.Schema1.Table1");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT | FROM Database1.Schema1.Table1");
             Assert.assertEquals(3, proposals.size());
             Assert.assertEquals("Col1", proposals.get(0).getReplacementString());
             Assert.assertEquals("Col2", proposals.get(1).getReplacementString());
@@ -386,7 +386,7 @@ public class SQLCompletionAnalyzerTest {
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT | FROM \"Database1\".Schema1.\"Table1\"");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT | FROM \"Database1\".Schema1.\"Table1\"");
             Assert.assertEquals(3, proposals.size());
             Assert.assertEquals("Col1", proposals.get(0).getReplacementString());
             Assert.assertEquals("Col2", proposals.get(1).getReplacementString());
@@ -394,7 +394,7 @@ public class SQLCompletionAnalyzerTest {
         }
 
         {
-            final List<SQLCompletionProposalBase> proposals = request.request("SELECT | FROM \"Database1\".\"Schema1\".\"Table1\"");
+            final /*~~>*/List<SQLCompletionProposalBase> proposals = request.request("SELECT | FROM \"Database1\".\"Schema1\".\"Table1\"");
             Assert.assertEquals(3, proposals.size());
             Assert.assertEquals("Col1", proposals.get(0).getReplacementString());
             Assert.assertEquals("Col2", proposals.get(1).getReplacementString());

@@ -51,7 +51,7 @@ public class NewConnectionWizard extends ConnectionWizard
     private final DBPDriver initialDriver;
     private final DBPConnectionConfiguration initialConfiguration;
     private IStructuredSelection selection;
-    private final List<DBPDataSourceProviderDescriptor> availableProvides = new ArrayList<>();
+    private final /*~~>*/List<DBPDataSourceProviderDescriptor> availableProvides = new ArrayList<>();
     private ConnectionPageDriver pageDrivers;
     private final Map<DBPDataSourceProviderDescriptor, ConnectionPageSettings> settingsPages = new HashMap<>();
     private ConnectionPageGeneral pageGeneral;
@@ -72,7 +72,7 @@ public class NewConnectionWizard extends ConnectionWizard
         return project == null ? null : project.getDataSourceRegistry();
     }
 
-    List<DBPDataSourceProviderDescriptor> getAvailableProvides()
+    /*~~>*/List<DBPDataSourceProviderDescriptor> getAvailableProvides()
     {
         return availableProvides;
     }

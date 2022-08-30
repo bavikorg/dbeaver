@@ -46,7 +46,7 @@ public class MySQLTableIndex extends JDBCTableIndex<MySQLCatalog, MySQLTable> im
     private String additionalInfo;
     private String indexComment;
     private long cardinality;
-    private List<MySQLTableIndexColumn> columns;
+    private /*~~>*/List<MySQLTableIndexColumn> columns;
 
     public MySQLTableIndex(
         MySQLTable table,
@@ -70,11 +70,11 @@ public class MySQLTableIndex extends JDBCTableIndex<MySQLCatalog, MySQLTable> im
             this.cardinality = ((MySQLTableIndex)source).cardinality;
             this.additionalInfo = ((MySQLTableIndex)source).additionalInfo;
         }
-        List<? extends DBSTableIndexColumn> columns = source.getAttributeReferences(monitor);
+        /*~~>*/List<? extends DBSTableIndexColumn> columns = source.getAttributeReferences(monitor);
         if (columns != null) {
-            this.columns = new ArrayList<>(columns.size());
+            /*~~>*/this.columns = new ArrayList<>(columns.size());
             for (DBSTableIndexColumn sourceColumn : columns) {
-                this.columns.add(new MySQLTableIndexColumn(monitor, this, sourceColumn));
+                /*~~>*/this.columns.add(new MySQLTableIndexColumn(monitor, this, sourceColumn));
             }
         }
     }
@@ -129,7 +129,7 @@ public class MySQLTableIndex extends JDBCTableIndex<MySQLCatalog, MySQLTable> im
     }
 
     @Override
-    public List<MySQLTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor)
     {
         return columns;
     }
@@ -139,9 +139,9 @@ public class MySQLTableIndex extends JDBCTableIndex<MySQLCatalog, MySQLTable> im
         return DBUtils.findObject(columns, columnName);
     }
 
-    void setColumns(List<MySQLTableIndexColumn> columns)
+    void setColumns(/*~~>*/List<MySQLTableIndexColumn> columns)
     {
-        this.columns = columns;
+        /*~~>*/this.columns = columns;
     }
 
     public void addColumn(MySQLTableIndexColumn column)

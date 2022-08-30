@@ -86,7 +86,7 @@ public class PrefPageSQLDialects extends AbstractPrefPage implements IWorkbenchP
             gd.heightHint = 200;
             dialectTable.setLayoutData(gd);
 
-            List<SQLDialectDescriptor> dialects = SQLDialectRegistry.getInstance().getRootDialects();
+            /*~~>*/List<SQLDialectDescriptor> dialects = SQLDialectRegistry.getInstance().getRootDialects();
             //dialects.sort(Comparator.comparing(SQLDialectDescriptor::getLabel));
             for (SQLDialectDescriptor dialect : dialects) {
                 createDialectItem(dialectTable, null, dialect);
@@ -152,7 +152,7 @@ public class PrefPageSQLDialects extends AbstractPrefPage implements IWorkbenchP
             di = parentItem;
         }
 
-        List<SQLDialectMetadata> subDialects = dialect.getSubDialects(true);
+        /*~~>*/List<SQLDialectMetadata> subDialects = dialect.getSubDialects(true);
         subDialects.sort(Comparator.comparing(SQLDialectMetadata::getLabel));
         for (SQLDialectMetadata dm : subDialects) {
             createDialectItem(dialectTable, di, (SQLDialectDescriptor) dm);

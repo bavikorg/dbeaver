@@ -59,7 +59,7 @@ public abstract class ArgumentTokenizer {
      * @param arguments A String containing one or more command-line style arguments to be tokenized.
      * @return A list of parsed and properly escaped arguments.
      */
-    public static List<String> tokenize(String arguments) {
+    public static /*~~>*/List<String> tokenize(String arguments) {
         return tokenize(arguments, false);
     }
 
@@ -70,7 +70,7 @@ public abstract class ArgumentTokenizer {
      * @param stringify whether or not to include escape special characters
      * @return A list of parsed and properly escaped arguments.
      */
-    public static List<String> tokenize(String arguments, boolean stringify) {
+    public static /*~~>*/List<String> tokenize(String arguments, boolean stringify) {
 
         LinkedList<String> argList = new LinkedList<String>();
         StringBuilder currArg = new StringBuilder();

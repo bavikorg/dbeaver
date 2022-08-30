@@ -78,7 +78,7 @@ public class ExpressionFactory {
     }
 
     @NotNull
-    private static List<RuleExpression> makeCollection(@NotNull Object... exprs) {
+    private static /*~~>*/List<RuleExpression> makeCollection(@NotNull Object... exprs) {
         return Arrays.stream(exprs).map(ExpressionFactory::makeExpression).collect(Collectors.toList());
     }
 

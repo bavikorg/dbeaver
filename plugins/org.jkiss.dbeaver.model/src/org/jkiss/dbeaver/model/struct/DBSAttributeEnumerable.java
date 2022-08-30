@@ -40,7 +40,7 @@ public interface DBSAttributeEnumerable extends DBSEntityAttribute
      * @return statement with result set which contains valid enumeration values.
      **/
     @NotNull
-    List<DBDLabelValuePair> getValueEnumeration(
+    /*~~>*/List<DBDLabelValuePair> getValueEnumeration(
         @NotNull DBCSession session,
         @Nullable Object valuePattern,
         int maxResults,

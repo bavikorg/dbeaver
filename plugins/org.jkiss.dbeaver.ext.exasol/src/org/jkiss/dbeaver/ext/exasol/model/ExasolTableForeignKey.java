@@ -46,7 +46,7 @@ public class ExasolTableForeignKey extends JDBCTableConstraint<ExasolTable> impl
     private ExasolTable refTable;
     private String constName;
     private Boolean enabled;
-    private List<ExasolTableForeignKeyColumn> columns;
+    private /*~~>*/List<ExasolTableForeignKeyColumn> columns;
     
     
     private ExasolTableUniqueKey referencedKey;
@@ -123,12 +123,12 @@ public class ExasolTableForeignKey extends JDBCTableConstraint<ExasolTable> impl
     // Columns
     // -----------------
     @Override
-    public List<ExasolTableForeignKeyColumn> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<ExasolTableForeignKeyColumn> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
         return columns;
     }
 
-    public void setColumns(List<ExasolTableForeignKeyColumn> columns) {
-        this.columns = columns;
+    public void setColumns(/*~~>*/List<ExasolTableForeignKeyColumn> columns) {
+        /*~~>*/this.columns = columns;
     }
 
     // -----------------

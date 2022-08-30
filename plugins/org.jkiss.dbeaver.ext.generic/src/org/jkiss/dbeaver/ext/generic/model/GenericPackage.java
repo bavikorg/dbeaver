@@ -51,7 +51,7 @@ public class GenericPackage extends GenericObjectContainer implements DBPQualifi
         this.container = container;
         this.packageName = packageName;
         this.nameFromCatalog = nameFromCatalog;
-        this.procedures = new ArrayList<>();
+        /*~~>*/this.procedures = new ArrayList<>();
     }
 
     @NotNull
@@ -96,7 +96,7 @@ public class GenericPackage extends GenericObjectContainer implements DBPQualifi
     }
 
     @Override
-    public List<GenericProcedure> getProcedures(DBRProgressMonitor monitor)
+    public /*~~>*/List<GenericProcedure> getProcedures(DBRProgressMonitor monitor)
         throws DBException
     {
         return procedures;

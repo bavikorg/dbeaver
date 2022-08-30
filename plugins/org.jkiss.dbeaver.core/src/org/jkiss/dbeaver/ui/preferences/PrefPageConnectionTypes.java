@@ -377,7 +377,7 @@ public class PrefPageConnectionTypes extends AbstractPrefPage implements IWorkbe
         typeId.setEnabled(false);
 
         DataSourceProviderRegistry registry = DataSourceProviderRegistry.getInstance();
-        List<DBPConnectionType> toRemove = new ArrayList<>();
+        /*~~>*/List<DBPConnectionType> toRemove = new ArrayList<>();
         for (DBPConnectionType type : registry.getConnectionTypes()) {
             if (!changedInfo.values().contains(type)) {
                 // Remove

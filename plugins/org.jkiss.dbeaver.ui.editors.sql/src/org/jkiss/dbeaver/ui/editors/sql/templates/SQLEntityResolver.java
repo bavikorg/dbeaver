@@ -41,7 +41,7 @@ class SQLEntityResolver extends SQLObjectResolver<DBSEntity> {
     }
 
     @Override
-    protected void resolveObjects(DBRProgressMonitor monitor, DBCExecutionContext executionContext, TemplateContext context, List<DBSEntity> entities) throws DBException
+    protected void resolveObjects(DBRProgressMonitor monitor, DBCExecutionContext executionContext, TemplateContext context, /*~~>*/List<DBSEntity> entities) throws DBException
     {
         resolveTables(monitor, executionContext, context, entities);
     }
@@ -54,7 +54,7 @@ class SQLEntityResolver extends SQLObjectResolver<DBSEntity> {
         }
     }
 
-    static void resolveTables(DBRProgressMonitor monitor, DBCExecutionContext executionContext, TemplateContext context, List<DBSEntity> entities) throws DBException
+    static void resolveTables(DBRProgressMonitor monitor, DBCExecutionContext executionContext, TemplateContext context, /*~~>*/List<DBSEntity> entities) throws DBException
     {
         TemplateVariable schemaVariable = ((SQLContext) context).getTemplateVariable(SQLContainerResolver.VAR_NAME_SCHEMA);
         TemplateVariable catalogVariable = ((SQLContext) context).getTemplateVariable(SQLContainerResolver.VAR_NAME_CATALOG);
@@ -80,7 +80,7 @@ class SQLEntityResolver extends SQLObjectResolver<DBSEntity> {
         }
     }
 
-    static void makeProposalsFromChildren(DBRProgressMonitor monitor, DBSObjectContainer container, List<DBSEntity> names) throws DBException
+    static void makeProposalsFromChildren(DBRProgressMonitor monitor, DBSObjectContainer container, /*~~>*/List<DBSEntity> names) throws DBException
     {
         Collection<? extends DBSObject> children = container.getChildren(monitor);
         if (CommonUtils.isEmpty(children)) {

@@ -97,7 +97,7 @@ public abstract class AbstractExecutionContext<DATASOURCE extends DBPDataSource>
 
         // Execute bootstrap queries
         DBPConnectionBootstrap bootstrap = getBootstrapSettings();
-        List<String> initQueries = bootstrap.getInitQueries();
+        /*~~>*/List<String> initQueries = bootstrap.getInitQueries();
         if (!CommonUtils.isEmpty(initQueries)) {
             monitor.subTask("Run bootstrap queries");
             try (DBCSession session = openSession(monitor, DBCExecutionPurpose.UTIL, "Run bootstrap queries")) {

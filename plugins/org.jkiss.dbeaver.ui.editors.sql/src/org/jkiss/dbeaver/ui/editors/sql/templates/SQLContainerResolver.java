@@ -48,7 +48,7 @@ public class SQLContainerResolver<T extends DBSObjectContainer> extends SQLObjec
     }
 
     @Override
-    protected void resolveObjects(DBRProgressMonitor monitor, DBCExecutionContext executionContext, TemplateContext context, List<T> entities) throws DBException
+    protected void resolveObjects(DBRProgressMonitor monitor, DBCExecutionContext executionContext, TemplateContext context, /*~~>*/List<T> entities) throws DBException
     {
         DBSObjectContainer objectContainer = DBUtils.getAdapter(DBSObjectContainer.class, executionContext.getDataSource());
         if (objectContainer != null) {
@@ -56,7 +56,7 @@ public class SQLContainerResolver<T extends DBSObjectContainer> extends SQLObjec
         }
     }
 
-    private void makeProposalsFromChildren(DBRProgressMonitor monitor, DBCExecutionContext executionContext, DBSObjectContainer container, List<T> names) throws DBException
+    private void makeProposalsFromChildren(DBRProgressMonitor monitor, DBCExecutionContext executionContext, DBSObjectContainer container, /*~~>*/List<T> names) throws DBException
     {
         Collection<? extends DBSObject> children = container.getChildren(monitor);
         if (CommonUtils.isEmpty(children)) {

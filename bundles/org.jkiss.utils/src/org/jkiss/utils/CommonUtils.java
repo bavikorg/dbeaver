@@ -197,7 +197,7 @@ public class CommonUtils {
     }
 
     @Nullable
-    public static <T> T getFirstOrNull(@NotNull List<T> list) {
+    public static <T> T getFirstOrNull(@NotNull /*~~>*/List<T> list) {
         return list.isEmpty() ? null : list.get(0);
     }
 
@@ -210,7 +210,7 @@ public class CommonUtils {
     }
 
     @NotNull
-    public static <T> List<T> singletonOrEmpty(@Nullable T object) {
+    public static <T> /*~~>*/List<T> singletonOrEmpty(@Nullable T object) {
         if (object == null) {
             return Collections.emptyList();
         }
@@ -218,7 +218,7 @@ public class CommonUtils {
     }
 
     @NotNull
-    public static <T> List<T> safeList(@Nullable List<T> theList) {
+    public static <T> /*~~>*/List<T> safeList(@Nullable /*~~>*/List<T> theList) {
         if (theList == null) {
             theList = Collections.emptyList();
         }
@@ -226,7 +226,7 @@ public class CommonUtils {
     }
 
     @NotNull
-    public static <T> List<T> copyList(@Nullable Collection<T> theList) {
+    public static <T> /*~~>*/List<T> copyList(@Nullable Collection<T> theList) {
         if (theList == null) {
             return new ArrayList<>();
         } else {
@@ -243,7 +243,7 @@ public class CommonUtils {
      * @param element element
      * @param <T> type of the list
      */
-    public static <T> void shiftLeft(@NotNull List<? super T> list, @NotNull T element) {
+    public static <T> void shiftLeft(@NotNull /*~~>*/List<? super T> list, @NotNull T element) {
         int idx = list.indexOf(element);
         if (idx > 0) {
             Collections.swap(list, idx - 1, idx);
@@ -259,7 +259,7 @@ public class CommonUtils {
      * @param element element
      * @param <T> type of the list
      */
-    public static <T> void shiftRight(@NotNull List<? super T> list, @NotNull T element) {
+    public static <T> void shiftRight(@NotNull /*~~>*/List<? super T> list, @NotNull T element) {
         int idx = list.indexOf(element);
         if (idx != -1 && idx != list.size() - 1) {
             Collections.swap(list, idx, idx + 1);
@@ -584,11 +584,11 @@ public class CommonUtils {
     }
 
     @NotNull
-    public static List<String> splitString(@Nullable String str, char delimiter) {
+    public static /*~~>*/List<String> splitString(@Nullable String str, char delimiter) {
         if (CommonUtils.isEmpty(str)) {
             return Collections.emptyList();
         } else {
-            List<String> result = new ArrayList<>();
+            /*~~>*/List<String> result = new ArrayList<>();
             StringTokenizer st = new StringTokenizer(str, String.valueOf(delimiter));
             while (st.hasMoreTokens()) {
                 result.add(st.nextToken());
@@ -607,7 +607,7 @@ public class CommonUtils {
     }
 
     @NotNull
-    public static String makeString(@Nullable List<String> tokens, char delimiter) {
+    public static String makeString(@Nullable /*~~>*/List<String> tokens, char delimiter) {
         if (tokens == null) {
             return "";
         } else if (tokens.size() == 1) {
@@ -703,8 +703,8 @@ public class CommonUtils {
 
     @NotNull
     public static <T> T getItem(@NotNull Collection<T> collection, int index) {
-        if (collection instanceof List) {
-            return ((List<T>) collection).get(index);
+        if (collection instanceof /*~~>*/List) {
+            return ((/*~~>*/List<T>) collection).get(index);
         } else {
             Iterator<T> iter = collection.iterator();
             for (int i = 0; i < index; i++) {
@@ -732,8 +732,8 @@ public class CommonUtils {
     }
 
     @NotNull
-    public static <T> List<T> filterCollection(@NotNull Collection<?> collection, @NotNull Class<T> type) {
-        List<T> result = new ArrayList<>();
+    public static <T> /*~~>*/List<T> filterCollection(@NotNull Collection<?> collection, @NotNull Class<T> type) {
+        /*~~>*/List<T> result = new ArrayList<>();
         for (Object item : collection) {
             if (type.isInstance(item)) {
                 result.add(type.cast(item));
@@ -1000,11 +1000,11 @@ public class CommonUtils {
      * @return map of a shared key and a list of matching values
      */
     @NotNull
-    public static <K, V> Map<K, List<V>> group(@NotNull Collection<V> values, @NotNull Function<? super V, ? extends K> keyExtractor) {
-        final Map<K, List<V>> grouped = new HashMap<>();
+    public static <K, V> Map<K, /*~~>*/List<V>> group(@NotNull Collection<V> values, @NotNull Function<? super V, ? extends K> keyExtractor) {
+        final Map<K, /*~~>*/List<V>> grouped = new HashMap<>();
         for (V value : values) {
             final K key = keyExtractor.apply(value);
-            final List<V> group = grouped.computeIfAbsent(key, k -> new ArrayList<>());
+            final /*~~>*/List<V> group = grouped.computeIfAbsent(key, k -> new ArrayList<>());
             group.add(value);
         }
         return grouped;

@@ -39,7 +39,7 @@ public class AttributeConnectionEditPolicy extends AttributeContainerEditPolicy 
 
     @Override
     protected Command getAddCommand(GroupRequest request) {
-        List srcParts = request.getEditParts();
+        /*~~>*/List srcParts = request.getEditParts();
         if (srcParts.size() != 1) {
             // Can drop only one attribute
             return null;

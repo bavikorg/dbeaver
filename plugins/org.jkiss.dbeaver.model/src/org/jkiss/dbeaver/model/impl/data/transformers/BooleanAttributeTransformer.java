@@ -43,7 +43,7 @@ public class BooleanAttributeTransformer implements DBDAttributeTransformer {
     private static final Log log = Log.getLog(BooleanAttributeTransformer.class);
 
     @Override
-    public void transformAttribute(@NotNull DBCSession session, @NotNull DBDAttributeBinding attribute, @NotNull List<Object[]> rows, @NotNull Map<String, Object> options) throws DBException {
+    public void transformAttribute(@NotNull DBCSession session, @NotNull DBDAttributeBinding attribute, @NotNull /*~~>*/List<Object[]> rows, @NotNull Map<String, Object> options) throws DBException {
         attribute.setPresentationAttribute(
             new TransformerPresentationAttribute(attribute, "boolean", -1, DBPDataKind.BOOLEAN));
 

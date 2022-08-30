@@ -109,7 +109,7 @@ public class PrefPageDatabaseUserInterface extends AbstractPrefPage implements I
 
             workspaceLanguage = UIUtils.createLabelCombo(groupLanguage, CoreMessages.pref_page_ui_general_combo_language, CoreMessages.pref_page_ui_general_combo_language_tip, SWT.READ_ONLY | SWT.DROP_DOWN);
             workspaceLanguage.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
-            List<PlatformLanguageDescriptor> languages = PlatformLanguageRegistry.getInstance().getLanguages();
+            /*~~>*/List<PlatformLanguageDescriptor> languages = PlatformLanguageRegistry.getInstance().getLanguages();
             DBPPlatformLanguage pLanguage = DBWorkbench.getPlatform().getLanguage();
             for (int i = 0; i < languages.size(); i++) {
                 PlatformLanguageDescriptor lang = languages.get(i);
@@ -141,7 +141,7 @@ public class PrefPageDatabaseUserInterface extends AbstractPrefPage implements I
                 }
             });
             IContentProposalProvider proposalProvider = (contents, position) -> {
-                List<IContentProposal> proposals = new ArrayList<>();
+                /*~~>*/List<IContentProposal> proposals = new ArrayList<>();
                 for (String item : clientTimezone.getItems()) {
                     if (item.toLowerCase().contains(contents.toLowerCase())) {
                         proposals.add(new ContentProposal(item));

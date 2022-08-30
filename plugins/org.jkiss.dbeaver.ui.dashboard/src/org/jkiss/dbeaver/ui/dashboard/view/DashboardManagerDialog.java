@@ -89,9 +89,9 @@ public class DashboardManagerDialog extends BaseDialog {
             treeViewer.setContentProvider(new TreeContentProvider() {
                 @Override
                 public Object[] getChildren(Object parentElement) {
-                    List<? extends DBPNamedObject> result = null;
-                    if (parentElement instanceof List) {
-                        result = (List) parentElement;
+                    /*~~>*/List<? extends DBPNamedObject> result = null;
+                    if (parentElement instanceof /*~~>*/List) {
+                        result = (/*~~>*/List) parentElement;
                     } else if (parentElement instanceof DBPDataSourceProviderDescriptor) {
                         result = DashboardRegistry.getInstance().getDashboards((DBPDataSourceProviderDescriptor)parentElement, false);
                     } else if (parentElement instanceof DBPDriver) {

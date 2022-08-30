@@ -58,7 +58,7 @@ public class PostgreScriptExecuteHandler extends PostgreNativeToolHandler<Postgr
     }
 
     @Override
-    public void fillProcessParameters(PostgreScriptExecuteSettings settings, PostgreDatabase arg, List<String> cmd) throws IOException {
+    public void fillProcessParameters(PostgreScriptExecuteSettings settings, PostgreDatabase arg, /*~~>*/List<String> cmd) throws IOException {
         super.fillProcessParameters(settings, arg, cmd);
 
         if (arg.getDataSource().isServerVersionAtLeast(9, 5)) {
@@ -72,8 +72,8 @@ public class PostgreScriptExecuteHandler extends PostgreNativeToolHandler<Postgr
     }
 
     @Override
-    protected List<String> getCommandLine(PostgreScriptExecuteSettings settings, PostgreDatabase arg) throws IOException {
-        List<String> cmd = new ArrayList<>();
+    protected /*~~>*/List<String> getCommandLine(PostgreScriptExecuteSettings settings, PostgreDatabase arg) throws IOException {
+        /*~~>*/List<String> cmd = new ArrayList<>();
         fillProcessParameters(settings, arg, cmd);
 
         cmd.add(arg.getName());

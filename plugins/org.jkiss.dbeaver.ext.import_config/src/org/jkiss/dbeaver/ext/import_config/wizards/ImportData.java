@@ -27,11 +27,11 @@ import java.util.List;
  */
 public class ImportData {
 
-    private final List<ImportDriverInfo> drivers = new ArrayList<>();
-    private final List<ImportConnectionInfo> connections = new ArrayList<>();
+    private final /*~~>*/List<ImportDriverInfo> drivers = new ArrayList<>();
+    private final /*~~>*/List<ImportConnectionInfo> connections = new ArrayList<>();
     private DBPDataSourceFolder dataSourceFolder;
 
-    public List<ImportDriverInfo> getDrivers()
+    public /*~~>*/List<ImportDriverInfo> getDrivers()
     {
         return drivers;
     }
@@ -61,7 +61,7 @@ public class ImportData {
         drivers.add(driverInfo);
     }
 
-    public List<ImportConnectionInfo> getConnections()
+    public /*~~>*/List<ImportConnectionInfo> getConnections()
     {
         return connections;
     }

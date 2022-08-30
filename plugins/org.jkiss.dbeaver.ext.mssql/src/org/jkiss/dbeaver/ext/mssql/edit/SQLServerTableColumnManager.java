@@ -149,7 +149,7 @@ public class SQLServerTableColumnManager extends SQLTableColumnManager<SQLServer
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
     {
         final SQLServerTableColumn column = command.getObject();
         int totalProps = command.getProperties().size();
@@ -195,7 +195,7 @@ public class SQLServerTableColumnManager extends SQLTableColumnManager<SQLServer
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, SQLObjectEditor<SQLServerTableColumn, SQLServerTableBase>.ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, SQLObjectEditor<SQLServerTableColumn, SQLServerTableBase>.ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
         addDropConstraintAction(actions, command.getObject());
         super.addObjectDeleteActions(monitor, executionContext, actions, command, options);
     }
@@ -206,7 +206,7 @@ public class SQLServerTableColumnManager extends SQLTableColumnManager<SQLServer
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
     {
         final SQLServerTableColumn column = command.getObject();
 
@@ -219,7 +219,7 @@ public class SQLServerTableColumnManager extends SQLTableColumnManager<SQLServer
         );
     }
 
-    private static void addDropConstraintAction(@NotNull List<DBEPersistAction> actions, @NotNull SQLServerTableColumn column) {
+    private static void addDropConstraintAction(@NotNull /*~~>*/List<DBEPersistAction> actions, @NotNull SQLServerTableColumn column) {
         if (column.getDefaultConstraintName() != null) {
             actions.add(new SQLDatabasePersistAction(
                 "Drop default constraint",

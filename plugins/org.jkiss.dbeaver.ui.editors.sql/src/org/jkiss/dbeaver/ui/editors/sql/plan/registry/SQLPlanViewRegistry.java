@@ -45,7 +45,7 @@ public class SQLPlanViewRegistry {
         return instance;
     }
 
-    private List<SQLPlanViewDescriptor> planViewDescriptors = new ArrayList<>();
+    private /*~~>*/List<SQLPlanViewDescriptor> planViewDescriptors = new ArrayList<>();
 
     private SQLPlanViewRegistry(IExtensionRegistry registry)
     {
@@ -60,8 +60,8 @@ public class SQLPlanViewRegistry {
     }
 
     @NotNull
-    public List<SQLPlanViewDescriptor> getPlanViewDescriptors() {
-        List<SQLPlanViewDescriptor> result = new ArrayList<>(planViewDescriptors);
+    public /*~~>*/List<SQLPlanViewDescriptor> getPlanViewDescriptors() {
+        /*~~>*/List<SQLPlanViewDescriptor> result = new ArrayList<>(planViewDescriptors);
         result.sort(Comparator.comparingInt(SQLPlanViewDescriptor::getPriority));
         return result;
     }

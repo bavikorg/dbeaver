@@ -32,8 +32,8 @@ import java.util.List;
  */
 public class LocalResultSet<SOURCE_STMT extends DBCStatement> extends AbstractResultSet<DBCSession, SOURCE_STMT> {
 
-    private final List<DBCAttributeMetaData> metaColumns = new ArrayList<>();
-    protected final List<Object[]> rows = new ArrayList<>();
+    private final /*~~>*/List<DBCAttributeMetaData> metaColumns = new ArrayList<>();
+    protected final /*~~>*/List<Object[]> rows = new ArrayList<>();
     protected int curPosition = -1;
 
     public LocalResultSet(DBCSession session, SOURCE_STMT statement) {

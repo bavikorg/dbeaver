@@ -32,7 +32,7 @@ import java.util.List;
 class MySQLDialectRules implements TPRuleProvider {
 
     @Override
-    public void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull List<TPRule> rules, @NotNull RulePosition position) {
+    public void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull /*~~>*/List<TPRule> rules, @NotNull RulePosition position) {
         if (position == RulePosition.CONTROL) {
             final SQLControlToken sourceToken = new SQLControlToken("mysql.source");
 

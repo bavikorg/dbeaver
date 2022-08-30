@@ -40,7 +40,7 @@ import java.util.Map;
 public class H2ConstraintManager extends GenericPrimaryKeyManager {
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
         GenericUniqueKey key = command.getObject();
         GenericStructContainer container = key.getParentObject().getParentObject();
         if (key.getConstraintType() == DBSEntityConstraintType.CHECK && key instanceof H2Constraint && container != null) {
@@ -70,7 +70,7 @@ public class H2ConstraintManager extends GenericPrimaryKeyManager {
     }
 
     @Override
-    protected void addObjectExtraActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, NestedObjectCommand<GenericUniqueKey, PropertyHandler> command, Map<String, Object> options) throws DBException {
+    protected void addObjectExtraActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, NestedObjectCommand<GenericUniqueKey, PropertyHandler> command, Map<String, Object> options) throws DBException {
         GenericUniqueKey constraint = command.getObject();
         GenericStructContainer container = constraint.getParentObject().getParentObject();
         if (container != null && command.getProperties().containsKey(DBConstants.PROP_ID_DESCRIPTION)) {

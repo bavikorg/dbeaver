@@ -119,7 +119,7 @@ public abstract class AbstractNativeToolHandler<SETTINGS extends AbstractNativeT
         if (isNativeClientHomeRequired()) {
             String clientHomeId = dataSourceContainer.getConnectionConfiguration().getClientHomeId();
             final DBPDriver driver = dataSourceContainer.getDriver();
-            final List<DBPNativeClientLocation> clientLocations = driver.getNativeClientLocations();
+            final /*~~>*/List<DBPNativeClientLocation> clientLocations = driver.getNativeClientLocations();
             final DBPNativeClientLocationManager locationManager = driver.getNativeClientManager();
             if (locationManager != null) {
                 clientLocations.addAll(locationManager.findLocalClientLocations());
@@ -171,9 +171,9 @@ public abstract class AbstractNativeToolHandler<SETTINGS extends AbstractNativeT
         return true;
     }
 
-    abstract protected java.util.List<String> getCommandLine(SETTINGS settings, PROCESS_ARG arg) throws IOException;
+    abstract protected /*~~>*//*~~>*/java.util.List<String> getCommandLine(SETTINGS settings, PROCESS_ARG arg) throws IOException;
 
-    public abstract void fillProcessParameters(SETTINGS settings, PROCESS_ARG arg, List<String> cmd) throws IOException;
+    public abstract void fillProcessParameters(SETTINGS settings, PROCESS_ARG arg, /*~~>*/List<String> cmd) throws IOException;
 
     protected void setupProcessParameters(DBRProgressMonitor monitor, SETTINGS settings, PROCESS_ARG arg, ProcessBuilder process) {
     }
@@ -196,7 +196,7 @@ public abstract class AbstractNativeToolHandler<SETTINGS extends AbstractNativeT
         monitor.beginTask(task.getType().getName(), 1);
         try {
             monitor.subTask("Start native tool");
-            final List<String> commandLine = getCommandLine(settings, arg);
+            final /*~~>*/List<String> commandLine = getCommandLine(settings, arg);
             final File execPath = new File(commandLine.get(0));
 
             ProcessBuilder processBuilder = new ProcessBuilder(commandLine);
@@ -468,7 +468,7 @@ public abstract class AbstractNativeToolHandler<SETTINGS extends AbstractNativeT
         @Override
         public void run() {
             String lf = GeneralUtils.getDefaultLineSeparator();
-            List<String> command = processBuilder.command();
+            /*~~>*/List<String> command = processBuilder.command();
 
             // Dump command line
             StringBuilder cmdString = new StringBuilder();

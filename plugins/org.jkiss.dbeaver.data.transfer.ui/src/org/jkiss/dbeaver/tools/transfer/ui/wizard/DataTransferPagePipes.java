@@ -265,7 +265,7 @@ class DataTransferPagePipes extends ActiveWizardPage<DataTransferWizard> {
         DataTransferNodeDescriptor consumer = getWizard().getSettings().getConsumer();
         DataTransferNodeDescriptor producer = getWizard().getSettings().getProducer();
         DataTransferProcessorDescriptor processor = getWizard().getSettings().getProcessor();
-        List<TransferTarget> targets = (List<TransferTarget>) nodesTable.getInput();
+        /*~~>*/List<TransferTarget> targets = (/*~~>*/List<TransferTarget>) nodesTable.getInput();
         TransferTarget currentTarget = null;
         if (consumer != null || producer != null) {
             for (TransferTarget target : targets) {
@@ -299,7 +299,7 @@ class DataTransferPagePipes extends ActiveWizardPage<DataTransferWizard> {
         DataTransferSettings settings = getWizard().getSettings();
         Collection<DBSObject> objects = settings.getSourceObjects();
 
-        List<TransferTarget> transferTargets = new ArrayList<>();
+        /*~~>*/List<TransferTarget> transferTargets = new ArrayList<>();
         for (DataTransferNodeDescriptor consumer : DataTransferRegistry.getInstance().getAvailableConsumers(objects)) {
             if (consumer.isAdvancedNode() &&
                 DBWorkbench.getPlatform().getApplication().hasProductFeature(DTConstants.PRODUCT_FEATURE_SIMPLE_DATA_TRANSFER)) {
@@ -321,7 +321,7 @@ class DataTransferPagePipes extends ActiveWizardPage<DataTransferWizard> {
         DataTransferSettings settings = getWizard().getSettings();
         Collection<DBSObject> objects = settings.getSourceObjects();
 
-        List<TransferTarget> transferTargets = new ArrayList<>();
+        /*~~>*/List<TransferTarget> transferTargets = new ArrayList<>();
         for (DataTransferNodeDescriptor producer : DataTransferRegistry.getInstance().getAvailableProducers(objects)) {
             if (producer.isAdvancedNode() &&
                 DBWorkbench.getPlatform().getApplication().hasProductFeature(DTConstants.PRODUCT_FEATURE_SIMPLE_DATA_TRANSFER)) {

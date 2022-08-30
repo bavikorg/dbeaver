@@ -37,7 +37,7 @@ public class SQLBlockCompletionsCollection implements SQLBlockCompletions {
     private static final Predicate<String> RECOGNIZABLE_TOKEN_PATTERN = Pattern.compile("^\\w+$").asMatchPredicate();
     
     private final Map<String, Integer> tokenIdByString = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-    private final List<String> tokenStringById = new ArrayList<>();   
+    private final /*~~>*/List<String> tokenStringById = new ArrayList<>();   
     
     private final Map<Integer, SQLBlockCompletionInfo> blockCompletionByHeadToken = new HashMap<>();
     private final Map<Integer, Map<Integer, Set<SQLBlockCompletionInfo>>> blockCompletionByTailToken = new HashMap<>();

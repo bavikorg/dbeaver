@@ -34,7 +34,7 @@ public class GlobalContributorManager implements IDatabaseEditorContributorManag
 
     private static class ActionContributorInfo {
         final IEditorActionBarContributor contributor;
-        final List<IEditorPart> editors = new ArrayList<>();
+        final /*~~>*/List<IEditorPart> editors = new ArrayList<>();
 
         private ActionContributorInfo(IEditorActionBarContributor contributor)
         {
@@ -64,7 +64,7 @@ public class GlobalContributorManager implements IDatabaseEditorContributorManag
             info = new ActionContributorInfo(contributor);
             contributorMap.put(contributor.getClass(), info);
         }
-        info.editors.add(editor);
+        /*~~>*/info.editors.add(editor);
     }
 
     public void removeContributor(IEditorActionBarContributor contributor, IEditorPart editor)
@@ -73,10 +73,10 @@ public class GlobalContributorManager implements IDatabaseEditorContributorManag
         if (info == null) {
             throw new IllegalStateException("Contributor is not registered");
         }
-        if (!info.editors.remove(editor)) {
+        if (!/*~~>*/info.editors.remove(editor)) {
             throw new IllegalStateException("Contributor editor is not registered");
         }
-        if (info.editors.isEmpty()) {
+        if (/*~~>*/info.editors.isEmpty()) {
             contributorMap.remove(contributor.getClass());
             contributor.dispose();
         }

@@ -107,9 +107,9 @@ public class DB2DataSource extends JDBCDataSource implements DBCQueryPlanner, IA
     private final DBSObjectCache<DB2DataSource, DB2Role>         roleCache          = new JDBCObjectSimpleCache<>(DB2Role.class, C_RL);
     private final DBSObjectCache<DB2DataSource, DB2Variable>     variableCache      = new JDBCObjectSimpleCache<>(DB2Variable.class, C_VR);
 
-    private List<DB2Parameter>                                   listDBParameters;
-    private List<DB2Parameter>                                   listDBMParameters;
-    private List<DB2XMLString>                                   listXMLStrings;
+    private /*~~>*/List<DB2Parameter>                                   listDBParameters;
+    private /*~~>*/List<DB2Parameter>                                   listDBMParameters;
+    private /*~~>*/List<DB2XMLString>                                   listXMLStrings;
 
     private DB2CurrentUserPrivileges                             db2CurrentUserPrivileges;
 
@@ -306,8 +306,8 @@ public class DB2DataSource extends JDBCDataSource implements DBCQueryPlanner, IA
         this.wrapperCache.clearCache();
         this.userMappingCache.clearCache();
 
-        this.listDBMParameters = null;
-        this.listDBParameters = null;
+        /*~~>*/this.listDBMParameters = null;
+        /*~~>*/this.listDBParameters = null;
 
         this.hasStatistics = false;
 
@@ -581,7 +581,7 @@ public class DB2DataSource extends JDBCDataSource implements DBCQueryPlanner, IA
     // Dynamic Data
     // -------------
 
-    public List<DB2Parameter> getDbParameters(DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<DB2Parameter> getDbParameters(DBRProgressMonitor monitor) throws DBException
     {
         if (listDBParameters == null) {
             try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load Database Parameters")) {
@@ -593,7 +593,7 @@ public class DB2DataSource extends JDBCDataSource implements DBCQueryPlanner, IA
         return listDBParameters;
     }
 
-    public List<DB2Parameter> getDbmParameters(DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<DB2Parameter> getDbmParameters(DBRProgressMonitor monitor) throws DBException
     {
         if (listDBMParameters == null) {
             try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load Instance Parameters")) {
@@ -605,7 +605,7 @@ public class DB2DataSource extends JDBCDataSource implements DBCQueryPlanner, IA
         return listDBMParameters;
     }
 
-    public List<DB2XMLString> getXmlStrings(DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<DB2XMLString> getXmlStrings(DBRProgressMonitor monitor) throws DBException
     {
         if (listXMLStrings == null) {
             try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load Global XMLStrings")) {

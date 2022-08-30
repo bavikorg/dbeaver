@@ -46,7 +46,7 @@ public abstract class SQLGeneratorResultSet extends SQLGeneratorBase<IResultSetC
         return objects.get(0);
     }
 
-    public List<ResultSetRow> getSelectedRows() {
+    public /*~~>*/List<ResultSetRow> getSelectedRows() {
         return getController().getSelection().getSelectedRows();
     }
 
@@ -94,7 +94,7 @@ public abstract class SQLGeneratorResultSet extends SQLGeneratorBase<IResultSetC
         }
     }
 
-    protected List<DBDAttributeBinding> getKeyAttributes(DBRProgressMonitor monitor, IResultSetController object) {
+    protected /*~~>*/List<DBDAttributeBinding> getKeyAttributes(DBRProgressMonitor monitor, IResultSetController object) {
         final DBDRowIdentifier rowIdentifier = getDefaultRowIdentifier(object);
         if (rowIdentifier == null) {
             return Collections.emptyList();

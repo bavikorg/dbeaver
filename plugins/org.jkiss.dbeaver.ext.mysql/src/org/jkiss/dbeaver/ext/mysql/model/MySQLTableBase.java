@@ -95,14 +95,14 @@ public abstract class MySQLTableBase extends JDBCTable<MySQLDataSource, MySQLCat
     }
 
     @Override
-    public List<MySQLTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
-        List<MySQLTableColumn> childColumns = getContainer().tableCache.getChildren(monitor, getContainer(), this);
+        /*~~>*/List<MySQLTableColumn> childColumns = getContainer().tableCache.getChildren(monitor, getContainer(), this);
         if (childColumns == null) {
             return Collections.emptyList();
         }
-        List<MySQLTableColumn> columns = new ArrayList<>(childColumns);
+        /*~~>*/List<MySQLTableColumn> columns = new ArrayList<>(childColumns);
         columns.sort(DBUtils.orderComparator());
         return columns;
     }
@@ -114,7 +114,7 @@ public abstract class MySQLTableBase extends JDBCTable<MySQLDataSource, MySQLCat
         return getContainer().tableCache.getChild(monitor, getContainer(), this, attributeName);
     }
 
-    public List<MySQLTableColumn> getCachedAttributes()
+    public /*~~>*/List<MySQLTableColumn> getCachedAttributes()
     {
         DBSObjectCache<MySQLTableBase, MySQLTableColumn> childrenCache = getContainer().tableCache.getChildrenCache(this);
         if (childrenCache != null) {

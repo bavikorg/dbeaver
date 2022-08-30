@@ -49,7 +49,7 @@ public class ValueManagerRegistry {
         return instance;
     }
 
-    private final List<ValueManagerDescriptor> managers = new ArrayList<>();
+    private final /*~~>*/List<ValueManagerDescriptor> managers = new ArrayList<>();
     private final Map<String, StreamValueManagerDescriptor> streamManagers = new HashMap<>();
 
     private ValueManagerRegistry(IExtensionRegistry registry) {

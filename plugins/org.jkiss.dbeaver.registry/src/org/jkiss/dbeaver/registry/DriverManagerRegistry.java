@@ -29,7 +29,7 @@ public class DriverManagerRegistry {
 
     private static DriverManagerRegistry instance = null;
 
-    private final List<DriverCategoryDescriptor> categories = new ArrayList<>();
+    private final /*~~>*/List<DriverCategoryDescriptor> categories = new ArrayList<>();
 
     public synchronized static DriverManagerRegistry getInstance() {
         if (instance == null) {
@@ -42,13 +42,13 @@ public class DriverManagerRegistry {
         IConfigurationElement[] extElements = registry.getConfigurationElementsFor(EXTENSION_ID);
         for (IConfigurationElement viewElement : extElements) {
             if (viewElement.getName().equals("category")) {
-                this.categories.add(
+                /*~~>*/this.categories.add(
                     new DriverCategoryDescriptor(viewElement));
             }
         }
     }
 
-    public List<DriverCategoryDescriptor> getCategories() {
+    public /*~~>*/List<DriverCategoryDescriptor> getCategories() {
         return new ArrayList<>(categories);
     }
 

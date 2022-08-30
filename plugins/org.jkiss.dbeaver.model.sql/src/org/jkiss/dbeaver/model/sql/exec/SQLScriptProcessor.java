@@ -40,7 +40,7 @@ public class SQLScriptProcessor {
     private static final String STAT_LOG_PREFIX = "-----------------> ";
 
     private final DBCExecutionContext executionContext;
-    private final List<SQLScriptElement> queries;
+    private final /*~~>*/List<SQLScriptElement> queries;
     private final SQLScriptContext scriptContext;
     private final DBDDataReceiver dataReceiver;
     private final Log log;
@@ -57,12 +57,12 @@ public class SQLScriptProcessor {
 
     public SQLScriptProcessor(
         @NotNull DBCExecutionContext executionContext,
-        @NotNull List<SQLScriptElement> queries,
+        @NotNull /*~~>*/List<SQLScriptElement> queries,
         @NotNull SQLScriptContext scriptContext,
         @NotNull DBDDataReceiver dataReceiver,
         @NotNull Log log) {
         this.executionContext = executionContext;
-        this.queries = queries;
+        /*~~>*/this.queries = queries;
         this.scriptContext = scriptContext;
         this.dataReceiver = dataReceiver;
         this.log = log;

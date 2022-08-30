@@ -138,7 +138,7 @@ public class DataTransferTaskConfigurator implements DBTTaskConfigurator, DBTTas
                             selNode = rootNode.getDataSource(lastDataSource.getContainer().getId());
                         }
                     }
-                    List<DBNNode> tables = ObjectBrowserDialog.selectObjects(
+                    /*~~>*/List<DBNNode> tables = ObjectBrowserDialog.selectObjects(
                         group.getShell(),
                         isExport ? DTUIMessages.data_transfer_task_configurator_tables_title_choose_source : DTUIMessages.data_transfer_task_configurator_tables_title_choose_target,
                         rootNode,
@@ -392,7 +392,7 @@ public class DataTransferTaskConfigurator implements DBTTaskConfigurator, DBTTas
             DataTransferSettings settings = dtWizard.getSettings();
 
             // Save from config table
-            List<DataTransferPipe> dataPipes = new ArrayList<>();
+            /*~~>*/List<DataTransferPipe> dataPipes = new ArrayList<>();
             for (TableItem item : objectsTable.getItems()) {
                 dataPipes.add((DataTransferPipe) item.getData());
             }

@@ -172,7 +172,7 @@ public class ResultSetDataContainer implements DBSDataContainer, DBPContextProvi
     @Override
     public DBDAttributeBinding[] filterAttributeBindings(DBDAttributeBinding[] attributes) {
         DBDDataFilter dataFilter = model.getDataFilter();
-        List<DBDAttributeBinding> filtered = new ArrayList<>();
+        /*~~>*/List<DBDAttributeBinding> filtered = new ArrayList<>();
         DBDAttributeBinding[] preFiltered;
         if (filterAttributes && !options.getSelectedColumns().isEmpty()) {
             preFiltered = options.getSelectedColumns().toArray(new DBDAttributeBinding[0]);
@@ -285,8 +285,8 @@ public class ResultSetDataContainer implements DBSDataContainer, DBPContextProvi
         @Override
         public DBCResultSetMetaData getMeta() throws DBCException {
             if (this.meta == null) {
-                List<DBDAttributeBinding> attributes = model.getVisibleAttributes();
-                List<DBCAttributeMetaData> meta = new ArrayList<>(attributes.size());
+                /*~~>*/List<DBDAttributeBinding> attributes = model.getVisibleAttributes();
+                /*~~>*/List<DBCAttributeMetaData> meta = new ArrayList<>(attributes.size());
                 for (int i = 0; i < attributes.size(); i++) {
                     DBDAttributeBinding attribute = attributes.get(i);
                     DBCAttributeMetaData metaAttribute = attribute.getMetaAttribute();
@@ -318,7 +318,7 @@ public class ResultSetDataContainer implements DBSDataContainer, DBPContextProvi
         }
 
         private class CustomResultSetMeta extends LocalResultSetMeta {
-            public CustomResultSetMeta(List<DBCAttributeMetaData> meta) {
+            public CustomResultSetMeta(/*~~>*/List<DBCAttributeMetaData> meta) {
                 super(meta);
             }
         }

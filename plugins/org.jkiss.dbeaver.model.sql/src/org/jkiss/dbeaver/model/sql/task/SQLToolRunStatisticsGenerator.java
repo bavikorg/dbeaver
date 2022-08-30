@@ -32,6 +32,6 @@ public interface SQLToolRunStatisticsGenerator<
     SETTINGS extends SQLToolExecuteSettings<OBJECT_TYPE>,
     PERSIST_ACTION extends DBEPersistAction> {
 
-    List<? extends SQLToolStatistics<OBJECT_TYPE>> getExecuteStatistics(OBJECT_TYPE object, SETTINGS settings, PERSIST_ACTION action, DBCSession session, DBCStatement dbStat) throws DBCException;
+    /*~~>*/List<? extends SQLToolStatistics<OBJECT_TYPE>> getExecuteStatistics(OBJECT_TYPE object, SETTINGS settings, PERSIST_ACTION action, DBCSession session, DBCStatement dbStat) throws DBCException;
 
 }

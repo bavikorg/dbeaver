@@ -58,7 +58,7 @@ public class DatabaseMappingContainer implements DatabaseMappingObject {
     private DBSDataManipulator target;
     private String targetName;
     private DatabaseMappingType mappingType;
-    private final List<DatabaseMappingAttribute> attributeMappings = new ArrayList<>();
+    private final /*~~>*/List<DatabaseMappingAttribute> attributeMappings = new ArrayList<>();
     private Map<DBPPropertyDescriptor, Object> changedPropertiesMap;
     private Map<String, Object> rawChangedPropertiesMap; // For tasks with empty container
 
@@ -81,8 +81,8 @@ public class DatabaseMappingContainer implements DatabaseMappingObject {
         this.target = container.target;
         this.targetName = container.targetName;
         this.mappingType = container.mappingType;
-        for (DatabaseMappingAttribute attribute : container.attributeMappings) {
-            this.attributeMappings.add(new DatabaseMappingAttribute(attribute, this));
+        for (DatabaseMappingAttribute attribute : /*~~>*/container.attributeMappings) {
+            /*~~>*/this.attributeMappings.add(new DatabaseMappingAttribute(attribute, this));
         }
     }
 
@@ -338,13 +338,13 @@ public class DatabaseMappingContainer implements DatabaseMappingObject {
 
     public boolean isSameMapping(DatabaseMappingContainer mapping) {
         if (!CommonUtils.equalObjects(source, mapping.source) ||
-            attributeMappings.size() != mapping.attributeMappings.size()) {
+            attributeMappings.size() != /*~~>*/mapping.attributeMappings.size()) {
             return false;
         }
         for (int i = 0; i < attributeMappings.size(); i++) {
             if (!CommonUtils.equalObjects(
                 attributeMappings.get(i).getSource().getName(),
-                mapping.attributeMappings.get(i).getSource().getName())) {
+                /*~~>*/mapping.attributeMappings.get(i).getSource().getName())) {
                 return false;
             }
         }

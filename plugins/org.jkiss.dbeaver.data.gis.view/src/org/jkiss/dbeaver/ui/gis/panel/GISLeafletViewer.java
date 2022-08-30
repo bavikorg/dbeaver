@@ -124,7 +124,7 @@ public class GISLeafletViewer implements IGeometryValueEditor, DBPPreferenceList
             new BrowserFunction(browser, "setPresentationSelection") {
                 @Override
                 public Object function(Object[] arguments) {
-                    final List<GridPos> selection = new ArrayList<>();
+                    final /*~~>*/List<GridPos> selection = new ArrayList<>();
                     for (Object pos : ((Object[]) arguments[0])) {
                         final String[] split = ((String) pos).split(":");
                         selection.add(new GridPos(CommonUtils.toInt(split[0]), CommonUtils.toInt(split[1])));
@@ -292,8 +292,8 @@ public class GISLeafletViewer implements IGeometryValueEditor, DBPPreferenceList
             }
         }
 
-        List<String> geomValues = new ArrayList<>();
-        List<String> geomTipValues = new ArrayList<>();
+        /*~~>*/List<String> geomValues = new ArrayList<>();
+        /*~~>*/List<String> geomTipValues = new ArrayList<>();
         boolean showMap = false;
         for (int i = 0; i < values.length; i++) {
             DBGeometry value = values[i];

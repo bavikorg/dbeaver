@@ -36,8 +36,8 @@ import java.util.List;
 public abstract class DB2ToolWithStatus <OBJECT_TYPE extends DBSObject, SETTINGS extends SQLToolExecuteSettings<OBJECT_TYPE>>
         extends SQLToolExecuteHandler<OBJECT_TYPE, SETTINGS> implements SQLToolRunStatisticsGenerator<OBJECT_TYPE, SETTINGS, DBEPersistAction> {
     @Override
-    public List<ToolStatus> getExecuteStatistics(OBJECT_TYPE object, SETTINGS settings, DBEPersistAction action, DBCSession session, DBCStatement dbStat) throws DBCException {
-        List<ToolStatus> statusList = new ArrayList<>();
+    public /*~~>*/List<ToolStatus> getExecuteStatistics(OBJECT_TYPE object, SETTINGS settings, DBEPersistAction action, DBCSession session, DBCStatement dbStat) throws DBCException {
+        /*~~>*/List<ToolStatus> statusList = new ArrayList<>();
         try {
             int warnNum = 0;
             SQLWarning warning = ((JDBCStatement) dbStat).getWarnings();

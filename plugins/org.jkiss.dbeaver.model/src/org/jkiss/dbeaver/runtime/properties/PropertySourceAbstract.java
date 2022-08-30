@@ -47,11 +47,11 @@ public abstract class PropertySourceAbstract implements DBPPropertyManager, IPro
     private Object sourceObject;
     private Object object;
     private boolean loadLazyProps;
-    private final List<DBPPropertyDescriptor> props = new ArrayList<>();
+    private final /*~~>*/List<DBPPropertyDescriptor> props = new ArrayList<>();
     private Map<DBPPropertyDescriptor, Object> changedPropertiesValues = new HashMap<>();
     private final Map<Object, Object> propValues = new HashMap<>();
     private final Map<Object, Object> lazyValues = new HashMap<>();
-    private final List<ObjectPropertyDescriptor> lazyProps = new ArrayList<>();
+    private final /*~~>*/List<ObjectPropertyDescriptor> lazyProps = new ArrayList<>();
     private Job lazyLoadJob;
     private String locale;
     private boolean enableFilters = true;
@@ -311,7 +311,7 @@ public abstract class PropertySourceAbstract implements DBPPropertyManager, IPro
             } else {
                 filter = null;
             }
-            List<ObjectPropertyDescriptor> annoProps = ObjectAttributeDescriptor.extractAnnotations(this, editableValue.getClass(), filter, locale);
+            /*~~>*/List<ObjectPropertyDescriptor> annoProps = ObjectAttributeDescriptor.extractAnnotations(this, editableValue.getClass(), filter, locale);
             for (final ObjectPropertyDescriptor desc : annoProps) {
                 if (desc.isPropertyVisible(editableValue, editableValue)) {
                     addProperty(desc);
@@ -398,13 +398,13 @@ public abstract class PropertySourceAbstract implements DBPPropertyManager, IPro
         }
     }
 
-    private List<ObjectPropertyDescriptor> obtainLazyProperties()
+    private /*~~>*/List<ObjectPropertyDescriptor> obtainLazyProperties()
     {
         synchronized (lazyProps) {
             if (lazyProps.isEmpty()) {
                 return Collections.emptyList();
             } else {
-                List<ObjectPropertyDescriptor> result = new ArrayList<>(lazyProps);
+                /*~~>*/List<ObjectPropertyDescriptor> result = new ArrayList<>(lazyProps);
                 lazyProps.clear();
                 return result;
             }

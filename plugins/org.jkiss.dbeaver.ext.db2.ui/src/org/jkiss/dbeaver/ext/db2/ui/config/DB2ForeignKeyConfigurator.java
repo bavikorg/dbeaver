@@ -39,7 +39,7 @@ public class DB2ForeignKeyConfigurator implements DBEObjectConfigurator<DB2Table
 	private static final DBSForeignKeyModifyRule[] FK_RULES;
 	
 	static {
-        List<DBSForeignKeyModifyRule> rules = new ArrayList<>(DB2DeleteUpdateRule.values().length);
+        /*~~>*/List<DBSForeignKeyModifyRule> rules = new ArrayList<>(DB2DeleteUpdateRule.values().length);
         for (DB2DeleteUpdateRule db2DeleteUpdateRule : DB2DeleteUpdateRule.values()) {
             rules.add(db2DeleteUpdateRule.getRule());
         }
@@ -65,7 +65,7 @@ public class DB2ForeignKeyConfigurator implements DBEObjectConfigurator<DB2Table
                     foreignKey.setDb2DeleteRule(DB2DeleteUpdateRule.getDB2RuleFromDBSRule(deleteRule));
                     foreignKey.setDb2UpdateRule(DB2DeleteUpdateRule.getDB2RuleFromDBSRule(updateRule));
 
-                    List<DB2TableKeyColumn> columns = new ArrayList<>(editDialog.getColumns().size());
+                    /*~~>*/List<DB2TableKeyColumn> columns = new ArrayList<>(editDialog.getColumns().size());
                     DB2TableKeyColumn column;
                     int colIndex = 1;
                     for (EditForeignKeyPage.FKColumnInfo tableColumn : editDialog.getColumns()) {

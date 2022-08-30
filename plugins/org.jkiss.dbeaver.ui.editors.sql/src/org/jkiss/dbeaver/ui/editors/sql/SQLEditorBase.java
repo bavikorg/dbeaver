@@ -771,7 +771,7 @@ public abstract class SQLEditorBase extends BaseTextEditor implements DBPContext
         return SQLScriptParser.extractNextQuery(parserContext, offset, next);
     }
 
-    public List<SQLScriptElement> extractScriptQueries(int startOffset, int length, boolean scriptMode, boolean keepDelimiters, boolean parseParameters) {
+    public /*~~>*/List<SQLScriptElement> extractScriptQueries(int startOffset, int length, boolean scriptMode, boolean keepDelimiters, boolean parseParameters) {
         if (parserContext == null) {
             return null;
         }
@@ -782,7 +782,7 @@ public abstract class SQLEditorBase extends BaseTextEditor implements DBPContext
         return completionContext;
     }
 
-    List<SQLQueryParameter> parseQueryParameters(SQLQuery query) {
+    /*~~>*/List<SQLQueryParameter> parseQueryParameters(SQLQuery query) {
         if (parserContext == null) {
             return null;
         }

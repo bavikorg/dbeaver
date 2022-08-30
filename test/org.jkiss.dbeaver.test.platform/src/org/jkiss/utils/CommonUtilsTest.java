@@ -357,7 +357,7 @@ public class CommonUtilsTest {
   @Test
   public void testSplitString() {
     Assert.assertNotNull(CommonUtils.splitString("", ':'));
-    List<String> result = new ArrayList<>();
+    /*~~>*/List<String> result = new ArrayList<>();
     result.add("abc");
     result.add("def");
     Assert.assertArrayEquals(result.toArray(), CommonUtils.splitString("abc:def", ':').toArray());
@@ -373,7 +373,7 @@ public class CommonUtilsTest {
   public void testMakeString() {
     Assert.assertEquals("", CommonUtils.makeString(null, ':'));
 
-    List<String> tokens = new ArrayList<>();
+    /*~~>*/List<String> tokens = new ArrayList<>();
     tokens.add("abc");
     Assert.assertEquals("abc", CommonUtils.makeString(tokens, ':'));
 
@@ -566,8 +566,8 @@ public class CommonUtilsTest {
 
   @Test
   public void testGroup() {
-    final List<String> values = Arrays.asList("aaa", "abb", "bbb", "bab", "ccc");
-    final Map<Character, List<String>> groups = CommonUtils.group(values, x -> x.charAt(0));
+    final /*~~>*/List<String> values = Arrays.asList("aaa", "abb", "bbb", "bab", "ccc");
+    final Map<Character, /*~~>*/List<String>> groups = CommonUtils.group(values, x -> x.charAt(0));
     Assert.assertEquals(Arrays.asList("aaa", "abb"), groups.get('a'));
     Assert.assertEquals(Arrays.asList("bbb", "bab"), groups.get('b'));
     Assert.assertEquals(Arrays.asList("ccc"), groups.get('c'));

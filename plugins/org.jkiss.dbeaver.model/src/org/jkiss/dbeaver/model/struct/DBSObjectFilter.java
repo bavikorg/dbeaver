@@ -33,12 +33,12 @@ public class DBSObjectFilter
     private String name;
     private String description;
     private boolean enabled = true;
-    private List<String> include;
-    private List<String> exclude;
+    private /*~~>*/List<String> include;
+    private /*~~>*/List<String> exclude;
     private boolean caseSensitive;
 
-    private transient List<Object> includePatterns = null;
-    private transient List<Object> excludePatterns = null;
+    private transient /*~~>*/List<Object> includePatterns = null;
+    private transient /*~~>*/List<Object> excludePatterns = null;
 
     public DBSObjectFilter()
     {
@@ -47,10 +47,10 @@ public class DBSObjectFilter
     public DBSObjectFilter(String includeString, @Nullable String excludeString)
     {
         if (include != null) {
-            this.include = SQLUtils.splitFilter(includeString);
+            /*~~>*/this.include = SQLUtils.splitFilter(includeString);
         }
         if (exclude != null) {
-            this.exclude = SQLUtils.splitFilter(excludeString);
+            /*~~>*/this.exclude = SQLUtils.splitFilter(excludeString);
         }
     }
 
@@ -60,8 +60,8 @@ public class DBSObjectFilter
             this.name = filter.name;
             this.description = filter.description;
             this.enabled = filter.enabled;
-            this.include = filter.include == null ? null : new ArrayList<>(filter.include);
-            this.exclude = filter.exclude == null ? null : new ArrayList<>(filter.exclude);
+            /*~~>*/this.include = /*~~>*/filter.include == null ? null : new ArrayList<>(/*~~>*/filter.include);
+            /*~~>*/this.exclude = /*~~>*/filter.exclude == null ? null : new ArrayList<>(/*~~>*/filter.exclude);
         }
     }
 
@@ -103,7 +103,7 @@ public class DBSObjectFilter
         this.enabled = enabled;
     }
 
-    public List<String> getInclude()
+    public /*~~>*/List<String> getInclude()
     {
         return include;
     }
@@ -114,16 +114,16 @@ public class DBSObjectFilter
             include = new ArrayList<>();
         }
         include.add(name);
-        this.includePatterns = null;
+        /*~~>*/this.includePatterns = null;
     }
 
-    public void setInclude(List<String> include)
+    public void setInclude(/*~~>*/List<String> include)
     {
-        this.include = include;
-        this.includePatterns = null;
+        /*~~>*/this.include = include;
+        /*~~>*/this.includePatterns = null;
     }
 
-    public List<String> getExclude()
+    public /*~~>*/List<String> getExclude()
     {
         return exclude;
     }
@@ -134,13 +134,13 @@ public class DBSObjectFilter
             exclude = new ArrayList<>();
         }
         exclude.add(name);
-        this.excludePatterns = null;
+        /*~~>*/this.excludePatterns = null;
     }
 
-    public void setExclude(List<String> exclude)
+    public void setExclude(/*~~>*/List<String> exclude)
     {
-        this.exclude = exclude;
-        this.excludePatterns = null;
+        /*~~>*/this.exclude = exclude;
+        /*~~>*/this.excludePatterns = null;
     }
 
     public boolean isNotApplicable()
@@ -237,8 +237,8 @@ public class DBSObjectFilter
         return CommonUtils.equalObjects(name, source.name) &&
             CommonUtils.equalObjects(description, source.description) &&
             enabled == source.enabled &&
-            CommonUtils.equalObjects(include, source.include) &&
-            CommonUtils.equalObjects(exclude, source.exclude);
+            CommonUtils.equalObjects(include, /*~~>*/source.include) &&
+            CommonUtils.equalObjects(exclude, /*~~>*/source.exclude);
     }
 
     @Override

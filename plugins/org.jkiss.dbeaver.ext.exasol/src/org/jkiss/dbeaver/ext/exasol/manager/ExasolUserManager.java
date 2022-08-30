@@ -64,7 +64,7 @@ public class ExasolUserManager extends SQLObjectEditor<ExasolUser, ExasolDataSou
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectCreateCommand command, Map<String, Object> options) {
         ExasolUser obj = command.getObject();
 
@@ -90,7 +90,7 @@ public class ExasolUserManager extends SQLObjectEditor<ExasolUser, ExasolDataSou
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectDeleteCommand command, Map<String, Object> options) {
         ExasolUser obj = command.getObject();
         actions.add(new SQLDatabasePersistAction("Drop User", "DROP USER " + DBUtils.getQuotedIdentifier(obj)));
@@ -110,7 +110,7 @@ public class ExasolUserManager extends SQLObjectEditor<ExasolUser, ExasolDataSou
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectRenameCommand command, Map<String, Object> options) {
         ExasolUser obj = command.getObject();
         actions.add(
@@ -126,7 +126,7 @@ public class ExasolUserManager extends SQLObjectEditor<ExasolUser, ExasolDataSou
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList,
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList,
                                           ObjectChangeCommand command, Map<String, Object> options) {
         ExasolUser obj = command.getObject();
 

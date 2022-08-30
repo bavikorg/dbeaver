@@ -151,7 +151,7 @@ public class CSVWriter implements Closeable, Flushable {
      *                         to be applied to values which contain the separator, escape,
      *                         quote or new line characters.
      */
-    public void writeAll(List<String[]> allLines, boolean applyQuotesToAll) {
+    public void writeAll(/*~~>*/List<String[]> allLines, boolean applyQuotesToAll) {
         for (String[] line : allLines) {
             writeNext(line, applyQuotesToAll);
         }
@@ -164,7 +164,7 @@ public class CSVWriter implements Closeable, Flushable {
      * @param allLines a List of String[], with each String[] representing a line of
      *                 the file.
      */
-    public void writeAll(List<String[]> allLines) {
+    public void writeAll(/*~~>*/List<String[]> allLines) {
         for (String[] line : allLines) {
             writeNext(line);
         }

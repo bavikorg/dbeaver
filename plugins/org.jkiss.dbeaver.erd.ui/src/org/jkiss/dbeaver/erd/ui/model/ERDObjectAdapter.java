@@ -122,7 +122,7 @@ public class ERDObjectAdapter implements IAdapterFactory {
     private DBNDatabaseNode getItemsFolderNode(DBNDatabaseNode node) {
         for (DBXTreeNode childFolderMeta : node.getMeta().getChildren(node)) {
             if (childFolderMeta instanceof DBXTreeFolder) {
-                List<DBXTreeNode> childItems = childFolderMeta.getChildren(node);
+                /*~~>*/List<DBXTreeNode> childItems = childFolderMeta.getChildren(node);
                 if (!childItems.isEmpty()) {
                     DBXTreeNode itemMeta = childItems.get(0);
                     if (itemMeta instanceof DBXTreeItem) {

@@ -201,9 +201,9 @@ public abstract class AbstractSQLDialect implements SQLDialect {
 
     @NotNull
     @Override
-    public List<String> getMatchedKeywords(@NotNull String word) {
+    public /*~~>*/List<String> getMatchedKeywords(@NotNull String word) {
         word = word.toUpperCase(Locale.ENGLISH);
-        List<String> result = new ArrayList<>();
+        /*~~>*/List<String> result = new ArrayList<>();
         for (String keyword : allKeywords.tailMap(word).keySet()) {
             if (keyword.startsWith(word)) {
                 result.add(keyword);
@@ -771,7 +771,7 @@ public abstract class AbstractSQLDialect implements SQLDialect {
     /**
      * @param inParameters empty list to collect IN parameters
      */
-    protected int getMaxParameterLength(Collection<? extends DBSProcedureParameter> parameters, List<DBSProcedureParameter> inParameters) {
+    protected int getMaxParameterLength(Collection<? extends DBSProcedureParameter> parameters, /*~~>*/List<DBSProcedureParameter> inParameters) {
         int maxParamLength = 0;
         for (DBSProcedureParameter param : parameters) {
             if (param.getParameterKind() == DBSProcedureParameterKind.IN) {
@@ -805,7 +805,7 @@ public abstract class AbstractSQLDialect implements SQLDialect {
 
     @Override
     public void generateStoredProcedureCall(StringBuilder sql, DBSProcedure proc, Collection<? extends DBSProcedureParameter> parameters) {
-        List<DBSProcedureParameter> inParameters = new ArrayList<>();
+        /*~~>*/List<DBSProcedureParameter> inParameters = new ArrayList<>();
         if (parameters != null) {
             inParameters.addAll(parameters);
         }

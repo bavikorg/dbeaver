@@ -39,7 +39,7 @@ public interface ERDContentProvider {
      * @param erdEntity     entity to be filled
      */
     void fillEntityFromObject(@NotNull DBRProgressMonitor monitor, @NotNull ERDDiagram diagram,
-                              @NotNull List<ERDEntity> otherEntities, @NotNull ERDEntity erdEntity) throws DBCException;
+                              @NotNull /*~~>*/List<ERDEntity> otherEntities, @NotNull ERDEntity erdEntity) throws DBCException;
 
     /**
      * Create default entity attributes according to specified settings.
@@ -49,7 +49,7 @@ public interface ERDContentProvider {
      * @param erdEntity     entity to be filled
      * @param settings      attribute settings
      */
-    void fillEntityFromObject(@NotNull DBRProgressMonitor monitor, @NotNull ERDDiagram diagram, @NotNull List<ERDEntity> otherEntities, @NotNull ERDEntity erdEntity, @NotNull ERDAttributeSettings settings);
+    void fillEntityFromObject(@NotNull DBRProgressMonitor monitor, @NotNull ERDDiagram diagram, @NotNull /*~~>*/List<ERDEntity> otherEntities, @NotNull ERDEntity erdEntity, @NotNull ERDAttributeSettings settings);
 
     @Nullable
     ERDAssociation createAutoAssociation(ERDContainer diagram, @NotNull DBSEntityAssociation association, @NotNull ERDEntity sourceEntity, @NotNull ERDEntity targetEntity, boolean reflect);

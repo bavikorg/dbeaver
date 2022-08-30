@@ -34,7 +34,7 @@ public class GlobalEventManagerImpl implements DBPGlobalEventManager {
 
     private static GlobalEventManagerImpl instance;
 
-    private final List<DBPGlobalEventListener> listeners = new ArrayList<>();
+    private final /*~~>*/List<DBPGlobalEventListener> listeners = new ArrayList<>();
 
     public static GlobalEventManagerImpl getInstance() {
         if (instance == null) {
@@ -46,8 +46,8 @@ public class GlobalEventManagerImpl implements DBPGlobalEventManager {
     @NotNull
     private DBPGlobalEventListener[] getListenersCopy() {
         DBPGlobalEventListener[] listeners;
-        synchronized (this.listeners) {
-            listeners = this.listeners.toArray(new DBPGlobalEventListener[0]);
+        synchronized (/*~~>*/this.listeners) {
+            listeners = /*~~>*/this.listeners.toArray(new DBPGlobalEventListener[0]);
         }
         return listeners;
     }

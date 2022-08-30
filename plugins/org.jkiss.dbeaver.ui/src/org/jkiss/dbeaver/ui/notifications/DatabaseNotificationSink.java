@@ -51,7 +51,7 @@ public class DatabaseNotificationSink {
                         collectNotifications();
 
                         if (popup != null && popup.getReturnCode() == Window.CANCEL) {
-                            List<AbstractNotification> notifications = popup.getNotifications();
+                            /*~~>*/List<AbstractNotification> notifications = popup.getNotifications();
                             for (AbstractNotification notification : notifications) {
                                 if (notification.getToken() != null) {
                                     cancelledTokens.put(notification.getToken(), null);
@@ -137,7 +137,7 @@ public class DatabaseNotificationSink {
 
         popup.setDelayClose(ModelPreferences.getPreferences().getInt(ModelPreferences.NOTIFICATIONS_CLOSE_DELAY_TIMEOUT));
 
-        List<AbstractNotification> toDisplay = new ArrayList<>(currentlyNotifying);
+        /*~~>*/List<AbstractNotification> toDisplay = new ArrayList<>(currentlyNotifying);
         Collections.sort(toDisplay);
         popup.setContents(toDisplay);
         cleanNotified();

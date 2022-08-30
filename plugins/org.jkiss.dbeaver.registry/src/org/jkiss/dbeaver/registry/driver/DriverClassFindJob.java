@@ -43,7 +43,7 @@ public class DriverClassFindJob implements DBRRunnableWithProgress {
 
     public static final String OBJECT_CLASS_NAME = "java/lang/Object";
     public static final String CLASS_FILE_EXT = ".class";
-    private List<String> driverClassNames = new ArrayList<>();
+    private /*~~>*/List<String> driverClassNames = new ArrayList<>();
 
     private final DriverDescriptor driver;
     private final String interfaceName;
@@ -55,7 +55,7 @@ public class DriverClassFindJob implements DBRRunnableWithProgress {
         this.isInterface = isInterface;
     }
 
-    public List<String> getDriverClassNames() {
+    public /*~~>*/List<String> getDriverClassNames() {
         return driverClassNames;
     }
 
@@ -65,8 +65,8 @@ public class DriverClassFindJob implements DBRRunnableWithProgress {
     }
 
     private void findDriverClasses(DBRProgressMonitor monitor) {
-        java.util.List<File> libFiles = driver.getAllLibraryFiles();
-        java.util.List<URL> libURLs = new ArrayList<>();
+        /*~~>*//*~~>*/java.util.List<File> libFiles = driver.getAllLibraryFiles();
+        /*~~>*//*~~>*/java.util.List<URL> libURLs = new ArrayList<>();
         for (File libFile : libFiles) {
             if (libFile != null && libFile.exists() && !libFile.isDirectory()) {
                 try {

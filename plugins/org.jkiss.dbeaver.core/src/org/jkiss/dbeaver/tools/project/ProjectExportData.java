@@ -31,7 +31,7 @@ import java.util.zip.ZipOutputStream;
 
 class ProjectExportData {
 
-    private final List<DBPProject> projects;
+    private final /*~~>*/List<DBPProject> projects;
     private final File outputFolder;
     private final boolean exportDrivers;
     private final String archiveFileName;
@@ -41,9 +41,9 @@ class ProjectExportData {
     ZipOutputStream archiveStream;
     Set<DBPDriver> usedDrivers = new HashSet<>();
 
-    public ProjectExportData(List<DBPProject> projects, File outputFolder, boolean exportDrivers, String archiveFileName)
+    public ProjectExportData(/*~~>*/List<DBPProject> projects, File outputFolder, boolean exportDrivers, String archiveFileName)
     {
-        this.projects = projects;
+        /*~~>*/this.projects = projects;
         this.outputFolder = outputFolder;
         this.exportDrivers = exportDrivers;
         this.archiveFileName = archiveFileName;
@@ -56,7 +56,7 @@ class ProjectExportData {
         this.archiveStream = archiveStream;
     }
 
-    public List<DBPProject> getProjectsToExport()
+    public /*~~>*/List<DBPProject> getProjectsToExport()
     {
         return projects;
     }

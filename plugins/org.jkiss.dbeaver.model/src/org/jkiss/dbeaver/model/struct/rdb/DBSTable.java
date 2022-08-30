@@ -72,6 +72,6 @@ public interface DBSTable extends DBSEntity, DBPQualifiedObject
 //    Collection<? extends DBSTableForeignKey> getReferences(@NotNull DBRProgressMonitor monitor) throws DBException;
 
     @Nullable
-    List<? extends DBSTrigger> getTriggers(@NotNull DBRProgressMonitor monitor) throws DBException;
+    /*~~>*/List<? extends DBSTrigger> getTriggers(@NotNull DBRProgressMonitor monitor) throws DBException;
 
 }

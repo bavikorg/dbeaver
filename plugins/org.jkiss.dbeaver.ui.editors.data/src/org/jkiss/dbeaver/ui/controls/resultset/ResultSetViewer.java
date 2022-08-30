@@ -165,7 +165,7 @@ public class ResultSetViewer extends Viewer
     private final VerticalFolder presentationSwitchFolder;
     private final Composite presentationPanel;
 
-    private final List<ToolBarManager> toolbarList = new ArrayList<>();
+    private final /*~~>*/List<ToolBarManager> toolbarList = new ArrayList<>();
     private Composite statusBar;
     private StatusLabel statusLabel;
     private ActiveStatusMessage rowCountLabel;
@@ -177,8 +177,8 @@ public class ResultSetViewer extends Viewer
     // Presentation
     private IResultSetPresentation activePresentation;
     private ResultSetPresentationDescriptor activePresentationDescriptor;
-    private List<ResultSetPresentationDescriptor> availablePresentations;
-    private final List<ResultSetPanelDescriptor> availablePanels = new ArrayList<>();
+    private /*~~>*/List<ResultSetPresentationDescriptor> availablePresentations;
+    private final /*~~>*/List<ResultSetPanelDescriptor> availablePanels = new ArrayList<>();
 
     private final Map<ResultSetPresentationDescriptor, PresentationSettings> presentationSettings = new HashMap<>();
     private final Map<String, IResultSetPanel> activePanels = new HashMap<>();
@@ -203,14 +203,14 @@ public class ResultSetViewer extends Viewer
 
     private Integer segmentFetchSize;
 
-    private final List<IResultSetListener> listeners = new ArrayList<>();
+    private final /*~~>*/List<IResultSetListener> listeners = new ArrayList<>();
 
-    private final List<ResultSetJobAbstract> dataPumpJobQueue = new ArrayList<>();
+    private final /*~~>*/List<ResultSetJobAbstract> dataPumpJobQueue = new ArrayList<>();
     private final AtomicBoolean dataPumpRunning = new AtomicBoolean();
 
     private final ResultSetModel model = new ResultSetModel();
     private HistoryStateItem curState = null;
-    private final List<HistoryStateItem> stateHistory = new ArrayList<>();
+    private final /*~~>*/List<HistoryStateItem> stateHistory = new ArrayList<>();
     private int historyPosition = -1;
 
     private final AutoRefreshControl autoRefreshControl;
@@ -679,7 +679,7 @@ public class ResultSetViewer extends Viewer
     // Presentation & panels
 
     @NotNull
-    public List<ResultSetPresentationDescriptor> getAvailablePresentations() {
+    public /*~~>*/List<ResultSetPresentationDescriptor> getAvailablePresentations() {
         return availablePresentations != null ? availablePresentations : Collections.emptyList();
     }
 
@@ -728,7 +728,7 @@ public class ResultSetViewer extends Viewer
                     filtersPanel.setVisible(true);
                 }
                 IResultSetContext context = new ResultSetContextImpl(this, resultSet);
-                final List<ResultSetPresentationDescriptor> newPresentations;
+                final /*~~>*/List<ResultSetPresentationDescriptor> newPresentations;
 
                 // Check for preferred presentation
                 String preferredPresentationId = getDecorator().getPreferredPresentation();
@@ -743,11 +743,11 @@ public class ResultSetViewer extends Viewer
                         newPresentations = Collections.emptyList();
                     }
                 }
-                changed = CommonUtils.isEmpty(this.availablePresentations) || !newPresentations.equals(this.availablePresentations);
-                this.availablePresentations = newPresentations;
-                if (!this.availablePresentations.isEmpty()) {
+                changed = CommonUtils.isEmpty(/*~~>*/this.availablePresentations) || !newPresentations.equals(/*~~>*/this.availablePresentations);
+                /*~~>*/this.availablePresentations = newPresentations;
+                if (!/*~~>*/this.availablePresentations.isEmpty()) {
                     if (activePresentationDescriptor != null && (!metadataChanged || activePresentationDescriptor.getPresentationType().isPersistent())) {
-                        if (this.availablePresentations.contains(activePresentationDescriptor)) {
+                        if (/*~~>*/this.availablePresentations.contains(activePresentationDescriptor)) {
                             // Keep the same presentation
                             fireResultSetModelPrepared();
                             return;
@@ -756,7 +756,7 @@ public class ResultSetViewer extends Viewer
                     String defaultPresentationId = getPreferenceStore().getString(ResultSetPreferences.RESULT_SET_PRESENTATION);
                     ResultSetPresentationDescriptor newPresentation = null;
                     if (!CommonUtils.isEmpty(defaultPresentationId)) {
-                        for (ResultSetPresentationDescriptor pd : this.availablePresentations) {
+                        for (ResultSetPresentationDescriptor pd : /*~~>*/this.availablePresentations) {
                             if (pd.getId().equals(defaultPresentationId)) {
                                 newPresentation = pd;
                                 break;
@@ -765,7 +765,7 @@ public class ResultSetViewer extends Viewer
                     }
                     changed = true;
                     if (newPresentation == null) {
-                        newPresentation = this.availablePresentations.get(0);
+                        newPresentation = /*~~>*/this.availablePresentations.get(0);
                     }
                     try {
                         IResultSetPresentation instance = newPresentation.createInstance();
@@ -1380,8 +1380,8 @@ public class ResultSetViewer extends Viewer
         }
     }
 
-    private List<IContributionItem> fillPanelsMenu() {
-        List<IContributionItem> items = new ArrayList<>();
+    private /*~~>*/List<IContributionItem> fillPanelsMenu() {
+        /*~~>*/List<IContributionItem> items = new ArrayList<>();
 
         for (final ResultSetPanelDescriptor panel : availablePanels) {
             CommandContributionItemParameter params = new CommandContributionItemParameter(
@@ -1848,7 +1848,7 @@ public class ResultSetViewer extends Viewer
     private void changeMode(boolean recordMode)
     {
         //Object state = savePresentationState();
-        List<ResultSetRow> selectedRows = getSelection().getSelectedRows();
+        /*~~>*/List<ResultSetRow> selectedRows = getSelection().getSelectedRows();
         if (selectedRows.isEmpty()) {
             if (model.getRowCount() > 0) {
                 selectedRows = Collections.singletonList(model.getRow(0));
@@ -1943,7 +1943,7 @@ public class ResultSetViewer extends Viewer
     ///////////////////////////////////////
     // History
 
-    List<HistoryStateItem> getStateHistory() {
+    /*~~>*/List<HistoryStateItem> getStateHistory() {
         return stateHistory;
     }
 
@@ -2290,7 +2290,7 @@ public class ResultSetViewer extends Viewer
         activePresentation.clearMetaData();
     }
 
-    void setData(List<Object[]> rows, int focusRow)
+    void setData(/*~~>*/List<Object[]> rows, int focusRow)
     {
         if (viewerPanel.isDisposed()) {
             return;
@@ -2333,7 +2333,7 @@ public class ResultSetViewer extends Viewer
         }
     }
 
-    void appendData(List<Object[]> rows, boolean resetOldRows) {
+    void appendData(/*~~>*/List<Object[]> rows, boolean resetOldRows) {
         model.appendData(rows, resetOldRows);
 
         UIUtils.asyncExec(() -> {
@@ -2469,10 +2469,10 @@ public class ResultSetViewer extends Viewer
     }
 
     public void cancelJobs() {
-        List<ResultSetJobAbstract> dpjCopy;
+        /*~~>*/List<ResultSetJobAbstract> dpjCopy;
         synchronized (dataPumpJobQueue) {
-            dpjCopy = new ArrayList<>(this.dataPumpJobQueue);
-            this.dataPumpJobQueue.clear();
+            dpjCopy = new ArrayList<>(/*~~>*/this.dataPumpJobQueue);
+            /*~~>*/this.dataPumpJobQueue.clear();
         }
         for (ResultSetJobAbstract dpj : dpjCopy) {
             if (dpj.isActiveTask()) {
@@ -2772,7 +2772,7 @@ public class ResultSetViewer extends Viewer
         if (dataSource == null) {
             return;
         }
-        List<? extends DBDAttributeTransformerDescriptor> transformers =
+        /*~~>*/List<? extends DBDAttributeTransformerDescriptor> transformers =
             DBWorkbench.getPlatform().getValueHandlerRegistry().findTransformers(
                 dataSource, attr, null);
         if (!CommonUtils.isEmpty(transformers)) {
@@ -2822,7 +2822,7 @@ public class ResultSetViewer extends Viewer
         if (dataSource == null) {
             return;
         }
-        List<IAction> possibleActions = new ArrayList<>();
+        /*~~>*/List<IAction> possibleActions = new ArrayList<>();
         possibleActions.add(new VirtualAttributeAddAction(this));
         if (attr != null) {
             possibleActions.add(new VirtualAttributeEditAction(this, attr));
@@ -2987,7 +2987,7 @@ public class ResultSetViewer extends Viewer
     }
 
     @NotNull
-    private List<DBVColorOverride> getColorOverrides(@NotNull DBDAttributeBinding binding, @Nullable Object value) {
+    private /*~~>*/List<DBVColorOverride> getColorOverrides(@NotNull DBDAttributeBinding binding, @Nullable Object value) {
         final DBSDataContainer dataContainer = getDataContainer();
         if (dataContainer == null) {
             return Collections.emptyList();
@@ -3112,7 +3112,7 @@ public class ResultSetViewer extends Viewer
         if (transformSettings != null && transformSettings.getCustomTransformer() != null) {
             customTransformer = registry.getTransformer(transformSettings.getCustomTransformer());
         }
-        List<? extends DBDAttributeTransformerDescriptor> customTransformers =
+        /*~~>*/List<? extends DBDAttributeTransformerDescriptor> customTransformers =
             registry.findTransformers(dataSource, attr, true);
         if (customTransformers != null && !customTransformers.isEmpty()) {
             manager.add(new TransformerAction(
@@ -3173,7 +3173,7 @@ public class ResultSetViewer extends Viewer
             });
         }
 
-        List<? extends DBDAttributeTransformerDescriptor> applicableTransformers =
+        /*~~>*/List<? extends DBDAttributeTransformerDescriptor> applicableTransformers =
             registry.findTransformers(dataSource, attr, false);
         if (applicableTransformers != null) {
             manager.add(new Separator());
@@ -3293,7 +3293,7 @@ public class ResultSetViewer extends Viewer
         @NotNull DBRProgressMonitor monitor,
         @NotNull ResultSetModel bindingsModel,
         @NotNull DBSEntityAssociation association,
-        @NotNull List<ResultSetRow> rows,
+        @NotNull /*~~>*/List<ResultSetRow> rows,
         boolean newWindow)
         throws DBException
     {
@@ -3321,11 +3321,11 @@ public class ResultSetViewer extends Viewer
         }
 
         // make constraints
-        List<DBDAttributeConstraint> constraints = new ArrayList<>();
+        /*~~>*/List<DBDAttributeConstraint> constraints = new ArrayList<>();
 
         // Set conditions
-        List<? extends DBSEntityAttributeRef> ownAttrs = CommonUtils.safeList(((DBSEntityReferrer) association).getAttributeReferences(monitor));
-        List<? extends DBSEntityAttributeRef> refAttrs = CommonUtils.safeList(((DBSEntityReferrer) refConstraint).getAttributeReferences(monitor));
+        /*~~>*/List<? extends DBSEntityAttributeRef> ownAttrs = CommonUtils.safeList(((DBSEntityReferrer) association).getAttributeReferences(monitor));
+        /*~~>*/List<? extends DBSEntityAttributeRef> refAttrs = CommonUtils.safeList(((DBSEntityReferrer) refConstraint).getAttributeReferences(monitor));
         if (ownAttrs.size() != refAttrs.size()) {
             throw new DBException(
                 "Entity [" + DBUtils.getObjectFullName(targetEntity, DBPEvaluationContext.UI) + "] association [" + association.getName() +
@@ -3363,7 +3363,7 @@ public class ResultSetViewer extends Viewer
      * @param bindingsModel       data bindings providing model. Can be a model from another results viewer.
      */
     @Override
-    public void navigateReference(@NotNull DBRProgressMonitor monitor, @NotNull ResultSetModel bindingsModel, @NotNull DBSEntityAssociation association, @NotNull List<ResultSetRow> rows, boolean newWindow)
+    public void navigateReference(@NotNull DBRProgressMonitor monitor, @NotNull ResultSetModel bindingsModel, @NotNull DBSEntityAssociation association, @NotNull /*~~>*/List<ResultSetRow> rows, boolean newWindow)
         throws DBException
     {
         if (!confirmProceed()) {
@@ -3382,7 +3382,7 @@ public class ResultSetViewer extends Viewer
         }
 
         // make constraints
-        List<DBDAttributeConstraint> constraints = new ArrayList<>();
+        /*~~>*/List<DBDAttributeConstraint> constraints = new ArrayList<>();
 
         // Set conditions
         DBSEntityConstraint refConstraint = association.getReferencedConstraint();
@@ -3390,8 +3390,8 @@ public class ResultSetViewer extends Viewer
             throw new DBException("Can't obtain association '" + DBUtils.getQuotedIdentifier(association) + "' target constraint (table " +
                 (association.getAssociatedEntity() == null ? "???" : DBUtils.getQuotedIdentifier(association.getAssociatedEntity())) + ")");
         }
-        List<? extends DBSEntityAttributeRef> ownAttrs = CommonUtils.safeList(((DBSEntityReferrer) association).getAttributeReferences(monitor));
-        List<? extends DBSEntityAttributeRef> refAttrs = CommonUtils.safeList(((DBSEntityReferrer) refConstraint).getAttributeReferences(monitor));
+        /*~~>*/List<? extends DBSEntityAttributeRef> ownAttrs = CommonUtils.safeList(((DBSEntityReferrer) association).getAttributeReferences(monitor));
+        /*~~>*/List<? extends DBSEntityAttributeRef> refAttrs = CommonUtils.safeList(((DBSEntityReferrer) refConstraint).getAttributeReferences(monitor));
         if (ownAttrs.size() != refAttrs.size()) {
             throw new DBException(
                 "Entity [" + DBUtils.getObjectFullName(targetEntity, DBPEvaluationContext.UI) + "] association [" + association.getName() +
@@ -3421,7 +3421,7 @@ public class ResultSetViewer extends Viewer
         navigateEntity(monitor, newWindow, targetEntity, constraints);
     }
 
-    private void createFilterConstraint(@NotNull List<ResultSetRow> rows, DBDAttributeBinding attrBinding, DBDAttributeConstraint constraint) {
+    private void createFilterConstraint(@NotNull /*~~>*/List<ResultSetRow> rows, DBDAttributeBinding attrBinding, DBDAttributeConstraint constraint) {
         if (rows.size() == 1) {
             Object keyValue = model.getCellValue(new ResultSetCellLocation(attrBinding, rows.get(0)));
             constraint.setOperator(DBCLogicalOperator.EQUALS);
@@ -3436,7 +3436,7 @@ public class ResultSetViewer extends Viewer
         }
     }
 
-    private void navigateEntity(@NotNull DBRProgressMonitor monitor, boolean newWindow, DBSEntity targetEntity, List<DBDAttributeConstraint> constraints) {
+    private void navigateEntity(@NotNull DBRProgressMonitor monitor, boolean newWindow, DBSEntity targetEntity, /*~~>*/List<DBDAttributeConstraint> constraints) {
         DBDDataFilter newFilter = new DBDDataFilter(constraints);
 
         if (newWindow) {
@@ -3754,7 +3754,7 @@ public class ResultSetViewer extends Viewer
             // Bind custom attributes
             try (DBCSession session = DBUtils.openMetaSession(new VoidProgressMonitor(), dataContainer, "Bind custom attributes")) {
                 int rowCount = model.getRowCount();
-                List<Object[]> rows = new ArrayList<>(rowCount);
+                /*~~>*/List<Object[]> rows = new ArrayList<>(rowCount);
                 for (int i = 0; i < rowCount; i++) {
                     rows.add(model.getRowData(i));
                 }
@@ -4167,7 +4167,7 @@ public class ResultSetViewer extends Viewer
     }
 
     @Override
-    public List<DBEPersistAction> generateChangesScript(@NotNull DBRProgressMonitor monitor, @NotNull ResultSetSaveSettings settings) {
+    public /*~~>*/List<DBEPersistAction> generateChangesScript(@NotNull DBRProgressMonitor monitor, @NotNull ResultSetSaveSettings settings) {
         try {
             ResultSetPersister persister = createDataPersister(false);
             persister.applyChanges(monitor, true, settings, null);
@@ -4217,7 +4217,7 @@ public class ResultSetViewer extends Viewer
             final DBDAttributeBinding docAttribute = model.getDocumentAttribute();
             final DBDAttributeBinding[] attributes = model.getAttributes();
 
-            final List<ResultSetRow> selectedRows = getSelection().getSelectedRows();
+            final /*~~>*/List<ResultSetRow> selectedRows = getSelection().getSelectedRows();
             final int[][] partitionedSelectedRows;
 
             if (selectedRows.isEmpty()) {
@@ -4346,8 +4346,8 @@ public class ResultSetViewer extends Viewer
         }
 
         final DBDAttributeBinding docAttribute = model.getDocumentAttribute();
-        final List<ResultSetRow> selectedRows = getSelection().getSelectedRows();
-        final List<DBDAttributeBinding> selectedAttributes = getSelection().getSelectedAttributes();
+        final /*~~>*/List<ResultSetRow> selectedRows = getSelection().getSelectedRows();
+        final /*~~>*/List<DBDAttributeBinding> selectedAttributes = getSelection().getSelectedAttributes();
         final int[][] partitionedSelectedRows = groupConsecutiveRows(
             selectedRows.stream()
                 .mapToInt(ResultSetRow::getVisualNumber)
@@ -4440,7 +4440,7 @@ public class ResultSetViewer extends Viewer
      */
     @NotNull
     private static int[][] groupConsecutiveRows(@NotNull int[] indexes) {
-        final List<int[]> ranges = new ArrayList<>();
+        final /*~~>*/List<int[]> ranges = new ArrayList<>();
         for (int index = 1, start = 0, length = indexes.length; index <= length; index++) {
             if (index == length || indexes[index - 1] != indexes[index] - 1) {
                 ranges.add(new int[]{indexes[start], indexes[index - 1]});
@@ -4582,11 +4582,11 @@ public class ResultSetViewer extends Viewer
     }
 
     private static class SimpleFilterManager implements IResultSetFilterManager {
-        private final Map<String, List<String>> filterHistory = new HashMap<>();
+        private final Map<String, /*~~>*/List<String>> filterHistory = new HashMap<>();
         @NotNull
         @Override
-        public List<String> getQueryFilterHistory(@NotNull String query) {
-            final List<String> filters = filterHistory.get(query);
+        public /*~~>*/List<String> getQueryFilterHistory(@NotNull String query) {
+            final /*~~>*/List<String> filters = filterHistory.get(query);
             if (filters != null) {
                 return filters;
             }
@@ -4595,7 +4595,7 @@ public class ResultSetViewer extends Viewer
 
         @Override
         public void saveQueryFilterValue(@NotNull String query, @NotNull String filterValue) {
-            List<String> filters = filterHistory.get(query);
+            /*~~>*/List<String> filters = filterHistory.get(query);
             if (filters == null) {
                 filters = new ArrayList<>();
                 filterHistory.put(query, filters);
@@ -4605,7 +4605,7 @@ public class ResultSetViewer extends Viewer
 
         @Override
         public void deleteQueryFilterValue(@NotNull String query, String filterValue) throws DBException {
-            List<String> filters = filterHistory.get(query);
+            /*~~>*/List<String> filters = filterHistory.get(query);
             if (filters != null) {
                 filters.add(filterValue);
             }
@@ -4621,13 +4621,13 @@ public class ResultSetViewer extends Viewer
 
         @NotNull
         @Override
-        public List<DBDAttributeBinding> getSelectedAttributes() {
+        public /*~~>*/List<DBDAttributeBinding> getSelectedAttributes() {
             return Collections.emptyList();
         }
 
         @NotNull
         @Override
-        public List<ResultSetRow> getSelectedRows() {
+        public /*~~>*/List<ResultSetRow> getSelectedRows() {
             return Collections.emptyList();
         }
 
@@ -4652,7 +4652,7 @@ public class ResultSetViewer extends Viewer
             if (rsv == null) {
                 return new IContributionItem[0];
             }
-            List<IContributionItem> items = rsv.fillPanelsMenu();
+            /*~~>*/List<IContributionItem> items = rsv.fillPanelsMenu();
             return items.toArray(new IContributionItem[0]);
         }
     }

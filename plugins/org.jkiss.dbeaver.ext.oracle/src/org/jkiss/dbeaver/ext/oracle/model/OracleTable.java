@@ -323,7 +323,7 @@ public class OracleTable extends OracleTablePhysical implements DBPScriptObject,
     public Collection<OracleTableForeignKey> getReferences(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
-        List<OracleTableForeignKey> refs = new ArrayList<>();
+        /*~~>*/List<OracleTableForeignKey> refs = new ArrayList<>();
         // This is dummy implementation
         // Get references from this schema only
         final Collection<OracleTableForeignKey> allForeignKeys =

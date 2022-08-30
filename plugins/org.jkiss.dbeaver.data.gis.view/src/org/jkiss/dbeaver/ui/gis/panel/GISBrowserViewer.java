@@ -72,13 +72,13 @@ public class GISBrowserViewer extends BaseValueEditor<Browser> implements IGeome
     @Override
     public void primeEditorValue(@Nullable Object value) throws DBException
     {
-        List<DBGeometry> geometries = new ArrayList<>();
+        /*~~>*/List<DBGeometry> geometries = new ArrayList<>();
         IDataController dataController = valueController.getDataController();
         if (dataController instanceof IResultSetController) {
             IResultSetController resultSetController = (IResultSetController) dataController;
 
             DBSTypedObject valueType = valueController.getValueType();
-            List<GeometryDataUtils.GeomAttrs> geomAttrs = null;
+            /*~~>*/List<GeometryDataUtils.GeomAttrs> geomAttrs = null;
             if (valueType instanceof DBSAttributeBase) {
                 geomAttrs = GeometryDataUtils.extractGeometryAttributes(resultSetController);
             }
@@ -90,7 +90,7 @@ public class GISBrowserViewer extends BaseValueEditor<Browser> implements IGeome
             }
 
             final ResultSetModel model = resultSetController.getModel();
-            final List<DBDAttributeBinding> leaves = model.getVisibleLeafAttributes();
+            final /*~~>*/List<DBDAttributeBinding> leaves = model.getVisibleLeafAttributes();
 
             for (Object cell : selectedValues) {
                 DBGeometry geometry;

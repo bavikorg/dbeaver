@@ -202,7 +202,7 @@ public class HSQLMetaModel extends GenericMetaModel
     }
 
     @Override
-    public List<GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
+    public /*~~>*/List<GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
         if (table == null) {
             throw new DBException("Database level triggers aren't supported for HSQLDB");
         }
@@ -213,7 +213,7 @@ public class HSQLMetaModel extends GenericMetaModel
                 dbStat.setString(1, container.getName());
                 dbStat.setString(2, table.getName());
 
-                List<GenericTrigger> result = new ArrayList<>();
+                /*~~>*/List<GenericTrigger> result = new ArrayList<>();
 
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
                     while (dbResult.next()) {

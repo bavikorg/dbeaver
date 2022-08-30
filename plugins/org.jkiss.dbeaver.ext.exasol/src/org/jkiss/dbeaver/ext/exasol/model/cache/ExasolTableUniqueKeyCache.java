@@ -167,7 +167,7 @@ public final class ExasolTableUniqueKeyCache
     }
 
     @Override
-    protected void cacheChildren(DBRProgressMonitor monitor, ExasolTableUniqueKey constraint, List<ExasolTableKeyColumn> rows) {
+    protected void cacheChildren(DBRProgressMonitor monitor, ExasolTableUniqueKey constraint, /*~~>*/List<ExasolTableKeyColumn> rows) {
         constraint.setColumns(rows);
     }
 

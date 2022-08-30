@@ -188,7 +188,7 @@ public class SQLEditor extends SQLEditorBase implements
     private SQLVariablesPanel variablesViewer;
 
     private volatile QueryProcessor curQueryProcessor;
-    private final List<QueryProcessor> queryProcessors = new ArrayList<>();
+    private final /*~~>*/List<QueryProcessor> queryProcessors = new ArrayList<>();
 
     private DBPDataSourceContainer dataSourceContainer;
     private DBPDataSource curDataSource;
@@ -198,7 +198,7 @@ public class SQLEditor extends SQLEditorBase implements
     private SQLScriptContext globalScriptContext;
     private volatile boolean syntaxLoaded = false;
     private FindReplaceTarget findReplaceTarget = new FindReplaceTarget();
-    private final List<SQLQuery> runningQueries = new ArrayList<>();
+    private final /*~~>*/List<SQLQuery> runningQueries = new ArrayList<>();
     private QueryResultsContainer curResultsContainer;
     private Image editorImage;
     private Composite leftToolPanel;
@@ -211,8 +211,8 @@ public class SQLEditor extends SQLEditorBase implements
     private SQLEditorPresentationPanel extraPresentationCurrentPanel;
     private VerticalFolder presentationSwitchFolder;
 
-    private final List<SQLEditorListener> listeners = new ArrayList<>();
-    private final List<ServerOutputInfo> serverOutputs = new ArrayList<>();
+    private final /*~~>*/List<SQLEditorListener> listeners = new ArrayList<>();
+    private final /*~~>*/List<ServerOutputInfo> serverOutputs = new ArrayList<>();
     private ScriptAutoSaveJob scriptAutoSavejob;
     private boolean isResultSetAutoFocusEnabled = true;
 
@@ -234,7 +234,7 @@ public class SQLEditor extends SQLEditorBase implements
             Object data = e.widget.getData();
             if (data instanceof QueryResultsContainer) {
                 QueryProcessor processor = ((QueryResultsContainer) data).queryProcessor;
-                List<QueryResultsContainer> containers = processor.getResultContainers();
+                /*~~>*/List<QueryResultsContainer> containers = processor.getResultContainers();
                 for (int index = containers.indexOf(data) + 1; index < containers.size(); index++) {
                     QueryResultsContainer container = containers.get(index);
                     // Make sure that resultSetNumber equals to current loop index.
@@ -316,7 +316,7 @@ public class SQLEditor extends SQLEditorBase implements
             if (document == null || runningQueries.isEmpty()) {
                 return null;
             }
-            List<Integer> lines = new ArrayList<>(runningQueries.size() * 2);
+            /*~~>*/List<Integer> lines = new ArrayList<>(runningQueries.size() * 2);
             for (SQLQuery statementInfo : runningQueries) {
                 try {
                     int firstLine = document.getLineOfOffset(statementInfo.getOffset());
@@ -1187,7 +1187,7 @@ public class SQLEditor extends SQLEditorBase implements
                                 @Override
                                 public void run() {
                                     final QueryProcessor processor = ((QueryResultsContainer) activeTab.getData()).queryProcessor;
-                                    final List<CTabItem> tabs = new ArrayList<>();
+                                    final /*~~>*/List<CTabItem> tabs = new ArrayList<>();
                                     for (QueryResultsContainer container : processor.getResultContainers()) {
                                         if (!container.isPinned() && container.queryProcessor == processor) {
                                             tabs.add(container.getTabItem());
@@ -1202,7 +1202,7 @@ public class SQLEditor extends SQLEditorBase implements
                             manager.add(new Action(SQLEditorMessages.action_result_tabs_close_other_tabs) {
                                 @Override
                                 public void run() {
-                                    final List<CTabItem> tabs = new ArrayList<>();
+                                    final /*~~>*/List<CTabItem> tabs = new ArrayList<>();
                                     for (CTabItem tab : resultTabs.getItems()) {
                                         if (tab.getShowClose() && tab != activeTab) {
                                             tabs.add(tab);
@@ -1219,7 +1219,7 @@ public class SQLEditor extends SQLEditorBase implements
                                 manager.add(new Action(SQLEditorMessages.action_result_tabs_close_tabs_to_the_left) {
                                     @Override
                                     public void run() {
-                                        final List<CTabItem> tabs = new ArrayList<>();
+                                        final /*~~>*/List<CTabItem> tabs = new ArrayList<>();
                                         for (int i = 0, last = resultTabs.indexOf(activeTab); i < last; i++) {
                                             tabs.add(resultTabs.getItem(i));
                                         }
@@ -1234,7 +1234,7 @@ public class SQLEditor extends SQLEditorBase implements
                                 manager.add(new Action(SQLEditorMessages.action_result_tabs_close_tabs_to_the_right) {
                                     @Override
                                     public void run() {
-                                        final List<CTabItem> tabs = new ArrayList<>();
+                                        final /*~~>*/List<CTabItem> tabs = new ArrayList<>();
                                         for (int i = resultTabs.indexOf(activeTab) + 1; i < resultTabs.getItemCount(); i++) {
                                             tabs.add(resultTabs.getItem(i));
                                         }
@@ -2262,7 +2262,7 @@ public class SQLEditor extends SQLEditorBase implements
             }
         }
 
-        List<SQLScriptElement> elements;
+        /*~~>*/List<SQLScriptElement> elements;
         if (script) {
             if (executeFromPosition) {
                 // Get all queries from the current position
@@ -2297,7 +2297,7 @@ public class SQLEditor extends SQLEditorBase implements
             if (transformer != null) {
                 DBPDataSource dataSource = getDataSource();
                 if (dataSource != null) {
-                    List<SQLScriptElement> xQueries = new ArrayList<>(elements.size());
+                    /*~~>*/List<SQLScriptElement> xQueries = new ArrayList<>(elements.size());
                     for (SQLScriptElement element : elements) {
                         if (element instanceof SQLQuery) {
                             SQLQuery query = transformer.transformQuery(dataSource, getSyntaxManager(), (SQLQuery) element);
@@ -2326,7 +2326,7 @@ public class SQLEditor extends SQLEditorBase implements
 
     public void exportDataFromQuery(@Nullable SQLScriptContext sqlScriptContext)
     {
-        List<SQLScriptElement> elements;
+        /*~~>*/List<SQLScriptElement> elements;
         ITextSelection selection = (ITextSelection) getSelectionProvider().getSelection();
         if (selection.getLength() > 1) {
             elements = extractScriptQueries(selection.getOffset(), selection.getLength(), true, false, true);
@@ -2344,7 +2344,7 @@ public class SQLEditor extends SQLEditorBase implements
         }
     }
 
-    public boolean processQueries(@NotNull final List<SQLScriptElement> queries, final boolean forceScript,
+    public boolean processQueries(@NotNull final /*~~>*/List<SQLScriptElement> queries, final boolean forceScript,
         boolean newTab, final boolean export, final boolean checkSession,
         @Nullable final SQLQueryListener queryListener, @Nullable final SQLScriptContext context
     ) {
@@ -2545,14 +2545,14 @@ public class SQLEditor extends SQLEditorBase implements
     }
 
     private int closeExtraResultTabs(@Nullable QueryProcessor queryProcessor, boolean confirmClose, boolean keepFirstTab) {
-        List<CTabItem> tabsToClose = new ArrayList<>();
+        /*~~>*/List<CTabItem> tabsToClose = new ArrayList<>();
         for (CTabItem item : resultTabs.getItems()) {
             if (item.getData() instanceof QueryResultsContainer && item.getShowClose()) {
                 QueryResultsContainer resultsProvider = (QueryResultsContainer)item.getData();
                 if (queryProcessor != null && queryProcessor != resultsProvider.queryProcessor) {
                     continue;
                 }
-                if (queryProcessor != null && queryProcessor.resultContainers.size() < 2 && keepFirstTab) {
+                if (queryProcessor != null && /*~~>*/queryProcessor.resultContainers.size() < 2 && keepFirstTab) {
                     // Do not remove first tab for this processor
                     continue;
                 }
@@ -3117,7 +3117,7 @@ public class SQLEditor extends SQLEditorBase implements
             final DBPPreferenceStore preferenceStore = DBWorkbench.getPlatform().getPreferenceStore();
             String curPresentation = preferenceStore.getString(SQLPreferenceConstants.RESULT_SET_ORIENTATION);
             ResultSetOrientation[] orientations = ResultSetOrientation.values();
-            List<IContributionItem> items = new ArrayList<>(orientations.length);
+            /*~~>*/List<IContributionItem> items = new ArrayList<>(orientations.length);
             for (final ResultSetOrientation orientation : orientations) {
                 Action action = new Action(orientation.getLabel(), Action.AS_RADIO_BUTTON) {
                     @Override
@@ -3143,7 +3143,7 @@ public class SQLEditor extends SQLEditorBase implements
 
         private volatile SQLQueryJob curJob;
         private AtomicInteger curJobRunning = new AtomicInteger(0);
-        private final List<QueryResultsContainer> resultContainers = new ArrayList<>();
+        private final /*~~>*/List<QueryResultsContainer> resultContainers = new ArrayList<>();
         private volatile DBDDataReceiver curDataReceiver = null;
 
         QueryProcessor(boolean makeDefault) {
@@ -3196,7 +3196,7 @@ public class SQLEditor extends SQLEditorBase implements
             return null;
         }
 
-        List<QueryResultsContainer> getResultContainers() {
+        /*~~>*/List<QueryResultsContainer> getResultContainers() {
             return resultContainers;
         }
 
@@ -3228,7 +3228,7 @@ public class SQLEditor extends SQLEditorBase implements
             }
         }
 
-        boolean processQueries(SQLScriptContext scriptContext, final List<SQLScriptElement> queries, boolean forceScript, final boolean fetchResults, boolean export, boolean closeTabOnError, SQLQueryListener queryListener)
+        boolean processQueries(SQLScriptContext scriptContext, final /*~~>*/List<SQLScriptElement> queries, boolean forceScript, final boolean fetchResults, boolean export, boolean closeTabOnError, SQLQueryListener queryListener)
         {
             if (queries.isEmpty()) {
                 // Nothing to process
@@ -3260,7 +3260,7 @@ public class SQLEditor extends SQLEditorBase implements
                 }
 
                 if (export) {
-                    List<IDataTransferProducer<?>> producers = new ArrayList<>();
+                    /*~~>*/List<IDataTransferProducer<?>> producers = new ArrayList<>();
                     for (int i = 0; i < queries.size(); i++) {
                         SQLScriptElement element = queries.get(i);
                         if (element instanceof SQLControlCommand) {
@@ -3593,7 +3593,7 @@ public class SQLEditor extends SQLEditorBase implements
             if (dataContainer != null) {
                 return dataContainer.getSupportedFeatures();
             }
-            List<String> features = new ArrayList<>(3);
+            /*~~>*/List<String> features = new ArrayList<>(3);
             features.add(FEATURE_DATA_SELECT);
             if (query instanceof SQLQuery && ((SQLQuery) query).isModifiyng()) {
                 features.add(FEATURE_DATA_MODIFIED_ON_REFRESH);
@@ -3657,7 +3657,7 @@ public class SQLEditor extends SQLEditorBase implements
 
         private int getQueryResultCounts() {
             int resultCounts = 0;
-            for (QueryResultsContainer qrc : queryProcessor.resultContainers) {
+            for (QueryResultsContainer qrc : /*~~>*/queryProcessor.resultContainers) {
                 if (qrc.query == query) {
                     resultCounts++;
                 }
@@ -3689,7 +3689,7 @@ public class SQLEditor extends SQLEditorBase implements
                     if (dbStatement.executeStatement()) {
                         try (DBCResultSet rs = dbStatement.openResultSet()) {
                             if (rs.nextRow()) {
-                                List<DBCAttributeMetaData> resultAttrs = rs.getMeta().getAttributes();
+                                /*~~>*/List<DBCAttributeMetaData> resultAttrs = rs.getMeta().getAttributes();
                                 Object countValue = null;
                                 if (resultAttrs.size() == 1) {
                                     countValue = rs.getAttributeValue(0);
@@ -4056,14 +4056,14 @@ public class SQLEditor extends SQLEditorBase implements
             notifyOnQueryResultListeners(curResultsContainer, result);
             // Get results window (it is possible that it was closed till that moment
             {
-                for (QueryResultsContainer cr : queryProcessor.resultContainers) {
+                for (QueryResultsContainer cr : /*~~>*/queryProcessor.resultContainers) {
                     cr.viewer.updateFiltersText(false);
                 }
-                if (!result.hasError() && !queryProcessor.resultContainers.isEmpty()) {
+                if (!result.hasError() && !/*~~>*/queryProcessor.resultContainers.isEmpty()) {
                     if (activeResultsTab != null && !activeResultsTab.isDisposed()) {
                         setResultTabSelection(activeResultsTab);
                     } else {
-                        setResultTabSelection(queryProcessor.resultContainers.get(0).resultsTab);
+                        setResultTabSelection(/*~~>*/queryProcessor.resultContainers.get(0).resultsTab);
                     }
                 }
                 // Set tab names by query results names
@@ -4071,7 +4071,7 @@ public class SQLEditor extends SQLEditorBase implements
 
                     int queryIndex = queryProcessors.indexOf(queryProcessor);
                     int resultsIndex = 0;
-                    for (QueryResultsContainer results : queryProcessor.resultContainers) {
+                    for (QueryResultsContainer results : /*~~>*/queryProcessor.resultContainers) {
                         if (results.query != query) {
                             // This happens when query results is statistics tab
                             // in that case we need to update tab selection and
@@ -4381,7 +4381,7 @@ public class SQLEditor extends SQLEditorBase implements
                 return;
             }
 
-            List<ServerOutputInfo> outputs;
+            /*~~>*/List<ServerOutputInfo> outputs;
             synchronized (serverOutputs) {
                 outputs = new ArrayList<>(serverOutputs);
                 serverOutputs.clear();

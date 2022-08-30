@@ -49,7 +49,7 @@ public class OracleToolsTableGatherStatistics extends SQLToolExecuteHandler<DBSO
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, OracleToolTableGatherStatisticsSettings settings, List<DBEPersistAction> queries, DBSObject object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, OracleToolTableGatherStatisticsSettings settings, /*~~>*/List<DBEPersistAction> queries, DBSObject object) throws DBCException {
         if (object instanceof OracleTable) {
             OracleTable table = (OracleTable)object;
             int percent = settings.getSamplePercent();

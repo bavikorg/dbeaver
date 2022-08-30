@@ -44,7 +44,7 @@ public class SQLGeneratorDDL extends SQLGenerator<DBPScriptObject> {
     @Override
     public void run(DBRProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
         boolean allTables = true;
-        List<DBSTable> tableList = new ArrayList<>();
+        /*~~>*/List<DBSTable> tableList = new ArrayList<>();
         for (DBPScriptObject object : objects) {
             if (!(object instanceof DBSTable)) {
                 allTables = false;

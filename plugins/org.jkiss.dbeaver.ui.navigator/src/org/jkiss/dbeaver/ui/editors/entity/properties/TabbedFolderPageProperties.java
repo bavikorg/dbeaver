@@ -165,8 +165,8 @@ public class TabbedFolderPageProperties extends TabbedFolderPage implements IRef
         }
     }
 
-    public List<String> getExtraCategories() {
-        List<String> extraCategories = new ArrayList<>();
+    public /*~~>*/List<String> getExtraCategories() {
+        /*~~>*/List<String> extraCategories = new ArrayList<>();
         for (DBPPropertyDescriptor prop : input.getPropertySource().getProperties()) {
             String category = prop.getCategory();
             if (!CommonUtils.isEmpty(category)) {
@@ -192,7 +192,7 @@ public class TabbedFolderPageProperties extends TabbedFolderPage implements IRef
                 @Override
                 protected DBPPropertyDescriptor[] filterProperties(Object object, DBPPropertyDescriptor[] properties) {
                     // Return only properties with categories
-                    List<DBPPropertyDescriptor> result = new ArrayList<>();
+                    /*~~>*/List<DBPPropertyDescriptor> result = new ArrayList<>();
                     for (DBPPropertyDescriptor prop : properties) {
                         if (CommonUtils.isEmpty(prop.getCategory())) {
                             continue;

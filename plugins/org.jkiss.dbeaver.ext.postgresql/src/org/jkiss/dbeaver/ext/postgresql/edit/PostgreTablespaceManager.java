@@ -75,7 +75,7 @@ public class PostgreTablespaceManager extends SQLObjectEditor<PostgreTablespace,
     @Override
     protected void addObjectCreateActions(
         DBRProgressMonitor monitor,
-        DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+        DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
         ObjectCreateCommand command,
         Map<String, Object> options) {
         final PostgreTablespace tablespace = command.getObject();
@@ -91,7 +91,7 @@ public class PostgreTablespaceManager extends SQLObjectEditor<PostgreTablespace,
 
     @Override
     protected void addObjectDeleteActions(
-        DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+        DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
         ObjectDeleteCommand command,
         Map<String, Object> options) {
         actions.add(

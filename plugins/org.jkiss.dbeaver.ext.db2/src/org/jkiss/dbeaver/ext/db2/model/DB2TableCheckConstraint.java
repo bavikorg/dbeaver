@@ -63,7 +63,7 @@ public class DB2TableCheckConstraint extends JDBCTableConstraint<DB2Table> imple
     private String collationSchemaOrderBy;
     private String collationNameOrderBy;
 
-    private List<DB2TableCheckConstraintColumn> columns;
+    private /*~~>*/List<DB2TableCheckConstraintColumn> columns;
 
     // -----------------
     // Constructor
@@ -112,14 +112,14 @@ public class DB2TableCheckConstraint extends JDBCTableConstraint<DB2Table> imple
     // -----------------
 
     @Override
-    public List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException
     {
         return columns;
     }
 
-    public void setColumns(List<DB2TableCheckConstraintColumn> columns)
+    public void setColumns(/*~~>*/List<DB2TableCheckConstraintColumn> columns)
     {
-        this.columns = columns;
+        /*~~>*/this.columns = columns;
     }
 
     // -----------------

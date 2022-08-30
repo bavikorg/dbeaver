@@ -39,7 +39,7 @@ public interface DBSNamespace {
         @NotNull String name) throws DBException;
 
     @NotNull
-    List<? extends DBSObject> getObjectsByType(
+    /*~~>*/List<? extends DBSObject> getObjectsByType(
         @NotNull DBRProgressMonitor monitor,
         @NotNull DBSObjectType objectType) throws DBException;
 

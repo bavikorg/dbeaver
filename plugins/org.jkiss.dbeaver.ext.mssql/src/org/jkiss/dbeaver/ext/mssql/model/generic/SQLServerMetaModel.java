@@ -214,11 +214,11 @@ public class SQLServerMetaModel extends GenericMetaModel implements DBCQueryTran
     }
 
     @Override
-    public List<GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
+    public /*~~>*/List<GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
         try (JDBCSession session = DBUtils.openMetaSession(monitor, container, "Read triggers")) {
 
             try (JDBCPreparedStatement dbStat = (JDBCPreparedStatement) prepareTableTriggersLoadStatement(session, container, table)) {
-                List<GenericTrigger> result = new ArrayList<>();
+                /*~~>*/List<GenericTrigger> result = new ArrayList<>();
 
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
                     while (dbResult.next()) {
@@ -346,7 +346,7 @@ public class SQLServerMetaModel extends GenericMetaModel implements DBCQueryTran
     }
 
     @Override
-    public List<GenericSchema> loadSchemas(JDBCSession session, GenericDataSource dataSource, GenericCatalog catalog) throws DBException {
+    public /*~~>*/List<GenericSchema> loadSchemas(JDBCSession session, GenericDataSource dataSource, GenericCatalog catalog) throws DBException {
         boolean showAllSchemas = SQLServerUtils.isShowAllSchemas(dataSource);
         final DBSObjectFilter schemaFilters = dataSource.getContainer().getObjectFilter(GenericSchema.class, catalog, false);
 
@@ -373,7 +373,7 @@ public class SQLServerMetaModel extends GenericMetaModel implements DBCQueryTran
         }
 
         boolean schemaReadFailed = false;
-        List<GenericSchema> result = new ArrayList<>();
+        /*~~>*/List<GenericSchema> result = new ArrayList<>();
         try (JDBCPreparedStatement dbStat = session.prepareStatement(sql)) {
 
             try (JDBCResultSet dbResult = dbStat.executeQuery()) {

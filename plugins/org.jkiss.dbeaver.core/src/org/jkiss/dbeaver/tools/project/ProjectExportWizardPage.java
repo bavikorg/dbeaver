@@ -211,9 +211,9 @@ class ProjectExportWizardPage extends WizardPage {
             fileNameText.getText());
     }
 
-    private List<DBPProject> getProjectsToExport()
+    private /*~~>*/List<DBPProject> getProjectsToExport()
     {
-        List<DBPProject> result = new ArrayList<>();
+        /*~~>*/List<DBPProject> result = new ArrayList<>();
         for (TableItem item : projectsTable.getItems()) {
             if (item.getChecked()) {
                 result.add((DBPProject) item.getData());
@@ -222,7 +222,7 @@ class ProjectExportWizardPage extends WizardPage {
         return result;
     }
 
-    static String getArchiveFileName(List<DBPProject> projects)
+    static String getArchiveFileName(/*~~>*/List<DBPProject> projects)
     {
         String archiveName = CoreMessages.dialog_project_export_wizard_start_archive_name_prefix;
         if (projects.size() == 1) {

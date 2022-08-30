@@ -54,7 +54,7 @@ public class SQLGeneratorHandlerResultSetDDL extends AbstractHandler {
         IResultSetController resultSetController = ((IResultSetProvider) editorPart).getResultSetController();
         if (resultSetController != null) {
             SQLGenerator<IResultSetController> generator = new SQLGeneratorDDLFromResultSet();
-            generator.initGenerator(List.of(resultSetController));
+            generator.initGenerator(/*~~>*/List.of(resultSetController));
             
             if (generator != null) {
                 IWorkbenchPage activePage = UIUtils.getActiveWorkbenchWindow().getActivePage();

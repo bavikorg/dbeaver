@@ -213,7 +213,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenTableHasASingleColumn_returnsDDLStringForASingleColumn()
             throws DBException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         GreenplumExternalTable table = new GreenplumExternalTable(mockSchema, mockResults);
         addMockColumnsToTableCache(tableColumns, table);
@@ -233,7 +233,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenTableHasNoEncodingSet_returnsDDLStringWithNoEncoding()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getString("encoding")).thenReturn(null);
 
@@ -255,7 +255,7 @@ public class GreenplumExternalTableTest {
             throws DBException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
         PostgreTableColumn mockPostgreTableColumn2 = mockDbColumn("column2", "int2", 2);
-        List<PostgreTableColumn> tableColumns = Arrays.asList(mockPostgreTableColumn, mockPostgreTableColumn2);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Arrays.asList(mockPostgreTableColumn, mockPostgreTableColumn2);
 
         GreenplumExternalTable table = new GreenplumExternalTable(mockSchema, mockResults);
         addMockColumnsToTableCache(tableColumns, table);
@@ -275,7 +275,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenTableHasASegmentRejectLimit_returnsDDLStringWithSegmentRejectLimit()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getInt("rejectlimit")).thenReturn(exampleRejectLimit);
         Mockito.when(mockResults.getString("rejectlimittype")).thenReturn(exampleRejectLimitType);
@@ -299,7 +299,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenExecLocationIsMasterOnly_returnsDDLStringWithAMasterOnlyExecLocation()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getString("execlocation")).thenReturn("MASTER_ONLY");
 
@@ -321,7 +321,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenTableHasMultipleUriLocations_returnsDDLStringForASingleColumn()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getString("urilocation"))
                 .thenReturn("gpfdist://filehost:8081/*.txt,gpfdist://filehost:8081/*.gz");
@@ -345,7 +345,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenTableHasACustomFormatType_returnsDDLStringWithACustomFormat()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getString("fmttype")).thenReturn("b");
         Mockito.when(mockResults.getString("fmtopts")).thenReturn("FORMATTER 'formatter_export_s'");
@@ -368,7 +368,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenTableIsAWebTable_returnsDDLStringForAWebTable()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getString("urilocation")).thenReturn("http://example.com/test.txt");
 
@@ -390,7 +390,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenTableIsAnExternalWritableTable_returnsDDLStringForAWritableTable()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getBoolean("writable")).thenReturn(true);
 
@@ -412,7 +412,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenTableIsAExternalTemporaryTable_returnsDDLStringForAExternalTemporaryTable()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getBoolean("is_temp_table")).thenReturn(true);
 
@@ -434,7 +434,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenTableIsAExternalWebTemporaryTable_returnsDDLStringForAExternalWebTemporaryTable()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getBoolean("is_temp_table")).thenReturn(true);
         Mockito.when(mockResults.getString("urilocation")).thenReturn("http://example.com/test.txt");
@@ -457,7 +457,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenExternalTableIsLoggingErrors_returnsDDLStringWithLoggingErrorsClause()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getBoolean("is_logging_errors")).thenReturn(true);
 
@@ -480,7 +480,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenExternalTableIsLoggingErrorsWithSegmentRejectLimit_returnsDDLStringWithLoggingErrorsClauseWithSegmentRejectLimit()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getInt("rejectlimit")).thenReturn(exampleRejectLimit);
         Mockito.when(mockResults.getString("rejectlimittype")).thenReturn(exampleRejectLimitType);
@@ -505,7 +505,7 @@ public class GreenplumExternalTableTest {
     public void generateDDL_whenExternalTableHasNoFormatOptionsSet_returnsDDLStringWithOmittedFormatOptions()
             throws DBException, SQLException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getString("fmtopts")).thenReturn(null);
 
@@ -546,7 +546,7 @@ public class GreenplumExternalTableTest {
         // Ordinal Position of -1 is applied to all non-persisted table columns
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", -1);
         PostgreTableColumn mockPostgreTableColumn2 = mockDbColumn("column2", "int2", -1);
-        List<PostgreTableColumn> tableColumns = Arrays.asList(mockPostgreTableColumn, mockPostgreTableColumn2);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Arrays.asList(mockPostgreTableColumn, mockPostgreTableColumn2);
 
         GreenplumExternalTable table = new GreenplumExternalTable(mockSchema);
         table.setName("sampleTable");
@@ -569,7 +569,7 @@ public class GreenplumExternalTableTest {
     @Test
     public void generateDDL_whenAWebTableHasExecuteClause_returnsDDLWithTheExecuteClauseAndDefaultExecLocation() throws SQLException, DBException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getString("command")).thenReturn("execute something");
         Mockito.when(mockResults.getString("urilocation")).thenReturn("");
@@ -591,7 +591,7 @@ public class GreenplumExternalTableTest {
     @Test
     public void generateDDL_whenAWebTableHasExecuteClauseAndExecLocationIsMasterOnly_returnsDDLWithTheExecuteClauseAndMasterOnlyExecLocation() throws SQLException, DBException {
         PostgreTableColumn mockPostgreTableColumn = mockDbColumn("column1", "int4", 1);
-        List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
+        /*~~>*/List<PostgreTableColumn> tableColumns = Collections.singletonList(mockPostgreTableColumn);
 
         Mockito.when(mockResults.getString("command")).thenReturn("execute something");
         Mockito.when(mockResults.getString("urilocation")).thenReturn("");
@@ -633,7 +633,7 @@ public class GreenplumExternalTableTest {
         return mockPostgreTableColumn;
     }
 
-    private void addMockColumnsToTableCache(List<PostgreTableColumn> tableColumns, GreenplumExternalTable table)
+    private void addMockColumnsToTableCache(/*~~>*/List<PostgreTableColumn> tableColumns, GreenplumExternalTable table)
             throws DBException {
         Mockito.when(mockTableCache.getChildren(monitor, mockSchema, table)).thenReturn(tableColumns);
     }

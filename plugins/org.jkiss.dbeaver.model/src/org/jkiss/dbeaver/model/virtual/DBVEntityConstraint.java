@@ -33,7 +33,7 @@ public class DBVEntityConstraint implements DBSEntityConstraint, DBSEntityReferr
 {
     @NotNull
     private final DBVEntity entity;
-    private final List<DBVEntityConstraintColumn> attributes = new ArrayList<>();
+    private final /*~~>*/List<DBVEntityConstraintColumn> attributes = new ArrayList<>();
     private DBSEntityConstraintType type;
     private String name;
     private boolean useAllColumns = false;
@@ -49,19 +49,19 @@ public class DBVEntityConstraint implements DBSEntityConstraint, DBSEntityReferr
         this.entity = entity;
         this.type = copy.type;
         this.name = copy.name;
-        for (DBVEntityConstraintColumn col : copy.attributes) {
-            this.attributes.add(new DBVEntityConstraintColumn(this, col));
+        for (DBVEntityConstraintColumn col : /*~~>*/copy.attributes) {
+            /*~~>*/this.attributes.add(new DBVEntityConstraintColumn(this, col));
         }
         this.useAllColumns = copy.useAllColumns;
     }
 
     @Override
-    public List<DBVEntityConstraintColumn> getAttributeReferences(@Nullable DBRProgressMonitor monitor)
+    public /*~~>*/List<DBVEntityConstraintColumn> getAttributeReferences(@Nullable DBRProgressMonitor monitor)
     {
         return attributes;
     }
 
-    public List<DBVEntityConstraintColumn> getAttributes() {
+    public /*~~>*/List<DBVEntityConstraintColumn> getAttributes() {
         return attributes;
     }
 

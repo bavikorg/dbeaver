@@ -31,7 +31,7 @@ import java.util.regex.Matcher;
  */
 class FireBirdPlanTokenMatcher {
 
-	private List<Matcher> matchers = new ArrayList<>(FireBirdPlanToken.values().length);
+	private /*~~>*/List<Matcher> matchers = new ArrayList<>(FireBirdPlanToken.values().length);
 	private Map<Matcher,FireBirdPlanToken> matchertokens = new HashMap<>(FireBirdPlanToken.values().length);
 	private int position = 0;
 	FireBirdPlanToken token;

@@ -82,8 +82,8 @@ public class AdvancedListViewer extends StructuredViewer {
     }
 
     @Override
-    protected List<Object> getSelectionFromWidget() {
-        List<Object> list = new ArrayList<>();
+    protected /*~~>*/List<Object> getSelectionFromWidget() {
+        /*~~>*/List<Object> list = new ArrayList<>();
         AdvancedListItem item = this.control.getSelectedItem();
         if (item != null) {
             list.add(item.getData());
@@ -115,7 +115,7 @@ public class AdvancedListViewer extends StructuredViewer {
     }
 
     @Override
-    protected void setSelectionToWidget(List l, boolean reveal) {
+    protected void setSelectionToWidget(/*~~>*/List l, boolean reveal) {
 
     }
 

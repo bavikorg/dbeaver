@@ -131,29 +131,29 @@ public abstract class SQLObjectEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
     //////////////////////////////////////////////////
     // Actions
 
-    protected abstract void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException;
+    protected abstract void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException;
 
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
-
-    }
-
-    protected void addObjectExtraActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, NestedObjectCommand<OBJECT_TYPE, PropertyHandler> command, Map<String, Object> options) throws DBException {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
 
     }
 
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
+    protected void addObjectExtraActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, NestedObjectCommand<OBJECT_TYPE, PropertyHandler> command, Map<String, Object> options) throws DBException {
+
+    }
+
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
         // Base SQL syntax do not support object properties change
         throw new IllegalStateException("Object rename is not supported in " + getClass().getSimpleName()); //$NON-NLS-1$
     }
 
-    protected void addObjectReorderActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectReorderCommand command, Map<String, Object> options) {
+    protected void addObjectReorderActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectReorderCommand command, Map<String, Object> options) {
         if (command.getObject().isPersisted()) {
             // Not supported by implementation
             throw new IllegalStateException("Object reorder is not supported in " + getClass().getSimpleName()); //$NON-NLS-1$
         }
     }
 
-    protected abstract void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException;
+    protected abstract void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException;
 
     //////////////////////////////////////////////////
     // Name generator
@@ -211,7 +211,7 @@ public abstract class SQLObjectEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
         commandContext.addCommand(command, new RenameObjectReflector(), true);
     }
 
-    protected void processObjectReorder(DBECommandContext commandContext, OBJECT_TYPE object, List<? extends DBPOrderedObject> siblings, int newPosition) throws DBException {
+    protected void processObjectReorder(DBECommandContext commandContext, OBJECT_TYPE object, /*~~>*/List<? extends DBPOrderedObject> siblings, int newPosition) throws DBException {
         ObjectReorderCommand command = new ObjectReorderCommand(object, siblings, ModelMessages.model_jdbc_reorder_object, newPosition);
         commandContext.addCommand(command, new ReorderObjectReflector(), true);
     }
@@ -291,7 +291,7 @@ public abstract class SQLObjectEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
 
         @Override
         public DBEPersistAction[] getPersistActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, Map<String, Object> options) throws DBException {
-            List<DBEPersistAction> actions = new ArrayList<>();
+            /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
             addObjectModifyActions(monitor, executionContext, actions, this, options);
             addObjectExtraActions(monitor, executionContext, actions, this, options);
             return actions.toArray(new DBEPersistAction[0]);
@@ -341,7 +341,7 @@ public abstract class SQLObjectEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
                 }
                 DBSObjectCache<? extends DBSObject, OBJECT_TYPE> objectsCache = getObjectsCache(newObject);
                 if (objectsCache != null) {
-                    List<OBJECT_TYPE> cachedObjects;
+                    /*~~>*/List<OBJECT_TYPE> cachedObjects;
                     if (objectsCache instanceof DBSCompositeCache) {
                         cachedObjects = ((DBSCompositeCache) objectsCache).getCachedObjects(newObject.getParentObject());
                     } else {
@@ -357,7 +357,7 @@ public abstract class SQLObjectEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
 
         @Override
         public DBEPersistAction[] getPersistActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, Map<String, Object> options) throws DBException {
-            List<DBEPersistAction> actions = new ArrayList<>();
+            /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
             addObjectCreateActions(monitor, executionContext, actions, this, options);
             addObjectExtraActions(monitor, executionContext, actions, this, options);
             return actions.toArray(new DBEPersistAction[0]);
@@ -397,7 +397,7 @@ public abstract class SQLObjectEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
 
         @Override
         public DBEPersistAction[] getPersistActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, Map<String, Object> options) throws DBException {
-            List<DBEPersistAction> actions = new ArrayList<>();
+            /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
             addObjectDeleteActions(monitor, executionContext, actions, this, options);
             return actions.toArray(new DBEPersistAction[0]);
         }
@@ -446,7 +446,7 @@ public abstract class SQLObjectEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
             if (CommonUtils.equalObjects(oldName, newName)) {
                 return new DBEPersistAction[0];
             }
-            List<DBEPersistAction> actions = new ArrayList<>();
+            /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
             addObjectRenameActions(monitor, executionContext, actions, this, options);
             return actions.toArray(new DBEPersistAction[0]);
         }
@@ -526,18 +526,18 @@ public abstract class SQLObjectEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
     }
 
     protected class ObjectReorderCommand extends DBECommandAbstract<OBJECT_TYPE> {
-        private List<? extends DBPOrderedObject> siblings;
+        private /*~~>*/List<? extends DBPOrderedObject> siblings;
         private int oldPosition;
         private int newPosition;
 
-        ObjectReorderCommand(OBJECT_TYPE object, List<? extends DBPOrderedObject> siblings, String title, int newPosition) {
+        ObjectReorderCommand(OBJECT_TYPE object, /*~~>*/List<? extends DBPOrderedObject> siblings, String title, int newPosition) {
             super(object, title);
-            this.siblings = siblings;
+            /*~~>*/this.siblings = siblings;
             this.oldPosition = ((DBPOrderedObject) object).getOrdinalPosition();
             this.newPosition = newPosition;
         }
 
-        public List<? extends DBPOrderedObject> getSiblings() {
+        public /*~~>*/List<? extends DBPOrderedObject> getSiblings() {
             return siblings;
         }
 
@@ -551,7 +551,7 @@ public abstract class SQLObjectEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
 
         @Override
         public DBEPersistAction[] getPersistActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, Map<String, Object> options) {
-            List<DBEPersistAction> actions = new ArrayList<>();
+            /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
             addObjectReorderActions(monitor, executionContext, actions, this, options);
             return actions.toArray(new DBEPersistAction[actions.size()]);
         }

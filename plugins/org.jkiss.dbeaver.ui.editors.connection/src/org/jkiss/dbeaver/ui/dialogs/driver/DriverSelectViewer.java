@@ -96,7 +96,7 @@ public class DriverSelectViewer extends Viewer {
     }
 
     private final Object site;
-    private final List<DBPDataSourceProviderDescriptor> providers;
+    private final /*~~>*/List<DBPDataSourceProviderDescriptor> providers;
     private final boolean expandRecent;
     private final SelectorViewType forceViewType;
 
@@ -106,7 +106,7 @@ public class DriverSelectViewer extends Viewer {
     private Job refreshJob;
     private Composite selectorComposite;
 
-    private final List<DBPDataSourceContainer> dataSources;
+    private final /*~~>*/List<DBPDataSourceContainer> dataSources;
     private OrderBy orderBy;
     private Comparator<DBPDriver> driverComparator;
 
@@ -126,16 +126,16 @@ public class DriverSelectViewer extends Viewer {
         DBWorkbench.getPlatform().getPreferenceStore().setValue(PROP_SELECTOR_VIEW_TYPE, viewType.name());
     }
 
-    public DriverSelectViewer(Composite parent, Object site, List<DBPDataSourceProviderDescriptor> providers, boolean expandRecent) {
+    public DriverSelectViewer(Composite parent, Object site, /*~~>*/List<DBPDataSourceProviderDescriptor> providers, boolean expandRecent) {
         this(parent, site, providers, expandRecent, null);
     }
 
-    public DriverSelectViewer(Composite parent, Object site, List<DBPDataSourceProviderDescriptor> providers, boolean expandRecent, SelectorViewType forceViewType) {
+    public DriverSelectViewer(Composite parent, Object site, /*~~>*/List<DBPDataSourceProviderDescriptor> providers, boolean expandRecent, SelectorViewType forceViewType) {
         this.site = site;
-        this.providers = providers;
+        /*~~>*/this.providers = providers;
         this.expandRecent = expandRecent;
         this.forceViewType = forceViewType;
-        this.dataSources = DataSourceRegistry.getAllDataSources();
+        /*~~>*/this.dataSources = DataSourceRegistry.getAllDataSources();
 
         OrderBy defOrderBy = getDefaultOrderBy();
         this.setOrderBy(defOrderBy);
@@ -333,8 +333,8 @@ public class DriverSelectViewer extends Viewer {
         }
     }
 
-    private Object[] collectDrivers(List<DataSourceProviderDescriptor> provs) {
-        List<DBPDriver> drivers = new ArrayList<>();
+    private Object[] collectDrivers(/*~~>*/List<DataSourceProviderDescriptor> provs) {
+        /*~~>*/List<DBPDriver> drivers = new ArrayList<>();
         if (provs != null) {
             for (DataSourceProviderDescriptor provider : provs) {
                 drivers.addAll(provider.getEnabledDrivers());

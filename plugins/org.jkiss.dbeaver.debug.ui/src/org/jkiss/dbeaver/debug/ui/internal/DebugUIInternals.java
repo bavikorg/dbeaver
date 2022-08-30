@@ -62,13 +62,13 @@ public class DebugUIInternals {
         if (selected == null) {
             return result;
         }
-        List<Object> selection = Arrays.asList(selected);
+        /*~~>*/List<Object> selection = Arrays.asList(selected);
         IEvaluationContext context = DebugUIPlugin.createEvaluationContext(selection);
         context.setAllowPluginActivation(true);
         context.addVariable("selection", selection); //$NON-NLS-1$
-        List<LaunchShortcutExtension> allShortCuts = DebugUIPlugin.getDefault().getLaunchConfigurationManager()
+        /*~~>*/List<LaunchShortcutExtension> allShortCuts = DebugUIPlugin.getDefault().getLaunchConfigurationManager()
                 .getLaunchShortcuts();
-        List<LaunchShortcutExtension> filteredShortCuts = new ArrayList<LaunchShortcutExtension>();
+        /*~~>*/List<LaunchShortcutExtension> filteredShortCuts = new ArrayList<LaunchShortcutExtension>();
         Iterator<LaunchShortcutExtension> iter = allShortCuts.iterator();
 
         while (iter.hasNext()) {

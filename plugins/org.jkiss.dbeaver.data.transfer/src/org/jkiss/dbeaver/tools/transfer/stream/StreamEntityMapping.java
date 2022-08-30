@@ -41,7 +41,7 @@ public class StreamEntityMapping implements DBSEntity, DBSDataContainer, DBPQual
     private final File inputFile;
     private final DBPDataSource dataSource;
     private final String entityName;
-    private final List<StreamDataImporterColumnInfo> streamColumns = new ArrayList<>();
+    private final /*~~>*/List<StreamDataImporterColumnInfo> streamColumns = new ArrayList<>();
 
     public StreamEntityMapping(File inputFile) {
         this.inputFile = inputFile;
@@ -76,7 +76,7 @@ public class StreamEntityMapping implements DBSEntity, DBSDataContainer, DBPQual
     }
 
     @Override
-    public List<StreamDataImporterColumnInfo> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<StreamDataImporterColumnInfo> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
         return streamColumns;
     }
 
@@ -149,13 +149,13 @@ public class StreamEntityMapping implements DBSEntity, DBSDataContainer, DBPQual
         return getName();
     }
 
-    public List<StreamDataImporterColumnInfo> getStreamColumns() {
+    public /*~~>*/List<StreamDataImporterColumnInfo> getStreamColumns() {
         return streamColumns;
     }
 
-    void setStreamColumns(List<StreamDataImporterColumnInfo> streamColumns) {
-        this.streamColumns.clear();
-        this.streamColumns.addAll(streamColumns);
+    void setStreamColumns(/*~~>*/List<StreamDataImporterColumnInfo> streamColumns) {
+        /*~~>*/this.streamColumns.clear();
+        /*~~>*/this.streamColumns.addAll(streamColumns);
     }
 
     public StreamDataImporterColumnInfo getStreamColumn(String name) {
@@ -174,12 +174,12 @@ public class StreamEntityMapping implements DBSEntity, DBSDataContainer, DBPQual
     }
 
     public boolean isSameColumns(@NotNull StreamEntityMapping mapping) {
-        if (streamColumns.size() != mapping.streamColumns.size()) {
+        if (streamColumns.size() != /*~~>*/mapping.streamColumns.size()) {
             return false;
         }
         for (int index = 0; index < streamColumns.size(); index++) {
             StreamDataImporterColumnInfo oldColumn = streamColumns.get(index);
-            StreamDataImporterColumnInfo newColumn = mapping.streamColumns.get(index);
+            StreamDataImporterColumnInfo newColumn = /*~~>*/mapping.streamColumns.get(index);
             if (!oldColumn.getName().equals(newColumn.getName())) {
                 return false;
             }

@@ -45,7 +45,7 @@ public class DBXTreeFolder extends DBXTreeNode {
 
     private boolean isOptional;
 
-    private List<String> contributedCategories = null;
+    private /*~~>*/List<String> contributedCategories = null;
     private ItemType[] itemTypes = null;
 
     public static class ItemType {
@@ -82,7 +82,7 @@ public class DBXTreeFolder extends DBXTreeNode {
 
         IConfigurationElement[] itemTypesConfig = config.getChildren("itemType");
         if (!ArrayUtils.isEmpty(itemTypesConfig)) {
-            List<ItemType> objectCreateTypes = null;
+            /*~~>*/List<ItemType> objectCreateTypes = null;
             for (IConfigurationElement it : itemTypesConfig) {
                 String itemTypeName = it.getAttribute("type");
                 if (!CommonUtils.isEmpty(itemTypeName)) {
@@ -111,7 +111,7 @@ public class DBXTreeFolder extends DBXTreeNode {
 
         this.isOptional = folder.isOptional;
 
-        this.contributedCategories = folder.contributedCategories == null ? null : new ArrayList<>(folder.contributedCategories);
+        /*~~>*/this.contributedCategories = /*~~>*/folder.contributedCategories == null ? null : new ArrayList<>(/*~~>*/folder.contributedCategories);
         this.itemTypes = folder.itemTypes;
     }
 
@@ -161,11 +161,11 @@ public class DBXTreeFolder extends DBXTreeNode {
 
     @NotNull
     @Override
-    public List<DBXTreeNode> getChildren(DBNNode context) {
-        List<DBXTreeNode> children = super.getChildren(context);
+    public /*~~>*/List<DBXTreeNode> getChildren(DBNNode context) {
+        /*~~>*/List<DBXTreeNode> children = super.getChildren(context);
         if (!CommonUtils.isEmpty(contributedCategories) && context instanceof DBNDatabaseNode) {
             // Add contributed editors
-            List<DBXTreeNode> childrenWithContributions = new ArrayList<>(children);
+            /*~~>*/List<DBXTreeNode> childrenWithContributions = new ArrayList<>(children);
             DBPDataSourceProviderRegistry dspRegistry = DBWorkbench.getPlatform().getDataSourceProviderRegistry();
             DBPDataSourceContainer dataSource = ((DBNDatabaseNode) context).getDataSourceContainer();
             for (String category : contributedCategories) {
@@ -227,7 +227,7 @@ public class DBXTreeFolder extends DBXTreeNode {
         this.description = description;
     }
 
-    public List<String> getContributedCategories() {
+    public /*~~>*/List<String> getContributedCategories() {
         return CommonUtils.safeList(contributedCategories);
     }
 

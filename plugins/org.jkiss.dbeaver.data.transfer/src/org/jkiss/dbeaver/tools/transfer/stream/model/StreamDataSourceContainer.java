@@ -340,7 +340,7 @@ class StreamDataSourceContainer implements DBPDataSourceContainer {
     }
 
     @Override
-    public List<DBPDataSourcePermission> getModifyPermission() {
+    public /*~~>*/List<DBPDataSourcePermission> getModifyPermission() {
         return null;
     }
 

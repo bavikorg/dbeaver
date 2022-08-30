@@ -64,7 +64,7 @@ public class TimezoneRegistry {
     }
 
     @NotNull
-    public static List<String> getTimezoneNames() {
+    public static /*~~>*/List<String> getTimezoneNames() {
         return ZoneId.getAvailableZoneIds().stream().map(TimezoneRegistry::getGMTString).sorted(String::compareTo).collect(Collectors.toList());
     }
 

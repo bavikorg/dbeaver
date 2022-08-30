@@ -278,7 +278,7 @@ public class SQLServerDatabase
         }
 
         @Override
-        public void setCache(List<SQLServerDataType> cache) {
+        public void setCache(/*~~>*/List<SQLServerDataType> cache) {
             super.setCache(cache);
             for (SQLServerDataType dt : cache) {
                 dataTypeMap.put(dt.getObjectId(), dt);

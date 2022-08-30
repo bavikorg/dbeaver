@@ -419,7 +419,7 @@ public class ExasolTable extends ExasolTableBase implements DBPScriptObject, DBP
         setHasPartitionKey(hasPartitionKey);
     }
     
-    public List<ExasolTableIndex> getIndexes(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<ExasolTableIndex> getIndexes(DBRProgressMonitor monitor) throws DBException {
         return getIndexCache().getObjects(monitor, getSchema(), getObject());
     }
     

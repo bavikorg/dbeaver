@@ -188,16 +188,16 @@ public class DBVModel extends DBVContainer {
         super.copyFrom(model, this);
     }
 
-    private static final Map<String, List<DBVEntityForeignKey>> globalReferenceCache = new HashMap<>();
+    private static final Map<String, /*~~>*/List<DBVEntityForeignKey>> globalReferenceCache = new HashMap<>();
 
-    public static Map<String, List<DBVEntityForeignKey>> getGlobalReferenceCache() {
+    public static Map<String, /*~~>*/List<DBVEntityForeignKey>> getGlobalReferenceCache() {
         synchronized (globalReferenceCache) {
             return new HashMap<>(globalReferenceCache);
         }
     }
 
     @Nullable
-    public static List<DBVEntityForeignKey> getGlobalReferences(DBNDatabaseNode databaseNode) {
+    public static /*~~>*/List<DBVEntityForeignKey> getGlobalReferences(DBNDatabaseNode databaseNode) {
         synchronized (globalReferenceCache) {
             return globalReferenceCache.get(databaseNode.getNodeItemPath());
         }
@@ -205,7 +205,7 @@ public class DBVModel extends DBVContainer {
 
     static void addToCache(@NotNull DBVEntityForeignKey foreignKey) {
         synchronized (globalReferenceCache) {
-            List<DBVEntityForeignKey> fkList = globalReferenceCache.computeIfAbsent(foreignKey.getRefEntityId(), s -> new ArrayList<>());
+            /*~~>*/List<DBVEntityForeignKey> fkList = globalReferenceCache.computeIfAbsent(foreignKey.getRefEntityId(), s -> new ArrayList<>());
             fkList.add(foreignKey);
         }
     }
@@ -213,7 +213,7 @@ public class DBVModel extends DBVContainer {
     static void removeFromCache(@NotNull DBVEntityForeignKey foreignKey) {
         synchronized (globalReferenceCache) {
             String refEntityId = foreignKey.getRefEntityId();
-            List<DBVEntityForeignKey> fkList = globalReferenceCache.get(refEntityId);
+            /*~~>*/List<DBVEntityForeignKey> fkList = globalReferenceCache.get(refEntityId);
             if (fkList != null) {
                 fkList.remove(foreignKey);
                 if (fkList.isEmpty()) {
@@ -226,7 +226,7 @@ public class DBVModel extends DBVContainer {
     private static void renameEntityInGlobalCache(String newRefEntityId, String oldName, String newName) {
         String oldRefEntityId = newRefEntityId.replace("/" + newName, "/" + oldName);
         synchronized (globalReferenceCache) {
-            List<DBVEntityForeignKey> fkList = globalReferenceCache.get(oldRefEntityId);
+            /*~~>*/List<DBVEntityForeignKey> fkList = globalReferenceCache.get(oldRefEntityId);
             if (fkList != null) {
                 globalReferenceCache.remove(oldRefEntityId);
                 globalReferenceCache.put(newRefEntityId, fkList);

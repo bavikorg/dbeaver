@@ -60,7 +60,7 @@ public class TestResourceHandler  implements DBPResourceHandler {
     }
 
     @Override
-    public List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource) {
+    public /*~~>*/List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource) {
         return Collections.emptyList();
     }
 

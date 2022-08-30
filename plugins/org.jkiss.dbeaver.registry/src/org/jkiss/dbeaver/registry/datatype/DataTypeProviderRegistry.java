@@ -49,8 +49,8 @@ public class DataTypeProviderRegistry implements DBDRegistry
         return instance;
     }
 
-    private final List<ValueHandlerDescriptor> dataTypeProviders = new ArrayList<>();
-    private final List<AttributeTransformerDescriptor> dataTypeTransformers = new ArrayList<>();
+    private final /*~~>*/List<ValueHandlerDescriptor> dataTypeProviders = new ArrayList<>();
+    private final /*~~>*/List<AttributeTransformerDescriptor> dataTypeTransformers = new ArrayList<>();
 
     private DataTypeProviderRegistry()
     {
@@ -74,7 +74,7 @@ public class DataTypeProviderRegistry implements DBDRegistry
 
     public void dispose()
     {
-        this.dataTypeProviders.clear();
+        /*~~>*/this.dataTypeProviders.clear();
     }
 
     ////////////////////////////////////////////////////
@@ -100,9 +100,9 @@ public class DataTypeProviderRegistry implements DBDRegistry
     }
 
     @Override
-    public List<AttributeTransformerDescriptor> findTransformers(DBPDataSource dataSource, DBSTypedObject typedObject, Boolean custom) {
+    public /*~~>*/List<AttributeTransformerDescriptor> findTransformers(DBPDataSource dataSource, DBSTypedObject typedObject, Boolean custom) {
         // Find in default providers
-        List<AttributeTransformerDescriptor> result = null;
+        /*~~>*/List<AttributeTransformerDescriptor> result = null;
         for (AttributeTransformerDescriptor descriptor : dataTypeTransformers) {
 
             if ((custom == null || custom == descriptor.isCustom()) &&

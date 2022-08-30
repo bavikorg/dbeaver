@@ -67,7 +67,7 @@ public abstract class AttributesSelectorPage extends BaseObjectEditPage {
     protected DBSEntity entity;
     protected Table columnsTable;
 
-    protected List<AttributeInfo> attributes = new ArrayList<>();
+    protected /*~~>*/List<AttributeInfo> attributes = new ArrayList<>();
     protected Button toggleButton;
     protected Composite columnsGroup;
 
@@ -257,7 +257,7 @@ public abstract class AttributesSelectorPage extends BaseObjectEditPage {
 
     protected void setEntity(DBSEntity entity) {
         this.entity = entity;
-        this.attributes.clear();
+        /*~~>*/this.attributes.clear();
         this.columnsTable.removeAll();
         fillAttributes(entity);
     }
@@ -267,7 +267,7 @@ public abstract class AttributesSelectorPage extends BaseObjectEditPage {
         if (entity == null) {
             return;
         }
-        final List<DBSEntityAttribute> attrList = new ArrayList<>();
+        final /*~~>*/List<DBSEntityAttribute> attrList = new ArrayList<>();
         AbstractJob loadJob = new AbstractJob("Load entity attributes") {
             @Override
             protected IStatus run(DBRProgressMonitor monitor) {
@@ -435,9 +435,9 @@ public abstract class AttributesSelectorPage extends BaseObjectEditPage {
     }
 
     @NotNull
-    public List<DBSEntityAttribute> getSelectedAttributes()
+    public /*~~>*/List<DBSEntityAttribute> getSelectedAttributes()
     {
-        List<DBSEntityAttribute> tableColumns = new ArrayList<>();
+        /*~~>*/List<DBSEntityAttribute> tableColumns = new ArrayList<>();
         Set<AttributeInfo> orderedAttributes = new TreeSet<>(new Comparator<AttributeInfo>() {
             @Override
             public int compare(AttributeInfo o1, AttributeInfo o2) {

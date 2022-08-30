@@ -57,9 +57,9 @@ public abstract class AbstractNativeToolSettings<BASE_OBJECT extends DBSObject> 
     private String extraCommandArgs;
 
     private DBPDataSourceContainer dataSourceContainer;
-    private final List<BASE_OBJECT> databaseObjects = new ArrayList<>();
+    private final /*~~>*/List<BASE_OBJECT> databaseObjects = new ArrayList<>();
 
-    public List<BASE_OBJECT> getDatabaseObjects() {
+    public /*~~>*/List<BASE_OBJECT> getDatabaseObjects() {
         return databaseObjects;
     }
 
@@ -133,7 +133,7 @@ public abstract class AbstractNativeToolSettings<BASE_OBJECT extends DBSObject> 
         this.extraCommandArgs = extraCommandArgs;
     }
 
-    public void addExtraCommandArgs(List<String> cmd) {
+    public void addExtraCommandArgs(/*~~>*/List<String> cmd) {
         if (!CommonUtils.isEmptyTrimmed(extraCommandArgs)) {
             Collections.addAll(cmd, extraCommandArgs.split(" "));
         }
@@ -165,7 +165,7 @@ public abstract class AbstractNativeToolSettings<BASE_OBJECT extends DBSObject> 
         }
 
         if (preferenceStore instanceof DBPPreferenceMap && dataSourceContainer != null) {
-            List<String> databaseObjectList = ((DBPPreferenceMap) preferenceStore).getObject("databaseObjects");
+            /*~~>*/List<String> databaseObjectList = ((DBPPreferenceMap) preferenceStore).getObject("databaseObjects");
             if (!CommonUtils.isEmpty(databaseObjectList)) {
                 DBPProject finalProject = dataSourceContainer.getProject();
                 try {
@@ -226,7 +226,7 @@ public abstract class AbstractNativeToolSettings<BASE_OBJECT extends DBSObject> 
             // Save input objects to task properties
             Map<String, Object> propertyMap = ((DBPPreferenceMap) preferenceStore).getPropertyMap();
 
-            List<String> objectList = new ArrayList<>();
+            /*~~>*/List<String> objectList = new ArrayList<>();
             for (BASE_OBJECT object : databaseObjects) {
                 objectList.add(DBUtils.getObjectFullId(object));
             }

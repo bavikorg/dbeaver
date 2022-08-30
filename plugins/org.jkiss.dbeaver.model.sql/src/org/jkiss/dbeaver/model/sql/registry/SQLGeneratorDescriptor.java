@@ -75,7 +75,7 @@ public class SQLGeneratorDescriptor extends AbstractContextDescriptor {
     }
 
     @NotNull
-    public <T> SQLGenerator<T> createGenerator(List<T> objects)
+    public <T> SQLGenerator<T> createGenerator(/*~~>*/List<T> objects)
         throws DBException
     {
         @SuppressWarnings("unchecked")

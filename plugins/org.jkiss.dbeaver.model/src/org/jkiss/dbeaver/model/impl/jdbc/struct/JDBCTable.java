@@ -485,11 +485,11 @@ public abstract class JDBCTable<DATASOURCE extends DBPDataSource, CONTAINER exte
      */
     @NotNull
     @Override
-    public List<DBDLabelValuePair> getDictionaryEnumeration(
+    public /*~~>*/List<DBDLabelValuePair> getDictionaryEnumeration(
         @NotNull DBRProgressMonitor monitor,
         @NotNull DBSEntityAttribute keyColumn,
         Object keyPattern,
-        @Nullable List<DBDAttributeValue> preceedingKeys,
+        @Nullable /*~~>*/List<DBDAttributeValue> preceedingKeys,
         boolean caseInsensitiveSearch,
         boolean sortAsc,
         boolean sortByValue,
@@ -511,11 +511,11 @@ public abstract class JDBCTable<DATASOURCE extends DBPDataSource, CONTAINER exte
 
     @NotNull
     @Override
-    public List<DBDLabelValuePair> getDictionaryValues(
+    public /*~~>*/List<DBDLabelValuePair> getDictionaryValues(
         @NotNull DBRProgressMonitor monitor,
         @NotNull DBSEntityAttribute keyColumn,
-        @NotNull List<Object> keyValues,
-        @Nullable List<DBDAttributeValue> preceedingKeys,
+        @NotNull /*~~>*/List<Object> keyValues,
+        @Nullable /*~~>*/List<DBDAttributeValue> preceedingKeys,
         boolean sortByValue,
         boolean sortAsc) throws DBException
     {
@@ -581,11 +581,11 @@ public abstract class JDBCTable<DATASOURCE extends DBPDataSource, CONTAINER exte
         }
     }
 
-    private List<DBDLabelValuePair> readKeyEnumeration(
+    private /*~~>*/List<DBDLabelValuePair> readKeyEnumeration(
         DBRProgressMonitor monitor,
         DBSEntityAttribute keyColumn,
         Object keyPattern,
-        List<DBDAttributeValue> preceedingKeys,
+        /*~~>*/List<DBDAttributeValue> preceedingKeys,
         boolean sortByValue,
         boolean sortAsc,
         boolean caseInsensitiveSearch,

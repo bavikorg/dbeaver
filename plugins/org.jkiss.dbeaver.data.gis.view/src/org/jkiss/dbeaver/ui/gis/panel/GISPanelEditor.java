@@ -76,7 +76,7 @@ public class GISPanelEditor extends BaseValueEditor<Control> {
 
     @Override
     public void contributeActions(@NotNull IContributionManager manager, @NotNull IValueController controller) throws DBCException {
-        List<GeometryViewerDescriptor> viewers = GeometryViewerRegistry.getInstance().getSupportedViewers(controller.getExecutionContext().getDataSource());
+        /*~~>*/List<GeometryViewerDescriptor> viewers = GeometryViewerRegistry.getInstance().getSupportedViewers(controller.getExecutionContext().getDataSource());
         for (int i = 0; i < viewers.size(); i++) {
             if (i > 0) {
                 manager.add(new Separator());
@@ -128,7 +128,7 @@ public class GISPanelEditor extends BaseValueEditor<Control> {
             if (menu == null) {
                 ToolBar toolBar = toolItem.getParent();
                 menu = new Menu(toolBar);
-                List<GeometryViewerDescriptor> viewers = GeometryViewerRegistry.getInstance().getSupportedViewers(
+                /*~~>*/List<GeometryViewerDescriptor> viewers = GeometryViewerRegistry.getInstance().getSupportedViewers(
                     getValueController().getExecutionContext().getDataSource());
                 for (GeometryViewerDescriptor viewerDescriptor : viewers) {
                     MenuItem item = new MenuItem(menu, SWT.RADIO);

@@ -46,9 +46,9 @@ public class EntityEditorsRegistry {
     }
 
     private final EntityEditorDescriptor defaultEditor;
-    private final List<EntityEditorDescriptor> entityEditors = new ArrayList<>();
-    private final List<EntityConfiguratorDescriptor> entityConfigurators = new ArrayList<>();
-    private final Map<String, List<EntityEditorDescriptor>> positionsMap = new HashMap<>();
+    private final /*~~>*/List<EntityEditorDescriptor> entityEditors = new ArrayList<>();
+    private final /*~~>*/List<EntityConfiguratorDescriptor> entityConfigurators = new ArrayList<>();
+    private final Map<String, /*~~>*/List<EntityEditorDescriptor>> positionsMap = new HashMap<>();
 
     public EntityEditorsRegistry(IExtensionRegistry registry) {
         // Create default editor
@@ -59,7 +59,7 @@ public class EntityEditorsRegistry {
             if (TAG_EDITOR.equals(ext.getName())) {
                 EntityEditorDescriptor descriptor = new EntityEditorDescriptor(ext);
                 entityEditors.add(descriptor);
-                List<EntityEditorDescriptor> list = positionsMap.computeIfAbsent(
+                /*~~>*/List<EntityEditorDescriptor> list = positionsMap.computeIfAbsent(
                     descriptor.getPosition(), k -> new ArrayList<>());
                 list.add(descriptor);
             } else if (TAG_CONFIGURATOR.equals(ext.getName())) {
@@ -83,13 +83,13 @@ public class EntityEditorsRegistry {
         return defaultEditor;
     }
 
-    public List<EntityEditorDescriptor> getEntityEditors() {
+    public /*~~>*/List<EntityEditorDescriptor> getEntityEditors() {
         return entityEditors;
     }
 
-    public List<EntityEditorDescriptor> getEntityEditors(DBPObject object, IEntityEditorContext context, String position) {
-        List<EntityEditorDescriptor> editors = new ArrayList<>();
-        final List<EntityEditorDescriptor> positionList =
+    public /*~~>*/List<EntityEditorDescriptor> getEntityEditors(DBPObject object, IEntityEditorContext context, String position) {
+        /*~~>*/List<EntityEditorDescriptor> editors = new ArrayList<>();
+        final /*~~>*/List<EntityEditorDescriptor> positionList =
             CommonUtils.isEmpty(position) ? entityEditors : positionsMap.get(position);
         if (positionList != null) {
             for (EntityEditorDescriptor descriptor : positionList) {
@@ -102,7 +102,7 @@ public class EntityEditorsRegistry {
     }
 
     public EntityConfiguratorDescriptor getEntityConfigurator(DBPObject object) {
-        List<EntityConfiguratorDescriptor> allDescriptors = new ArrayList<>();
+        /*~~>*/List<EntityConfiguratorDescriptor> allDescriptors = new ArrayList<>();
         for (EntityConfiguratorDescriptor descriptor : entityConfigurators) {
             if (descriptor.appliesTo(object) && descriptor.getObjectTypes().length > 0) {
                 allDescriptors.add(descriptor);

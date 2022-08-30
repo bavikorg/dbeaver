@@ -29,14 +29,14 @@ public interface DBTTaskFolder extends DBPNamedObject2 {
     DBPProject getProject();
 
     @Nullable
-    List<DBTTask> getTasks();
+    /*~~>*/List<DBTTask> getTasks();
 
     void addTaskToFolder(@NotNull DBTTask task);
 
     void removeTaskFromFolder(DBTTask task);
 
     @Nullable
-    List<DBTTaskFolder> getNestedTaskFolders();
+    /*~~>*/List<DBTTaskFolder> getNestedTaskFolders();
 
     void addFolderToFoldersList(@NotNull DBTTaskFolder taskFolder);
 

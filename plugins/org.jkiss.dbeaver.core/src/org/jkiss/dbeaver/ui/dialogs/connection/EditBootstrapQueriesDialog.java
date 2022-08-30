@@ -50,7 +50,7 @@ public class EditBootstrapQueriesDialog extends HelpEnabledDialog {
     private static final String DIALOG_ID = "DBeaver.EditBootstrapQueriesDialog";
 
     private DataSourceDescriptor dataSourceDescriptor;
-    private List<String> queries;
+    private /*~~>*/List<String> queries;
     private boolean ignoreErrors;
     private Table queriesTable;
     private Button ignoreErrorButton;
@@ -58,7 +58,7 @@ public class EditBootstrapQueriesDialog extends HelpEnabledDialog {
     public EditBootstrapQueriesDialog(Shell shell, DataSourceDescriptor dataSourceDescriptor, Collection<String> queries, boolean ignoreErrors) {
         super(shell, IHelpContextIds.CTX_EDIT_OBJECT_FILTERS);
         this.dataSourceDescriptor = dataSourceDescriptor;
-        this.queries = new ArrayList<>(queries);
+        /*~~>*/this.queries = new ArrayList<>(queries);
         this.ignoreErrors = ignoreErrors;
     }
 
@@ -165,8 +165,8 @@ public class EditBootstrapQueriesDialog extends HelpEnabledDialog {
         return composite;
     }
 
-    private List<String> collectValues(Table table) {
-        List<String> values = new ArrayList<>();
+    private /*~~>*/List<String> collectValues(Table table) {
+        /*~~>*/List<String> values = new ArrayList<>();
         for (TableItem item : table.getItems()) {
             String value = item.getText().trim();
             if (value.isEmpty() || value.equals("%")) { //$NON-NLS-1$
@@ -195,7 +195,7 @@ public class EditBootstrapQueriesDialog extends HelpEnabledDialog {
         super.cancelPressed();
     }
 
-    public List<String> getQueries() {
+    public /*~~>*/List<String> getQueries() {
         return queries;
     }
 

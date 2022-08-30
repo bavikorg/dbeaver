@@ -80,13 +80,13 @@ public class ExasolViewManager
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectCreateCommand command, Map<String, Object> options) {
         createOrReplaceViewQuery(actions, command.getObject(), false);
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectDeleteCommand command, Map<String, Object> options) {
         ExasolView view = command.getObject();
         actions.add(
@@ -96,12 +96,12 @@ public class ExasolViewManager
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList,
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList,
                                           ObjectChangeCommand command, Map<String, Object> options) {
         createOrReplaceViewQuery(actionList, command.getObject(), true);
     }
 
-    protected void createOrReplaceViewQuery(List<DBEPersistAction> actions, ExasolView view, Boolean replace) {
+    protected void createOrReplaceViewQuery(/*~~>*/List<DBEPersistAction> actions, ExasolView view, Boolean replace) {
         if (replace) {
             actions.add(
                 new SQLDatabasePersistAction("Drop view", "DROP VIEW " + view.getFullyQualifiedName(DBPEvaluationContext.DDL))
@@ -133,7 +133,7 @@ public class ExasolViewManager
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectRenameCommand command, Map<String, Object> options) {
         ExasolView obj = command.getObject();
         actions.add(

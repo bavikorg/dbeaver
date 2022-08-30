@@ -43,7 +43,7 @@ public class ComplexTypeAttributeTransformer implements DBDAttributeTransformer 
     public void transformAttribute(
         @NotNull DBCSession session,
         @NotNull DBDAttributeBinding attribute,
-        @NotNull List<Object[]> rows,
+        @NotNull /*~~>*/List<Object[]> rows,
         @NotNull Map<String, Object> options
     ) throws DBException {
         if (!session.getDataSource().getContainer().getPreferenceStore().getBoolean(ModelPreferences.RESULT_TRANSFORM_COMPLEX_TYPES)) {
@@ -61,10 +61,10 @@ public class ComplexTypeAttributeTransformer implements DBDAttributeTransformer 
     static void createNestedTypeBindings(
         @NotNull DBCSession session,
         @NotNull DBDAttributeBinding attribute,
-        @NotNull List<Object[]> rows,
+        @NotNull /*~~>*/List<Object[]> rows,
         @NotNull DBSDataType dataType
     ) throws DBException {
-        List<? extends DBSEntityAttribute> nestedAttrs;
+        /*~~>*/List<? extends DBSEntityAttribute> nestedAttrs;
         if (dataType instanceof DBSBindableDataType) {
             DBSEntity container = attribute.getTopParent().getEntityAttribute().getParentObject();
             DBSBindableDataType bindable = (DBSBindableDataType) dataType;
@@ -75,7 +75,7 @@ public class ComplexTypeAttributeTransformer implements DBDAttributeTransformer 
             nestedAttrs = null;
         }
         
-        List<DBDAttributeBinding> nestedBindings = new ArrayList<>();
+        /*~~>*/List<DBDAttributeBinding> nestedBindings = new ArrayList<>();
         for (DBSEntityAttribute nestedAttr : CommonUtils.safeCollection(nestedAttrs)) {
             DBDAttributeBindingType nestedBinding = new DBDAttributeBindingType(attribute, nestedAttr, nestedBindings.size());
             nestedBinding.lateBinding(session, rows);

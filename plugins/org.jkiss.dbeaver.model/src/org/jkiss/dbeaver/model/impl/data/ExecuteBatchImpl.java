@@ -48,7 +48,7 @@ public abstract class ExecuteBatchImpl implements DBSDataManipulator.ExecuteBatc
     private static final Log log = Log.getLog(ExecuteBatchImpl.class);
 
     protected final DBSAttributeBase[] attributes;
-    protected final List<Object[]> values = new ArrayList<>();
+    protected final /*~~>*/List<Object[]> values = new ArrayList<>();
     protected final DBDDataReceiver keysReceiver;
     protected final boolean reuseStatement;
 
@@ -83,7 +83,7 @@ public abstract class ExecuteBatchImpl implements DBSDataManipulator.ExecuteBatc
 
     @NotNull
     @Override
-    public void generatePersistActions(@NotNull DBCSession session, @NotNull List<DBEPersistAction> actions, Map<String, Object> options) throws DBCException {
+    public void generatePersistActions(@NotNull DBCSession session, @NotNull /*~~>*/List<DBEPersistAction> actions, Map<String, Object> options) throws DBCException {
         processBatch(session, actions, options);
     }
 
@@ -96,7 +96,7 @@ public abstract class ExecuteBatchImpl implements DBSDataManipulator.ExecuteBatc
      * @throws DBCException
      */
     @NotNull
-    DBCStatistics processBatch(@NotNull DBCSession session, @Nullable List<DBEPersistAction> actions, Map<String, Object> options) throws DBCException
+    DBCStatistics processBatch(@NotNull DBCSession session, @Nullable /*~~>*/List<DBEPersistAction> actions, Map<String, Object> options) throws DBCException
     {
         //session.getProgressMonitor().subTask("Save batch (" + values.size() + ")");
         DBDValueHandler[] handlers = new DBDValueHandler[attributes.length];

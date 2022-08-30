@@ -131,8 +131,8 @@ public class BinaryContent {
     private boolean dirty = false;
     private long exclusiveEnd = -1L;
     private long lastUpperNibblePosition = -1L;
-    private List<ModifyListener> listeners = null;
-    private List<Integer> changeList = null;
+    private /*~~>*/List<ModifyListener> listeners = null;
+    private /*~~>*/List<Integer> changeList = null;
     private boolean changesInserted = false;
     private long changesPosition = -1L;
     private TreeSet<Range> ranges = new TreeSet<>();
@@ -249,7 +249,7 @@ public class BinaryContent {
         if (changeList != null && changesInserted && changesPosition <= position &&
             changesPosition + changeList.size() >= position + length) {
             int deleteStart = (int) (position - changesPosition);
-            List<Integer> subList = changeList.subList(deleteStart, deleteStart + (int) length);
+            /*~~>*/List<Integer> subList = changeList.subList(deleteStart, deleteStart + (int) length);
             if (actions != null) {
                 actions.addDeleted(position, subList, length == 1L);
                 if (length > 1) actions.endAction();
@@ -282,7 +282,7 @@ public class BinaryContent {
         initSubtreeTraversing(startPosition, length);
         if (!tailTree.hasNext()) return;
 
-        java.util.List<Range> deleted = new ArrayList<>();
+        /*~~>*//*~~>*/java.util.List<Range> deleted = new ArrayList<>();
         Range firstRange = tailTree.next();
         Range secondRange = (Range) firstRange.clone();  // will be tail part of firstRange
         Range lastRange = null;
@@ -331,7 +331,7 @@ public class BinaryContent {
     }
 
 
-    private long[] deleteRanges(List<Range> currentAction)
+    private long[] deleteRanges(/*~~>*/List<Range> currentAction)
     {
         long[] result = new long[2];
         result[0] = result[1] = currentAction.get(0).position;
@@ -418,7 +418,7 @@ public class BinaryContent {
 
 
     private void fillWithRange(ByteBuffer dst, Range sourceRange, long overlapBytes, long position,
-                               List<Long> rangesModified)
+                               /*~~>*/List<Long> rangesModified)
         throws IOException
     {
         long positionSoFar = position;
@@ -491,7 +491,7 @@ public class BinaryContent {
      * @param position starting read point
      * @return number of bytes read
      */
-    public int get(ByteBuffer dst, List<Long> rangesModified, long position)
+    public int get(ByteBuffer dst, /*~~>*/List<Long> rangesModified, long position)
         throws IOException
     {
         if (rangesModified != null) rangesModified.clear();
@@ -725,12 +725,12 @@ public class BinaryContent {
     }
 
 
-    private long[] insertRanges(List<Range> ranges)
+    private long[] insertRanges(/*~~>*/List<Range> ranges)
     {
         BinaryContent.Range firstRange = ranges.get(0);
         BinaryContent.Range lastRange = ranges.get(ranges.size() - 1);
         splitAndShift(firstRange.position, lastRange.exclusiveEnd() - firstRange.position);
-        List<Range> cloned = new ArrayList<>(ranges.size());
+        /*~~>*/List<Range> cloned = new ArrayList<>(ranges.size());
         for (Range range : ranges) cloned.add((Range)range.clone());
         this.ranges.addAll(cloned);
 
@@ -898,7 +898,7 @@ public class BinaryContent {
     }
 
 
-    private long[] overwriteRanges(List<Range> ranges)
+    private long[] overwriteRanges(/*~~>*/List<Range> ranges)
     {
         BinaryContent.Range firstRange = ranges.get(0);
         BinaryContent.Range lastRange = ranges.get(ranges.size() - 1);
@@ -914,7 +914,7 @@ public class BinaryContent {
                     goingRange = tailTree.next();
             }
         }
-        List<Range> cloned = new ArrayList<>(ranges.size());
+        /*~~>*/List<Range> cloned = new ArrayList<>(ranges.size());
         for (Range range : ranges) cloned.add((Range)range.clone());
         this.ranges.addAll(cloned);
 
@@ -937,7 +937,7 @@ public class BinaryContent {
 
         long[] result = null;
         @SuppressWarnings("unchecked")
-        List<Range> currentAction = (List<Range>) action[1];
+        /*~~>*/List<Range> currentAction = (/*~~>*/List<Range>) action[1];
         if (action[0] == ActionHistory.ActionType.DELETE) {
             result = deleteRanges(currentAction);
         } else if (action[0] == ActionHistory.ActionType.INSERT) {
@@ -1032,7 +1032,7 @@ public class BinaryContent {
         commitChanges();
         long[] result = null;
         @SuppressWarnings("unchecked")
-        List<Range> currentAction = (List<Range>) action[1];
+        /*~~>*/List<Range> currentAction = (/*~~>*/List<Range>) action[1];
         if (action[0] == ActionHistory.ActionType.DELETE) {
             result = insertRanges(currentAction);
         } else if (action[0] == ActionHistory.ActionType.INSERT) {

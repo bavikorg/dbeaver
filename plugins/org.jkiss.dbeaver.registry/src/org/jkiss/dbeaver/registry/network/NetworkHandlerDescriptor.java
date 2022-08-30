@@ -48,7 +48,7 @@ public class NetworkHandlerDescriptor extends AbstractContextDescriptor implemen
     private final boolean secured;
     private final ObjectType handlerType;
     private final int order;
-    private final List<String> replacesIDs;
+    private final /*~~>*/List<String> replacesIDs;
     private NetworkHandlerDescriptor replacedBy;
     private final DBPPropertyDescriptor[] properties;
 
@@ -65,7 +65,7 @@ public class NetworkHandlerDescriptor extends AbstractContextDescriptor implemen
         this.handlerType = new ObjectType(config.getAttribute(RegistryConstants.ATTR_HANDLER_CLASS));
         this.order = CommonUtils.toInt(config.getAttribute(RegistryConstants.ATTR_ORDER), 1);
 
-        this.replacesIDs = Arrays.stream(config.getChildren("replace"))
+        /*~~>*/this.replacesIDs = Arrays.stream(config.getChildren("replace"))
             .map(re -> re.getAttribute("id"))
             .collect(Collectors.toList());
 

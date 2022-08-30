@@ -220,7 +220,7 @@ public class PostgreTablePolicy implements DBSObject, DBPNamedObject2, DBPSaveab
         @Override
         public Object[] getPossibleValues(PostgreTablePolicy object) {
             try {
-                final List<PostgreRole> roles = new ArrayList<>();
+                final /*~~>*/List<PostgreRole> roles = new ArrayList<>();
                 roles.add(null); // PUBLIC
                 roles.addAll(object.table.getDatabase().getUsers(new VoidProgressMonitor()));
                 return roles.toArray();

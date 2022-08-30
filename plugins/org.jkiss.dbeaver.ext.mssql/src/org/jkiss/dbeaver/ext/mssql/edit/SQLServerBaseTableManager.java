@@ -50,7 +50,7 @@ public abstract class SQLServerBaseTableManager<OBJECT extends SQLServerTableBas
     }
 
     @Override
-    protected void addObjectExtraActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, NestedObjectCommand<OBJECT, PropertyHandler> command, Map<String, Object> options) throws DBException {
+    protected void addObjectExtraActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, NestedObjectCommand<OBJECT, PropertyHandler> command, Map<String, Object> options) throws DBException {
         final OBJECT table = command.getObject();
         if (command.getProperty(DBConstants.PROP_ID_DESCRIPTION) != null) {
             boolean isUpdate = SQLServerUtils.isCommentSet(
@@ -90,7 +90,7 @@ public abstract class SQLServerBaseTableManager<OBJECT extends SQLServerTableBas
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
     {
         OBJECT object = command.getObject();
         actions.add(

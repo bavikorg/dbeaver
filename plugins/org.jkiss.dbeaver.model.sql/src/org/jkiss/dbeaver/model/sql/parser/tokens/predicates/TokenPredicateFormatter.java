@@ -69,7 +69,7 @@ class TokenPredicateFormatter implements TokenPredicateNodeVisitor<StringBuilder
 
     @NotNull
     private StringBuilder visitGroup(@NotNull GroupTokenPredicatesNode group, @NotNull StringBuilder sb, @NotNull String separator) {
-        Iterator<TokenPredicateNode> it = group.childs.iterator();
+        Iterator<TokenPredicateNode> it = /*~~>*/group.childs.iterator();
         if (it.hasNext()) {
             this.visit(group, it.next(), sb);
             while (it.hasNext()) {

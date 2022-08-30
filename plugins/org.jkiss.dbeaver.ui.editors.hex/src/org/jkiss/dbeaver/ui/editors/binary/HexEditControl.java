@@ -95,9 +95,9 @@ public class HexEditControl extends Composite {
     private Runnable delayedWaiting = null;
     private boolean dragging = false;
     private int fontCharWidth = -1;
-    private List<Integer> highlightRangesInScreen;
-    private List<Long> mergeChangeRanges = null;
-    private List<Integer> mergeHighlightRanges = null;
+    private /*~~>*/List<Integer> highlightRangesInScreen;
+    private /*~~>*/List<Long> mergeChangeRanges = null;
+    private /*~~>*/List<Integer> mergeHighlightRanges = null;
     private int mergeIndexChange = -2;
     private int mergeIndexHighlight = -2;
     private boolean mergeRangesIsBlue = false;
@@ -114,7 +114,7 @@ public class HexEditControl extends Composite {
     private KeyListener keyAdapter = new ControlKeyAdapter();
     private int lastFocusedTextArea;  // 1 or 2;
     private long lastLocationPosition = -1L;
-    private List<SelectionListener> longSelectionListeners;
+    private /*~~>*/List<SelectionListener> longSelectionListeners;
     private long previousFindEnd = -1;
     private boolean previousFindIgnoredCase = false;
     private String previousFindString = null;
@@ -171,10 +171,10 @@ public class HexEditControl extends Composite {
         this.charsForAddress = charsForAddress;
         this.bytesPerLine = bytesPerLine;
 
-        this.highlightRangesInScreen = new ArrayList<>();
+        /*~~>*/this.highlightRangesInScreen = new ArrayList<>();
 
         this.myClipboard = new BinaryClipboard(parent.getDisplay());
-        this.longSelectionListeners = new ArrayList<>();
+        /*~~>*/this.longSelectionListeners = new ArrayList<>();
         addDisposeListener(e -> {
             try {
                 myClipboard.dispose();
@@ -1308,12 +1308,12 @@ public class HexEditControl extends Composite {
      *
      * @return list of StyleRanges, each with a style of type 'changed', 'highlighted', or both.
      */
-    List<StyleRange> mergeRanges(List<Long> changeRanges, List<Integer> highlightRanges)
+    /*~~>*/List<StyleRange> mergeRanges(/*~~>*/List<Long> changeRanges, /*~~>*/List<Integer> highlightRanges)
     {
         if (!mergerInit(changeRanges, highlightRanges)) {
             return null;
         }
-        List<StyleRange> result = new ArrayList<>();
+        /*~~>*/List<StyleRange> result = new ArrayList<>();
         mergerNext();
         int start = mergeRangesPosition;
         boolean blue = mergeRangesIsBlue;
@@ -1357,14 +1357,14 @@ public class HexEditControl extends Composite {
      *
      * @return whether the parameters hold any data
      */
-    boolean mergerInit(List<Long> changeRanges, List<Integer> highlightRanges)
+    boolean mergerInit(/*~~>*/List<Long> changeRanges, /*~~>*/List<Integer> highlightRanges)
     {
         if ((changeRanges == null || changeRanges.size() < 2) &&
             (highlightRanges == null || highlightRanges.size() < 2)) {
             return false;
         }
-        this.mergeChangeRanges = changeRanges;
-        this.mergeHighlightRanges = highlightRanges;
+        /*~~>*/this.mergeChangeRanges = changeRanges;
+        /*~~>*/this.mergeHighlightRanges = highlightRanges;
         mergeRangesIsBlue = false;
         mergeRangesIsHighlight = false;
         mergeRangesPosition = -1;
@@ -1482,7 +1482,7 @@ public class HexEditControl extends Composite {
 
 
     void redrawTextAreas(int mode, StringBuilder newText, StringBuilder resultHex, StringBuilder resultChar,
-                         List<StyleRange> viewRanges)
+                         /*~~>*/List<StyleRange> viewRanges)
     {
         hexText.getCaret().setVisible(false);
         previewText.getCaret().setVisible(false);
@@ -1545,7 +1545,7 @@ public class HexEditControl extends Composite {
 
         StringBuilder newText = cookAddresses(newLinesStart, linesShifted * bytesPerLine);
 
-        List<Long> changeRanges = new ArrayList<>();
+        /*~~>*/List<Long> changeRanges = new ArrayList<>();
         int actuallyRead;
         try {
             actuallyRead = content.get(ByteBuffer.wrap(tmpRawBuffer, 0, Math.min(tmpRawBuffer.length, linesShifted * bytesPerLine)),
@@ -1556,7 +1556,7 @@ public class HexEditControl extends Composite {
         StringBuilder resultHex = cookTexts(true, actuallyRead);
         StringBuilder resultChar = cookTexts(false, actuallyRead);
         getHighlightRangesInScreen(newLinesStart, linesShifted * bytesPerLine);
-        List<StyleRange> viewRanges = mergeRanges(changeRanges, highlightRangesInScreen);
+        /*~~>*/List<StyleRange> viewRanges = mergeRanges(changeRanges, highlightRangesInScreen);
         redrawTextAreas(mode, newText, resultHex, resultChar, viewRanges);
         refreshSelections();
         refreshCaretsPosition();

@@ -280,8 +280,8 @@ public class EntityFigure extends Figure {
         return label;
     }
 
-    public List<AttributeItemFigure> getAttributeFigures() {
-        List<AttributeItemFigure> result = new ArrayList<>();
+    public /*~~>*/List<AttributeItemFigure> getAttributeFigures() {
+        /*~~>*/List<AttributeItemFigure> result = new ArrayList<>();
         result.addAll(keyFigure.getAttributes());
         result.addAll(attributeFigure.getAttributes());
         return result;

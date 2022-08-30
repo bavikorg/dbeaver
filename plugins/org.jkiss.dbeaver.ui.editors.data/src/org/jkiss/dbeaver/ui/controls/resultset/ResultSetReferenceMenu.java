@@ -62,10 +62,10 @@ public class ResultSetReferenceMenu
     }
 
 
-    static void fillRefTablesActions(@Nullable DBRProgressMonitor extMonitor, ResultSetViewer viewer, List<ResultSetRow> rows, DBSEntity singleSource, IMenuManager manager, boolean openInNewWindow) {
+    static void fillRefTablesActions(@Nullable DBRProgressMonitor extMonitor, ResultSetViewer viewer, /*~~>*/List<ResultSetRow> rows, DBSEntity singleSource, IMenuManager manager, boolean openInNewWindow) {
 
-        final List<DBSEntityAssociation> references = new ArrayList<>();
-        final List<DBSEntityAssociation> associations = new ArrayList<>();
+        final /*~~>*/List<DBSEntityAssociation> references = new ArrayList<>();
+        final /*~~>*/List<DBSEntityAssociation> associations = new ArrayList<>();
 
         DBRRunnableWithProgress refCollector = monitor -> {
             try {
@@ -81,7 +81,7 @@ public class ResultSetReferenceMenu
                         boolean allMatch = true;
                         DBSEntityConstraint ownConstraint = ref.getReferencedConstraint();
                         if (ownConstraint instanceof DBSEntityReferrer) {
-                            List<? extends DBSEntityAttributeRef> attributeReferences = ((DBSEntityReferrer) ownConstraint).getAttributeReferences(monitor);
+                            /*~~>*/List<? extends DBSEntityAttributeRef> attributeReferences = ((DBSEntityReferrer) ownConstraint).getAttributeReferences(monitor);
                             if (attributeReferences != null) {
                                 for (DBSEntityAttributeRef ownAttrRef : attributeReferences) {
                                     if (viewer.getModel().getAttributeBinding(ownAttrRef.getAttribute()) == null) {

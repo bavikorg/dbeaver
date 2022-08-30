@@ -94,7 +94,7 @@ public class OracleBaseTableTest {
         DBEObjectMaker objectManager = OracleTestUtils.getManagerForClass(OracleTableColumn.class);
         objectManager.createNewObject(monitor, commandContext, newObject, null, Collections.emptyMap());
         objectManager.createNewObject(monitor, commandContext, newObject, null, Collections.emptyMap());
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
         String expectedDDL = "CREATE TABLE TEST_SCHEMA.\"NewTable\" (" + lineBreak +
@@ -122,7 +122,7 @@ public class OracleBaseTableTest {
         if (newColumn instanceof OracleTableColumn) {
             ((OracleTableColumn) newColumn).setRequired(true);
         }
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(
             monitor,
             commandContext,
             executionContext,
@@ -156,7 +156,7 @@ public class OracleBaseTableTest {
         OracleTableConstraintColumn constraintColumn = new OracleTableConstraintColumn(constraint, column1, 1);
         constraint.setColumns(Collections.singletonList(constraintColumn));
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
         String expectedDDL = "CREATE TABLE TEST_SCHEMA.\"NewTable\" (" + lineBreak +
@@ -179,7 +179,7 @@ public class OracleBaseTableTest {
         OracleTableColumn column2 = objectManager.createNewObject(monitor, commandContext, newObject, null, Collections.emptyMap());
         column2.setComment("Test comment 2");
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
         String expectedDDL = "CREATE TABLE TEST_SCHEMA.\"NewTable\" (" + lineBreak +
@@ -200,7 +200,7 @@ public class OracleBaseTableTest {
             ((OracleTableManager) objectMaker).renameObject(commandContext, oracleTable, Collections.emptyMap(), "NEW_TEST_TABLE");
         }
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -216,7 +216,7 @@ public class OracleBaseTableTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, "comment", "Test comment");
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -230,7 +230,7 @@ public class OracleBaseTableTest {
 
         objectMaker.deleteObject(commandContext, oracleTable, Collections.emptyMap());
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
         String expectedDDL = "DROP TABLE TEST_SCHEMA.TEST_TABLE;" + lineBreak;

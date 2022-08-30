@@ -195,11 +195,11 @@ public class SQLServerSchema implements DBSSchema, DBPSaveableObject, DBPQualifi
     // Data types
 
     @Association
-    public List<SQLServerDataType> getDataTypes(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<SQLServerDataType> getDataTypes(DBRProgressMonitor monitor) throws DBException {
         if (SQLServerConstants.SQL_SERVER_SYSTEM_SCHEMA.equals(getName())) {
             return getDataSource().getLocalDataTypes();
         }
-        List<SQLServerDataType> result = new ArrayList<>();
+        /*~~>*/List<SQLServerDataType> result = new ArrayList<>();
         for (SQLServerDataType dt : database.getDataTypes(monitor)) {
             if (dt.getSchemaId() == getObjectId()) {
                 result.add(dt);
@@ -260,8 +260,8 @@ public class SQLServerSchema implements DBSSchema, DBPSaveableObject, DBPQualifi
 
 
     @Override
-    public List<SQLServerObject> getChildren(@NotNull DBRProgressMonitor monitor) throws DBException {
-        List<SQLServerObject> result = new ArrayList<>();
+    public /*~~>*/List<SQLServerObject> getChildren(@NotNull DBRProgressMonitor monitor) throws DBException {
+        /*~~>*/List<SQLServerObject> result = new ArrayList<>();
         result.addAll(tableCache.getAllObjects(monitor, this));
         result.addAll(synonymCache.getAllObjects(monitor, this));
         return result;
@@ -472,8 +472,8 @@ public class SQLServerSchema implements DBSSchema, DBPSaveableObject, DBPQualifi
     // Indexes
 
     @Association
-    public List<SQLServerTableIndex> getIndexes(DBRProgressMonitor monitor) throws DBException {
-        List<SQLServerTableIndex> allIndexes = new ArrayList<>();
+    public /*~~>*/List<SQLServerTableIndex> getIndexes(DBRProgressMonitor monitor) throws DBException {
+        /*~~>*/List<SQLServerTableIndex> allIndexes = new ArrayList<>();
         for (SQLServerTableBase table : getTables(monitor)) {
             allIndexes.addAll(CommonUtils.safeCollection(table.getIndexes(monitor)));
         }
@@ -564,7 +564,7 @@ public class SQLServerSchema implements DBSSchema, DBPSaveableObject, DBPQualifi
         }
 
         @Override
-        protected void cacheChildren(DBRProgressMonitor monitor, SQLServerTableIndex index, List<SQLServerTableIndexColumn> rows)
+        protected void cacheChildren(DBRProgressMonitor monitor, SQLServerTableIndex index, /*~~>*/List<SQLServerTableIndexColumn> rows)
         {
             index.setColumns(rows);
         }
@@ -622,7 +622,7 @@ public class SQLServerSchema implements DBSSchema, DBPSaveableObject, DBPQualifi
         }
 
         @Override
-        protected void cacheChildren(DBRProgressMonitor monitor, SQLServerTableUniqueKey object, List<SQLServerTableIndexColumn> children) {
+        protected void cacheChildren(DBRProgressMonitor monitor, SQLServerTableUniqueKey object, /*~~>*/List<SQLServerTableIndexColumn> children) {
 
         }
     }
@@ -739,7 +739,7 @@ public class SQLServerSchema implements DBSSchema, DBPSaveableObject, DBPQualifi
 
         @Override
         @SuppressWarnings("unchecked")
-        protected void cacheChildren(DBRProgressMonitor monitor, SQLServerTableForeignKey foreignKey, List<SQLServerTableForeignKeyColumn> rows)
+        protected void cacheChildren(DBRProgressMonitor monitor, SQLServerTableForeignKey foreignKey, /*~~>*/List<SQLServerTableForeignKeyColumn> rows)
         {
             foreignKey.setColumns(rows);
         }

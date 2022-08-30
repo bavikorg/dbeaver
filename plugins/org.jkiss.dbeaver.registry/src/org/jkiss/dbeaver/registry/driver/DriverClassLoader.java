@@ -47,7 +47,7 @@ public class DriverClassLoader extends URLClassLoader
                 File localFile = driverFile.getLocalFile();
                 if (localFile == null) {
                     // Check library files cache
-                    List<DriverDescriptor.DriverFileInfo> cachedFiles = driver.getCachedFiles(driverFile);
+                    /*~~>*/List<DriverDescriptor.DriverFileInfo> cachedFiles = driver.getCachedFiles(driverFile);
                     if (!CommonUtils.isEmpty(cachedFiles)) {
                         for (DriverDescriptor.DriverFileInfo fileInfo : cachedFiles) {
                             if (fileInfo.getFile() != null && fileInfo.getFile().getName().equalsIgnoreCase(nativeName)) {

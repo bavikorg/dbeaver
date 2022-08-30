@@ -47,7 +47,7 @@ public interface DBPWorkspace extends SMAuthSpace
     Path getMetadataFolder();
 
     @NotNull
-    List<DBPProject> getProjects();
+    /*~~>*/List<DBPProject> getProjects();
     DBPProject getActiveProject();
     DBPProject getProject(@NotNull String projectName);
 

@@ -79,7 +79,7 @@ public final class MorphDelimitedListHandler extends AbstractTextHandler {
             return null;
         }
 
-        List<String> tokens = new ArrayList<>();
+        /*~~>*/List<String> tokens = new ArrayList<>();
         MorphDelimitedListSettings settings = configDialog.morphSettings;
         String sourceDelimiter = settings.getSourceDelimiter();
 

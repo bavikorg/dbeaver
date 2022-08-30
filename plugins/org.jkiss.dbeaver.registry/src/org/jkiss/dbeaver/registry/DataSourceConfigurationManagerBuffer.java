@@ -41,7 +41,7 @@ public class DataSourceConfigurationManagerBuffer implements DataSourceConfigura
     }
 
     @Override
-    public List<DBPDataSourceConfigurationStorage> getConfigurationStorages() {
+    public /*~~>*/List<DBPDataSourceConfigurationStorage> getConfigurationStorages() {
         return null;
     }
 

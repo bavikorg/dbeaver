@@ -69,7 +69,7 @@ public class ExasolTableIndexManager extends SQLIndexManager<ExasolTableIndex, E
 	
 	@Override
 	protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext,
-			List<DBEPersistAction> actions, SQLObjectEditor<ExasolTableIndex, ExasolTable>.ObjectCreateCommand command,
+			/*~~>*/List<DBEPersistAction> actions, SQLObjectEditor<ExasolTableIndex, ExasolTable>.ObjectCreateCommand command,
 			Map<String, Object> options) {
 		ExasolTableIndex index = command.getObject();
 		String SQL = String.format(

@@ -36,7 +36,7 @@ public class SessionContextImpl implements SMSessionContext {
     private static final Log log = Log.getLog(SessionContextImpl.class);
 
     private final SMSessionContext parentContext;
-    private final List<SMSession> sessions = new ArrayList<>();
+    private final /*~~>*/List<SMSession> sessions = new ArrayList<>();
 
     public SessionContextImpl(SMSessionContext parentContext) {
         this.parentContext = parentContext;
@@ -106,7 +106,7 @@ public class SessionContextImpl implements SMSessionContext {
     }
 
     public void close() {
-        this.sessions.clear();
+        /*~~>*/this.sessions.clear();
     }
 
 }

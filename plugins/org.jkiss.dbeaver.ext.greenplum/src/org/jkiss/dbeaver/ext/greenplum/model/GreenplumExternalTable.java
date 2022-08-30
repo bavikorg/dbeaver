@@ -214,7 +214,7 @@ public class GreenplumExternalTable extends PostgreTable {
                 .append(this.getName())
                 .append(" (\n");
 
-        List<PostgreTableColumn> tableColumns = filterOutNonMetadataColumns(monitor);
+        /*~~>*/List<PostgreTableColumn> tableColumns = filterOutNonMetadataColumns(monitor);
 
         if (tableColumns.size() == 0) {
             ddlBuilder.append("\n)\n");
@@ -274,8 +274,8 @@ public class GreenplumExternalTable extends PostgreTable {
         return "ALTER EXTERNAL TABLE " + DBUtils.getObjectFullName(this, DBPEvaluationContext.DDL) + " OWNER TO " + owner;
     }
 
-    private List<PostgreTableColumn> filterOutNonMetadataColumns(DBRProgressMonitor monitor) throws DBException {
-        List<PostgreTableColumn> tableColumns;
+    private /*~~>*/List<PostgreTableColumn> filterOutNonMetadataColumns(DBRProgressMonitor monitor) throws DBException {
+        /*~~>*/List<PostgreTableColumn> tableColumns;
         Stream<? extends PostgreTableColumn> tableColumnsStream = Optional.ofNullable(this.getAttributes(monitor))
                 .orElse(Collections.emptyList())
                 .stream();

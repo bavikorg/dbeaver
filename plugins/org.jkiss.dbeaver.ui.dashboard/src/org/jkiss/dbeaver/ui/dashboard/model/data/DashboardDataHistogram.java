@@ -24,9 +24,9 @@ import java.util.List;
  */
 public class DashboardDataHistogram extends DashboardDataAbstract {
 
-    private List<DashboardDataSeries> seriesList = new ArrayList<>();
+    private /*~~>*/List<DashboardDataSeries> seriesList = new ArrayList<>();
 
-    public List<DashboardDataSeries> getSeries() {
+    public /*~~>*/List<DashboardDataSeries> getSeries() {
         return seriesList;
     }
 

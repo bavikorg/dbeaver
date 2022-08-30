@@ -71,7 +71,7 @@ public class ERDHandlerPaste extends AbstractHandler {
                 if (!CommonUtils.isEmpty(objects)) {
                     try {
                         UIUtils.runInProgressService(monitor -> {
-                            final List<ERDEntity> erdEntities = DiagramObjectCollector.generateEntityList(
+                            final /*~~>*/List<ERDEntity> erdEntities = DiagramObjectCollector.generateEntityList(
                                 monitor,
                                 editor.getDiagram(),
                                 editor.getDiagramProject(),

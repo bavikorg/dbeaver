@@ -40,7 +40,7 @@ import java.util.List;
 public class ContextDefaultObjectsReader implements DBRRunnableWithProgress {
     private final DBPDataSource dataSource;
     private final DBCExecutionContext executionContext;
-    private final List<DBNDatabaseNode> nodeList = new ArrayList<>();
+    private final /*~~>*/List<DBNDatabaseNode> nodeList = new ArrayList<>();
     // Remote instance node
     private DBSObject defaultObject;
     private boolean enabled;
@@ -77,7 +77,7 @@ public class ContextDefaultObjectsReader implements DBRRunnableWithProgress {
         this.readNodes = readNodes;
     }
 
-    public List<DBNDatabaseNode> getNodeList() {
+    public /*~~>*/List<DBNDatabaseNode> getNodeList() {
         return nodeList;
     }
 

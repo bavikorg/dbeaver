@@ -46,7 +46,7 @@ class ResultSetDataReceiver implements DBDDataReceiver, DBDDataReceiverInteracti
     private ResultSetViewer resultSetViewer;
     private int columnsCount;
     private DBDAttributeBinding[] metaColumns;
-    private List<Object[]> rows = new ArrayList<>();
+    private /*~~>*/List<Object[]> rows = new ArrayList<>();
     private boolean hasMoreData;
     private boolean nextSegmentRead;
     private long offset;
@@ -55,9 +55,9 @@ class ResultSetDataReceiver implements DBDDataReceiver, DBDDataReceiverInteracti
     private boolean paused;
 
     // Attribute fetching errors. Collect them to avoid tons of similar error in log
-    private Map<DBCAttributeMetaData, List<String>> attrErrors = new HashMap<>();
+    private Map<DBCAttributeMetaData, /*~~>*/List<String>> attrErrors = new HashMap<>();
     // All (unique) errors happened during fetch
-    private List<Throwable> errorList = new ArrayList<>();
+    private /*~~>*/List<Throwable> errorList = new ArrayList<>();
     private int focusRow;
     private DBSDataContainer targetDataContainer;
     
@@ -85,15 +85,15 @@ class ResultSetDataReceiver implements DBDDataReceiver, DBDDataReceiverInteracti
         this.targetDataContainer = targetDataContainer;
     }
 
-    List<Throwable> getErrorList() {
+    /*~~>*/List<Throwable> getErrorList() {
         return errorList;
     }
 
     @Override
     public void fetchStart(DBCSession session, final DBCResultSet resultSet, long offset, long maxRows)
         throws DBCException {
-        this.errorList.clear();
-        this.rows.clear();
+        /*~~>*/this.errorList.clear();
+        /*~~>*/this.rows.clear();
         this.offset = offset;
         this.maxRows = maxRows;
 
@@ -104,7 +104,7 @@ class ResultSetDataReceiver implements DBDDataReceiver, DBDDataReceiverInteracti
                 throw new DBCException("Null resultset metadata");
             }
 
-            List<DBCAttributeMetaData> rsAttributes = metaData.getAttributes();
+            /*~~>*/List<DBCAttributeMetaData> rsAttributes = metaData.getAttributes();
             columnsCount = rsAttributes.size();
 
             // Extract column info
@@ -135,7 +135,7 @@ class ResultSetDataReceiver implements DBDDataReceiver, DBDDataReceiverInteracti
 
                 row[i] = new DBDValueError(e);
 
-                List<String> attrErrors = this.attrErrors.computeIfAbsent(
+                /*~~>*/List<String> attrErrors = this.attrErrors.computeIfAbsent(
                     metaColumns[i].getMetaAttribute(),
                     k -> new ArrayList<>());
                 String errMessage = e.getClass().getName();
@@ -168,7 +168,7 @@ class ResultSetDataReceiver implements DBDDataReceiver, DBDDataReceiverInteracti
             }
         }
 
-        final List<Object[]> tmpRows = rows;
+        final /*~~>*/List<Object[]> tmpRows = rows;
 
         final boolean nextSegmentRead = this.nextSegmentRead;
 

@@ -57,7 +57,7 @@ public class BookmarkStorage {
     private String description;
     private DBPImage image;
     private String dataSourceId;
-    private List<String> dataSourcePath;
+    private /*~~>*/List<String> dataSourcePath;
 
     public BookmarkStorage(IFile file, boolean loadImage) throws DBException, CoreException
     {
@@ -71,9 +71,9 @@ public class BookmarkStorage {
             if (dataSourceId == null) {
                 throw new DBException("Data source ID missing in bookmark definition");
             }
-            this.dataSourcePath = new ArrayList<>();
+            /*~~>*/this.dataSourcePath = new ArrayList<>();
             for (Element elem : XMLUtils.getChildElementList(root, TAG_PATH)) {
-                this.dataSourcePath.add(XMLUtils.getElementBody(elem));
+                /*~~>*/this.dataSourcePath.add(XMLUtils.getElementBody(elem));
             }
             if (loadImage) {
                 Element imgElement = XMLUtils.getChildElement(root, TAG_IMAGE);
@@ -93,13 +93,13 @@ public class BookmarkStorage {
         }
     }
 
-    BookmarkStorage(String title, String description, DBPImage image, String dataSourceId, List<String> dataSourcePath)
+    BookmarkStorage(String title, String description, DBPImage image, String dataSourceId, /*~~>*/List<String> dataSourcePath)
     {
         this.title = title;
         this.description = description;
         this.image = image;
         this.dataSourceId = dataSourceId;
-        this.dataSourcePath = dataSourcePath;
+        /*~~>*/this.dataSourcePath = dataSourcePath;
     }
 
     public void dispose()
@@ -136,7 +136,7 @@ public class BookmarkStorage {
         return dataSourceId;
     }
 
-    public List<String> getDataSourcePath()
+    public /*~~>*/List<String> getDataSourcePath()
     {
         return dataSourcePath;
     }

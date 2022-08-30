@@ -30,7 +30,7 @@ import java.util.List;
 public class DataSourceViewDescriptor extends AbstractDescriptor {
     private final String id;
     private final String targetID;
-    private final List<String> dataSourceIds;
+    private final /*~~>*/List<String> dataSourceIds;
     private final String label;
     private final ObjectType viewType;
     private final DBPImage icon;
@@ -39,7 +39,7 @@ public class DataSourceViewDescriptor extends AbstractDescriptor {
         super(config.getContributor().getName());
         this.id = config.getAttribute(RegistryConstants.ATTR_ID);
         this.targetID = config.getAttribute(RegistryConstants.ATTR_TARGET_ID);
-        this.dataSourceIds = Arrays.asList(config.getAttribute(RegistryConstants.ATTR_DATA_SOURCE).split(","));
+        /*~~>*/this.dataSourceIds = Arrays.asList(config.getAttribute(RegistryConstants.ATTR_DATA_SOURCE).split(","));
         this.label = config.getAttribute(RegistryConstants.ATTR_LABEL);
         this.viewType = new ObjectType(config.getAttribute(RegistryConstants.ATTR_CLASS));
         this.icon = iconToImage(config.getAttribute(RegistryConstants.ATTR_ICON));
@@ -53,7 +53,7 @@ public class DataSourceViewDescriptor extends AbstractDescriptor {
         return targetID;
     }
 
-    public List<String> getDataSources() {
+    public /*~~>*/List<String> getDataSources() {
         return dataSourceIds;
     }
 

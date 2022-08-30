@@ -164,7 +164,7 @@ class DriverDownloadAutoPage extends DriverDownloadPage {
         }
 
         boolean processUnsecure = false;
-        List<DBPDriverDependencies.DependencyNode> nodes = getWizard().getDependencies().getLibraryList();
+        /*~~>*/List<DBPDriverDependencies.DependencyNode> nodes = getWizard().getDependencies().getLibraryList();
         for (int i = 0, filesSize = nodes.size(); i < filesSize; ) {
             final DBPDriverLibrary lib = nodes.get(i).library;
             if (!processUnsecure && !lib.isSecureDownload(monitor)) {

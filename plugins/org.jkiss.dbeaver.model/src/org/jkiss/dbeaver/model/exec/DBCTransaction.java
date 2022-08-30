@@ -24,6 +24,6 @@ import java.util.List;
  */
 public interface DBCTransaction {
 
-    List<DBCSavepoint> getSavepoints();
+    /*~~>*/List<DBCSavepoint> getSavepoints();
 
 }

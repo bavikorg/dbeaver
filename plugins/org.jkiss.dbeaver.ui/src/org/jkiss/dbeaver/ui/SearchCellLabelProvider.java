@@ -51,10 +51,10 @@ public abstract class SearchCellLabelProvider extends StyledCellLabelProvider im
         cell.setImage(getImage(element));
         cell.setFont(getFont(element));
 
-        final List<int[]> ranges;
+        final /*~~>*/List<int[]> ranges;
 
         if (CommonUtils.isEmpty(pattern)) {
-            ranges = List.of();
+            ranges = /*~~>*/List.of();
         } else {
             ranges = match(pattern, text);
         }
@@ -99,8 +99,8 @@ public abstract class SearchCellLabelProvider extends StyledCellLabelProvider im
     }
 
     @Nullable
-    private static List<int[]> match(@NotNull String pattern, @NotNull String value) {
-        final List<int[]> ranges = new ArrayList<>();
+    private static /*~~>*/List<int[]> match(@NotNull String pattern, @NotNull String value) {
+        final /*~~>*/List<int[]> ranges = new ArrayList<>();
         for (int p = 0, v = 0, start = -1; p <= pattern.length() && v <= value.length(); v++) {
             if (p != pattern.length() && v == value.length()) {
                 return null;

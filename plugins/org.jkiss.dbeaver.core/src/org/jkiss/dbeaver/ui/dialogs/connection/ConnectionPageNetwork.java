@@ -206,7 +206,7 @@ public class ConnectionPageNetwork extends ConnectionWizardPage {
     @Override
     public void saveSettings(DBPDataSourceContainer dataSource) {
         boolean foundHandlers = false;
-        java.util.List<DBWHandlerConfiguration> handlers = new ArrayList<>();
+        /*~~>*//*~~>*/java.util.List<DBWHandlerConfiguration> handlers = new ArrayList<>();
         for (HandlerBlock handlerBlock : configurations.values()) {
             DBWHandlerConfiguration configuration = handlerBlock.loadedConfigs.get(dataSource.getId());
             if (configuration != null) {

@@ -49,7 +49,7 @@ import java.util.List;
 public class PostgreCreateSchemaDialog extends BaseDialog
 {
     private final PostgreSchema schema;
-    private List<PostgreRole> allUsers;
+    private /*~~>*/List<PostgreRole> allUsers;
     private String name;
     private PostgreRole owner;
 
@@ -90,7 +90,7 @@ public class PostgreCreateSchemaDialog extends BaseDialog
             @Override
             protected IStatus run(DBRProgressMonitor monitor) {
                 try {
-                    final List<String> userNames = new ArrayList<>();
+                    final /*~~>*/List<String> userNames = new ArrayList<>();
                     allUsers = new ArrayList<>(schema.getDatabase().getUsers(monitor));
                     final PostgreRole dba = schema.getDatabase().getDBA(monitor);
                     final String defUserName = dba == null ? "" : dba.getName(); //$NON-NLS-1$

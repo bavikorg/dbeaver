@@ -63,10 +63,10 @@ public interface DBPDataSourceRegistry extends DBPObject {
     DBPDataSourceContainer findDataSourceByName(String name);
 
     @NotNull
-    List<? extends DBPDataSourceContainer> getDataSourcesByProfile(@NotNull DBWNetworkProfile profile);
+    /*~~>*/List<? extends DBPDataSourceContainer> getDataSourcesByProfile(@NotNull DBWNetworkProfile profile);
 
     @NotNull
-    List<? extends DBPDataSourceContainer> getDataSources();
+    /*~~>*/List<? extends DBPDataSourceContainer> getDataSources();
 
     @NotNull
     DBPDataSourceContainer createDataSource(DBPDriver driver, DBPConnectionConfiguration connConfig);
@@ -85,10 +85,10 @@ public interface DBPDataSourceRegistry extends DBPObject {
     void updateDataSource(@NotNull DBPDataSourceContainer dataSource);
 
     @NotNull
-    List<? extends DBPDataSourceFolder> getAllFolders();
+    /*~~>*/List<? extends DBPDataSourceFolder> getAllFolders();
 
     @NotNull
-    List<? extends DBPDataSourceFolder> getRootFolders();
+    /*~~>*/List<? extends DBPDataSourceFolder> getRootFolders();
 
     DBPDataSourceFolder getFolder(String path);
 
@@ -99,7 +99,7 @@ public interface DBPDataSourceRegistry extends DBPObject {
     @Nullable
     DBSObjectFilter getSavedFilter(String name);
     @NotNull
-    List<DBSObjectFilter> getSavedFilters();
+    /*~~>*/List<DBSObjectFilter> getSavedFilters();
     void updateSavedFilter(DBSObjectFilter filter);
     void removeSavedFilter(String filterName);
 
@@ -108,7 +108,7 @@ public interface DBPDataSourceRegistry extends DBPObject {
     @Nullable
     DBWNetworkProfile getNetworkProfile(String name);
     @NotNull
-    List<DBWNetworkProfile> getNetworkProfiles();
+    /*~~>*/List<DBWNetworkProfile> getNetworkProfiles();
     void updateNetworkProfile(DBWNetworkProfile profile);
     void removeNetworkProfile(DBWNetworkProfile profile);
 
@@ -117,9 +117,9 @@ public interface DBPDataSourceRegistry extends DBPObject {
     @Nullable
     DBAAuthProfile getAuthProfile(String id);
     @NotNull
-    List<DBAAuthProfile> getAllAuthProfiles();
+    /*~~>*/List<DBAAuthProfile> getAllAuthProfiles();
     @NotNull
-    List<DBAAuthProfile> getApplicableAuthProfiles(@Nullable DBPDriver driver);
+    /*~~>*/List<DBAAuthProfile> getApplicableAuthProfiles(@Nullable DBPDriver driver);
     void updateAuthProfile(DBAAuthProfile profile);
     void removeAuthProfile(DBAAuthProfile profile);
 

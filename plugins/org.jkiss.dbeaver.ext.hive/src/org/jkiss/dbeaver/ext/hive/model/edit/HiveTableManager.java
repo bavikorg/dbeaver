@@ -71,7 +71,7 @@ public class HiveTableManager extends GenericTableManager implements DBEObjectRe
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
         actions.add(
                 new SQLDatabasePersistAction(
                         "Rename table",
@@ -81,7 +81,7 @@ public class HiveTableManager extends GenericTableManager implements DBEObjectRe
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
         GenericTableBase table = command.getObject();
         if (table.getTableType().equals("INDEX_TABLE")) {
             actions.add(

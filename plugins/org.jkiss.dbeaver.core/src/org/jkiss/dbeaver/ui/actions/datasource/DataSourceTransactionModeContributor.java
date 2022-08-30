@@ -46,7 +46,7 @@ public class DataSourceTransactionModeContributor extends DataSourceMenuContribu
     private static final Log log = Log.getLog(DataSourceTransactionModeContributor.class);
 
     @Override
-    protected void fillContributionItems(final List<IContributionItem> menuItems) {
+    protected void fillContributionItems(final /*~~>*/List<IContributionItem> menuItems) {
         IEditorPart activePart = UIUtils.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
         DBCExecutionContext executionContext = AbstractDataSourceHandler.getExecutionContextFromPart(activePart);
 

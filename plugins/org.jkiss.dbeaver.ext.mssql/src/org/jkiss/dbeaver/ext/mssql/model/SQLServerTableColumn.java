@@ -430,9 +430,9 @@ public class SQLServerTableColumn extends JDBCTableColumn<SQLServerTableBase> im
 
         @Override
         public Object[] getPossibleValues(SQLServerTableColumn object) {
-            List<SQLServerDataType> allTypes = new ArrayList<>(object.getDataSource().getLocalDataTypes());
+            /*~~>*/List<SQLServerDataType> allTypes = new ArrayList<>(object.getDataSource().getLocalDataTypes());
             try {
-                List<SQLServerDataType> schemaTypes = object.getTable().getSchema().getDataTypes(new VoidProgressMonitor())
+                /*~~>*/List<SQLServerDataType> schemaTypes = object.getTable().getSchema().getDataTypes(new VoidProgressMonitor())
                         .stream().filter(type -> !type.isTableType()).collect(Collectors.toList()); //do not show table types in types list
                 allTypes.addAll(schemaTypes);
             } catch (DBException e) {

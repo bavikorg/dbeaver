@@ -27,8 +27,8 @@ import java.util.List;
  */
 public interface QMInformer {
 
-    public List<DBCStatement> getActiveQueries(DBPDataSource dataSource);
+    public /*~~>*/List<DBCStatement> getActiveQueries(DBPDataSource dataSource);
 
-    public List<DBCStatement> getTransactionScope(DBPDataSource dataSource);
+    public /*~~>*/List<DBCStatement> getTransactionScope(DBPDataSource dataSource);
 
 }

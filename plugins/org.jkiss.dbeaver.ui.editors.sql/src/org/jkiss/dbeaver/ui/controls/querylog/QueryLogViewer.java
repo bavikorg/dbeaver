@@ -309,7 +309,7 @@ public class QueryLogViewer extends Viewer implements QMMetaListener, DBPPrefere
     private final IWorkbenchPartSite site;
     private final Text searchText;
     private Table logTable;
-    private java.util.List<ColumnDescriptor> columns = new ArrayList<>();
+    private /*~~>*//*~~>*/java.util.List<ColumnDescriptor> columns = new ArrayList<>();
     private LongKeyMap<TableItem> objectToItemMap = new LongKeyMap<>();
 
     private QMEventFilter defaultFilter = new DefaultEventFilter();
@@ -634,7 +634,7 @@ public class QueryLogViewer extends Viewer implements QMMetaListener, DBPPrefere
     }
 
     @Override
-    public void metaInfoChanged(DBRProgressMonitor monitor, @NotNull final List<QMMetaEvent> events) {
+    public void metaInfoChanged(DBRProgressMonitor monitor, @NotNull final /*~~>*/List<QMMetaEvent> events) {
         if (DBWorkbench.getPlatform().isShuttingDown()) {
             return;
         }
@@ -642,7 +642,7 @@ public class QueryLogViewer extends Viewer implements QMMetaListener, DBPPrefere
         UIUtils.asyncExec(() -> updateMetaInfo(events));
     }
 
-    private synchronized void updateMetaInfo(final List<? extends QMEvent> events) {
+    private synchronized void updateMetaInfo(final /*~~>*/List<? extends QMEvent> events) {
         if (logTable.isDisposed()) {
             return;
         }
@@ -834,7 +834,7 @@ public class QueryLogViewer extends Viewer implements QMMetaListener, DBPPrefere
                     } else {
                         queryTypes = ArrayUtils.add(DBCExecutionPurpose.class, queryTypes, purpose);
                     }
-                    List<String> typeNames = new ArrayList<>(queryTypes.length);
+                    /*~~>*/List<String> typeNames = new ArrayList<>(queryTypes.length);
                     for (DBCExecutionPurpose queryType : queryTypes) typeNames.add(queryType.name());
                     store.setValue(QMConstants.PROP_QUERY_TYPES, CommonUtils.makeString(typeNames, ','));
                     PrefUtils.savePreferenceStore(store);
@@ -859,7 +859,7 @@ public class QueryLogViewer extends Viewer implements QMMetaListener, DBPPrefere
                     } else {
                         objectTypes = ArrayUtils.add(QMObjectType.class, objectTypes, type);
                     }
-                    List<QMObjectType> typeList = new ArrayList<>();
+                    /*~~>*/List<QMObjectType> typeList = new ArrayList<>();
                     Collections.addAll(typeList, objectTypes);
                     store.setValue(QMConstants.PROP_OBJECT_TYPES, QMObjectType.toString(typeList));
                     PrefUtils.savePreferenceStore(store);
@@ -1109,7 +1109,7 @@ public class QueryLogViewer extends Viewer implements QMMetaListener, DBPPrefere
                 final QMMStatementExecuteInfo info = (QMMStatementExecuteInfo) object.getObject();
                 final SQLEditor editor = ((SQLLogFilter) filter).getEditor();
                 final SQLQuery query = new SQLQuery(editor.getDataSource(), info.getQueryString());
-                editor.processQueries(List.of(query), false, true, false, true, null, null);
+                editor.processQueries(/*~~>*/List.of(query), false, true, false, true, null, null);
             } else {
                 super.buttonPressed(buttonId);
             }
@@ -1158,7 +1158,7 @@ public class QueryLogViewer extends Viewer implements QMMetaListener, DBPPrefere
         }
     }
 
-    class EventHistoryReadService extends AbstractLoadService<List<QMEvent>> {
+    class EventHistoryReadService extends AbstractLoadService</*~~>*/List<QMEvent>> {
 
         @Nullable
         private String searchString;
@@ -1169,8 +1169,8 @@ public class QueryLogViewer extends Viewer implements QMMetaListener, DBPPrefere
         }
 
         @Override
-        public List<QMEvent> evaluate(DBRProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-            final List<QMEvent> events = new ArrayList<>();
+        public /*~~>*/List<QMEvent> evaluate(DBRProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+            final /*~~>*/List<QMEvent> events = new ArrayList<>();
             QMEventBrowser eventBrowser = QMUtils.getEventBrowser(currentSessionOnly);
             if (eventBrowser != null) {
                 QMEventCriteria criteria = QMUtils.createDefaultCriteria(DBWorkbench.getPlatform().getPreferenceStore());
@@ -1205,7 +1205,7 @@ public class QueryLogViewer extends Viewer implements QMMetaListener, DBPPrefere
 
     }
 
-    private class EvenHistoryReadVisualizer extends ProgressLoaderVisualizer<List<QMEvent>> {
+    private class EvenHistoryReadVisualizer extends ProgressLoaderVisualizer</*~~>*/List<QMEvent>> {
         EvenHistoryReadVisualizer(EventHistoryReadService loadingService) {
             super(loadingService, logTable);
         }
@@ -1217,7 +1217,7 @@ public class QueryLogViewer extends Viewer implements QMMetaListener, DBPPrefere
         }
 
         @Override
-        public void completeLoading(List<QMEvent> result) {
+        public void completeLoading(/*~~>*/List<QMEvent> result) {
             try {
                 super.completeLoading(result);
                 super.visualizeLoading();

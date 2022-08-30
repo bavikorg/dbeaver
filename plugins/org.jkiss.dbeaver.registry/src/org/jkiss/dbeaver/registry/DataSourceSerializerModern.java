@@ -101,7 +101,7 @@ class DataSourceSerializerModern implements DataSourceSerializer
         DBRProgressMonitor monitor,
         DataSourceConfigurationManager configurationManager,
         DBPDataSourceConfigurationStorage configurationStorage,
-        List<DataSourceDescriptor> localDataSources) throws DBException
+        /*~~>*/List<DataSourceDescriptor> localDataSources) throws DBException
     {
         ByteArrayOutputStream dsConfigBuffer = new ByteArrayOutputStream(10000);
         try (OutputStreamWriter osw = new OutputStreamWriter(dsConfigBuffer, StandardCharsets.UTF_8)) {
@@ -163,7 +163,7 @@ class DataSourceSerializerModern implements DataSourceSerializer
                         jsonWriter.endObject();
                     }
                     // Network profiles
-                    List<DBWNetworkProfile> profiles = registry.getNetworkProfiles();
+                    /*~~>*/List<DBWNetworkProfile> profiles = registry.getNetworkProfiles();
                     if (!CommonUtils.isEmpty(profiles)) {
                         jsonWriter.name("network-profiles");
                         jsonWriter.beginObject();
@@ -189,7 +189,7 @@ class DataSourceSerializerModern implements DataSourceSerializer
                         jsonWriter.endObject();
                     }
                     // Auth profiles
-                    List<DBAAuthProfile> authProfiles = registry.getAllAuthProfiles();
+                    /*~~>*/List<DBAAuthProfile> authProfiles = registry.getAllAuthProfiles();
                     if (!CommonUtils.isEmpty(authProfiles)) {
                         jsonWriter.name("auth-profiles");
                         jsonWriter.beginObject();
@@ -214,7 +214,7 @@ class DataSourceSerializerModern implements DataSourceSerializer
                         jsonWriter.endObject();
                     }
                     // Filters
-                    List<DBSObjectFilter> savedFilters = registry.getSavedFilters();
+                    /*~~>*/List<DBSObjectFilter> savedFilters = registry.getSavedFilters();
                     if (!CommonUtils.isEmpty(savedFilters)) {
                         jsonWriter.name("saved-filters");
                         jsonWriter.beginArray();
@@ -709,9 +709,9 @@ class DataSourceSerializerModern implements DataSourceSerializer
     private void deserializeModifyPermissions(Map<String, Object> conObject, DBPDataSourcePermissionOwner permissionOwner) {
         Map<String, Object> securityCfg = JSONUtils.getObject(conObject, "security");
         if (!CommonUtils.isEmpty(securityCfg)) {
-            List<String> permissionRestrictions = JSONUtils.deserializeStringList(securityCfg, "permission-restrictions");
+            /*~~>*/List<String> permissionRestrictions = JSONUtils.deserializeStringList(securityCfg, "permission-restrictions");
             if (!CommonUtils.isEmpty(permissionRestrictions)) {
-                List<DBPDataSourcePermission> permissions = new ArrayList<>();
+                /*~~>*/List<DBPDataSourcePermission> permissions = new ArrayList<>();
                 for (String perm : permissionRestrictions) {
                     try {
                         DBPDataSourcePermission permission = DBPDataSourcePermission.getById(perm);
@@ -1002,11 +1002,11 @@ class DataSourceSerializerModern implements DataSourceSerializer
     }
 
     private void serializeModifyPermissions(@NotNull JsonWriter json, DBPDataSourcePermissionOwner permissionOwner) throws IOException {
-        List<DBPDataSourcePermission> permissions = permissionOwner.getModifyPermission();
+        /*~~>*/List<DBPDataSourcePermission> permissions = permissionOwner.getModifyPermission();
         if (!CommonUtils.isEmpty(permissions)) {
             json.name("security");
             json.beginObject();
-            List<String> permIds = new ArrayList<>(permissions.size());
+            /*~~>*/List<String> permIds = new ArrayList<>(permissions.size());
             for (DBPDataSourcePermission perm : permissions) permIds.add(perm.getId());
             JSONUtils.serializeStringList(json, "permission-restrictions", permIds);
             json.endObject();

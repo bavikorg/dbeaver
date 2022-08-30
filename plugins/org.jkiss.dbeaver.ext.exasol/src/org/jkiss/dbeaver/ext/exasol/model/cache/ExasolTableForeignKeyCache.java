@@ -159,7 +159,7 @@ public final class ExasolTableForeignKeyCache
     }
 
     @Override
-    protected void cacheChildren(DBRProgressMonitor monitor, ExasolTableForeignKey constraint, List<ExasolTableForeignKeyColumn> rows) {
+    protected void cacheChildren(DBRProgressMonitor monitor, ExasolTableForeignKey constraint, /*~~>*/List<ExasolTableForeignKeyColumn> rows) {
         constraint.setColumns(rows);
     }
 

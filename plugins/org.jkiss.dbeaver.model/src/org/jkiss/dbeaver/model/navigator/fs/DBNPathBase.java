@@ -134,7 +134,7 @@ public abstract class DBNPathBase extends DBNNode implements DBNNodeWithResource
     }
 
     protected DBNNode[] readChildNodes(DBRProgressMonitor monitor) throws DBException {
-        List<DBNNode> result = new ArrayList<>();
+        /*~~>*/List<DBNNode> result = new ArrayList<>();
         Path path = getPath();
         if (allowsChildren() && Files.exists(path)) {
             try {
@@ -305,7 +305,7 @@ public abstract class DBNPathBase extends DBNNode implements DBNNodeWithResource
         }.schedule();
     }
 
-    protected void filterChildren(List<DBNNode> list) {
+    protected void filterChildren(/*~~>*/List<DBNNode> list) {
 
     }
 

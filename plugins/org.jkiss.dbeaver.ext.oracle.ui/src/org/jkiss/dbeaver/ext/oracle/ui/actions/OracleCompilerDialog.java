@@ -60,16 +60,16 @@ public class OracleCompilerDialog extends BaseDialog
     private static final int COMPILE_ID = 1000;
     private static final int COMPILE_ALL_ID = 1001;
 
-    private java.util.List<OracleSourceObject> compileUnits;
+    private /*~~>*//*~~>*/java.util.List<OracleSourceObject> compileUnits;
     private TableViewer unitTable;
 
     private ObjectCompilerLogViewer compileLog;
 
 
-    public OracleCompilerDialog(Shell shell, java.util.List<OracleSourceObject> compileUnits)
+    public OracleCompilerDialog(Shell shell, /*~~>*//*~~>*/java.util.List<OracleSourceObject> compileUnits)
     {
         super(shell, OracleUIMessages.views_oracle_compiler_dialog_title, null);
-        this.compileUnits = compileUnits;
+        /*~~>*/this.compileUnits = compileUnits;
     }
 
     @Override
@@ -185,7 +185,7 @@ public class OracleCompilerDialog extends BaseDialog
     @Override
     protected void buttonPressed(int buttonId)
     {
-        final List<OracleSourceObject> toCompile;
+        final /*~~>*/List<OracleSourceObject> toCompile;
         if (buttonId == COMPILE_ID) {
             toCompile = ((IStructuredSelection) unitTable.getSelection()).toList();
         } else if (buttonId == COMPILE_ALL_ID) {
@@ -207,7 +207,7 @@ public class OracleCompilerDialog extends BaseDialog
         }
     }
 
-    private void performCompilation(DBRProgressMonitor monitor, List<OracleSourceObject> units)
+    private void performCompilation(DBRProgressMonitor monitor, /*~~>*/List<OracleSourceObject> units)
     {
         compileLog.layoutLog();
         for (OracleSourceObject unit : units) {

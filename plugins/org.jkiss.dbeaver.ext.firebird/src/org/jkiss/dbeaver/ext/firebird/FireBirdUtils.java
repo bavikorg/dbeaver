@@ -139,8 +139,8 @@ public class FireBirdUtils {
         sql.append(" ").append(procedure.getName()).append(" ");
         Collection<GenericProcedureParameter> parameters = procedure.getParameters(monitor);
         if (parameters != null && !parameters.isEmpty()) {
-            List<GenericProcedureParameter> args = new ArrayList<>();
-            List<GenericProcedureParameter> results = new ArrayList<>();
+            /*~~>*/List<GenericProcedureParameter> args = new ArrayList<>();
+            /*~~>*/List<GenericProcedureParameter> results = new ArrayList<>();
             for (GenericProcedureParameter param : parameters) {
                 if (param.getParameterKind() == DBSProcedureParameterKind.OUT || param.getParameterKind() == DBSProcedureParameterKind.RETURN) {
                     results.add(param);

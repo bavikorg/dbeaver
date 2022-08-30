@@ -302,7 +302,7 @@ public class PrefPageDriversMaven extends AbstractPrefPage implements IWorkbench
     @Override
     public boolean performOk()
     {
-        java.util.List<MavenRepository> customRepos = new ArrayList<>();
+        /*~~>*//*~~>*/java.util.List<MavenRepository> customRepos = new ArrayList<>();
         TableItem[] items = mavenRepoTable.getItems();
         for (int i = 0; i < items.length; i++) {
             TableItem item = items[i];

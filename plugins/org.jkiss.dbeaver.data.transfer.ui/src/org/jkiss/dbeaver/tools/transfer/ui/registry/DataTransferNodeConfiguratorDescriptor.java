@@ -36,7 +36,7 @@ public class DataTransferNodeConfiguratorDescriptor extends AbstractDescriptor
 
     @NotNull
     private final String id;
-    private final List<DataTransferPageDescriptor> pageTypes = new ArrayList<>();
+    private final /*~~>*/List<DataTransferPageDescriptor> pageTypes = new ArrayList<>();
 
     DataTransferNodeConfiguratorDescriptor(IConfigurationElement config)
     {
@@ -58,7 +58,7 @@ public class DataTransferNodeConfiguratorDescriptor extends AbstractDescriptor
         return id;
     }
 
-    List<DataTransferPageDescriptor> patPageDescriptors() {
+    /*~~>*/List<DataTransferPageDescriptor> patPageDescriptors() {
         return pageTypes;
     }
 
@@ -73,7 +73,7 @@ public class DataTransferNodeConfiguratorDescriptor extends AbstractDescriptor
 
     public IWizardPage[] createWizardPages(IWizardPage[] existingPages, boolean consumerOptional, boolean producerOptional, boolean settingsPage)
     {
-        List<IWizardPage> pages = new ArrayList<>();
+        /*~~>*/List<IWizardPage> pages = new ArrayList<>();
         for (DataTransferPageDescriptor page : pageTypes) {
             if (page.isConsumerSelector() && !consumerOptional) continue;
             if (page.isProducerSelector() && !producerOptional) continue;

@@ -87,7 +87,7 @@ public class PrefPageProjectNetworkProfiles extends AbstractPrefPage implements 
 
     private Table profilesTable;
     private TabFolder handlersFolder;
-    private List<NetworkHandlerDescriptor> allHandlers = new ArrayList<>();
+    private /*~~>*/List<NetworkHandlerDescriptor> allHandlers = new ArrayList<>();
     private DBWNetworkProfile selectedProfile;
     private Map<NetworkHandlerDescriptor, HandlerBlock> configurations = new HashMap<>();
 
@@ -154,7 +154,7 @@ public class PrefPageProjectNetworkProfiles extends AbstractPrefPage implements 
                             @Override
                             public void widgetSelected(SelectionEvent e) {
                                 if (selectedProfile != null) {
-                                    List<? extends DBPDataSourceContainer> usedBy = projectMeta.getDataSourceRegistry().getDataSourcesByProfile(selectedProfile);
+                                    /*~~>*/List<? extends DBPDataSourceContainer> usedBy = projectMeta.getDataSourceRegistry().getDataSourcesByProfile(selectedProfile);
                                     if (!usedBy.isEmpty()) {
                                         UIUtils.showMessageBox(getShell(), CoreMessages.pref_page_network_profiles_tool_delete_dialog_error_title,
                                                 NLS.bind(CoreMessages.pref_page_network_profiles_tool_delete_dialog_error_info, selectedProfile.getProfileName(), usedBy.size()) + usedBy, SWT.ICON_ERROR);

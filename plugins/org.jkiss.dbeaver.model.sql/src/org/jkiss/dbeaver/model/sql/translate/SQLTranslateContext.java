@@ -82,7 +82,7 @@ final class SQLTranslateContext {
         return syntaxManager;
     }
 
-    List<? extends SQLScriptElement> translateCommand(
+    /*~~>*/List<? extends SQLScriptElement> translateCommand(
         @NotNull SQLScriptElement element) throws DBException {
 
         if (element instanceof SQLQuery) {
@@ -92,7 +92,7 @@ final class SQLTranslateContext {
         return Collections.singletonList(element);
     }
 
-    private List<? extends SQLScriptElement> translateQuery(@NotNull SQLQuery query) throws DBException
+    private /*~~>*/List<? extends SQLScriptElement> translateQuery(@NotNull SQLQuery query) throws DBException
     {
         Statement statement = query.getStatement();
         if (statement != null) {
@@ -101,12 +101,12 @@ final class SQLTranslateContext {
         return Collections.singletonList(query);
     }
 
-    private List<? extends SQLScriptElement> translateStatement(
+    private /*~~>*/List<? extends SQLScriptElement> translateStatement(
         @NotNull SQLQuery query,
         @NotNull Statement statement) throws DBException
     {
         // FIXME: currently it is a dummy translator to PostgreSQL dialect
-        List<SQLScriptElement> extraQueries = null;
+        /*~~>*/List<SQLScriptElement> extraQueries = null;
 
         if (statement instanceof CreateTable) {
             boolean defChanged = false;

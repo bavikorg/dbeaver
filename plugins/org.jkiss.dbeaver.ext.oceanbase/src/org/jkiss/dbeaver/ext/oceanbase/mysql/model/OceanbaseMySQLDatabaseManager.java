@@ -51,7 +51,7 @@ public class OceanbaseMySQLDatabaseManager extends SQLObjectEditor<OceanbaseMySQ
 
     @Override
     protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext,
-            List<DBEPersistAction> actions,
+            /*~~>*/List<DBEPersistAction> actions,
             SQLObjectEditor<OceanbaseMySQLCatalog, OceanbaseMySQLDataSource>.ObjectCreateCommand command,
             Map<String, Object> options) throws DBException {
         final OceanbaseMySQLCatalog catalog = command.getObject();
@@ -63,7 +63,7 @@ public class OceanbaseMySQLDatabaseManager extends SQLObjectEditor<OceanbaseMySQ
 
     @Override
     protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext,
-            List<DBEPersistAction> actions,
+            /*~~>*/List<DBEPersistAction> actions,
             SQLObjectEditor<OceanbaseMySQLCatalog, OceanbaseMySQLDataSource>.ObjectDeleteCommand command,
             Map<String, Object> options) throws DBException {
         actions.add(new SQLDatabasePersistAction("Drop schema", "DROP SCHEMA `" + command.getObject().getName() + "`"));

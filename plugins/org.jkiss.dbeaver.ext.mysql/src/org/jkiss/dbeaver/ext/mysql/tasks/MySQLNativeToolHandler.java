@@ -67,8 +67,8 @@ public abstract class MySQLNativeToolHandler<SETTINGS extends AbstractNativeTool
     }
 
     @Override
-    protected List<String> getCommandLine(SETTINGS settings, PROCESS_ARG arg) throws IOException {
-        List<String> cmd = new ArrayList<>();
+    protected /*~~>*/List<String> getCommandLine(SETTINGS settings, PROCESS_ARG arg) throws IOException {
+        /*~~>*/List<String> cmd = new ArrayList<>();
         fillProcessParameters(settings, arg, cmd);
 
         String toolUserName = settings.getToolUserName();

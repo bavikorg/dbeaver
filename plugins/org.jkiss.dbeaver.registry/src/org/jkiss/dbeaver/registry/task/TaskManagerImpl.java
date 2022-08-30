@@ -60,8 +60,8 @@ public class TaskManagerImpl implements DBTTaskManager {
     static final SimpleDateFormat systemDateFormat = new SimpleDateFormat(GeneralUtils.DEFAULT_TIMESTAMP_PATTERN, Locale.ENGLISH);
 
     private final BaseProjectImpl projectMetadata;
-    private final List<TaskImpl> tasks = new ArrayList<>();
-    private final List<TaskFolderImpl> tasksFolders = new ArrayList<>();
+    private final /*~~>*/List<TaskImpl> tasks = new ArrayList<>();
+    private final /*~~>*/List<TaskFolderImpl> tasksFolders = new ArrayList<>();
     private final Path statisticsFolder;
 
     public TaskManagerImpl(BaseProjectImpl projectMetadata) {
@@ -124,7 +124,7 @@ public class TaskManagerImpl implements DBTTaskManager {
     @NotNull
     @Override
     public DBTTask[] getAllTaskByType(DBTTaskType task) {
-        List<DBTTask> result = new ArrayList<>();
+        /*~~>*/List<DBTTask> result = new ArrayList<>();
         for (DBTTask tc : tasks) {
             if (tc.getType() == task) {
                 result.add(tc);
@@ -249,7 +249,7 @@ public class TaskManagerImpl implements DBTTaskManager {
 
         // Remove empty task folder or make task folder empty and then remove it
         // Move all task to the parent folder if it exists
-        List<DBTTask> folderTasks = taskFolder.getTasks();
+        /*~~>*/List<DBTTask> folderTasks = taskFolder.getTasks();
         if (!CommonUtils.isEmpty(folderTasks)) {
             for (DBTTask task : folderTasks) {
                 if (task instanceof TaskImpl) {

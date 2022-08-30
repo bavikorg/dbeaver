@@ -228,7 +228,7 @@ public class DenodoConnectionPage extends ConnectionPageAbstract implements IDia
     }
 
     private static void loadDictList(DBCSession session, Combo combo, String query) throws DBCException {
-        List<String> result = new ArrayList<>();
+        /*~~>*/List<String> result = new ArrayList<>();
         session.getProgressMonitor().subTask("Exec " + query); //$NON-NLS-1$
         try (DBCStatement dbStat = session.prepareStatement(DBCStatementType.QUERY, query, false, false, false)) {
             dbStat.executeStatement();

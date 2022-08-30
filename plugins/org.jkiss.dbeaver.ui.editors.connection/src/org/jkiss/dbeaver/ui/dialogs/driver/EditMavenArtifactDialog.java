@@ -62,7 +62,7 @@ public class EditMavenArtifactDialog extends BaseDialog {
 
     private final DriverLibraryMavenArtifact originalArtifact;
     private final DriverDescriptor driver;
-    private final List<DriverLibraryMavenArtifact> artifacts = new ArrayList<>();
+    private final /*~~>*/List<DriverLibraryMavenArtifact> artifacts = new ArrayList<>();
 
     private boolean ignoreDependencies;
     private boolean loadOptionalDependencies;
@@ -88,7 +88,7 @@ public class EditMavenArtifactDialog extends BaseDialog {
     }
 
     @NotNull
-    public List<DriverLibraryMavenArtifact> getArtifacts() {
+    public /*~~>*/List<DriverLibraryMavenArtifact> getArtifacts() {
         return artifacts;
     }
 
@@ -250,8 +250,8 @@ public class EditMavenArtifactDialog extends BaseDialog {
         );
     }
 
-    private List<DriverLibraryMavenArtifact> parseGradle() throws DBException {
-        final List<DriverLibraryMavenArtifact> artifacts = new ArrayList<>();
+    private /*~~>*/List<DriverLibraryMavenArtifact> parseGradle() throws DBException {
+        final /*~~>*/List<DriverLibraryMavenArtifact> artifacts = new ArrayList<>();
         final Matcher matcher = REGEX_FOR_GRADLE.matcher(fieldText.getText());
         while (matcher.find()) {
             String group = matcher.group(1);
@@ -280,8 +280,8 @@ public class EditMavenArtifactDialog extends BaseDialog {
     }
 
     @NotNull
-    private List<DriverLibraryMavenArtifact> parseMaven() throws XMLException {
-        final List<DriverLibraryMavenArtifact> artifacts = new ArrayList<>();
+    private /*~~>*/List<DriverLibraryMavenArtifact> parseMaven() throws XMLException {
+        final /*~~>*/List<DriverLibraryMavenArtifact> artifacts = new ArrayList<>();
 
         try {
             SAXReader reader = new SAXReader(new StringReader(fieldText.getText()));
@@ -294,15 +294,15 @@ public class EditMavenArtifactDialog extends BaseDialog {
     }
 
     private class SAXMavenListener extends SAXListener.BaseListener {
-        private final List<DriverLibraryMavenArtifact> artifacts;
+        private final /*~~>*/List<DriverLibraryMavenArtifact> artifacts;
         private final Deque<State> state;
 
         private String groupId;
         private String artifactId;
         private String version;
 
-        public SAXMavenListener(@NotNull List<DriverLibraryMavenArtifact> artifacts) {
-            this.artifacts = artifacts;
+        public SAXMavenListener(@NotNull /*~~>*/List<DriverLibraryMavenArtifact> artifacts) {
+            /*~~>*/this.artifacts = artifacts;
             this.state = new ArrayDeque<>();
         }
 

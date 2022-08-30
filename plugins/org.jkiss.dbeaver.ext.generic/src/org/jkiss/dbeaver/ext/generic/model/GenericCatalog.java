@@ -37,7 +37,7 @@ import java.util.List;
 public class GenericCatalog extends GenericObjectContainer implements DBSCatalog
 {
     private final String catalogName;
-    private List<GenericSchema> schemas;
+    private /*~~>*/List<GenericSchema> schemas;
     private boolean isInitialized = false;
 
     public GenericCatalog(@NotNull GenericDataSource dataSource, @NotNull String catalogName)
@@ -79,7 +79,7 @@ public class GenericCatalog extends GenericObjectContainer implements DBSCatalog
     {
         if (schemas == null && !isInitialized) {
             try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load catalog schemas")) {
-                this.schemas = this.getDataSource().getMetaModel().loadSchemas(session, getDataSource(), this);
+                /*~~>*/this.schemas = this.getDataSource().getMetaModel().loadSchemas(session, getDataSource(), this);
                 this.isInitialized = true;
             }
         }
@@ -159,7 +159,7 @@ public class GenericCatalog extends GenericObjectContainer implements DBSCatalog
     @Override
     public DBSObject refreshObject(@NotNull DBRProgressMonitor monitor) throws DBException {
         super.refreshObject(monitor);
-        this.schemas = null;
+        /*~~>*/this.schemas = null;
         this.isInitialized = false;
         return this;
     }

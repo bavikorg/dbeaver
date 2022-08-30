@@ -42,17 +42,17 @@ public class ExasolPlanAnalyser extends AbstractExecutionPlan {
 
     private ExasolDataSource dataSource;
     private String query;
-    private List<ExasolPlanNode> rootNodes;
+    private /*~~>*/List<ExasolPlanNode> rootNodes;
 
     ExasolPlanAnalyser(ExasolDataSource dataSource, String query) {
         this.dataSource = dataSource;
         this.query = query;
     }
 
-    ExasolPlanAnalyser(ExasolDataSource dataSource, String query, List<ExasolPlanNode> rootNodes) {
+    ExasolPlanAnalyser(ExasolDataSource dataSource, String query, /*~~>*/List<ExasolPlanNode> rootNodes) {
         this.dataSource = dataSource;
         this.query = query;
-        this.rootNodes = rootNodes;
+        /*~~>*/this.rootNodes = rootNodes;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class ExasolPlanAnalyser extends AbstractExecutionPlan {
     }
 
     @Override
-    public List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
+    public /*~~>*/List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
         return rootNodes;
     }
 

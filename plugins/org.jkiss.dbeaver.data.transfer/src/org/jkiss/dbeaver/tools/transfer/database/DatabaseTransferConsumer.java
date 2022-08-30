@@ -75,7 +75,7 @@ public class DatabaseTransferConsumer implements IDataTransferConsumer<DatabaseC
     private long rowsExported = 0;
     private boolean ignoreErrors = false;
 
-    private List<DBSAttributeBase> targetAttributes;
+    private /*~~>*/List<DBSAttributeBase> targetAttributes;
     private boolean useIsolatedConnection;
     private Boolean oldAutoCommit;
 
@@ -86,7 +86,7 @@ public class DatabaseTransferConsumer implements IDataTransferConsumer<DatabaseC
     private DBSDataManipulator localTargetObject;
 
     private boolean isPreview;
-    private List<Object[]> previewRows;
+    private /*~~>*/List<Object[]> previewRows;
     private DBDAttributeBinding[] rsAttributes;
 
     public static class ColumnMapping {
@@ -143,7 +143,7 @@ public class DatabaseTransferConsumer implements IDataTransferConsumer<DatabaseC
         isPreview = preview;
     }
 
-    protected List<Object[]> getPreviewRows() {
+    protected /*~~>*/List<Object[]> getPreviewRows() {
         return previewRows;
     }
 
@@ -878,7 +878,7 @@ public class DatabaseTransferConsumer implements IDataTransferConsumer<DatabaseC
         }
 
         @Override
-        public void generatePersistActions(@NotNull DBCSession session, @NotNull List<DBEPersistAction> actions, Map<String, Object> options) throws DBCException {
+        public void generatePersistActions(@NotNull DBCSession session, @NotNull /*~~>*/List<DBEPersistAction> actions, Map<String, Object> options) throws DBCException {
 
         }
 

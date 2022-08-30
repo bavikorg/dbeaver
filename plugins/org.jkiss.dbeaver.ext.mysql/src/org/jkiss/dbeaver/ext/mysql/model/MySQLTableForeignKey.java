@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class MySQLTableForeignKey extends JDBCTableForeignKey<MySQLTable, MySQLTableConstraint>
 {
-    private List<MySQLTableForeignKeyColumn> columns;
+    private /*~~>*/List<MySQLTableForeignKeyColumn> columns;
 
     public MySQLTableForeignKey(
         MySQLTable table,
@@ -59,16 +59,16 @@ public class MySQLTableForeignKey extends JDBCTableForeignKey<MySQLTable, MySQLT
             source,
             false);
         if (source instanceof DBSEntityReferrer) {
-            List<? extends DBSEntityAttributeRef> columns = ((DBSEntityReferrer) source).getAttributeReferences(monitor);
+            /*~~>*/List<? extends DBSEntityAttributeRef> columns = ((DBSEntityReferrer) source).getAttributeReferences(monitor);
             if (columns != null) {
-                this.columns = new ArrayList<>(columns.size());
+                /*~~>*/this.columns = new ArrayList<>(columns.size());
                 for (DBSEntityAttributeRef srcCol : columns) {
                     if (srcCol instanceof DBSTableForeignKeyColumn) {
                         DBSTableForeignKeyColumn fkCol = (DBSTableForeignKeyColumn) srcCol;
-                        this.columns.add(new MySQLTableForeignKeyColumn(
+                        /*~~>*/this.columns.add(new MySQLTableForeignKeyColumn(
                             this,
                             table.getAttribute(monitor, fkCol.getName()),
-                            this.columns.size(),
+                            /*~~>*/this.columns.size(),
                             table.getAttribute(monitor, fkCol.getReferencedColumn().getName())));
                     }
                 }
@@ -77,7 +77,7 @@ public class MySQLTableForeignKey extends JDBCTableForeignKey<MySQLTable, MySQLT
     }
 
     @Override
-    public List<MySQLTableForeignKeyColumn> getAttributeReferences(DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLTableForeignKeyColumn> getAttributeReferences(DBRProgressMonitor monitor)
     {
         return columns;
     }

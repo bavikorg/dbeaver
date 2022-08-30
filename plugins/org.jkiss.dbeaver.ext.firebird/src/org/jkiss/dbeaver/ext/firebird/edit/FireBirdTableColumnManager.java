@@ -82,7 +82,7 @@ public class FireBirdTableColumnManager extends GenericTableColumnManager
      * Is is pretty standard
      */
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
         final FireBirdTableColumn column = (FireBirdTableColumn) command.getObject();
 
         String prefix = "ALTER TABLE " + DBUtils.getObjectFullName(column.getTable(), DBPEvaluationContext.DDL) + " ALTER COLUMN " + DBUtils.getQuotedIdentifier(column) + " ";
@@ -118,7 +118,7 @@ public class FireBirdTableColumnManager extends GenericTableColumnManager
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
     {
         final GenericTableColumn column = command.getObject();
 
@@ -139,7 +139,7 @@ public class FireBirdTableColumnManager extends GenericTableColumnManager
     // Reorder
 
     @Override
-    protected void addObjectReorderActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectReorderCommand command, Map<String, Object> options) {
+    protected void addObjectReorderActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectReorderCommand command, Map<String, Object> options) {
         final GenericTableColumn column = command.getObject();
         actions.add(
             new SQLDatabasePersistAction(
@@ -164,7 +164,7 @@ public class FireBirdTableColumnManager extends GenericTableColumnManager
     }
 
     @Override
-    public void setObjectOrdinalPosition(DBECommandContext commandContext, GenericTableColumn object, List<GenericTableColumn> siblingObjects, int newPosition) throws DBException {
+    public void setObjectOrdinalPosition(DBECommandContext commandContext, GenericTableColumn object, /*~~>*/List<GenericTableColumn> siblingObjects, int newPosition) throws DBException {
         processObjectReorder(commandContext, object, siblingObjects, newPosition);
     }
 

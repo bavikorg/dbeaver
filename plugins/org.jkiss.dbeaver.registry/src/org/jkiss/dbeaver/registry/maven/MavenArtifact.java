@@ -60,11 +60,11 @@ public class MavenArtifact implements IMavenIdentifier
     @Nullable
     private final String fallbackVersion;
 
-    private final List<String> versions = new ArrayList<>();
+    private final /*~~>*/List<String> versions = new ArrayList<>();
     private String latestVersion;
     private String releaseVersion;
     private Date lastUpdate;
-    private final List<MavenArtifactVersion> localVersions = new ArrayList<>();
+    private final /*~~>*/List<MavenArtifactVersion> localVersions = new ArrayList<>();
 
     private transient boolean metadataLoaded = false;
 
@@ -226,7 +226,7 @@ public class MavenArtifact implements IMavenIdentifier
             }
         }
 
-        List<String> filtered = new ArrayList<>();
+        /*~~>*/List<String> filtered = new ArrayList<>();
         for (String version : versions) {
             boolean matches;
             if (versionPattern != null) {
@@ -316,7 +316,7 @@ public class MavenArtifact implements IMavenIdentifier
 
         String versionInfo;
         if (lookupVersion) {
-            List<String> allVersions = versions;
+            /*~~>*/List<String> allVersions = versions;
             switch (versionRef) {
                 case MavenArtifactReference.VERSION_PATTERN_RELEASE:
                     versionInfo = releaseVersion;
@@ -333,7 +333,7 @@ public class MavenArtifact implements IMavenIdentifier
                         String regex = versionRef.substring(1, versionRef.length() - 1);
                         try {
                             Pattern versionPattern = Pattern.compile(regex);
-                            List<String> versions = new ArrayList<>(allVersions);
+                            /*~~>*/List<String> versions = new ArrayList<>(allVersions);
                             for (Iterator<String> iter = versions.iterator(); iter.hasNext(); ) {
                                 if (!versionPattern.matcher(iter.next()).matches()) {
                                     iter.remove();

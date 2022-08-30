@@ -42,7 +42,7 @@ public class BOMInputStream extends InputStream {
     private static final Comparator<ByteOrderMark> BOM_LENGTH_COMPARATOR = Comparator.comparing(ByteOrderMark::length).reversed();
 
     private final InputStream in;
-    private final List<ByteOrderMark> boms;
+    private final /*~~>*/List<ByteOrderMark> boms;
     private ByteOrderMark bom;
     private int[] firstBytes;
     private int fbLength;
@@ -56,8 +56,8 @@ public class BOMInputStream extends InputStream {
         }
 
         this.in = delegate;
-        this.boms = Arrays.asList(boms);
-        this.boms.sort(BOM_LENGTH_COMPARATOR);
+        /*~~>*/this.boms = Arrays.asList(boms);
+        /*~~>*/this.boms.sort(BOM_LENGTH_COMPARATOR);
     }
 
     public BOMInputStream(@NotNull InputStream delegate, @NotNull Charset charset) {

@@ -43,13 +43,13 @@ public class MySQLPlanJSON extends MySQLPlanAbstract {
 
     private static final Gson gson = new Gson();
 
-    private List<MySQLPlanNodeJSON> rootNodes;
+    private /*~~>*/List<MySQLPlanNodeJSON> rootNodes;
 
     public MySQLPlanJSON(JDBCSession session, String query) throws DBCException {
         super((MySQLDataSource) session.getDataSource(), query);
         try (JDBCPreparedStatement dbStat = session.prepareStatement(getPlanQueryString())) {
             try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                List<MySQLPlanNodeJSON> nodes = new ArrayList<>();
+                /*~~>*/List<MySQLPlanNodeJSON> nodes = new ArrayList<>();
 
                 dbResult.next();
                 String jsonPlan = dbResult.getString(1);
@@ -92,9 +92,9 @@ public class MySQLPlanJSON extends MySQLPlanAbstract {
         }
     }
 
-    public MySQLPlanJSON(MySQLDataSource dataSource, String query, List<MySQLPlanNodeJSON> rootNodes) {
+    public MySQLPlanJSON(MySQLDataSource dataSource, String query, /*~~>*/List<MySQLPlanNodeJSON> rootNodes) {
         super(dataSource, query);
-        this.rootNodes = rootNodes;
+        /*~~>*/this.rootNodes = rootNodes;
     }
 
     @Override
@@ -123,7 +123,7 @@ public class MySQLPlanJSON extends MySQLPlanAbstract {
     }
 
     @Override
-    public List<MySQLPlanNodeJSON> getPlanNodes(Map<String, Object> options) {
+    public /*~~>*/List<MySQLPlanNodeJSON> getPlanNodes(Map<String, Object> options) {
         return rootNodes;
     }
 

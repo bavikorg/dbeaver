@@ -37,7 +37,7 @@ public class DB2ReorgIndexTool extends DB2ToolWithStatus<DB2TableBase, DB2ReorgI
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, DB2ReorgIndexToolSettings settings, List<DBEPersistAction> queries, DB2TableBase object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, DB2ReorgIndexToolSettings settings, /*~~>*/List<DBEPersistAction> queries, DB2TableBase object) throws DBCException {
         String sql = "CALL SYSPROC.ADMIN_CMD(" + getLineSeparator() +
                 "'REORG INDEXES ALL FOR TABLE " + object.getFullyQualifiedName(DBPEvaluationContext.DDL) +
                 settings.getTableAccess() + settings.getCleanupOption() +

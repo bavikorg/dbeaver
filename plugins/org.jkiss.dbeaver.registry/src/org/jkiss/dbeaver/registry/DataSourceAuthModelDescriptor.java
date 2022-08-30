@@ -170,7 +170,7 @@ public class DataSourceAuthModelDescriptor extends DataSourceBindingDescriptor i
 
     public Collection<String> getReplaces(DBPDriver driver) {
         if (hasCondReplaces) {
-            List<String> replList = new ArrayList<>();
+            /*~~>*/List<String> replList = new ArrayList<>();
             for (Map.Entry<String, String[]> re : replaces.entrySet()) {
                 String[] forList = re.getValue();
                 if (!ArrayUtils.isEmpty(forList)) {

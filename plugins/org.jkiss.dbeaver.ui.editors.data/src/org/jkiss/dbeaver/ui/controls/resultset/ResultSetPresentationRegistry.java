@@ -46,8 +46,8 @@ public class ResultSetPresentationRegistry {
         return instance;
     }
 
-    private List<ResultSetPresentationDescriptor> presentations = new ArrayList<>();
-    private List<ResultSetPanelDescriptor> panels = new ArrayList<>();
+    private /*~~>*/List<ResultSetPresentationDescriptor> presentations = new ArrayList<>();
+    private /*~~>*/List<ResultSetPanelDescriptor> panels = new ArrayList<>();
 
     private ResultSetPresentationRegistry(IExtensionRegistry registry)
     {
@@ -91,14 +91,14 @@ public class ResultSetPresentationRegistry {
         return null;
     }
 
-    public List<ResultSetPresentationDescriptor> getAllPresentations()
+    public /*~~>*/List<ResultSetPresentationDescriptor> getAllPresentations()
     {
         return presentations;
     }
 
-    public List<ResultSetPresentationDescriptor> getAvailablePresentations(DBCResultSet resultSet, IResultSetContext context)
+    public /*~~>*/List<ResultSetPresentationDescriptor> getAvailablePresentations(DBCResultSet resultSet, IResultSetContext context)
     {
-        List<ResultSetPresentationDescriptor> result = new ArrayList<>();
+        /*~~>*/List<ResultSetPresentationDescriptor> result = new ArrayList<>();
         for (ResultSetPresentationDescriptor descriptor : presentations) {
             if (descriptor.supportedBy(resultSet, context)) {
                 result.add(descriptor);
@@ -107,7 +107,7 @@ public class ResultSetPresentationRegistry {
         return result;
     }
 
-    public List<ResultSetPanelDescriptor> getAllPanels() {
+    public /*~~>*/List<ResultSetPanelDescriptor> getAllPanels() {
         return panels;
     }
 
@@ -120,8 +120,8 @@ public class ResultSetPresentationRegistry {
         return null;
     }
 
-    public List<ResultSetPanelDescriptor> getSupportedPanels(IResultSetContext context, DBPDataSource dataSource, String presentationId, IResultSetPresentation.PresentationType presentationType) {
-        List<ResultSetPanelDescriptor> result = new ArrayList<>();
+    public /*~~>*/List<ResultSetPanelDescriptor> getSupportedPanels(IResultSetContext context, DBPDataSource dataSource, String presentationId, IResultSetPresentation.PresentationType presentationType) {
+        /*~~>*/List<ResultSetPanelDescriptor> result = new ArrayList<>();
         for (ResultSetPanelDescriptor panel : panels) {
             if (panel.supportedBy(context, dataSource, presentationId, presentationType)) {
                 result.add(panel);

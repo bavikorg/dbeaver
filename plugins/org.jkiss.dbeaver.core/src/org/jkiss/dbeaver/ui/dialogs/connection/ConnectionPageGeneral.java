@@ -104,9 +104,9 @@ public class ConnectionPageGeneral extends ConnectionWizardPage implements Navig
     private Button readOnlyConnection;
 
     private DBNBrowseSettings navigatorSettings;
-    private List<DBPDataSourcePermission> accessRestrictions;
+    private /*~~>*/List<DBPDataSourcePermission> accessRestrictions;
 
-    private List<FilterInfo> filters = new ArrayList<>();
+    private /*~~>*/List<FilterInfo> filters = new ArrayList<>();
     private Group filtersGroup;
     private Font boldFont;
 
@@ -127,7 +127,7 @@ public class ConnectionPageGeneral extends ConnectionWizardPage implements Navig
     {
         this(wizard);
         this.dataSourceDescriptor = dataSourceDescriptor;
-        this.accessRestrictions = dataSourceDescriptor.getModifyPermission();
+        /*~~>*/this.accessRestrictions = dataSourceDescriptor.getModifyPermission();
 
         for (FilterInfo filterInfo : filters) {
             filterInfo.filter = dataSourceDescriptor.getObjectFilter(filterInfo.type, null, true);
@@ -599,7 +599,7 @@ public class ConnectionPageGeneral extends ConnectionWizardPage implements Navig
         dsDescriptor.setNavigatorSettings(this.navigatorSettings);
 
         dsDescriptor.setConnectionReadOnly(this.readOnlyConnection.getSelection());
-        dsDescriptor.setModifyPermissions(this.accessRestrictions);
+        dsDescriptor.setModifyPermissions(/*~~>*/this.accessRestrictions);
 
         for (FilterInfo filterInfo : filters) {
             if (filterInfo.filter != null) {

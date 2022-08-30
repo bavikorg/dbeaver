@@ -48,7 +48,7 @@ public class ResultSetPresentationDescriptor extends AbstractContextDescriptor {
     private final DBPImage icon;
     private final int order;
     private final IResultSetPresentation.PresentationType presentationType;
-    private final List<MimeType> contentTypes = new ArrayList<>();
+    private final /*~~>*/List<MimeType> contentTypes = new ArrayList<>();
     private boolean supportsRecordMode;
     private boolean supportsPanels;
     private boolean supportsNavigation;

@@ -158,12 +158,12 @@ public class GroupingResultsDecorator extends ResultSetDecoratorBase {
 
             @SuppressWarnings("unchecked")
             private void dropColumns(DropTargetEvent event) {
-                if (!(event.data instanceof List)) {
+                if (!(event.data instanceof /*~~>*/List)) {
                     return;
                 }
-                List<Object> dropElements = (List<Object>) event.data;
-                List<String> newBindings = new ArrayList<>();
-                List<DBDAttributeBinding> movedBindings = new ArrayList<>();
+                /*~~>*/List<Object> dropElements = (/*~~>*/List<Object>) event.data;
+                /*~~>*/List<String> newBindings = new ArrayList<>();
+                /*~~>*/List<DBDAttributeBinding> movedBindings = new ArrayList<>();
                 for (Object element : dropElements) {
                     if (element instanceof DBDAttributeBinding) {
                         DBDAttributeBinding binding = (DBDAttributeBinding) element;
@@ -194,7 +194,7 @@ public class GroupingResultsDecorator extends ResultSetDecoratorBase {
                     }
 
                     // Reorder columns
-                    List<String> curAttributes = new ArrayList<>(container.getGroupAttributes());
+                    /*~~>*/List<String> curAttributes = new ArrayList<>(container.getGroupAttributes());
                     if (!(presentation.getControl() instanceof Spreadsheet)) {
                         return;
                     }

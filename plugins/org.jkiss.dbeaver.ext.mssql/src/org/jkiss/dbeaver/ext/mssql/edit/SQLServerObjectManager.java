@@ -33,14 +33,14 @@ import java.util.List;
 public abstract class SQLServerObjectManager<OBJECT_TYPE extends DBSObject, CONTAINER_TYPE extends DBSObject>
     extends SQLObjectEditor<OBJECT_TYPE, CONTAINER_TYPE> {
 
-    protected void addDatabaseSwitchAction1(DBCExecutionContext executionContext, List<DBEPersistAction> actions, SQLServerDatabase objDatabase) {
+    protected void addDatabaseSwitchAction1(DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, SQLServerDatabase objDatabase) {
         SQLServerDatabase defaultDatabase = ((SQLServerExecutionContext)executionContext).getDefaultCatalog();
         if (defaultDatabase != objDatabase) {
             actions.add(new SQLDatabasePersistAction("Set current database", "USE " + DBUtils.getQuotedIdentifier(objDatabase), false)); //$NON-NLS-2$
         }
     }
 
-    protected void addDatabaseSwitchAction2(DBCExecutionContext executionContext, List<DBEPersistAction> actions, SQLServerDatabase objDatabase) {
+    protected void addDatabaseSwitchAction2(DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, SQLServerDatabase objDatabase) {
         SQLServerDatabase defaultDatabase = ((SQLServerExecutionContext)executionContext).getDefaultCatalog();
         if (defaultDatabase != objDatabase) {
             actions.add(new SQLDatabasePersistAction("Set current database ", "USE " + DBUtils.getQuotedIdentifier(defaultDatabase), false)); //$NON-NLS-2$

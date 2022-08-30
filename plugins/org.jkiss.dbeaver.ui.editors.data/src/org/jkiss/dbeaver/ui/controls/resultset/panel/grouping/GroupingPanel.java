@@ -218,7 +218,7 @@ public class GroupingPanel implements IResultSetPanel {
         public void run() {
             DBDAttributeBinding currentAttribute = groupingResultsContainer.getResultSetController().getActivePresentation().getCurrentAttribute();
             if (currentAttribute != null) {
-                List<String> attributes = Collections.singletonList(currentAttribute.getFullyQualifiedName(DBPEvaluationContext.UI));
+                /*~~>*/List<String> attributes = Collections.singletonList(currentAttribute.getFullyQualifiedName(DBPEvaluationContext.UI));
                 if (groupingResultsContainer.removeGroupingAttribute(attributes) || groupingResultsContainer.removeGroupingFunction(attributes)) {
                     try {
                         groupingResultsContainer.rebuildGrouping();

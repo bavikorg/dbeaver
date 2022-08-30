@@ -37,7 +37,7 @@ public class DBVEntityAttribute implements DBSEntityAttribute, DBPNamedObject2, 
 {
     private final DBVEntity entity;
     private final DBVEntityAttribute parent;
-    private final List<DBVEntityAttribute> children = new ArrayList<>();
+    private final /*~~>*/List<DBVEntityAttribute> children = new ArrayList<>();
     private String name;
     private String defaultValue;
     private String description;
@@ -64,8 +64,8 @@ public class DBVEntityAttribute implements DBSEntityAttribute, DBPNamedObject2, 
         this.entity = entity;
         this.parent = parent;
         this.name = copy.name;
-        for (DBVEntityAttribute child : copy.children) {
-            this.children.add(new DBVEntityAttribute(entity, this, child));
+        for (DBVEntityAttribute child : /*~~>*/copy.children) {
+            /*~~>*/this.children.add(new DBVEntityAttribute(entity, this, child));
         }
         this.defaultValue = copy.defaultValue;
         this.description = copy.description;
@@ -275,7 +275,7 @@ public class DBVEntityAttribute implements DBSEntityAttribute, DBPNamedObject2, 
         this.parsedExpression = null;
     }
 
-    public List<DBVEntityAttribute> getChildren() {
+    public /*~~>*/List<DBVEntityAttribute> getChildren() {
         return children;
     }
 
@@ -284,7 +284,7 @@ public class DBVEntityAttribute implements DBSEntityAttribute, DBPNamedObject2, 
     }
 
     public void addChild(DBVEntityAttribute child) {
-        this.children.add(child);
+        /*~~>*/this.children.add(child);
     }
 
     public DBVTransformSettings getTransformSettings() {

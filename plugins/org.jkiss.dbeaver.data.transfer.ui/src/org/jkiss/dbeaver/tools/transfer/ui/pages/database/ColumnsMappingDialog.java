@@ -164,7 +164,7 @@ class ColumnsMappingDialog extends DialogPage {
             @Override
             protected CellEditor getCellEditor(Object element) {
                 try {
-                    java.util.List<String> items = new ArrayList<>();
+                    /*~~>*//*~~>*/java.util.List<String> items = new ArrayList<>();
                     DatabaseMappingAttribute mapping = (DatabaseMappingAttribute) element;
                     DatabaseMappingContainer container = mapping.getParent();
                     if ((container.getMappingType() == DatabaseMappingType.existing || container.getMappingType() == DatabaseMappingType.recreate) &&

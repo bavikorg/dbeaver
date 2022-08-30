@@ -28,8 +28,8 @@ public class SMAuthProviderDescriptor {
     private String label;
     private String description;
     private String icon;
-    private List<SMAuthCredentialsProfile> credentialProfiles;
-    private List<SMAuthProviderCustomConfiguration> customConfigurations;
+    private /*~~>*/List<SMAuthCredentialsProfile> credentialProfiles;
+    private /*~~>*/List<SMAuthProviderCustomConfiguration> customConfigurations;
 
     public SMAuthProviderDescriptor() {
     }
@@ -66,27 +66,27 @@ public class SMAuthProviderDescriptor {
         this.icon = icon;
     }
 
-    public List<SMAuthCredentialsProfile> getCredentialProfiles() {
+    public /*~~>*/List<SMAuthCredentialsProfile> getCredentialProfiles() {
         return credentialProfiles;
     }
 
-    public void setCredentialProfiles(List<SMAuthCredentialsProfile> credentialProfiles) {
-        this.credentialProfiles = credentialProfiles;
+    public void setCredentialProfiles(/*~~>*/List<SMAuthCredentialsProfile> credentialProfiles) {
+        /*~~>*/this.credentialProfiles = credentialProfiles;
     }
 
-    public List<SMAuthProviderCustomConfiguration> getCustomConfigurations() {
+    public /*~~>*/List<SMAuthProviderCustomConfiguration> getCustomConfigurations() {
         return customConfigurations;
     }
 
-    public void setCustomConfigurations(List<SMAuthProviderCustomConfiguration> customConfigurations) {
-        this.customConfigurations = customConfigurations;
+    public void setCustomConfigurations(/*~~>*/List<SMAuthProviderCustomConfiguration> customConfigurations) {
+        /*~~>*/this.customConfigurations = customConfigurations;
     }
 
     public void addCustomConfiguration(SMAuthProviderCustomConfiguration customConfiguration) {
-        if (this.customConfigurations == null) {
-            this.customConfigurations = new ArrayList<>();
+        if (/*~~>*/this.customConfigurations == null) {
+            /*~~>*/this.customConfigurations = new ArrayList<>();
         }
-        this.customConfigurations.add(customConfiguration);
+        /*~~>*/this.customConfigurations.add(customConfiguration);
     }
 
 }

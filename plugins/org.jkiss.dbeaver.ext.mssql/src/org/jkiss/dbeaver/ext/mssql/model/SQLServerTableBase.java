@@ -127,14 +127,14 @@ public abstract class SQLServerTableBase extends JDBCTable<SQLServerDataSource, 
     }
 
     @Override
-    public List<SQLServerTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<SQLServerTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
-        List<SQLServerTableColumn> childColumns = getContainer().getTableCache().getChildren(monitor, getContainer(), this);
+        /*~~>*/List<SQLServerTableColumn> childColumns = getContainer().getTableCache().getChildren(monitor, getContainer(), this);
         if (childColumns == null) {
             return Collections.emptyList();
         }
-        List<SQLServerTableColumn> columns = new ArrayList<>(childColumns);
+        /*~~>*/List<SQLServerTableColumn> columns = new ArrayList<>(childColumns);
         columns.sort(DBUtils.orderComparator());
         return columns;
     }
@@ -296,12 +296,12 @@ public abstract class SQLServerTableBase extends JDBCTable<SQLServerDataSource, 
 
     @NotNull
     @Association
-    public List<SQLServerTableTrigger> getTriggers(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<SQLServerTableTrigger> getTriggers(@NotNull DBRProgressMonitor monitor) throws DBException {
         if (!supportsTriggers()) {
             return Collections.emptyList();
         }
         SQLServerSchema schema = getSchema();
-        List<SQLServerTableTrigger> triggers = new ArrayList<>();
+        /*~~>*/List<SQLServerTableTrigger> triggers = new ArrayList<>();
         for (SQLServerTableTrigger trigger: schema.getTriggerCache().getAllObjects(monitor, schema)) {
             if (this == trigger.getTable()) {
                 triggers.add(trigger);

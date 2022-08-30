@@ -74,8 +74,8 @@ class ConnectionPageInitialization extends ConnectionWizardPage implements IData
     private Font boldFont;
 
     private boolean activated = false;
-    private final List<DBPTransactionIsolation> supportedLevels = new ArrayList<>();
-    private List<String> bootstrapQueries;
+    private final /*~~>*/List<DBPTransactionIsolation> supportedLevels = new ArrayList<>();
+    private /*~~>*/List<String> bootstrapQueries;
     private boolean ignoreBootstrapErrors;
 
     private boolean txnOptionsLoaded = false;
@@ -198,7 +198,7 @@ class ConnectionPageInitialization extends ConnectionWizardPage implements IData
     private void loadSelectableObject(DBRProgressMonitor monitor, DBSObjectContainer objectContainer, Combo objectCombo, DBCExecutionContextDefaults contextDefaults, boolean isCatalogs) {
         if (objectContainer != null) {
             try {
-                final List<String> objectNames = new ArrayList<>();
+                final /*~~>*/List<String> objectNames = new ArrayList<>();
                 Collection<? extends DBSObject> children = objectContainer.getChildren(monitor);
                 if (children != null) {
                     for (DBSObject child : children) {

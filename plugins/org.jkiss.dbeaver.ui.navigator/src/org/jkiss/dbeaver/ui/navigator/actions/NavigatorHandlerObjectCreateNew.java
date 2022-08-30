@@ -104,7 +104,7 @@ public class NavigatorHandlerObjectCreateNew extends NavigatorHandlerObjectCreat
                 // No explicit object type. Try to detect from selection
                 IWorkbenchPart activePart = HandlerUtil.getActivePart(event);
                 if (activePart != null) {
-                    List<IContributionItem> actions = fillCreateMenuItems(activePart.getSite(), node);
+                    /*~~>*/List<IContributionItem> actions = fillCreateMenuItems(activePart.getSite(), node);
                     for (IContributionItem item : actions) {
                         if (item instanceof CommandContributionItem) {
                             ParameterizedCommand command = ((CommandContributionItem) item).getCommand();
@@ -152,7 +152,7 @@ public class NavigatorHandlerObjectCreateNew extends NavigatorHandlerObjectCreat
             // Try to get type from active selection
             DBNNode node = getNodeFromSelection(selectionProvider.getSelection());
             if (node != null && !node.isDisposed()) {
-                List<IContributionItem> actions = fillCreateMenuItems(workbenchWindow.getActivePage().getActivePart().getSite(), node);
+                /*~~>*/List<IContributionItem> actions = fillCreateMenuItems(workbenchWindow.getActivePage().getActivePart().getSite(), node);
                 for (IContributionItem item : actions) {
                     if (item instanceof CommandContributionItem) {
                         ParameterizedCommand command = ((CommandContributionItem) item).getCommand();
@@ -210,7 +210,7 @@ public class NavigatorHandlerObjectCreateNew extends NavigatorHandlerObjectCreat
             if (node instanceof DBNDataSource) {
                 return UIIcon.SQL_CONNECT;
             } else if (node instanceof DBNDatabaseFolder) {
-                final List<DBXTreeNode> metaChildren = ((DBNDatabaseFolder)node).getMeta().getChildren(node);
+                final /*~~>*/List<DBXTreeNode> metaChildren = ((DBNDatabaseFolder)node).getMeta().getChildren(node);
                 if (!CommonUtils.isEmpty(metaChildren)) {
                     return metaChildren.get(0).getIcon(null);
                 }
@@ -223,8 +223,8 @@ public class NavigatorHandlerObjectCreateNew extends NavigatorHandlerObjectCreat
     }
 
     // If site is null then we need only item count. BAD CODE.
-    public static List<IContributionItem> fillCreateMenuItems(@Nullable IWorkbenchPartSite site, DBNNode node) {
-        List<IContributionItem> createActions = new ArrayList<>();
+    public static /*~~>*/List<IContributionItem> fillCreateMenuItems(@Nullable IWorkbenchPartSite site, DBNNode node) {
+        /*~~>*/List<IContributionItem> createActions = new ArrayList<>();
 
         if (node instanceof DBNLocalFolder || node instanceof DBNProjectDatabases) {
             IContributionItem item = makeCreateContributionItem(
@@ -265,10 +265,10 @@ public class NavigatorHandlerObjectCreateNew extends NavigatorHandlerObjectCreat
         return createActions;
     }
 
-    private static void addDatabaseNodeCreateItems(@Nullable IWorkbenchPartSite site, List<IContributionItem> createActions, DBNDatabaseNode node) {
+    private static void addDatabaseNodeCreateItems(@Nullable IWorkbenchPartSite site, /*~~>*/List<IContributionItem> createActions, DBNDatabaseNode node) {
         if (node instanceof DBNDatabaseFolder) {
             DBXTreeFolder folderMeta = ((DBNDatabaseFolder) node).getMeta();
-            final List<DBXTreeNode> metaChildren = folderMeta.getChildren(node);
+            final /*~~>*/List<DBXTreeNode> metaChildren = folderMeta.getChildren(node);
             if (!CommonUtils.isEmpty(metaChildren)) {
                 // Test direct child node items
                 Class<?> nodeClass = null;
@@ -341,11 +341,11 @@ public class NavigatorHandlerObjectCreateNew extends NavigatorHandlerObjectCreat
                 createActions.add(new Separator());
             }
 
-            List<DBXTreeNode> childNodeMetas = node.getMeta().getChildren(node);
+            /*~~>*/List<DBXTreeNode> childNodeMetas = node.getMeta().getChildren(node);
             if (!CommonUtils.isEmpty(childNodeMetas)) {
                 for (DBXTreeNode childMeta : childNodeMetas) {
                     if (childMeta instanceof DBXTreeFolder) {
-                        List<DBXTreeNode> folderChildMeta = childMeta.getChildren(node);
+                        /*~~>*/List<DBXTreeNode> folderChildMeta = childMeta.getChildren(node);
                         if (!CommonUtils.isEmpty(folderChildMeta) && folderChildMeta.size() == 1 && folderChildMeta.get(0) instanceof DBXTreeItem) {
                             addChildNodeCreateItem(site, createActions, node, (DBXTreeItem) folderChildMeta.get(0));
                         }
@@ -357,7 +357,7 @@ public class NavigatorHandlerObjectCreateNew extends NavigatorHandlerObjectCreat
         }
     }
 
-    private static boolean addChildNodeCreateItem(@Nullable IWorkbenchPartSite site, List<IContributionItem> createActions, DBNDatabaseNode node, DBXTreeItem childMeta) {
+    private static boolean addChildNodeCreateItem(@Nullable IWorkbenchPartSite site, /*~~>*/List<IContributionItem> createActions, DBNDatabaseNode node, DBXTreeItem childMeta) {
         if (childMeta.isVirtual()) {
             return false;
         }
@@ -444,7 +444,7 @@ public class NavigatorHandlerObjectCreateNew extends NavigatorHandlerObjectCreat
             IWorkbenchPartSite site = activePart.getSite();
             DBNNode node = getNodeFromSelection(site.getSelectionProvider().getSelection());
 
-            List<IContributionItem> createActions = fillCreateMenuItems(site, node);
+            /*~~>*/List<IContributionItem> createActions = fillCreateMenuItems(site, node);
             return createActions.toArray(new IContributionItem[0]);
         }
     }

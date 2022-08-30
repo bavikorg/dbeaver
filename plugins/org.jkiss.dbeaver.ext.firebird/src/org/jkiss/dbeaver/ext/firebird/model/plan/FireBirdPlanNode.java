@@ -33,11 +33,11 @@ public class FireBirdPlanNode extends AbstractExecutionPlanNode {
 
 	private String plan;
 	FireBirdPlanNode parent;
-	private List<FireBirdPlanNode> nested;
+	private /*~~>*/List<FireBirdPlanNode> nested;
 	
 	public FireBirdPlanNode(String plan) {
 		this.plan = plan;
-		this.nested = new ArrayList<>();
+		/*~~>*/this.nested = new ArrayList<>();
 	}
 
 	@Property

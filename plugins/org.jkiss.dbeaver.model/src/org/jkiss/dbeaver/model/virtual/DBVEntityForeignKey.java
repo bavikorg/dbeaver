@@ -48,7 +48,7 @@ public class DBVEntityForeignKey implements DBSEntityConstraint, DBSEntityAssoci
     private final DBVEntity entity;
     private String refEntityId;
     private String refConstraintId;
-    private final List<DBVEntityForeignKeyColumn> attributes = new ArrayList<>();
+    private final /*~~>*/List<DBVEntityForeignKeyColumn> attributes = new ArrayList<>();
 
     public DBVEntityForeignKey(@NotNull DBVEntity entity) {
         this.entity = entity;
@@ -73,8 +73,8 @@ public class DBVEntityForeignKey implements DBSEntityConstraint, DBSEntityAssoci
         }
 
         this.refConstraintId = copy.refConstraintId;
-        for (DBVEntityForeignKeyColumn fkc : copy.attributes) {
-            this.attributes.add(new DBVEntityForeignKeyColumn(this, fkc));
+        for (DBVEntityForeignKeyColumn fkc : /*~~>*/copy.attributes) {
+            /*~~>*/this.attributes.add(new DBVEntityForeignKeyColumn(this, fkc));
         }
 
         DBVModel.addToCache(this);
@@ -159,7 +159,7 @@ public class DBVEntityForeignKey implements DBSEntityConstraint, DBSEntityAssoci
         }
         DBSObject object = ((DBNDatabaseNode) refNode).getObject();
         if (object instanceof DBSEntity) {
-            List<DBSEntityConstraint> constraints = DBVUtils.getAllConstraints(monitor, (DBSEntity) object);
+            /*~~>*/List<DBSEntityConstraint> constraints = DBVUtils.getAllConstraints(monitor, (DBSEntity) object);
             DBSObject refEntityConstraint = DBUtils.findObject(constraints, refConstraintId);
             if (refEntityConstraint == null) {
                 throw new DBException("Can't find constraint " + refConstraintId + " in entity " + refEntityId);
@@ -182,15 +182,15 @@ public class DBVEntityForeignKey implements DBSEntityConstraint, DBSEntityAssoci
     }
 
     @Override
-    public List<DBVEntityForeignKeyColumn> getAttributeReferences(@Nullable DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<DBVEntityForeignKeyColumn> getAttributeReferences(@Nullable DBRProgressMonitor monitor) throws DBException {
         return attributes;
     }
 
-    public List<DBVEntityForeignKeyColumn> getAttributes() {
+    public /*~~>*/List<DBVEntityForeignKeyColumn> getAttributes() {
         return attributes;
     }
 
-    public synchronized void setAttributes(List<DBVEntityForeignKeyColumn> attrs) {
+    public synchronized void setAttributes(/*~~>*/List<DBVEntityForeignKeyColumn> attrs) {
         attributes.clear();
         attributes.addAll(attrs);
     }

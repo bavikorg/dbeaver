@@ -63,7 +63,7 @@ public class SQLQueryParameterRegistry
         return registry;
     }
 
-    public List<ParameterInfo> getAllParameters() {
+    public /*~~>*/List<ParameterInfo> getAllParameters() {
         return new ArrayList<>(parameterMap.values());
     }
 

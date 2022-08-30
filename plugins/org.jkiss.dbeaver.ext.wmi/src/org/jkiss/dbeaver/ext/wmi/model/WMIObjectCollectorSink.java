@@ -30,7 +30,7 @@ class WMIObjectCollectorSink implements WMIObjectSink
 
     private final DBRProgressMonitor monitor;
     private final WMIService service;
-    private final List<WMIObject> objectList = new ArrayList<>();
+    private final /*~~>*/List<WMIObject> objectList = new ArrayList<>();
     private final long firstRow;
     private final long maxRows;
     private volatile boolean finished = false;
@@ -53,7 +53,7 @@ class WMIObjectCollectorSink implements WMIObjectSink
         this.maxRows = maxRows;
     }
 
-    public List<WMIObject> getObjectList()
+    public /*~~>*/List<WMIObject> getObjectList()
     {
         return objectList;
     }

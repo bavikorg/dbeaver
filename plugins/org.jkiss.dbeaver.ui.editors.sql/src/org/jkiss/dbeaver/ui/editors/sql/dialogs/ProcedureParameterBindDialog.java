@@ -46,17 +46,17 @@ public class ProcedureParameterBindDialog extends StatusDialog {
     private static final String DIALOG_ID = "DBeaver.ProcedureParameterBindDialog";//$NON-NLS-1$
 
     private DBSProcedure procedure;
-    private List<DBSProcedureParameter> parameters;
+    private /*~~>*/List<DBSProcedureParameter> parameters;
     private Map<DBSProcedureParameter, Object> values = new HashMap<>();
 
     public ProcedureParameterBindDialog(Shell shell, DBSProcedure procedure, Map<DBSProcedureParameter, Object> values)
     {
         super(shell);
         this.procedure = procedure;
-        this.parameters = new ArrayList<>();
+        /*~~>*/this.parameters = new ArrayList<>();
 
         try {
-            this.parameters.addAll(procedure.getParameters(new VoidProgressMonitor()));
+            /*~~>*/this.parameters.addAll(procedure.getParameters(new VoidProgressMonitor()));
         } catch (DBException e) {
             DBWorkbench.getPlatformUI().showError("Can't get parameters", "Error getting procedure papameters", e);
         }
@@ -155,7 +155,7 @@ public class ProcedureParameterBindDialog extends StatusDialog {
         super.okPressed();
     }
 
-    public List<DBSProcedureParameter> getParameters() {
+    public /*~~>*/List<DBSProcedureParameter> getParameters() {
         return parameters;
     }
 

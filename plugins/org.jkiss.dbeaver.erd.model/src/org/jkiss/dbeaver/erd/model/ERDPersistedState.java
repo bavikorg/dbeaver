@@ -76,10 +76,10 @@ public class ERDPersistedState {
     public static final String TAG_NOTES = "notes";
     public static final String TAG_NOTE = "note";
 
-    public static List<DBPDataSourceContainer> extractContainers(DBPProject project, InputStream is)
+    public static /*~~>*/List<DBPDataSourceContainer> extractContainers(DBPProject project, InputStream is)
         throws IOException, XMLException, DBException
     {
-        List<DBPDataSourceContainer> containers = new ArrayList<>();
+        /*~~>*/List<DBPDataSourceContainer> containers = new ArrayList<>();
 
         {
             final Document document = XMLUtils.parseDocument(is);

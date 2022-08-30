@@ -63,7 +63,7 @@ public class SMAuthCredentialsProfile {
         return description;
     }
 
-    public List<AuthPropertyDescriptor> getCredentialParameters() {
+    public /*~~>*/List<AuthPropertyDescriptor> getCredentialParameters() {
         return new ArrayList<>(credentialParameters.values());
     }
 

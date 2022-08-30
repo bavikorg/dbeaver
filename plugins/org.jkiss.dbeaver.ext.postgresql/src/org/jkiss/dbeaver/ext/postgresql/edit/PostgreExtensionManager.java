@@ -54,7 +54,7 @@ public class PostgreExtensionManager extends SQLObjectEditor<PostgreExtension, P
 
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectCreateCommand command,
                                           Map<String, Object> options) {
         final PostgreExtension extension = command.getObject();
@@ -67,7 +67,7 @@ public class PostgreExtensionManager extends SQLObjectEditor<PostgreExtension, P
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectDeleteCommand command,
                                           Map<String, Object> options) {
         

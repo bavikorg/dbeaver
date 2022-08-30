@@ -230,11 +230,11 @@ public class DB2Utils {
     // EXPLAIN
     // ------------------------
 
-    public static List<String> getListOfUsableTsForExplain(DBRProgressMonitor monitor, JDBCSession session) throws SQLException
+    public static /*~~>*/List<String> getListOfUsableTsForExplain(DBRProgressMonitor monitor, JDBCSession session) throws SQLException
     {
         LOG.debug("Get List Of Usable Tablespaces For Explain Tables");
 
-        List<String> listTablespaces = new ArrayList<>();
+        /*~~>*/List<String> listTablespaces = new ArrayList<>();
         try (JDBCPreparedStatement dbStat = session.prepareStatement(SEL_LIST_TS_EXPLAIN)) {
             try (JDBCResultSet dbResult = dbStat.executeQuery()) {
                 while (dbResult.next()) {
@@ -306,11 +306,11 @@ public class DB2Utils {
     // DBA Data and Actions
     // ---------------------
 
-    public static List<DB2ServerApplication> readApplications(DBRProgressMonitor monitor, JDBCSession session) throws SQLException
+    public static /*~~>*/List<DB2ServerApplication> readApplications(DBRProgressMonitor monitor, JDBCSession session) throws SQLException
     {
         LOG.debug("readApplications");
 
-        List<DB2ServerApplication> listApplications = new ArrayList<>();
+        /*~~>*/List<DB2ServerApplication> listApplications = new ArrayList<>();
         try (JDBCPreparedStatement dbStat = session.prepareStatement(SEL_APP)) {
             try (JDBCResultSet dbResult = dbStat.executeQuery()) {
                 while (dbResult.next()) {
@@ -321,11 +321,11 @@ public class DB2Utils {
         return listApplications;
     }
 
-    public static List<DB2Parameter> readDBCfg(DBRProgressMonitor monitor, JDBCSession session) throws SQLException
+    public static /*~~>*/List<DB2Parameter> readDBCfg(DBRProgressMonitor monitor, JDBCSession session) throws SQLException
     {
         LOG.debug("readDBCfg");
 
-        List<DB2Parameter> listDBParameters = new ArrayList<>();
+        /*~~>*/List<DB2Parameter> listDBParameters = new ArrayList<>();
         try (JDBCPreparedStatement dbStat = session.prepareStatement(SEL_DBCFG)) {
             try (JDBCResultSet dbResult = dbStat.executeQuery()) {
                 while (dbResult.next()) {
@@ -336,11 +336,11 @@ public class DB2Utils {
         return listDBParameters;
     }
 
-    public static List<DB2Parameter> readDBMCfg(DBRProgressMonitor monitor, JDBCSession session) throws SQLException
+    public static /*~~>*/List<DB2Parameter> readDBMCfg(DBRProgressMonitor monitor, JDBCSession session) throws SQLException
     {
         LOG.debug("readDBMCfg");
 
-        List<DB2Parameter> listDBMParameters = new ArrayList<>();
+        /*~~>*/List<DB2Parameter> listDBMParameters = new ArrayList<>();
         try (JDBCPreparedStatement dbStat = session.prepareStatement(SEL_DBMCFG)) {
             try (JDBCResultSet dbResult = dbStat.executeQuery()) {
                 while (dbResult.next()) {
@@ -351,11 +351,11 @@ public class DB2Utils {
         return listDBMParameters;
     }
 
-    public static List<DB2XMLString> readXMLStrings(DBRProgressMonitor monitor, JDBCSession session) throws SQLException
+    public static /*~~>*/List<DB2XMLString> readXMLStrings(DBRProgressMonitor monitor, JDBCSession session) throws SQLException
     {
         LOG.debug("readXMLStrings");
 
-        List<DB2XMLString> listXMLStrings = new ArrayList<>();
+        /*~~>*/List<DB2XMLString> listXMLStrings = new ArrayList<>();
         try (JDBCPreparedStatement dbStat = session.prepareStatement(SEL_XMLSTRINGS)) {
             try (JDBCResultSet dbResult = dbStat.executeQuery()) {
                 while (dbResult.next()) {

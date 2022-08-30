@@ -36,8 +36,8 @@ public class FireBirdPlanBuilder {
 		this.plan = plan;
 	}
 
-	public List<FireBirdPlanNode> Build(JDBCSession session) throws DBCException {
-		List<FireBirdPlanNode> rootNodes = new ArrayList<>();
+	public /*~~>*/List<FireBirdPlanNode> Build(JDBCSession session) throws DBCException {
+		/*~~>*/List<FireBirdPlanNode> rootNodes = new ArrayList<>();
 		String [] plans = plan.split("\\n");
 		for (String plan: plans) {
 			FireBirdPlanParser pm = new FireBirdPlanParser(plan, session);

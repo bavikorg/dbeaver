@@ -56,7 +56,7 @@ public class PostgreMViewManager extends PostgreViewManager {
     }
 
     @Override
-    protected void createOrReplaceViewQuery(DBRProgressMonitor monitor, List<DBEPersistAction> actions, PostgreViewBase view, Map<String, Object> options) throws DBException {
+    protected void createOrReplaceViewQuery(DBRProgressMonitor monitor, /*~~>*/List<DBEPersistAction> actions, PostgreViewBase view, Map<String, Object> options) throws DBException {
         super.createOrReplaceViewQuery(monitor, actions, view, options);
         // Indexes DDL
     }
@@ -82,7 +82,7 @@ public class PostgreMViewManager extends PostgreViewManager {
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
         final PostgreMaterializedView mView = (PostgreMaterializedView) command.getObject();
         if (!command.hasProperty(DBConstants.PROP_ID_DESCRIPTION) || command.getProperties().size() > 1) {
             super.addObjectDeleteActions(monitor, executionContext, actionList, new ObjectDeleteCommand(mView, "Drop view"), options);

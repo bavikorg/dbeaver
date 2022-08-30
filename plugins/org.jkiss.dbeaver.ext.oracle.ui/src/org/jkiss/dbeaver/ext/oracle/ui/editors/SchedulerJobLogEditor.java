@@ -54,7 +54,7 @@ public class SchedulerJobLogEditor extends AbstractDataEditor<OracleSchedulerJob
         if (logView == null) {
             return null;
         }
-        List<DBDAttributeConstraint> constraints = new ArrayList<>();
+        /*~~>*/List<DBDAttributeConstraint> constraints = new ArrayList<>();
         try {
             DBRProgressMonitor monitor = new VoidProgressMonitor();
             OracleTableColumn ownerAttr = logView.getAttribute(monitor, "OWNER");

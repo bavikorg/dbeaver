@@ -78,9 +78,9 @@ public class DashboardDatabaseSelectDialog extends BaseDialog {
             treeViewer.setContentProvider(new TreeContentProvider() {
                 @Override
                 public Object[] getChildren(Object parentElement) {
-                    List<? extends DBPNamedObject> result = null;
-                    if (parentElement instanceof List) {
-                        result = (List) parentElement;
+                    /*~~>*/List<? extends DBPNamedObject> result = null;
+                    if (parentElement instanceof /*~~>*/List) {
+                        result = (/*~~>*/List) parentElement;
                     } else if (parentElement instanceof DBPDataSourceProviderDescriptor) {
                         result = ((DBPDataSourceProviderDescriptor) parentElement).getEnabledDrivers();
                         if (result.size() <= 1) {

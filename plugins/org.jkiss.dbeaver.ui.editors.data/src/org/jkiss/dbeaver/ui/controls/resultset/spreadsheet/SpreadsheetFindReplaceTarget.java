@@ -66,7 +66,7 @@ class SpreadsheetFindReplaceTarget implements IFindReplaceTarget, IFindReplaceTa
     private Color scopeHighlightColor;
     private boolean replaceAll;
     private boolean sessionActive = false;
-    private List<GridPos> originalSelection = new ArrayList<>();
+    private /*~~>*/List<GridPos> originalSelection = new ArrayList<>();
 
     public static synchronized SpreadsheetFindReplaceTarget getInstance() {
         if (instance == null) {
@@ -158,7 +158,7 @@ class SpreadsheetFindReplaceTarget implements IFindReplaceTarget, IFindReplaceTa
         }
         this.sessionActive = true;
         owner.getControl().redraw();
-        this.originalSelection = new ArrayList<>(owner.getSpreadsheet().getSelection());
+        /*~~>*/this.originalSelection = new ArrayList<>(owner.getSpreadsheet().getSelection());
         owner.highlightRows(-1, -1, null);
     }
 
@@ -174,7 +174,7 @@ class SpreadsheetFindReplaceTarget implements IFindReplaceTarget, IFindReplaceTa
         Control control = owner.getControl();
         if (control != null && !control.isDisposed()) {
             owner.getSpreadsheet().deselectAll();
-            owner.getSpreadsheet().selectCells(this.originalSelection);
+            owner.getSpreadsheet().selectCells(/*~~>*/this.originalSelection);
         }
     }
 
@@ -194,7 +194,7 @@ class SpreadsheetFindReplaceTarget implements IFindReplaceTarget, IFindReplaceTa
             owner.highlightRows(-1, -1, null);
             if (scope == null) {
                 owner.getSpreadsheet().deselectAll();
-                owner.getSpreadsheet().selectCells(this.originalSelection);
+                owner.getSpreadsheet().selectCells(/*~~>*/this.originalSelection);
             }
         } else {
             owner.highlightRows(scope.getOffset(), scope.getLength(), scopeHighlightColor);
@@ -215,7 +215,7 @@ class SpreadsheetFindReplaceTarget implements IFindReplaceTarget, IFindReplaceTa
             return;
         }
         int columnCount = owner.getSpreadsheet().getColumnCount();
-        List<GridPos> selRows = new ArrayList<>();
+        /*~~>*/List<GridPos> selRows = new ArrayList<>();
         for (int rowNum = 0; rowNum < length; rowNum++) {
             for (int col = 0; col < columnCount; col++) {
                 selRows.add(new GridPos(col, offset + rowNum));

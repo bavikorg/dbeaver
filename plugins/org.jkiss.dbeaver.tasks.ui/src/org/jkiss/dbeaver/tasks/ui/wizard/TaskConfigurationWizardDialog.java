@@ -71,7 +71,7 @@ public class TaskConfigurationWizardDialog extends MultiPageWizardDialog {
 
         if (selection != null && !selection.isEmpty()) {
             if (wizard.getSettings() instanceof DBTTaskSettingsInput) {
-                List<Object> inputObjects = new ArrayList<>();
+                /*~~>*/List<Object> inputObjects = new ArrayList<>();
                 for (Object so : selection.toArray()) {
                     if (wizard.getTaskType().isObjectApplicable(so)) {
                         inputObjects.add(so);

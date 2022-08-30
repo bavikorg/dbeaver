@@ -125,7 +125,7 @@ public class PostgreDataSourceProvider extends JDBCDataSourceProvider implements
     private static Map<String, PostgreServerHome> localServers = null;
 
     @Override
-    public List<DBPNativeClientLocation> findLocalClientLocations() {
+    public /*~~>*/List<DBPNativeClientLocation> findLocalClientLocations() {
         findLocalClients();
         return new ArrayList<>(localServers.values());
     }

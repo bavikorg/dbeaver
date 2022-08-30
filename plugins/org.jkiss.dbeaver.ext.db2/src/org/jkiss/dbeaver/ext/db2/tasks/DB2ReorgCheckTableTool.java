@@ -35,7 +35,7 @@ public class DB2ReorgCheckTableTool extends DB2ToolWithStatus<DB2TableBase, DB2R
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, DB2ReorgCheckTableToolSettings settings, List<DBEPersistAction> queries, DB2TableBase object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, DB2ReorgCheckTableToolSettings settings, /*~~>*/List<DBEPersistAction> queries, DB2TableBase object) throws DBCException {
         String sql = "CALL SYSPROC.REORGCHK_TB_STATS('T','"; //$NON-NLS-1$
         sql += object.getFullyQualifiedName(DBPEvaluationContext.DDL);
         sql += "')"; //$NON-NLS-1$

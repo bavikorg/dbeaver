@@ -132,10 +132,10 @@ public class ArrayUtilsTest {
   @Test
   public void testSafeArray() {
     String[] arr = null;
-    List<Object> emptyList = new ArrayList<>();
+    /*~~>*/List<Object> emptyList = new ArrayList<>();
     Assert.assertEquals(emptyList, ArrayUtils.safeArray(null));
 
-    List<String> list = new ArrayList<>();
+    /*~~>*/List<String> list = new ArrayList<>();
     list.add("a");
     Assert.assertEquals(list, ArrayUtils.safeArray(new String[]{"a"}));
   }
@@ -178,7 +178,7 @@ public class ArrayUtilsTest {
 
   @Test
   public void testToArray() {
-    List<String> list = new ArrayList<>();
+    /*~~>*/List<String> list = new ArrayList<>();
     list.add("a");
     Assert.assertEquals(new String[]{"a"}, ArrayUtils.toArray(Object.class, list));
   }

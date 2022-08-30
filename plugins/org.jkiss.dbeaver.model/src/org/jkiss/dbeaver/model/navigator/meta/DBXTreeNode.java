@@ -46,9 +46,9 @@ public abstract class DBXTreeNode
     private final DBXTreeNode parent;
     private final IConfigurationElement config;
     private final String id;
-    private List<DBXTreeNode> children;
+    private /*~~>*/List<DBXTreeNode> children;
     private DBPImage defaultIcon;
-    private List<DBXTreeIcon> icons;
+    private /*~~>*/List<DBXTreeIcon> icons;
     private final boolean navigable;
     private final boolean inline;
     private final boolean virtual;
@@ -56,7 +56,7 @@ public abstract class DBXTreeNode
     //private final boolean embeddable;
     private JexlExpression visibleIf;
     private DBXTreeNode recursiveLink;
-    private List<DBXTreeNodeHandler> handlers = null;
+    private /*~~>*/List<DBXTreeNodeHandler> handlers = null;
 
     public DBXTreeNode(AbstractDescriptor source, DBXTreeNode parent, IConfigurationElement config, boolean navigable, boolean inline, boolean virtual, boolean standalone, String visibleIf, String recursive)
     {
@@ -113,20 +113,20 @@ public abstract class DBXTreeNode
 */
         }
         this.defaultIcon = node.defaultIcon;
-        if (node.icons != null) {
-            this.icons = new ArrayList<>(node.icons);
+        if (/*~~>*/node.icons != null) {
+            /*~~>*/this.icons = new ArrayList<>(/*~~>*/node.icons);
         }
 
-        if (node.children != null) {
-            this.children = new ArrayList<>(node.children.size());
-            for (DBXTreeNode child : node.children) {
+        if (/*~~>*/node.children != null) {
+            /*~~>*/this.children = new ArrayList<>(/*~~>*/node.children.size());
+            for (DBXTreeNode child : /*~~>*/node.children) {
                 if (child instanceof DBXTreeObject) new DBXTreeObject(source, this, (DBXTreeObject)child);
                 else if (child instanceof DBXTreeFolder) new DBXTreeFolder(source, this, (DBXTreeFolder)child);
                 else new DBXTreeItem(source, this, (DBXTreeItem)child);
             }
         }
-        if (node.handlers != null) {
-            this.handlers = new ArrayList<>(node.handlers);
+        if (/*~~>*/node.handlers != null) {
+            /*~~>*/this.handlers = new ArrayList<>(/*~~>*/node.handlers);
         }
     }
 
@@ -204,11 +204,11 @@ public abstract class DBXTreeNode
         return false;
     }
 
-    protected List<DBXTreeNode> getChildren() {
+    protected /*~~>*/List<DBXTreeNode> getChildren() {
         return children;
     }
 
-    public List<DBXTreeNode> getChildren(DBNNode context)
+    public /*~~>*/List<DBXTreeNode> getChildren(DBNNode context)
     {
         if (context != null && !CommonUtils.isEmpty(children)) {
             boolean hasExpr = false;
@@ -219,7 +219,7 @@ public abstract class DBXTreeNode
                 }
             }
             if (hasExpr) {
-                List<DBXTreeNode> filteredChildren = new ArrayList<>(children.size());
+                /*~~>*/List<DBXTreeNode> filteredChildren = new ArrayList<>(children.size());
                 for (DBXTreeNode child : children) {
                     if (child.isVisible(context)) {
                         filteredChildren.add(child);
@@ -253,10 +253,10 @@ public abstract class DBXTreeNode
 
     public void addChild(DBXTreeNode child)
     {
-        if (this.children == null) {
-            this.children = new ArrayList<>();
+        if (/*~~>*/this.children == null) {
+            /*~~>*/this.children = new ArrayList<>();
         }
-        this.children.add(child);
+        /*~~>*/this.children.add(child);
     }
 
     public DBXTreeNode getRecursiveLink()
@@ -276,22 +276,22 @@ public abstract class DBXTreeNode
         this.defaultIcon = defaultIcon;
     }
 
-    public List<DBXTreeIcon> getIcons()
+    public /*~~>*/List<DBXTreeIcon> getIcons()
     {
         return icons;
     }
 
     public void addIcon(DBXTreeIcon icon)
     {
-        if (this.icons == null) {
-            this.icons = new ArrayList<>();
+        if (/*~~>*/this.icons == null) {
+            /*~~>*/this.icons = new ArrayList<>();
         }
-        this.icons.add(icon);
+        /*~~>*/this.icons.add(icon);
     }
 
     public DBPImage getIcon(DBNNode context)
     {
-        List<DBXTreeIcon> extIcons = getIcons();
+        /*~~>*/List<DBXTreeIcon> extIcons = getIcons();
         if (!CommonUtils.isEmpty(extIcons) && context != null) {
             // Try to get some icon depending on it's condition
             for (DBXTreeIcon icon : extIcons) {

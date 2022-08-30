@@ -51,7 +51,7 @@ public class FireBirdDataTypeCache extends JDBCBasicDataTypeCache<GenericStructC
             throw new DBException(ModelMessages.error_not_connected_to_database);
         }
         // Load domain types
-        List<FireBirdDataType> tmpObjectList = new ArrayList<>();
+        /*~~>*/List<FireBirdDataType> tmpObjectList = new ArrayList<>();
 
         for (FireBirdFieldType fieldType : FireBirdFieldType.values()) {
             FireBirdDataType dataType = new FireBirdDataType(dataSource, fieldType);

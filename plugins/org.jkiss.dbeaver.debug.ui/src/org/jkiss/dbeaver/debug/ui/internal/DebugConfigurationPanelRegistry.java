@@ -36,7 +36,7 @@ public class DebugConfigurationPanelRegistry
         return instance;
     }
 
-    private final List<DebugConfigurationPanelDescriptor> descriptors = new ArrayList<>();
+    private final /*~~>*/List<DebugConfigurationPanelDescriptor> descriptors = new ArrayList<>();
 
     private DebugConfigurationPanelRegistry(IExtensionRegistry registry)
     {
@@ -50,13 +50,13 @@ public class DebugConfigurationPanelRegistry
         }
     }
 
-    public List<DebugConfigurationPanelDescriptor> getPanels()
+    public /*~~>*/List<DebugConfigurationPanelDescriptor> getPanels()
     {
         return descriptors;
     }
 
-    public List<DebugConfigurationPanelDescriptor> getPanels(DBPDataSourceContainer dataSource) {
-        List<DebugConfigurationPanelDescriptor> result = new ArrayList<>();
+    public /*~~>*/List<DebugConfigurationPanelDescriptor> getPanels(DBPDataSourceContainer dataSource) {
+        /*~~>*/List<DebugConfigurationPanelDescriptor> result = new ArrayList<>();
         for (DebugConfigurationPanelDescriptor desc : descriptors) {
             if (desc.supportsDataSource(dataSource)) {
                 result.add(desc);

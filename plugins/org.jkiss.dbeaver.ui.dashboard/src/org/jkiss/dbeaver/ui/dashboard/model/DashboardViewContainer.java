@@ -27,7 +27,7 @@ import java.util.List;
  */
 public interface DashboardViewContainer extends IDataSourceContainerProvider {
 
-    List<? extends DashboardGroupContainer> getGroups();
+    /*~~>*/List<? extends DashboardGroupContainer> getGroups();
 
     DBCExecutionContext getExecutionContext();
 

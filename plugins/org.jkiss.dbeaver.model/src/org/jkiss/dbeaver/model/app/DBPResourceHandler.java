@@ -53,7 +53,7 @@ public interface DBPResourceHandler {
 
     String getResourceDescription(@NotNull IResource resource);
 
-    List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource);
+    /*~~>*/List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource);
 
     @NotNull
     String getResourceNodeName(@NotNull IResource resource);

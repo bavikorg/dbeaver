@@ -60,8 +60,8 @@ public class DB2PlanOperator extends DB2PlanNode implements DBCPlanCostNode {
     private DB2PlanStatement db2Statement;
     private String planTableSchema;
 
-    private List<DB2PlanOperatorArgument> listArguments;
-    private List<DB2PlanOperatorPredicate> listPredicates;
+    private /*~~>*/List<DB2PlanOperatorArgument> listArguments;
+    private /*~~>*/List<DB2PlanOperatorPredicate> listPredicates;
 
     private String displayName;
     private String nodename;
@@ -165,13 +165,13 @@ public class DB2PlanOperator extends DB2PlanNode implements DBCPlanCostNode {
     }
 
     @Property(viewable = false, order = 6)
-    public List<DB2PlanOperatorArgument> getArguments()
+    public /*~~>*/List<DB2PlanOperatorArgument> getArguments()
     {
         return listArguments;
     }
 
     @Property(viewable = false, order = 7)
-    public List<DB2PlanOperatorPredicate> getPredicates()
+    public /*~~>*/List<DB2PlanOperatorPredicate> getPredicates()
     {
         return listPredicates;
     }

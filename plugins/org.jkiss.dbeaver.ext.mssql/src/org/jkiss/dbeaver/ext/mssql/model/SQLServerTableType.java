@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SQLServerTableType extends SQLServerTableBase {
-    private transient volatile List<SQLServerTableForeignKey> references;
+    private transient volatile /*~~>*/List<SQLServerTableForeignKey> references;
 
     public SQLServerTableType(SQLServerSchema catalog, ResultSet dbResult) {
         super(catalog, dbResult);
@@ -91,7 +91,7 @@ public class SQLServerTableType extends SQLServerTableBase {
                             "ORDER BY 1,2,3")) {
                 dbStat.setLong(1, getObjectId());
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                    List<SQLServerTableForeignKey> result = new ArrayList<>();
+                    /*~~>*/List<SQLServerTableForeignKey> result = new ArrayList<>();
                     while (dbResult.next()) {
                         long schemaId = JDBCUtils.safeGetLong(dbResult, "schema_id");
                         String tableName = JDBCUtils.safeGetString(dbResult, "table_name");
@@ -108,7 +108,7 @@ public class SQLServerTableType extends SQLServerTableBase {
                             }
                         }
                     }
-                    this.references = result;
+                    /*~~>*/this.references = result;
                     return result;
                 }
             } catch (SQLException e) {

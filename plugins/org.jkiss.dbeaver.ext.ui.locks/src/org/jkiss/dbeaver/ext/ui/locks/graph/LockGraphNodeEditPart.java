@@ -52,12 +52,12 @@ public class LockGraphNodeEditPart extends AbstractGraphicalEditPart {
 	}
 
 	@Override
-	protected List<LockGraphEdge> getModelSourceConnections() {
+	protected /*~~>*/List<LockGraphEdge> getModelSourceConnections() {
 		return ((LockGraphNode) getModel()).getSourceEdges();
 	}
 
 	@Override
-	protected List<LockGraphEdge> getModelTargetConnections() {
+	protected /*~~>*/List<LockGraphEdge> getModelTargetConnections() {
 		return ((LockGraphNode) getModel()).getTargetEdges();
 	}
 

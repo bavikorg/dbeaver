@@ -56,10 +56,10 @@ public class DataFormatterRegistry implements DBPDataFormatterRegistry
         return instance;
     }
 
-    private final List<DataFormatterDescriptor> dataFormatterList = new ArrayList<>();
+    private final /*~~>*/List<DataFormatterDescriptor> dataFormatterList = new ArrayList<>();
     private final Map<String, DataFormatterDescriptor> dataFormatterMap = new HashMap<>();
     private DBDDataFormatterProfile globalProfile;
-    private List<DBDDataFormatterProfile> customProfiles = null;
+    private /*~~>*/List<DBDDataFormatterProfile> customProfiles = null;
 
     private DataFormatterRegistry(IExtensionRegistry registry)
     {
@@ -76,7 +76,7 @@ public class DataFormatterRegistry implements DBPDataFormatterRegistry
 
     public void dispose()
     {
-        this.dataFormatterList.clear();
+        /*~~>*/this.dataFormatterList.clear();
         this.dataFormatterMap.clear();
         this.globalProfile = null;
     }
@@ -84,7 +84,7 @@ public class DataFormatterRegistry implements DBPDataFormatterRegistry
     ////////////////////////////////////////////////////
     // Data formatters
 
-    public List<DataFormatterDescriptor> getDataFormatters()
+    public /*~~>*/List<DataFormatterDescriptor> getDataFormatters()
     {
         return dataFormatterList;
     }
@@ -118,7 +118,7 @@ public class DataFormatterRegistry implements DBPDataFormatterRegistry
     }
 
     @Override
-    public synchronized List<DBDDataFormatterProfile> getCustomProfiles()
+    public synchronized /*~~>*/List<DBDDataFormatterProfile> getCustomProfiles()
     {
         if (customProfiles == null) {
             loadProfiles();

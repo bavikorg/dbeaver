@@ -29,7 +29,7 @@ class OracleTestUtils {
         column.setName(columnName);
         column.setTypeName(columnType);
         column.setOrdinalPosition(ordinalPosition);
-        List<OracleTableColumn> cachedAttributes = (List<OracleTableColumn>) table.getCachedAttributes();
+        /*~~>*/List<OracleTableColumn> cachedAttributes = (/*~~>*/List<OracleTableColumn>) table.getCachedAttributes();
         cachedAttributes.add(column);
         return column;
     }

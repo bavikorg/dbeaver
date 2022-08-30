@@ -287,7 +287,7 @@ class TaskConfigurationWizardPageTask extends ActiveWizardPage<TaskConfiguration
     }
 
     private void addTaskCategories(TreeItem parentItem, DBTTaskCategory[] categories) {
-        List<DBTTaskCategory> allCats = Arrays.asList(categories);
+        /*~~>*/List<DBTTaskCategory> allCats = Arrays.asList(categories);
         allCats.sort(Comparator.comparing(DBTTaskCategory::getName));
 
         for (DBTTaskCategory cat : categories) {
@@ -408,7 +408,7 @@ class TaskConfigurationWizardPageTask extends ActiveWizardPage<TaskConfiguration
             // Change task folder in edit task case
             if (selectedTaskFolderName != null) {
                 DBTTaskFolder[] tasksFolders = selectedProject.getTaskManager().getTasksFolders();
-                List<DBTTaskFolder> taskFoldersList = Arrays.asList(tasksFolders != null ? tasksFolders : new DBTTaskFolder[0]);
+                /*~~>*/List<DBTTaskFolder> taskFoldersList = Arrays.asList(tasksFolders != null ? tasksFolders : new DBTTaskFolder[0]);
                 DBTTaskFolder folder = DBUtils.findObject(taskFoldersList, selectedTaskFolderName);
                 DBTTaskFolder currentTaskFolder = task.getTaskFolder();
                 if (folder != null) {

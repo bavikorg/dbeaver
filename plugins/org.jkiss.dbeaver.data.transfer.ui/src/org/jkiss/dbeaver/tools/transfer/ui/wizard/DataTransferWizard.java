@@ -124,13 +124,13 @@ public class DataTransferWizard extends TaskConfigurationWizard<DataTransferSett
     public void initializeWizard(Composite pageContainer) {
         super.initializeWizard(pageContainer);
         if (settings.getState().hasErrors()) {
-            List<Throwable> loadErrors = settings.getState().getLoadErrors();
+            /*~~>*/List<Throwable> loadErrors = settings.getState().getLoadErrors();
             if (loadErrors.size() == 1) {
                 DBWorkbench.getPlatformUI().showError(
                     "Error loading configuration",
                     "Error loading data transfer configuration", loadErrors.get(0));
             } else {
-                List<IStatus> childStatuses = new ArrayList<>();
+                /*~~>*/List<IStatus> childStatuses = new ArrayList<>();
                 for (Throwable error : loadErrors) {
                     childStatuses.add(GeneralUtils.makeExceptionStatus(error));
                 }
@@ -145,7 +145,7 @@ public class DataTransferWizard extends TaskConfigurationWizard<DataTransferSett
     void loadSettings() {
         // Load node settings
         Collection<DBSObject> objectTypes = settings.getSourceObjects();
-        List<DataTransferNodeDescriptor> nodes = new ArrayList<>();
+        /*~~>*/List<DataTransferNodeDescriptor> nodes = new ArrayList<>();
         DataTransferRegistry registry = DataTransferRegistry.getInstance();
         if (ArrayUtils.isEmpty(settings.getInitProducers())) {
             nodes.addAll(registry.getAvailableProducers(objectTypes));
@@ -170,7 +170,7 @@ public class DataTransferWizard extends TaskConfigurationWizard<DataTransferSett
 
         boolean settingsChanged = nodeSettings.size() != nodes.size();
         if (!settingsChanged) {
-            List<NodePageSettings> nsList = new ArrayList<>(nodeSettings.values());
+            /*~~>*/List<NodePageSettings> nsList = new ArrayList<>(nodeSettings.values());
             for (int i = 0; i < nodeSettings.size(); i++) {
                 if (nsList.get(i).sourceNode != nodes.get(i)) {
                     settingsChanged = true;
@@ -371,7 +371,7 @@ public class DataTransferWizard extends TaskConfigurationWizard<DataTransferSett
     }
 
     private void addWizardPages(DataTransferWizard wizard) {
-        List<IWizardPage> settingPages = new ArrayList<>();
+        /*~~>*/List<IWizardPage> settingPages = new ArrayList<>();
         // Add regular pages
         for (NodePageSettings nodePageSettings : this.nodeSettings.values()) {
             for (IWizardPage page : nodePageSettings.pages) {
@@ -474,8 +474,8 @@ public class DataTransferWizard extends TaskConfigurationWizard<DataTransferSett
     }
 
     public void saveTaskState(DBRRunnableContext runnableContext, DBTTask task, Map<String, Object> state) {
-        List<IDataTransferNode<?>> producers = new ArrayList<>();
-        List<IDataTransferNode<?>> consumers = new ArrayList<>();
+        /*~~>*/List<IDataTransferNode<?>> producers = new ArrayList<>();
+        /*~~>*/List<IDataTransferNode<?>> consumers = new ArrayList<>();
         for (DataTransferPipe pipe : settings.getDataPipes()) {
             if (pipe.getProducer() != null) {
                 producers.add(pipe.getProducer());

@@ -300,7 +300,7 @@ public class PostgreSequence extends PostgreTableBase implements DBSSequence, DB
 					.append(SQLUtils.quoteString(this, getDescription())).append(";");
 		}
         
-        List<DBEPersistAction> actions = new ArrayList<>();
+        /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
         PostgreUtils.getObjectGrantPermissionActions(monitor, this, actions, options);
         if (!actions.isEmpty()) {
             sql.append("\n\n");

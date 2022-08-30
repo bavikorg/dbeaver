@@ -196,9 +196,9 @@ class SaveScriptDialog extends BaseDialog {
 
     private void populateSQL() {
         try {
-            final List<DBEPersistAction> sqlScript = new ArrayList<>();
+            final /*~~>*/List<DBEPersistAction> sqlScript = new ArrayList<>();
             UIUtils.runInProgressService(monitor -> {
-                List<DBEPersistAction> script = viewer.generateChangesScript(monitor, saveSettings);
+                /*~~>*/List<DBEPersistAction> script = viewer.generateChangesScript(monitor, saveSettings);
                 if (script != null) {
                     sqlScript.addAll(script);
                 }

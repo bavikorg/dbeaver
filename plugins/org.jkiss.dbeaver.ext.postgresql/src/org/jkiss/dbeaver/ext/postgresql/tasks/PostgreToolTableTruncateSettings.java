@@ -90,7 +90,7 @@ public class PostgreToolTableTruncateSettings extends SQLToolExecuteSettings<Pos
     }
 
     private static boolean isTruncateModeSupported(PostgreToolTableTruncateSettings settings, int mode) {
-        List<PostgreTableBase> tablesList = settings.getObjectList();
+        /*~~>*/List<PostgreTableBase> tablesList = settings.getObjectList();
         if (!CommonUtils.isEmpty(tablesList)) {
             PostgreTableBase tableBase = tablesList.get(0);
             return CommonUtils.isBitSet(tableBase.getDataSource().getServerType().getTruncateToolModes(), mode);

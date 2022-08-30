@@ -44,7 +44,7 @@ public class ExasolTableUniqueKey extends JDBCTableConstraint<ExasolTable> imple
     private String owner;
     private Boolean enabled;
 
-    private List<ExasolTableKeyColumn> columns;
+    private /*~~>*/List<ExasolTableKeyColumn> columns;
 
 
     // CONSTRUCTOR
@@ -88,12 +88,12 @@ public class ExasolTableUniqueKey extends JDBCTableConstraint<ExasolTable> imple
     // -----------------
 
     @Override
-    public List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
         return columns;
     }
 
-    public void setColumns(List<ExasolTableKeyColumn> columns) {
-        this.columns = columns;
+    public void setColumns(/*~~>*/List<ExasolTableKeyColumn> columns) {
+        /*~~>*/this.columns = columns;
     }
 
     // -----------------
@@ -133,7 +133,7 @@ public class ExasolTableUniqueKey extends JDBCTableConstraint<ExasolTable> imple
 
 	public boolean hasColumn(ExasolTableColumn column)
 	{
-        if (this.columns != null) {
+        if (/*~~>*/this.columns != null) {
             for (ExasolTableKeyColumn constColumn : columns) {
                 if (constColumn.getAttribute() == column) {
                     return true;

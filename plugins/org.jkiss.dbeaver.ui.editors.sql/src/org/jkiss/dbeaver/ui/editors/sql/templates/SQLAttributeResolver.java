@@ -58,14 +58,14 @@ public class SQLAttributeResolver extends TemplateVariableResolver {
         TemplateVariable tableVariable = ((SQLContext) context).getTemplateVariable("table");
         final String tableName = tableVariable == null ? null : tableVariable.getDefaultValue();
         if (!CommonUtils.isEmpty(tableName)) {
-            final List<DBSEntityAttribute> attributes = new ArrayList<>();
+            final /*~~>*/List<DBSEntityAttribute> attributes = new ArrayList<>();
             DBRRunnableWithProgress runnable = new DBRRunnableWithProgress() {
                 @Override
                 public void run(DBRProgressMonitor monitor)
                     throws InvocationTargetException, InterruptedException
                 {
                     try {
-                        List<DBSEntity> entities = new ArrayList<>();
+                        /*~~>*/List<DBSEntity> entities = new ArrayList<>();
                         SQLEntityResolver.resolveTables(monitor, executionContext, context, entities);
                         if (!CommonUtils.isEmpty(entities)) {
                             DBSEntity table = DBUtils.findObject(entities, tableName);

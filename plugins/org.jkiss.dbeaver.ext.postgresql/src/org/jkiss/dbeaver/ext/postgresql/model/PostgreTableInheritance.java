@@ -75,12 +75,12 @@ public class PostgreTableInheritance extends PostgreTableConstraintBase implemen
 
     @Nullable
     @Override
-    public List<PostgreTableForeignKeyColumn> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<PostgreTableForeignKeyColumn> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
         return null;
     }
 
     @Override
-    void cacheAttributes(DBRProgressMonitor monitor, List<? extends PostgreTableConstraintColumn> children, boolean secondPass) {
+    void cacheAttributes(DBRProgressMonitor monitor, /*~~>*/List<? extends PostgreTableConstraintColumn> children, boolean secondPass) {
 
     }
 

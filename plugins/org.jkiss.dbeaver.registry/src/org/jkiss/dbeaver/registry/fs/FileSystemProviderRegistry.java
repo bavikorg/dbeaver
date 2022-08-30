@@ -35,7 +35,7 @@ public class FileSystemProviderRegistry implements DBFRegistry {
         return instance;
     }
 
-    private final List<FileSystemProviderDescriptor> descriptors = new ArrayList<>();
+    private final /*~~>*/List<FileSystemProviderDescriptor> descriptors = new ArrayList<>();
 
     private FileSystemProviderRegistry(IExtensionRegistry registry) {
         // Load data descriptors from external plugins
@@ -47,7 +47,7 @@ public class FileSystemProviderRegistry implements DBFRegistry {
         }
     }
 
-    public List<FileSystemProviderDescriptor> getProviders() {
+    public /*~~>*/List<FileSystemProviderDescriptor> getProviders() {
         return descriptors;
     }
 

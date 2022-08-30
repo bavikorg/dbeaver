@@ -34,12 +34,12 @@ class StatusDetailsDialog extends EditTextDialog {
 
     private static final String DIALOG_ID = "DBeaver.StatusDetailsDialog";//$NON-NLS-1$
 
-    private final List<Throwable> warnings;
+    private final /*~~>*/List<Throwable> warnings;
     private Table warnTable;
 
-    public StatusDetailsDialog(Shell shell, String message, List<Throwable> warnings) {
+    public StatusDetailsDialog(Shell shell, String message, /*~~>*/List<Throwable> warnings) {
         super(shell, ResultSetMessages.dialog_title_status_details, message);
-        this.warnings = warnings;
+        /*~~>*/this.warnings = warnings;
         textHeight = 100;
         setReadonly(true);
     }

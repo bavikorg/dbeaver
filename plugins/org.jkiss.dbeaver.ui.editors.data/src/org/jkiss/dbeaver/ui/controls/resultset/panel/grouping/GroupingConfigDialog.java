@@ -59,7 +59,7 @@ class GroupingConfigDialog extends BaseDialog
     {
         Composite composite = super.createDialogArea(parent);
 
-        List<String> proposals = new ArrayList<>();
+        /*~~>*/List<String> proposals = new ArrayList<>();
         for (DBDAttributeBinding attr : resultsContainer.getOwnerPresentation().getController().getModel().getAttributes()) {
             proposals.add(attr.getName());
         }
@@ -76,8 +76,8 @@ class GroupingConfigDialog extends BaseDialog
 
     @Override
     protected void okPressed() {
-        List<String> columns = StringEditorTable.collectValues(columnsTable);
-        List<String> functions = StringEditorTable.collectValues(functionsTable);
+        /*~~>*/List<String> columns = StringEditorTable.collectValues(columnsTable);
+        /*~~>*/List<String> functions = StringEditorTable.collectValues(functionsTable);
         resultsContainer.setGrouping(columns, functions);
         super.okPressed();
     }

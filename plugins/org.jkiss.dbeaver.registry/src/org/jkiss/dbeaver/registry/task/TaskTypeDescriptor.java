@@ -100,7 +100,7 @@ public class TaskTypeDescriptor extends DataSourceBindingDescriptor implements D
     @NotNull
     @Override
     public Class<?>[] getInputTypes() {
-        List<Class<?>> objClasses = new ArrayList<>();
+        /*~~>*/List<Class<?>> objClasses = new ArrayList<>();
         for (ObjectType objectType : getObjectTypes()) {
             Class<?> aClass = objectType.getObjectClass();
             if (aClass != null) {

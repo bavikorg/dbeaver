@@ -43,7 +43,7 @@ public class DB2TableTablespaceListProvider implements IPropertyValueListProvide
     public Object[] getPossibleValues(DB2Table db2Table)
     {
         Collection<DB2Tablespace> colTablespaces = db2Table.getDataSource().getTablespaceCache().getCachedObjects();
-        List<DB2Tablespace> validTablespaces = new ArrayList<>(colTablespaces.size());
+        /*~~>*/List<DB2Tablespace> validTablespaces = new ArrayList<>(colTablespaces.size());
 
         for (DB2Tablespace db2Tablespace : colTablespaces) {
             if (db2Tablespace.getDataType().isValidForUserTables()) {

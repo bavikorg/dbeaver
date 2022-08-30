@@ -65,8 +65,8 @@ public abstract class PostgreTable extends PostgreTableReal implements PostgreTa
 
     private boolean hasOids;
     private long tablespaceId;
-    private List<PostgreTableInheritance> superTables;
-    private List<PostgreTableInheritance> subTables;
+    private /*~~>*/List<PostgreTableInheritance> superTables;
+    private /*~~>*/List<PostgreTableInheritance> subTables;
     private boolean hasSubClasses;
 
     private boolean hasPartitions;
@@ -235,14 +235,14 @@ public abstract class PostgreTable extends PostgreTableReal implements PostgreTa
     public synchronized Collection<? extends DBSEntityAssociation> getAssociations(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
-        final List<PostgreTableInheritance> superTables = getSuperInheritance(monitor);
+        final /*~~>*/List<PostgreTableInheritance> superTables = getSuperInheritance(monitor);
         final Collection<PostgreTableForeignKey> foreignKeys = getForeignKeys(monitor);
         if (CommonUtils.isEmpty(superTables)) {
             return foreignKeys;
         } else if (CommonUtils.isEmpty(foreignKeys)) {
             return superTables;
         }
-        List<DBSEntityAssociation> agg = new ArrayList<>(superTables.size() + foreignKeys.size());
+        /*~~>*/List<DBSEntityAssociation> agg = new ArrayList<>(superTables.size() + foreignKeys.size());
         agg.addAll(superTables);
         agg.addAll(foreignKeys);
         return agg;
@@ -250,7 +250,7 @@ public abstract class PostgreTable extends PostgreTableReal implements PostgreTa
 
     @Override
     public Collection<? extends DBSEntityAssociation> getReferences(@NotNull DBRProgressMonitor monitor) throws DBException {
-        List<DBSEntityAssociation> refs = new ArrayList<>(
+        /*~~>*/List<DBSEntityAssociation> refs = new ArrayList<>(
             CommonUtils.safeList(getSubInheritance(monitor)));
         // Obtain a list of schemas containing references to this table to avoid fetching everything
         try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Read referencing schemas")) {
@@ -286,12 +286,12 @@ public abstract class PostgreTable extends PostgreTableReal implements PostgreTa
 
     @Nullable
     @Property(viewable = false, optional = true, order = 30)
-    public List<PostgreTableBase> getSuperTables(DBRProgressMonitor monitor) throws DBException {
-        final List<PostgreTableInheritance> si = getSuperInheritance(monitor);
+    public /*~~>*/List<PostgreTableBase> getSuperTables(DBRProgressMonitor monitor) throws DBException {
+        final /*~~>*/List<PostgreTableInheritance> si = getSuperInheritance(monitor);
         if (CommonUtils.isEmpty(si)) {
             return null;
         }
-        List<PostgreTableBase> result = new ArrayList<>(si.size());
+        /*~~>*/List<PostgreTableBase> result = new ArrayList<>(si.size());
         for (int i1 = 0; i1 < si.size(); i1++) {
             result.add(si.get(i1).getAssociatedEntity());
         }
@@ -303,12 +303,12 @@ public abstract class PostgreTable extends PostgreTableReal implements PostgreTa
      */
     @Nullable
     @Property(viewable = false, optional = true, order = 31)
-    public List<PostgreTableBase> getSubTables(DBRProgressMonitor monitor) throws DBException {
-        final List<PostgreTableInheritance> si = getSubInheritance(monitor);
+    public /*~~>*/List<PostgreTableBase> getSubTables(DBRProgressMonitor monitor) throws DBException {
+        final /*~~>*/List<PostgreTableInheritance> si = getSubInheritance(monitor);
         if (CommonUtils.isEmpty(si)) {
             return null;
         }
-        List<PostgreTableBase> result = new ArrayList<>(si.size());
+        /*~~>*/List<PostgreTableBase> result = new ArrayList<>(si.size());
         for (PostgreTableInheritance aSi : si) {
             PostgreTableBase table = aSi.getParentObject();
             if (!table.isPartition()) {
@@ -319,7 +319,7 @@ public abstract class PostgreTable extends PostgreTableReal implements PostgreTa
     }
 
     @Nullable
-    public List<PostgreTableInheritance> getSuperInheritance(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<PostgreTableInheritance> getSuperInheritance(DBRProgressMonitor monitor) throws DBException {
         if (superTables == null && getDataSource().getServerType().supportsInheritance() && isPersisted()) {
             superTables = initSuperTables(monitor);
         }
@@ -344,8 +344,8 @@ public abstract class PostgreTable extends PostgreTableReal implements PostgreTa
         superTables = null;
     }
 
-    private List<PostgreTableInheritance> initSuperTables(DBRProgressMonitor monitor) throws DBException {
-        List<PostgreTableInheritance> inheritanceList = new ArrayList<>();
+    private /*~~>*/List<PostgreTableInheritance> initSuperTables(DBRProgressMonitor monitor) throws DBException {
+        /*~~>*/List<PostgreTableInheritance> inheritanceList = new ArrayList<>();
         try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load table inheritance info")) {
             try (JDBCPreparedStatement dbStat = session.prepareStatement(
                 "SELECT i.*,c.relnamespace " +
@@ -407,9 +407,9 @@ public abstract class PostgreTable extends PostgreTableReal implements PostgreTa
     }
 
     @Nullable
-    public List<PostgreTableInheritance> getSubInheritance(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<PostgreTableInheritance> getSubInheritance(@NotNull DBRProgressMonitor monitor) throws DBException {
         if (isPersisted() && subTables == null && hasSubClasses && getDataSource().getServerType().supportsInheritance()) {
-            List<PostgreTableInheritance> tables = new ArrayList<>();
+            /*~~>*/List<PostgreTableInheritance> tables = new ArrayList<>();
             try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load table inheritance info")) {
                 String sql = "SELECT i.*,c.relnamespace " +
                     "FROM pg_catalog.pg_inherits i,pg_catalog.pg_class c " +
@@ -446,15 +446,15 @@ public abstract class PostgreTable extends PostgreTableReal implements PostgreTa
                 }
             }
             DBUtils.orderObjects(tables);
-            this.subTables = tables;
+            /*~~>*/this.subTables = tables;
         }
         return subTables == null || subTables.isEmpty() ? null : subTables;
     }
 
     @Nullable
     @Association
-    public List<PostgreTableBase> getPartitions(DBRProgressMonitor monitor) throws DBException {
-        final List<PostgreTableInheritance> si = getSubInheritance(monitor);
+    public /*~~>*/List<PostgreTableBase> getPartitions(DBRProgressMonitor monitor) throws DBException {
+        final /*~~>*/List<PostgreTableInheritance> si = getSubInheritance(monitor);
         if (CommonUtils.isEmpty(si)) {
             return null;
         }
@@ -466,7 +466,7 @@ public abstract class PostgreTable extends PostgreTableReal implements PostgreTa
 
     @NotNull
     @Association
-    public List<PostgreTablePolicy> getPolicies(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<PostgreTablePolicy> getPolicies(@NotNull DBRProgressMonitor monitor) throws DBException {
         return policyCache.getAllObjects(monitor, this);
     }
 

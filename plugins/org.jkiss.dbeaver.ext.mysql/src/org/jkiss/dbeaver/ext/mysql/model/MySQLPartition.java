@@ -38,7 +38,7 @@ import java.util.List;
 public class MySQLPartition extends JDBCTableObject<MySQLTable> implements DBSTablePartition {
 
     private MySQLPartition parent;
-    private List<MySQLPartition> subPartitions;
+    private /*~~>*/List<MySQLPartition> subPartitions;
     private int position;
     private String method;
     private String expression;
@@ -120,7 +120,7 @@ public class MySQLPartition extends JDBCTableObject<MySQLTable> implements DBSTa
         return parent;
     }
 
-    public List<MySQLPartition> getSubPartitions()
+    public /*~~>*/List<MySQLPartition> getSubPartitions()
     {
         return subPartitions;
     }

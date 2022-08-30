@@ -106,7 +106,7 @@ public class MySQLTable extends MySQLTableBase implements DBPObjectStatistics, D
     private final PartitionCache partitionCache = new PartitionCache();
 
     private final AdditionalInfo additionalInfo = new AdditionalInfo();
-    private volatile List<MySQLTableForeignKey> referenceCache;
+    private volatile /*~~>*/List<MySQLTableForeignKey> referenceCache;
     @Nullable
     private String disableReferentialIntegrityStatement;
     @Nullable
@@ -157,7 +157,7 @@ public class MySQLTable extends MySQLTableBase implements DBPObjectStatistics, D
         }
 
         // Copy FKs
-        List<MySQLTableForeignKey> fkList = new ArrayList<>();
+        /*~~>*/List<MySQLTableForeignKey> fkList = new ArrayList<>();
         for (DBSEntityAssociation srcFK : CommonUtils.safeCollection(source.getAssociations(monitor))) {
             MySQLTableForeignKey fk = new MySQLTableForeignKey(monitor, this, srcFK);
             if (fk.getReferencedConstraint() != null) {
@@ -229,9 +229,9 @@ public class MySQLTable extends MySQLTableBase implements DBPObjectStatistics, D
     public Collection<MySQLTableConstraint> getConstraints(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
-        List<MySQLTableConstraint> constraintObjects = getContainer().uniqueKeyCache.getObjects(monitor, getContainer(), this);
+        /*~~>*/List<MySQLTableConstraint> constraintObjects = getContainer().uniqueKeyCache.getObjects(monitor, getContainer(), this);
         if (getDataSource().supportsCheckConstraints()) {
-            List<MySQLTableConstraint> checkConstraintObjects = getContainer().checkConstraintCache.getObjects(monitor, getContainer(), this);
+            /*~~>*/List<MySQLTableConstraint> checkConstraintObjects = getContainer().checkConstraintCache.getObjects(monitor, getContainer(), this);
             if (!CommonUtils.isEmpty(checkConstraintObjects)) {
                 constraintObjects.addAll(checkConstraintObjects);
             }
@@ -277,7 +277,7 @@ public class MySQLTable extends MySQLTableBase implements DBPObjectStatistics, D
         throws DBException
     {
         if (!foreignKeys.isFullyCached()) {
-            List<MySQLTableForeignKey> fkList = loadForeignKeys(monitor, false);
+            /*~~>*/List<MySQLTableForeignKey> fkList = loadForeignKeys(monitor, false);
             foreignKeys.setCache(fkList);
         }
         return foreignKeys.getCachedObjects();
@@ -296,10 +296,10 @@ public class MySQLTable extends MySQLTableBase implements DBPObjectStatistics, D
 
     @Nullable
     @Association
-    public List<MySQLTrigger> getTriggers(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLTrigger> getTriggers(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
-        List<MySQLTrigger> triggers = new ArrayList<>();
+        /*~~>*/List<MySQLTrigger> triggers = new ArrayList<>();
         for (MySQLTrigger trigger : getContainer().triggerCache.getAllObjects(monitor, getContainer())) {
             if (trigger.getTable() == this) {
                 triggers.add(trigger);
@@ -371,10 +371,10 @@ public class MySQLTable extends MySQLTableBase implements DBPObjectStatistics, D
         additionalInfo.loaded = true;
     }
 
-    private List<MySQLTableForeignKey> loadForeignKeys(DBRProgressMonitor monitor, boolean references)
+    private /*~~>*/List<MySQLTableForeignKey> loadForeignKeys(DBRProgressMonitor monitor, boolean references)
         throws DBException
     {
-        List<MySQLTableForeignKey> fkList = new ArrayList<>();
+        /*~~>*/List<MySQLTableForeignKey> fkList = new ArrayList<>();
         if (!isPersisted()) {
             return fkList;
         }
@@ -586,7 +586,7 @@ public class MySQLTable extends MySQLTableBase implements DBPObjectStatistics, D
         }
         getContainer().indexCache.clearObjectCache(this);
         getContainer().triggerCache.clearChildrenOf(this);
-        this.referenceCache = null;
+        /*~~>*/this.referenceCache = null;
 
         return super.refreshObject(monitor);
     }
@@ -648,7 +648,7 @@ public class MySQLTable extends MySQLTableBase implements DBPObjectStatistics, D
         @Override
         public Object[] getPossibleValues(MySQLTable object)
         {
-            final List<MySQLEngine> engines = new ArrayList<>();
+            final /*~~>*/List<MySQLEngine> engines = new ArrayList<>();
             for (MySQLEngine engine : object.getDataSource().getEngines()) {
                 if (engine.getSupport() == MySQLEngine.Support.YES || engine.getSupport() == MySQLEngine.Support.DEFAULT) {
                     engines.add(engine);

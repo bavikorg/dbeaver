@@ -34,7 +34,7 @@ import java.util.Map;
  */
 public class PropertySourceMap implements DBPPropertySource {
 
-    private List<DBPPropertyDescriptor> props = new ArrayList<>();
+    private /*~~>*/List<DBPPropertyDescriptor> props = new ArrayList<>();
 
     private Map<?, ?> items;
 

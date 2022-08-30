@@ -51,12 +51,12 @@ public class ERDContentProviderDefault implements ERDContentProvider {
 
     @Override
     public void fillEntityFromObject(@NotNull DBRProgressMonitor monitor, @NotNull ERDDiagram diagram,
-                                     @NotNull List<ERDEntity> otherEntities, @NotNull ERDEntity erdEntity) throws DBCException {
+                                     @NotNull /*~~>*/List<ERDEntity> otherEntities, @NotNull ERDEntity erdEntity) throws DBCException {
         fillEntityFromObject(monitor, diagram, otherEntities, erdEntity, new ERDAttributeSettings(ERDAttributeVisibility.ALL, false));
     }
 
     @Override
-    public void fillEntityFromObject(@NotNull DBRProgressMonitor monitor, @NotNull ERDDiagram diagram, @NotNull List<ERDEntity> otherEntities, @NotNull ERDEntity erdEntity, @NotNull ERDAttributeSettings settings) {
+    public void fillEntityFromObject(@NotNull DBRProgressMonitor monitor, @NotNull ERDDiagram diagram, @NotNull /*~~>*/List<ERDEntity> otherEntities, @NotNull ERDEntity erdEntity, @NotNull ERDAttributeSettings settings) {
         DBSEntity entity = erdEntity.getObject();
         if (READ_LAZY_DESCRIPTIONS && entity instanceof DBPObjectWithLazyDescription) {
             try {

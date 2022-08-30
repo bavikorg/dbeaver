@@ -474,11 +474,11 @@ public abstract class PostgreAttribute<OWNER extends DBSEntity & PostgreObject> 
 
         @Override
         public Object[] getPossibleValues(PostgreAttribute<?> column) {
-            List<PostgreDataType> types = new ArrayList<>();
+            /*~~>*/List<PostgreDataType> types = new ArrayList<>();
             try {
                 Collection<PostgreSchema> schemas = column.getDatabase().getSchemas(new VoidProgressMonitor());
                 for (PostgreSchema schema : schemas) {
-                    List<PostgreDataType> dataTypes = schema.getDataTypeCache().getCachedObjects();
+                    /*~~>*/List<PostgreDataType> dataTypes = schema.getDataTypeCache().getCachedObjects();
                     types.addAll(dataTypes);
                 }
             } catch (DBException e) {

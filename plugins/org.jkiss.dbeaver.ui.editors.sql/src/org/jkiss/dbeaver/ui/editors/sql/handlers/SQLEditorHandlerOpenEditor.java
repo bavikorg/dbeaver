@@ -142,7 +142,7 @@ public class SQLEditorHandlerOpenEditor extends AbstractDataSourceHandler {
         checkProjectIsOpen(project);
 
         final IFolder rootFolder = SQLEditorUtils.getScriptsFolder(project, true);
-        final List<SQLEditorUtils.ResourceInfo> scriptTree = SQLEditorUtils.findScriptTree(project, rootFolder, editorContext.getDataSourceContainer());
+        final /*~~>*/List<SQLEditorUtils.ResourceInfo> scriptTree = SQLEditorUtils.findScriptTree(project, rootFolder, editorContext.getDataSourceContainer());
         if (scriptTree.isEmpty()) {
             // Create new script
             final IFile newScript = SQLEditorUtils.createNewScript(project, rootFolder, editorContext);
@@ -212,8 +212,8 @@ public class SQLEditorHandlerOpenEditor extends AbstractDataSourceHandler {
         return context;
     }
 
-    private static List<DBPDataSourceContainer> getDataSourceContainers(ExecutionEvent event) {
-        List<DBPDataSourceContainer> containers = new ArrayList<>();
+    private static /*~~>*/List<DBPDataSourceContainer> getDataSourceContainers(ExecutionEvent event) {
+        /*~~>*/List<DBPDataSourceContainer> containers = new ArrayList<>();
         ISelection selection = HandlerUtil.getCurrentSelection(event);
         if (selection instanceof IStructuredSelection) {
             for (Object obj : ((IStructuredSelection) selection).toArray()) {

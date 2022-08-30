@@ -59,7 +59,7 @@ import java.util.*;
 public class NavigatorObjectsDeleter {
     private static final Log log = Log.getLog(NavigatorObjectsDeleter.class);
 
-    private final List<DBRRunnableWithProgress> tasksToExecute = new ArrayList<>();
+    private final /*~~>*/List<DBRRunnableWithProgress> tasksToExecute = new ArrayList<>();
 
     /**
      * Active window.
@@ -72,7 +72,7 @@ public class NavigatorObjectsDeleter {
     /**
      * A list containing objects to delete.
      */
-    private final List<?> selection;
+    private final /*~~>*/List<?> selection;
 
     private final boolean selectedFromNavigator;
     private final boolean supportsShowViewScript;
@@ -82,17 +82,17 @@ public class NavigatorObjectsDeleter {
     private final Set<Option> supportedOptions;
     private final Set<Option> enabledOptions = new HashSet<>();
 
-    private NavigatorObjectsDeleter(IWorkbenchWindow window, List<?> selection, boolean selectedFromNavigator, boolean supportsShowViewScript,
+    private NavigatorObjectsDeleter(IWorkbenchWindow window, /*~~>*/List<?> selection, boolean selectedFromNavigator, boolean supportsShowViewScript,
                                     boolean supportsDeleteContents, Set<Option> supportedOptions) {
         this.window = window;
-        this.selection = selection;
+        /*~~>*/this.selection = selection;
         this.selectedFromNavigator = selectedFromNavigator;
         this.supportsShowViewScript = supportsShowViewScript;
         this.supportsDeleteContents = supportsDeleteContents;
         this.supportedOptions = supportedOptions;
     }
 
-    static NavigatorObjectsDeleter of(List<?> selection, IWorkbenchWindow window) {
+    static NavigatorObjectsDeleter of(/*~~>*/List<?> selection, IWorkbenchWindow window) {
         boolean supportsShowViewScript = false;
         boolean supportsDeleteContents = false;
         boolean selectedFromNavigator = window.getPartService().getActivePart() instanceof NavigatorViewBase;

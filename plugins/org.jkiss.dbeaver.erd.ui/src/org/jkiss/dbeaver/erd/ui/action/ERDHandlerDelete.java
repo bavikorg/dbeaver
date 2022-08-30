@@ -64,8 +64,8 @@ public class ERDHandlerDelete extends AbstractHandler implements IElementUpdater
                 deleteAction.update();
                 if (deleteAction.isEnabled()) {
                     // Show confirmation
-                    List selectedObjects = deleteAction.getSelectedObjects();
-                    List<DBNNode> selectedNodes = new ArrayList<>();
+                    /*~~>*/List selectedObjects = deleteAction.getSelectedObjects();
+                    /*~~>*/List<DBNNode> selectedNodes = new ArrayList<>();
                     Command deleteCommand = deleteAction.createDeleteCommand(selectedObjects);
                     if (deleteCommand instanceof CompoundCommand) {
                         for (Object nc : ((CompoundCommand) deleteCommand).getCommands()) {
@@ -124,7 +124,7 @@ public class ERDHandlerDelete extends AbstractHandler implements IElementUpdater
         }
 
         @Override
-        public List getSelectedObjects() {
+        public /*~~>*/List getSelectedObjects() {
             return super.getSelectedObjects();
         }
     }

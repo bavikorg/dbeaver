@@ -99,7 +99,7 @@ public class GreenplumTableTest {
         JDBCResultSet mockDCResults = mockResults(mockMonitor);
         Mockito.when(mockDCResults.next()).thenReturn(false);
 
-        List<PostgreTableConstraint> constraints = Collections.emptyList();
+        /*~~>*/List<PostgreTableConstraint> constraints = Collections.emptyList();
 
         table = new GreenplumTable(mockSchema, mockResults);
 
@@ -120,7 +120,7 @@ public class GreenplumTableTest {
         Mockito.when(mockDCResults.next()).thenReturn(true);
         Mockito.when(mockDCResults.getObject(1)).thenReturn(new int[]{1});
 
-        List<PostgreTableColumn> mockColumns = createMockColumns("Column_Name");
+        /*~~>*/List<PostgreTableColumn> mockColumns = createMockColumns("Column_Name");
 
         Mockito.when(mockSchema.getTableCache()).thenReturn(mockTableCache);
 
@@ -141,7 +141,7 @@ public class GreenplumTableTest {
         Mockito.when(mockDCResults.next()).thenReturn(true);
         Mockito.when(mockDCResults.getObject(1)).thenReturn(new int[]{1, 2});
 
-        List<PostgreTableColumn> mockColumns = createMockColumns("Column_1", "Column_2");
+        /*~~>*/List<PostgreTableColumn> mockColumns = createMockColumns("Column_1", "Column_2");
 
         Mockito.when(mockSchema.getTableCache()).thenReturn(mockTableCache);
 
@@ -203,7 +203,7 @@ public class GreenplumTableTest {
         return mockDCResults;
     }
 
-    private List<PostgreTableColumn> createMockColumns(String... columns) {
+    private /*~~>*/List<PostgreTableColumn> createMockColumns(String... columns) {
         return IntStream.range(0, columns.length)
                 .mapToObj(i -> {
                     String columnName = columns[i];

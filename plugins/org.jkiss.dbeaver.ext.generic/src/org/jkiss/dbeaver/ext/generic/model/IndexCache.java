@@ -156,7 +156,7 @@ class IndexCache extends JDBCCompositeCache<GenericStructContainer, GenericTable
     }
 
     @Override
-    protected void cacheChildren(DBRProgressMonitor monitor, GenericTableIndex index, List<GenericTableIndexColumn> rows)
+    protected void cacheChildren(DBRProgressMonitor monitor, GenericTableIndex index, /*~~>*/List<GenericTableIndexColumn> rows)
     {
         index.setColumns(rows);
     }

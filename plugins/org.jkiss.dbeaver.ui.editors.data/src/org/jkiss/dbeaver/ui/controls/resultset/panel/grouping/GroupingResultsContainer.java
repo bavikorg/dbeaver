@@ -63,8 +63,8 @@ public class GroupingResultsContainer implements IResultSetContainer {
     private final IResultSetPresentation presentation;
     private GroupingDataContainer dataContainer;
     private ResultSetViewer groupingViewer;
-    private List<String> groupAttributes = new ArrayList<>();
-    private List<String> groupFunctions = new ArrayList<>();
+    private /*~~>*/List<String> groupAttributes = new ArrayList<>();
+    private /*~~>*/List<String> groupFunctions = new ArrayList<>();
 
     public GroupingResultsContainer(Composite parent, IResultSetPresentation presentation) {
         this.presentation = presentation;
@@ -75,8 +75,8 @@ public class GroupingResultsContainer implements IResultSetContainer {
     }
 
     private void initDefaultSettings() {
-        this.groupAttributes.clear();
-        this.groupFunctions.clear();
+        /*~~>*/this.groupAttributes.clear();
+        /*~~>*/this.groupFunctions.clear();
         addGroupingFunctions(Collections.singletonList(DEFAULT_FUNCTION));
     }
 
@@ -84,11 +84,11 @@ public class GroupingResultsContainer implements IResultSetContainer {
         return presentation;
     }
 
-    public List<String> getGroupAttributes() {
+    public /*~~>*/List<String> getGroupAttributes() {
         return groupAttributes;
     }
 
-    public List<String> getGroupFunctions() {
+    public /*~~>*/List<String> getGroupFunctions() {
         return groupFunctions;
     }
 
@@ -134,7 +134,7 @@ public class GroupingResultsContainer implements IResultSetContainer {
         groupAttributes.clear();
     }
 
-    void addGroupingAttributes(List<String> attributes) {
+    void addGroupingAttributes(/*~~>*/List<String> attributes) {
         for (String attrName : attributes) {
             attrName = cleanupObjectName(attrName);
             if (!groupAttributes.contains(attrName)) {
@@ -143,7 +143,7 @@ public class GroupingResultsContainer implements IResultSetContainer {
         }
     }
 
-    boolean removeGroupingAttribute(List<String> attributes) {
+    boolean removeGroupingAttribute(/*~~>*/List<String> attributes) {
         boolean changed = false;
         for (String attrName : attributes) {
             attrName = cleanupObjectName(attrName);
@@ -168,7 +168,7 @@ public class GroupingResultsContainer implements IResultSetContainer {
         return attrName;
     }
 
-    public void addGroupingFunctions(List<String> functions) {
+    public void addGroupingFunctions(/*~~>*/List<String> functions) {
         for (String func : functions) {
             func = DBUtils.getUnQuotedIdentifier(getDataContainer().getDataSource(), func);
             if (!groupFunctions.contains(func)) {
@@ -177,7 +177,7 @@ public class GroupingResultsContainer implements IResultSetContainer {
         }
     }
 
-    public boolean removeGroupingFunction(List<String> attributes) {
+    public boolean removeGroupingFunction(/*~~>*/List<String> attributes) {
         boolean changed = false;
         for (String func : attributes) {
             func = DBUtils.getUnQuotedIdentifier(getDataContainer().getDataSource(), func);
@@ -268,7 +268,7 @@ public class GroupingResultsContainer implements IResultSetContainer {
                     PlainSelect select = (PlainSelect) ((Select) statement).getSelectBody();
                     select.setOrderByElements(null);
 
-                    List<SelectItem> selectItems = new ArrayList<>();
+                    /*~~>*/List<SelectItem> selectItems = new ArrayList<>();
                     select.setSelectItems(selectItems);
                     for (String groupAttribute : groupAttributes) {
                         selectItems.add(
@@ -349,7 +349,7 @@ public class GroupingResultsContainer implements IResultSetContainer {
         return "i_" + funcIndex;
     }
 
-    void setGrouping(List<String> attributes, List<String> functions) {
+    void setGrouping(/*~~>*/List<String> attributes, /*~~>*/List<String> functions) {
         groupAttributes.clear();
         addGroupingAttributes(attributes);
 

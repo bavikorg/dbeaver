@@ -43,7 +43,7 @@ public abstract class AbstractSimpleDataSource<EXEC_CONTEXT extends DBCExecution
     private final DBPDataSourceContainer container;
     protected EXEC_CONTEXT executionContext;
     @NotNull
-    protected List<EXEC_CONTEXT> allContexts = new ArrayList<>();
+    protected /*~~>*/List<EXEC_CONTEXT> allContexts = new ArrayList<>();
     private final DBPExclusiveResource exclusiveLock = new SimpleExclusiveLock();
 
     public AbstractSimpleDataSource(@NotNull DBPDataSourceContainer container) {

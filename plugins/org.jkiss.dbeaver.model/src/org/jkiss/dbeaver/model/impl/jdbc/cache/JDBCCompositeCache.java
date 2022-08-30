@@ -62,7 +62,7 @@ public abstract class JDBCCompositeCache<
     private final Object parentColumnName;
     private final Object objectColumnName;
 
-    private final Map<PARENT, List<OBJECT>> objectCache = new IdentityHashMap<>();
+    private final Map<PARENT, /*~~>*/List<OBJECT>> objectCache = new IdentityHashMap<>();
 
     protected JDBCCompositeCache(
         JDBCStructCache<OWNER,?,?> parentCache,
@@ -93,11 +93,11 @@ public abstract class JDBCCompositeCache<
         return (PARENT) object.getParentObject();
     }
 
-    abstract protected void cacheChildren(DBRProgressMonitor monitor, OBJECT object, List<ROW_REF> children);
+    abstract protected void cacheChildren(DBRProgressMonitor monitor, OBJECT object, /*~~>*/List<ROW_REF> children);
 
     // Second cache function. Needed for complex entities which refers to each other (foreign keys)
     // First cache must cache all unique constraint, second must cache foreign keys references which refers unique keys
-    protected void cacheChildren2(DBRProgressMonitor monitor, OBJECT object, List<ROW_REF> children) {
+    protected void cacheChildren2(DBRProgressMonitor monitor, OBJECT object, /*~~>*/List<ROW_REF> children) {
 
     }
 
@@ -108,24 +108,24 @@ public abstract class JDBCCompositeCache<
 
     @NotNull
     @Override
-    public List<OBJECT> getAllObjects(@NotNull DBRProgressMonitor monitor, @Nullable OWNER owner)
+    public /*~~>*/List<OBJECT> getAllObjects(@NotNull DBRProgressMonitor monitor, @Nullable OWNER owner)
         throws DBException
     {
         return getObjects(monitor, owner, null);
     }
 
-    public List<OBJECT> getObjects(DBRProgressMonitor monitor, OWNER owner, PARENT forParent)
+    public /*~~>*/List<OBJECT> getObjects(DBRProgressMonitor monitor, OWNER owner, PARENT forParent)
         throws DBException
     {
         loadObjects(monitor, owner, forParent);
         return getCachedObjects(forParent);
     }
 
-    public <TYPE extends OBJECT> List<TYPE > getTypedObjects(DBRProgressMonitor monitor, OWNER owner, PARENT forParent, Class<TYPE> type)
+    public <TYPE extends OBJECT> /*~~>*/List<TYPE > getTypedObjects(DBRProgressMonitor monitor, OWNER owner, PARENT forParent, Class<TYPE> type)
         throws DBException
     {
-        List<TYPE> result = new ArrayList<>();
-        List<OBJECT> objects = getObjects(monitor, owner, forParent);
+        /*~~>*/List<TYPE> result = new ArrayList<>();
+        /*~~>*/List<OBJECT> objects = getObjects(monitor, owner, forParent);
         if (objects != null) {
             for (OBJECT object : objects) {
                 if (type.isInstance(object)) {
@@ -137,7 +137,7 @@ public abstract class JDBCCompositeCache<
     }
 
     @Override
-    public List<OBJECT> getCachedObjects(PARENT forParent)
+    public /*~~>*/List<OBJECT> getCachedObjects(PARENT forParent)
     {
         if (forParent == null) {
             return getCachedObjects();
@@ -176,7 +176,7 @@ public abstract class JDBCCompositeCache<
         super.cacheObject(object);
         synchronized (objectCache) {
             PARENT parent = getParent(object);
-            List<OBJECT> objects = objectCache.get(parent);
+            /*~~>*/List<OBJECT> objects = objectCache.get(parent);
             if (objects == null) {
                 objects = new ArrayList<>();
                 objectCache.put(parent, objects);
@@ -194,7 +194,7 @@ public abstract class JDBCCompositeCache<
             if (resetFullCache) {
                 objectCache.remove(parent);
             } else {
-                List<OBJECT> subCache = objectCache.get(parent);
+                /*~~>*/List<OBJECT> subCache = objectCache.get(parent);
                 if (subCache != null) {
                     subCache.remove(object);
                 }
@@ -209,7 +209,7 @@ public abstract class JDBCCompositeCache<
             super.clearCache();
             objectCache.clear();
         } else {
-            List<OBJECT> removedObjects = objectCache.remove(forParent);
+            /*~~>*/List<OBJECT> removedObjects = objectCache.remove(forParent);
             if (removedObjects != null) {
                 for (OBJECT obj : removedObjects) {
                     super.removeObject(obj, false);
@@ -218,7 +218,7 @@ public abstract class JDBCCompositeCache<
         }
     }
 
-    public void setObjectCache(PARENT forParent, List<OBJECT> objects)
+    public void setObjectCache(PARENT forParent, /*~~>*/List<OBJECT> objects)
     {
     }
 
@@ -232,13 +232,13 @@ public abstract class JDBCCompositeCache<
     }
 
     @Override
-    public void setCache(List<OBJECT> objects) {
+    public void setCache(/*~~>*/List<OBJECT> objects) {
         super.setCache(objects);
         synchronized (objectCache) {
             objectCache.clear();
             for (OBJECT object : objects) {
                 PARENT parent = getParent(object);
-                List<OBJECT> parentObjects = objectCache.get(parent);
+                /*~~>*/List<OBJECT> parentObjects = objectCache.get(parent);
                 if (parentObjects == null) {
                     parentObjects = new ArrayList<>();
                     objectCache.put(parent, parentObjects);
@@ -250,7 +250,7 @@ public abstract class JDBCCompositeCache<
 
     private class ObjectInfo {
         final OBJECT object;
-        final List<ROW_REF> rows = new ArrayList<>();
+        final /*~~>*/List<ROW_REF> rows = new ArrayList<>();
         public boolean broken;
         public boolean needsCaching;
 
@@ -359,7 +359,7 @@ public abstract class JDBCCompositeCache<
                         }
                         for (ROW_REF row : rowRef) {
                             if (row != null) {
-                                objectInfo.rows.add(row);
+                                /*~~>*/objectInfo.rows.add(row);
                             }
                         }
                     }
@@ -393,7 +393,7 @@ public abstract class JDBCCompositeCache<
                 if (forParent != null || !parentObjectMap.isEmpty()) {
                     if (forParent == null) {
                         // Cache global object list
-                        List<OBJECT> globalCache = new ArrayList<>();
+                        /*~~>*/List<OBJECT> globalCache = new ArrayList<>();
                         for (Map<String, ObjectInfo> objMap : parentObjectMap.values()) {
                             if (objMap != null) {
                                 for (ObjectInfo info : objMap.values()) {
@@ -404,7 +404,7 @@ public abstract class JDBCCompositeCache<
                             }
                         }
                         // Save precached objects in global cache
-                        for (List<OBJECT> objects : objectCache.values()) {
+                        for (/*~~>*/List<OBJECT> objects : objectCache.values()) {
                             globalCache.addAll(objects);
                         }
                         // Add precached objects to global cache too
@@ -445,14 +445,14 @@ public abstract class JDBCCompositeCache<
             for (Map.Entry<PARENT, Map<String, ObjectInfo>> colEntry : parentObjectMap.entrySet()) {
                 for (ObjectInfo objectInfo : colEntry.getValue().values()) {
                     if (objectInfo.needsCaching) {
-                        cacheChildren(monitor, objectInfo.object, objectInfo.rows);
+                        cacheChildren(monitor, objectInfo.object, /*~~>*/objectInfo.rows);
                     }
                 }
             }
             for (Map.Entry<PARENT, Map<String, ObjectInfo>> colEntry : parentObjectMap.entrySet()) {
                 for (ObjectInfo objectInfo : colEntry.getValue().values()) {
                     if (objectInfo.needsCaching) {
-                        cacheChildren2(monitor, objectInfo.object, objectInfo.rows);
+                        cacheChildren2(monitor, objectInfo.object, /*~~>*/objectInfo.rows);
                     }
                 }
             }

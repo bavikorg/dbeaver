@@ -41,7 +41,7 @@ public class ApplicationRegistry {
         return instance;
     }
 
-    private final List<ApplicationDescriptor> applications = new ArrayList<>();
+    private final /*~~>*/List<ApplicationDescriptor> applications = new ArrayList<>();
     private ApplicationDescriptor defaultApplication;
 
     private ApplicationRegistry(IExtensionRegistry registry) {
@@ -62,7 +62,7 @@ public class ApplicationRegistry {
             }
         }
 
-        List<ApplicationDescriptor> finalApps = new ArrayList<>();
+        /*~~>*/List<ApplicationDescriptor> finalApps = new ArrayList<>();
         for (ApplicationDescriptor app : applications) {
             if (app.isFinalApplication()) {
                 finalApps.add(app);

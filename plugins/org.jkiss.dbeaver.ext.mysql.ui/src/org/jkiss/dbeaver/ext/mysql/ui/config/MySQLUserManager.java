@@ -235,7 +235,7 @@ public class MySQLUserManager extends AbstractObjectManager<MySQLUser> implement
             if (CommonUtils.equalObjects(oldName, newName)) {
                 return new DBEPersistAction[0];
             }
-            List<DBEPersistAction> actions = new ArrayList<>();
+            /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
             DBPDataSource dataSource = executionContext.getDataSource();
             actions.add(new SQLDatabasePersistAction(
                "Rename user", //$NON-NLS-1$

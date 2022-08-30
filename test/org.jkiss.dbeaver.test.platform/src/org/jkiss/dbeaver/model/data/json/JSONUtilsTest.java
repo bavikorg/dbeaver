@@ -30,7 +30,7 @@ public class JSONUtilsTest {
 	private Map<String, Object> nestedMap1;
 	private Map<String, Object> nestedMap2;
 	private Map<String, Object> map3;
-	private List<Map<String, Object>> list;
+	private /*~~>*/List<Map<String, Object>> list;
 
 	@Before
 	public void setUp() {

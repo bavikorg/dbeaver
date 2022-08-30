@@ -39,8 +39,8 @@ public class HANATable extends GenericTable {
     @SuppressWarnings("unchecked")
     @Nullable
     @Override
-    public List<? extends HANATableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
-        return (List<? extends HANATableColumn>) super.getAttributes(monitor);
+    public /*~~>*/List<? extends HANATableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
+        return (/*~~>*/List<? extends HANATableColumn>) super.getAttributes(monitor);
     }
 
     @Override

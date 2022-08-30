@@ -51,7 +51,7 @@ public class AssociationReconnectSourceCommand extends Command {
             returnVal = false;
         } else {
 
-            List<ERDAssociation> relationships = sourceEntity.getAssociations();
+            /*~~>*/List<ERDAssociation> relationships = sourceEntity.getAssociations();
             for (ERDAssociation relationship : relationships) {
                 if (relationship.getTargetEntity().equals(targetEntity) &&
                     relationship.getSourceEntity().equals(sourceEntity)) {

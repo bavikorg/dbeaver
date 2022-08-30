@@ -89,7 +89,7 @@ public class DBNDataSource extends DBNDatabaseNode implements DBNContainer, IAda
 
     @Override
     public String getChildrenType() {
-        final List<DBXTreeNode> metaChildren = treeRoot.getChildren(this);
+        final /*~~>*/List<DBXTreeNode> metaChildren = treeRoot.getChildren(this);
         if (CommonUtils.isEmpty(metaChildren) || metaChildren.size() > 1) {
             return "?";
         } else {
@@ -99,7 +99,7 @@ public class DBNDataSource extends DBNDatabaseNode implements DBNContainer, IAda
 
     @Override
     public Class<?> getChildrenClass() {
-        final List<DBXTreeNode> metaChildren = treeRoot.getChildren(null); // Use null context because we don't need to filter nodes
+        final /*~~>*/List<DBXTreeNode> metaChildren = treeRoot.getChildren(null); // Use null context because we don't need to filter nodes
         if (CommonUtils.isEmpty(metaChildren) || metaChildren.size() > 1) {
             return null;
         }

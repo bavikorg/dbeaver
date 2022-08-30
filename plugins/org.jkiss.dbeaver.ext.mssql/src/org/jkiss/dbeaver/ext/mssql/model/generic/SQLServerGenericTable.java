@@ -76,8 +76,8 @@ public class SQLServerGenericTable extends GenericTable implements DBPObjectWith
 
     @Nullable
     @Override
-    public synchronized List<SQLServerGenericTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
-        return (List<SQLServerGenericTableColumn>) super.getAttributes(monitor);
+    public synchronized /*~~>*/List<SQLServerGenericTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
+        return (/*~~>*/List<SQLServerGenericTableColumn>) super.getAttributes(monitor);
     }
 
     @Override

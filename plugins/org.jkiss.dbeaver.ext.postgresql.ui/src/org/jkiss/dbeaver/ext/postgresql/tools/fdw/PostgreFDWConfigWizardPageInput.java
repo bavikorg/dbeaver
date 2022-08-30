@@ -81,7 +81,7 @@ class PostgreFDWConfigWizardPageInput extends ActiveWizardPage<PostgreFDWConfigW
 
                 @Override
                 protected boolean isFolderVisible(DBNLocalFolder folder) {
-                    List<DBPDataSourceContainer> dataSources = getWizard().getAvailableDataSources();
+                    /*~~>*/List<DBPDataSourceContainer> dataSources = getWizard().getAvailableDataSources();
                     for (DBNDataSource ds : folder.getNestedDataSources()) {
                         if (dataSources.contains(ds.getDataSourceContainer())) {
                             return true;
@@ -143,11 +143,11 @@ class PostgreFDWConfigWizardPageInput extends ActiveWizardPage<PostgreFDWConfigW
     }
 
     private void refreshDataSources() {
-        List<DBNNode> selection = new ArrayList<>();
+        /*~~>*/List<DBNNode> selection = new ArrayList<>();
         try {
             getWizard().getRunnableContext().run(true, true, monitor -> {
                 getWizard().collectAvailableDataSources(monitor);
-                List<DBSEntity> proposedEntities = getWizard().getProposedEntities();
+                /*~~>*/List<DBSEntity> proposedEntities = getWizard().getProposedEntities();
                 for (DBSEntity entity : proposedEntities) {
                     DBNDatabaseNode node = DBNUtils.getNodeByObject(monitor, entity, false);
                     if (node != null) {
@@ -169,7 +169,7 @@ class PostgreFDWConfigWizardPageInput extends ActiveWizardPage<PostgreFDWConfigW
 
     protected void updateState()
     {
-        List<DBNDatabaseNode> selectedEntities = new ArrayList<>();
+        /*~~>*/List<DBNDatabaseNode> selectedEntities = new ArrayList<>();
         DBPDataSourceContainer dsContainer = null;
         for (DBNNode node : selectorPanel.getCheckedNodes()) {
             if (node instanceof DBNDatabaseNode && ((DBNDatabaseNode) node).getObject() instanceof DBSEntity) {

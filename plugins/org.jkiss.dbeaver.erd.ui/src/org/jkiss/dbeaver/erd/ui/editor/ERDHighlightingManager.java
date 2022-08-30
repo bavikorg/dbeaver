@@ -200,8 +200,8 @@ public class ERDHighlightingManager {
     }
 
     @NotNull
-    private List<AttributePart> getEntityAttributes(@NotNull EntityPart source, @NotNull List<ERDEntityAttribute> columns) {
-        List<AttributePart> result = new ArrayList<>(columns.size());
+    private /*~~>*/List<AttributePart> getEntityAttributes(@NotNull EntityPart source, @NotNull /*~~>*/List<ERDEntityAttribute> columns) {
+        /*~~>*/List<AttributePart> result = new ArrayList<>(columns.size());
         for (Object attrPart : source.getChildren()) {
             if (attrPart instanceof AttributePart && columns.contains(((AttributePart) attrPart).getAttribute())) {
                 result.add((AttributePart) attrPart);

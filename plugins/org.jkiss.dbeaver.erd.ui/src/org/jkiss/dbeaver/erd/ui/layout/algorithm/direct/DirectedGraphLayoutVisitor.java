@@ -135,7 +135,7 @@ public class DirectedGraphLayoutVisitor {
 
     protected void addEntityEdges(GraphicalEditPart entityPart)
     {
-        List<?> outgoing = entityPart.getSourceConnections();
+        /*~~>*/List<?> outgoing = entityPart.getSourceConnections();
         for (Object o : outgoing) {
             addConnectionEdges((AbstractConnectionEditPart) o);
         }
@@ -229,7 +229,7 @@ public class DirectedGraphLayoutVisitor {
         //conn.setLineJoin(SWT.JOIN_BEVEL);
         //conn.setTargetDecoration(new PolygonDecoration());
         if (edgeNodes != null && edgeNodes.size() > 1) {
-            List<AbsoluteBendpoint> bends = new ArrayList<>();
+            /*~~>*/List<AbsoluteBendpoint> bends = new ArrayList<>();
             for (int i = 0; i < edgeNodes.size(); i++) {
                 Node vn = edgeNodes.getNode(i);
                 int x = vn.x;

@@ -81,7 +81,7 @@ public class ProxyProgressMonitor implements DBRProgressMonitor, IProgressMonito
     }
 
     @Override
-    public List<DBRBlockingObject> getActiveBlocks()
+    public /*~~>*/List<DBRBlockingObject> getActiveBlocks()
     {
         return original.getActiveBlocks();
     }

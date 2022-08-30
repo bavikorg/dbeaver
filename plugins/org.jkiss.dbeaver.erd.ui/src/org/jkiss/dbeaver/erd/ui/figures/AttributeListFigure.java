@@ -57,8 +57,8 @@ public class AttributeListFigure extends Figure {
         setOpaque(true);
     }
 
-    public List<AttributeItemFigure> getAttributes() {
-        List<AttributeItemFigure> result = new ArrayList<>();
+    public /*~~>*/List<AttributeItemFigure> getAttributes() {
+        /*~~>*/List<AttributeItemFigure> result = new ArrayList<>();
         for (IFigure child : getChildren()) {
             if (child instanceof AttributeItemFigure) {
                 result.add((AttributeItemFigure) child);

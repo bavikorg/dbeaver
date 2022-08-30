@@ -74,7 +74,7 @@ public interface DashboardContainer {
 
     JexlExpression getMapFormula();
 
-    List<? extends DashboardQuery> getQueryList();
+    /*~~>*/List<? extends DashboardQuery> getQueryList();
 
     Date getLastUpdateTime();
 

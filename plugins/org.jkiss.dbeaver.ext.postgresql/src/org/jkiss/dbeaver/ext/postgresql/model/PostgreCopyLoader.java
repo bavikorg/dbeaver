@@ -114,7 +114,7 @@ public class PostgreCopyLoader implements DBSDataBulkLoader, DBSDataBulkLoader.B
                 copyBufferSize
                 );
 
-            List<? extends PostgreTableColumn> tableAttrs = CommonUtils.safeList(table.getAttributes(session.getProgressMonitor()));
+            /*~~>*/List<? extends PostgreTableColumn> tableAttrs = CommonUtils.safeList(table.getAttributes(session.getProgressMonitor()));
             tableAttrs.removeIf(a -> a.getOrdinalPosition() < 0);
             mappings = new AttrMapping[tableAttrs.size()];
 

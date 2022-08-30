@@ -104,7 +104,7 @@ public class SQLQueryTransformerCount implements SQLQueryTransformer {
                 countFunc.setName("count");
                 if (selectDistinct != null) {
                     countFunc.setDistinct(true);
-                    List<Expression> exprs = new ArrayList<>();
+                    /*~~>*/List<Expression> exprs = new ArrayList<>();
                     for (SelectItem item : select.getSelectItems()) {
                         if (item instanceof SelectExpressionItem) {
                             exprs.add(((SelectExpressionItem)item).getExpression());
@@ -118,7 +118,7 @@ public class SQLQueryTransformerCount implements SQLQueryTransformer {
                     countFunc.setParameters(new ExpressionList(new AllColumns()));
                 }
 
-                List<SelectItem> selectItems = new ArrayList<>();
+                /*~~>*/List<SelectItem> selectItems = new ArrayList<>();
                 selectItems.add(new SelectExpressionItem(countFunc));
                 select.setSelectItems(selectItems);
                 select.setOrderByElements(null);

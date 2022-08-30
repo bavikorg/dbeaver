@@ -29,7 +29,7 @@ public interface DBGSession {
 
     Object getSessionId();
 
-    List<? extends DBGBreakpointDescriptor> getBreakpoints();
+    /*~~>*/List<? extends DBGBreakpointDescriptor> getBreakpoints();
 
     void addBreakpoint(DBRProgressMonitor monitor, DBGBreakpointDescriptor descriptor) throws DBGException;
 
@@ -53,11 +53,11 @@ public interface DBGSession {
 
     void suspend() throws DBGException;
 
-    List<? extends DBGVariable<?>> getVariables(DBGStackFrame stack) throws DBGException;
+    /*~~>*/List<? extends DBGVariable<?>> getVariables(DBGStackFrame stack) throws DBGException;
 
     void setVariableVal(DBGVariable<?> variable, Object value) throws DBGException;
 
-    List<? extends DBGStackFrame> getStack() throws DBGException;
+    /*~~>*/List<? extends DBGStackFrame> getStack() throws DBGException;
 
     String getSource(DBGStackFrame stack) throws DBGException;
 

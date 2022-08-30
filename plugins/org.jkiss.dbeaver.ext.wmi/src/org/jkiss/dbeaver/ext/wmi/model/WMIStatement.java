@@ -35,7 +35,7 @@ public class WMIStatement implements DBCStatement {
     private WMISession session;
     private DBCStatementType type;
     private String query;
-    private List<WMIObject> queryResult;
+    private /*~~>*/List<WMIObject> queryResult;
     private long firstRow;
     private long maxRows;
     private DBCExecutionSource source;

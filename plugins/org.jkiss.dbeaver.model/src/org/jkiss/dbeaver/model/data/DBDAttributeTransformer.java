@@ -36,7 +36,7 @@ public interface DBDAttributeTransformer
     void transformAttribute(
         @NotNull DBCSession session,
         @NotNull DBDAttributeBinding attribute,
-        @NotNull List<Object[]> rows,
+        @NotNull /*~~>*/List<Object[]> rows,
         @NotNull Map<String, Object> options)
         throws DBException;
 

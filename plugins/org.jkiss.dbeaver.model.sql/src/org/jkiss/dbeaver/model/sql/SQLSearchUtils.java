@@ -42,7 +42,7 @@ public class SQLSearchUtils
     private static final Log log = Log.getLog(SQLSearchUtils.class);
 
     @Nullable
-    public static DBSObject findObjectByFQN(DBRProgressMonitor monitor, DBSObjectContainer sc, @Nullable DBCExecutionContext executionContext, List<String> nameList, boolean useAssistant, SQLIdentifierDetector identifierDetector) {
+    public static DBSObject findObjectByFQN(DBRProgressMonitor monitor, DBSObjectContainer sc, @Nullable DBCExecutionContext executionContext, /*~~>*/List<String> nameList, boolean useAssistant, SQLIdentifierDetector identifierDetector) {
         if (nameList.isEmpty()) {
             return null;
         }
@@ -57,7 +57,7 @@ public class SQLSearchUtils
             return null;
         }
         {
-            List<String> unquotedNames = new ArrayList<>(nameList.size());
+            /*~~>*/List<String> unquotedNames = new ArrayList<>(nameList.size());
             for (String name : nameList) {
                 unquotedNames.add(DBUtils.getUnQuotedIdentifier(dataSource, name));
             }
@@ -83,7 +83,7 @@ public class SQLSearchUtils
         }
     }
 
-    public static DBSObject findObjectByPath(DBRProgressMonitor monitor, DBCExecutionContext executionContext, DBSObjectContainer sc, List<String> nameList, SQLIdentifierDetector identifierDetector, boolean useAssistant) {
+    public static DBSObject findObjectByPath(DBRProgressMonitor monitor, DBCExecutionContext executionContext, DBSObjectContainer sc, /*~~>*/List<String> nameList, SQLIdentifierDetector identifierDetector, boolean useAssistant) {
         try {
             DBSObject childObject = null;
             while (childObject == null) {

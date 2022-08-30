@@ -76,7 +76,7 @@ public class NodeDropTargetListener extends AbstractTransferDropTargetListener {
                     return null;
                 }
 
-                DBRRunnableWithResult<List<ERDEntity>> collector = new DBRRunnableWithResult<List<ERDEntity>>() {
+                DBRRunnableWithResult</*~~>*/List<ERDEntity>> collector = new DBRRunnableWithResult</*~~>*/List<ERDEntity>>() {
                     @Override
                     public void run(DBRProgressMonitor monitor) {
                         result = DiagramObjectCollector.generateEntityList(
@@ -95,9 +95,9 @@ public class NodeDropTargetListener extends AbstractTransferDropTargetListener {
                 } catch (InterruptedException e) {
                     // ignore
                 }
-                final List<String> errorMessages = editor.getDiagram().getErrorMessages();
+                final /*~~>*/List<String> errorMessages = editor.getDiagram().getErrorMessages();
                 if (!errorMessages.isEmpty()) {
-                    final List<Status> statuses = new ArrayList<>(errorMessages.size());
+                    final /*~~>*/List<Status> statuses = new ArrayList<>(errorMessages.size());
                     for (String error : errorMessages) {
                         statuses.add(new Status(Status.ERROR, ERDUIActivator.PLUGIN_ID, error));
                     }

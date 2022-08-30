@@ -35,7 +35,7 @@ public class SQLWordPartDetector extends SQLIdentifierDetector
 {
     private String prevKeyWord = "";
     private String prevDelimiter = null;
-    private List<String> prevWords = null;
+    private /*~~>*/List<String> prevWords = null;
     private String nextWord;
     private String wordPart;
     private String fullWord;
@@ -219,7 +219,7 @@ public class SQLWordPartDetector extends SQLIdentifierDetector
         return prevDelimiter;
     }
 
-    public List<String> getPrevWords()
+    public /*~~>*/List<String> getPrevWords()
     {
         return prevWords;
     }

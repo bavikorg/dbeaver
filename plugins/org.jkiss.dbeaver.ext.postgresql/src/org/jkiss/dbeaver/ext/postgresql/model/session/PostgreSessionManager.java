@@ -59,7 +59,7 @@ public class PostgreSessionManager implements DBAServerSessionManager<PostgreSes
         try {
             try (JDBCPreparedStatement dbStat = ((JDBCSession) session).prepareStatement(generateSessionReadQuery(options))) {
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                    List<PostgreSession> sessions = new ArrayList<>();
+                    /*~~>*/List<PostgreSession> sessions = new ArrayList<>();
                     while (dbResult.next()) {
                         sessions.add(new PostgreSession(dbResult));
                     }

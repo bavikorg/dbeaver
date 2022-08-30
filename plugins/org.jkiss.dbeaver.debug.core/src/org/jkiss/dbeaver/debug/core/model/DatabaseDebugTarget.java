@@ -51,7 +51,7 @@ public class DatabaseDebugTarget extends DatabaseDebugElement implements IDataba
     private final ILaunch launch;
     private final IProcess process;
     private final DBGController controller;
-    private final List<IThread> threads;
+    private final /*~~>*/List<IThread> threads;
     private final DatabaseThread thread;
 
     private String name;
@@ -69,9 +69,9 @@ public class DatabaseDebugTarget extends DatabaseDebugElement implements IDataba
         this.process = process;
         this.controller = controller;
         this.controller.registerEventHandler(this);
-        this.threads = new ArrayList<>();
+        /*~~>*/this.threads = new ArrayList<>();
         this.thread = newThread();
-        this.threads.add(thread);
+        /*~~>*/this.threads.add(thread);
 
         DebugPlugin debugPlugin = DebugPlugin.getDefault();
         IBreakpointManager breakpointManager = debugPlugin.getBreakpointManager();

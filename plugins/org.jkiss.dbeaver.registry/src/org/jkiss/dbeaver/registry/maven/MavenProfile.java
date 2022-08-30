@@ -28,9 +28,9 @@ public class MavenProfile {
 
     private final String id;
     Map<String, String> properties = new LinkedHashMap<>();
-    List<MavenArtifactDependency> dependencies;
-    List<MavenArtifactDependency> dependencyManagement;
-    List<MavenRepository> repositories;
+    /*~~>*/List<MavenArtifactDependency> dependencies;
+    /*~~>*/List<MavenArtifactDependency> dependencyManagement;
+    /*~~>*/List<MavenRepository> repositories;
 
     boolean active;
 
@@ -46,11 +46,11 @@ public class MavenProfile {
         return properties;
     }
 
-    public List<MavenArtifactDependency> getDependencies() {
+    public /*~~>*/List<MavenArtifactDependency> getDependencies() {
         return dependencies;
     }
 
-    public List<MavenArtifactDependency> getDependencyManagement() {
+    public /*~~>*/List<MavenArtifactDependency> getDependencyManagement() {
         return dependencyManagement;
     }
 
@@ -58,7 +58,7 @@ public class MavenProfile {
         return active;
     }
 
-    public List<MavenRepository> getRepositories() {
+    public /*~~>*/List<MavenRepository> getRepositories() {
         return repositories;
     }
 

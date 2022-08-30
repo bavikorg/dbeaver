@@ -229,7 +229,7 @@ public abstract class PostgreTableReal extends PostgreTableBase implements DBPOb
 
     @Nullable
     @Association
-    public List<PostgreTrigger> getTriggers(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<PostgreTrigger> getTriggers(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
         return triggerCache.getAllObjects(monitor, this);

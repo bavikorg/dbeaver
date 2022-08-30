@@ -38,7 +38,7 @@ public interface DBSStructureAssistant<CONTEXT extends DBCExecutionContext> {
     DBSObjectType[] getAutoCompleteObjectTypes();
 
     @NotNull
-    List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull CONTEXT executionContext,
+    /*~~>*/List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull CONTEXT executionContext,
                                                @NotNull ObjectsSearchParams params) throws DBException;
 
     default boolean supportsSearchInCommentsFor(@NotNull DBSObjectType objectType) {

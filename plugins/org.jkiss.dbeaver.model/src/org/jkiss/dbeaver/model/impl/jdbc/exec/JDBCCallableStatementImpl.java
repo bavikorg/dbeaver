@@ -111,8 +111,8 @@ public class JDBCCallableStatementImpl extends JDBCPreparedStatementImpl impleme
             log.debug("Error extracting parameters meta data", e);
         }
 
-        final List<DBSProcedureParameter> metaOutputParameters = getOutputParametersFromMeta();
-        final List<Integer> jdbcOutputParameters = getOutputParametersFromJDBC(paramsMeta);
+        final /*~~>*/List<DBSProcedureParameter> metaOutputParameters = getOutputParametersFromMeta();
+        final /*~~>*/List<Integer> jdbcOutputParameters = getOutputParametersFromJDBC(paramsMeta);
 
         if (metaOutputParameters == null && jdbcOutputParameters == null) {
             log.debug("Can't obtain procedure metadata nor jdbc metadata");
@@ -279,7 +279,7 @@ public class JDBCCallableStatementImpl extends JDBCPreparedStatementImpl impleme
     }
 
     @Nullable
-    private List<DBSProcedureParameter> getOutputParametersFromMeta() {
+    private /*~~>*/List<DBSProcedureParameter> getOutputParametersFromMeta() {
         if (procedure == null) {
             return null;
         }
@@ -288,7 +288,7 @@ public class JDBCCallableStatementImpl extends JDBCPreparedStatementImpl impleme
             if (params.isEmpty()) {
                 return Collections.emptyList();
             }
-            final List<DBSProcedureParameter> outputParams = new ArrayList<>();
+            final /*~~>*/List<DBSProcedureParameter> outputParams = new ArrayList<>();
             for (DBSProcedureParameter param : params) {
                 if (param.getParameterKind().isOutput()) {
                     outputParams.add(param);
@@ -302,7 +302,7 @@ public class JDBCCallableStatementImpl extends JDBCPreparedStatementImpl impleme
     }
 
     @Nullable
-    private List<Integer> getOutputParametersFromJDBC(@Nullable ParameterMetaData paramsMeta) {
+    private /*~~>*/List<Integer> getOutputParametersFromJDBC(@Nullable ParameterMetaData paramsMeta) {
         if (paramsMeta == null) {
             return null;
         }
@@ -311,7 +311,7 @@ public class JDBCCallableStatementImpl extends JDBCPreparedStatementImpl impleme
             if (count == 0) {
                 return Collections.emptyList();
             }
-            final List<Integer> outputParams = new ArrayList<>();
+            final /*~~>*/List<Integer> outputParams = new ArrayList<>();
             for (int index = 1; index <= count; index++) {
                 final int mode = paramsMeta.getParameterMode(index);
                 if (mode == ParameterMetaData.parameterModeOut || mode == ParameterMetaData.parameterModeInOut) {

@@ -22,22 +22,22 @@ import java.util.List;
 
 public class ResultSetDataContainerOptions {
 
-    private List<Integer> selectedRows;
-    private List<DBDAttributeBinding> selectedColumns;
+    private /*~~>*/List<Integer> selectedRows;
+    private /*~~>*/List<DBDAttributeBinding> selectedColumns;
 
-    public List<Integer> getSelectedRows() {
+    public /*~~>*/List<Integer> getSelectedRows() {
         return selectedRows;
     }
 
-    public void setSelectedRows(List<Integer> selectedRows) {
-        this.selectedRows = selectedRows;
+    public void setSelectedRows(/*~~>*/List<Integer> selectedRows) {
+        /*~~>*/this.selectedRows = selectedRows;
     }
 
-    public List<DBDAttributeBinding> getSelectedColumns() {
+    public /*~~>*/List<DBDAttributeBinding> getSelectedColumns() {
         return selectedColumns;
     }
 
-    public void setSelectedColumns(List<DBDAttributeBinding> selectedColumns) {
-        this.selectedColumns = selectedColumns;
+    public void setSelectedColumns(/*~~>*/List<DBDAttributeBinding> selectedColumns) {
+        /*~~>*/this.selectedColumns = selectedColumns;
     }
 }

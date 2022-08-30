@@ -86,7 +86,7 @@ public class DBRFeatureRegistry {
         }
     }
 
-    public List<DBRFeature> getAllFeatures() {
+    public /*~~>*/List<DBRFeature> getAllFeatures() {
         return new ArrayList<>(allFeatures.values());
     }
 

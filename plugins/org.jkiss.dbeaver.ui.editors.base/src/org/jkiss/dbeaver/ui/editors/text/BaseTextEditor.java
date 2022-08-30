@@ -69,7 +69,7 @@ public abstract class BaseTextEditor extends AbstractDecoratedTextEditor impleme
     public static final String GROUP_SQL_ADDITIONS = "sql.additions";
     public static final String GROUP_SQL_EXTRAS = "sql.extras";
 
-    private List<IActionContributor> actionContributors = new ArrayList<>();
+    private /*~~>*/List<IActionContributor> actionContributors = new ArrayList<>();
 
     public void addContextMenuContributor(IActionContributor contributor) {
         actionContributors.add(contributor);

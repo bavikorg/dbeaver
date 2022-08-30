@@ -30,7 +30,7 @@ public class GrammarNfaBuilder {
     private final GrammarNfa nfa;
     private int exprId = 0;
 
-    private final List<GrammarNfaTransition> terminalTransitions = new ArrayList<>();
+    private final /*~~>*/List<GrammarNfaTransition> terminalTransitions = new ArrayList<>();
 
     public static class NfaFragment {
         private final GrammarNfaState from;
@@ -55,8 +55,8 @@ public class GrammarNfaBuilder {
         this.nfa = new GrammarNfa();
     }
 
-    public List<GrammarNfaTransition> getTerminalTransitions() {
-        return this.terminalTransitions;
+    public /*~~>*/List<GrammarNfaTransition> getTerminalTransitions() {
+        return /*~~>*/this.terminalTransitions;
     }
 
     private int nextExprId() {
@@ -115,7 +115,7 @@ public class GrammarNfaBuilder {
             int exprId = nextExprId();
             GrammarNfaState from = nfa.createState(rule);
             GrammarNfaState to = nfa.createState(rule);
-            for (RuleExpression alt : alternatives.children) {
+            for (RuleExpression alt : /*~~>*/alternatives.children) {
                 NfaFragment fragment = alt.apply(this, rule);
                 nfa.createTransition(from, fragment.from, GrammarNfaOperation.makeEmpty(exprId));
                 nfa.createTransition(fragment.to, to, GrammarNfaOperation.makeEmpty(exprId));
@@ -163,11 +163,11 @@ public class GrammarNfaBuilder {
             GrammarNfaState from = nfa.createState(rule);
             GrammarNfaState to = nfa.createState(rule);
 
-            int stepsCount = sequence.children.size();
+            int stepsCount = /*~~>*/sequence.children.size();
             if (stepsCount > 0) {
                 GrammarNfaState prev = from;
                 for (int i = 0; i < stepsCount; i++) {
-                    NfaFragment part = sequence.children.get(i).apply(this, rule);
+                    NfaFragment part = /*~~>*/sequence.children.get(i).apply(this, rule);
                     if (i == 0) {
                         nfa.createTransition(prev, part.from, GrammarNfaOperation.makeSequenceOperation(
                             exprId, ParseOperationKind.SEQ_ENTER, 0, stepsCount, 0

@@ -154,8 +154,8 @@ public class PrefPageQueryManager extends AbstractPrefPage implements IWorkbench
     @Override
     public boolean performOk()
     {
-        List<QMObjectType> objectTypes = new ArrayList<>();
-        List<String> queryTypes = new ArrayList<>();
+        /*~~>*/List<QMObjectType> objectTypes = new ArrayList<>();
+        /*~~>*/List<String> queryTypes = new ArrayList<>();
         if (checkObjectTypeSessions.getSelection()) objectTypes.add(QMObjectType.session);
         if (checkObjectTypeTxn.getSelection()) objectTypes.add(QMObjectType.txn);
         if (checkObjectTypeQueries.getSelection()) objectTypes.add(QMObjectType.query);

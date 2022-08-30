@@ -41,7 +41,7 @@ public class OracleToolGatherStatistics implements IUserInterfaceTool
     @Override
     public void execute(IWorkbenchWindow window, IWorkbenchPart activePart, Collection<DBSObject> objects) throws DBException
     {
-        List<OracleTableBase> tables = CommonUtils.filterCollection(objects, OracleTableBase.class);
+        /*~~>*/List<OracleTableBase> tables = CommonUtils.filterCollection(objects, OracleTableBase.class);
         if (!tables.isEmpty()) {
             TaskConfigurationWizardDialog.openNewTaskDialog(
                     window,
@@ -49,7 +49,7 @@ public class OracleToolGatherStatistics implements IUserInterfaceTool
                     OracleTasks.TASK_TABLE_GATHER_STATISTICS,
                     new StructuredSelection(objects.toArray()));
         } else {
-            List<OracleTableIndex> databases = CommonUtils.filterCollection(objects, OracleTableIndex.class);
+            /*~~>*/List<OracleTableIndex> databases = CommonUtils.filterCollection(objects, OracleTableIndex.class);
             if (!databases.isEmpty()) {
                 TaskConfigurationWizardDialog.openNewTaskDialog(
                         window,

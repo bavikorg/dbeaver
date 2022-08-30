@@ -35,9 +35,9 @@ import java.util.List;
 public class TaskCategoryDescriptor extends AbstractContextDescriptor implements DBTTaskCategory, DBPNamedObjectLocalized {
 
     private final IConfigurationElement config;
-    private final List<TaskTypeDescriptor> tasks = new ArrayList<>();
+    private final /*~~>*/List<TaskTypeDescriptor> tasks = new ArrayList<>();
     private TaskCategoryDescriptor parent;
-    private List<TaskCategoryDescriptor> children = new ArrayList<>();
+    private /*~~>*/List<TaskCategoryDescriptor> children = new ArrayList<>();
 
     TaskCategoryDescriptor(TaskRegistry registry, IConfigurationElement config) {
         super(config);
@@ -57,7 +57,7 @@ public class TaskCategoryDescriptor extends AbstractContextDescriptor implements
     }
 
     void addTask(TaskTypeDescriptor task) {
-        this.tasks.add(task);
+        /*~~>*/this.tasks.add(task);
     }
 
     @NotNull

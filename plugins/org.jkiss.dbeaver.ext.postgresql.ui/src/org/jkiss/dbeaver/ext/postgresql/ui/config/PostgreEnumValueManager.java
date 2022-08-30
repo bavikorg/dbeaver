@@ -38,7 +38,7 @@ public class PostgreEnumValueManager extends EnumValueManager {
     }
 
     @Override
-    protected List<String> getEnumValues(IValueController valueController) {
+    protected /*~~>*/List<String> getEnumValues(IValueController valueController) {
         final DBSTypedObject attribute = valueController.getValueType();
         PostgreDataType dataType = null;
         if (attribute instanceof DBSDataType) {
@@ -53,7 +53,7 @@ public class PostgreEnumValueManager extends EnumValueManager {
         if (values == null) {
             return null;
         }
-        List<String> strValues = new ArrayList<>(values.length);
+        /*~~>*/List<String> strValues = new ArrayList<>(values.length);
         for (Object value : values) {
             strValues.add(DBValueFormatting.getDefaultValueDisplayString(value, DBDDisplayFormat.UI));
         }
@@ -61,7 +61,7 @@ public class PostgreEnumValueManager extends EnumValueManager {
     }
 
     @Override
-    protected List<String> getSetValues(IValueController valueController, Object value) {
+    protected /*~~>*/List<String> getSetValues(IValueController valueController, Object value) {
         return null;
     }
 

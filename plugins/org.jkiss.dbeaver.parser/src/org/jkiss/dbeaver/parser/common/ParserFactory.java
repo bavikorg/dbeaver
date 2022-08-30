@@ -43,7 +43,7 @@ public class ParserFactory {
         GrammarNfaBuilder builder = new GrammarNfaBuilder(grammar);
         
         NfaFragment root = builder.traverseGrammar();
-        List<GrammarNfaTransition> terminalTransitions = builder.getTerminalTransitions();
+        /*~~>*/List<GrammarNfaTransition> terminalTransitions = builder.getTerminalTransitions();
 
         GrammarAnalyzer analyzer = new GrammarAnalyzer(terminalTransitions, root);
         ParserFsm parserFsm = analyzer.buildTerminalsGraph();

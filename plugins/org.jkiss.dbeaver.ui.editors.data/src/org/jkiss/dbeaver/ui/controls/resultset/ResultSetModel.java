@@ -50,14 +50,14 @@ public class ResultSetModel {
 
     // Attributes
     private DBDAttributeBinding[] attributes = new DBDAttributeBinding[0];
-    private List<DBDAttributeBinding> visibleAttributes = new ArrayList<>();
+    private /*~~>*/List<DBDAttributeBinding> visibleAttributes = new ArrayList<>();
     private DBDAttributeBinding documentAttribute = null;
     private DBDDataFilter dataFilter;
     private DBSEntity singleSourceEntity;
     private DBCExecutionSource executionSource;
 
     // Data
-    private List<ResultSetRow> curRows = new ArrayList<>();
+    private /*~~>*/List<ResultSetRow> curRows = new ArrayList<>();
     private Long totalRowCount = null;
     private int changesCount = 0;
     private volatile boolean hasData = false;
@@ -65,7 +65,7 @@ public class ResultSetModel {
     private volatile DataSourceJob updateInProgress = null;
 
     // Coloring
-    private Map<DBDAttributeBinding, List<AttributeColorSettings>> colorMapping = new HashMap<>();
+    private Map<DBDAttributeBinding, /*~~>*/List<AttributeColorSettings>> colorMapping = new HashMap<>();
 
     private DBCStatistics statistics;
     private DBCTrace trace;
@@ -127,7 +127,7 @@ public class ResultSetModel {
     @NotNull
     public DBDDataFilter createDataFilter() {
         fillVisibleAttributes();
-        List<DBDAttributeConstraint> constraints = new ArrayList<>(attributes.length);
+        /*~~>*/List<DBDAttributeConstraint> constraints = new ArrayList<>(attributes.length);
         for (DBDAttributeBinding binding : attributes) {
             addConstraints(constraints, binding);
         }
@@ -135,12 +135,12 @@ public class ResultSetModel {
         return new DBDDataFilter(constraints);
     }
 
-    private void addConstraints(List<DBDAttributeConstraint> constraints, DBDAttributeBinding binding) {
+    private void addConstraints(/*~~>*/List<DBDAttributeConstraint> constraints, DBDAttributeBinding binding) {
         int constraintsSize = constraints.size();
         DBDAttributeConstraint constraint = new DBDAttributeConstraint(binding, constraintsSize, constraintsSize);
         constraint.setVisible(visibleAttributes.contains(binding) || binding.getParentObject() != null);
         constraints.add(constraint);
-        List<DBDAttributeBinding> nestedBindings = binding.getNestedBindings();
+        /*~~>*/List<DBDAttributeBinding> nestedBindings = binding.getNestedBindings();
         if (nestedBindings != null) {
             for (DBDAttributeBinding nested : nestedBindings) {
                 addConstraints(constraints, nested);
@@ -210,7 +210,7 @@ public class ResultSetModel {
      */
     @NotNull
     public DBDAttributeBinding[] getRealAttributes() {
-        List<DBDAttributeBinding> result = new ArrayList<>();
+        /*~~>*/List<DBDAttributeBinding> result = new ArrayList<>();
         for (DBDAttributeBinding attr : attributes) {
             if (!attr.isCustom()) {
                 result.add(attr);
@@ -220,7 +220,7 @@ public class ResultSetModel {
     }
 
     @NotNull
-    public List<DBDAttributeBinding> getVisibleAttributes() {
+    public /*~~>*/List<DBDAttributeBinding> getVisibleAttributes() {
         return visibleAttributes;
     }
 
@@ -229,12 +229,12 @@ public class ResultSetModel {
     }
 
     @Nullable
-    public List<DBDAttributeBinding> getVisibleAttributes(DBDAttributeBinding parent) {
-        final List<DBDAttributeBinding> nestedBindings = parent.getNestedBindings();
+    public /*~~>*/List<DBDAttributeBinding> getVisibleAttributes(DBDAttributeBinding parent) {
+        final /*~~>*/List<DBDAttributeBinding> nestedBindings = parent.getNestedBindings();
         if (nestedBindings == null || nestedBindings.isEmpty()) {
             return null;
         }
-        List<DBDAttributeBinding> result = new ArrayList<>(nestedBindings);
+        /*~~>*/List<DBDAttributeBinding> result = new ArrayList<>(nestedBindings);
         for (Iterator<DBDAttributeBinding> iter = result.iterator(); iter.hasNext(); ) {
             final DBDAttributeConstraint constraint = dataFilter.getConstraint(iter.next());
             if (constraint != null && !constraint.isVisible()) {
@@ -250,13 +250,13 @@ public class ResultSetModel {
     }
 
     @NotNull
-    public List<DBDAttributeBinding> getVisibleLeafAttributes() {
-        final List<DBDAttributeBinding> children = new ArrayList<>();
+    public /*~~>*/List<DBDAttributeBinding> getVisibleLeafAttributes() {
+        final /*~~>*/List<DBDAttributeBinding> children = new ArrayList<>();
         final Deque<DBDAttributeBinding> parents = new ArrayDeque<>(getVisibleAttributes());
 
         while (!parents.isEmpty()) {
             final DBDAttributeBinding attribute = parents.removeFirst();
-            final List<DBDAttributeBinding> nested = getVisibleAttributes(attribute);
+            final /*~~>*/List<DBDAttributeBinding> nested = getVisibleAttributes(attribute);
 
             if (CommonUtils.isEmpty(nested)) {
                 children.add(attribute);
@@ -355,7 +355,7 @@ public class ResultSetModel {
     }
 
     @NotNull
-    public List<ResultSetRow> getAllRows() {
+    public /*~~>*/List<ResultSetRow> getAllRows() {
         return curRows;
     }
 
@@ -683,7 +683,7 @@ public class ResultSetModel {
 
     void resetMetaData() {
         this.attributes = new DBDAttributeBinding[0];
-        this.visibleAttributes.clear();
+        /*~~>*/this.visibleAttributes.clear();
         this.documentAttribute = null;
         this.singleSourceEntity = null;
     }
@@ -699,7 +699,7 @@ public class ResultSetModel {
         }
     }
 
-    public void setData(@NotNull List<Object[]> rows) {
+    public void setData(@NotNull /*~~>*/List<Object[]> rows) {
         // Clear previous data
         this.releaseAllData();
         this.clearData();
@@ -712,7 +712,7 @@ public class ResultSetModel {
                 DBDAttributeBinding topAttr = attributes[0];
                 if (topAttr.getDataKind() == DBPDataKind.DOCUMENT) {
                     isDocumentBased = true;
-                    List<DBDAttributeBinding> nested = topAttr.getNestedBindings();
+                    /*~~>*/List<DBDAttributeBinding> nested = topAttr.getNestedBindings();
                     if (nested != null && !nested.isEmpty()) {
                         attributes = nested.toArray(new DBDAttributeBinding[0]);
                         fillVisibleAttributes();
@@ -733,7 +733,7 @@ public class ResultSetModel {
         appendData(rows, true);
         updateDataFilter();
 
-        this.visibleAttributes.sort(POSITION_SORTER);
+        /*~~>*/this.visibleAttributes.sort(POSITION_SORTER);
 
         if (singleSourceEntity == null) {
             singleSourceEntity = DBExecUtils.detectSingleSourceTable(
@@ -755,12 +755,12 @@ public class ResultSetModel {
             return;
         }
         {
-            List<DBVColorOverride> coList = virtualEntity.getColorOverrides();
+            /*~~>*/List<DBVColorOverride> coList = virtualEntity.getColorOverrides();
             if (!CommonUtils.isEmpty(coList)) {
                 for (DBVColorOverride co : coList) {
                     DBDAttributeBinding binding = DBUtils.findObject(attributes, co.getAttributeName());
                     if (binding != null) {
-                        List<AttributeColorSettings> cmList =
+                        /*~~>*/List<AttributeColorSettings> cmList =
                             colorMapping.computeIfAbsent(binding, k -> new ArrayList<>());
                         cmList.add(new AttributeColorSettings(co));
                     } else {
@@ -774,14 +774,14 @@ public class ResultSetModel {
         }
     }
 
-    private void updateRowColors(boolean reset, List<ResultSetRow> rows) {
+    private void updateRowColors(boolean reset, /*~~>*/List<ResultSetRow> rows) {
         if (colorMapping.isEmpty() || reset) {
             for (ResultSetRow row : rows) {
                 row.colorInfo = null;
             }
         }
         if (!colorMapping.isEmpty()) {
-            for (Map.Entry<DBDAttributeBinding, List<AttributeColorSettings>> entry : colorMapping.entrySet()) {
+            for (Map.Entry<DBDAttributeBinding, /*~~>*/List<AttributeColorSettings>> entry : colorMapping.entrySet()) {
                 if (!ArrayUtils.contains(attributes, entry.getKey())) {
                     // This may happen during FK navigation - attributes are already updated while colors mapping are still old
                     continue;
@@ -861,13 +861,13 @@ public class ResultSetModel {
         }
     }
 
-    void appendData(@NotNull List<Object[]> rows, boolean resetOldRows) {
+    void appendData(@NotNull /*~~>*/List<Object[]> rows, boolean resetOldRows) {
         if (resetOldRows) {
             curRows.clear();
         }
         int rowCount = rows.size();
         int firstRowNum = curRows.size();
-        List<ResultSetRow> newRows = new ArrayList<>(rowCount);
+        /*~~>*/List<ResultSetRow> newRows = new ArrayList<>(rowCount);
         for (int i = 0; i < rowCount; i++) {
             newRows.add(
                 new ResultSetRow(firstRowNum + i, rows.get(i)));
@@ -879,7 +879,7 @@ public class ResultSetModel {
 
     void clearData() {
         // Refresh all rows
-        this.curRows = new ArrayList<>();
+        /*~~>*/this.curRows = new ArrayList<>();
         this.totalRowCount = null;
         this.singleSourceEntity = null;
 
@@ -939,8 +939,8 @@ public class ResultSetModel {
     void cleanupRow(@NotNull ResultSetRow row) {
         row.release();
         int index = row.getVisualNumber();
-        if (this.curRows.size() > index) {
-            this.curRows.remove(index);
+        if (/*~~>*/this.curRows.size() > index) {
+            /*~~>*/this.curRows.remove(index);
             this.shiftRows(row, -1);
         } else {
             log.debug("Error removing row from list: invalid row index: " + index);
@@ -950,7 +950,7 @@ public class ResultSetModel {
     boolean cleanupRows(Collection<ResultSetRow> rows) {
         if (rows != null && !rows.isEmpty()) {
             // Remove rows (in descending order to prevent concurrent modification errors)
-            List<ResultSetRow> rowsToRemove = new ArrayList<>(rows);
+            /*~~>*/List<ResultSetRow> rowsToRemove = new ArrayList<>(rows);
             rowsToRemove.sort(Comparator.comparingInt(ResultSetRow::getVisualNumber));
             for (ResultSetRow row : rowsToRemove) {
                 cleanupRow(row);
@@ -973,7 +973,7 @@ public class ResultSetModel {
     }
 
     void releaseAllData() {
-        final List<ResultSetRow> oldRows = curRows;
+        final /*~~>*/List<ResultSetRow> oldRows = curRows;
         // Cleanup in separate job.
         // Sometimes model cleanup takes much time (e.g. freeing LOB values)
         // So let's do it in separate job to avoid UI locking
@@ -997,7 +997,7 @@ public class ResultSetModel {
     boolean setDataFilter(DBDDataFilter dataFilter) {
         this.dataFilter = dataFilter;
         // Check if filter misses some attributes
-        List<DBDAttributeConstraint> newConstraints = new ArrayList<>();
+        /*~~>*/List<DBDAttributeConstraint> newConstraints = new ArrayList<>();
         for (DBDAttributeBinding binding : attributes) {
             if (dataFilter.getConstraint(binding) == null) {
                 addConstraints(newConstraints, binding);
@@ -1008,7 +1008,7 @@ public class ResultSetModel {
         }
 
         // Construct new bindings from constraints. Exclude nested bindings
-        List<DBDAttributeBinding> newBindings = new ArrayList<>();
+        /*~~>*/List<DBDAttributeBinding> newBindings = new ArrayList<>();
 
         for (DBSAttributeBase attr : this.dataFilter.getOrderedVisibleAttributes()) {
             DBDAttributeBinding binding = getAttributeBinding(attr);
@@ -1024,9 +1024,9 @@ public class ResultSetModel {
     }
 
     void updateDataFilter(DBDDataFilter filter, boolean forceUpdate) {
-        this.visibleAttributes.clear();
-        Collections.addAll(this.visibleAttributes, this.attributes);
-        List<DBDAttributeConstraint> missingConstraints = new ArrayList<>();
+        /*~~>*/this.visibleAttributes.clear();
+        Collections.addAll(/*~~>*/this.visibleAttributes, this.attributes);
+        /*~~>*/List<DBDAttributeConstraint> missingConstraints = new ArrayList<>();
         for (DBDAttributeConstraint constraint : filter.getConstraints()) {
             DBDAttributeConstraint filterConstraint = this.dataFilter.getConstraint(constraint.getAttribute(), true);
             if (filterConstraint == null) {
@@ -1097,7 +1097,7 @@ public class ResultSetModel {
             }
         }
 
-        this.visibleAttributes.sort(POSITION_SORTER);
+        /*~~>*/this.visibleAttributes.sort(POSITION_SORTER);
 
         this.dataFilter.setWhere(filter.getWhere());
         this.dataFilter.setOrder(filter.getOrder());
@@ -1112,7 +1112,7 @@ public class ResultSetModel {
 
         if (hasOrdering) {
             // Sort locally
-            final List<DBDAttributeConstraint> orderConstraints = dataFilter.getOrderConstraints();
+            final /*~~>*/List<DBDAttributeConstraint> orderConstraints = dataFilter.getOrderConstraints();
             curRows.sort((row1, row2) -> {
                 int result = 0;
                 for (DBDAttributeConstraint co : orderConstraints) {
@@ -1139,7 +1139,7 @@ public class ResultSetModel {
     }
 
     private void fillVisibleAttributes() {
-        this.visibleAttributes.clear();
+        /*~~>*/this.visibleAttributes.clear();
 
         boolean entityDataView = executionSource != null && executionSource.getDataContainer() instanceof DBSEntity;
 
@@ -1164,7 +1164,7 @@ public class ResultSetModel {
                     // Filtered out by column filter
                     continue;
                 }
-                this.visibleAttributes.add(binding);
+                /*~~>*/this.visibleAttributes.add(binding);
             }
         }
     }

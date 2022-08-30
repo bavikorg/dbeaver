@@ -39,7 +39,7 @@ import java.util.ResourceBundle;
 public class WizardPrefPage extends WizardPage implements IDialogPageProvider {
 
     private final IPreferencePage preferencePage;
-    private final List<WizardPrefPage> subPages = new ArrayList<>();
+    private final /*~~>*/List<WizardPrefPage> subPages = new ArrayList<>();
 
     public WizardPrefPage(IPreferencePage preferencePage, String title, String description)
     {

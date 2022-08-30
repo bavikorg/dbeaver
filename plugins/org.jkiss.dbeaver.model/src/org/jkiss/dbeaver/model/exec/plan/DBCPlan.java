@@ -39,6 +39,6 @@ public interface DBCPlan {
 
     Object getPlanFeature(String feature);
 
-    List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options);
+    /*~~>*/List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options);
 
 }

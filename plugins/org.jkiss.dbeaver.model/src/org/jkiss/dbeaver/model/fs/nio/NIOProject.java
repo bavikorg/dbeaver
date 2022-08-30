@@ -222,9 +222,9 @@ public final class NIOProject extends NIOContainer implements IProject {
 
         private IBuildConfiguration[] buildConfigurations;
 
-        private final List<ICommand> commands = new ArrayList<ICommand>();
+        private final /*~~>*/List<ICommand> commands = new ArrayList<ICommand>();
 
-        private final List<String> natureIDs = new ArrayList<String>();
+        private final /*~~>*/List<String> natureIDs = new ArrayList<String>();
 
         public Description() {
 

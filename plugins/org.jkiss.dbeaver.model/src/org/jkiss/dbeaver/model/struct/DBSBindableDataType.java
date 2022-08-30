@@ -40,7 +40,7 @@ public interface DBSBindableDataType extends DBSDataType {
      * @throws DBException on any DB error
      */
     @NotNull
-    List<? extends DBSContextBoundAttribute> bindAttributesToContext(
+    /*~~>*/List<? extends DBSContextBoundAttribute> bindAttributesToContext(
         @NotNull DBRProgressMonitor monitor, @NotNull DBSEntity dataContainer, @NotNull DBSEntityAttribute memberContext
     ) throws DBException;
 }

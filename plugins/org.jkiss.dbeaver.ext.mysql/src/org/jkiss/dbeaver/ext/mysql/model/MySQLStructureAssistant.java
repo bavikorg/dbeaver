@@ -87,7 +87,7 @@ public class MySQLStructureAssistant extends JDBCStructureAssistant<MySQLExecuti
 
     @Override
     protected void findObjectsByMask(@NotNull MySQLExecutionContext executionContext, @NotNull JDBCSession session, @NotNull DBSObjectType objectType,
-                                     @NotNull ObjectsSearchParams params, @NotNull List<DBSObjectReference> references)
+                                     @NotNull ObjectsSearchParams params, @NotNull /*~~>*/List<DBSObjectReference> references)
                                         throws SQLException {
         MySQLCatalog catalog = params.getParentObject() instanceof MySQLCatalog ? (MySQLCatalog) params.getParentObject() : null;
         if (catalog == null && !params.isGlobalSearch()) {
@@ -105,7 +105,7 @@ public class MySQLStructureAssistant extends JDBCStructureAssistant<MySQLExecuti
     }
 
     private void findTablesByMask(JDBCSession session, @Nullable final MySQLCatalog catalog, @NotNull ObjectsSearchParams params,
-                                  List<DBSObjectReference> objects) throws SQLException {
+                                  /*~~>*/List<DBSObjectReference> objects) throws SQLException {
         DBRProgressMonitor monitor = session.getProgressMonitor();
 
         QueryParams queryParams = new QueryParams(
@@ -149,7 +149,7 @@ public class MySQLStructureAssistant extends JDBCStructureAssistant<MySQLExecuti
     }
 
     private void findProceduresByMask(JDBCSession session, @Nullable final MySQLCatalog catalog, @NotNull ObjectsSearchParams params,
-                                      List<DBSObjectReference> objects) throws SQLException {
+                                      /*~~>*/List<DBSObjectReference> objects) throws SQLException {
         DBRProgressMonitor monitor = session.getProgressMonitor();
 
         QueryParams queryParams = new QueryParams(
@@ -196,7 +196,7 @@ public class MySQLStructureAssistant extends JDBCStructureAssistant<MySQLExecuti
     }
 
     private void findConstraintsByMask(JDBCSession session, @Nullable final MySQLCatalog catalog, @NotNull ObjectsSearchParams params,
-                                       List<DBSObjectReference> objects) throws SQLException {
+                                       /*~~>*/List<DBSObjectReference> objects) throws SQLException {
         DBRProgressMonitor monitor = session.getProgressMonitor();
 
         QueryParams queryParams = new QueryParams(
@@ -254,7 +254,7 @@ public class MySQLStructureAssistant extends JDBCStructureAssistant<MySQLExecuti
     }
 
     private void findTableColumnsByMask(JDBCSession session, @Nullable final MySQLCatalog catalog, @NotNull ObjectsSearchParams params,
-                                        List<DBSObjectReference> objects) throws SQLException {
+                                        /*~~>*/List<DBSObjectReference> objects) throws SQLException {
         DBRProgressMonitor monitor = session.getProgressMonitor();
 
         QueryParams queryParams = new QueryParams(

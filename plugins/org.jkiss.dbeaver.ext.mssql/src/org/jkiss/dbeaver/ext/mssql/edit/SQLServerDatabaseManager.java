@@ -52,7 +52,7 @@ public class SQLServerDatabaseManager extends SQLObjectEditor<SQLServerDatabase,
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
         actions.add(new SQLDatabasePersistAction(
                 "Create database",
                 "CREATE DATABASE " + DBUtils.getQuotedIdentifier(command.getObject()) + ";"
@@ -60,7 +60,7 @@ public class SQLServerDatabaseManager extends SQLObjectEditor<SQLServerDatabase,
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
         if (CommonUtils.getOption(options, DBEObjectManager.OPTION_CLOSE_EXISTING_CONNECTIONS)) {
             actions.add(new SQLDatabasePersistAction(
                 "Drop database connections",
@@ -74,7 +74,7 @@ public class SQLServerDatabaseManager extends SQLObjectEditor<SQLServerDatabase,
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
         final SQLServerDataSource source = command.getObject().getDataSource();
         final String oldName = DBUtils.getQuotedIdentifier(source, command.getOldName());
         final String newName = DBUtils.getQuotedIdentifier(source, command.getNewName());

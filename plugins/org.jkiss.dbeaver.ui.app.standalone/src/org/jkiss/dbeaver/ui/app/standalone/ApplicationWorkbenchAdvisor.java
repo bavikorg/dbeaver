@@ -238,7 +238,7 @@ public class ApplicationWorkbenchAdvisor extends IDEWorkbenchAdvisor {
     }
 
     private IWizardDescriptor[] getAllWizards(IWizardCategory... categories) {
-        List<IWizardDescriptor> results = new ArrayList<>();
+        /*~~>*/List<IWizardDescriptor> results = new ArrayList<>();
         for(IWizardCategory wizardCategory : categories){
             Collections.addAll(results, wizardCategory.getWizards());
             Collections.addAll(results, getAllWizards(wizardCategory.getCategories()));
@@ -283,7 +283,7 @@ public class ApplicationWorkbenchAdvisor extends IDEWorkbenchAdvisor {
                 // So we need to close em first
                 IWorkbenchPage workbenchPage = window.getActivePage();
                 IEditorReference[] editors = workbenchPage.getEditorReferences();
-                List<IEditorPart> editorsToRevert = new ArrayList<>();
+                /*~~>*/List<IEditorPart> editorsToRevert = new ArrayList<>();
                 for (IEditorReference editor : editors) {
                     IEditorPart editorPart = editor.getEditor(false);
                     if (editorPart != null && editorPart.getEditorInput() instanceof ContentEditorInput) {

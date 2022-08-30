@@ -55,7 +55,7 @@ public class GreenplumTable extends PostgreTableRegular {
         }
     }
 
-    private List<PostgreTableColumn> getDistributionPolicy(DBRProgressMonitor monitor) throws DBException {
+    private /*~~>*/List<PostgreTableColumn> getDistributionPolicy(DBRProgressMonitor monitor) throws DBException {
         if (distributionColumns == null) {
             try {
                 distributionColumns = GreenplumUtils.readDistributedColumns(monitor, this);
@@ -70,7 +70,7 @@ public class GreenplumTable extends PostgreTableRegular {
         if (distributionColumns.length == 0) {
             return null;
         }
-        List<PostgreTableColumn> columns = new ArrayList<>(distributionColumns.length);
+        /*~~>*/List<PostgreTableColumn> columns = new ArrayList<>(distributionColumns.length);
         for (int i = 0; i < distributionColumns.length; i++) {
             PostgreTableColumn attr = getAttributeByPos(monitor, distributionColumns[i]);
             if (attr == null) {
@@ -85,7 +85,7 @@ public class GreenplumTable extends PostgreTableRegular {
     @Override
     public void appendTableModifiers(DBRProgressMonitor monitor, StringBuilder ddl) {
         try {
-            List<PostgreTableColumn> distributionColumns = getDistributionPolicy(monitor);
+            /*~~>*/List<PostgreTableColumn> distributionColumns = getDistributionPolicy(monitor);
             if (CommonUtils.isEmpty(distributionColumns)) {
                 distributionColumns = GreenplumUtils.getDistributionTableColumns(monitor, distributionColumns, this);
             }

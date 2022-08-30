@@ -34,7 +34,7 @@ public class MySQLToolTableOptimize extends MySQLToolWithStatus<MySQLTableBase, 
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, MySQLToolTableOptimizeSettings settings, List<DBEPersistAction> queries, MySQLTableBase object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, MySQLToolTableOptimizeSettings settings, /*~~>*/List<DBEPersistAction> queries, MySQLTableBase object) throws DBCException {
         String sql = "OPTIMIZE TABLE " + object.getFullyQualifiedName(DBPEvaluationContext.DDL);
         queries.add(new SQLDatabasePersistAction(sql));
     }

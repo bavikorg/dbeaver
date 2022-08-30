@@ -111,7 +111,7 @@ public class ColorSettingsDialog extends BaseDialog {
 
     private ControlEnableState settingsEnableState;
     private Composite settingsGroup;
-    private List<DBVColorOverride> colorOverrides;
+    private /*~~>*/List<DBVColorOverride> colorOverrides;
     private Button singleColumnCheck;
 
     private DBVColorOverride curOverride;
@@ -190,10 +190,10 @@ public class ColorSettingsDialog extends BaseDialog {
 
                 int x = event.x + 4;
                 DBDAttributeBinding attr = (DBDAttributeBinding) event.item.getData();
-                List<DBVColorOverride> coList = vEntity.getColorOverrides(attr.getName());
+                /*~~>*/List<DBVColorOverride> coList = vEntity.getColorOverrides(attr.getName());
                 if (!coList.isEmpty()) {
                     for (DBVColorOverride co : coList) {
-                        List<String> coStrings = new ArrayList<>();
+                        /*~~>*/List<String> coStrings = new ArrayList<>();
                         if (co.getAttributeValues() != null) {
                             for (Object value : co.getAttributeValues()) {
                                 coStrings.add(CommonUtils.toString(value));

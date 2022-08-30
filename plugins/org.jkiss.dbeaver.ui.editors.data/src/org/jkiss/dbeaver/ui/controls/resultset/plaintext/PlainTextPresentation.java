@@ -456,7 +456,7 @@ public class PlainTextPresentation extends AbstractPresentation implements IAdap
         }
 
         @Override
-        public List<String> toList()
+        public /*~~>*/List<String> toList()
         {
             return curSelection == null ?
                 Collections.emptyList() :
@@ -478,7 +478,7 @@ public class PlainTextPresentation extends AbstractPresentation implements IAdap
 
         @NotNull
         @Override
-        public List<DBDAttributeBinding> getSelectedAttributes() {
+        public /*~~>*/List<DBDAttributeBinding> getSelectedAttributes() {
             if (curAttribute == null) {
                 return Collections.emptyList();
             }
@@ -487,7 +487,7 @@ public class PlainTextPresentation extends AbstractPresentation implements IAdap
 
         @NotNull
         @Override
-        public List<ResultSetRow> getSelectedRows()
+        public /*~~>*/List<ResultSetRow> getSelectedRows()
         {
             ResultSetRow currentRow = controller.getCurrentRow();
             if (currentRow == null) {

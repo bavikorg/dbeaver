@@ -168,7 +168,7 @@ public class ERDResourceHandler extends AbstractResourceHandler {
     }
 
     @Override
-    public List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource) {
+    public /*~~>*/List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource) {
         if (resource.getResource() instanceof IFile) {
             try {
                 IResource iResource = resource.getResource();

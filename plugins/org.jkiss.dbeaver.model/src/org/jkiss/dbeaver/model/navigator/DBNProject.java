@@ -44,7 +44,7 @@ public class DBNProject extends DBNResource implements DBNNodeExtendable {
     private static final Log log = Log.getLog(DBNProject.class);
 
     private final DBPProject project;
-    private final List<DBNNode> extraNodes = new ArrayList<>();
+    private final /*~~>*/List<DBNNode> extraNodes = new ArrayList<>();
 
     public DBNProject(DBNNode parentNode, DBPProject project, DBPResourceHandler handler) {
         super(parentNode, project.getEclipseProject(), handler);
@@ -157,7 +157,7 @@ public class DBNProject extends DBNResource implements DBNNodeExtendable {
         if (project.getEclipseProject() != null && !project.getEclipseProject().isOpen()) {
             return new DBNNode[0];
         }
-        List<DBNNode> childrenFiltered = new ArrayList<>();
+        /*~~>*/List<DBNNode> childrenFiltered = new ArrayList<>();
         Collections.addAll(childrenFiltered, super.getChildren(monitor));
         if (!DBWorkbench.getPlatform().getPreferenceStore().getBoolean(ModelPreferences.NAVIGATOR_SHOW_FOLDER_PLACEHOLDERS)) {
             // Remove non-existing resources (placeholders)
@@ -207,7 +207,7 @@ public class DBNProject extends DBNResource implements DBNNodeExtendable {
     }
 
     public DBNResource findResource(IResource resource) {
-        List<IResource> path = new ArrayList<>();
+        /*~~>*/List<IResource> path = new ArrayList<>();
         for (IResource parent = resource;
              !(parent instanceof IProject) && !CommonUtils.equalObjects(parent, project.getRootResource());
              parent = parent.getParent())
@@ -262,7 +262,7 @@ public class DBNProject extends DBNResource implements DBNNodeExtendable {
 
     @NotNull
     @Override
-    public List<DBNNode> getExtraNodes() {
+    public /*~~>*/List<DBNNode> getExtraNodes() {
         return extraNodes;
     }
 

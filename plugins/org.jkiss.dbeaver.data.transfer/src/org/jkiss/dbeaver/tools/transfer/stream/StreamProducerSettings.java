@@ -104,7 +104,7 @@ public class StreamProducerSettings implements IDataTransferSettings {
         lastProcessorProperties = new LinkedHashMap<>(procProps);
         lastProducer = producer;
 
-        List<StreamDataImporterColumnInfo> columnInfos;
+        /*~~>*/List<StreamDataImporterColumnInfo> columnInfos;
         StreamEntityMapping entityMapping = producer.getEntityMapping();
 
         IDataTransferProcessor importer = dataTransferSettings.getProcessor().getInstance();
@@ -130,7 +130,7 @@ public class StreamProducerSettings implements IDataTransferSettings {
 
     @Override
     public void saveSettings(Map<String, Object> settings) {
-        List<Map<String, Object>> mappings = new ArrayList<>();
+        /*~~>*/List<Map<String, Object>> mappings = new ArrayList<>();
         settings.put("mappings", mappings);
 
         for (StreamEntityMapping emc : entityMapping.values()) {

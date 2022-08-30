@@ -67,7 +67,7 @@ public class PostgreTableForeignKey extends PostgreTableConstraintBase implement
     private DBSForeignKeyModifyRule deleteRule;
     private DBSEntityConstraint refConstraint;
     private PostgreTableBase refTable;
-    private final List<PostgreTableForeignKeyColumn> columns = new ArrayList<>();
+    private final /*~~>*/List<PostgreTableForeignKeyColumn> columns = new ArrayList<>();
 
 /*
     public PostgreTableForeignKey(DBRProgressMonitor monitor, PostgreTable table, PostgreTableForeignKey source) {
@@ -176,18 +176,18 @@ public class PostgreTableForeignKey extends PostgreTableConstraintBase implement
 
     @Nullable
     @Override
-    public List<PostgreTableForeignKeyColumn> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<PostgreTableForeignKeyColumn> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
         return columns;
     }
 
-    void cacheAttributes(DBRProgressMonitor monitor, List<? extends PostgreTableConstraintColumn> children, boolean secondPass) {
+    void cacheAttributes(DBRProgressMonitor monitor, /*~~>*/List<? extends PostgreTableConstraintColumn> children, boolean secondPass) {
         if (!secondPass) {
             return;
         }
         columns.clear();
         columns.addAll((Collection<? extends PostgreTableForeignKeyColumn>) children);
 
-        final List<PostgreAttribute> lst = new ArrayList<>(children.size());
+        final /*~~>*/List<PostgreAttribute> lst = new ArrayList<>(children.size());
         for (PostgreTableConstraintColumn c : children) {
             lst.add(((PostgreTableForeignKeyColumn)c).getReferencedColumn());
         }
@@ -202,7 +202,7 @@ public class PostgreTableForeignKey extends PostgreTableConstraintBase implement
     }
 
     public void addColumn(PostgreTableForeignKeyColumn column) {
-        this.columns.add(column);
+        /*~~>*/this.columns.add(column);
     }
 
     public static class PostgreConstraintModifyRuleListProvider implements IPropertyValueListProvider<PostgreTableForeignKey> {

@@ -129,7 +129,7 @@ public class BookmarksHandlerImpl extends AbstractResourceHandler {
     }
 
     @Override
-    public List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource) {
+    public /*~~>*/List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource) {
         if (resource instanceof DBNBookmark) {
             DBPDataSourceRegistry dataSourceRegistry = resource.getOwnerProject().getDataSourceRegistry();
             if (dataSourceRegistry != null) {
@@ -234,7 +234,7 @@ public class BookmarksHandlerImpl extends AbstractResourceHandler {
             title = node.getNodeName();
         }
 
-        List<String> nodePath = new ArrayList<>();
+        /*~~>*/List<String> nodePath = new ArrayList<>();
         for (DBNNode parent = node; !(parent instanceof DBNDataSource); parent = parent.getParentNode()) {
             nodePath.add(0, parent.getNodeName());
         }

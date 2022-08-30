@@ -37,7 +37,7 @@ public class GenericTableIndex extends JDBCTableIndex<GenericStructContainer, Ge
     private boolean nonUnique;
     private String qualifier;
     private long cardinality;
-    private List<GenericTableIndexColumn> columns;
+    private /*~~>*/List<GenericTableIndexColumn> columns;
 
     public GenericTableIndex(
         GenericTableBase table,
@@ -64,10 +64,10 @@ public class GenericTableIndex extends JDBCTableIndex<GenericStructContainer, Ge
         this.nonUnique = source.nonUnique;
         this.qualifier = source.qualifier;
         this.cardinality = source.cardinality;
-        if (source.columns != null) {
-            this.columns = new ArrayList<>(source.columns.size());
-            for (GenericTableIndexColumn sourceColumn : source.columns) {
-                this.columns.add(new GenericTableIndexColumn(this, sourceColumn));
+        if (/*~~>*/source.columns != null) {
+            /*~~>*/this.columns = new ArrayList<>(/*~~>*/source.columns.size());
+            for (GenericTableIndexColumn sourceColumn : /*~~>*/source.columns) {
+                /*~~>*/this.columns.add(new GenericTableIndexColumn(this, sourceColumn));
             }
         }
     }
@@ -111,7 +111,7 @@ public class GenericTableIndex extends JDBCTableIndex<GenericStructContainer, Ge
     }
 
     @Override
-    public List<GenericTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor)
+    public /*~~>*/List<GenericTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor)
     {
         return columns;
     }
@@ -122,9 +122,9 @@ public class GenericTableIndex extends JDBCTableIndex<GenericStructContainer, Ge
         return DBUtils.findObject(columns, columnName);
     }
 
-    public void setColumns(List<GenericTableIndexColumn> columns)
+    public void setColumns(/*~~>*/List<GenericTableIndexColumn> columns)
     {
-        this.columns = columns;
+        /*~~>*/this.columns = columns;
     }
 
     public void addColumn(GenericTableIndexColumn column)

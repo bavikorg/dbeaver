@@ -529,7 +529,7 @@ public class SQLScriptParserTest {
     
     private void assertParse(String dialectName, String[] expected) throws DBException {
     	String source = Arrays.stream(expected).filter(e -> e != null).collect(Collectors.joining());
-    	List<String> expectedParts = new ArrayList<>(expected.length);
+    	/*~~>*/List<String> expectedParts = new ArrayList<>(expected.length);
     	for (int i = 0; i < expected.length; i++) {
     		if (i + 1 < expected.length && expected[i + 1] == null) {
     			expectedParts.add(expected[i].replaceAll("[\\;]+$", ""));
@@ -543,7 +543,7 @@ public class SQLScriptParserTest {
 
     private void assertParse(String dialectName, String query, String[] expected) throws DBException {
         SQLParserContext context = createParserContext(setDialect(dialectName), query);
-        List<SQLScriptElement> elements = SQLScriptParser.extractScriptQueries(context, 0, context.getDocument().getLength(), false, false, false);
+        /*~~>*/List<SQLScriptElement> elements = SQLScriptParser.extractScriptQueries(context, 0, context.getDocument().getLength(), false, false, false);
         Assert.assertEquals(expected.length, elements.size());
         for (int index = 0; index < expected.length; index++) {
             Assert.assertEquals(expected[index], elements.get(index).getText());

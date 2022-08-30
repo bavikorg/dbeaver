@@ -56,7 +56,7 @@ public abstract class AbstractPresentation implements IResultSetPresentation, IS
 
     @NotNull
     protected IResultSetController controller;
-    private final List<ISelectionChangedListener> selectionChangedListenerList = new ArrayList<>();
+    private final /*~~>*/List<ISelectionChangedListener> selectionChangedListenerList = new ArrayList<>();
 
     @Override
     @NotNull

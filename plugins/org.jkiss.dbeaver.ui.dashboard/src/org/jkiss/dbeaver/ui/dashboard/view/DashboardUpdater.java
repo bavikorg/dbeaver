@@ -40,7 +40,7 @@ import java.util.*;
 public class DashboardUpdater {
 
     private static final Log log = Log.getLog(DashboardUpdater.class);
-    private Map<DBPDataSourceContainer, List<MapQueryInfo>> mapQueries = new HashMap<>();
+    private Map<DBPDataSourceContainer, /*~~>*/List<MapQueryInfo>> mapQueries = new HashMap<>();
 
     private static class MapQueryInfo {
         private final DashboardContainer dashboard;
@@ -60,20 +60,20 @@ public class DashboardUpdater {
     }
 
     public void updateDashboards(DBRProgressMonitor monitor) {
-        List<DashboardContainer> dashboards = getDashboardsToUpdate();
+        /*~~>*/List<DashboardContainer> dashboards = getDashboardsToUpdate();
 
         updateDashboards(monitor, dashboards);
 
     }
 
-    private void updateDashboards(DBRProgressMonitor monitor, List<DashboardContainer> dashboards) {
+    private void updateDashboards(DBRProgressMonitor monitor, /*~~>*/List<DashboardContainer> dashboards) {
         monitor.beginTask("Update dashboards", dashboards.size());
 
         // Get all map queries used by dashboards
         for (DashboardContainer dashboard : dashboards) {
             DashboardMapQuery mapQuery = dashboard.getMapQuery();
             if (mapQuery != null) {
-                List<MapQueryInfo> queryList = mapQueries.computeIfAbsent(
+                /*~~>*/List<MapQueryInfo> queryList = mapQueries.computeIfAbsent(
                     dashboard.getDataSourceContainer(), k -> new ArrayList<>());
                 boolean found = false;
                 for (MapQueryInfo mqi : queryList) {
@@ -88,7 +88,7 @@ public class DashboardUpdater {
             }
         }
 
-        for (Map.Entry<DBPDataSourceContainer, List<MapQueryInfo>> mqEntry : mapQueries.entrySet()) {
+        for (Map.Entry<DBPDataSourceContainer, /*~~>*/List<MapQueryInfo>> mqEntry : mapQueries.entrySet()) {
             monitor.subTask("Read dashboard data");
             DBPDataSourceContainer dsContainer = mqEntry.getKey();
             DBPDataSource dataSource = dsContainer.getDataSource();
@@ -180,7 +180,7 @@ public class DashboardUpdater {
             fetchDashboardMapData(monitor, dashboard);
             return;
         }
-        List<? extends DashboardQuery> queries = dashboard.getQueryList();
+        /*~~>*/List<? extends DashboardQuery> queries = dashboard.getQueryList();
         if (queries.isEmpty()) {
             return;
         }
@@ -302,8 +302,8 @@ public class DashboardUpdater {
 
     private void fetchDashboardData(DashboardContainer dashboard, DBCResultSet dbResults) throws DBCException {
         DBCResultSetMetaData meta = dbResults.getMeta();
-        List<DBCAttributeMetaData> rsAttrs = meta.getAttributes();
-        List<String> colNames = new ArrayList<>();
+        /*~~>*/List<DBCAttributeMetaData> rsAttrs = meta.getAttributes();
+        /*~~>*/List<String> colNames = new ArrayList<>();
         String tsColName = null;
         for (DBCAttributeMetaData rsAttr : rsAttrs) {
             String colName = rsAttr.getLabel();
@@ -351,8 +351,8 @@ public class DashboardUpdater {
         }
         // Column names don't matter. Get everything from rows.
         // First column in row is actually column name. The rest are row values (usually 1)
-        List<String> colNamesFromRows = new ArrayList<>();
-        List<DashboardDatasetRow> oldRows = dataset.getRows();
+        /*~~>*/List<String> colNamesFromRows = new ArrayList<>();
+        /*~~>*/List<DashboardDatasetRow> oldRows = dataset.getRows();
         Date oldTimestamp = oldRows.get(0).getTimestamp();
         DashboardDatasetRow[] newRows = new DashboardDatasetRow[oldColumnCount - 1];
 
@@ -377,8 +377,8 @@ public class DashboardUpdater {
         return newDataset;
     }
 
-    public List<DashboardContainer> getDashboardsToUpdate() {
-        List<DashboardContainer> dashboards = new ArrayList<>();
+    public /*~~>*/List<DashboardContainer> getDashboardsToUpdate() {
+        /*~~>*/List<DashboardContainer> dashboards = new ArrayList<>();
         for (IWorkbenchWindow window : PlatformUI.getWorkbench().getWorkbenchWindows()) {
             for (IWorkbenchPage page : window.getPages()) {
                 for (IViewReference view : page.getViewReferences()) {
@@ -394,7 +394,7 @@ public class DashboardUpdater {
         return dashboards;
     }
 
-    private void getViewDashboards(DashboardView view, List<DashboardContainer> dashboards) {
+    private void getViewDashboards(DashboardView view, /*~~>*/List<DashboardContainer> dashboards) {
         long currentTime = System.currentTimeMillis();
         DashboardListViewer viewManager = view.getDashboardListViewer();
         if (viewManager == null || !viewManager.getDataSourceContainer().isConnected()) {
@@ -411,7 +411,7 @@ public class DashboardUpdater {
     }
 
     private MapQueryInfo getMapQueryData(DashboardContainer dashboard) {
-        List<MapQueryInfo> mapQueryInfos = mapQueries.get(dashboard.getDataSourceContainer());
+        /*~~>*/List<MapQueryInfo> mapQueryInfos = mapQueries.get(dashboard.getDataSourceContainer());
         if (mapQueryInfos != null) {
             for (MapQueryInfo mqi : mapQueryInfos) {
                 if (mqi.mapQuery == dashboard.getMapQuery()) {

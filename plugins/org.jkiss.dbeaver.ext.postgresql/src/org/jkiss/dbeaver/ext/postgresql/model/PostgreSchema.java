@@ -223,19 +223,19 @@ public class PostgreSchema implements
 
 
     @Association
-    public List<PostgreExtension> getExtensions(DBRProgressMonitor monitor)
+    public /*~~>*/List<PostgreExtension> getExtensions(DBRProgressMonitor monitor)
         throws DBException {
         return extensionCache.getAllObjects(monitor, this);
     }
 
     @Association
-    public List<PostgreAggregate> getAggregateFunctions(DBRProgressMonitor monitor)
+    public /*~~>*/List<PostgreAggregate> getAggregateFunctions(DBRProgressMonitor monitor)
         throws DBException {
         return aggregateCache.getAllObjects(monitor, this);
     }
 
     @Association
-    public List<PostgreIndex> getIndexes(DBRProgressMonitor monitor)
+    public /*~~>*/List<PostgreIndex> getIndexes(DBRProgressMonitor monitor)
         throws DBException {
         return indexCache.getObjects(monitor, this, null);
     }
@@ -281,7 +281,7 @@ public class PostgreSchema implements
     }
 
     @Association
-    public List<? extends PostgreTable> getTables(DBRProgressMonitor monitor)
+    public /*~~>*/List<? extends PostgreTable> getTables(DBRProgressMonitor monitor)
         throws DBException {
         final ArrayList<? extends PostgreTable> tables = getTableCache().getTypedObjects(monitor, this, PostgreTable.class)
             .stream()
@@ -295,13 +295,13 @@ public class PostgreSchema implements
     }
 
     @Association
-    public List<PostgreView> getViews(DBRProgressMonitor monitor)
+    public /*~~>*/List<PostgreView> getViews(DBRProgressMonitor monitor)
         throws DBException {
         return getTableCache().getTypedObjects(monitor, this, PostgreView.class);
     }
 
     @Association
-    public List<PostgreMaterializedView> getMaterializedViews(DBRProgressMonitor monitor)
+    public /*~~>*/List<PostgreMaterializedView> getMaterializedViews(DBRProgressMonitor monitor)
         throws DBException {
         return getTableCache().getTypedObjects(monitor, this, PostgreMaterializedView.class);
     }
@@ -313,7 +313,7 @@ public class PostgreSchema implements
     }
 
     @Association
-    public List<PostgreSequence> getSequences(DBRProgressMonitor monitor)
+    public /*~~>*/List<PostgreSequence> getSequences(DBRProgressMonitor monitor)
         throws DBException {
         return getTableCache().getTypedObjects(monitor, this, PostgreSequence.class);
     }
@@ -325,7 +325,7 @@ public class PostgreSchema implements
     }
 
     @Association
-    public List<PostgreProcedure> getProcedures(DBRProgressMonitor monitor)
+    public /*~~>*/List<PostgreProcedure> getProcedures(DBRProgressMonitor monitor)
         throws DBException {
         return getProceduresCache().getAllObjects(monitor, this);
     }
@@ -346,7 +346,7 @@ public class PostgreSchema implements
     }
 
     @Override
-    public List<? extends JDBCTable> getChildren(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<? extends JDBCTable> getChildren(@NotNull DBRProgressMonitor monitor)
         throws DBException {
         return getTableCache().getTypedObjects(monitor, this, PostgreTableReal.class);
     }
@@ -465,7 +465,7 @@ public class PostgreSchema implements
 
     //@Property
     @Association
-    public List<PostgreDataType> getDataTypes(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<PostgreDataType> getDataTypes(DBRProgressMonitor monitor) throws DBException {
         return dataTypeCache.getAllObjects(monitor, this).stream()
             .sorted(Comparator
                 .comparing((DBSTypedObject type) -> type.getTypeName().startsWith("_")) // Sort the array data types at the end of the list
@@ -532,7 +532,7 @@ public class PostgreSchema implements
             if (!monitor.isCanceled()) {
                 Collection<PostgreTableBase> tablesOrViews = getTableCache().getAllObjects(monitor, this);
 
-                List<PostgreTableBase> allTables = new ArrayList<>();
+                /*~~>*/List<PostgreTableBase> allTables = new ArrayList<>();
                 for (PostgreTableBase tableOrView : tablesOrViews) {
                     monitor.subTask(tableOrView.getName());
                     if (tableOrView instanceof PostgreSequence) {
@@ -559,7 +559,7 @@ public class PostgreSchema implements
             }
         }
 
-        List<DBEPersistAction> actions = new ArrayList<>();
+        /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
         PostgreUtils.getObjectGrantPermissionActions(monitor, this, actions, options);
         if (!actions.isEmpty()) {
             sql.append("\n\n");
@@ -966,12 +966,12 @@ public class PostgreSchema implements
         }
 
         @Override
-        protected void cacheChildren(DBRProgressMonitor monitor, PostgreTableConstraintBase object, List<PostgreTableConstraintColumn> children) {
+        protected void cacheChildren(DBRProgressMonitor monitor, PostgreTableConstraintBase object, /*~~>*/List<PostgreTableConstraintColumn> children) {
             object.cacheAttributes(monitor, children, false);
         }
 
         @Override
-        protected void cacheChildren2(DBRProgressMonitor monitor, PostgreTableConstraintBase object, List<PostgreTableConstraintColumn> children) {
+        protected void cacheChildren2(DBRProgressMonitor monitor, PostgreTableConstraintBase object, /*~~>*/List<PostgreTableConstraintColumn> children) {
             object.cacheAttributes(monitor, children, true);
         }
     }
@@ -1085,7 +1085,7 @@ public class PostgreSchema implements
         }
 
         @Override
-        protected void cacheChildren(DBRProgressMonitor monitor, PostgreIndex index, List<PostgreIndexColumn> rows) {
+        protected void cacheChildren(DBRProgressMonitor monitor, PostgreIndex index, /*~~>*/List<PostgreIndexColumn> rows) {
             index.setColumns(rows);
         }
     }

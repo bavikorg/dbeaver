@@ -28,7 +28,7 @@ public interface ERDContainer {
 
     ERDContentProvider getContentProvider();
 
-    List<ERDEntity> getEntities();
+    /*~~>*/List<ERDEntity> getEntities();
 
     Map<DBSEntity, ERDEntity> getEntityMap();
 

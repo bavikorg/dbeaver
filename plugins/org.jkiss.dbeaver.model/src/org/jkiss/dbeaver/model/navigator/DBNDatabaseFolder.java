@@ -74,7 +74,7 @@ public class DBNDatabaseFolder extends DBNDatabaseNode implements DBNContainer, 
 
     @Override
     public String getChildrenType() {
-        final List<DBXTreeNode> metaChildren = meta.getChildren(this);
+        final /*~~>*/List<DBXTreeNode> metaChildren = meta.getChildren(this);
         if (CommonUtils.isEmpty(metaChildren)) {
             return "?";
         } else {
@@ -124,7 +124,7 @@ public class DBNDatabaseFolder extends DBNDatabaseNode implements DBNContainer, 
     @Override
     public Collection<DBSObject> getChildrenObjects(DBRProgressMonitor monitor) throws DBException {
         DBNDatabaseNode[] children = getChildren(monitor);
-        List<DBSObject> childObjects = new ArrayList<>();
+        /*~~>*/List<DBSObject> childObjects = new ArrayList<>();
         if (!ArrayUtils.isEmpty(children)) {
             for (DBNDatabaseNode child : children) {
                 childObjects.add(child.getObject());

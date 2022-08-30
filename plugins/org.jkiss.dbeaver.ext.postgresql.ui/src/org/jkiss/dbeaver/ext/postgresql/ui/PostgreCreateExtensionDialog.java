@@ -59,7 +59,7 @@ public class PostgreCreateExtensionDialog extends BaseDialog
 
     private PostgreAvailableExtension extension;
     private final PostgreExtension newextension;
-    private List<PostgreSchema> allSchemas;
+    private /*~~>*/List<PostgreSchema> allSchemas;
     private PostgreSchema schema;
     private TableViewer extTable;
 
@@ -181,7 +181,7 @@ public class PostgreCreateExtensionDialog extends BaseDialog
             @Override
             protected IStatus run(DBRProgressMonitor monitor) {
                 try {
-                    final List<PostgreAvailableExtension> installed = new ArrayList<>(newextension.getDatabase().getAvailableExtensions(monitor));
+                    final /*~~>*/List<PostgreAvailableExtension> installed = new ArrayList<>(newextension.getDatabase().getAvailableExtensions(monitor));
                     UIUtils.syncExec(() -> {                        
                         extTable.setInput(installed);
                     });

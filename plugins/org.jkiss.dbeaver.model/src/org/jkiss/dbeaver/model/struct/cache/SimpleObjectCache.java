@@ -31,7 +31,7 @@ public class SimpleObjectCache<OWNER extends DBSObject, OBJECT extends DBSObject
 
     @NotNull
     @Override
-    public List<OBJECT> getAllObjects(@NotNull DBRProgressMonitor monitor, @Nullable OWNER owner) {
+    public /*~~>*/List<OBJECT> getAllObjects(@NotNull DBRProgressMonitor monitor, @Nullable OWNER owner) {
         return getCachedObjects();
     }
 

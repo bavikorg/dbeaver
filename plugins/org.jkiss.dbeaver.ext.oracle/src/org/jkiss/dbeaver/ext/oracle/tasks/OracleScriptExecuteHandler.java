@@ -58,7 +58,7 @@ public class OracleScriptExecuteHandler extends AbstractNativeToolHandler<Oracle
     }
 
     @Override
-    public void fillProcessParameters(OracleScriptExecuteSettings settings, OracleDataSource arg, List<String> cmd) throws IOException {
+    public void fillProcessParameters(OracleScriptExecuteSettings settings, OracleDataSource arg, /*~~>*/List<String> cmd) throws IOException {
         String sqlPlusExec = RuntimeUtils.getNativeBinaryName("sqlplus"); //$NON-NLS-1$
         File sqlPlusBinary = new File(settings.getClientHome().getPath(), "bin/" + sqlPlusExec); //$NON-NLS-1$
         if (!sqlPlusBinary.exists()) {
@@ -72,8 +72,8 @@ public class OracleScriptExecuteHandler extends AbstractNativeToolHandler<Oracle
     }
 
     @Override
-    protected List<String> getCommandLine(OracleScriptExecuteSettings settings, OracleDataSource arg) throws IOException {
-        List<String> cmd = new ArrayList<>();
+    protected /*~~>*/List<String> getCommandLine(OracleScriptExecuteSettings settings, OracleDataSource arg) throws IOException {
+        /*~~>*/List<String> cmd = new ArrayList<>();
         fillProcessParameters(settings, arg, cmd);
         DBPConnectionConfiguration conInfo = settings.getDataSourceContainer().getActualConnectionConfiguration();
         String url;

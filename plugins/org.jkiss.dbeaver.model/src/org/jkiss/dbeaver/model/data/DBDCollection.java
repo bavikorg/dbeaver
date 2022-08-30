@@ -28,7 +28,7 @@ import java.util.List;
  *
  * @author Serge Rider
  */
-public interface DBDCollection extends DBDComplexValue, List<Object> {
+public interface DBDCollection extends DBDComplexValue, /*~~>*/List<Object> {
 
     @NotNull
     DBSDataType getComponentType();

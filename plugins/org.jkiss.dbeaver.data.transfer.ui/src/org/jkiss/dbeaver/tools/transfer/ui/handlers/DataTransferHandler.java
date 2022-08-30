@@ -43,8 +43,8 @@ public abstract class DataTransferHandler extends AbstractHandler {
             return null;
         }
         IStructuredSelection ss = (IStructuredSelection)selection;
-        final List<IDataTransferProducer<?>> producers = new ArrayList<>();
-        final List<IDataTransferConsumer<?,?>> consumers = new ArrayList<>();
+        final /*~~>*/List<IDataTransferProducer<?>> producers = new ArrayList<>();
+        final /*~~>*/List<IDataTransferConsumer<?,?>> consumers = new ArrayList<>();
         for (Object object : ss) {
             IDataTransferNode<?> node = adaptTransferNode(object);
             if (node instanceof IDataTransferProducer) {

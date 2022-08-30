@@ -41,21 +41,21 @@ import org.jkiss.utils.CommonUtils;
 import java.util.List;
 
 public class ConfirmNavigatorNodesDeleteDialog extends MessageDialog {
-    private final List<?> selectedObjects;
+    private final /*~~>*/List<?> selectedObjects;
 
     private final NavigatorObjectsDeleter deleter;
 
-    private ConfirmNavigatorNodesDeleteDialog(Shell shell, String title, String message, List<?> selectedObjects, @Nullable NavigatorObjectsDeleter deleter) {
+    private ConfirmNavigatorNodesDeleteDialog(Shell shell, String title, String message, /*~~>*/List<?> selectedObjects, @Nullable NavigatorObjectsDeleter deleter) {
         super(shell, title, DBeaverIcons.getImage(UIIcon.REJECT), message, MessageDialog.ERROR, null, 0);
-        this.selectedObjects = selectedObjects;
+        /*~~>*/this.selectedObjects = selectedObjects;
         this.deleter = deleter;
     }
 
-    public static ConfirmNavigatorNodesDeleteDialog of(Shell shell, String title, String message, List<?> selectedObjects, NavigatorObjectsDeleter deleter) {
+    public static ConfirmNavigatorNodesDeleteDialog of(Shell shell, String title, String message, /*~~>*/List<?> selectedObjects, NavigatorObjectsDeleter deleter) {
         return new ConfirmNavigatorNodesDeleteDialog(shell, title, message, selectedObjects, deleter);
     }
 
-    public static ConfirmNavigatorNodesDeleteDialog of(Shell shell, List<?> selectedObjects, NavigatorObjectsDeleter deleter) {
+    public static ConfirmNavigatorNodesDeleteDialog of(Shell shell, /*~~>*/List<?> selectedObjects, NavigatorObjectsDeleter deleter) {
         if (selectedObjects.size() > 1) {
             return new ConfirmNavigatorNodesDeleteDialog(
                 shell,

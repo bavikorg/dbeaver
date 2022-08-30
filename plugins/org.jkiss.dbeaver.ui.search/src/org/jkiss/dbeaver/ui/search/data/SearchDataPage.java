@@ -268,8 +268,8 @@ public class SearchDataPage extends AbstractSearchPage {
         }
         UIUtils.asyncExec(this::restoreCheckedNodes);
 
-        if (!params.selectedNodes.isEmpty()) {
-            navigatorTree.getViewer().setSelection(new StructuredSelection(params.selectedNodes));
+        if (!/*~~>*/params.selectedNodes.isEmpty()) {
+            navigatorTree.getViewer().setSelection(new StructuredSelection(/*~~>*/params.selectedNodes));
         }
 
         navigatorTree.setEnabled(true);
@@ -277,7 +277,7 @@ public class SearchDataPage extends AbstractSearchPage {
 
     @Override
     public SearchDataQuery createQuery() throws DBException {
-        params.sources = getCheckedSources();
+        /*~~>*/params.sources = getCheckedSources();
 
         // Save search query
         if (!searchHistory.contains(params.searchString)) {
@@ -306,12 +306,12 @@ public class SearchDataPage extends AbstractSearchPage {
             searchHistory.add(history);
         }
 
-        params.selectedNodes.clear();
+        /*~~>*/params.selectedNodes.clear();
         ISelection selection = container.getSelection();
         if (selection instanceof IStructuredSelection) {
             for (Object selItem : ((IStructuredSelection) selection).toArray()) {
                 if (selItem instanceof DBNNode) {
-                    params.selectedNodes.add((DBNNode) selItem);
+                    /*~~>*/params.selectedNodes.add((DBNNode) selItem);
                 }
             }
         }
@@ -349,15 +349,15 @@ public class SearchDataPage extends AbstractSearchPage {
         return objects;
     }
 
-    private List<DBSDataContainer> getCheckedSources() {
-        List<DBSDataContainer> result = new ArrayList<>();
+    private /*~~>*/List<DBSDataContainer> getCheckedSources() {
+        /*~~>*/List<DBSDataContainer> result = new ArrayList<>();
         Object[] elements = getCheckedElements();
         RuntimeUtils.runTask(monitor -> {
             for (Object node : elements) {
                 if (node instanceof DBNDatabaseNode) {
                     DBSObject object = ((DBNDatabaseNode) node).getObject();
                     try {
-                        List<DBSDataContainer> containers = DBUtils.getAllDataContainersFromParentContainer(monitor, object);
+                        /*~~>*/List<DBSDataContainer> containers = DBUtils.getAllDataContainersFromParentContainer(monitor, object);
                         if (!CommonUtils.isEmpty(containers)) {
                             result.addAll(containers);
                         }
@@ -401,7 +401,7 @@ public class SearchDataPage extends AbstractSearchPage {
         store.setValue(PROP_SOURCES, sourcesString.toString());
     }
 
-    private List<DBNNode> loadTreeState(DBRProgressMonitor monitor) {
+    private /*~~>*/List<DBNNode> loadTreeState(DBRProgressMonitor monitor) {
         return loadTreeState(
             monitor,
             NavigatorUtils.getSelectedProject(),
@@ -409,7 +409,7 @@ public class SearchDataPage extends AbstractSearchPage {
     }
 
     private void restoreCheckedNodes() {
-        final List<DBNNode> checkedNodes = new ArrayList<>();
+        final /*~~>*/List<DBNNode> checkedNodes = new ArrayList<>();
         try {
             container.getRunnableContext().run(false, true, monitor -> {
                 monitor.beginTask("Load database nodes", 1);

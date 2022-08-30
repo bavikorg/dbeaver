@@ -26,7 +26,7 @@ public interface FireBirdTableBase {
 
     String getOwnerName();
 
-    List<FireBirdTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException;
+    /*~~>*/List<FireBirdTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException;
 
     String getColumnDomainType(DBRProgressMonitor monitor, FireBirdTableColumn column) throws DBException;
 

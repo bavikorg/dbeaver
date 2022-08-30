@@ -24,7 +24,7 @@ import java.util.List;
  */
 public abstract class NIOMonitor {
 
-    private final static List<NIOListener> listeners = new ArrayList<>();
+    private final static /*~~>*/List<NIOListener> listeners = new ArrayList<>();
 
     public static void addListener(NIOListener listener) {
         synchronized (listeners) {

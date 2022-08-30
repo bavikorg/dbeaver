@@ -95,7 +95,7 @@ public class DiagramLoader extends ERDPersistedState {
         final ElementLoadInfo pkTable;
         final ElementLoadInfo fkTable;
         final Map<String, String> columns = new LinkedHashMap<>();
-        final List<int[]> bends = new ArrayList<>();
+        final /*~~>*/List<int[]> bends = new ArrayList<>();
 
         private RelationLoadInfo(String name, String type, ElementLoadInfo pkTable, ElementLoadInfo fkTable)
         {
@@ -107,7 +107,7 @@ public class DiagramLoader extends ERDPersistedState {
     }
 
     private static class DataSourceObjects {
-        List<ERDEntity> entities = new ArrayList<>();
+        /*~~>*/List<ERDEntity> entities = new ArrayList<>();
     }
 
     public static void load(DBRProgressMonitor monitor, DBPProject projectMeta, DiagramPart diagramPart, Reader reader)
@@ -134,8 +134,8 @@ public class DiagramLoader extends ERDPersistedState {
             throw new DBException("Unsupported diagram version: " + diagramVersion);
         }
 
-        List<ElementLoadInfo> tableInfos = new ArrayList<>();
-        List<RelationLoadInfo> relInfos = new ArrayList<>();
+        /*~~>*/List<ElementLoadInfo> tableInfos = new ArrayList<>();
+        /*~~>*/List<RelationLoadInfo> relInfos = new ArrayList<>();
         Map<String, ElementLoadInfo> elementMap = new HashMap<>();
 
         final Element entitiesElem = XMLUtils.getChildElement(diagramElem, TAG_ENTITIES);
@@ -176,7 +176,7 @@ public class DiagramLoader extends ERDPersistedState {
                     String tableId = entityElem.getAttribute(ATTR_ID);
                     String tableName = entityElem.getAttribute(ATTR_NAME);
                     monitor.subTask("Load " + tableName);
-                    List<String> path = new ArrayList<>();
+                    /*~~>*/List<String> path = new ArrayList<>();
                     for (Element pathElem : XMLUtils.getChildElementList(entityElem, TAG_PATH)) {
                         path.add(0, pathElem.getAttribute(ATTR_NAME));
                     }
@@ -303,7 +303,7 @@ public class DiagramLoader extends ERDPersistedState {
                         String locX = bendElem.getAttribute(ATTR_X);
                         String locY = bendElem.getAttribute(ATTR_Y);
                         if (!CommonUtils.isEmpty(locX) && !CommonUtils.isEmpty(locY)) {
-                            relationLoadInfo.bends.add(new int[] {
+                            /*~~>*/relationLoadInfo.bends.add(new int[] {
                                 Integer.parseInt(locX),
                                 Integer.parseInt(locY)
                             } );
@@ -316,7 +316,7 @@ public class DiagramLoader extends ERDPersistedState {
         }
 
         // Fill entities
-        List<DBSEntity> tableList = new ArrayList<>();
+        /*~~>*/List<DBSEntity> tableList = new ArrayList<>();
         for (ElementLoadInfo info : tableInfos) {
             if (info.entity != null) {
                 tableList.add(info.entity);
@@ -332,12 +332,12 @@ public class DiagramLoader extends ERDPersistedState {
                 if (sourceEntity != null && targetEntity != null) {
                     new ERDAssociation(targetEntity, sourceEntity, false);
                 }
-                diagram.addInitRelationBends(sourceEntity, targetEntity, info.name, info.bends);
+                diagram.addInitRelationBends(sourceEntity, targetEntity, info.name, /*~~>*/info.bends);
             }
         }
         // Set relations' bends
         for (RelationLoadInfo info : relInfos) {
-            if (!CommonUtils.isEmpty(info.bends)) {
+            if (!CommonUtils.isEmpty(/*~~>*/info.bends)) {
                 if (info.pkTable.entity == null || info.fkTable.entity == null) {
                     // Logical connection with notes or something
                     continue;
@@ -352,7 +352,7 @@ public class DiagramLoader extends ERDPersistedState {
                     log.warn("Target table " + info.pkTable.entity.getName() + " not found");
                     continue;
                 }
-                diagram.addInitRelationBends(sourceEntity, targetEntity, info.name, info.bends);
+                diagram.addInitRelationBends(sourceEntity, targetEntity, info.name, /*~~>*/info.bends);
             }
         }
     }
@@ -360,7 +360,7 @@ public class DiagramLoader extends ERDPersistedState {
     public static String serializeDiagram(DBRProgressMonitor monitor, @Nullable DiagramPart diagramPart, final EntityDiagram diagram, boolean verbose, boolean compact)
         throws IOException
     {
-        List<IFigure> allNodeFigures = diagramPart == null ? new ArrayList<>() : diagramPart.getFigure().getChildren();
+        /*~~>*/List<IFigure> allNodeFigures = diagramPart == null ? new ArrayList<>() : diagramPart.getFigure().getChildren();
         Map<DBPDataSourceContainer, DataSourceObjects> dsMap = createDataSourceObjectMap(diagram);
 
         Map<ERDElement<?>, ElementSaveInfo> elementInfoMap = new IdentityHashMap<>();
@@ -409,7 +409,7 @@ public class DiagramLoader extends ERDPersistedState {
                 xml.addAttribute(ATTR_ID, dsContainer.getId());
 
                 final DataSourceObjects desc = dsMap.get(dsContainer);
-                for (ERDEntity erdEntity : desc.entities) {
+                for (ERDEntity erdEntity : /*~~>*/desc.entities) {
                     final DBSEntity table = erdEntity.getObject();
                     EntityPart tablePart = diagramPart == null ? null : diagramPart.getEntityPart(erdEntity);
                     ElementSaveInfo info = new ElementSaveInfo(erdEntity, tablePart, elementCounter++);
@@ -485,7 +485,7 @@ public class DiagramLoader extends ERDPersistedState {
             // Relations
             xml.startElement(TAG_RELATIONS);
 
-            List<ERDElement> allElements = new ArrayList<>();
+            /*~~>*/List<ERDElement> allElements = new ArrayList<>();
             allElements.addAll(diagram.getEntities());
             allElements.addAll(diagram.getNotes());
             for (ERDElement<?> element : allElements) {
@@ -534,7 +534,7 @@ public class DiagramLoader extends ERDPersistedState {
                     if (pkInfo.nodePart != null) {
                         AssociationPart associationPart = pkInfo.nodePart.getConnectionPart(rel, false);
                         if (associationPart != null) {
-                            final List<Bendpoint> bendpoints = associationPart.getBendpoints();
+                            final /*~~>*/List<Bendpoint> bendpoints = associationPart.getBendpoints();
                             if (!CommonUtils.isEmpty(bendpoints)) {
                                 for (Bendpoint bendpoint : bendpoints) {
                                     xml.startElement(TAG_BEND);
@@ -574,13 +574,13 @@ public class DiagramLoader extends ERDPersistedState {
             for (ERDEntity erdEntity : diagram.getEntities()) {
                 final DBPDataSourceContainer dsContainer = erdEntity.getObject().getDataSource().getContainer();
                 DataSourceObjects desc = dsMap.computeIfAbsent(dsContainer, k -> new DataSourceObjects());
-                desc.entities.add(erdEntity);
+                /*~~>*/desc.entities.add(erdEntity);
             }
         }
         return dsMap;
     }
 
-    private static void saveColorAndOrder(List allNodeFigures, XMLBuilder xml, NodePart nodePart) throws IOException {
+    private static void saveColorAndOrder(/*~~>*/List allNodeFigures, XMLBuilder xml, NodePart nodePart) throws IOException {
         if (nodePart != null) {
             xml.addAttribute(ATTR_ORDER, allNodeFigures.indexOf(nodePart.getFigure()));
             if (nodePart.getCustomTransparency()) {

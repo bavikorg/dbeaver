@@ -40,7 +40,7 @@ import com.google.gson.JsonObject;
 public class OceanbasePlanJSON extends AbstractExecutionPlan {
     private static final Gson gson = new Gson();
     
-    private final List<OceanbasePlanNodeJSON> rootNodes;
+    private final /*~~>*/List<OceanbasePlanNodeJSON> rootNodes;
     
     private OceanbaseMySQLDataSource dataSource;
     private String query;
@@ -50,7 +50,7 @@ public class OceanbasePlanJSON extends AbstractExecutionPlan {
         this.query = query;
         try (JDBCPreparedStatement dbStat = session.prepareStatement(getPlanQueryString())) {
             try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                List<OceanbasePlanNodeJSON> nodes = new ArrayList<>();
+                /*~~>*/List<OceanbasePlanNodeJSON> nodes = new ArrayList<>();
                 dbResult.next();
                 String jsonPlan = dbResult.getString(1);
 
@@ -72,10 +72,10 @@ public class OceanbasePlanJSON extends AbstractExecutionPlan {
         }
     }
 
-    OceanbasePlanJSON(MySQLDataSource dataSource, String query, List<OceanbasePlanNodeJSON> rootNodes) {
+    OceanbasePlanJSON(MySQLDataSource dataSource, String query, /*~~>*/List<OceanbasePlanNodeJSON> rootNodes) {
         this.dataSource = (OceanbaseMySQLDataSource) dataSource;
         this.query = query;
-        this.rootNodes = rootNodes;
+        /*~~>*/this.rootNodes = rootNodes;
     }
 
     @Override
@@ -97,7 +97,7 @@ public class OceanbasePlanJSON extends AbstractExecutionPlan {
     }
 
     @Override
-    public List<OceanbasePlanNodeJSON> getPlanNodes(Map<String, Object> options) {
+    public /*~~>*/List<OceanbasePlanNodeJSON> getPlanNodes(Map<String, Object> options) {
         return Collections.unmodifiableList(rootNodes);
     }
     

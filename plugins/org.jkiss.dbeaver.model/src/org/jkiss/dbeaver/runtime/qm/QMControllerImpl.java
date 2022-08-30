@@ -46,7 +46,7 @@ public class QMControllerImpl implements QMController {
 
     private QMExecutionHandler defaultHandler;
     private QMMCollectorImpl metaHandler;
-    private final List<QMExecutionHandler> handlers = new ArrayList<>();
+    private final /*~~>*/List<QMExecutionHandler> handlers = new ArrayList<>();
     private QMEventBrowser eventBrowser;
     private DefaultEventBrowser defaultEventBrowser = new DefaultEventBrowser();
 
@@ -132,7 +132,7 @@ public class QMControllerImpl implements QMController {
         metaHandler.removeListener(metaListener);
     }
 
-    List<QMExecutionHandler> getHandlers()
+    /*~~>*/List<QMExecutionHandler> getHandlers()
     {
         synchronized (handlers) {
             return handlers;
@@ -181,7 +181,7 @@ public class QMControllerImpl implements QMController {
             @Nullable QMEventFilter filter)
             throws DBException
         {
-            List<QMMetaEvent> pastEvents = metaHandler.getPastEvents();
+            /*~~>*/List<QMMetaEvent> pastEvents = metaHandler.getPastEvents();
             Collections.reverse(pastEvents);
             if (criteria.getObjectTypes() != null || criteria.getQueryTypes() != null) {
                 // Filter by query type and object type
@@ -216,7 +216,7 @@ public class QMControllerImpl implements QMController {
                 return new QMUtils.ListCursorImpl(pastEvents);
             } else {
                 String searchString = criteria.getSearchString().toLowerCase();
-                List<QMMetaEvent> filtered = new ArrayList<>();
+                /*~~>*/List<QMMetaEvent> filtered = new ArrayList<>();
                 for (QMMetaEvent event : pastEvents) {
                     if (event.getObject().getText().toLowerCase().contains(searchString) &&
                         (filter == null || filter.accept(event)))

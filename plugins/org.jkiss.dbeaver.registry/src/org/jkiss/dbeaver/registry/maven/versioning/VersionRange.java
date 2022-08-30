@@ -32,24 +32,24 @@ import java.util.List;
 public class VersionRange {
     private final ArtifactVersion recommendedVersion;
 
-    private final List<Restriction> restrictions;
+    private final /*~~>*/List<Restriction> restrictions;
 
     private VersionRange(ArtifactVersion recommendedVersion,
-                         List<Restriction> restrictions) {
+                         /*~~>*/List<Restriction> restrictions) {
         this.recommendedVersion = recommendedVersion;
-        this.restrictions = restrictions;
+        /*~~>*/this.restrictions = restrictions;
     }
 
     public ArtifactVersion getRecommendedVersion() {
         return recommendedVersion;
     }
 
-    public List<Restriction> getRestrictions() {
+    public /*~~>*/List<Restriction> getRestrictions() {
         return restrictions;
     }
 
     public VersionRange cloneOf() {
-        List<Restriction> copiedRestrictions = null;
+        /*~~>*/List<Restriction> copiedRestrictions = null;
 
         if (restrictions != null) {
             copiedRestrictions = new ArrayList<>();
@@ -84,7 +84,7 @@ public class VersionRange {
             return null;
         }
 
-        List<Restriction> restrictions = new ArrayList<>();
+        /*~~>*/List<Restriction> restrictions = new ArrayList<>();
         String process = spec;
         ArtifactVersion version = null;
         ArtifactVersion upperBound = null;
@@ -183,7 +183,7 @@ public class VersionRange {
     }
 
     public static VersionRange createFromVersion(String version) {
-        List<Restriction> restrictions = Collections.emptyList();
+        /*~~>*/List<Restriction> restrictions = Collections.emptyList();
         return new VersionRange(new DefaultArtifactVersion(version), restrictions);
     }
 
@@ -216,9 +216,9 @@ public class VersionRange {
      *                              <code>null</code>.
      */
     public VersionRange restrict(VersionRange restriction) {
-        List<Restriction> r1 = this.restrictions;
-        List<Restriction> r2 = restriction.restrictions;
-        List<Restriction> restrictions;
+        /*~~>*/List<Restriction> r1 = /*~~>*/this.restrictions;
+        /*~~>*/List<Restriction> r2 = /*~~>*/restriction.restrictions;
+        /*~~>*/List<Restriction> restrictions;
 
         if (r1.isEmpty() || r2.isEmpty()) {
             restrictions = Collections.emptyList();
@@ -259,8 +259,8 @@ public class VersionRange {
         return new VersionRange(version, restrictions);
     }
 
-    private List<Restriction> intersection(List<Restriction> r1, List<Restriction> r2) {
-        List<Restriction> restrictions = new ArrayList<>(r1.size() + r2.size());
+    private /*~~>*/List<Restriction> intersection(/*~~>*/List<Restriction> r1, /*~~>*/List<Restriction> r2) {
+        /*~~>*/List<Restriction> restrictions = new ArrayList<>(r1.size() + r2.size());
         Iterator<Restriction> i1 = r1.iterator();
         Iterator<Restriction> i2 = r2.iterator();
         Restriction res1 = i1.next();
@@ -380,7 +380,7 @@ public class VersionRange {
         }
     }
 
-    public ArtifactVersion matchVersion(List<ArtifactVersion> versions) {
+    public ArtifactVersion matchVersion(/*~~>*/List<ArtifactVersion> versions) {
         // TODO: could be more efficient by sorting the list and then moving along the restrictions in order?
 
         ArtifactVersion matched = null;
@@ -421,8 +421,8 @@ public class VersionRange {
             recommendedVersion == other.recommendedVersion
                 || ((recommendedVersion != null) && recommendedVersion.equals(other.recommendedVersion));
         equals &=
-            restrictions == other.restrictions
-                || ((restrictions != null) && restrictions.equals(other.restrictions));
+            restrictions == /*~~>*/other.restrictions
+                || ((restrictions != null) && restrictions.equals(/*~~>*/other.restrictions));
         return equals;
     }
 

@@ -35,7 +35,7 @@ import java.util.Map;
 public class OcientExecutionPlan extends AbstractExecutionPlan {
 
     private String query;
-    private List<OcientPlanNodeJson> rootNodes;
+    private /*~~>*/List<OcientPlanNodeJson> rootNodes;
 
     private static final Gson gson = new Gson();
 
@@ -43,9 +43,9 @@ public class OcientExecutionPlan extends AbstractExecutionPlan {
         this.query = query;
     }
 
-    public OcientExecutionPlan(String query, List<OcientPlanNodeJson> rootNodes) {
+    public OcientExecutionPlan(String query, /*~~>*/List<OcientPlanNodeJson> rootNodes) {
         this.query = query;
-        this.rootNodes = rootNodes;
+        /*~~>*/this.rootNodes = rootNodes;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class OcientExecutionPlan extends AbstractExecutionPlan {
     }
 
     @Override
-    public List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
+    public /*~~>*/List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
         return rootNodes;
     }
 

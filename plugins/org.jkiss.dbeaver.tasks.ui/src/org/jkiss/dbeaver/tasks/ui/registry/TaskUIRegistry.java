@@ -49,7 +49,7 @@ public class TaskUIRegistry {
     }
 
     private final Map<DBTTaskType, TaskConfiguratorDescriptor> taskConfigurators = new LinkedHashMap<>();
-    private final List<TaskConfiguratorDescriptor> taskHandlerConfigurators = new ArrayList<>();
+    private final /*~~>*/List<TaskConfiguratorDescriptor> taskHandlerConfigurators = new ArrayList<>();
 
     private TaskUIRegistry(IExtensionRegistry registry) {
         IConfigurationElement[] extElements = registry.getConfigurationElementsFor(TASK_EXTENSION_ID);

@@ -106,7 +106,7 @@ public class XMLBuilder
     private Element element = null;
     private boolean butify = false;
 
-    private List<Element> trashElements = new java.util.ArrayList<>();
+    private /*~~>*/List<Element> trashElements = new java.util.ArrayList<>();
 
     public XMLBuilder(
         java.io.OutputStream stream,

@@ -53,8 +53,8 @@ public class DataTransferNodeDescriptor extends AbstractDescriptor
     private final ObjectType implType;
     private final ObjectType settingsType;
     private final boolean advanced;
-    private final List<ObjectType> sourceTypes = new ArrayList<>();
-    private final List<DataTransferProcessorDescriptor> processors = new ArrayList<>();
+    private final /*~~>*/List<ObjectType> sourceTypes = new ArrayList<>();
+    private final /*~~>*/List<DataTransferProcessorDescriptor> processors = new ArrayList<>();
 
     public DataTransferNodeDescriptor(IConfigurationElement config)
     {
@@ -77,12 +77,12 @@ public class DataTransferNodeDescriptor extends AbstractDescriptor
     }
 
     void loadNodeConfigurations(IConfigurationElement config) {
-        List<DataTransferProcessorDescriptor> procList = new ArrayList<>();
+        /*~~>*/List<DataTransferProcessorDescriptor> procList = new ArrayList<>();
         for (IConfigurationElement processorConfig : ArrayUtils.safeArray(config.getChildren("processor"))) {
             procList.add(new DataTransferProcessorDescriptor(this, processorConfig));
         }
         procList.sort(Comparator.comparing(DataTransferProcessorDescriptor::getName));
-        this.processors.addAll(procList);
+        /*~~>*/this.processors.addAll(procList);
     }
 
     @NotNull
@@ -172,8 +172,8 @@ public class DataTransferNodeDescriptor extends AbstractDescriptor
      * @param sourceObjects object types
      * @return list of editors
      */
-    public List<DataTransferProcessorDescriptor> getAvailableProcessors(Collection<DBSObject> sourceObjects) {
-        List<DataTransferProcessorDescriptor> editors = new ArrayList<>();
+    public /*~~>*/List<DataTransferProcessorDescriptor> getAvailableProcessors(Collection<DBSObject> sourceObjects) {
+        /*~~>*/List<DataTransferProcessorDescriptor> editors = new ArrayList<>();
         for (DataTransferProcessorDescriptor descriptor : processors) {
             boolean supports = true;
             for (DBSObject sourceObject : sourceObjects) {
@@ -197,9 +197,9 @@ public class DataTransferNodeDescriptor extends AbstractDescriptor
         return editors;
     }
 
-    public List<DataTransferProcessorDescriptor> getAvailableProcessors(Class<?> objectType) {
-        List<DataTransferProcessorDescriptor> procList = new ArrayList<>();
-        for (DataTransferProcessorDescriptor descriptor : this.processors) {
+    public /*~~>*/List<DataTransferProcessorDescriptor> getAvailableProcessors(Class<?> objectType) {
+        /*~~>*/List<DataTransferProcessorDescriptor> procList = new ArrayList<>();
+        for (DataTransferProcessorDescriptor descriptor : /*~~>*/this.processors) {
             if (descriptor.appliesToType(objectType)) {
                 procList.add(descriptor);
             }

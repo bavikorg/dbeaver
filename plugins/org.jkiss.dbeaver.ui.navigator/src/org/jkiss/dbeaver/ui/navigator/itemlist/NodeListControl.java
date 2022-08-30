@@ -165,7 +165,7 @@ public abstract class NodeListControl extends ObjectListControl<DBNNode> impleme
             if (metaNode == null) {
                 metaNode = dbNode.getMeta();
             }
-            final List<DBXTreeNode> inlineMetas = collectInlineMetas(dbNode, metaNode);
+            final /*~~>*/List<DBXTreeNode> inlineMetas = collectInlineMetas(dbNode, metaNode);
 
             if (!inlineMetas.isEmpty()) {
                 return new TreeContentProvider() {
@@ -200,9 +200,9 @@ public abstract class NodeListControl extends ObjectListControl<DBNNode> impleme
         return new ListContentProvider();
     }
 
-    protected static List<DBXTreeNode> collectInlineMetas(DBNDatabaseNode node, DBXTreeNode meta)
+    protected static /*~~>*/List<DBXTreeNode> collectInlineMetas(DBNDatabaseNode node, DBXTreeNode meta)
     {
-        final List<DBXTreeNode> inlineMetas = new ArrayList<>();
+        final /*~~>*/List<DBXTreeNode> inlineMetas = new ArrayList<>();
 
         if (meta instanceof DBXTreeFolder) {
             // If this is a folder - iterate through all its children
@@ -217,9 +217,9 @@ public abstract class NodeListControl extends ObjectListControl<DBNNode> impleme
         return inlineMetas;
     }
 
-    private static void collectInlineChildren(DBXTreeNode meta, List<DBXTreeNode> inlineMetas)
+    private static void collectInlineChildren(DBXTreeNode meta, /*~~>*/List<DBXTreeNode> inlineMetas)
     {
-        final List<DBXTreeNode> metaChildren = meta.getChildren(null);
+        final /*~~>*/List<DBXTreeNode> metaChildren = meta.getChildren(null);
         if (!CommonUtils.isEmpty(metaChildren)) {
             for (DBXTreeNode child : metaChildren) {
                 if (child.isInline()) {
@@ -236,7 +236,7 @@ public abstract class NodeListControl extends ObjectListControl<DBNNode> impleme
         // Collect base types for root node
         if (getRootNode() instanceof DBNDatabaseNode) {
             DBNDatabaseNode dbNode = (DBNDatabaseNode) getRootNode();
-            List<Class<?>> baseTypes = dbNode.getChildrenTypes(nodeMeta);
+            /*~~>*/List<Class<?>> baseTypes = dbNode.getChildrenTypes(nodeMeta);
             if (CommonUtils.isEmpty(baseTypes) && dbNode instanceof DBNDatabaseFolder) {
                 Class<? extends DBSObject> childrenClass = ((DBNDatabaseFolder) dbNode).getChildrenClass();
                 if (childrenClass != null) {
@@ -297,7 +297,7 @@ public abstract class NodeListControl extends ObjectListControl<DBNNode> impleme
 
     @NotNull
     @Override
-    protected String getListConfigId(List<Class<?>> classList) {
+    protected String getListConfigId(/*~~>*/List<Class<?>> classList) {
         StringBuilder sb = new StringBuilder("NodeList");
         for (Class theClass : classList) {
             sb.append("/").append(theClass.getSimpleName());
@@ -417,7 +417,7 @@ public abstract class NodeListControl extends ObjectListControl<DBNNode> impleme
     protected class NodeSelectionProvider implements ISelectionProvider, ISelectionChangedListener {
 
         private final ISelectionProvider original;
-        private final List<ISelectionChangedListener> listeners = new ArrayList<>();
+        private final /*~~>*/List<ISelectionChangedListener> listeners = new ArrayList<>();
         private final StructuredSelection defaultSelection;
 
         NodeSelectionProvider(ISelectionProvider original)

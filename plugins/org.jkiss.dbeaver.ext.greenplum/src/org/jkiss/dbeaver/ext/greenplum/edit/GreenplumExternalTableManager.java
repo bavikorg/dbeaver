@@ -54,7 +54,7 @@ public class GreenplumExternalTableManager extends PostgreTableManager {
 
     @Override
     protected void addStructObjectCreateActions(DBRProgressMonitor monitor,
-                                                DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+                                                DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                                 StructCreateCommand command,
                                                 Map<String, Object> options) throws DBException {
         GreenplumExternalTable table = (GreenplumExternalTable) command.getObject();
@@ -74,7 +74,7 @@ public class GreenplumExternalTableManager extends PostgreTableManager {
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectDeleteCommand command,
                                           Map<String, Object> options) {
         actions.add(createDeleteAction(command.getObject(), options));

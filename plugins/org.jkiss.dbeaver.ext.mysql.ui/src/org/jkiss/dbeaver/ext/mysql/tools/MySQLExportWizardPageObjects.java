@@ -238,7 +238,7 @@ class MySQLExportWizardPageObjects extends MySQLWizardPageSettings<MySQLExportWi
             @Override
             protected IStatus run(DBRProgressMonitor monitor) {
                 try {
-                    final List<MySQLTableBase> objects = new ArrayList<>();
+                    final /*~~>*/List<MySQLTableBase> objects = new ArrayList<>();
                     objects.addAll(curCatalog.getTables(monitor));
                     if (wizard.getSettings().isShowViews()) {
                         objects.addAll(curCatalog.getViews(monitor));
@@ -263,7 +263,7 @@ class MySQLExportWizardPageObjects extends MySQLWizardPageSettings<MySQLExportWi
     }
 
     public void saveState() {
-        List<MySQLDatabaseExportInfo> objects = wizard.getSettings().getExportObjects();
+        /*~~>*/List<MySQLDatabaseExportInfo> objects = wizard.getSettings().getExportObjects();
         objects.clear();
         for (TableItem item : catalogTable.getItems()) {
             if (item.getChecked()) {

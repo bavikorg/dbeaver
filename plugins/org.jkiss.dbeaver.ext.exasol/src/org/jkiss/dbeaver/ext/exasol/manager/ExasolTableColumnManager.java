@@ -100,7 +100,7 @@ public class ExasolTableColumnManager extends SQLTableColumnManager<ExasolTableC
     // Alter
     // -----
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) {
         ExasolTableColumn exasolColumn = command.getObject();
         Map<Object,Object> props = command.getProperties();
 
@@ -183,7 +183,7 @@ public class ExasolTableColumnManager extends SQLTableColumnManager<ExasolTableC
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
         final ExasolTableColumn column = command.getObject();
 
         actions.add(
@@ -196,7 +196,7 @@ public class ExasolTableColumnManager extends SQLTableColumnManager<ExasolTableC
     }
     
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectCreateCommand command,
                                           Map<String, Object> options) {
     	final ExasolTableColumn exasolColumn = command.getObject();

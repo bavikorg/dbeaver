@@ -84,7 +84,7 @@ public class HANAStructureAssistant extends JDBCStructureAssistant<JDBCExecution
 
     @Override
     protected void findObjectsByMask(@NotNull JDBCExecutionContext executionContext, @NotNull JDBCSession session, @NotNull DBSObjectType objectType,
-                                     @NotNull ObjectsSearchParams params, @NotNull List<DBSObjectReference> references)
+                                     @NotNull ObjectsSearchParams params, @NotNull /*~~>*/List<DBSObjectReference> references)
                                         throws SQLException {
         GenericSchema parentSchema = params.getParentObject() instanceof GenericSchema ? (GenericSchema) params.getParentObject() : null;
 
@@ -102,10 +102,10 @@ public class HANAStructureAssistant extends JDBCStructureAssistant<JDBCExecution
 
     @NotNull
     @Override
-    public List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull JDBCExecutionContext executionContext,
+    public /*~~>*/List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull JDBCExecutionContext executionContext,
                                                       @NotNull ObjectsSearchParams params) throws DBException {
-        List<DBSObjectReference> result = new ArrayList<>();
-        List<DBSObjectType> objectTypesList = Arrays.asList(params.getObjectTypes());
+        /*~~>*/List<DBSObjectReference> result = new ArrayList<>();
+        /*~~>*/List<DBSObjectType> objectTypesList = Arrays.asList(params.getObjectTypes());
         StringBuilder objectTypeClause = new StringBuilder(100);
         GenericSchema parentSchema = params.getParentObject() instanceof GenericSchema ?
                 (GenericSchema) params.getParentObject() : (params.isGlobalSearch() || !(executionContext instanceof GenericExecutionContext) ? null : ((GenericExecutionContext) executionContext).getDefaultSchema());
@@ -136,7 +136,7 @@ public class HANAStructureAssistant extends JDBCStructureAssistant<JDBCExecution
     }
 
     private void searchNotColumnObjects(JDBCSession session, GenericSchema parentSchema, @NotNull ObjectsSearchParams params,
-                                        List<DBSObjectReference> result, String objectTypeClause) throws SQLException {
+                                        /*~~>*/List<DBSObjectReference> result, String objectTypeClause) throws SQLException {
         String stmt = "SELECT SCHEMA_NAME, OBJECT_NAME, OBJECT_TYPE FROM SYS.OBJECTS WHERE";
         stmt += params.isCaseSensitive() ? " OBJECT_NAME LIKE ?" : " UPPER(OBJECT_NAME) LIKE ?";
         if (parentSchema != null) stmt += " AND SCHEMA_NAME = ?";
@@ -188,7 +188,7 @@ public class HANAStructureAssistant extends JDBCStructureAssistant<JDBCExecution
     }
 
     private void findTablesByMask(JDBCSession session, GenericSchema parentSchema, @NotNull ObjectsSearchParams params,
-                                  List<DBSObjectReference> result) throws SQLException {
+                                  /*~~>*/List<DBSObjectReference> result) throws SQLException {
         String stmt = "SELECT SCHEMA_NAME, TABLE_NAME, COMMENTS FROM SYS.TABLES WHERE";
         stmt += params.isCaseSensitive() ? " TABLE_NAME LIKE ?" : " UPPER(TABLE_NAME) LIKE ?";
         if (parentSchema != null) stmt += " AND SCHEMA_NAME = ?";
@@ -229,7 +229,7 @@ public class HANAStructureAssistant extends JDBCStructureAssistant<JDBCExecution
     }
 
     private void findViewsByMask(JDBCSession session, GenericSchema parentSchema, @NotNull ObjectsSearchParams params,
-                                 List<DBSObjectReference> result) throws SQLException {
+                                 /*~~>*/List<DBSObjectReference> result) throws SQLException {
         String stmt = "SELECT SCHEMA_NAME, VIEW_NAME, COMMENTS FROM SYS.VIEWS WHERE";
         stmt += params.isCaseSensitive() ? " VIEW_NAME LIKE ?" : " UPPER(VIEW_NAME) LIKE ?";
         if (parentSchema != null)stmt += " AND SCHEMA_NAME = ?";
@@ -269,7 +269,7 @@ public class HANAStructureAssistant extends JDBCStructureAssistant<JDBCExecution
     }
 
     private void findProceduresByMask(JDBCSession session, GenericSchema parentSchema, @NotNull ObjectsSearchParams params,
-                                      List<DBSObjectReference> result) throws SQLException {
+                                      /*~~>*/List<DBSObjectReference> result) throws SQLException {
         String stmt = "SELECT SCHEMA_NAME, PROCEDURE_NAME FROM SYS.PROCEDURES WHERE";
         stmt += params.isCaseSensitive() ? " PROCEDURE_NAME LIKE ?" : " UPPER(PROCEDURE_NAME) LIKE ?";
         if (parentSchema != null) stmt += " AND SCHEMA_NAME = ?";
@@ -310,7 +310,7 @@ public class HANAStructureAssistant extends JDBCStructureAssistant<JDBCExecution
     }
 
     private void findTableColumnsByMask(JDBCSession session, GenericSchema parentSchema, @NotNull ObjectsSearchParams params,
-                                        List<DBSObjectReference> result) throws SQLException {
+                                        /*~~>*/List<DBSObjectReference> result) throws SQLException {
         String stmt = "SELECT SCHEMA_NAME, TABLE_NAME, COLUMN_NAME, COMMENTS FROM SYS.TABLE_COLUMNS WHERE";
         stmt += params.isCaseSensitive() ? " COLUMN_NAME LIKE ?" : " UPPER(COLUMN_NAME) LIKE ?";
         if (parentSchema != null) stmt += " AND SCHEMA_NAME = ?";
@@ -357,7 +357,7 @@ public class HANAStructureAssistant extends JDBCStructureAssistant<JDBCExecution
     }
 
     private void findViewColumnsByMask(JDBCSession session, GenericSchema parentSchema, @NotNull ObjectsSearchParams params,
-                                       List<DBSObjectReference> result) throws SQLException {
+                                       /*~~>*/List<DBSObjectReference> result) throws SQLException {
         String stmt = "SELECT SCHEMA_NAME, VIEW_NAME, COLUMN_NAME, COMMENTS FROM SYS.VIEW_COLUMNS WHERE";
         stmt += params.isCaseSensitive() ? " COLUMN_NAME LIKE ?" : " UPPER(COLUMN_NAME) LIKE ?";
         if (parentSchema != null) stmt += " AND SCHEMA_NAME = ?";

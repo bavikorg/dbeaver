@@ -53,7 +53,7 @@ public class SQLServerGenericTriggerManager extends SQLTriggerManager<SQLServerG
     public DBSObjectCache<? extends DBSObject, SQLServerGenericTrigger> getObjectsCache(SQLServerGenericTrigger object)
     {
         return new ListCache<SQLServerGenericTable, SQLServerGenericTrigger>(
-            (List<SQLServerGenericTrigger>) object.getTable().getTriggerCache());
+            (/*~~>*/List<SQLServerGenericTrigger>) object.getTable().getTriggerCache());
     }
 
     @Override
@@ -62,12 +62,12 @@ public class SQLServerGenericTriggerManager extends SQLTriggerManager<SQLServerG
         return null;
     }
 
-    protected void createOrReplaceTriggerQuery(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, SQLServerGenericTrigger trigger, boolean create) {
+    protected void createOrReplaceTriggerQuery(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, SQLServerGenericTrigger trigger, boolean create) {
 
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
         SQLServerGenericTrigger trigger = command.getObject();
         DBSObject defaultDatabase = DBUtils.getDefaultContext(trigger.getDataSource(), true).getContextDefaults().getDefaultCatalog();
         if (defaultDatabase != trigger.getTable().getCatalog()) {

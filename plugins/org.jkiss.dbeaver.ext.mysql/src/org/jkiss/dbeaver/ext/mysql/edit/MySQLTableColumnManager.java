@@ -160,7 +160,7 @@ public class MySQLTableColumnManager extends SQLTableColumnManager<MySQLTableCol
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options)
     {
         final MySQLTableColumn column = command.getObject();
 
@@ -176,7 +176,7 @@ public class MySQLTableColumnManager extends SQLTableColumnManager<MySQLTableCol
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
     {
         final MySQLTableColumn column = command.getObject();
 
@@ -189,7 +189,7 @@ public class MySQLTableColumnManager extends SQLTableColumnManager<MySQLTableCol
     }
 
     @Override
-    protected void addObjectReorderActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectReorderCommand command, Map<String, Object> options) {
+    protected void addObjectReorderActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectReorderCommand command, Map<String, Object> options) {
         final MySQLTableColumn column = command.getObject();
         String order = "FIRST";
         if (column.getOrdinalPosition() > 0) {
@@ -222,7 +222,7 @@ public class MySQLTableColumnManager extends SQLTableColumnManager<MySQLTableCol
     }
 
     @Override
-    public void setObjectOrdinalPosition(DBECommandContext commandContext, MySQLTableColumn object, List<MySQLTableColumn> siblingObjects, int newPosition) throws DBException {
+    public void setObjectOrdinalPosition(DBECommandContext commandContext, MySQLTableColumn object, /*~~>*/List<MySQLTableColumn> siblingObjects, int newPosition) throws DBException {
         processObjectReorder(commandContext, object, siblingObjects, newPosition);
     }
 }

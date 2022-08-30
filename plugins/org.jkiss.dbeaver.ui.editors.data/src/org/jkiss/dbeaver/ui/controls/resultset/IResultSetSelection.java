@@ -32,10 +32,10 @@ public interface IResultSetSelection extends IStructuredSelection {
     IResultSetController getController();
 
     @NotNull
-    List<DBDAttributeBinding> getSelectedAttributes();
+    /*~~>*/List<DBDAttributeBinding> getSelectedAttributes();
 
     @NotNull
-    List<ResultSetRow> getSelectedRows();
+    /*~~>*/List<ResultSetRow> getSelectedRows();
 
     DBDAttributeBinding getElementAttribute(Object element);
 

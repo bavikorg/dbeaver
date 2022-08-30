@@ -43,7 +43,7 @@ public abstract class TokenPredicateNode {
      * @return
      */
     @NotNull
-    public List<List<TokenEntry>> expand() {
+    public /*~~>*/List</*~~>*/List<TokenEntry>> expand() {
         return TokenPredicateExpander.expand(this);
     }
 

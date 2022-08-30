@@ -40,8 +40,8 @@ public class TokenPredicatesCondition implements SQLTokenPredicate {
     /**
      * Complete list of all possible prefixes and suffixes matching the condition an any combination
      */
-    private final List<List<TokenEntry>> prefixes;
-    private final List<List<TokenEntry>> suffixes;
+    private final /*~~>*/List</*~~>*/List<TokenEntry>> prefixes;
+    private final /*~~>*/List</*~~>*/List<TokenEntry>> suffixes;
     /**
      * Maximum lengths of corresponding prefixes and suffixes under condition
      */
@@ -52,10 +52,10 @@ public class TokenPredicatesCondition implements SQLTokenPredicate {
         this.actionKind = actionKind;
         this.prefixPredicate = prefixPredicate;
         this.suffixPredicate = suffixPredicate;
-        this.prefixes = Collections.unmodifiableList(prefixPredicate.expand());
-        this.suffixes = Collections.unmodifiableList(suffixPredicate.expand());
-        this.maxPrefixLength = this.prefixes.stream().mapToInt(c -> c.size()).max().orElse(0);
-        this.maxSuffixLength = this.suffixes.stream().mapToInt(c -> c.size()).max().orElse(0);
+        /*~~>*/this.prefixes = Collections.unmodifiableList(prefixPredicate.expand());
+        /*~~>*/this.suffixes = Collections.unmodifiableList(suffixPredicate.expand());
+        this.maxPrefixLength = /*~~>*/this.prefixes.stream().mapToInt(c -> c.size()).max().orElse(0);
+        this.maxSuffixLength = /*~~>*/this.suffixes.stream().mapToInt(c -> c.size()).max().orElse(0);
     }
 
     @Override
@@ -64,12 +64,12 @@ public class TokenPredicatesCondition implements SQLTokenPredicate {
     }
 
     @NotNull
-    public List<List<TokenEntry>> getPrefixes() {
+    public /*~~>*/List</*~~>*/List<TokenEntry>> getPrefixes() {
         return prefixes;
     }
 
     @NotNull
-    public List<List<TokenEntry>> getSuffixes() {
+    public /*~~>*/List</*~~>*/List<TokenEntry>> getSuffixes() {
         return suffixes;
     }
 

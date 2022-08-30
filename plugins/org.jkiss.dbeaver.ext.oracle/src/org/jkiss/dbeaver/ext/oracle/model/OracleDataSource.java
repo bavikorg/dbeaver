@@ -478,7 +478,7 @@ public class OracleDataSource extends JDBCDataSource implements DBPObjectStatist
         // Cache data types
         dataTypeCache.setCaseSensitive(false);
         {
-            List<OracleDataType> dtList = new ArrayList<>();
+            /*~~>*/List<OracleDataType> dtList = new ArrayList<>();
             for (Map.Entry<String, OracleDataType.TypeDesc> predefinedType : OracleDataType.PREDEFINED_TYPES.entrySet()) {
                 OracleDataType dataType = new OracleDataType(this, predefinedType.getKey(), true);
                 dtList.add(dataType);
@@ -690,7 +690,7 @@ public class OracleDataSource extends JDBCDataSource implements DBPObjectStatist
         }
         String message = error.getMessage();
         if (!CommonUtils.isEmpty(message)) {
-            List<ErrorPosition> positions = new ArrayList<>();
+            /*~~>*/List<ErrorPosition> positions = new ArrayList<>();
             Matcher matcher = ERROR_POSITION_PATTERN.matcher(message);
             while (matcher.find()) {
                 DBPErrorAssistant.ErrorPosition pos = new DBPErrorAssistant.ErrorPosition();

@@ -43,7 +43,7 @@ public class PostgreToolTableTruncate extends PostgreToolWithStatus<PostgreTable
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, PostgreToolTableTruncateSettings settings, List<DBEPersistAction> queries, PostgreTableBase table) throws DBCException {
+    public void generateObjectQueries(DBCSession session, PostgreToolTableTruncateSettings settings, /*~~>*/List<DBEPersistAction> queries, PostgreTableBase table) throws DBCException {
         if (settings.isRunning()) {
             commitChanges(session);
         }

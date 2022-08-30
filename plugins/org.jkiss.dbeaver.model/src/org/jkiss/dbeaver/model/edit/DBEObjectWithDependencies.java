@@ -27,6 +27,6 @@ import java.util.List;
  */
 public interface DBEObjectWithDependencies {
 
-    List<? extends DBSObject> getDependentObjectsList(DBRProgressMonitor monitor, DBSObject object) throws DBException;
+    /*~~>*/List<? extends DBSObject> getDependentObjectsList(DBRProgressMonitor monitor, DBSObject object) throws DBException;
 
 }

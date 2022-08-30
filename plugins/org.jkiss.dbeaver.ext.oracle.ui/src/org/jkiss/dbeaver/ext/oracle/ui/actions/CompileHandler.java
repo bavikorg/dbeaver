@@ -64,7 +64,7 @@ public class CompileHandler extends OracleTaskHandler
     public Object execute(ExecutionEvent event) throws ExecutionException
     {
         final IWorkbenchPart activePart = HandlerUtil.getActiveEditor(event);
-        final List<OracleSourceObject> objects = getSelectedObjects(event);
+        final /*~~>*/List<OracleSourceObject> objects = getSelectedObjects(event);
         if (!objects.isEmpty()) {
 /*
             if (activePart instanceof EntityEditor) {
@@ -159,9 +159,9 @@ public class CompileHandler extends OracleTaskHandler
         return null;
     }
 
-    private List<OracleSourceObject> getSelectedObjects(ExecutionEvent event)
+    private /*~~>*/List<OracleSourceObject> getSelectedObjects(ExecutionEvent event)
     {
-        List<OracleSourceObject> objects = new ArrayList<>();
+        /*~~>*/List<OracleSourceObject> objects = new ArrayList<>();
         final ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
         if (currentSelection instanceof IStructuredSelection && !currentSelection.isEmpty()) {
             for (Iterator<?> iter = ((IStructuredSelection) currentSelection).iterator(); iter.hasNext(); ) {
@@ -189,7 +189,7 @@ public class CompileHandler extends OracleTaskHandler
     @Override
     public void updateElement(UIElement element, Map parameters)
     {
-        List<OracleSourceObject> objects = getOracleSourceObjects(element);
+        /*~~>*/List<OracleSourceObject> objects = getOracleSourceObjects(element);
 
         if (!objects.isEmpty()) {
             if (objects.size() > 1) {

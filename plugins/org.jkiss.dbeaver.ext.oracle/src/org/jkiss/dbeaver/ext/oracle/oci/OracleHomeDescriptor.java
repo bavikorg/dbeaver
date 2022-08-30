@@ -30,7 +30,7 @@ public class OracleHomeDescriptor extends LocalNativeClientLocation
 
     private Integer oraVersion; // short version (9, 10, 11...)
     private String displayName;
-    private List<String> tnsNames;
+    private /*~~>*/List<String> tnsNames;
 
     public OracleHomeDescriptor(String oraHome)
     {
@@ -53,7 +53,7 @@ public class OracleHomeDescriptor extends LocalNativeClientLocation
         }
     }
 
-    public List<String> getOraServiceNames()
+    public /*~~>*/List<String> getOraServiceNames()
     {
         if (tnsNames == null) {
             tnsNames = new ArrayList<>(OCIUtils.readTnsNames(getPath(), true).keySet());

@@ -38,7 +38,7 @@ public class WMIResultSet implements DBCResultSet, DBCResultSetMetaData, DBCEnti
     private Collection<WMIObject> rows;
     private Iterator<WMIObject> iterator;
     private WMIObject row;
-    private List<DBCAttributeMetaData> properties;
+    private /*~~>*/List<DBCAttributeMetaData> properties;
 
     public WMIResultSet(DBCSession session, WMIClass classObject, Collection<WMIObject> rows) throws WMIException
     {
@@ -178,7 +178,7 @@ public class WMIResultSet implements DBCResultSet, DBCResultSetMetaData, DBCEnti
 
     @NotNull
     @Override
-    public List<DBCAttributeMetaData> getAttributes()
+    public /*~~>*/List<DBCAttributeMetaData> getAttributes()
     {
         return properties;
     }

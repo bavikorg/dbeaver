@@ -223,7 +223,7 @@ public abstract class DBNDatabaseNode extends DBNNode implements DBNLazyNode, DB
         }
         if (needsLoad) {
             if (this.initializeNode(monitor, null)) {
-                final List<DBNDatabaseNode> tmpList = new ArrayList<>();
+                final /*~~>*/List<DBNDatabaseNode> tmpList = new ArrayList<>();
                 loadChildren(monitor, getMeta(), null, tmpList, this, true);
                 if (!monitor.isCanceled()) {
                     synchronized (this) {
@@ -416,7 +416,7 @@ public abstract class DBNDatabaseNode extends DBNNode implements DBNLazyNode, DB
         DBRProgressMonitor monitor,
         final DBXTreeNode meta,
         final DBNDatabaseNode[] oldList,
-        final List<DBNDatabaseNode> toList,
+        final /*~~>*/List<DBNDatabaseNode> toList,
         Object source,
         boolean reflect)
         throws DBException {
@@ -425,7 +425,7 @@ public abstract class DBNDatabaseNode extends DBNNode implements DBNLazyNode, DB
         }
         this.filtered = false;
 
-        List<DBXTreeNode> childMetas = meta.getChildren(this);
+        /*~~>*/List<DBXTreeNode> childMetas = meta.getChildren(this);
         if (CommonUtils.isEmpty(childMetas)) {
             return;
         }
@@ -571,7 +571,7 @@ public abstract class DBNDatabaseNode extends DBNNode implements DBNLazyNode, DB
         DBRProgressMonitor monitor,
         DBXTreeItem meta,
         final DBNDatabaseNode[] oldListCmp,
-        final List<DBNDatabaseNode> toList,
+        final /*~~>*/List<DBNDatabaseNode> toList,
         Object source,
         boolean showSystem,
         boolean hideFolders,
@@ -625,7 +625,7 @@ public abstract class DBNDatabaseNode extends DBNNode implements DBNLazyNode, DB
             // check it
             return false;
         }
-        List<DBNDatabaseNode> oldList = new LinkedList<>();
+        /*~~>*/List<DBNDatabaseNode> oldList = new LinkedList<>();
         if (oldListCmp != null) {
             Collections.addAll(oldList, oldListCmp);
         }
@@ -831,7 +831,7 @@ public abstract class DBNDatabaseNode extends DBNNode implements DBNLazyNode, DB
             }
             oldChildren = Arrays.copyOf(childNodes, childNodes.length);
         }
-        List<DBNDatabaseNode> newChildren = new ArrayList<>();
+        /*~~>*/List<DBNDatabaseNode> newChildren = new ArrayList<>();
         loadChildren(monitor, getMeta(), oldChildren, newChildren, source, reflect);
         synchronized (this) {
             childNodes = newChildren.toArray(new DBNDatabaseNode[0]);
@@ -861,7 +861,7 @@ public abstract class DBNDatabaseNode extends DBNNode implements DBNLazyNode, DB
     public abstract DBXTreeNode getMeta();
 
     public DBXTreeItem getItemsMeta() {
-        List<DBXTreeNode> metaChildren = getMeta().getChildren(this);
+        /*~~>*/List<DBXTreeNode> metaChildren = getMeta().getChildren(this);
         if (metaChildren != null) {
             for (DBXTreeNode cn : metaChildren) {
                 if (cn instanceof DBXTreeItem) {
@@ -873,7 +873,7 @@ public abstract class DBNDatabaseNode extends DBNNode implements DBNLazyNode, DB
     }
 
     public DBXTreeFolder getFolderMeta(Class<?> childType) {
-        List<DBXTreeNode> metaChildren = getMeta().getChildren(this);
+        /*~~>*/List<DBXTreeNode> metaChildren = getMeta().getChildren(this);
         if (metaChildren != null) {
             for (DBXTreeNode cn : metaChildren) {
                 if (cn instanceof DBXTreeFolder && childType.getName().equals(((DBXTreeFolder) cn).getType())) {
@@ -886,12 +886,12 @@ public abstract class DBNDatabaseNode extends DBNNode implements DBNLazyNode, DB
 
     protected abstract boolean reloadObject(DBRProgressMonitor monitor, DBSObject object);
 
-    public List<Class<?>> getChildrenTypes(DBXTreeNode useMeta) {
-        List<DBXTreeNode> childMetas = useMeta == null ? getMeta().getChildren(this) : Collections.singletonList(useMeta);
+    public /*~~>*/List<Class<?>> getChildrenTypes(DBXTreeNode useMeta) {
+        /*~~>*/List<DBXTreeNode> childMetas = useMeta == null ? getMeta().getChildren(this) : Collections.singletonList(useMeta);
         if (CommonUtils.isEmpty(childMetas)) {
             return Collections.emptyList();
         } else {
-            List<Class<?>> result = new ArrayList<>();
+            /*~~>*/List<Class<?>> result = new ArrayList<>();
             for (DBXTreeNode childMeta : childMetas) {
                 if (childMeta instanceof DBXTreeItem) {
                     Class<?> childrenType = getChildrenClass((DBXTreeItem) childMeta);

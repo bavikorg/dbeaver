@@ -37,7 +37,7 @@ public abstract class SQLStructEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
     implements DBEStructEditor<OBJECT_TYPE>
 {
 
-    protected abstract void addStructObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, StructCreateCommand command, Map<String, Object> options) throws DBException;
+    protected abstract void addStructObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, StructCreateCommand command, Map<String, Object> options) throws DBException;
 
     @Override
     public StructCreateCommand makeCreateCommand(OBJECT_TYPE object, Map<String, Object> options)
@@ -47,7 +47,7 @@ public abstract class SQLStructEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
 
     protected Collection<NestedObjectCommand> getNestedOrderedCommands(final StructCreateCommand structCommand)
     {
-        List<NestedObjectCommand> nestedCommands = new ArrayList<>(structCommand.getObjectCommands().values());
+        /*~~>*/List<NestedObjectCommand> nestedCommands = new ArrayList<>(structCommand.getObjectCommands().values());
         nestedCommands.sort((o1, o2) -> {
             final DBPObject object1 = o1.getObject();
             final DBPObject object2 = o2.getObject();
@@ -115,7 +115,7 @@ public abstract class SQLStructEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
     }
 
     @Override
-    protected final void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand objectChangeCommand, Map<String, Object> options) {
+    protected final void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand objectChangeCommand, Map<String, Object> options) {
         throw new IllegalStateException("addObjectCreateActions should never be called in struct editor");
     }
 
@@ -162,7 +162,7 @@ public abstract class SQLStructEditor<OBJECT_TYPE extends DBSObject, CONTAINER_T
 
         @Override
         public DBEPersistAction[] getPersistActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, Map<String, Object> options) throws DBException {
-            List<DBEPersistAction> actions = new ArrayList<>();
+            /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
             addStructObjectCreateActions(monitor, executionContext, actions, this, options);
             addObjectExtraActions(monitor, executionContext, actions, this, options);
             return actions.toArray(new DBEPersistAction[0]);

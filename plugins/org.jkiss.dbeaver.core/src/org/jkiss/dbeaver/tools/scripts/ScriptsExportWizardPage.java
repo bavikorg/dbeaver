@@ -59,7 +59,7 @@ class ScriptsExportWizardPage extends WizardPage {
     private Button overwriteCheck;
     private Text directoryText;
     private DatabaseNavigatorTree scriptsNavigator;
-    private final List<DBNResource> selectedResources = new ArrayList<>();
+    private final /*~~>*/List<DBNResource> selectedResources = new ArrayList<>();
 
     protected ScriptsExportWizardPage(String pageName)
     {

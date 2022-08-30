@@ -57,15 +57,15 @@ public class MySQLPlanNodePlain extends MySQLPlanNode {
     protected String extra;
 
     protected MySQLPlanNodePlain parent;
-    protected List<MySQLPlanNodePlain> nested;
+    protected /*~~>*/List<MySQLPlanNodePlain> nested;
 
-    public MySQLPlanNodePlain(List<MySQLPlanNodePlain> nodes) {
+    public MySQLPlanNodePlain(/*~~>*/List<MySQLPlanNodePlain> nodes) {
         // Root node
         type = "<plan>";
         if (!nodes.isEmpty()) {
             this.rowCount = nodes.get(0).rowCount;
         }
-        this.nested = nodes;
+        /*~~>*/this.nested = nodes;
     }
 
     public MySQLPlanNodePlain(MySQLPlanNodePlain parent, ResultSet dbResult) {
@@ -117,10 +117,10 @@ public class MySQLPlanNodePlain extends MySQLPlanNode {
         this.extra = source.extra;
 
         this.parent = parent;
-        if (source.nested != null) {
-            this.nested = new ArrayList<>(source.nested.size());
-            for (MySQLPlanNodePlain srcNode : source.nested) {
-                this.nested.add(srcNode.copyNode(this));
+        if (/*~~>*/source.nested != null) {
+            /*~~>*/this.nested = new ArrayList<>(/*~~>*/source.nested.size());
+            for (MySQLPlanNodePlain srcNode : /*~~>*/source.nested) {
+                /*~~>*/this.nested.add(srcNode.copyNode(this));
             }
         }
     }
@@ -131,8 +131,8 @@ public class MySQLPlanNodePlain extends MySQLPlanNode {
     }
 
     void setParent(MySQLPlanNodePlain node) {
-        if (this.parent != null && this.parent.nested != null) {
-            this.parent.nested.remove(this);
+        if (this.parent != null && /*~~>*/this.parent.nested != null) {
+            /*~~>*/this.parent.nested.remove(this);
         }
         this.parent = node;
         if (this.parent != null) {
@@ -141,10 +141,10 @@ public class MySQLPlanNodePlain extends MySQLPlanNode {
     }
 
     private void addChild(MySQLPlanNodePlain node) {
-        if (this.nested == null) {
-            this.nested = new ArrayList<>();
+        if (/*~~>*/this.nested == null) {
+            /*~~>*/this.nested = new ArrayList<>();
         }
-        this.nested.add(node);
+        /*~~>*/this.nested.add(node);
 
     }
 
@@ -177,7 +177,7 @@ public class MySQLPlanNodePlain extends MySQLPlanNode {
     }
 
     @Override
-    public List<MySQLPlanNodePlain> getNested() {
+    public /*~~>*/List<MySQLPlanNodePlain> getNested() {
         return nested;
     }
 

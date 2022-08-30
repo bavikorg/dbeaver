@@ -131,7 +131,7 @@ public class ComparableVersion
         private static final String[] QUALIFIERS = {"alpha", "beta", "milestone", "rc", "snapshot", "", "sp"};
 
         @SuppressWarnings("checkstyle:constantname")
-        private static final List<String> _QUALIFIERS = Arrays.asList(QUALIFIERS);
+        private static final /*~~>*/List<String> _QUALIFIERS = Arrays.asList(QUALIFIERS);
 
         private static final Properties ALIASES = new Properties();
 

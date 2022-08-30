@@ -41,7 +41,7 @@ public class DBDPseudoReferrer implements DBSEntityReferrer, DBSEntityAttributeR
     }
 
     @Override
-    public List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException
     {
         return Collections.singletonList(this);
     }

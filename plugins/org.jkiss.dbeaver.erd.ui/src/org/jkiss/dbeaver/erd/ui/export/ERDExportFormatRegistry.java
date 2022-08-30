@@ -68,7 +68,7 @@ public class ERDExportFormatRegistry
         return instance;
     }
 
-    private final List<FormatDescriptor> formats = new ArrayList<>();
+    private final /*~~>*/List<FormatDescriptor> formats = new ArrayList<>();
 
     private ERDExportFormatRegistry(IExtensionRegistry registry)
     {
@@ -79,7 +79,7 @@ public class ERDExportFormatRegistry
         }
     }
 
-    public List<FormatDescriptor> getFormats() {
+    public /*~~>*/List<FormatDescriptor> getFormats() {
         return formats;
     }
 }

@@ -29,7 +29,7 @@ public interface IRowController
 {
 
     @NotNull
-    List<DBDAttributeBinding> getRowAttributes();
+    /*~~>*/List<DBDAttributeBinding> getRowAttributes();
 
     /**
      * Tries to read value of certain column from result set.

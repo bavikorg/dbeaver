@@ -45,7 +45,7 @@ public abstract class DBDAttributeBinding implements DBSObject, DBSAttributeBase
     @Nullable
     private DBSAttributeBase presentationAttribute;
     @Nullable
-    private List<DBDAttributeBinding> nestedBindings;
+    private /*~~>*/List<DBDAttributeBinding> nestedBindings;
     private boolean transformed;
     private boolean disableTransformers;
 
@@ -142,7 +142,7 @@ public abstract class DBDAttributeBinding implements DBSObject, DBSAttributeBase
     public abstract String getRowIdentifierStatus();
 
     @Nullable
-    public abstract List<DBSEntityReferrer> getReferrers();
+    public abstract /*~~>*/List<DBSEntityReferrer> getReferrers();
 
     @Nullable
     public abstract Object extractNestedValue(@NotNull Object ownerValue, int itemIndex)
@@ -199,7 +199,7 @@ public abstract class DBDAttributeBinding implements DBSObject, DBSAttributeBase
     }
 
     @Nullable
-    public List<DBDAttributeBinding> getNestedBindings() {
+    public /*~~>*/List<DBDAttributeBinding> getNestedBindings() {
         return nestedBindings;
     }
 
@@ -207,8 +207,8 @@ public abstract class DBDAttributeBinding implements DBSObject, DBSAttributeBase
         return nestedBindings != null;
     }
 
-    public void setNestedBindings(@NotNull List<DBDAttributeBinding> nestedBindings) {
-        this.nestedBindings = nestedBindings;
+    public void setNestedBindings(@NotNull /*~~>*/List<DBDAttributeBinding> nestedBindings) {
+        /*~~>*/this.nestedBindings = nestedBindings;
     }
 
     @Nullable
@@ -320,7 +320,7 @@ public abstract class DBDAttributeBinding implements DBSObject, DBSAttributeBase
         return null;
     }
 
-    public void lateBinding(@NotNull DBCSession session, List<Object[]> rows) throws DBException {
+    public void lateBinding(@NotNull DBCSession session, /*~~>*/List<Object[]> rows) throws DBException {
         if (disableTransformers) {
             return;
         }
@@ -333,15 +333,15 @@ public abstract class DBDAttributeBinding implements DBSObject, DBSAttributeBase
         }
     }
 
-    protected List<DBSEntityReferrer> findVirtualReferrers() {
+    protected /*~~>*/List<DBSEntityReferrer> findVirtualReferrers() {
         DBSDataContainer dataContainer = getDataContainer();
         if (dataContainer instanceof DBSEntity) {
             DBSEntity attrEntity = (DBSEntity) dataContainer;
             DBVEntity vEntity = DBVUtils.getVirtualEntity(attrEntity, false);
             if (vEntity != null) {
-                List<DBVEntityForeignKey> foreignKeys = vEntity.getForeignKeys();
+                /*~~>*/List<DBVEntityForeignKey> foreignKeys = vEntity.getForeignKeys();
                 if (!CommonUtils.isEmpty(foreignKeys)) {
-                    List<DBSEntityReferrer> referrers = null;
+                    /*~~>*/List<DBSEntityReferrer> referrers = null;
                     for (DBVEntityForeignKey vfk : foreignKeys) {
                         for (DBVEntityForeignKeyColumn vfkc : vfk.getAttributes()) {
                             if (CommonUtils.equalObjects(vfkc.getAttributeName(), getFullyQualifiedName(DBPEvaluationContext.DML))) {

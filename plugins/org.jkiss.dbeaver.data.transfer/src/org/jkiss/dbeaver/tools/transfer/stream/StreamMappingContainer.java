@@ -36,18 +36,18 @@ import java.util.Map;
 
 public class StreamMappingContainer implements DBPNamedObject, DBPImageProvider {
     private final DBSDataContainer source;
-    private final List<StreamMappingAttribute> attributes;
+    private final /*~~>*/List<StreamMappingAttribute> attributes;
 
     public StreamMappingContainer(@NotNull DBSDataContainer source) {
         this.source = source;
-        this.attributes = new ArrayList<>();
+        /*~~>*/this.attributes = new ArrayList<>();
     }
 
     public StreamMappingContainer(@NotNull StreamMappingContainer other) {
         this.source = other.source;
-        this.attributes = new ArrayList<>();
-        for (StreamMappingAttribute attribute : other.attributes) {
-            this.attributes.add(new StreamMappingAttribute(this, attribute));
+        /*~~>*/this.attributes = new ArrayList<>();
+        for (StreamMappingAttribute attribute : /*~~>*/other.attributes) {
+            /*~~>*/this.attributes.add(new StreamMappingAttribute(this, attribute));
         }
     }
 
@@ -96,7 +96,7 @@ public class StreamMappingContainer implements DBPNamedObject, DBPImageProvider 
     }
 
     @NotNull
-    public List<StreamMappingAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) {
+    public /*~~>*/List<StreamMappingAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) {
         if (attributes.isEmpty()) {
             try {
                 monitor.beginTask("Load attributes from '" + getName() + "'", 1);

@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class CompositeSelectionProvider implements ISelectionProvider {
 
-    private List<ISelectionChangedListener> listeners = new ArrayList<>();
+    private /*~~>*/List<ISelectionChangedListener> listeners = new ArrayList<>();
     private ISelectionProvider provider;
     private ISelection selection = StructuredSelection.EMPTY;
 

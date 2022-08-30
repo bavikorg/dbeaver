@@ -83,10 +83,10 @@ public class ExasolUtils {
                 JDBCResultSet rs = dbStat.executeQuery(String.format(TABLE_QUERY_COLUMNS, quoteString(exasolTable.getSchema().getName()), quoteString(exasolTable.getName())));
 
                 // column infos
-                List<String> columns = new ArrayList<>();
+                /*~~>*/List<String> columns = new ArrayList<>();
 
                 // distribution key infos
-                List<String> distKey = new ArrayList<>();
+                /*~~>*/List<String> distKey = new ArrayList<>();
 
                 while (rs.next()) {
 

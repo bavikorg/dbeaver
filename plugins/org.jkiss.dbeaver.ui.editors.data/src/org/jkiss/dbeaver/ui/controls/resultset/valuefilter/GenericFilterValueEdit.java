@@ -295,7 +295,7 @@ class GenericFilterValueEdit {
     private void loadConstraintEnum(final DBSEntityReferrer refConstraint, @Nullable Consumer<Result> onFinish) {
         loadJob = new KeyLoadJob("Load constraint '" + refConstraint.getName() + "' values", onFinish) {
             @Override
-            List<DBDLabelValuePair> readEnumeration(DBRProgressMonitor monitor) throws DBException {
+            /*~~>*/List<DBDLabelValuePair> readEnumeration(DBRProgressMonitor monitor) throws DBException {
                 final DBSEntityAttribute tableColumn = attribute.getEntityAttribute();
                 if (tableColumn == null) {
                     return null;
@@ -339,10 +339,10 @@ class GenericFilterValueEdit {
     private void loadAttributeEnum(final DBSAttributeEnumerable attributeEnumerable, @Nullable Consumer<Result> onFinish) {
         loadJob = new KeyLoadJob("Load '" + attribute.getName() + "' values", onFinish) {
 
-            private List<DBDLabelValuePair> result;
+            private /*~~>*/List<DBDLabelValuePair> result;
 
             @Override
-            List<DBDLabelValuePair> readEnumeration(DBRProgressMonitor monitor) throws DBException {
+            /*~~>*/List<DBDLabelValuePair> readEnumeration(DBRProgressMonitor monitor) throws DBException {
                 DBExecUtils.tryExecuteRecover(monitor, attributeEnumerable.getDataSource(), param -> {
                     try (DBCSession session = DBUtils.openUtilSession(monitor, attributeEnumerable, "Read value enumeration")) {
                         result = attributeEnumerable.getValueEnumeration(
@@ -382,8 +382,8 @@ class GenericFilterValueEdit {
         loadJob = new KeyLoadJob("Load '" + attribute.getName() + "' values", onFinish) {
             @NotNull
             @Override
-            List<DBDLabelValuePair> readEnumeration(DBRProgressMonitor monitor) throws DBException {
-                final List<DBDLabelValuePair> result = new ArrayList<>();
+            /*~~>*/List<DBDLabelValuePair> readEnumeration(DBRProgressMonitor monitor) throws DBException {
+                final /*~~>*/List<DBDLabelValuePair> result = new ArrayList<>();
                 DBExecUtils.tryExecuteRecover(monitor, dictionaryEnumerable.getDataSource(), param -> {
                     try (DBCSession session = DBUtils.openUtilSession(monitor, dictionaryEnumerable, "Read value enumeration")) {
                         result.addAll(dictionaryEnumerable.getValueEnumeration(
@@ -457,7 +457,7 @@ class GenericFilterValueEdit {
             }
         }
 
-        List<DBDLabelValuePair> sortedList = new ArrayList<>(rowData.values());
+        /*~~>*/List<DBDLabelValuePair> sortedList = new ArrayList<>(rowData.values());
         if (pattern != null) {
             for (Iterator<DBDLabelValuePair> iter = sortedList.iterator(); iter.hasNext(); ) {
                 final DBDLabelValuePair valuePair = iter.next();
@@ -700,7 +700,7 @@ class GenericFilterValueEdit {
             }
             try {
                 monitor.subTask("Read enumeration");
-                final List<DBDLabelValuePair> valueEnumeration = readEnumeration(monitor);
+                final /*~~>*/List<DBDLabelValuePair> valueEnumeration = readEnumeration(monitor);
                 if (valueEnumeration == null) {
                     populateValues(Collections.emptyList());
                     return Status.OK_STATUS;
@@ -721,7 +721,7 @@ class GenericFilterValueEdit {
         }
 
         @Nullable
-        abstract List<DBDLabelValuePair> readEnumeration(DBRProgressMonitor monitor) throws DBException;
+        abstract /*~~>*/List<DBDLabelValuePair> readEnumeration(DBRProgressMonitor monitor) throws DBException;
 
         @Nullable
         protected Long readDistinctValuesCount(@NotNull DBRProgressMonitor monitor) throws DBException {

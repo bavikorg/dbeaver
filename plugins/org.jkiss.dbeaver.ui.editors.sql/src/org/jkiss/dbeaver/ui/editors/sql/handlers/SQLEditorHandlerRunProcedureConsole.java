@@ -50,8 +50,8 @@ public class SQLEditorHandlerRunProcedureConsole extends SQLEditorHandlerOpenObj
         String procName = null;
 
         ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
-        List<DBSObject> selectedObjects = NavigatorUtils.getSelectedObjects(currentSelection);
-        List<DBSProcedure> entities = new ArrayList<>();
+        /*~~>*/List<DBSObject> selectedObjects = NavigatorUtils.getSelectedObjects(currentSelection);
+        /*~~>*/List<DBSProcedure> entities = new ArrayList<>();
         for (DBSObject object : selectedObjects) {
             if (object instanceof DBSProcedure) {
                 DBSProcedure proc = (DBSProcedure) object;

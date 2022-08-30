@@ -42,7 +42,7 @@ public class GeometryViewerDescriptor extends AbstractDescriptor {
     private final String description;
     private final DBPImage icon;
     private boolean supportsInline;
-    private final List<String> supportedDataSources = new ArrayList<>();
+    private final /*~~>*/List<String> supportedDataSources = new ArrayList<>();
 
     GeometryViewerDescriptor(IConfigurationElement config) {
         super(config);

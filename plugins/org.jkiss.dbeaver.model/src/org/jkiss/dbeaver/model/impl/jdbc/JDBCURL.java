@@ -104,11 +104,11 @@ public class JDBCURL {
 
     public static class MetaURL {
 
-        private List<String> urlComponents = new ArrayList<>();
+        private /*~~>*/List<String> urlComponents = new ArrayList<>();
         private Set<String> availableProperties = new HashSet<>();
         private Set<String> requiredProperties = new HashSet<>();
 
-        public List<String> getUrlComponents() {
+        public /*~~>*/List<String> getUrlComponents() {
             return urlComponents;
         }
 
@@ -145,9 +145,9 @@ public class JDBCURL {
                 isOptional = true;
             }
             if (divPos > offsetPos) {
-                metaURL.urlComponents.add(sampleURL.substring(offsetPos, divPos));
+                /*~~>*/metaURL.urlComponents.add(sampleURL.substring(offsetPos, divPos));
             }
-            metaURL.urlComponents.add(sampleURL.substring(divPos, divPos2 + 1));
+            /*~~>*/metaURL.urlComponents.add(sampleURL.substring(divPos, divPos2 + 1));
             metaURL.availableProperties.add(propName);
             if (!isOptional) {
                 metaURL.requiredProperties.add(propName);
@@ -155,7 +155,7 @@ public class JDBCURL {
             offsetPos = divPos2 + 1;
         }
         if (offsetPos < sampleURL.length()) {
-            metaURL.urlComponents.add(sampleURL.substring(offsetPos));
+            /*~~>*/metaURL.urlComponents.add(sampleURL.substring(offsetPos));
         }
 /*
         // Check for required parts
@@ -242,9 +242,9 @@ public class JDBCURL {
     }
 
     @NotNull
-    private static List<String> getProperties(@NotNull String sampleUrl) {
+    private static /*~~>*/List<String> getProperties(@NotNull String sampleUrl) {
         final Matcher matcher = Pattern.compile("\\{(.*?)}").matcher(sampleUrl);
-        final List<String> properties = new ArrayList<>();
+        final /*~~>*/List<String> properties = new ArrayList<>();
         while (matcher.find()) {
             properties.add(matcher.group(1));
         }

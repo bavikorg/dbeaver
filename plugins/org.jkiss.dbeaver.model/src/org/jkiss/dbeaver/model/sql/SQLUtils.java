@@ -145,7 +145,7 @@ public final class SQLUtils {
         return leading + query + trailing;
     }
 
-    public static List<String> splitFilter(String filter)
+    public static /*~~>*/List<String> splitFilter(String filter)
     {
         if (CommonUtils.isEmpty(filter)) {
             return Collections.emptyList();
@@ -477,7 +477,7 @@ public final class SQLUtils {
         boolean inlineCriteria, 
         boolean subQuery
     ) {
-        final List<DBDAttributeConstraint> constraints = filter.getConstraints().stream()
+        final /*~~>*/List<DBDAttributeConstraint> constraints = filter.getConstraints().stream()
             .filter(x -> x.getCriteria() != null || x.getOperator() != null)
             .collect(Collectors.toList());
         appendConditionString(filter, constraints, dataSource, conditionTable, query, inlineCriteria, false);
@@ -485,7 +485,7 @@ public final class SQLUtils {
 
     public static void appendConditionString(
         @NotNull DBDDataFilter filter,
-        @NotNull List<DBDAttributeConstraint> constraints,
+        @NotNull /*~~>*/List<DBDAttributeConstraint> constraints,
         @NotNull DBPDataSource dataSource,
         @Nullable String conditionTable,
         @NotNull StringBuilder query,
@@ -1141,7 +1141,7 @@ public final class SQLUtils {
             name = keepQuotes ? name : DBUtils.getUnQuotedIdentifier(name, quoteStrings);
             return new String[]{name};
         }
-        List<String> nameList = new ArrayList<>();
+        /*~~>*/List<String> nameList = new ArrayList<>();
         while (!name.isEmpty()) {
             boolean hadQuotedPart = false;
             for (String[] quotePair : quoteStrings) {
@@ -1204,9 +1204,9 @@ public final class SQLUtils {
     }
 
     private static String generateTableJoinByColumns(DBRProgressMonitor monitor, DBSEntity leftTable, String leftAlias, DBSEntity rightTable, String rightAlias) throws DBException {
-        List<DBSEntityAttribute> leftIdentifier = new ArrayList<>(DBUtils.getBestTableIdentifier(monitor, leftTable));
+        /*~~>*/List<DBSEntityAttribute> leftIdentifier = new ArrayList<>(DBUtils.getBestTableIdentifier(monitor, leftTable));
         if (!leftIdentifier.isEmpty()) {
-            List<DBSEntityAttribute> rightAttributes = new ArrayList<>();
+            /*~~>*/List<DBSEntityAttribute> rightAttributes = new ArrayList<>();
             for (DBSEntityAttribute attr : leftIdentifier) {
                 DBSEntityAttribute rightAttr = rightTable.getAttribute(monitor, attr.getName());
                 if (rightAttr == null) {
@@ -1306,7 +1306,7 @@ public final class SQLUtils {
         return type;
     }
 
-    public static void fillQueryParameters(SQLQuery sqlStatement, List<SQLQueryParameter> parameters) {
+    public static void fillQueryParameters(SQLQuery sqlStatement, /*~~>*/List<SQLQueryParameter> parameters) {
         // Set values for all parameters
         // Replace parameter tokens with parameter values
         String query = sqlStatement.getText();

@@ -69,7 +69,7 @@ class TransformerSettingsDialog extends BaseDialog {
     private PropertySourceCustom propertySource;
 
     private boolean selector;
-    private List<? extends DBDAttributeTransformerDescriptor> transformerList;
+    private /*~~>*/List<? extends DBDAttributeTransformerDescriptor> transformerList;
     private Text infoText;
     private DBDAttributeTransformerDescriptor transformer;
     private Combo transformerCombo;

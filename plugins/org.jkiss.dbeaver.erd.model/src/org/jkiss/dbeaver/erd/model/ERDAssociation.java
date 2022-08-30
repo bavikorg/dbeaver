@@ -42,10 +42,10 @@ public class ERDAssociation extends ERDObject<DBSEntityAssociation>
 
 	private ERDElement<?> sourceEntity;
     private ERDElement<?> targetEntity;
-    private List<ERDEntityAttribute> sourceAttributes;
-    private List<ERDEntityAttribute> targetAttributes;
+    private /*~~>*/List<ERDEntityAttribute> sourceAttributes;
+    private /*~~>*/List<ERDEntityAttribute> targetAttributes;
 
-    private List<int[]> initBends;
+    private /*~~>*/List<int[]> initBends;
 
     /**
      * Constructor for logical association
@@ -92,7 +92,7 @@ public class ERDAssociation extends ERDObject<DBSEntityAssociation>
      */
     protected void resolveAttributes(DBSEntityReferrer association, ERDEntity sourceEntity, ERDEntity targetEntity) {
         try {
-            List<? extends DBSEntityAttributeRef> attrRefs = association.getAttributeReferences(new VoidProgressMonitor());
+            /*~~>*/List<? extends DBSEntityAttributeRef> attrRefs = association.getAttributeReferences(new VoidProgressMonitor());
 
             if (!CommonUtils.isEmpty(attrRefs)) {
                 for (DBSEntityAttributeRef attrRef : attrRefs) {
@@ -149,12 +149,12 @@ public class ERDAssociation extends ERDObject<DBSEntityAssociation>
 	}
 
 	@NotNull
-    public List<ERDEntityAttribute> getSourceAttributes() {
+    public /*~~>*/List<ERDEntityAttribute> getSourceAttributes() {
         return sourceAttributes == null ? Collections.emptyList() : sourceAttributes;
     }
 
     @NotNull
-    public List<ERDEntityAttribute> getTargetAttributes() {
+    public /*~~>*/List<ERDEntityAttribute> getTargetAttributes() {
         return targetAttributes == null ? Collections.emptyList() : targetAttributes;
     }
 
@@ -175,14 +175,14 @@ public class ERDAssociation extends ERDObject<DBSEntityAssociation>
     }
 
     // Bend is array of coordinates (x = [0], y = [1])
-    public List<int[]> getInitBends()
+    public /*~~>*/List<int[]> getInitBends()
     {
         return initBends;
     }
 
-    public void setInitBends(List<int[]> bends)
+    public void setInitBends(/*~~>*/List<int[]> bends)
     {
-        this.initBends = bends;
+        /*~~>*/this.initBends = bends;
     }
 
     @Override
@@ -237,9 +237,9 @@ public class ERDAssociation extends ERDObject<DBSEntityAssociation>
         return assocMap;
     }
 
-    private static void saveRefAttributes(DBRProgressMonitor monitor, DBSEntityConstraint association, Map<String, Object> map, String refName, List<ERDEntityAttribute> attributes) throws DBException {
+    private static void saveRefAttributes(DBRProgressMonitor monitor, DBSEntityConstraint association, Map<String, Object> map, String refName, /*~~>*/List<ERDEntityAttribute> attributes) throws DBException {
         if (!CommonUtils.isEmpty(attributes)) {
-            List<String> refAttrList = attributes.stream().map(ERDEntityAttribute::getName).collect(Collectors.toList());
+            /*~~>*/List<String> refAttrList = attributes.stream().map(ERDEntityAttribute::getName).collect(Collectors.toList());
             map.put(refName, refAttrList);
         }
     }

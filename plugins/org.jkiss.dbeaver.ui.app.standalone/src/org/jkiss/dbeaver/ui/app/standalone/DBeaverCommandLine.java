@@ -134,8 +134,8 @@ public class DBeaverCommandLine
         }
     }
 
-    public static List<CommandLineParameterHandler> getRemoteParameterHandlers(@NotNull CommandLine commandLine) {
-        List<CommandLineParameterHandler> handlers = new ArrayList<>();
+    public static /*~~>*/List<CommandLineParameterHandler> getRemoteParameterHandlers(@NotNull CommandLine commandLine) {
+        /*~~>*/List<CommandLineParameterHandler> handlers = new ArrayList<>();
         for (ParameterDescriptor param : customParameters.values()) {
             if (commandLine.hasOption(param.name) && !(param.handler instanceof Remote)) {
                 handlers.add(param.handler);
@@ -200,7 +200,7 @@ public class DBeaverCommandLine
             String[] files = commandLine.getOptionValues(PARAM_FILE);
             String[] fileArgs = commandLine.getArgs();
             if (!ArrayUtils.isEmpty(files) || !ArrayUtils.isEmpty(fileArgs)) {
-                List<String> fileNames = new ArrayList<>();
+                /*~~>*/List<String> fileNames = new ArrayList<>();
                 if (!ArrayUtils.isEmpty(files)) {
                     Collections.addAll(fileNames, files);
                 }

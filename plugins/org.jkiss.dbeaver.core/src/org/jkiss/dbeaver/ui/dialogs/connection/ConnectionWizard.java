@@ -62,7 +62,7 @@ public abstract class ConnectionWizard extends ActiveWizard implements INewWizar
 
     // protected final IProject project;
     private final Map<DriverDescriptor, DataSourceDescriptor> infoMap = new HashMap<>();
-    private final List<IPropertyChangeListener> propertyListeners = new ArrayList<>();
+    private final /*~~>*/List<IPropertyChangeListener> propertyListeners = new ArrayList<>();
 
     protected ConnectionWizard() {
         setNeedsProgressMonitor(true);

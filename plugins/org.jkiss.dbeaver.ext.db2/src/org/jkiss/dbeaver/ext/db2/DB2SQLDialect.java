@@ -156,7 +156,7 @@ public class DB2SQLDialect extends JDBCSQLDialect implements TPRuleProvider {
     }
 
     @Override
-    public void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull List<TPRule> rules, @NotNull RulePosition position) {
+    public void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull /*~~>*/List<TPRule> rules, @NotNull RulePosition position) {
         if (position == RulePosition.KEYWORDS) {
             final TPTokenDefault keywordToken = new TPTokenDefault(SQLTokenType.T_KEYWORD);
             rules.add(new SQLMultiWordRule(new String[]{"ROW", "BEGIN"}, keywordToken));

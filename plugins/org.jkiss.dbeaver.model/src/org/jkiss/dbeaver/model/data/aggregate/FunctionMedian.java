@@ -29,7 +29,7 @@ public class FunctionMedian implements IAggregateFunction {
 
     private static final Log log = Log.getLog(FunctionMedian.class);
 
-    private final List<Comparable> cache = new ArrayList<>();
+    private final /*~~>*/List<Comparable> cache = new ArrayList<>();
 
     @Override
     public boolean accumulate(Object value, boolean aggregateAsStrings) {

@@ -56,10 +56,10 @@ public abstract class GenericObjectContainer implements GenericStructContainer, 
     private final TableTriggerCache tableTriggerCache;
     private final GenericSequenceCache sequenceCache;
     private final GenericSynonymCache synonymCache;
-    private List<GenericPackage> packages;
-    protected List<GenericProcedure> procedures;
-    protected List<? extends GenericSequence> sequences;
-    protected List<? extends GenericSynonym> synonyms;
+    private /*~~>*/List<GenericPackage> packages;
+    protected /*~~>*/List<GenericProcedure> procedures;
+    protected /*~~>*/List<? extends GenericSequence> sequences;
+    protected /*~~>*/List<? extends GenericSynonym> synonyms;
 
     protected GenericObjectContainer(@NotNull GenericDataSource dataSource) {
         this.dataSource = dataSource;
@@ -124,10 +124,10 @@ public abstract class GenericObjectContainer implements GenericStructContainer, 
     }
 
     @Override
-    public List<? extends GenericView> getViews(DBRProgressMonitor monitor) throws DBException {
-        List<? extends GenericTableBase> tables = getTables(monitor);
+    public /*~~>*/List<? extends GenericView> getViews(DBRProgressMonitor monitor) throws DBException {
+        /*~~>*/List<? extends GenericTableBase> tables = getTables(monitor);
         if (tables != null) {
-            List<GenericView> filtered = new ArrayList<>();
+            /*~~>*/List<GenericView> filtered = new ArrayList<>();
             for (GenericTableBase table : tables) {
                 if (table instanceof GenericView) {
                     filtered.add((GenericView) table);
@@ -139,10 +139,10 @@ public abstract class GenericObjectContainer implements GenericStructContainer, 
     }
 
     @Override
-    public List<? extends GenericTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException {
-        List<? extends GenericTableBase> tables = getTables(monitor);
+    public /*~~>*/List<? extends GenericTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException {
+        /*~~>*/List<? extends GenericTableBase> tables = getTables(monitor);
         if (tables != null) {
-            List<GenericTable> filtered = new ArrayList<>();
+            /*~~>*/List<GenericTable> filtered = new ArrayList<>();
             for (GenericTableBase table : tables) {
                 if (table.isPhysicalTable()) {
                     filtered.add((GenericTable) table);
@@ -154,7 +154,7 @@ public abstract class GenericObjectContainer implements GenericStructContainer, 
     }
 
     @Override
-    public List<? extends GenericTableBase> getTables(DBRProgressMonitor monitor)
+    public /*~~>*/List<? extends GenericTableBase> getTables(DBRProgressMonitor monitor)
         throws DBException {
         return tableCache.getAllObjects(monitor, this);
     }
@@ -180,12 +180,12 @@ public abstract class GenericObjectContainer implements GenericStructContainer, 
         //cacheIndexes(monitor, null);
         synchronized (indexCache) {
             if (!indexCache.isFullyCached()) {
-                List<GenericTableIndex> oldCache = indexCache.getCachedObjects();
+                /*~~>*/List<GenericTableIndex> oldCache = indexCache.getCachedObjects();
                 indexCache.clearCache();
 
                 // First - try to read all indexes. Some drivers can do this
                 // If index list is empty then try to read by tables
-                List<GenericTableIndex> newIndexCache;
+                /*~~>*/List<GenericTableIndex> newIndexCache;
                 try {
                     newIndexCache = indexCache.getObjects(monitor, this, null);
                 } catch (DBException e) {
@@ -197,7 +197,7 @@ public abstract class GenericObjectContainer implements GenericStructContainer, 
                     newIndexCache = new ArrayList<>();
                     indexCache.clearCache();
                     // Load indexes for all tables and return copy of them
-                    List<? extends GenericTableBase> tables = getTables(monitor);
+                    /*~~>*/List<? extends GenericTableBase> tables = getTables(monitor);
                     monitor.beginTask("Cache indexes from tables", tables.size());
                     try {
                         for (GenericTableBase table : tables) {
@@ -307,12 +307,12 @@ public abstract class GenericObjectContainer implements GenericStructContainer, 
         return DBUtils.findObject(getPackages(monitor), name);
     }
 
-    public List<GenericProcedure> getProcedureCache() {
+    public /*~~>*/List<GenericProcedure> getProcedureCache() {
         return procedures;
     }
 
     @Override
-    public List<GenericProcedure> getProcedures(DBRProgressMonitor monitor)
+    public /*~~>*/List<GenericProcedure> getProcedures(DBRProgressMonitor monitor)
         throws DBException {
         if (procedures == null) {
             loadProcedures(monitor);
@@ -331,17 +331,17 @@ public abstract class GenericObjectContainer implements GenericStructContainer, 
     }
 
     @Override
-    public List<GenericProcedure> getProcedures(DBRProgressMonitor monitor, String name)
+    public /*~~>*/List<GenericProcedure> getProcedures(DBRProgressMonitor monitor, String name)
         throws DBException {
         return DBUtils.findObjects(getProcedures(monitor), name);
     }
 
     @Override
-    public List<? extends GenericProcedure> getProceduresOnly(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<? extends GenericProcedure> getProceduresOnly(DBRProgressMonitor monitor) throws DBException {
         if (!dataSource.splitProceduresAndFunctions()) {
             return getProcedures(monitor);
         }
-        List<GenericProcedure> filteredProcedures = new ArrayList<>();
+        /*~~>*/List<GenericProcedure> filteredProcedures = new ArrayList<>();
         for (GenericProcedure proc : CommonUtils.safeList(getProcedures(monitor))) {
             if (proc.getProcedureType() == DBSProcedureType.PROCEDURE) {
                 filteredProcedures.add(proc);
@@ -352,7 +352,7 @@ public abstract class GenericObjectContainer implements GenericStructContainer, 
 
     @Override
     public Collection<? extends GenericProcedure> getFunctionsOnly(DBRProgressMonitor monitor) throws DBException {
-        List<GenericProcedure> filteredProcedures = new ArrayList<>();
+        /*~~>*/List<GenericProcedure> filteredProcedures = new ArrayList<>();
         for (GenericProcedure proc : CommonUtils.safeList(getProcedures(monitor))) {
             if (proc.getProcedureType() == DBSProcedureType.FUNCTION) {
                 filteredProcedures.add(proc);
@@ -397,7 +397,7 @@ public abstract class GenericObjectContainer implements GenericStructContainer, 
     @Override
     public Collection<? extends DBSObject> getChildren(@NotNull DBRProgressMonitor monitor)
         throws DBException {
-        List<DBSObject> childrenList = new ArrayList<>(getTables(monitor));
+        /*~~>*/List<DBSObject> childrenList = new ArrayList<>(getTables(monitor));
         if (dataSource.getMetaModel().supportsSynonyms(dataSource)) {
             childrenList.addAll(getSynonyms(monitor));
         }
@@ -421,10 +421,10 @@ public abstract class GenericObjectContainer implements GenericStructContainer, 
         this.tableTriggerCache.clearCache();
         this.sequenceCache.clearCache();
         this.synonymCache.clearCache();
-        this.packages = null;
-        this.procedures = null;
-        this.sequences = null;
-        this.synonyms = null;
+        /*~~>*/this.packages = null;
+        /*~~>*/this.procedures = null;
+        /*~~>*/this.sequences = null;
+        /*~~>*/this.synonyms = null;
         return this;
     }
 

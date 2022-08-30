@@ -134,7 +134,7 @@ public class GenericMetaModel {
         return false;
     }
 
-    public List<GenericSchema> loadSchemas(JDBCSession session, GenericDataSource dataSource, GenericCatalog catalog)
+    public /*~~>*/List<GenericSchema> loadSchemas(JDBCSession session, GenericDataSource dataSource, GenericCatalog catalog)
         throws DBException
     {
         if (dataSource.isOmitSchema()) {
@@ -145,7 +145,7 @@ public class GenericMetaModel {
             final GenericMetaObject schemaObject = getMetaObject(GenericConstants.OBJECT_SCHEMA);
             final DBSObjectFilter schemaFilters = dataSource.getContainer().getObjectFilter(GenericSchema.class, catalog, false);
 
-            final List<GenericSchema> tmpSchemas = new ArrayList<>();
+            final /*~~>*/List<GenericSchema> tmpSchemas = new ArrayList<>();
             JDBCResultSet dbResult = null;
             boolean catalogSchemas = false, schemasFiltered = false;
             if (catalog != null) {
@@ -870,7 +870,7 @@ public class GenericMetaModel {
         throw new DBCFeatureNotSupportedException();
     }
 
-    public List<? extends GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
+    public /*~~>*/List<? extends GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
         return new ArrayList<>();
     }
 

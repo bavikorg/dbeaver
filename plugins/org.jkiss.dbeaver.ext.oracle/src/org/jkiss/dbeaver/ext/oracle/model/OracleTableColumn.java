@@ -248,7 +248,7 @@ public class OracleTableColumn extends JDBCTableColumn<OracleTableBase> implemen
         @Override
         public Object[] getPossibleValues(OracleTableColumn column)
         {
-            List<DBSDataType> dataTypes = new ArrayList<>(column.getTable().getDataSource().getLocalDataTypes());
+            /*~~>*/List<DBSDataType> dataTypes = new ArrayList<>(column.getTable().getDataSource().getLocalDataTypes());
             if (!dataTypes.contains(column.getDataType())) {
                 dataTypes.add(column.getDataType());
             }

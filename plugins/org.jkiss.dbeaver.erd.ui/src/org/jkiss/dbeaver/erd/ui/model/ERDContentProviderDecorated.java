@@ -37,7 +37,7 @@ public class ERDContentProviderDecorated extends ERDContentProviderDefault {
 
     @Override
     public void fillEntityFromObject(@NotNull DBRProgressMonitor monitor, @NotNull ERDDiagram diagram,
-                                     @NotNull List<ERDEntity> otherEntities, @NotNull ERDEntity erdEntity) throws DBCException {
+                                     @NotNull /*~~>*/List<ERDEntity> otherEntities, @NotNull ERDEntity erdEntity) throws DBCException {
         ERDAttributeVisibility attributeVisibility = ERDAttributeVisibility.ALL;
         boolean alphabeticalOrder = false;
         if (diagram instanceof ERDContainerDecorated) {

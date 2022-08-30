@@ -23,6 +23,6 @@ import java.util.List;
  */
 public interface DBTTaskSettingsInput<INPUT_OBJECT_TYPE>  extends DBTTaskSettings<INPUT_OBJECT_TYPE> {
 
-    void loadSettingsFromInput(List<INPUT_OBJECT_TYPE> inputObjects);
+    void loadSettingsFromInput(/*~~>*/List<INPUT_OBJECT_TYPE> inputObjects);
 
 }

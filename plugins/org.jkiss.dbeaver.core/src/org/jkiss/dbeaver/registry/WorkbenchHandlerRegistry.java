@@ -54,7 +54,7 @@ public class WorkbenchHandlerRegistry
         return instance;
     }
 
-    private final Map<Integer, List<IWorkbenchWindowInitializer>> wwInitializers = new TreeMap<>();
+    private final Map<Integer, /*~~>*/List<IWorkbenchWindowInitializer>> wwInitializers = new TreeMap<>();
 
     private WorkbenchHandlerRegistry(IExtensionRegistry registry)
     {
@@ -77,8 +77,8 @@ public class WorkbenchHandlerRegistry
 
     public Collection<IWorkbenchWindowInitializer> getWorkbenchWindowInitializers()
     {
-        List<IWorkbenchWindowInitializer> list = new ArrayList<>();
-        for (List<IWorkbenchWindowInitializer> iWorkbenchWindowInitializers : wwInitializers.values()) {
+        /*~~>*/List<IWorkbenchWindowInitializer> list = new ArrayList<>();
+        for (/*~~>*/List<IWorkbenchWindowInitializer> iWorkbenchWindowInitializers : wwInitializers.values()) {
             list.addAll(iWorkbenchWindowInitializers);
         }
         return list;

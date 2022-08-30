@@ -205,7 +205,7 @@ class DriverDependenciesTree {
     }
 
     private boolean addDependencies(TreeItem parent, DBPDriverDependencies.DependencyNode node) {
-        Collection<DBPDriverDependencies.DependencyNode> dependencies = node.dependencies;
+        Collection<DBPDriverDependencies.DependencyNode> dependencies = /*~~>*/node.dependencies;
         if (dependencies != null && !dependencies.isEmpty()) {
             for (DBPDriverDependencies.DependencyNode dep : dependencies) {
                 TreeItem item = new TreeItem(parent, SWT.NONE);
@@ -241,7 +241,7 @@ class DriverDependenciesTree {
         if (dependencyNode == null || dependencyNode.library == null || !dependencyNode.library.isDownloadable()) {
             return;
         }
-        final List<String> allVersions = new ArrayList<>();
+        final /*~~>*/List<String> allVersions = new ArrayList<>();
         try {
             runnableContext.run(true, true, monitor -> {
                 try {

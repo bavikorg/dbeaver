@@ -97,7 +97,7 @@ public class InformixMetaModel extends GenericMetaModel
     }
 
     @Override
-    public List<? extends GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
+    public /*~~>*/List<? extends GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
         assert table != null;
         try (JDBCSession session = DBUtils.openMetaSession(monitor, container, "Read triggers")) {
             String query =
@@ -107,7 +107,7 @@ public class InformixMetaModel extends GenericMetaModel
 
             try (JDBCPreparedStatement dbStat = session.prepareStatement(query)) {
                 dbStat.setString(1, table.getName());
-                List<GenericTrigger> result = new ArrayList<>();
+                /*~~>*/List<GenericTrigger> result = new ArrayList<>();
 
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
                     while (dbResult.next()) {

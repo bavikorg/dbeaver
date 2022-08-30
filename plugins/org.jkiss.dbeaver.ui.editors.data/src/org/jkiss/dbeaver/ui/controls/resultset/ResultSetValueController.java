@@ -267,7 +267,7 @@ public class ResultSetValueController implements IAttributeController, IRowContr
 
     @NotNull
     @Override
-    public List<DBDAttributeBinding> getRowAttributes() {
+    public /*~~>*/List<DBDAttributeBinding> getRowAttributes() {
         return Arrays.asList(controller.getModel().getAttributes());
     }
 

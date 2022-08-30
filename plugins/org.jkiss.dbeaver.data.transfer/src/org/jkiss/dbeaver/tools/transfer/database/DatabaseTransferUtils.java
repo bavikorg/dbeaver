@@ -156,7 +156,7 @@ public class DatabaseTransferUtils {
         monitor.subTask("Validate table structure table '" + containerMapping.getTargetName() + "'");
         if (USE_STRUCT_DDL) {
             try {
-                final List<DBEPersistAction> actions = new ArrayList<>();
+                final /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
                 generateStructTableDDL(monitor, executionContext, schema, containerMapping, actions, changedProperties);
                 return actions.toArray(DBEPersistAction[]::new);
             } catch (DBException e) {
@@ -183,7 +183,7 @@ public class DatabaseTransferUtils {
             return new DBEPersistAction[0];
         }
 
-        List<DBEPersistAction> actions = new ArrayList<>();
+        /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
 
         if (containerMapping.getMappingType() == DatabaseMappingType.recreate && containerMapping.getTarget() != null) {
             sql.append("DROP TABLE ");
@@ -286,7 +286,7 @@ public class DatabaseTransferUtils {
         @NotNull DBCExecutionContext executionContext,
         @NotNull DBSObjectContainer schema,
         @NotNull DatabaseMappingContainer containerMapping,
-        @NotNull List<DBEPersistAction> actions,
+        @NotNull /*~~>*/List<DBEPersistAction> actions,
         @Nullable Map<DBPPropertyDescriptor, Object> changedProperties
     ) throws DBException {
         final DBERegistry editorsRegistry = DBWorkbench.getPlatform().getEditorsRegistry();

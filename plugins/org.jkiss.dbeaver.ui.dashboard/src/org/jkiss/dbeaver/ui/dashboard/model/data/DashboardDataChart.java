@@ -24,9 +24,9 @@ import java.util.List;
  */
 public class DashboardDataChart extends DashboardDataAbstract {
 
-    private List<DashboardDataKeyValue> keyValues = new ArrayList<>();
+    private /*~~>*/List<DashboardDataKeyValue> keyValues = new ArrayList<>();
 
-    public List<DashboardDataKeyValue> getKeyValues() {
+    public /*~~>*/List<DashboardDataKeyValue> getKeyValues() {
         return keyValues;
     }
 

@@ -33,7 +33,7 @@ public class PostgreTestUtils {
         column.setName(columnName);
         column.setTypeName(columnType);
         column.setOrdinalPosition(ordinalPosition);
-        List<PostgreTableColumn> cachedAttributes = (List<PostgreTableColumn>) table.getCachedAttributes();
+        /*~~>*/List<PostgreTableColumn> cachedAttributes = (/*~~>*/List<PostgreTableColumn>) table.getCachedAttributes();
         cachedAttributes.add(column);
         return column;
     }

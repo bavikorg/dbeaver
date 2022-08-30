@@ -38,7 +38,7 @@ public abstract class AbstractContextDescriptor extends AbstractDescriptor
     {
         super(config.getContributor().getName());
 
-        List<ObjectType> objectTypes = new ArrayList<>();
+        /*~~>*/List<ObjectType> objectTypes = new ArrayList<>();
         String objectType = config.getAttribute(OBJECT_TYPE);
         if (objectType != null) {
             objectTypes.add(new ObjectType(objectType));

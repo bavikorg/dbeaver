@@ -85,7 +85,7 @@ public class DesktopUI implements DBPPlatformUI {
     private static DesktopUI instance;
 
     private TrayIconHandler trayItem;
-    private final List<IDisposable> globalDisposables = new ArrayList<>();
+    private final /*~~>*/List<IDisposable> globalDisposables = new ArrayList<>();
     private WorkbenchContextListener contextListener;
 
     public static DesktopUI getInstance() {
@@ -111,7 +111,7 @@ public class DesktopUI implements DBPPlatformUI {
             trayItem.hide();
         }
 
-        List<IDisposable> dispList = new ArrayList<>(globalDisposables);
+        /*~~>*/List<IDisposable> dispList = new ArrayList<>(globalDisposables);
         Collections.reverse(dispList);
         for (IDisposable disp : dispList) {
             try {

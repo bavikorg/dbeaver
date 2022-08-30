@@ -50,7 +50,7 @@ import java.util.*;
 import java.util.stream.IntStream;
 
 public class PostgreScheduleEditor extends AbstractDatabaseObjectEditor<PostgreJobSchedule> {
-    private final List<Runnable> listeners = new ArrayList<>();
+    private final /*~~>*/List<Runnable> listeners = new ArrayList<>();
     private final boolean[] minutes = new boolean[60];
     private final boolean[] hours = new boolean[24];
     private final boolean[] weekDays = new boolean[7];

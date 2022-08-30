@@ -38,7 +38,7 @@ public class MySQLCharset extends MySQLInformation {
     private String name;
     private String description;
     private int maxLength;
-    private List<MySQLCollation> collations = new ArrayList<>();
+    private /*~~>*/List<MySQLCollation> collations = new ArrayList<>();
 
     public MySQLCharset(MySQLDataSource dataSource, ResultSet dbResult)
         throws SQLException
@@ -69,7 +69,7 @@ public class MySQLCharset extends MySQLInformation {
         return name;
     }
 
-    public List<MySQLCollation> getCollations()
+    public /*~~>*/List<MySQLCollation> getCollations()
     {
         return collations;
     }

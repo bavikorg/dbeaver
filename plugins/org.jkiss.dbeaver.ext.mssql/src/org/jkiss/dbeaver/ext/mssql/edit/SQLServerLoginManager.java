@@ -46,7 +46,7 @@ public class SQLServerLoginManager extends SQLObjectEditor<SQLServerLogin, SQLSe
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
         SQLServerLogin login = command.getObject();
         command.setDisableSessionLogging(true); // Hide password from Query Manager
         StringBuilder script = new StringBuilder(64);
@@ -60,7 +60,7 @@ public class SQLServerLoginManager extends SQLObjectEditor<SQLServerLogin, SQLSe
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
         SQLServerLogin login = command.getObject();
         if (command.hasProperty("disabled")) {
             actionList.add(new SQLDatabasePersistAction(
@@ -71,7 +71,7 @@ public class SQLServerLoginManager extends SQLObjectEditor<SQLServerLogin, SQLSe
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
         actions.add(
                 new SQLDatabasePersistAction("Drop login", "DROP LOGIN " + DBUtils.getQuotedIdentifier(command.getObject())) //$NON-NLS-2$
         );
@@ -89,7 +89,7 @@ public class SQLServerLoginManager extends SQLObjectEditor<SQLServerLogin, SQLSe
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
         SQLServerLogin login = command.getObject();
         SQLServerDataSource dataSource = login.getDataSource();
 

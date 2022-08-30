@@ -33,7 +33,7 @@ class ClickhouseDataTypeCache extends GenericDataTypeCache {
     }
 
     @Override
-    protected void addCustomObjects(List<GenericDataType> genericDataTypes) {
+    protected void addCustomObjects(/*~~>*/List<GenericDataType> genericDataTypes) {
         if (DBUtils.findObject(genericDataTypes, "Int128") == null) {
             genericDataTypes.add(new GenericDataType(owner, Types.NUMERIC, "Int128", "Int128", false, false, 0, 0, 0));
         }

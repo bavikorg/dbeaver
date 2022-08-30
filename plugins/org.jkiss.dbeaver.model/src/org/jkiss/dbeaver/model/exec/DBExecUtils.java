@@ -78,14 +78,14 @@ public class DBExecUtils {
      * Current execution context. Used by global authenticators and network handlers
      */
     private static final ThreadLocal<DBPDataSourceContainer> ACTIVE_CONTEXT = new ThreadLocal<>();
-    private static final List<DBPDataSourceContainer> ACTIVE_CONTEXTS = new ArrayList<>();
+    private static final /*~~>*/List<DBPDataSourceContainer> ACTIVE_CONTEXTS = new ArrayList<>();
     public static final boolean BROWSE_LAZY_ASSOCIATIONS = false;
 
     public static DBPDataSourceContainer getCurrentThreadContext() {
         return ACTIVE_CONTEXT.get();
     }
 
-    public static List<DBPDataSourceContainer> getActiveContexts() {
+    public static /*~~>*/List<DBPDataSourceContainer> getActiveContexts() {
         synchronized (ACTIVE_CONTEXTS) {
             return new ArrayList<>(ACTIVE_CONTEXTS);
         }
@@ -249,7 +249,7 @@ public class DBExecUtils {
         }
     }
 
-    public static void executeScript(DBRProgressMonitor monitor, DBCExecutionContext executionContext, String jobName, List<DBEPersistAction> persistActions) {
+    public static void executeScript(DBRProgressMonitor monitor, DBCExecutionContext executionContext, String jobName, /*~~>*/List<DBEPersistAction> persistActions) {
         try (DBCSession session = executionContext.openSession(monitor, DBCExecutionPurpose.UTIL, jobName)) {
             executeScript(session, persistActions.toArray(new DBEPersistAction[0]));
         }
@@ -460,7 +460,7 @@ public class DBExecUtils {
         if (table instanceof DBSDocumentContainer) {
             return new DBSDocumentConstraint((DBSDocumentContainer) table);
         }
-        List<DBSEntityConstraint> identifiers = new ArrayList<>(2);
+        /*~~>*/List<DBSEntityConstraint> identifiers = new ArrayList<>(2);
         //List<DBSEntityConstraint> nonIdentifyingConstraints = null;
 
         if (readMetaData) {
@@ -578,7 +578,7 @@ public class DBExecUtils {
     }
 
     public static DBSEntityAssociation getAssociationByAttribute(DBDAttributeBinding attr) throws DBException {
-        List<DBSEntityReferrer> referrers = attr.getReferrers();
+        /*~~>*/List<DBSEntityReferrer> referrers = attr.getReferrers();
         if (referrers != null) {
             for (final DBSEntityReferrer referrer : referrers) {
                 if (referrer instanceof DBSEntityAssociation) {
@@ -627,7 +627,7 @@ public class DBExecUtils {
         @Nullable DBSEntity sourceEntity,
         @Nullable DBCResultSet resultSet,
         @NotNull DBDAttributeBinding[] bindings,
-        @Nullable List<Object[]> rows) throws DBException
+        @Nullable /*~~>*/List<Object[]> rows) throws DBException
     {
         final DBRProgressMonitor monitor = session.getProgressMonitor();
         final DBPDataSource dataSource = session.getDataSource();
@@ -910,7 +910,7 @@ public class DBExecUtils {
         return null;
     }
 
-    public static List<DBEPersistAction> getActionsListFromCommandContext(@NotNull DBRProgressMonitor monitor, DBECommandContext commandContext, DBCExecutionContext executionContext, Map<String, Object> options, @Nullable List<DBEPersistAction> actions) throws DBException {
+    public static /*~~>*/List<DBEPersistAction> getActionsListFromCommandContext(@NotNull DBRProgressMonitor monitor, DBECommandContext commandContext, DBCExecutionContext executionContext, Map<String, Object> options, @Nullable /*~~>*/List<DBEPersistAction> actions) throws DBException {
         if (actions == null) {
             actions = new ArrayList<>();
         }

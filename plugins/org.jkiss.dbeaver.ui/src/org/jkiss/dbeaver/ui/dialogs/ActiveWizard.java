@@ -34,9 +34,9 @@ import java.util.List;
  */
 public abstract class ActiveWizard extends BaseWizard
 {
-    private List<WizardPrefPage> prefPages = new ArrayList<>();
+    private /*~~>*/List<WizardPrefPage> prefPages = new ArrayList<>();
 
-    protected List<WizardPrefPage> getPrefPages() {
+    protected /*~~>*/List<WizardPrefPage> getPrefPages() {
         return prefPages;
     }
 

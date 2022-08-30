@@ -45,7 +45,7 @@ public class DashboardViewConfiguration {
     private String viewId;
 
     private final DBPDataSourceContainer dataSourceContainer;
-    private List<DashboardItemViewConfiguration> items = new ArrayList<>();
+    private /*~~>*/List<DashboardItemViewConfiguration> items = new ArrayList<>();
 
     private boolean openConnectionOnActivate;
     private boolean useSeparateConnection;
@@ -60,7 +60,7 @@ public class DashboardViewConfiguration {
         return dataSourceContainer;
     }
 
-    public List<DashboardItemViewConfiguration> getDashboardItemConfigs() {
+    public /*~~>*/List<DashboardItemViewConfiguration> getDashboardItemConfigs() {
         return items;
     }
 
@@ -123,7 +123,7 @@ public class DashboardViewConfiguration {
     }
 
     public void clearDashboards() {
-        this.items.clear();
+        /*~~>*/this.items.clear();
     }
 
     private void loadSettings() {

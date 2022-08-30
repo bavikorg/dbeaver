@@ -50,7 +50,7 @@ public class DB2PlanAnalyser extends AbstractExecutionPlan {
     private String query;
     private String planTableSchema;
 
-    private List<DB2PlanNode> listNodes;
+    private /*~~>*/List<DB2PlanNode> listNodes;
     private DB2PlanStatement db2PlanStatement;
 
     // ------------
@@ -93,7 +93,7 @@ public class DB2PlanAnalyser extends AbstractExecutionPlan {
     }
 
     @Override
-    public List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options)
+    public /*~~>*/List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options)
     {
         return listNodes;
     }

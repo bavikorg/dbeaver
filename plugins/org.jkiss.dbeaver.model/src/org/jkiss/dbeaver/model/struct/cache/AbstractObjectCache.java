@@ -40,7 +40,7 @@ public abstract class AbstractObjectCache<OWNER extends DBSObject, OBJECT extend
 {
     private static final Log log = Log.getLog(AbstractObjectCache.class);
 
-    private List<OBJECT> objectList;
+    private /*~~>*/List<OBJECT> objectList;
     private Map<String, OBJECT> objectMap;
     protected volatile boolean fullCache = false;
     protected volatile boolean caseSensitive = true;
@@ -73,17 +73,17 @@ public abstract class AbstractObjectCache<OWNER extends DBSObject, OBJECT extend
 
     @NotNull
     @Override
-    public List<OBJECT> getCachedObjects()
+    public /*~~>*/List<OBJECT> getCachedObjects()
     {
         synchronized (cacheSync) {
             return objectList == null ? Collections.emptyList() : objectList;
         }
     }
 
-    public <SUB_TYPE> List<SUB_TYPE> getTypedObjects(DBRProgressMonitor monitor, OWNER owner, Class<SUB_TYPE> type)
+    public <SUB_TYPE> /*~~>*/List<SUB_TYPE> getTypedObjects(DBRProgressMonitor monitor, OWNER owner, Class<SUB_TYPE> type)
         throws DBException
     {
-        List<SUB_TYPE> result = new ArrayList<>();
+        /*~~>*/List<SUB_TYPE> result = new ArrayList<>();
         for (OBJECT object : getAllObjects(monitor, owner)) {
             if (type.isInstance(object)) {
                 result.add(type.cast(object));
@@ -111,11 +111,11 @@ public abstract class AbstractObjectCache<OWNER extends DBSObject, OBJECT extend
     public void cacheObject(@NotNull OBJECT object)
     {
         synchronized (cacheSync) {
-            if (this.objectList == null) {
-                this.objectList = new ArrayList<>();
+            if (/*~~>*/this.objectList == null) {
+                /*~~>*/this.objectList = new ArrayList<>();
             }
             detectCaseSensitivity(object);
-            this.objectList.add(object);
+            /*~~>*/this.objectList.add(object);
             if (this.objectMap != null) {
                 String name = getObjectName(object);
                 checkDuplicateName(name, object);
@@ -128,9 +128,9 @@ public abstract class AbstractObjectCache<OWNER extends DBSObject, OBJECT extend
     public void removeObject(@NotNull OBJECT object, boolean resetFullCache)
     {
         synchronized (cacheSync) {
-            if (this.objectList != null) {
+            if (/*~~>*/this.objectList != null) {
                 detectCaseSensitivity(object);
-                this.objectList.remove(object);
+                /*~~>*/this.objectList.remove(object);
                 if (this.objectMap != null) {
                     this.objectMap.remove(getObjectName(object));
                 }
@@ -180,16 +180,16 @@ public abstract class AbstractObjectCache<OWNER extends DBSObject, OBJECT extend
     public void clearCache()
     {
         synchronized (cacheSync) {
-            this.objectList = null;
+            /*~~>*/this.objectList = null;
             this.objectMap = null;
             this.fullCache = false;
         }
     }
 
-    public void setCache(List<OBJECT> objects)
+    public void setCache(/*~~>*/List<OBJECT> objects)
     {
         synchronized (cacheSync) {
-            this.objectList = objects;
+            /*~~>*/this.objectList = objects;
             this.objectMap = null;
             this.fullCache = true;
         }
@@ -200,7 +200,7 @@ public abstract class AbstractObjectCache<OWNER extends DBSObject, OBJECT extend
      * @param objectList object list which will be saved in the cache.
      *  It can be modified by this functions
      */
-    protected void addCustomObjects(List<OBJECT> objectList) {
+    protected void addCustomObjects(/*~~>*/List<OBJECT> objectList) {
 
     }
 
@@ -209,10 +209,10 @@ public abstract class AbstractObjectCache<OWNER extends DBSObject, OBJECT extend
      * If objects with the same name were already cached - leave them in cache
      * (because they might be referenced somewhere).
      */
-    protected void mergeCache(List<OBJECT> objects)
+    protected void mergeCache(/*~~>*/List<OBJECT> objects)
     {
         synchronized (cacheSync) {
-            if (this.objectList != null) {
+            if (/*~~>*/this.objectList != null) {
                 // Merge lists
                 objects = new ArrayList<>(objects);
                 for (int i = 0; i < objects.size(); i++) {
@@ -284,7 +284,7 @@ public abstract class AbstractObjectCache<OWNER extends DBSObject, OBJECT extend
             for (int i = 0; i < objectList.size(); ) {
                 OBJECT object = objectList.get(i);
                 if (object.getParentObject() == parent) {
-                    this.objectList.remove(object);
+                    /*~~>*/this.objectList.remove(object);
                     if (this.objectMap != null) {
                         this.objectMap.remove(getObjectName(object));
                     }

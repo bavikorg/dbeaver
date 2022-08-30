@@ -60,7 +60,7 @@ public class DB2PlanSchemaConfigurator implements DBEObjectConfigurator<DB2PlanC
                     // Ask the user in what tablespace to create the Explain tables and build a dialog with the list of usable tablespaces for the user to choose
                     DB2TablespaceChooser tsChooserDialog = null;
                     try {
-                        final List<String> listTablespaces = DB2Utils.getListOfUsableTsForExplain(monitor, session);
+                        final /*~~>*/List<String> listTablespaces = DB2Utils.getListOfUsableTsForExplain(monitor, session);
                         // NO Usable Tablespace found: End of the game..
                         if (listTablespaces.isEmpty()) {
                             DBWorkbench.getPlatformUI().showError(DB2Messages.dialog_explain_no_tablespace_found_title,

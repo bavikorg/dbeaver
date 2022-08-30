@@ -51,8 +51,8 @@ public class TaskRegistry implements DBTTaskRegistry
 
     private final Map<String, TaskCategoryDescriptor> taskCategories = new LinkedHashMap<>();
     private final Map<String, TaskTypeDescriptor> taskDescriptors = new LinkedHashMap<>();
-    private final List<DBTTaskListener> taskListeners = new ArrayList<>();
-    private final List<SchedulerDescriptor> schedulers = new ArrayList<>();
+    private final /*~~>*/List<DBTTaskListener> taskListeners = new ArrayList<>();
+    private final /*~~>*/List<SchedulerDescriptor> schedulers = new ArrayList<>();
 
     private TaskRegistry(IExtensionRegistry registry)
     {
@@ -134,7 +134,7 @@ public class TaskRegistry implements DBTTaskRegistry
     @NotNull
     @Override
     public DBTTaskCategory[] getRootCategories() {
-        List<DBTTaskCategory> result = new ArrayList<>();
+        /*~~>*/List<DBTTaskCategory> result = new ArrayList<>();
         for (TaskCategoryDescriptor cat : taskCategories.values()) {
             if (cat.getParent() == null) {
                 result.add(cat);

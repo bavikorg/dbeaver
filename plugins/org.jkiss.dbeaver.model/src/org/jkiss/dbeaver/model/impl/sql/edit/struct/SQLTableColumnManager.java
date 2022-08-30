@@ -155,7 +155,7 @@ public abstract class SQLTableColumnManager<OBJECT_TYPE extends DBSEntityAttribu
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options)
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options)
     {
         final TABLE_TYPE table = (TABLE_TYPE) command.getObject().getParentObject();
         StringBuilder sql = new StringBuilder(256);
@@ -171,7 +171,7 @@ public abstract class SQLTableColumnManager<OBJECT_TYPE extends DBSEntityAttribu
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException
     {
         boolean useBrackets = hasDDLFeature(command.getObject(), DDL_FEATURE_USER_BRACKETS_IN_DROP);
         StringBuilder ddl = new StringBuilder();
@@ -245,7 +245,7 @@ public abstract class SQLTableColumnManager<OBJECT_TYPE extends DBSEntityAttribu
     }
 
     @Override
-    public List<? extends DBSObject> getDependentObjectsList(DBRProgressMonitor monitor, DBSObject object) throws DBException {
+    public /*~~>*/List<? extends DBSObject> getDependentObjectsList(DBRProgressMonitor monitor, DBSObject object) throws DBException {
         DBSObject dbsObject = object.getParentObject();
         Set<DBSObject> dependentObjectsList = new HashSet<>();
         if (dbsObject instanceof DBSEntity && object instanceof DBSEntityAttribute) {
@@ -270,7 +270,7 @@ public abstract class SQLTableColumnManager<OBJECT_TYPE extends DBSEntityAttribu
             Collection<? extends DBSTableIndex> indexes = ((DBSTable) dbsObject).getIndexes(monitor);
             if (!CommonUtils.isEmpty(indexes)) {
                 for (DBSTableIndex index : indexes) {
-                    List<? extends DBSTableIndexColumn> attributeReferences = index.getAttributeReferences(monitor);
+                    /*~~>*/List<? extends DBSTableIndexColumn> attributeReferences = index.getAttributeReferences(monitor);
                     if (!CommonUtils.isEmpty(attributeReferences)) {
                         for (DBSTableIndexColumn indexColumn : attributeReferences) {
                             DBSTableColumn tableColumn = indexColumn.getTableColumn();
@@ -289,7 +289,7 @@ public abstract class SQLTableColumnManager<OBJECT_TYPE extends DBSEntityAttribu
 
     private void addDependentConstraints(DBRProgressMonitor monitor, DBSEntityAttribute object, Set<DBSObject> dependentObjectsList, DBSObject constraint) throws DBException {
         if (constraint instanceof DBSEntityReferrer) {
-            List<? extends DBSEntityAttributeRef> attributeReferences = ((DBSEntityReferrer) constraint).getAttributeReferences(monitor);
+            /*~~>*/List<? extends DBSEntityAttributeRef> attributeReferences = ((DBSEntityReferrer) constraint).getAttributeReferences(monitor);
             if (!CommonUtils.isEmpty(attributeReferences)) {
                 for (DBSEntityAttributeRef attributeRef : attributeReferences) {
                     if (attributeRef.getAttribute() == object) {
@@ -301,7 +301,7 @@ public abstract class SQLTableColumnManager<OBJECT_TYPE extends DBSEntityAttribu
         }
     }
 
-    public static void addColumnCommentAction(List<DBEPersistAction> actionList, DBSEntityAttribute column, DBSEntity table) {
+    public static void addColumnCommentAction(/*~~>*/List<DBEPersistAction> actionList, DBSEntityAttribute column, DBSEntity table) {
         actionList.add(new SQLDatabasePersistAction(
             "Comment column",
             "COMMENT ON COLUMN " + DBUtils.getObjectFullName(table, DBPEvaluationContext.DDL) + "." + DBUtils.getQuotedIdentifier(column) +

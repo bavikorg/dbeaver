@@ -53,7 +53,7 @@ public class PostgreExecutionPlan extends AbstractExecutionPlan {
     private boolean verbose;
     private String query;
     private DBCQueryPlannerConfiguration configuration;
-    private List<DBCPlanNode> rootNodes;
+    private /*~~>*/List<DBCPlanNode> rootNodes;
 
     public PostgreExecutionPlan(boolean oldQuery, boolean verbose, String query, DBCQueryPlannerConfiguration configuration)
     {
@@ -63,10 +63,10 @@ public class PostgreExecutionPlan extends AbstractExecutionPlan {
         this.configuration = configuration;
     }
 
-    public PostgreExecutionPlan(String query, List<PostgrePlanNodeExternal> nodes) {
+    public PostgreExecutionPlan(String query, /*~~>*/List<PostgrePlanNodeExternal> nodes) {
         this.query = query;
-        this.rootNodes = new ArrayList<>();
-        this.rootNodes.addAll(nodes);
+        /*~~>*/this.rootNodes = new ArrayList<>();
+        /*~~>*/this.rootNodes.addAll(nodes);
         this.configuration = new DBCQueryPlannerConfiguration();
     }
 
@@ -98,7 +98,7 @@ public class PostgreExecutionPlan extends AbstractExecutionPlan {
     }
 
     @Override
-    public List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options)
+    public /*~~>*/List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options)
     {
         return rootNodes;
     }
@@ -116,7 +116,7 @@ public class PostgreExecutionPlan extends AbstractExecutionPlan {
             try (JDBCStatement dbStat = connection.createStatement()) {
                 try (JDBCResultSet dbResult = dbStat.executeQuery(getPlanQueryString())) {
                     if (oldQuery) {
-                        List<String> planLines = new ArrayList<>();
+                        /*~~>*/List<String> planLines = new ArrayList<>();
                         while (dbResult.next()) {
                             String planLine = dbResult.getString(1);
                             if (!CommonUtils.isEmpty(planLine)) {
@@ -158,9 +158,9 @@ public class PostgreExecutionPlan extends AbstractExecutionPlan {
         }
     }
 
-    private void parsePlanText(DBCSession session, List<String> lines) {
+    private void parsePlanText(DBCSession session, /*~~>*/List<String> lines) {
         DBPDataSource dataSource = session.getDataSource();
-        List<PostgrePlanNodeText> nodes = new ArrayList<>(lines.size());
+        /*~~>*/List<PostgrePlanNodeText> nodes = new ArrayList<>(lines.size());
         PostgrePlanNodeText rootNode = null, curNode = null, curParentNode = null;
         int curIndent = 0;
         for (String line : lines) {

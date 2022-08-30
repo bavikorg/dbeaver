@@ -26,11 +26,11 @@ import java.util.Vector;
 public class DBeaverIdentityRepository implements IdentityRepository {
     
     private final SSHImplementationAbstract impl;
-    private final List<SSHAgentIdentity> identities;
+    private final /*~~>*/List<SSHAgentIdentity> identities;
 
-    public DBeaverIdentityRepository(SSHImplementationAbstract impl, List<SSHAgentIdentity> identities) {
+    public DBeaverIdentityRepository(SSHImplementationAbstract impl, /*~~>*/List<SSHAgentIdentity> identities) {
         this.impl = impl;
-        this.identities = identities;
+        /*~~>*/this.identities = identities;
     }
 
     @Override

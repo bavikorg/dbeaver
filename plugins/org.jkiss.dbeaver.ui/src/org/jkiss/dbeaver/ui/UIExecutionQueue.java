@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class UIExecutionQueue {
 
-    private static final List<Runnable> execQueue = new ArrayList<>();
+    private static final /*~~>*/List<Runnable> execQueue = new ArrayList<>();
     private static boolean isRunning = false;
 
     public static void queueExec(Runnable runnable) {

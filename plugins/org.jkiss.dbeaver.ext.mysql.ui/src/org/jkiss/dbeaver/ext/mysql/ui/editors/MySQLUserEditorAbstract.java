@@ -43,9 +43,9 @@ public abstract class MySQLUserEditorAbstract extends AbstractDatabaseObjectEdit
     void loadGrants()
     {
         LoadingJob.createService(
-            new DatabaseLoadService<List<MySQLGrant>>(MySQLUIMessages.editors_user_editor_abstract_load_grants, getDatabaseObject().getDataSource()) {
+            new DatabaseLoadService</*~~>*/List<MySQLGrant>>(MySQLUIMessages.editors_user_editor_abstract_load_grants, getDatabaseObject().getDataSource()) {
                 @Override
-                public java.util.List<MySQLGrant> evaluate(DBRProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+                public /*~~>*//*~~>*/java.util.List<MySQLGrant> evaluate(DBRProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
                     try {
                         return getDatabaseObject().getGrants(monitor);
                     } catch (DBException e) {
@@ -66,17 +66,17 @@ public abstract class MySQLUserEditorAbstract extends AbstractDatabaseObjectEdit
     }
 
     protected abstract UserPageControl getPageControl();
-    protected abstract void processGrants(List<MySQLGrant> grants);
+    protected abstract void processGrants(/*~~>*/List<MySQLGrant> grants);
 
     protected class UserPageControl extends ObjectEditorPageControl {
         public UserPageControl(Composite parent) {
             super(parent, SWT.NONE, MySQLUserEditorAbstract.this);
         }
 
-        public ProgressVisualizer<List<MySQLGrant>> createGrantsLoadVisualizer() {
-            return new ProgressVisualizer<List<MySQLGrant>>() {
+        public ProgressVisualizer</*~~>*/List<MySQLGrant>> createGrantsLoadVisualizer() {
+            return new ProgressVisualizer</*~~>*/List<MySQLGrant>>() {
                 @Override
-                public void completeLoading(List<MySQLGrant> grants) {
+                public void completeLoading(/*~~>*/List<MySQLGrant> grants) {
                     super.completeLoading(grants);
                     processGrants(grants);
                 }

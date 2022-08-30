@@ -119,7 +119,7 @@ class SQLOccurrencesHighlighter {
                         this.removeOccurrenceAnnotations();
                     } else {
                         OccurrencesFinder finder = new OccurrencesFinder(document, wordUnderCursor, wordSelected);
-                        List<OccurrencePosition> positions = finder.perform();
+                        /*~~>*/List<OccurrencePosition> positions = finder.perform();
                         if (!CommonUtils.isEmpty(positions)) {
                             this.occurrencesFinderJob = new OccurrencesFinderJob(positions);
                             this.occurrencesFinderJob.run(new NullProgressMonitor());
@@ -265,11 +265,11 @@ class SQLOccurrencesHighlighter {
     class OccurrencesFinderJob extends Job {
         private boolean isCanceled = false;
         private IProgressMonitor progressMonitor;
-        private List<OccurrencePosition> positions;
+        private /*~~>*/List<OccurrencePosition> positions;
 
-        OccurrencesFinderJob(List<OccurrencePosition> positions) {
+        OccurrencesFinderJob(/*~~>*/List<OccurrencePosition> positions) {
             super("Occurrences Marker");
-            this.positions = positions;
+            /*~~>*/this.positions = positions;
         }
 
         void doCancel() {
@@ -292,9 +292,9 @@ class SQLOccurrencesHighlighter {
                         if (documentProvider != null) {
                             IAnnotationModel annotationModel = documentProvider.getAnnotationModel(editor.getEditorInput());
                             if (annotationModel != null) {
-                                Map<Annotation, Position> annotationMap = new LinkedHashMap<>(this.positions.size());
+                                Map<Annotation, Position> annotationMap = new LinkedHashMap<>(/*~~>*/this.positions.size());
 
-                                for (OccurrencePosition position : this.positions) {
+                                for (OccurrencePosition position : /*~~>*/this.positions) {
                                     if (this.isCanceled()) {
                                         break;
                                     }
@@ -418,12 +418,12 @@ class SQLOccurrencesHighlighter {
             this.wordSelected = wordSelected;
         }
 
-        public List<OccurrencePosition> perform() {
+        public /*~~>*/List<OccurrencePosition> perform() {
             if (CommonUtils.isEmpty(wordUnderCursor) && CommonUtils.isEmpty(wordSelected)) {
                 return null;
             }
 
-            List<OccurrencePosition> positions = new ArrayList<>();
+            /*~~>*/List<OccurrencePosition> positions = new ArrayList<>();
 
             try {
                 if (CommonUtils.equalObjects(wordUnderCursor, wordSelected)) {
@@ -443,7 +443,7 @@ class SQLOccurrencesHighlighter {
             return positions;
         }
 
-        private void findPositions(String searchFor, List<OccurrencePosition> positions, boolean forSelection) throws BadLocationException {
+        private void findPositions(String searchFor, /*~~>*/List<OccurrencePosition> positions, boolean forSelection) throws BadLocationException {
             FindReplaceDocumentAdapter findReplaceDocumentAdapter = new FindReplaceDocumentAdapter(fDocument);
             for (int offset = 0; ; ) {
                 IRegion region = findReplaceDocumentAdapter.find(offset, searchFor, true, false, !forSelection, false);

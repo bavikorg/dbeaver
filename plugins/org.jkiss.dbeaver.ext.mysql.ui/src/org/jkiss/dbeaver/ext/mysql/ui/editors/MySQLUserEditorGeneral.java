@@ -176,11 +176,11 @@ public class MySQLUserEditorGeneral extends MySQLUserEditorAbstract
         }
         isLoaded = true;
         LoadingJob.createService(
-            new DatabaseLoadService<List<MySQLPrivilege>>(MySQLUIMessages.editors_user_editor_general_service_load_catalog_privileges, getExecutionContext()) {
+            new DatabaseLoadService</*~~>*/List<MySQLPrivilege>>(MySQLUIMessages.editors_user_editor_general_service_load_catalog_privileges, getExecutionContext()) {
                 @Override
-                public List<MySQLPrivilege> evaluate(DBRProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+                public /*~~>*/List<MySQLPrivilege> evaluate(DBRProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
                     try {
-                        final List<MySQLPrivilege> privList = getDatabaseObject().getDataSource().getPrivilegesByKind(monitor, MySQLPrivilege.Kind.ADMIN);
+                        final /*~~>*/List<MySQLPrivilege> privList = getDatabaseObject().getDataSource().getPrivilegesByKind(monitor, MySQLPrivilege.Kind.ADMIN);
                         for (Iterator<MySQLPrivilege> iterator = privList.iterator(); iterator.hasNext(); ) {
                             MySQLPrivilege priv = iterator.next();
                             // Remove proxy (it is not singleton)
@@ -205,7 +205,7 @@ public class MySQLUserEditorGeneral extends MySQLUserEditorAbstract
     }
 
     @Override
-    protected void processGrants(List<MySQLGrant> grants)
+    protected void processGrants(/*~~>*/List<MySQLGrant> grants)
     {
         privTable.fillGrants(grants);
     }
@@ -221,10 +221,10 @@ public class MySQLUserEditorGeneral extends MySQLUserEditorAbstract
         public PageControl(Composite parent) {
             super(parent);
         }
-        public ProgressVisualizer<List<MySQLPrivilege>> createLoadVisualizer() {
-            return new ProgressVisualizer<List<MySQLPrivilege>>() {
+        public ProgressVisualizer</*~~>*/List<MySQLPrivilege>> createLoadVisualizer() {
+            return new ProgressVisualizer</*~~>*/List<MySQLPrivilege>>() {
                 @Override
-                public void completeLoading(List<MySQLPrivilege> privs) {
+                public void completeLoading(/*~~>*/List<MySQLPrivilege> privs) {
                     super.completeLoading(privs);
                     privTable.fillPrivileges(privs);
                     loadGrants();

@@ -36,13 +36,13 @@ class IndentFormatter {
     private final SQLFormatterConfiguration formatterCfg;
     private final boolean isCompact;
     private final SQLDialect dialect;
-    private List<String> statementDelimiters = new LinkedList<>();
+    private /*~~>*/List<String> statementDelimiters = new LinkedList<>();
     private String delimiterRedefiner;
     private int indent = 0;
     private int bracketsDepth = 0;
     private boolean encounterBetween = false;
-    private List<Boolean> functionBracket = new ArrayList<>();
-    private List<Boolean> conditionBracket = new ArrayList<>();
+    private /*~~>*/List<Boolean> functionBracket = new ArrayList<>();
+    private /*~~>*/List<Boolean> conditionBracket = new ArrayList<>();
     private final String[] blockHeaderStrings;
     private boolean isFirstConditionInBrackets;
 
@@ -70,7 +70,7 @@ class IndentFormatter {
         blockHeaderStrings = dialect.getBlockHeaderStrings();
     }
 
-    private int formatSymbol(String tokenString, List<Integer> bracketIndent, List<FormatterToken> argList, Integer index, FormatterToken prev) {
+    private int formatSymbol(String tokenString, /*~~>*/List<Integer> bracketIndent, /*~~>*/List<FormatterToken> argList, Integer index, FormatterToken prev) {
         int result = index;
 
         switch (tokenString) {
@@ -121,7 +121,7 @@ class IndentFormatter {
         return result;
     }
 
-    private int formatKeyword(List<FormatterToken> argList, String tokenString, int index) {
+    private int formatKeyword(/*~~>*/List<FormatterToken> argList, String tokenString, int index) {
         int result = index;
         if (statementDelimiters.contains(tokenString)) { //$NON-NLS-1$
             indent = 0;
@@ -286,8 +286,8 @@ class IndentFormatter {
         return result;
     }
 
-    public void format(List<FormatterToken> argList) {
-        final List<Integer> bracketIndent = new ArrayList<>();
+    public void format(/*~~>*/List<FormatterToken> argList) {
+        final /*~~>*/List<Integer> bracketIndent = new ArrayList<>();
         FormatterToken prev = new FormatterToken(TokenType.SPACE, " "); //$NON-NLS-1$
         for (int index = 0; index < argList.size(); index++) {
             FormatterToken token = argList.get(index);
@@ -318,7 +318,7 @@ class IndentFormatter {
         }
     }
 
-    private int formatSpace(@NotNull List<? extends FormatterToken> argList, int index, @NotNull FormatterToken token) {
+    private int formatSpace(@NotNull /*~~>*/List<? extends FormatterToken> argList, int index, @NotNull FormatterToken token) {
         if (token.getType() != TokenType.SPACE || !CommonUtils.isValidIndex(index, argList.size() - 1) || index == 0) {
             return index;
         }
@@ -352,7 +352,7 @@ class IndentFormatter {
         return index;
     }
 
-    private int formatCommand(List<FormatterToken> argList, int index, FormatterToken token) {
+    private int formatCommand(/*~~>*/List<FormatterToken> argList, int index, FormatterToken token) {
         indent = 0;
         if (index > 0) {
             index += insertReturnAndIndent(argList, index, 0);
@@ -372,7 +372,7 @@ class IndentFormatter {
         return index;
     }
 
-    private int formatComment(List<FormatterToken> argList, int index, FormatterToken token) {
+    private int formatComment(/*~~>*/List<FormatterToken> argList, int index, FormatterToken token) {
         boolean isComment = false;
         String[] slComments = formatterCfg.getSyntaxManager().getDialect().getSingleLineComments();
         if (slComments != null) {
@@ -395,7 +395,7 @@ class IndentFormatter {
         return index;
     }
 
-    private int insertReturnAndIndent(final List<FormatterToken> argList, final int argIndex, final int argIndent) {
+    private int insertReturnAndIndent(final /*~~>*/List<FormatterToken> argList, final int argIndex, final int argIndent) {
         if (argIndex >= argList.size()) {
             return 0;
         }
@@ -454,7 +454,7 @@ class IndentFormatter {
         }
     }
 
-    private boolean isJoinStart(List<FormatterToken> argList, int index) {
+    private boolean isJoinStart(/*~~>*/List<FormatterToken> argList, int index) {
         // Keyword sequence must start from LEFT, RIGHT, INNER, OUTER or JOIN and must end with JOIN
         // And we must be in the beginning of sequence
 
@@ -492,7 +492,7 @@ class IndentFormatter {
         return false;
     }
 
-    private String getPrevKeyword(List<FormatterToken> argList, int index) {
+    private String getPrevKeyword(/*~~>*/List<FormatterToken> argList, int index) {
         for (int i = index - 1; i >= 0; i--) {
             FormatterToken token = argList.get(i);
             if (token.getType() == TokenType.KEYWORD) {
@@ -502,7 +502,7 @@ class IndentFormatter {
         return null;
     }
 
-    private static int getNextKeywordIndex(List<FormatterToken> argList, int index) {
+    private static int getNextKeywordIndex(/*~~>*/List<FormatterToken> argList, int index) {
         for (int i = index + 1; i < argList.size(); i++) {
             if (argList.get(i).getType() == TokenType.KEYWORD) {
                 return i;
@@ -511,7 +511,7 @@ class IndentFormatter {
         return -1;
     }
 
-    private static String getNextKeyword(List<FormatterToken> argList, int index) {
+    private static String getNextKeyword(/*~~>*/List<FormatterToken> argList, int index) {
         int ki = getNextKeywordIndex(argList, index);
         if (ki < 0) {
             return null;
@@ -519,7 +519,7 @@ class IndentFormatter {
         return argList.get(ki).getString();
     }
 
-    private String getPrevSpecialKeyword(List<FormatterToken> argList, int index, boolean isCondition) {
+    private String getPrevSpecialKeyword(/*~~>*/List<FormatterToken> argList, int index, boolean isCondition) {
         for (int i = index - 1; i >= 0; i--) {
             FormatterToken token = argList.get(i);
             if (token.getType() == TokenType.KEYWORD) {
@@ -534,11 +534,11 @@ class IndentFormatter {
     }
 
 
-    private boolean isCondition(List<FormatterToken> argList, int index) {
+    private boolean isCondition(/*~~>*/List<FormatterToken> argList, int index) {
         return getPrevSpecialKeyword(argList, index, true) != null;
     }
 
-    private int checkConditionDepth(int result, List<FormatterToken> argList, int index) {
+    private int checkConditionDepth(int result, /*~~>*/List<FormatterToken> argList, int index) {
         if (conditionBracket.size() != 0 && conditionBracket.get(conditionBracket.size() - 1).equals(Boolean.TRUE)) {
             // Add indent for first condition keyword in conditions expression in brackets
             indent++;

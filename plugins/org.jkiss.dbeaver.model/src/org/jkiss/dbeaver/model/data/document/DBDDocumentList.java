@@ -24,6 +24,6 @@ import java.util.List;
  */
 public interface DBDDocumentList extends DBDDocumentNode {
 
-    List<DBDDocumentNode> getItems();
+    /*~~>*/List<DBDDocumentNode> getItems();
 
 }

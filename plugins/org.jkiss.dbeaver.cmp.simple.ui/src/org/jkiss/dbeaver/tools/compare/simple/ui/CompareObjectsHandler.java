@@ -49,7 +49,7 @@ public class CompareObjectsHandler extends AbstractHandler {
             DBWorkbench.getPlatformUI().showError("Just one object selected", "At least two objects must be selected to perform structure compare");
             return null;
         }
-        List<DBNDatabaseNode> nodes = new ArrayList<>();
+        /*~~>*/List<DBNDatabaseNode> nodes = new ArrayList<>();
         Class<?> firstType = null;
         DBXTreeNode firstMeta = null;
         for (Iterator<?> iter = ss.iterator(); iter.hasNext(); ) {

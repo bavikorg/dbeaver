@@ -59,7 +59,7 @@ public final class DBStructUtils {
 
     @Nullable
     public static DBSEntityReferrer getEnumerableConstraint(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntityAttribute entityAttribute) throws DBException {
-        List<DBSEntityReferrer> refs = DBUtils.getAttributeReferrers(monitor, entityAttribute, true);
+        /*~~>*/List<DBSEntityReferrer> refs = DBUtils.getAttributeReferrers(monitor, entityAttribute, true);
         DBSEntityReferrer constraint = refs.isEmpty() ? null : refs.get(0);
         if (constraint != null) {
             DBSEntity associatedEntity = getAssociatedEntity(monitor, constraint);
@@ -118,9 +118,9 @@ public final class DBStructUtils {
     }
 
     public static <T extends DBSEntity> void generateTableListDDL(@NotNull DBRProgressMonitor monitor, @NotNull StringBuilder sql, @NotNull Collection<T> tablesOrViews, Map<String, Object> options, boolean addComments) throws DBException {
-        List<T> goodTableList = new ArrayList<>();
-        List<T> cycleTableList = new ArrayList<>();
-        List<T> viewList = new ArrayList<>();
+        /*~~>*/List<T> goodTableList = new ArrayList<>();
+        /*~~>*/List<T> cycleTableList = new ArrayList<>();
+        /*~~>*/List<T> viewList = new ArrayList<>();
 
         DBStructUtils.sortTableList(monitor, tablesOrViews, goodTableList, cycleTableList, viewList);
 
@@ -132,7 +132,7 @@ public final class DBStructUtils {
         {
             // Cycle tables: generate CREATE TABLE and CREATE FOREIGN KEY separately
             // This doesn't work if table implementation doesn't support DDL restructure
-            List<T> goodCycleTableList = new ArrayList<>();
+            /*~~>*/List<T> goodCycleTableList = new ArrayList<>();
             for (T table : cycleTableList) {
                 if (
                     table instanceof DBPScriptObjectExt2 &&
@@ -201,9 +201,9 @@ public final class DBStructUtils {
         }
     }
 
-    public static <T extends DBSEntity> void sortTableList(DBRProgressMonitor monitor, Collection<T> input, List<T> simpleTables, List<T> cyclicTables, List<T> views) throws DBException {
+    public static <T extends DBSEntity> void sortTableList(DBRProgressMonitor monitor, Collection<T> input, /*~~>*/List<T> simpleTables, /*~~>*/List<T> cyclicTables, /*~~>*/List<T> views) throws DBException {
         monitor.beginTask("Sorting table list", input.size());
-        List<T> realTables = new ArrayList<>();
+        /*~~>*/List<T> realTables = new ArrayList<>();
         for (T entity : input) {
             if (entity instanceof DBSView || (entity instanceof DBSTable && ((DBSTable) entity).isView())) {
                 views.add(entity);

@@ -73,13 +73,13 @@ public class GisTransformUtils {
 //        registryManager.addRegistry(new WorldRegistry());
     }
 
-    private static List<Integer> crsCodes;
+    private static /*~~>*/List<Integer> crsCodes;
 
     public static CRSFactory getCRSFactory() {
         return crsFactory;
     }
 
-    public static synchronized List<Integer> getSortedEPSGCodes() {
+    public static synchronized /*~~>*/List<Integer> getSortedEPSGCodes() {
         if (crsCodes == null) {
             crsCodes = new ArrayList<>();
 

@@ -49,7 +49,7 @@ public class NavigatorHandlerAssociateScript extends NavigatorHandlerObjectBase 
     @Override
     public Object execute(ExecutionEvent event) throws ExecutionException {
         final Shell activeShell = HandlerUtil.getActiveShell(event);
-        List<IFile> selectedScripts = new ArrayList<>();
+        /*~~>*/List<IFile> selectedScripts = new ArrayList<>();
         final ISelection selection = HandlerUtil.getCurrentSelection(event);
         if (!selection.isEmpty() && selection instanceof IStructuredSelection) {
             for (Object o : (IStructuredSelection) selection) {

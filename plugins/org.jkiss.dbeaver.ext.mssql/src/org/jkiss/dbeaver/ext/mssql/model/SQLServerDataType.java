@@ -473,7 +473,7 @@ public class SQLServerDataType implements DBSDataType, SQLServerObject, DBPQuali
     }
 
     @Override
-    public List<SQLServerTableColumn> getAttributes(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<SQLServerTableColumn> getAttributes(DBRProgressMonitor monitor) throws DBException {
         return getSysSchema(monitor).getTableType(monitor, tableTypeId).getAttributes(monitor);
     }
 

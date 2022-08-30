@@ -33,7 +33,7 @@ public class DefaultProgressMonitor implements DBRProgressMonitor {
     private static final Log log = Log.getLog(DefaultProgressMonitor.class);
 
     private IProgressMonitor nestedMonitor;
-    private List<DBRBlockingObject> blocks = null;
+    private /*~~>*/List<DBRBlockingObject> blocks = null;
     private ProgressState[] states = new ProgressState[0];
 
     private static class ProgressState {
@@ -146,7 +146,7 @@ public class DefaultProgressMonitor implements DBRProgressMonitor {
     }
 
     @Override
-    public synchronized List<DBRBlockingObject> getActiveBlocks()
+    public synchronized /*~~>*/List<DBRBlockingObject> getActiveBlocks()
     {
         return blocks == null || blocks.isEmpty() ? null : new ArrayList<>(blocks);
     }

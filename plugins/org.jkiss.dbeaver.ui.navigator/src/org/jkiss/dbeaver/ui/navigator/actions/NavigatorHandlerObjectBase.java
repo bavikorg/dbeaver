@@ -164,8 +164,8 @@ public abstract class NavigatorHandlerObjectBase extends AbstractHandler {
             } catch (InterruptedException e) {
                 // do nothing
             }
-            if (!nodeLoader.nodes.isEmpty()) {
-                node = nodeLoader.nodes.get(0);
+            if (!/*~~>*/nodeLoader.nodes.isEmpty()) {
+                node = /*~~>*/nodeLoader.nodes.get(0);
             }
         }
         return node;
@@ -174,8 +174,8 @@ public abstract class NavigatorHandlerObjectBase extends AbstractHandler {
     public static Collection<DBNDatabaseNode> getNodesByObjects(Collection<Object> objects)
     {
         DBNModel model = DBWorkbench.getPlatform().getNavigatorModel();
-        List<DBNDatabaseNode> result = new ArrayList<>();
-        List<Object> missingObjects = new ArrayList<>();
+        /*~~>*/List<DBNDatabaseNode> result = new ArrayList<>();
+        /*~~>*/List<Object> missingObjects = new ArrayList<>();
         for (Object object : objects) {
             if (object instanceof DBSObject) {
                 DBNDatabaseNode node = model.findNode((DBSObject) object);
@@ -195,7 +195,7 @@ public abstract class NavigatorHandlerObjectBase extends AbstractHandler {
             } catch (InterruptedException e) {
                 // do nothing
             }
-            result.addAll(nodeLoader.nodes);
+            result.addAll(/*~~>*/nodeLoader.nodes);
         }
         return result;
     }
@@ -245,13 +245,13 @@ public abstract class NavigatorHandlerObjectBase extends AbstractHandler {
     private static class NodeLoader implements DBRRunnableWithProgress {
         private final DBNModel model;
         private final Collection<? extends Object> objects;
-        private List<DBNDatabaseNode> nodes;
+        private /*~~>*/List<DBNDatabaseNode> nodes;
 
         public NodeLoader(DBNModel model, Collection<? extends Object> objects)
         {
             this.model = model;
             this.objects = objects;
-            this.nodes = new ArrayList<>(objects.size());
+            /*~~>*/this.nodes = new ArrayList<>(objects.size());
         }
 
         @Override

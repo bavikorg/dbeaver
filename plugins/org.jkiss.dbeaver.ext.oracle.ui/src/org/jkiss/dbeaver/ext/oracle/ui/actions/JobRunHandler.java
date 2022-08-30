@@ -70,7 +70,7 @@ public class JobRunHandler extends OracleTaskHandler
     public Object execute(ExecutionEvent event) throws ExecutionException
     {
         final IWorkbenchPart activePart = HandlerUtil.getActiveEditor(event);
-        final List<OracleSchedulerJob> objects = getSelectedJobs(event);
+        final /*~~>*/List<OracleSchedulerJob> objects = getSelectedJobs(event);
         if (!objects.isEmpty()) {
             if (activePart instanceof EntityEditor) {
                 // Save editor before run
@@ -133,9 +133,9 @@ public class JobRunHandler extends OracleTaskHandler
         return null;
     }
 
-    private List<OracleSchedulerJob> getSelectedJobs(ExecutionEvent event)
+    private /*~~>*/List<OracleSchedulerJob> getSelectedJobs(ExecutionEvent event)
     {
-        List<OracleSchedulerJob> objects = new ArrayList<>();
+        /*~~>*/List<OracleSchedulerJob> objects = new ArrayList<>();
         final ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
         if (currentSelection instanceof IStructuredSelection && !currentSelection.isEmpty()) {
             for (Iterator<?> iter = ((IStructuredSelection) currentSelection).iterator(); iter.hasNext(); ) {
@@ -159,7 +159,7 @@ public class JobRunHandler extends OracleTaskHandler
     @Override
     public void updateElement(UIElement element, Map parameters)
     {
-        List<OracleSourceObject> objects = getOracleSourceObjects(element);
+        /*~~>*/List<OracleSourceObject> objects = getOracleSourceObjects(element);
         if (!objects.isEmpty()) {
             if (objects.size() > 1) {
                 element.setText("Run " + objects.size() + " jobs");

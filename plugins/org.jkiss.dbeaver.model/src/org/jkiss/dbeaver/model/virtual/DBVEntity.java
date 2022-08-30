@@ -61,10 +61,10 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
     private String description;
     private String descriptionColumnNames;
 
-    private List<DBVEntityConstraint> entityConstraints;
-    private List<DBVEntityForeignKey> entityForeignKeys;
-    private List<DBVEntityAttribute> entityAttributes;
-    private List<DBVColorOverride> colorOverrides;
+    private /*~~>*/List<DBVEntityConstraint> entityConstraints;
+    private /*~~>*/List<DBVEntityForeignKey> entityForeignKeys;
+    private /*~~>*/List<DBVEntityAttribute> entityAttributes;
+    private /*~~>*/List<DBVColorOverride> colorOverrides;
 
     public DBVEntity(@NotNull DBVContainer container, @NotNull String name, String descriptionColumnNames) {
         this.container = container;
@@ -91,47 +91,47 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
         this.name = src.name;
         this.descriptionColumnNames = src.descriptionColumnNames;
 
-        if (!CommonUtils.isEmpty(src.entityConstraints)) {
-            this.entityConstraints = new ArrayList<>(src.entityConstraints.size());
-            for (DBVEntityConstraint c : src.entityConstraints) {
-                this.entityConstraints.add(new DBVEntityConstraint(this, c));
+        if (!CommonUtils.isEmpty(/*~~>*/src.entityConstraints)) {
+            /*~~>*/this.entityConstraints = new ArrayList<>(/*~~>*/src.entityConstraints.size());
+            for (DBVEntityConstraint c : /*~~>*/src.entityConstraints) {
+                /*~~>*/this.entityConstraints.add(new DBVEntityConstraint(this, c));
             }
         } else {
-            this.entityConstraints = null;
+            /*~~>*/this.entityConstraints = null;
         }
-        if (this.entityForeignKeys != null) {
-            for (DBVEntityForeignKey fk : this.entityForeignKeys) {
+        if (/*~~>*/this.entityForeignKeys != null) {
+            for (DBVEntityForeignKey fk : /*~~>*/this.entityForeignKeys) {
                 fk.dispose();
             }
         }
-        this.entityForeignKeys = null;
-        if (!CommonUtils.isEmpty(src.entityForeignKeys)) {
-            this.entityForeignKeys = new ArrayList<>(src.entityForeignKeys.size());
-            for (DBVEntityForeignKey fk : src.entityForeignKeys) {
+        /*~~>*/this.entityForeignKeys = null;
+        if (!CommonUtils.isEmpty(/*~~>*/src.entityForeignKeys)) {
+            /*~~>*/this.entityForeignKeys = new ArrayList<>(/*~~>*/src.entityForeignKeys.size());
+            for (DBVEntityForeignKey fk : /*~~>*/src.entityForeignKeys) {
                 DBVEntityForeignKey fkCopy = new DBVEntityForeignKey(this, fk, targetModel);
                 if (fkCopy.getRefEntityId() == null) {
                     fkCopy.dispose();
                     log.debug("Can't copy virtual foreign key '" + fk.getName() + "' - target entity cannot be resolved");
                 } else {
-                    this.entityForeignKeys.add(fkCopy);
+                    /*~~>*/this.entityForeignKeys.add(fkCopy);
                 }
             }
         }
-        if (!CommonUtils.isEmpty(src.entityAttributes)) {
-            this.entityAttributes = new ArrayList<>(src.entityAttributes.size());
-            for (DBVEntityAttribute attribute : src.entityAttributes) {
-                this.entityAttributes.add(new DBVEntityAttribute(this, null, attribute));
+        if (!CommonUtils.isEmpty(/*~~>*/src.entityAttributes)) {
+            /*~~>*/this.entityAttributes = new ArrayList<>(/*~~>*/src.entityAttributes.size());
+            for (DBVEntityAttribute attribute : /*~~>*/src.entityAttributes) {
+                /*~~>*/this.entityAttributes.add(new DBVEntityAttribute(this, null, attribute));
             }
         } else {
-            this.entityAttributes = null;
+            /*~~>*/this.entityAttributes = null;
         }
-        if (!CommonUtils.isEmpty(src.colorOverrides)) {
-            this.colorOverrides = new ArrayList<>(src.colorOverrides.size());
-            for (DBVColorOverride co : src.colorOverrides) {
-                this.colorOverrides.add(new DBVColorOverride(co));
+        if (!CommonUtils.isEmpty(/*~~>*/src.colorOverrides)) {
+            /*~~>*/this.colorOverrides = new ArrayList<>(/*~~>*/src.colorOverrides.size());
+            for (DBVColorOverride co : /*~~>*/src.colorOverrides) {
+                /*~~>*/this.colorOverrides.add(new DBVColorOverride(co));
             }
         } else {
-            this.colorOverrides = null;
+            /*~~>*/this.colorOverrides = null;
         }
         super.copyFrom(src);
     }
@@ -176,7 +176,7 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
             fk.setReferencedConstraint(entityId, refConsId);
 
             Map<String, Object> attrMap = JSONUtils.getObject(fkObject, "attributes");
-            List<DBVEntityForeignKeyColumn> attrs = new ArrayList<>();
+            /*~~>*/List<DBVEntityForeignKeyColumn> attrs = new ArrayList<>();
             for (Map.Entry<String, Object> attr : attrMap.entrySet()) {
                 attrs.add(new DBVEntityForeignKeyColumn(fk, attr.getKey(), (String) attr.getValue()));
             }
@@ -266,13 +266,13 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
         return DBSEntityType.VIRTUAL_ENTITY;
     }
 
-    public List<DBVEntityAttribute> getEntityAttributes() {
+    public /*~~>*/List<DBVEntityAttribute> getEntityAttributes() {
         return entityAttributes;
     }
 
-    public List<DBVEntityAttribute> getCustomAttributes() {
+    public /*~~>*/List<DBVEntityAttribute> getCustomAttributes() {
         if (!CommonUtils.isEmpty(entityAttributes)) {
-            List<DBVEntityAttribute> result = null;
+            /*~~>*/List<DBVEntityAttribute> result = null;
             for (DBVEntityAttribute attr : entityAttributes) {
                 if (attr.isCustom()) {
                     if (result == null) result = new ArrayList<>();
@@ -299,14 +299,14 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
 
     @NotNull
     @Override
-    public List<? extends DBSEntityAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<? extends DBSEntityAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
         DBSEntity realEntity = getRealEntity(monitor);
         if (realEntity != null) {
-            final List<? extends DBSEntityAttribute> realAttributes = realEntity.getAttributes(monitor);
+            final /*~~>*/List<? extends DBSEntityAttribute> realAttributes = realEntity.getAttributes(monitor);
             if (!CommonUtils.isEmpty(realAttributes)) {
-                List<DBVEntityAttribute> customAttributes = getCustomAttributes();
+                /*~~>*/List<DBVEntityAttribute> customAttributes = getCustomAttributes();
                 if (!CommonUtils.isEmpty(customAttributes)) {
-                    List<DBSEntityAttribute> allAttrs = new ArrayList<>();
+                    /*~~>*/List<DBSEntityAttribute> allAttrs = new ArrayList<>();
                     allAttrs.addAll(realAttributes);
                     allAttrs.addAll(customAttributes);
                     return allAttrs;
@@ -387,7 +387,7 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
     }
 
     @NotNull
-    public List<DBVEntityConstraint> getConstraints() {
+    public /*~~>*/List<DBVEntityConstraint> getConstraints() {
         return entityConstraints == null ? Collections.emptyList() : entityConstraints;
     }
 
@@ -433,7 +433,7 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
 
     @Nullable
     @Override
-    public synchronized List<DBVEntityForeignKey> getAssociations(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public synchronized /*~~>*/List<DBVEntityForeignKey> getAssociations(@NotNull DBRProgressMonitor monitor) throws DBException {
         // Bind logical foreign keys
         if (entityForeignKeys != null) {
             for (DBVEntityForeignKey fk : entityForeignKeys) {
@@ -444,7 +444,7 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
     }
 
     @NotNull
-    public synchronized List<DBVEntityForeignKey> getForeignKeys() {
+    public synchronized /*~~>*/List<DBVEntityForeignKey> getForeignKeys() {
         return entityForeignKeys != null ? entityForeignKeys : Collections.emptyList();
     }
 
@@ -488,7 +488,7 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
         if (CommonUtils.isEmpty(descColumns)) {
             return Collections.emptyList();
         }
-        List<DBSEntityAttribute> result = new ArrayList<>();
+        /*~~>*/List<DBSEntityAttribute> result = new ArrayList<>();
         Collection<? extends DBSEntityAttribute> attributes = entity.getAttributes(monitor);
         if (!CommonUtils.isEmpty(attributes)) {
             StringTokenizer st = new StringTokenizer(descColumns, ",");
@@ -542,17 +542,17 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
     }
 
     @NotNull
-    public static List<String> getDescriptionColumnPatterns(@NotNull DBPPreferenceStore store) {
+    public static /*~~>*/List<String> getDescriptionColumnPatterns(@NotNull DBPPreferenceStore store) {
         return CommonUtils.splitString(store.getString(ModelPreferences.RESULT_REFERENCE_DESCRIPTION_COLUMN_PATTERNS), '|');
     }
 
     @NotNull
-    public List<DBVColorOverride> getColorOverrides() {
+    public /*~~>*/List<DBVColorOverride> getColorOverrides() {
         return colorOverrides == null ? Collections.emptyList() : colorOverrides;
     }
 
-    public List<DBVColorOverride> getColorOverrides(String attrName) {
-        List<DBVColorOverride> result = new ArrayList<>();
+    public /*~~>*/List<DBVColorOverride> getColorOverrides(String attrName) {
+        /*~~>*/List<DBVColorOverride> result = new ArrayList<>();
         if (colorOverrides != null) {
             for (DBVColorOverride co : colorOverrides) {
                 if (CommonUtils.equalObjects(attrName, co.getAttributeName())) {
@@ -563,8 +563,8 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
         return result;
     }
 
-    public void setColorOverrides(List<DBVColorOverride> colorOverrides) {
-        this.colorOverrides = colorOverrides;
+    public void setColorOverrides(/*~~>*/List<DBVColorOverride> colorOverrides) {
+        /*~~>*/this.colorOverrides = colorOverrides;
     }
 
     public void setColorOverride(DBDAttributeBinding attribute, Object value, String foreground, String background) {
@@ -672,11 +672,11 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
 
     @NotNull
     @Override
-    public List<DBDLabelValuePair> getDictionaryEnumeration(
+    public /*~~>*/List<DBDLabelValuePair> getDictionaryEnumeration(
         @NotNull DBRProgressMonitor monitor,
         @NotNull DBSEntityAttribute keyColumn,
         Object keyPattern,
-        @Nullable List<DBDAttributeValue> preceedingKeys,
+        @Nullable /*~~>*/List<DBDAttributeValue> preceedingKeys,
         boolean caseInsensitiveSearch,
         boolean sortAsc,
         boolean sortByValue,
@@ -703,7 +703,7 @@ public class DBVEntity extends DBVObject implements DBSEntity, DBPQualifiedObjec
 
     @NotNull
     @Override
-    public List<DBDLabelValuePair> getDictionaryValues(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntityAttribute keyColumn, @NotNull List<Object> keyValues, @Nullable List<DBDAttributeValue> preceedingKeys, boolean sortByValue, boolean sortAsc) throws DBException {
+    public /*~~>*/List<DBDLabelValuePair> getDictionaryValues(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntityAttribute keyColumn, @NotNull /*~~>*/List<Object> keyValues, @Nullable /*~~>*/List<DBDAttributeValue> preceedingKeys, boolean sortByValue, boolean sortAsc) throws DBException {
         DBSEntity realEntity = getRealEntity(monitor);
         return realEntity instanceof DBSDictionary ?
             ((DBSDictionary) realEntity).getDictionaryValues(monitor, keyColumn, keyValues, preceedingKeys, sortByValue, sortAsc) :

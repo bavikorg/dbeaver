@@ -63,11 +63,11 @@ public class DBNModel implements IResourceChangeListener {
 
     private static class NodePath {
         DBNNode.NodePathType type;
-        List<String> pathItems;
+        /*~~>*/List<String> pathItems;
 
-        NodePath(DBNNode.NodePathType type, List<String> pathItems) {
+        NodePath(DBNNode.NodePathType type, /*~~>*/List<String> pathItems) {
             this.type = type;
-            this.pathItems = pathItems;
+            /*~~>*/this.pathItems = pathItems;
         }
 
         public String first() {
@@ -81,13 +81,13 @@ public class DBNModel implements IResourceChangeListener {
     }
 
     private final DBPPlatform platform;
-    private final List<? extends DBPProject> modelProjects;
+    private final /*~~>*/List<? extends DBPProject> modelProjects;
     private DBNRoot root;
-    private final List<INavigatorListener> listeners = new ArrayList<>();
+    private final /*~~>*/List<INavigatorListener> listeners = new ArrayList<>();
     private transient INavigatorListener[] listenersCopy = null;
-    private final transient List<DBNEvent> eventCache = new ArrayList<>();
+    private final transient /*~~>*/List<DBNEvent> eventCache = new ArrayList<>();
     private final Map<DBSObject, Object> nodeMap = new HashMap<>();
-    private final List<Function<DBNNode, Boolean>> nodeFilters = new ArrayList<>();
+    private final /*~~>*/List<Function<DBNNode, Boolean>> nodeFilters = new ArrayList<>();
 
     private SMSessionContext modelAuthContext;
 
@@ -96,9 +96,9 @@ public class DBNModel implements IResourceChangeListener {
      *
      * @param modelProjects Model projects. If null then this is global navigator model. Otherwise it points to a session-like object.
      */
-    public DBNModel(DBPPlatform platform, @Nullable List<? extends DBPProject> modelProjects) {
+    public DBNModel(DBPPlatform platform, @Nullable /*~~>*/List<? extends DBPProject> modelProjects) {
         this.platform = platform;
-        this.modelProjects = modelProjects;
+        /*~~>*/this.modelProjects = modelProjects;
     }
 
     public DBPPlatform getPlatform() {
@@ -106,7 +106,7 @@ public class DBNModel implements IResourceChangeListener {
     }
 
     @Nullable
-    public List<? extends DBPProject> getModelProjects() {
+    public /*~~>*/List<? extends DBPProject> getModelProjects() {
         return modelProjects;
     }
 
@@ -154,13 +154,13 @@ public class DBNModel implements IResourceChangeListener {
             }
             this.root = null;
         }
-        synchronized (this.listeners) {
+        synchronized (/*~~>*/this.listeners) {
             if (!listeners.isEmpty()) {
                 for (INavigatorListener listener : listeners) {
                     log.warn("Listener '" + listener + "' is not unregistered from DBM model");
                 }
             }
-            this.listeners.clear();
+            /*~~>*/this.listeners.clear();
             this.listenersCopy = null;
         }
     }
@@ -196,9 +196,9 @@ public class DBNModel implements IResourceChangeListener {
             return null;
         } else if (obj instanceof DBNDatabaseNode) {
             return (DBNDatabaseNode)obj;
-        } else if (obj instanceof List) {
+        } else if (obj instanceof /*~~>*/List) {
             @SuppressWarnings("unchecked")
-            List<DBNDatabaseNode> nodeList = (List<DBNDatabaseNode>) obj;
+            /*~~>*/List<DBNDatabaseNode> nodeList = (/*~~>*/List<DBNDatabaseNode>) obj;
             if (nodeList.isEmpty()) {
                 return null;
             }
@@ -377,7 +377,7 @@ public class DBNModel implements IResourceChangeListener {
         if (projectNode == null) {
             return null;
         }
-        List<IResource> path = new ArrayList<>();
+        /*~~>*/List<IResource> path = new ArrayList<>();
         for (IResource parent = resource; parent != null && parent != project; parent = parent.getParent()) {
             path.add(0, parent);
         }
@@ -394,8 +394,8 @@ public class DBNModel implements IResourceChangeListener {
     private DBNNode findNodeByPath(DBRProgressMonitor monitor, NodePath nodePath, DBNNode curNode, int firstItem) throws DBException {
         //log.debug("findNodeByPath '" + nodePath + "' in '" + curNode.getNodeItemPath() + "'/" + firstItem);
 
-        for (int i = firstItem, itemsSize = nodePath.pathItems.size(); i < itemsSize; i++) {
-            String item = nodePath.pathItems.get(i).replace(SLASH_ESCAPE_TOKEN, "/");
+        for (int i = firstItem, itemsSize = /*~~>*/nodePath.pathItems.size(); i < itemsSize; i++) {
+            String item = /*~~>*/nodePath.pathItems.get(i).replace(SLASH_ESCAPE_TOKEN, "/");
 
             DBNNode[] children = curNode.getChildren(monitor);
             DBNNode nextChild = null;
@@ -536,14 +536,14 @@ public class DBNModel implements IResourceChangeListener {
                 nodeMap.put(node.getObject(), node);
             } else if (obj instanceof DBNNode) {
                 // Second node - make a list
-                List<DBNNode> nodeList = new ArrayList<>(2);
+                /*~~>*/List<DBNNode> nodeList = new ArrayList<>(2);
                 nodeList.add((DBNNode)obj);
                 nodeList.add(node);
                 nodeMap.put(node.getObject(), nodeList);
-            } else if (obj instanceof List) {
+            } else if (obj instanceof /*~~>*/List) {
                 // Multiple nodes
                 @SuppressWarnings("unchecked")
-                List<DBNNode> nodeList = (List<DBNNode>) obj;
+                /*~~>*/List<DBNNode> nodeList = (/*~~>*/List<DBNNode>) obj;
                 nodeList.add(node);
             }
         }
@@ -565,10 +565,10 @@ public class DBNModel implements IResourceChangeListener {
                 if (nodeMap.remove(node.getObject()) != node) {
                     badNode = true;
                 }
-            } else if (obj instanceof List) {
+            } else if (obj instanceof /*~~>*/List) {
                 // Multiple nodes
                 @SuppressWarnings("unchecked")
-                List<DBNNode> nodeList = (List<DBNNode>) obj;
+                /*~~>*/List<DBNNode> nodeList = (/*~~>*/List<DBNNode>) obj;
                 if (!nodeList.remove(node)) {
                     badNode = true;
                 }
@@ -588,23 +588,23 @@ public class DBNModel implements IResourceChangeListener {
 
     public void addListener(INavigatorListener listener)
     {
-        synchronized (this.listeners) {
-            if (this.listeners.contains(listener)) {
+        synchronized (/*~~>*/this.listeners) {
+            if (/*~~>*/this.listeners.contains(listener)) {
                 log.warn("Listener " + listener + " already registered in model");
             } else {
-                this.listeners.add(listener);
+                /*~~>*/this.listeners.add(listener);
             }
-            this.listenersCopy = this.listeners.toArray(new INavigatorListener[0]);
+            this.listenersCopy = /*~~>*/this.listeners.toArray(new INavigatorListener[0]);
         }
     }
 
     public void removeListener(INavigatorListener listener)
     {
-        synchronized (this.listeners) {
-            if (!this.listeners.remove(listener)) {
+        synchronized (/*~~>*/this.listeners) {
+            if (!/*~~>*/this.listeners.remove(listener)) {
                 log.warn("Listener " + listener + " wasn't registered in model");
             }
-            this.listenersCopy = this.listeners.toArray(new INavigatorListener[0]);
+            this.listenersCopy = /*~~>*/this.listeners.toArray(new INavigatorListener[0]);
         }
     }
 

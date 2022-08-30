@@ -149,9 +149,9 @@ public class ConfigImportWizardPageSqlDeveloper extends ConfigImportWizardPage {
 
     public static class ConnectionList {
         @SerializedName("connections")
-        private List<ConnectionDescription> connections = new ArrayList<>();
+        private /*~~>*/List<ConnectionDescription> connections = new ArrayList<>();
 
-        public List<ConnectionDescription> getConnections() {
+        public /*~~>*/List<ConnectionDescription> getConnections() {
             return connections;
         }
     }

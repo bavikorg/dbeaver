@@ -49,7 +49,7 @@ public class DefaultServerOutputReader implements DBCServerOutputReader
         }
     }
 
-    protected void dumpWarnings(@NotNull PrintWriter output, List<Throwable> warnings) {
+    protected void dumpWarnings(@NotNull PrintWriter output, /*~~>*/List<Throwable> warnings) {
         if (warnings != null && warnings.size() > 0) {
             for (Throwable warning : warnings) {
                 if (warning instanceof SQLException) {

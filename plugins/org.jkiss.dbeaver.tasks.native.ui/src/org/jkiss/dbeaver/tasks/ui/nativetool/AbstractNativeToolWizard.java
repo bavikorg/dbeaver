@@ -140,7 +140,7 @@ public abstract class AbstractNativeToolWizard<SETTINGS extends AbstractNativeTo
 
         if (isNativeClientHomeRequired()) {
             String clientHomeId = getSettings().getDataSourceContainer().getConnectionConfiguration().getClientHomeId();
-            List<DBPNativeClientLocation> nativeClientLocations = getSettings().getDataSourceContainer().getDriver().getNativeClientLocations();
+            /*~~>*/List<DBPNativeClientLocation> nativeClientLocations = getSettings().getDataSourceContainer().getDriver().getNativeClientLocations();
             if (CommonUtils.isEmpty(clientHomeId)) {
                 if (nativeClientLocations != null && !nativeClientLocations.isEmpty()) {
                     settings.setClientHome(nativeClientLocations.get(0));

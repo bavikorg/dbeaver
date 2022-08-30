@@ -210,7 +210,7 @@ class ConnectionPageSettings extends ActiveWizardPage<ConnectionWizard> implemen
 
             {
                 // Create tab folder
-                List<IDialogPage> allPages = new ArrayList<>();
+                /*~~>*/List<IDialogPage> allPages = new ArrayList<>();
                 allPages.add(connectionEditor);
                 if (!ArrayUtils.isEmpty(allSubPages)) {
                     // Add sub pages

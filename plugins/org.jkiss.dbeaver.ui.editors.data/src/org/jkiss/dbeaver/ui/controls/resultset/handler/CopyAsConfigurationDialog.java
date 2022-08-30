@@ -78,7 +78,7 @@ class CopyAsConfigurationDialog extends BaseDialog {
 
         ResultSetDataContainerOptions options = new ResultSetDataContainerOptions();
         ResultSetDataContainer dataContainer = new ResultSetDataContainer(resultSetController, options);
-        List<DataTransferProcessorDescriptor> model = DataTransferRegistry.getInstance().getAvailableConsumers(Collections.singleton(dataContainer)).stream()
+        /*~~>*/List<DataTransferProcessorDescriptor> model = DataTransferRegistry.getInstance().getAvailableConsumers(Collections.singleton(dataContainer)).stream()
             .flatMap(node -> Arrays.stream(node.getProcessors()))
             .filter(processor -> !processor.isBinaryFormat())
             .sorted(Comparator.comparing(DataTransferProcessorDescriptor::getName))

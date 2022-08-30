@@ -73,7 +73,7 @@ public class PostgreTablePolicyManager
     protected void addObjectCreateActions(
         DBRProgressMonitor monitor,
         DBCExecutionContext executionContext,
-        List<DBEPersistAction> actions,
+        /*~~>*/List<DBEPersistAction> actions,
         ObjectCreateCommand command,
         Map<String, Object> options
     ) throws DBException {
@@ -106,7 +106,7 @@ public class PostgreTablePolicyManager
     protected void addObjectModifyActions(
         DBRProgressMonitor monitor,
         DBCExecutionContext executionContext,
-        List<DBEPersistAction> actions,
+        /*~~>*/List<DBEPersistAction> actions,
         ObjectChangeCommand command,
         Map<String, Object> options
     ) throws DBException {
@@ -137,7 +137,7 @@ public class PostgreTablePolicyManager
     protected void addObjectDeleteActions(
         DBRProgressMonitor monitor,
         DBCExecutionContext executionContext,
-        List<DBEPersistAction> actions,
+        /*~~>*/List<DBEPersistAction> actions,
         ObjectDeleteCommand command,
         Map<String, Object> options
     ) throws DBException {
@@ -151,7 +151,7 @@ public class PostgreTablePolicyManager
     protected void addObjectRenameActions(
         DBRProgressMonitor monitor,
         DBCExecutionContext executionContext,
-        List<DBEPersistAction> actions,
+        /*~~>*/List<DBEPersistAction> actions,
         ObjectRenameCommand command,
         Map<String, Object> options
     ) {

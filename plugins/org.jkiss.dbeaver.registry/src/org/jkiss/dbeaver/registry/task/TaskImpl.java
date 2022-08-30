@@ -62,7 +62,7 @@ public class TaskImpl implements DBTTask, DBPNamedObject2 {
     @Nullable private TaskFolderImpl taskFolder;
 
     private static class RunStatistics {
-        private final List<TaskRunImpl> runs = new ArrayList<>();
+        private final /*~~>*/List<TaskRunImpl> runs = new ArrayList<>();
     }
 
     public TaskImpl(@NotNull DBPProject project, @NotNull DBTTaskType type, @NotNull String id, @NotNull String label, @Nullable String description, @NotNull Date createTime, @Nullable Date updateTime, @Nullable TaskFolderImpl taskFolder) {
@@ -162,7 +162,7 @@ public class TaskImpl implements DBTTask, DBPNamedObject2 {
     @NotNull
     @Override
     public DBTTaskRun[] getRunStatistics() {
-        return loadRunStatistics().runs.toArray(new DBTTaskRun[0]);
+        return /*~~>*/loadRunStatistics().runs.toArray(new DBTTaskRun[0]);
     }
 
     @NotNull
@@ -184,7 +184,7 @@ public class TaskImpl implements DBTTask, DBPNamedObject2 {
             }
         }
         RunStatistics runStatistics = loadRunStatistics();
-        runStatistics.runs.remove(taskRun);
+        /*~~>*/runStatistics.runs.remove(taskRun);
         flushRunStatistics(runStatistics);
         if (CommonUtils.equalObjects(lastRun, taskRun)) {
             lastRun = null;
@@ -197,7 +197,7 @@ public class TaskImpl implements DBTTask, DBPNamedObject2 {
         Path statsFolder = getTaskStatsFolder(false);
         if (Files.exists(statsFolder)) {
             try {
-                List<Path> taskFiles = Files.list(statsFolder).collect(Collectors.toList());
+                /*~~>*/List<Path> taskFiles = Files.list(statsFolder).collect(Collectors.toList());
                 for (Path file : taskFiles) {
                     try {
                         Files.delete(file);
@@ -220,7 +220,7 @@ public class TaskImpl implements DBTTask, DBPNamedObject2 {
     public void refreshRunStatistics() {
         try {
             synchronized (this) {
-                List<TaskRunImpl> runs = loadRunStatistics().runs;
+                /*~~>*/List<TaskRunImpl> runs = /*~~>*/loadRunStatistics().runs;
                 lastRun = runs.isEmpty() ? VOID_RUN : runs.get(runs.size() - 1);
             }
         } catch (Throwable e) {
@@ -288,9 +288,9 @@ public class TaskImpl implements DBTTask, DBPNamedObject2 {
         synchronized (this) {
             lastRun = taskRun;
             RunStatistics stats = loadRunStatistics();
-            stats.runs.add(taskRun);
-            while (stats.runs.size() > MAX_RUNS_IN_STATS) {
-                stats.runs.remove(0);
+            /*~~>*/stats.runs.add(taskRun);
+            while (/*~~>*/stats.runs.size() > MAX_RUNS_IN_STATS) {
+                /*~~>*/stats.runs.remove(0);
             }
             flushRunStatistics(stats);
         }
@@ -300,7 +300,7 @@ public class TaskImpl implements DBTTask, DBPNamedObject2 {
     void updateRun(TaskRunImpl taskRun) {
         synchronized (this) {
             RunStatistics stats = loadRunStatistics();
-            List<TaskRunImpl> runs = stats.runs;
+            /*~~>*/List<TaskRunImpl> runs = /*~~>*/stats.runs;
             for (int i = 0; i < runs.size(); i++) {
                 TaskRunImpl run = runs.get(i);
                 if (CommonUtils.equalObjects(run.getId(), taskRun.getId())) {

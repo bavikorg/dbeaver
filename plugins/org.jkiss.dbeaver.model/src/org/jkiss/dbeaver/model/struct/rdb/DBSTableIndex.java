@@ -46,7 +46,7 @@ public interface DBSTableIndex extends DBSEntityConstraint, DBSEntityReferrer, D
 
     DBSIndexType getIndexType();
 
-    List<? extends DBSTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor)
+    /*~~>*/List<? extends DBSTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor)
         throws DBException;
 
 }

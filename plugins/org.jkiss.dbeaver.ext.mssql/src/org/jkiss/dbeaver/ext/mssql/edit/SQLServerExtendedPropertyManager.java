@@ -48,7 +48,7 @@ public class SQLServerExtendedPropertyManager extends SQLObjectEditor<SQLServerE
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
         actions.add(new SQLDatabasePersistAction(
             "Create extended property",
             command.getObject().getObjectDefinitionText(monitor, false, false)
@@ -56,7 +56,7 @@ public class SQLServerExtendedPropertyManager extends SQLObjectEditor<SQLServerE
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
         actions.add(new SQLDatabasePersistAction(
             "Alter extended property",
             command.getObject().getObjectDefinitionText(monitor, true, false)
@@ -64,7 +64,7 @@ public class SQLServerExtendedPropertyManager extends SQLObjectEditor<SQLServerE
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
         actions.add(new SQLDatabasePersistAction(
             "Drop extended property",
             command.getObject().getObjectDefinitionText(monitor, false, true)

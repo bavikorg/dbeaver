@@ -55,7 +55,7 @@ public class PostgreInsertReplaceMethod implements DBDInsertReplaceMethod {
                 Optional<? extends DBSTableConstraint> tableConstraint = constraints.stream().filter(key -> key.getConstraintType() == DBSEntityConstraintType.PRIMARY_KEY).findFirst();
                 if (tableConstraint.isPresent()) {
                     DBSTableConstraint dbsTableConstraint = tableConstraint.get();
-                    List<? extends DBSEntityAttributeRef> attributeReferences = dbsTableConstraint.getAttributeReferences(monitor);
+                    /*~~>*/List<? extends DBSEntityAttributeRef> attributeReferences = dbsTableConstraint.getAttributeReferences(monitor);
                     if (!CommonUtils.isEmpty(attributeReferences)) {
                         boolean hasKey = false;
                         for (DBSEntityAttributeRef column : attributeReferences) {

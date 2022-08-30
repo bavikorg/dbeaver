@@ -122,7 +122,7 @@ public class SQLServerSessionEditor extends AbstractSessionEditor
         @Override
         public void run()
         {
-            final List<DBAServerSession> sessions = getSessionsViewer().getSelectedSessions();
+            final /*~~>*/List<DBAServerSession> sessions = getSessionsViewer().getSelectedSessions();
             if (sessions != null && UIUtils.confirmAction(
                 getSite().getShell(),
                 this.getText(),

@@ -95,7 +95,7 @@ public abstract class NativeToolConfigPanel<OBJECT_TYPE extends DBSObject> imple
                     selectedObject = element instanceof DBSWrapper && objectClass.isInstance(((DBSWrapper) element).getObject()) ?
                         objectClass.cast(((DBSWrapper) element).getObject()) : null;
                     AbstractNativeToolSettings settings = ieWizard.getSettings();
-                    List<DBSObject> databaseObjects = settings.getDatabaseObjects();
+                    /*~~>*/List<DBSObject> databaseObjects = settings.getDatabaseObjects();
                     databaseObjects.clear();
                     if (selectedObject != null) {
                         databaseObjects.add(selectedObject);
@@ -153,7 +153,7 @@ public abstract class NativeToolConfigPanel<OBJECT_TYPE extends DBSObject> imple
 
     @Override
     public void loadSettings() {
-        List<DBSObject> databaseObjects = ieWizard.getSettings().getDatabaseObjects();
+        /*~~>*/List<DBSObject> databaseObjects = ieWizard.getSettings().getDatabaseObjects();
         if (!CommonUtils.isEmpty(databaseObjects)) {
             for (DBSObject obj : databaseObjects) {
                 if (objectClass.isInstance(obj)) {
@@ -168,7 +168,7 @@ public abstract class NativeToolConfigPanel<OBJECT_TYPE extends DBSObject> imple
                 ieWizard.getRunnableContext().run(true, true, monitor ->
                     catalogNode[0] = DBNUtils.getNodeByObject(monitor, selectedObject, false));
                 if (catalogNode[0] != null) {
-                    List<DBNNode> selCatalogs = Collections.singletonList(catalogNode[0]);
+                    /*~~>*/List<DBNNode> selCatalogs = Collections.singletonList(catalogNode[0]);
                     //selectorPanel.checkNodes(selCatalogs, true);
                     selectorPanel.setSelection(selCatalogs);
                 }

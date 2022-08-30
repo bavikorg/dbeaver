@@ -147,7 +147,7 @@ public class AthenaConnectionPage extends ConnectionPageWithAuth implements IDia
                             }
                         };
                         if (dialog.open() == IDialogConstants.OK_ID) {
-                            List<DBNNode> selectedObjects = dialog.getSelectedObjects();
+                            /*~~>*/List<DBNNode> selectedObjects = dialog.getSelectedObjects();
                             if (selectedObjects.size() == 1) {
                                 DBNNode s3Node = selectedObjects.get(0);
                                 if (s3Node instanceof DBNPathBase) {

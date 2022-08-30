@@ -35,7 +35,7 @@ import java.util.List;
  */
 public class SQLServerTableForeignKey extends JDBCTableForeignKey<SQLServerTableBase, DBSEntityConstraint>
 {
-    private List<SQLServerTableForeignKeyColumn> columns;
+    private /*~~>*/List<SQLServerTableForeignKeyColumn> columns;
 
     public SQLServerTableForeignKey(
         SQLServerTableBase table,
@@ -56,16 +56,16 @@ public class SQLServerTableForeignKey extends JDBCTableForeignKey<SQLServerTable
             table,
             source,
             false);
-        List<? extends DBSEntityAttributeRef> columns = source.getAttributeReferences(monitor);
+        /*~~>*/List<? extends DBSEntityAttributeRef> columns = source.getAttributeReferences(monitor);
         if (columns != null) {
-            this.columns = new ArrayList<>(columns.size());
+            /*~~>*/this.columns = new ArrayList<>(columns.size());
             for (DBSEntityAttributeRef srcCol : columns) {
                 if (srcCol instanceof DBSTableForeignKeyColumn) {
                     DBSTableForeignKeyColumn fkCol = (DBSTableForeignKeyColumn) srcCol;
-                    this.columns.add(new SQLServerTableForeignKeyColumn(
+                    /*~~>*/this.columns.add(new SQLServerTableForeignKeyColumn(
                         this,
                         table.getAttribute(monitor, fkCol.getName()),
-                        this.columns.size(),
+                        /*~~>*/this.columns.size(),
                         table.getAttribute(monitor, fkCol.getReferencedColumn().getName())));
                 }
             }
@@ -73,7 +73,7 @@ public class SQLServerTableForeignKey extends JDBCTableForeignKey<SQLServerTable
     }
 
     @Override
-    public List<SQLServerTableForeignKeyColumn> getAttributeReferences(DBRProgressMonitor monitor)
+    public /*~~>*/List<SQLServerTableForeignKeyColumn> getAttributeReferences(DBRProgressMonitor monitor)
     {
         return columns;
     }
@@ -86,8 +86,8 @@ public class SQLServerTableForeignKey extends JDBCTableForeignKey<SQLServerTable
         columns.add(column);
     }
 
-    public void setColumns(List<SQLServerTableForeignKeyColumn> columns) {
-        this.columns = columns;
+    public void setColumns(/*~~>*/List<SQLServerTableForeignKeyColumn> columns) {
+        /*~~>*/this.columns = columns;
     }
 
     @NotNull

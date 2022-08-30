@@ -130,7 +130,7 @@ public final class DB2TableForeignKeyCache extends JDBCCompositeCache<DB2Schema,
     }
 
     @Override
-    protected void cacheChildren(DBRProgressMonitor monitor, DB2TableForeignKey constraint, List<DB2TableKeyColumn> rows)
+    protected void cacheChildren(DBRProgressMonitor monitor, DB2TableForeignKey constraint, /*~~>*/List<DB2TableKeyColumn> rows)
     {
         constraint.setColumns(rows);
     }

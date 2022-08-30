@@ -47,7 +47,7 @@ public class Parser {
 
         // runs parser finite state machine by dispatching over series of text positions representing terminals being matched
         // and evaluating parsing context until the final state is reached at the end of the text
-        List<ParserState> results = new ArrayList<>();
+        /*~~>*/List<ParserState> results = new ArrayList<>();
         while (!queue.isEmpty()) {
             ParserState state = queue.removeFirst();
             if (boundary == null || boundary.getPosition() > state.getPosition()) {
@@ -85,7 +85,7 @@ public class Parser {
      * @param ops operations to evaluate in the given context
      * @return an updated parsing context stack state
      */
-    private static ParserStack evaluateOperations(ParserStack stack, List<GrammarNfaOperation> ops) {
+    private static ParserStack evaluateOperations(ParserStack stack, /*~~>*/List<GrammarNfaOperation> ops) {
         ParserStack newStack = stack;
 
         for (GrammarNfaOperation op : ops) {

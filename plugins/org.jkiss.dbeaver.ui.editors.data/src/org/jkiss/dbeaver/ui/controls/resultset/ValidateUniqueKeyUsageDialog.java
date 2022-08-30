@@ -93,7 +93,7 @@ final class ValidateUniqueKeyUsageDialog extends MessageDialog {
         // Use all columns
         final DBDRowIdentifier identifier = viewer.getVirtualEntityIdentifier();
         DBVEntityConstraint constraint = (DBVEntityConstraint) identifier.getUniqueKey();
-        List<DBSEntityAttribute> uniqueColumns = new ArrayList<>();
+        /*~~>*/List<DBSEntityAttribute> uniqueColumns = new ArrayList<>();
         for (DBDAttributeBinding binding : viewer.getModel().getAttributes()) {
             if (binding.getEntityAttribute() != null) {
                 uniqueColumns.add(binding.getEntityAttribute());

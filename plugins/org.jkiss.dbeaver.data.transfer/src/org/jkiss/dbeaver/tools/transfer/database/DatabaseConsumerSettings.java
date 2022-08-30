@@ -246,7 +246,7 @@ public class DatabaseConsumerSettings implements IDataTransferSettings {
         truncateBeforeLoad = CommonUtils.getBoolean(settings.get("truncateBeforeLoad"), truncateBeforeLoad);
         openTableOnFinish = CommonUtils.getBoolean(settings.get("openTableOnFinish"), openTableOnFinish);
 
-        List<DataTransferPipe> dataPipes = dataTransferSettings.getDataPipes();
+        /*~~>*/List<DataTransferPipe> dataPipes = dataTransferSettings.getDataPipes();
         {
             if (!dataPipes.isEmpty()) {
                 IDataTransferConsumer consumer = dataPipes.get(0).getConsumer();

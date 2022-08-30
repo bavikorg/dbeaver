@@ -55,13 +55,13 @@ public class MikamiTabuchiRouter {
     private PrecisionPoint finish;
 
     private OrthogonalPath activePath;
-    private final List<OrthogonalPath> userPaths = new ArrayList<>();
-    private final Map<OrthogonalPath, List<OrthogonalPath>> pathsToChildPaths = new HashMap<>();
+    private final /*~~>*/List<OrthogonalPath> userPaths = new ArrayList<>();
+    private final Map<OrthogonalPath, /*~~>*/List<OrthogonalPath>> pathsToChildPaths = new HashMap<>();
 
-    private final Map<OrthogonalPath, Map<Boolean, List<Pair<Point, Point>>>> resultMap = new HashMap<>();
+    private final Map<OrthogonalPath, Map<Boolean, /*~~>*/List<Pair<Point, Point>>>> resultMap = new HashMap<>();
 
 
-    private final Map<Integer, Map<Integer, List<TrialLine>>> linesMap = new ConcurrentHashMap<>();
+    private final Map<Integer, Map<Integer, /*~~>*/List<TrialLine>>> linesMap = new ConcurrentHashMap<>();
     private ResultPairWithFine result;
 
     //In worst case scenarios line search may become laggy,
@@ -140,9 +140,9 @@ public class MikamiTabuchiRouter {
 
     boolean lineLiesOnPreviouslyCreatedLine(Point point, Point secondPoint, boolean vertical) {
 
-        final List<Pair<Point, Point>> collect = new ArrayList<>();
-        for (Map<Boolean, List<Pair<Point, Point>>> it : resultMap.values()) {
-            List<Pair<Point, Point>> pairs = it.get(vertical);
+        final /*~~>*/List<Pair<Point, Point>> collect = new ArrayList<>();
+        for (Map<Boolean, /*~~>*/List<Pair<Point, Point>>> it : resultMap.values()) {
+            /*~~>*/List<Pair<Point, Point>> pairs = it.get(vertical);
             collect.addAll(pairs);
         }
         for (Pair<Point, Point> line : collect) {
@@ -176,7 +176,7 @@ public class MikamiTabuchiRouter {
     }
 
     @NotNull
-    private List<TrialLine> getLinesMap(TrialLine line, int iteration) {
+    private /*~~>*/List<TrialLine> getLinesMap(TrialLine line, int iteration) {
         if (line.vertical) {
             return line.fromSource ? linesMap.get(iteration).get(SOURCE_VERTICAL_LINES) : linesMap.get(iteration).get(TARGET_VERTICAL_LINES);
         } else {
@@ -185,7 +185,7 @@ public class MikamiTabuchiRouter {
     }
 
     @NotNull
-    private List<TrialLine> getOpposingLinesMap(TrialLine line, int iteration) {
+    private /*~~>*/List<TrialLine> getOpposingLinesMap(TrialLine line, int iteration) {
         if (line.vertical) {
             return line.fromSource ? linesMap.get(iteration).get(TARGET_HORIZONTAL_LINES) : linesMap.get(iteration).get(SOURCE_HORIZONTAL_LINES);
         } else {
@@ -271,13 +271,13 @@ public class MikamiTabuchiRouter {
         userPaths.sort(Comparator.comparingInt(o -> o.start.x + o.start.y + o.end.x + o.end.y));
     }
 
-    public List<OrthogonalPath> solve() {
+    public /*~~>*/List<OrthogonalPath> solve() {
         sortWorkingPaths();
         updateChildPaths();
-        final List<OrthogonalPath> dirtyPaths = userPaths.stream().filter(OrthogonalPath::isDirty).collect(Collectors.toList());
+        final /*~~>*/List<OrthogonalPath> dirtyPaths = userPaths.stream().filter(OrthogonalPath::isDirty).collect(Collectors.toList());
         refreshResultMap(dirtyPaths);
         for (OrthogonalPath userPath : dirtyPaths) {
-            List<OrthogonalPath> childPaths = pathsToChildPaths.get(userPath);
+            /*~~>*/List<OrthogonalPath> childPaths = pathsToChildPaths.get(userPath);
             if (childPaths == null) {
                 updatePath(userPath, null);
             } else {
@@ -290,15 +290,15 @@ public class MikamiTabuchiRouter {
         linesMap.clear();
         recombineChildrenPaths();
          userPaths.stream().filter(Objects::nonNull).filter(path -> path.getPoints().size() != 2).forEach(path -> path.setDirty(false));
-        for (List<OrthogonalPath> value : pathsToChildPaths.values()) {
+        for (/*~~>*/List<OrthogonalPath> value : pathsToChildPaths.values()) {
             value.stream().filter(path -> path.getPoints().size() != 2).forEach(path -> path.setDirty(false));
         }
         return Collections.unmodifiableList(userPaths);
     }
 
-    private void refreshResultMap(List<OrthogonalPath> dirtyPaths) {
+    private void refreshResultMap(/*~~>*/List<OrthogonalPath> dirtyPaths) {
         for (OrthogonalPath dirtyPath : dirtyPaths) {
-            List<OrthogonalPath> childPaths = pathsToChildPaths.get(dirtyPath);
+            /*~~>*/List<OrthogonalPath> childPaths = pathsToChildPaths.get(dirtyPath);
             if (childPaths == null) {
                 init(dirtyPath);
             } else {
@@ -341,7 +341,7 @@ public class MikamiTabuchiRouter {
     private void updateChildPaths() {
         for (OrthogonalPath path : userPaths) {
             if (path.isDirty()) {
-                List<OrthogonalPath> children = this.pathsToChildPaths.get(path);
+                /*~~>*/List<OrthogonalPath> children = this.pathsToChildPaths.get(path);
                 int previousCount = 1;
                 int newCount = 1;
 
@@ -364,7 +364,7 @@ public class MikamiTabuchiRouter {
         }
     }
 
-    private void refreshChildrenEndpoints(OrthogonalPath path, List<OrthogonalPath> children) {
+    private void refreshChildrenEndpoints(OrthogonalPath path, /*~~>*/List<OrthogonalPath> children) {
         Point previous = path.getStart();
         PointList bendPoints = path.getBendpoints();
 
@@ -392,7 +392,7 @@ public class MikamiTabuchiRouter {
         }
     }
 
-    private List<OrthogonalPath> regenerateChildPaths(OrthogonalPath path, List<OrthogonalPath> orthogonalPaths, int currentCount, int newCount, Connection connection) {
+    private /*~~>*/List<OrthogonalPath> regenerateChildPaths(OrthogonalPath path, /*~~>*/List<OrthogonalPath> orthogonalPaths, int currentCount, int newCount, Connection connection) {
         if (currentCount == 1) {
             currentCount = 0;
             orthogonalPaths = new ArrayList<>();
@@ -487,7 +487,7 @@ public class MikamiTabuchiRouter {
             } else {
                 path.setPoints(new PointList());
             }
-            List<OrthogonalPath> childPaths = this.pathsToChildPaths.get(path);
+            /*~~>*/List<OrthogonalPath> childPaths = this.pathsToChildPaths.get(path);
             OrthogonalPath childPath = null;
 
             for (OrthogonalPath orthogonalPath : childPaths) {
@@ -534,20 +534,20 @@ public class MikamiTabuchiRouter {
     }
 
     public void removePath(OrthogonalPath path) {
-        this.userPaths.remove(path);
-        List<OrthogonalPath> orthogonalPaths = this.pathsToChildPaths.get(path);
+        /*~~>*/this.userPaths.remove(path);
+        /*~~>*/List<OrthogonalPath> orthogonalPaths = this.pathsToChildPaths.get(path);
         resultMap.remove(path);
         if (orthogonalPaths != null) {
             for (OrthogonalPath orthogonalPath : orthogonalPaths) {
                 resultMap.remove(orthogonalPath);
             }
-            this.userPaths.remove(path);
+            /*~~>*/this.userPaths.remove(path);
         }
     }
 
     public void addPath(OrthogonalPath path) {
         path.setDirty(true);
-        this.userPaths.add(path);
+        /*~~>*/this.userPaths.add(path);
     }
 
     private class TrialLine {

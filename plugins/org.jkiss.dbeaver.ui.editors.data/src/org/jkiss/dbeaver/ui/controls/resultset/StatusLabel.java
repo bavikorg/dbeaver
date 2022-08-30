@@ -107,7 +107,7 @@ class StatusLabel extends Composite {
         DBDDataReceiver dataReceiver = viewer.getDataReceiver();
         if (dataReceiver instanceof ResultSetDataReceiver) {
             ResultSetDataReceiver rsdr = (ResultSetDataReceiver) dataReceiver;
-            List<Throwable> errorList = rsdr.getErrorList();
+            /*~~>*/List<Throwable> errorList = rsdr.getErrorList();
             if (errorList.isEmpty()) {
                 if (viewer.getModel().getStatistics() != null && viewer.getModel().getStatistics().getError() != null) {
                     errorList = Collections.singletonList(viewer.getModel().getStatistics().getError());

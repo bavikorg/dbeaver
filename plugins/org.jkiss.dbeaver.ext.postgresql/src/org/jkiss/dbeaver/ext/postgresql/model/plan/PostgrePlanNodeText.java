@@ -258,7 +258,7 @@ public class PostgrePlanNodeText extends PostgrePlanNodeBase<PostgrePlanNodeText
         setAttributes(attributes);
         
         if (parent != null) {
-            parent.nested.add(this);
+            /*~~>*/parent.nested.add(this);
         }
     }
 

@@ -24,7 +24,7 @@ import java.util.List;
  * This interface can be implemented by data source provider to support native client functions.
  */
 public interface DBPNativeClientLocationManager {
-    List<DBPNativeClientLocation> findLocalClientLocations();
+    /*~~>*/List<DBPNativeClientLocation> findLocalClientLocations();
 
     DBPNativeClientLocation getDefaultLocalClientLocation();
 

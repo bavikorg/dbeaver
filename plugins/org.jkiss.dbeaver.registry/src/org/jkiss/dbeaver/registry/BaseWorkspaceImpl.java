@@ -62,8 +62,8 @@ public abstract class BaseWorkspaceImpl implements DBPWorkspaceEclipse, DBPExter
     protected final Map<IProject, LocalProjectImpl> projects = new LinkedHashMap<>();
     protected DBPProject activeProject;
 
-    private final List<DBPProjectListener> projectListeners = new ArrayList<>();
-    private final List<ResourceHandlerDescriptor> handlerDescriptors = new ArrayList<>();
+    private final /*~~>*/List<DBPProjectListener> projectListeners = new ArrayList<>();
+    private final /*~~>*/List<ResourceHandlerDescriptor> handlerDescriptors = new ArrayList<>();
     private final Map<String, Map<String, Object>> externalFileProperties = new HashMap<>();
 
     private final AbstractJob externalFileSaver = new WorkspaceFilesMetadataJob();
@@ -130,10 +130,10 @@ public abstract class BaseWorkspaceImpl implements DBPWorkspaceEclipse, DBPExter
         DBVModel.checkGlobalCacheIsEmpty();
 
         // Dispose resource handlers
-        for (ResourceHandlerDescriptor handlerDescriptor : this.handlerDescriptors) {
+        for (ResourceHandlerDescriptor handlerDescriptor : /*~~>*/this.handlerDescriptors) {
             handlerDescriptor.dispose();
         }
-        this.handlerDescriptors.clear();
+        /*~~>*/this.handlerDescriptors.clear();
 
         if (!projectListeners.isEmpty()) {
             log.warn("Some project listeners are still register: " + projectListeners);
@@ -149,7 +149,7 @@ public abstract class BaseWorkspaceImpl implements DBPWorkspaceEclipse, DBPExter
 
     @NotNull
     @Override
-    public List<DBPProject> getProjects() {
+    public /*~~>*/List<DBPProject> getProjects() {
         return new ArrayList<>(projects.values());
     }
 

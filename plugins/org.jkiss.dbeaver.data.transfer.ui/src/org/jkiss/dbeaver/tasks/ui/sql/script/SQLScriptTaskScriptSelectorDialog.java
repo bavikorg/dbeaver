@@ -50,7 +50,7 @@ class SQLScriptTaskScriptSelectorDialog extends BaseDialog {
 
     private DBNProject projectNode;
     private DatabaseNavigatorTree scriptsTree;
-    private List<DBNResource> selectedScripts = new ArrayList<>();
+    private /*~~>*/List<DBNResource> selectedScripts = new ArrayList<>();
 
     SQLScriptTaskScriptSelectorDialog(Shell parentShell, DBNProject projectNode) {
         super(parentShell, DTMessages.sql_script_task_page_settings_group_files, null);
@@ -125,7 +125,7 @@ class SQLScriptTaskScriptSelectorDialog extends BaseDialog {
         getButton(IDialogConstants.OK_ID).setEnabled(!selectedScripts.isEmpty());
     }
 
-    public List<DBNResource> getSelectedScripts() {
+    public /*~~>*/List<DBNResource> getSelectedScripts() {
         return selectedScripts;
     }
 

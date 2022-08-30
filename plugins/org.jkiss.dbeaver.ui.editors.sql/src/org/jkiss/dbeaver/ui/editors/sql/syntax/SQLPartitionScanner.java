@@ -48,7 +48,7 @@ public class SQLPartitionScanner extends RuleBasedPartitionScanner implements TP
 
     private final DBPDataSource dataSource;
     // Syntax highlight
-    private final List<IPredicateRule> rules = new ArrayList<>();
+    private final /*~~>*/List<IPredicateRule> rules = new ArrayList<>();
     private final IToken commentToken = new Token(SQLParserPartitions.CONTENT_TYPE_SQL_COMMENT);
     private final IToken multilineCommentToken = new Token(SQLParserPartitions.CONTENT_TYPE_SQL_MULTILINE_COMMENT);
     private final IToken sqlStringToken = new Token(SQLParserPartitions.CONTENT_TYPE_SQL_STRING);
@@ -63,7 +63,7 @@ public class SQLPartitionScanner extends RuleBasedPartitionScanner implements TP
     private void initRules(SQLDialect dialect, SQLRuleManager ruleManager) {
         TPRuleProvider ruleProvider = GeneralUtils.adapt(dialect, TPRuleProvider.class);
         if (ruleProvider != null) {
-            List<TPRule> partRules = new ArrayList<>();
+            /*~~>*/List<TPRule> partRules = new ArrayList<>();
             ruleProvider.extendRules(
                 dataSource == null ? null : dataSource.getContainer(),
                 partRules,
@@ -83,7 +83,7 @@ public class SQLPartitionScanner extends RuleBasedPartitionScanner implements TP
     private void adaptRules(@NotNull TPRule... rules) {
         for (TPRule rule : rules) {
             if (rule instanceof TPPredicateRule) {
-                this.rules.add(new PredicateRuleAdapter((TPPredicateRule) rule));
+                /*~~>*/this.rules.add(new PredicateRuleAdapter((TPPredicateRule) rule));
             }
         }
     }

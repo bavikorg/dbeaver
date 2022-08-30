@@ -31,7 +31,7 @@ import java.util.List;
 
 public class SearchDataResultsPage extends AbstractSearchResultsPage<SearchDataObject> {
 
-    private List<SearchDataObject> foundObjects = new ArrayList<>();
+    private /*~~>*/List<SearchDataObject> foundObjects = new ArrayList<>();
 
     @Override
     protected AbstractSearchResultsPage<SearchDataObject>.SearchResultsControl createResultControl(Composite parent) {

@@ -173,7 +173,7 @@ public abstract class JDBCTableColumn<TABLE_TYPE extends DBSEntity> extends JDBC
 
     @NotNull
     @Override
-    public List<DBDLabelValuePair> getValueEnumeration(
+    public /*~~>*/List<DBDLabelValuePair> getValueEnumeration(
         @NotNull DBCSession session,
         @Nullable Object valuePattern,
         int maxResults,

@@ -303,7 +303,7 @@ public class PostgreDataType extends JDBCDataType<PostgreSchema>
                 "ORDER BY e.enumsortorder")) {
             dbStat.setLong(1, getObjectId());
             try (JDBCResultSet rs = dbStat.executeQuery()) {
-                List<String> values = new ArrayList<>();
+                /*~~>*/List<String> values = new ArrayList<>();
                 while (rs.nextRow()) {
                     values.add(JDBCUtils.safeGetString(rs, 1));
                 }
@@ -535,17 +535,17 @@ public class PostgreDataType extends JDBCDataType<PostgreSchema>
 
     @Nullable
     @Override
-    public List<? extends DBSContextBoundAttribute> bindAttributesToContext(
+    public /*~~>*/List<? extends DBSContextBoundAttribute> bindAttributesToContext(
         @NotNull DBRProgressMonitor monitor,
         @NotNull DBSEntity dataContainer,
         @NotNull DBSEntityAttribute memberContext
     ) throws DBException {
-        List<PostgreDataTypeAttribute> attrs = this.getAttributes(monitor);
+        /*~~>*/List<PostgreDataTypeAttribute> attrs = this.getAttributes(monitor);
         if (attrs == null) {
             return null;
         }
     
-        List<PostgreDataBoundTypeAttribute> boundAttrs = new ArrayList<>(attrs.size());
+        /*~~>*/List<PostgreDataBoundTypeAttribute> boundAttrs = new ArrayList<>(attrs.size());
         for (PostgreDataTypeAttribute attr : attrs) {
             boundAttrs.add(new PostgreDataBoundTypeAttribute(monitor, (PostgreTableBase) dataContainer, memberContext, attr));
         }
@@ -553,7 +553,7 @@ public class PostgreDataType extends JDBCDataType<PostgreSchema>
     }
 
     @Override
-    public List<PostgreDataTypeAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<PostgreDataTypeAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
         return attributeCache == null ? null : attributeCache.getAllObjects(monitor, this);
     }
 

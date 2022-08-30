@@ -43,14 +43,14 @@ public class TokenPredicatesConditionTest {
         return predicate;
     }
 
-    private Set<List<String>> makeTestPredicateSequences() {
+    private Set</*~~>*/List<String>> makeTestPredicateSequences() {
         return Set.of(
-                List.of("CREATE", "PACKAGE", "BODY"),
-                List.of("CREATE", "OR", "REPLACE", "PACKAGE", "BODY"),
-                List.of("CREATE", "EDITIONABLE", "PACKAGE", "BODY"),
-                List.of("CREATE", "OR", "REPLACE", "EDITIONABLE", "PACKAGE", "BODY"),
-                List.of("CREATE", "NONEDITIONABLE", "PACKAGE", "BODY"),
-                List.of("CREATE", "OR", "REPLACE", "NONEDITIONABLE", "PACKAGE", "BODY")
+                /*~~>*/List.of("CREATE", "PACKAGE", "BODY"),
+                /*~~>*/List.of("CREATE", "OR", "REPLACE", "PACKAGE", "BODY"),
+                /*~~>*/List.of("CREATE", "EDITIONABLE", "PACKAGE", "BODY"),
+                /*~~>*/List.of("CREATE", "OR", "REPLACE", "EDITIONABLE", "PACKAGE", "BODY"),
+                /*~~>*/List.of("CREATE", "NONEDITIONABLE", "PACKAGE", "BODY"),
+                /*~~>*/List.of("CREATE", "OR", "REPLACE", "NONEDITIONABLE", "PACKAGE", "BODY")
         );
     }
 
@@ -60,10 +60,10 @@ public class TokenPredicatesConditionTest {
         TokenPredicateNode tree = this.makeTestPredicateTree();
 
         // expected path sequences to be described by given predicate
-        Set<List<String>> expectedSequences = this.makeTestPredicateSequences();
+        Set</*~~>*/List<String>> expectedSequences = this.makeTestPredicateSequences();
 
         // expand the tree into a set of plain token sequences and map token entries to strings
-        Set<List<String>> computedSequences = tree.expand().stream().map(
+        Set</*~~>*/List<String>> computedSequences = tree.expand().stream().map(
                 seq -> seq.stream().map(t -> t.getString()).collect(Collectors.toList())
         ).collect(Collectors.toSet());
 

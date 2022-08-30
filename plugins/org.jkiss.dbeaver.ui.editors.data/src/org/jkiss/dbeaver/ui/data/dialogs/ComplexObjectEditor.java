@@ -322,9 +322,9 @@ public class ComplexObjectEditor extends TreeViewer {
         if (value instanceof CollectionElement) {
             final CollectionElement element = (CollectionElement) value;
             if (element.source instanceof DBDCollection) {
-                return "[" + ((DBDCollection) element.source).getComponentType().getName() + " - " + element.items.size() + "]";
+                return "[" + ((DBDCollection) element.source).getComponentType().getName() + " - " + /*~~>*/element.items.size() + "]";
             } else {
-                return "[" + element.items.size() + "]";
+                return "[" + /*~~>*/element.items.size() + "]";
             }
         } else if (value instanceof CompositeElement) {
             return "[" + ((CompositeElement) value).type.getName() + "]";
@@ -521,11 +521,11 @@ public class ComplexObjectEditor extends TreeViewer {
 
             if (parent == null) {
                 element = new CollectionRootElement(collection);
-                element.items.add(new CollectionRootElement.Item(element, wrap(element, object)));
+                /*~~>*/element.items.add(new CollectionRootElement.Item(element, wrap(element, object)));
             } else {
                 element = new CollectionElement(parent, collection);
                 for (Object item : collection) {
-                    element.items.add(new CollectionElement.Item(element, wrap(element, item)));
+                    /*~~>*/element.items.add(new CollectionElement.Item(element, wrap(element, item)));
                 }
             }
 
@@ -540,7 +540,7 @@ public class ComplexObjectEditor extends TreeViewer {
 
             try {
                 for (DBSAttributeBase attribute : composite.getAttributes()) {
-                    element.items.add(new CompositeElement.Item(element, attribute, wrap(element, composite.getAttributeValue(attribute))));
+                    /*~~>*/element.items.add(new CompositeElement.Item(element, attribute, wrap(element, composite.getAttributeValue(attribute))));
                 }
             } catch (DBCException e) {
                 log.error("Error getting structure meta data", e);
@@ -685,7 +685,7 @@ public class ComplexObjectEditor extends TreeViewer {
             final CollectionElement collection = GeneralUtils.adapt(element, CollectionElement.class);
             final CollectionElement.Item item = new CollectionElement.Item(collection, null);
 
-            collection.items.add(item);
+            /*~~>*/collection.items.add(item);
             item.created = true;
 
             refresh();
@@ -711,12 +711,12 @@ public class ComplexObjectEditor extends TreeViewer {
 
             final CollectionElement.Item item = (CollectionElement.Item) getStructuredSelection().getFirstElement();
             final CollectionElement collection = item.collection;
-            final int index = collection.items.indexOf(item);
+            final int index = /*~~>*/collection.items.indexOf(item);
 
-            collection.items.remove(index);
+            /*~~>*/collection.items.remove(index);
 
-            if (!collection.items.isEmpty()) {
-                setSelection(new StructuredSelection(collection.items.get(CommonUtils.clamp(index, 0, collection.items.size() - 1))));
+            if (!/*~~>*/collection.items.isEmpty()) {
+                setSelection(new StructuredSelection(/*~~>*/collection.items.get(CommonUtils.clamp(index, 0, /*~~>*/collection.items.size() - 1))));
             }
 
             refresh();
@@ -741,20 +741,20 @@ public class ComplexObjectEditor extends TreeViewer {
 
             final CollectionElement.Item item = (CollectionElement.Item) getStructuredSelection().getFirstElement();
             final CollectionElement collection = item.collection;
-            final int index = collection.items.indexOf(item);
+            final int index = /*~~>*/collection.items.indexOf(item);
 
             if (direction == SWT.UP) {
                 if (index == 0) {
                     return;
                 }
                 swap(collection, index, index - 1);
-                setSelection(new StructuredSelection(collection.items.get(index - 1)));
+                setSelection(new StructuredSelection(/*~~>*/collection.items.get(index - 1)));
             } else if (direction == SWT.DOWN) {
-                if (index == collection.items.size() - 1) {
+                if (index == /*~~>*/collection.items.size() - 1) {
                     return;
                 }
                 swap(collection, index, index + 1);
-                setSelection(new StructuredSelection(collection.items.get(index + 1)));
+                setSelection(new StructuredSelection(/*~~>*/collection.items.get(index + 1)));
             }
 
             refresh();
@@ -762,9 +762,9 @@ public class ComplexObjectEditor extends TreeViewer {
         }
 
         private void swap(@NotNull CollectionElement collection, int firstIndex, int secondIndex) {
-            final CollectionElement.Item temp = collection.items.get(firstIndex);
-            collection.items.set(firstIndex, collection.items.get(secondIndex));
-            collection.items.set(secondIndex, temp);
+            final CollectionElement.Item temp = /*~~>*/collection.items.get(firstIndex);
+            /*~~>*/collection.items.set(firstIndex, /*~~>*/collection.items.get(secondIndex));
+            /*~~>*/collection.items.set(secondIndex, temp);
         }
     }
 
@@ -789,12 +789,12 @@ public class ComplexObjectEditor extends TreeViewer {
             final CollectionElement.Item item = (CollectionElement.Item) object;
             final CollectionElement collection = item.collection;
             final boolean child = !(collection instanceof CollectionRootElement);
-            final int index = collection.items.indexOf(item);
+            final int index = /*~~>*/collection.items.indexOf(item);
 
             addElementAction.setEnabled(extendable);
             removeElementAction.setEnabled(child);
             moveElementUpAction.setEnabled(child && index > 0);
-            moveElementDownAction.setEnabled(child && index < collection.items.size() - 1);
+            moveElementDownAction.setEnabled(child && index < /*~~>*/collection.items.size() - 1);
         } else {
             addElementAction.setEnabled(editable && extendable);
             removeElementAction.setEnabled(false);
@@ -849,12 +849,12 @@ public class ComplexObjectEditor extends TreeViewer {
     private static class CollectionElement implements ComplexElement {
         private final Object parent;
         private final Collection<?> source;
-        protected final List<Item> items;
+        protected final /*~~>*/List<Item> items;
 
         public CollectionElement(@Nullable Object parent, @NotNull Collection<?> source) {
             this.parent = parent;
             this.source = source;
-            this.items = new ArrayList<>();
+            /*~~>*/this.items = new ArrayList<>();
         }
 
         @NotNull
@@ -906,7 +906,7 @@ public class ComplexObjectEditor extends TreeViewer {
             @NotNull
             @Override
             public String getName() {
-                return String.valueOf(collection.items.indexOf(this) + 1);
+                return String.valueOf(/*~~>*/collection.items.indexOf(this) + 1);
             }
 
             @NotNull
@@ -964,13 +964,13 @@ public class ComplexObjectEditor extends TreeViewer {
     private static class CompositeElement implements ComplexElement {
         private final Object parent;
         private final DBDComposite source;
-        private final List<Item> items;
+        private final /*~~>*/List<Item> items;
         private final DBSDataType type;
 
         public CompositeElement(@Nullable Object parent, @NotNull DBDComposite source) {
             this.parent = parent;
             this.source = source;
-            this.items = new ArrayList<>();
+            /*~~>*/this.items = new ArrayList<>();
             this.type = source.getDataType();
         }
 

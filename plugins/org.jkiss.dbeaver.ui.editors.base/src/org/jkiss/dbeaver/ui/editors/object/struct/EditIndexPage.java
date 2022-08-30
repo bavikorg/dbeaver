@@ -46,7 +46,7 @@ public class EditIndexPage extends AttributesSelectorPage {
 
     private final DBSTableIndex index;
     private String indexName;
-    private List<DBSIndexType> indexTypes;
+    private /*~~>*/List<DBSIndexType> indexTypes;
     private DBSIndexType selectedIndexType;
     private boolean unique;
     private boolean supportUniqueIndexes = true;
@@ -61,8 +61,8 @@ public class EditIndexPage extends AttributesSelectorPage {
         super(title, index.getTable());
         this.index = index;
         this.indexName = this.index.getName();
-        this.indexTypes = new ArrayList<>(indexTypes);
-        Assert.isTrue(!CommonUtils.isEmpty(this.indexTypes));
+        /*~~>*/this.indexTypes = new ArrayList<>(indexTypes);
+        Assert.isTrue(!CommonUtils.isEmpty(/*~~>*/this.indexTypes));
     }
 
     public EditIndexPage(
@@ -72,8 +72,8 @@ public class EditIndexPage extends AttributesSelectorPage {
     {
         super(title, index.getTable());
         this.index = index;
-        this.indexTypes = new ArrayList<>(indexTypes);
-        Assert.isTrue(!CommonUtils.isEmpty(this.indexTypes));
+        /*~~>*/this.indexTypes = new ArrayList<>(indexTypes);
+        Assert.isTrue(!CommonUtils.isEmpty(/*~~>*/this.indexTypes));
         this.supportUniqueIndexes = supportUniqueIndexes;
     }
 

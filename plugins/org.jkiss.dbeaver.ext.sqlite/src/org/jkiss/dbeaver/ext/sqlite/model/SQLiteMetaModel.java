@@ -112,14 +112,14 @@ public class SQLiteMetaModel extends GenericMetaModel implements DBCQueryTransfo
     }
 
     @Override
-    public List<? extends GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
+    public /*~~>*/List<? extends GenericTrigger> loadTriggers(DBRProgressMonitor monitor, @NotNull GenericStructContainer container, @Nullable GenericTableBase table) throws DBException {
         if (table == null) {
             return Collections.emptyList();
         }
         try (JDBCSession session = DBUtils.openMetaSession(monitor, container, "Read triggers")) {
             try (JDBCPreparedStatement dbStat = session.prepareStatement("SELECT name FROM sqlite_master WHERE type='trigger' AND tbl_name=?")) {
                 dbStat.setString(1, table.getName());
-                List<GenericTrigger> result = new ArrayList<>();
+                /*~~>*/List<GenericTrigger> result = new ArrayList<>();
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
                     while (dbResult.next()) {
                         String name = JDBCUtils.safeGetString(dbResult, 1);

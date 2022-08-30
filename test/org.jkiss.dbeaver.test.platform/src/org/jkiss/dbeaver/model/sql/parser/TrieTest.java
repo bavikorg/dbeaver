@@ -121,25 +121,25 @@ public class TrieTest {
     private Trie<String, Integer> makeTrie() {
         Trie<String, Integer> t = new Trie<>(String::compareToIgnoreCase, new TestLookupComparator());
 
-        t.add(List.of("5", "1", "2", "3", "4"), 1);
-        t.add(List.of("5", "2", "3", "4"), 2);
-        t.add(List.of("5", "1", "3", "4"), 3);
-        t.add(List.of("5", "1", "2"), 4);
-        t.add(List.of("5", "1"), 5);
-        t.add(List.of("5", "1", "2", "4"), 6);
-        t.add(List.of("5", "1xa", "2"), 7);
-        t.add(List.of("5", "1yb", "2"), 8);
-        t.add(List.of("5", "1yc", "2"), 9);
-        t.add(List.of("5", "1yd", "2"), 10);
-        t.add(List.of("5", "1ze", "2"), 11);
-        t.add(List.of("5", "1y"), 12);
+        t.add(/*~~>*/List.of("5", "1", "2", "3", "4"), 1);
+        t.add(/*~~>*/List.of("5", "2", "3", "4"), 2);
+        t.add(/*~~>*/List.of("5", "1", "3", "4"), 3);
+        t.add(/*~~>*/List.of("5", "1", "2"), 4);
+        t.add(/*~~>*/List.of("5", "1"), 5);
+        t.add(/*~~>*/List.of("5", "1", "2", "4"), 6);
+        t.add(/*~~>*/List.of("5", "1xa", "2"), 7);
+        t.add(/*~~>*/List.of("5", "1yb", "2"), 8);
+        t.add(/*~~>*/List.of("5", "1yc", "2"), 9);
+        t.add(/*~~>*/List.of("5", "1yd", "2"), 10);
+        t.add(/*~~>*/List.of("5", "1ze", "2"), 11);
+        t.add(/*~~>*/List.of("5", "1y"), 12);
         t.add(Arrays.asList("5", "1", "2", "", "4"), 13);
 
         return t;
     }
 
-    private List<Set<Integer>> makeExpectedResults() {
-        return List.of(
+    private /*~~>*/List<Set<Integer>> makeExpectedResults() {
+        return /*~~>*/List.of(
                 Set.of(1, 4, 5, 13),
                 Set.of(2),
                 Set.of(3, 5),
@@ -154,19 +154,19 @@ public class TrieTest {
         );
     }
 
-    private List<List<String>> makeQueries() {
-        return List.of(
-                List.of("5", "1", "2", "3", "4"),
-                List.of("5", "2", "3", "4"),
-                List.of("5", "1", "3", "4"),
-                List.of("5", "1", "2"),
-                List.of("5", "1"),
-                List.of("5", "1", "2", "4"),
+    private /*~~>*/List</*~~>*/List<String>> makeQueries() {
+        return /*~~>*/List.of(
+                /*~~>*/List.of("5", "1", "2", "3", "4"),
+                /*~~>*/List.of("5", "2", "3", "4"),
+                /*~~>*/List.of("5", "1", "3", "4"),
+                /*~~>*/List.of("5", "1", "2"),
+                /*~~>*/List.of("5", "1"),
+                /*~~>*/List.of("5", "1", "2", "4"),
                 Arrays.asList("5", "", "2", "4"),
-                List.of("5", "1y", "2"),
+                /*~~>*/List.of("5", "1y", "2"),
                 Arrays.asList(new String[0]),
-                List.of("6"),
-                List.of("5", "2", "3", "10", "11")
+                /*~~>*/List.of("6"),
+                /*~~>*/List.of("5", "2", "3", "10", "11")
         );
     }
 
@@ -176,12 +176,12 @@ public class TrieTest {
         Trie<String, Integer> t = makeTrie();
 
         // make a set of queries each resulting with a set of values
-        List<Set<Integer>> results = makeQueries().stream()
+        /*~~>*/List<Set<Integer>> results = makeQueries().stream()
                 .map(p -> t.collectValuesOnPath(p.iterator()))
                 .collect(Collectors.toList());
 
         // check out the expected query results for each corresponding query
-        var expected = makeExpectedResults();
+        /*~~>*/var expected = makeExpectedResults();
 
         Assert.assertEquals(expected, results);
     }
@@ -194,14 +194,14 @@ public class TrieTest {
         // build a trie
         Trie<String, Integer> t = makeTrie();
         // augment its root with some extra values (trie root corresponds to the path of zero length)
-        rootValues.forEach(v -> t.add(List.of(), v));
+        rootValues.forEach(v -> t.add(/*~~>*/List.of(), v));
 
         // make a set of queries each resulting with a set of values
-        List<Set<Integer>> results = makeQueries().stream()
+        /*~~>*/List<Set<Integer>> results = makeQueries().stream()
                 .map(p -> t.collectValuesOnPath(p.iterator()))
                 .collect(Collectors.toList());
 
-        var expected = makeExpectedResults().stream()
+        /*~~>*/var expected = makeExpectedResults().stream()
                 .map(s -> new HashSet<>(s))
                 .collect(Collectors.toList());
         // expected results are the same as in {@link #trieLookup()} test, but all of them will include root extra values now

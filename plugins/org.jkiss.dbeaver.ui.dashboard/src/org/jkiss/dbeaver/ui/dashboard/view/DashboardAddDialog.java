@@ -112,7 +112,7 @@ public class DashboardAddDialog extends BaseDialog {
         });
         dashboardTable.setContentProvider(new ListContentProvider());
 
-        java.util.List<DashboardDescriptor> dashboards = new ArrayList<>(DashboardRegistry.getInstance().getDashboards(
+        /*~~>*//*~~>*/java.util.List<DashboardDescriptor> dashboards = new ArrayList<>(DashboardRegistry.getInstance().getDashboards(
             viewConfiguration.getDataSourceContainer(), false));
         dashboards.removeIf(descriptor -> viewConfiguration.getDashboardConfig(descriptor.getId()) != null);
         dashboardTable.setInput(dashboards);

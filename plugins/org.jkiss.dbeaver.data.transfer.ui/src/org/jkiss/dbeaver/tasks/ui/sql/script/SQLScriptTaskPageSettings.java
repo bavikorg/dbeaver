@@ -63,8 +63,8 @@ class SQLScriptTaskPageSettings extends ActiveWizardPage<SQLScriptTaskConfigurat
     private TableViewer scriptsViewer;
     private TableViewer dataSourceViewer;
 
-    private List<DBNResource> selectedScripts = new ArrayList<>();
-    private List<DBNDataSource> selectedDataSources = new ArrayList<>();
+    private /*~~>*/List<DBNResource> selectedScripts = new ArrayList<>();
+    private /*~~>*/List<DBNDataSource> selectedDataSources = new ArrayList<>();
 
     SQLScriptTaskPageSettings(SQLScriptTaskConfigurationWizard wizard) {
         super(DTMessages.sql_script_task_title);
@@ -317,7 +317,7 @@ class SQLScriptTaskPageSettings extends ActiveWizardPage<SQLScriptTaskConfigurat
         }
 
         if (!dataSources.isEmpty()) {
-            List<DBNDataSource> checkedDataSources = new ArrayList<>();
+            /*~~>*/List<DBNDataSource> checkedDataSources = new ArrayList<>();
             for (DBPDataSourceContainer ds : dataSources) {
                 DBNDataSource dsNode = projectNode.getDatabases().getDataSource(ds);
                 if (dsNode != null) {
@@ -363,7 +363,7 @@ class SQLScriptTaskPageSettings extends ActiveWizardPage<SQLScriptTaskConfigurat
     public void loadSettings() {
         SQLScriptExecuteSettings settings = sqlWizard.getSettings();
 
-        List<String> scriptFiles = settings.getScriptFiles();
+        /*~~>*/List<String> scriptFiles = settings.getScriptFiles();
         for (String filePath : scriptFiles) {
             IFile file = SQLScriptExecuteSettings.getWorkspaceFile(filePath);
             if (file == null) {
@@ -406,7 +406,7 @@ class SQLScriptTaskPageSettings extends ActiveWizardPage<SQLScriptTaskConfigurat
         }
         SQLScriptExecuteSettings settings = sqlWizard.getSettings();
 
-        List<String> scriptPaths = new ArrayList<>();
+        /*~~>*/List<String> scriptPaths = new ArrayList<>();
         for (DBNResource resource : selectedScripts) {
             IResource res = resource.getResource();
             if (res instanceof IFile) {
@@ -416,7 +416,7 @@ class SQLScriptTaskPageSettings extends ActiveWizardPage<SQLScriptTaskConfigurat
         if (!CommonUtils.isEmpty(scriptPaths)) {
             settings.setScriptFiles(scriptPaths);
         }
-        List<DBPDataSourceContainer> dsList = new ArrayList<>();
+        /*~~>*/List<DBPDataSourceContainer> dsList = new ArrayList<>();
         for (DBNDataSource dsNode : selectedDataSources) {
             dsList.add(dsNode.getDataSourceContainer());
         }

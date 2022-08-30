@@ -94,7 +94,7 @@ public abstract class PostgrePrivilege implements DBAPrivilege, Comparable<Postg
     protected final PostgrePrivilegeOwner owner;
     private ObjectPermission[] permissions;
 
-    public PostgrePrivilege(PostgrePrivilegeOwner owner, List<PostgrePrivilegeGrant> grants) {
+    public PostgrePrivilege(PostgrePrivilegeOwner owner, /*~~>*/List<PostgrePrivilegeGrant> grants) {
         this.owner = owner;
         this.permissions = new ObjectPermission[grants.size()];
         for (int i = 0 ; i < grants.size(); i++) {

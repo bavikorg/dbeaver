@@ -40,7 +40,7 @@ public class ExasolTableIndex extends JDBCTableIndex<ExasolSchema, ExasolTable> 
 	private Timestamp createTime;
 	private Timestamp lastCommit;
 	private ExasolTable table;
-	private List<ExasolTableIndexColumn> columns;
+	private /*~~>*/List<ExasolTableIndexColumn> columns;
 	private Boolean isGeometry;
 	private DBSIndexType type;
 	
@@ -119,8 +119,8 @@ public class ExasolTableIndex extends JDBCTableIndex<ExasolSchema, ExasolTable> 
 	}
 
 	@Override
-	public List<ExasolTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
-		return this.columns;	
+	public /*~~>*/List<ExasolTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor) throws DBException {
+		return /*~~>*/this.columns;	
 	}
 
 	@Override
@@ -140,12 +140,12 @@ public class ExasolTableIndex extends JDBCTableIndex<ExasolSchema, ExasolTable> 
 		return type.getName() + " " + this.getColumnString();
 	}
 
-	public List<ExasolTableIndexColumn> getColumns() {
+	public /*~~>*/List<ExasolTableIndexColumn> getColumns() {
 		return columns;
 	}
 
-	public void setColumns(List<ExasolTableIndexColumn> columns) {
-		this.columns = columns;
+	public void setColumns(/*~~>*/List<ExasolTableIndexColumn> columns) {
+		/*~~>*/this.columns = columns;
 	}
 	
 	public ExasolTableIndexColumn getColumn(String columnName) {
@@ -157,12 +157,12 @@ public class ExasolTableIndex extends JDBCTableIndex<ExasolSchema, ExasolTable> 
 	}
 	
 	public String getSimpleColumnString( ) {
-		String[] colNames = this.columns.stream().map(c -> c.getName()).toArray(String[]::new);
+		String[] colNames = /*~~>*/this.columns.stream().map(c -> c.getName()).toArray(String[]::new);
 		return "(" + CommonUtils.joinStrings(",",colNames ) + ")";
 	}
 	
 	public String getColumnString() {
-		String[] colNames = this.columns.stream().map(c -> DBUtils.getQuotedIdentifier(c)).toArray(String[]::new);
+		String[] colNames = /*~~>*/this.columns.stream().map(c -> DBUtils.getQuotedIdentifier(c)).toArray(String[]::new);
 		return "(" + CommonUtils.joinStrings(",", colNames ) + ")";
 		
 	}

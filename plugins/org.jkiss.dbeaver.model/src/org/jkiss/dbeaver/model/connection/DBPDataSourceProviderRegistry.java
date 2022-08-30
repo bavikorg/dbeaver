@@ -27,16 +27,16 @@ import java.util.List;
  */
 public interface DBPDataSourceProviderRegistry {
 
-    List<? extends DBPDataSourceProviderDescriptor> getDataSourceProviders();
+    /*~~>*/List<? extends DBPDataSourceProviderDescriptor> getDataSourceProviders();
 
-    List<? extends DBPDataSourceProviderDescriptor> getEnabledDataSourceProviders();
+    /*~~>*/List<? extends DBPDataSourceProviderDescriptor> getEnabledDataSourceProviders();
 
     DBPDataSourceProviderDescriptor getDataSourceProvider(String id);
     DBPDataSourceProviderDescriptor makeFakeProvider(String providerID);
 
     DBPAuthModelDescriptor getAuthModel(String id);
-    List<? extends DBPAuthModelDescriptor> getAllAuthModels();
-    List<? extends DBPAuthModelDescriptor> getApplicableAuthModels(DBPDriver driver);
+    /*~~>*/List<? extends DBPAuthModelDescriptor> getAllAuthModels();
+    /*~~>*/List<? extends DBPAuthModelDescriptor> getApplicableAuthModels(DBPDriver driver);
 
     DBPConnectionType getConnectionType(String id, DBPConnectionType defaultType);
     void addConnectionType(DBPConnectionType connectionType);

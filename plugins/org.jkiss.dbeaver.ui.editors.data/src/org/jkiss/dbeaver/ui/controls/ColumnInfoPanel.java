@@ -125,10 +125,10 @@ public class ColumnInfoPanel extends Composite {
         }
 
         @Property(viewable = true, order = 3, category = "columns")
-        public List<KeyColumnValue> getColumns()
+        public /*~~>*/List<KeyColumnValue> getColumns()
         {
-            List<DBDAttributeBinding> rowAttributes = rowController.getRowAttributes();
-            List<KeyColumnValue> columns = new ArrayList<>();
+            /*~~>*/List<DBDAttributeBinding> rowAttributes = rowController.getRowAttributes();
+            /*~~>*/List<KeyColumnValue> columns = new ArrayList<>();
             for (DBDAttributeBinding binding : rowIdentifier.getAttributes()) {
                 columns.add(new KeyColumnValue(binding, rowController.getAttributeValue(binding)));
             }

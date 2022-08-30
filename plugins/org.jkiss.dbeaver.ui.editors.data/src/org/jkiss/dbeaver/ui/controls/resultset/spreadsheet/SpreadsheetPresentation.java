@@ -489,7 +489,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
         if ((CommonUtils.isEmpty(quoteString))) {
             quoteString = "\"";
         }
-        List<IGridColumn> selectedColumns = spreadsheet.getColumnSelection();
+        /*~~>*/List<IGridColumn> selectedColumns = spreadsheet.getColumnSelection();
         IGridLabelProvider labelProvider = spreadsheet.getLabelProvider();
         if (copyHTML) html.append("<table border=\"1\">");
         if (settings.isCopyHeader()) {
@@ -512,7 +512,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
 
         if (copyHTML) html.append("<tbody>");
 
-        List<GridCell> selectedCells = spreadsheet.getCellSelection();
+        /*~~>*/List<GridCell> selectedCells = spreadsheet.getCellSelection();
         boolean quoteCells = settings.isQuoteCells() && selectedCells.size() > 1;
         boolean forceQuotes = settings.isForceQuotes();
 
@@ -748,10 +748,10 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
         final char trashDelimiter = '\r';
         final char quote = '"';
 
-        final List<String[]> lines = new ArrayList<>();
+        final /*~~>*/List<String[]> lines = new ArrayList<>();
 
         final StringBuilder cellValue = new StringBuilder();
-        final List<String> curLine = new ArrayList<>();
+        final /*~~>*/List<String> curLine = new ArrayList<>();
         boolean inQuote = false;
         int length = strValue.length();
         for (int i = 0; i < length; i++) {
@@ -932,7 +932,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
         controller.fillContextMenu(manager, attr, row, getRowNestedIndexes(rowObject));
 
         if (attr != null && row == null) {
-            final List<IGridColumn> selectedColumns = spreadsheet.getColumnSelection();
+            final /*~~>*/List<IGridColumn> selectedColumns = spreadsheet.getColumnSelection();
             if (selectedColumns.size() == 1) {
                 IGridColumn attrCol = spreadsheet.getColumnByElement(attr);
                 if (attrCol != null) {
@@ -984,8 +984,8 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
                 }
                 {
                     // Hide/show
-                    List<DBDAttributeBinding> hiddenAttributes = new ArrayList<>();
-                    List<DBDAttributeConstraint> constraints = getController().getModel().getDataFilter().getConstraints();
+                    /*~~>*/List<DBDAttributeBinding> hiddenAttributes = new ArrayList<>();
+                    /*~~>*/List<DBDAttributeConstraint> constraints = getController().getModel().getDataFilter().getConstraints();
                     for (DBDAttributeConstraint ac : constraints) {
                         DBSAttributeBase attribute = ac.getAttribute();
                         if (!ac.isVisible() && attribute instanceof DBDAttributeBinding && DBDAttributeConstraint.isVisibleByDefault((DBDAttributeBinding) attribute)) {
@@ -1036,7 +1036,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
 
         if (recordMode && row != null) {
             // Record mode
-            List<Integer> selectedRowIndexes = new ArrayList<>();
+            /*~~>*/List<Integer> selectedRowIndexes = new ArrayList<>();
             for (IGridColumn sRow : spreadsheet.getColumnSelection()) {
                 if (sRow.getElement() instanceof ResultSetRow) {
                     selectedRowIndexes.add(((ResultSetRow) sRow.getElement()).getVisualNumber());
@@ -1044,7 +1044,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
             }
 
             if (!selectedRowIndexes.isEmpty() && selectedRowIndexes.size() < controller.getSelectedRecords().length) {
-                List<Integer> curRowIndexes = Arrays.stream(controller.getSelectedRecords())
+                /*~~>*/List<Integer> curRowIndexes = Arrays.stream(controller.getSelectedRecords())
                     .boxed().collect(Collectors.toList());
                 curRowIndexes.removeAll(selectedRowIndexes);
                 if (!curRowIndexes.isEmpty()) {
@@ -1089,7 +1089,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
     // Edit
 
     private void closeEditors() {
-        List<IValueEditorStandalone> editors = new ArrayList<>(openEditors.values());
+        /*~~>*/List<IValueEditorStandalone> editors = new ArrayList<>(openEditors.values());
         for (IValueEditorStandalone editor : editors) {
             if (editor.getControl() != null && !editor.getControl().isDisposed()) {
                 editor.closeValueEditor();
@@ -1520,7 +1520,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
         }
         spreadsheet.deselectAll();
         if (!selection.isEmpty() && selection instanceof IStructuredSelection) {
-            List<GridPos> cellSelection = new ArrayList<>();
+            /*~~>*/List<GridPos> cellSelection = new ArrayList<>();
             for (Iterator<?> iter = ((IStructuredSelection) selection).iterator(); iter.hasNext(); ) {
                 Object cell = iter.next();
                 if (cell instanceof GridPos) {
@@ -1570,7 +1570,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
             }
             if (location != DropLocation.SWAP) {
                 // Reposition columns
-                final List<DBDAttributeConstraint> constraints = getOrderedConstraints(dataFilter, pin);
+                final /*~~>*/List<DBDAttributeConstraint> constraints = getOrderedConstraints(dataFilter, pin);
                 if (sourcePosition < targetPosition) {
                     for (int i = sourcePosition + 1; i <= targetPosition; i++) {
                         setConstraintPosition(constraints.get(i), pin, i - 1);
@@ -1605,8 +1605,8 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
     }
 
     @NotNull
-    private static List<DBDAttributeConstraint> getOrderedConstraints(@NotNull DBDDataFilter filter, boolean pin) {
-        final List<DBDAttributeConstraint> constraints = filter.getConstraints();
+    private static /*~~>*/List<DBDAttributeConstraint> getOrderedConstraints(@NotNull DBDDataFilter filter, boolean pin) {
+        final /*~~>*/List<DBDAttributeConstraint> constraints = filter.getConstraints();
         if (pin) {
             return constraints.stream()
                 .filter(x -> x.hasOption(ATTR_OPTION_PINNED))
@@ -1709,7 +1709,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
         }
 
         @Override
-        public List<GridPos> toList() {
+        public /*~~>*/List<GridPos> toList() {
             return new ArrayList<>(spreadsheet.getSelection());
         }
 
@@ -1726,11 +1726,11 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
 
         @NotNull
         @Override
-        public List<DBDAttributeBinding> getSelectedAttributes() {
+        public /*~~>*/List<DBDAttributeBinding> getSelectedAttributes() {
             if (controller.isRecordMode()) {
                 Object[] elements = spreadsheet.getContentProvider().getElements(false);
-                List<DBDAttributeBinding> attrs = new ArrayList<>();
-                List<Integer> rowSelection = new ArrayList<>(spreadsheet.getRowSelection());
+                /*~~>*/List<DBDAttributeBinding> attrs = new ArrayList<>();
+                /*~~>*/List<Integer> rowSelection = new ArrayList<>(spreadsheet.getRowSelection());
                 Collections.sort(rowSelection);
                 for (Integer row : rowSelection) {
                     if (row < elements.length) {
@@ -1740,7 +1740,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
                 }
                 return attrs;
             } else {
-                List<DBDAttributeBinding> attrs = new ArrayList<>();
+                /*~~>*/List<DBDAttributeBinding> attrs = new ArrayList<>();
                 for (IGridColumn row : spreadsheet.getColumnSelection()) {
                     attrs.add((DBDAttributeBinding) row.getElement());
                 }
@@ -1750,9 +1750,9 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
 
         @NotNull
         @Override
-        public List<ResultSetRow> getSelectedRows() {
+        public /*~~>*/List<ResultSetRow> getSelectedRows() {
             {
-                List<ResultSetRow> rows = new ArrayList<>();
+                /*~~>*/List<ResultSetRow> rows = new ArrayList<>();
                 if (controller.isRecordMode()) {
                     for (IGridColumn col : spreadsheet.getColumnSelection()) {
                         if (col.getElement() instanceof ResultSetRow) {
@@ -1774,7 +1774,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
         }
 
         @NotNull
-        public List<IGridRow> getSelectedGridRows() {
+        public /*~~>*/List<IGridRow> getSelectedGridRows() {
             return spreadsheet.getRowSelection()
                 .stream().map(i -> spreadsheet.getRow(i)).collect(Collectors.toList());
         }
@@ -1873,7 +1873,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
                     case STRUCT:
                     case DOCUMENT:
                     case ANY:
-                        final List<DBDAttributeBinding> children = controller.getModel().getVisibleAttributes(binding);
+                        final /*~~>*/List<DBDAttributeBinding> children = controller.getModel().getVisibleAttributes(binding);
                         if (!CommonUtils.isEmpty(children)) {
                             return children.toArray();
                         }
@@ -1898,7 +1898,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
             final Object cellValue = controller.getModel().getCellValue(cellLocation);
 
             if (cellValue instanceof List<?>) {
-                return ((List<?>) cellValue).size();
+                return ((/*~~>*/List<?>) cellValue).size();
             } else if (cellValue instanceof DBDComposite) {
                 return ((DBDComposite) cellValue).getAttributeCount();
             } else {
@@ -1941,7 +1941,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
                             Object cellValue = controller.getModel().getCellValue(
                                 new ResultSetCellLocation(binding, curRow));
                             if (cellValue instanceof List<?>) {
-                                if (((List<?>) cellValue).size() < 3) {
+                                if (((/*~~>*/List<?>) cellValue).size() < 3) {
                                     return ElementState.EXPANDED;
                                 }
                                 if (!DBUtils.isNullValue(cellValue)) {
@@ -2466,7 +2466,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
             ResultSetRow row = getResultRowFromGrid(colElement, rowElement);
             Object value = controller.getModel().getCellValue(
                 new ResultSetCellLocation(attr, row, getRowNestedIndexes(rowElement)));
-            List<DBSEntityReferrer> referrers = attr.getReferrers();
+            /*~~>*/List<DBSEntityReferrer> referrers = attr.getReferrers();
             if (!CommonUtils.isEmpty(referrers) && !DBUtils.isNullValue(value)) {
                 StringBuilder text = new StringBuilder();
                 for (DBSEntityReferrer ref : referrers) {
@@ -2544,7 +2544,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
             if (item instanceof IGridRow && item.getParent() != null && controller.isRecordMode()) {
                 final DBDAttributeBinding binding = (DBDAttributeBinding) item.getElement();
                 if (binding.getDataKind() == DBPDataKind.STRUCT) {
-                    final List<DBDAttributeBinding> bindings = binding.getNestedBindings();
+                    final /*~~>*/List<DBDAttributeBinding> bindings = binding.getNestedBindings();
                     final int index = ((IGridRow) item).getRelativeIndex();
                     if (bindings != null && bindings.size() > index) {
                         attr = bindings.get(index);
@@ -2636,7 +2636,7 @@ public class SpreadsheetPresentation extends AbstractPresentation implements IRe
             if (item instanceof IGridRow && item.getParent() != null && controller.isRecordMode()) {
                 final DBDAttributeBinding binding = (DBDAttributeBinding) item.getElement();
                 if (binding.getDataKind() == DBPDataKind.STRUCT) {
-                    final List<DBDAttributeBinding> bindings = binding.getNestedBindings();
+                    final /*~~>*/List<DBDAttributeBinding> bindings = binding.getNestedBindings();
                     final int index = ((IGridRow) item).getRelativeIndex();
                     if (bindings != null && bindings.size() > index) {
                         return getAttributeText(bindings.get(index));

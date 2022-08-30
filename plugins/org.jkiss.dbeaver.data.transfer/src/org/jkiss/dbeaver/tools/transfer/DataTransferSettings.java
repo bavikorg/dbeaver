@@ -55,7 +55,7 @@ public class DataTransferSettings implements DBTTaskSettings<DBPObject> {
 
     private final DataTransferState state;
     private final Map<String, Object> configurationMap;
-    private List<DataTransferPipe> dataPipes;
+    private /*~~>*/List<DataTransferPipe> dataPipes;
 
     private DataTransferNodeDescriptor producer;
     private DataTransferNodeDescriptor consumer;
@@ -68,7 +68,7 @@ public class DataTransferSettings implements DBTTaskSettings<DBPObject> {
 
     private IDataTransferProducer<?>[] initProducers;
     private @Nullable IDataTransferConsumer<?,?>[] initConsumers;
-    private final List<DBSObject> initObjects = new ArrayList<>();
+    private final /*~~>*/List<DBSObject> initObjects = new ArrayList<>();
 
     private boolean consumerOptional;
     private boolean producerOptional;
@@ -168,8 +168,8 @@ public class DataTransferSettings implements DBTTaskSettings<DBPObject> {
     {
         this.initProducers = producers == null ? null : producers.toArray(new IDataTransferProducer[0]);
         this.initConsumers = consumers == null ? null : consumers.toArray(new IDataTransferConsumer[0]);
-        this.dataPipes = new ArrayList<>();
-        this.initObjects.clear();
+        /*~~>*/this.dataPipes = new ArrayList<>();
+        /*~~>*/this.initObjects.clear();
         this.consumerOptional = false;
         this.producerOptional = false;
 
@@ -412,7 +412,7 @@ public class DataTransferSettings implements DBTTaskSettings<DBPObject> {
         return initConsumers;
     }
 
-    public List<DBSObject> getSourceObjects() {
+    public /*~~>*/List<DBSObject> getSourceObjects() {
         return initObjects;
     }
 
@@ -450,18 +450,18 @@ public class DataTransferSettings implements DBTTaskSettings<DBPObject> {
         processorPropsHistory.put(processor, properties);
     }
 
-    public List<DataTransferPipe> getDataPipes() {
+    public /*~~>*/List<DataTransferPipe> getDataPipes() {
         return dataPipes;
     }
 
     public void sortDataPipes(DBRProgressMonitor monitor) {
-        List<DBSEntity> entities = dataPipes.stream().sequential()
+        /*~~>*/List<DBSEntity> entities = dataPipes.stream().sequential()
                 .filter(pipe -> pipe.getProducer() != null && pipe.getProducer().getDatabaseObject() instanceof DBSEntity)
                 .map(pipe -> (DBSEntity) pipe.getProducer().getDatabaseObject())
                 .collect(Collectors.toList());
-        List<DBSEntity> simpleTables = new ArrayList<>();
-        List<DBSEntity> cyclicTables = new ArrayList<>();
-        List<DBSEntity> views = new ArrayList<>();
+        /*~~>*/List<DBSEntity> simpleTables = new ArrayList<>();
+        /*~~>*/List<DBSEntity> cyclicTables = new ArrayList<>();
+        /*~~>*/List<DBSEntity> views = new ArrayList<>();
         try {
             DBStructUtils.sortTableList(monitor, entities, simpleTables, cyclicTables, views);
         } catch (DBException e) {
@@ -635,7 +635,7 @@ public class DataTransferSettings implements DBTTaskSettings<DBPObject> {
 
     public static void saveNodesLocation(DBRRunnableContext runnableContext, DBTTask task, Map<String, Object> state, Collection<IDataTransferNode<?>> nodes, String nodeType) {
         if (nodes != null) {
-            List<Map<String, Object>> inputObjects = new ArrayList<>();
+            /*~~>*/List<Map<String, Object>> inputObjects = new ArrayList<>();
             for (Object inputObject : nodes) {
                 inputObjects.add(JSONUtils.serializeObject(runnableContext, task, inputObject));
             }
@@ -643,9 +643,9 @@ public class DataTransferSettings implements DBTTaskSettings<DBPObject> {
         }
     }
 
-    public static <T> List<T> getNodesFromLocation(@NotNull DBRProgressMonitor monitor, DBTTask task, DataTransferState state, Log taskLog, String nodeType, Class<T> nodeClass) {
+    public static <T> /*~~>*/List<T> getNodesFromLocation(@NotNull DBRProgressMonitor monitor, DBTTask task, DataTransferState state, Log taskLog, String nodeType, Class<T> nodeClass) {
         Map<String, Object> config = task.getProperties();
-        List<T> result = new ArrayList<>();
+        /*~~>*/List<T> result = new ArrayList<>();
         Object nodeList = config.get(nodeType);
         if (nodeList instanceof Collection) {
             MonitorRunnableContext runnableContext = new MonitorRunnableContext(monitor);
@@ -673,8 +673,8 @@ public class DataTransferSettings implements DBTTaskSettings<DBPObject> {
         initConsumers = new IDataTransferConsumer[0];
     }
 
-    public void setDataPipes(List<DataTransferPipe> dataPipes, boolean isExport) {
-        this.dataPipes = dataPipes;
+    public void setDataPipes(/*~~>*/List<DataTransferPipe> dataPipes, boolean isExport) {
+        /*~~>*/this.dataPipes = dataPipes;
 
         // Now determine main producer and consumer and processor
         DataTransferRegistry registry = DataTransferRegistry.getInstance();

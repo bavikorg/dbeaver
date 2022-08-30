@@ -105,7 +105,7 @@ public class TestService {
         ObjectCollectorSink tmpSink = new ObjectCollectorSink();
         nsService.executeQuery("SELECT * FROM Win32_Process", tmpSink, WMIConstants.WBEM_FLAG_SEND_STATUS);
         tmpSink.waitForFinish();
-        for (WMIObject o : tmpSink.objectList) {
+        for (WMIObject o : /*~~>*/tmpSink.objectList) {
             System.out.println("=============");
 //            for (WMIObjectAttribute attr : o.getAttributes(WMIConstants.WBEM_FLAG_ALWAYS)) {
 //                System.out.println(attr.toString());
@@ -151,12 +151,12 @@ public class TestService {
 
     private class ObjectCollectorSink implements WMIObjectSink
     {
-        private final List<WMIObject> objectList;
+        private final /*~~>*/List<WMIObject> objectList;
         private boolean finished = false;
 
         public ObjectCollectorSink()
         {
-            this.objectList = new ArrayList<>();
+            /*~~>*/this.objectList = new ArrayList<>();
         }
 
         @Override

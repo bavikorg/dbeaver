@@ -38,7 +38,7 @@ public class MySQLPlanNodeJSON extends MySQLPlanNode implements DBPPropertySourc
     private String name;
     private JsonObject object;
     private Map<String, String> nodeProps = new LinkedHashMap<>();
-    private List<MySQLPlanNodeJSON> nested = new ArrayList<>();
+    private /*~~>*/List<MySQLPlanNodeJSON> nested = new ArrayList<>();
 
     public MySQLPlanNodeJSON(MySQLPlanNodeJSON parent, String name, JsonObject object) {
         this.parent = parent;

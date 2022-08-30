@@ -62,7 +62,7 @@ class SessionTable<SESSION_TYPE extends DBAServerSession> extends DatabaseObject
 
     @NotNull
     @Override
-    protected String getListConfigId(List<Class<?>> classList) {
+    protected String getListConfigId(/*~~>*/List<Class<?>> classList) {
         return "Sessions/" + sessionManager.getDataSource().getContainer().getDriver().getId();
     }
 
@@ -74,7 +74,7 @@ class SessionTable<SESSION_TYPE extends DBAServerSession> extends DatabaseObject
             new ObjectsLoadVisualizer());
     }
 
-    LoadingJob<Void> createAlterService(List<SESSION_TYPE> sessions, Map<String, Object> options)
+    LoadingJob<Void> createAlterService(/*~~>*/List<SESSION_TYPE> sessions, Map<String, Object> options)
     {
         return LoadingJob.createService(
             new KillSessionsService(sessions, options),
@@ -161,13 +161,13 @@ class SessionTable<SESSION_TYPE extends DBAServerSession> extends DatabaseObject
     }
 
     private class KillSessionsService extends DatabaseLoadService<Void> {
-        private final List<SESSION_TYPE> sessions;
+        private final /*~~>*/List<SESSION_TYPE> sessions;
         private final Map<String, Object> options;
 
-        KillSessionsService(List<SESSION_TYPE> sessions, Map<String, Object> options)
+        KillSessionsService(/*~~>*/List<SESSION_TYPE> sessions, Map<String, Object> options)
         {
             super("Kill session", sessionManager.getDataSource());
-            this.sessions = sessions;
+            /*~~>*/this.sessions = sessions;
             this.options = options;
         }
 
@@ -192,7 +192,7 @@ class SessionTable<SESSION_TYPE extends DBAServerSession> extends DatabaseObject
         private Void killSession(DBRProgressMonitor monitor, DBCExecutionContext context) throws InvocationTargetException {
             try (DBCSession session = context.openSession(monitor, DBCExecutionPurpose.UTIL, "Kill server session")) {
                 Throwable lastError = null;
-                for (SESSION_TYPE dbaSession : this.sessions) {
+                for (SESSION_TYPE dbaSession : /*~~>*/this.sessions) {
                     try {
                         sessionManager.alterSession(session, dbaSession, options);
                     } catch (Exception e) {

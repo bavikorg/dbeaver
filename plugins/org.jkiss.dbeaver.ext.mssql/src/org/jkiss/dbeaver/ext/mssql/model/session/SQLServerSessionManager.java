@@ -61,7 +61,7 @@ public class SQLServerSessionManager implements DBAServerSessionManager<SQLServe
         try {
             try (JDBCPreparedStatement dbStat = ((JDBCSession) session).prepareStatement(generateSessionReadQuery(options))) {
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                    List<SQLServerSession> sessions = new ArrayList<>();
+                    /*~~>*/List<SQLServerSession> sessions = new ArrayList<>();
                     while (dbResult.next()) {
                         sessions.add(new SQLServerSession(dbResult));
                     }

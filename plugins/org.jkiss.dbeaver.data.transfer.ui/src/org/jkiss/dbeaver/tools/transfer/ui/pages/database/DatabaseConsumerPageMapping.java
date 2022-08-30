@@ -72,7 +72,7 @@ public class DatabaseConsumerPageMapping extends DataTransferPageNodeSettings {
     private static final Log log = Log.getLog(DatabaseConsumerPageMapping.class);
 
     private static final String TARGET_NAME_BROWSE = "[browse]";
-    private final List<DatabaseMappingContainer> model = new ArrayList<>();
+    private final /*~~>*/List<DatabaseMappingContainer> model = new ArrayList<>();
     private TreeViewer mappingViewer;
     private Button autoAssignButton;
     private Button upButton;
@@ -324,7 +324,7 @@ public class DatabaseConsumerPageMapping extends DataTransferPageNodeSettings {
                             if (element instanceof DatabaseMappingContainer) {
                                 // Select next container
                                 @SuppressWarnings("unchecked")
-                                List<DatabaseMappingContainer> model = (List<DatabaseMappingContainer>) mappingViewer.getInput();
+                                /*~~>*/List<DatabaseMappingContainer> model = (/*~~>*/List<DatabaseMappingContainer>) mappingViewer.getInput();
                                 int curIndex = model.indexOf(element);
                                 if (curIndex < model.size() - 1) {
                                     mappingViewer.setSelection(new StructuredSelection(model.get(curIndex + 1)), true);
@@ -385,7 +385,7 @@ public class DatabaseConsumerPageMapping extends DataTransferPageNodeSettings {
     }
 
     private void updateUpAndDownButtons(@NotNull DataTransferPipe pipeFromCurrentSelection) {
-        List<DataTransferPipe> pipes = getWizard().getSettings().getDataPipes();
+        /*~~>*/List<DataTransferPipe> pipes = getWizard().getSettings().getDataPipes();
         int idx = pipes.indexOf(pipeFromCurrentSelection);
         upButton.setEnabled(idx > 0);
         downButton.setEnabled(idx > -1 && idx < pipes.size() - 1);
@@ -540,7 +540,7 @@ public class DatabaseConsumerPageMapping extends DataTransferPageNodeSettings {
             columnMapping.setEditingSupport(new EditingSupport(mappingViewer) {
                 @Override
                 protected CellEditor getCellEditor(Object element) {
-                    List<String> mappingTypes = new ArrayList<>();
+                    /*~~>*/List<String> mappingTypes = new ArrayList<>();
                     DatabaseMappingObject mapping = (DatabaseMappingObject) element;
                     DatabaseMappingType mappingType = mapping.getMappingType();
                     if (mappingType != DatabaseMappingType.skip) {
@@ -648,10 +648,10 @@ public class DatabaseConsumerPageMapping extends DataTransferPageNodeSettings {
                 @Override
                 protected CellEditor getCellEditor(Object element) {
                     if (element instanceof DatabaseMappingAttribute) {
-                        List<DataTransferAttributeTransformerDescriptor> transformers = DataTransferRegistry.getInstance().getAttributeTransformers();
+                        /*~~>*/List<DataTransferAttributeTransformerDescriptor> transformers = DataTransferRegistry.getInstance().getAttributeTransformers();
                         transformers.add(0, null);
 
-                        List<String> tsfNames = transformers.stream().map(t->t == null ? "" : t.getName()).collect(Collectors.toList());
+                        /*~~>*/List<String> tsfNames = transformers.stream().map(t->t == null ? "" : t.getName()).collect(Collectors.toList());
 
                         return new CustomComboBoxCellEditor(
                             mappingViewer,
@@ -736,7 +736,7 @@ public class DatabaseConsumerPageMapping extends DataTransferPageNodeSettings {
     {
         final DatabaseConsumerSettings settings = getDatabaseConsumerSettings();
         boolean allowsCreate = true;
-        List<String> items = new ArrayList<>();
+        /*~~>*/List<String> items = new ArrayList<>();
         if (element instanceof DatabaseMappingContainer) {
             if (settings.getContainerNode() == null) {
                 allowsCreate = false;
@@ -895,7 +895,7 @@ public class DatabaseConsumerPageMapping extends DataTransferPageNodeSettings {
     }
 
     void autoAssignMappings() {
-        List<Object> elementList = Arrays.stream(mappingViewer.getTree().getItems())
+        /*~~>*/List<Object> elementList = Arrays.stream(mappingViewer.getTree().getItems())
             .map(Widget::getData).collect(Collectors.toList());
 
         getWizard().runWithProgress(monitor -> {
@@ -1087,7 +1087,7 @@ public class DatabaseConsumerPageMapping extends DataTransferPageNodeSettings {
     @NotNull
     private DatabaseMappingContainer[] getSelectedMappingContainers() {
         final IStructuredSelection selection = (IStructuredSelection) mappingViewer.getSelection();
-        final List<DatabaseMappingContainer> objects = new ArrayList<>();
+        final /*~~>*/List<DatabaseMappingContainer> objects = new ArrayList<>();
         for (final Object o : selection) {
             if (o instanceof DatabaseMappingContainer) {
                 objects.add((DatabaseMappingContainer) o);
@@ -1149,7 +1149,7 @@ public class DatabaseConsumerPageMapping extends DataTransferPageNodeSettings {
         DatabaseConsumerSettings settings = getDatabaseConsumerSettings();
         model.clear();
 
-        List<Throwable> errors = new ArrayList<>();
+        /*~~>*/List<Throwable> errors = new ArrayList<>();
         try {
             getWizard().getRunnableContext().run(true, true, monitor -> {
                 for (DataTransferPipe pipe : getWizard().getSettings().getDataPipes()) {

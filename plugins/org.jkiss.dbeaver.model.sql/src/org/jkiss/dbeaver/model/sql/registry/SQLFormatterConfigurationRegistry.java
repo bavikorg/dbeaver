@@ -46,7 +46,7 @@ public class SQLFormatterConfigurationRegistry implements SQLFormatterRegistry
         return instance;
     }
 
-    private final List<SQLFormatterDescriptor> formatters = new ArrayList<>();
+    private final /*~~>*/List<SQLFormatterDescriptor> formatters = new ArrayList<>();
 
     private SQLFormatterConfigurationRegistry()
     {
@@ -58,7 +58,7 @@ public class SQLFormatterConfigurationRegistry implements SQLFormatterRegistry
         for (IConfigurationElement ext : extConfigs) {
             // Load formatters
             if (TAG_FORMATTER.equals(ext.getName())) {
-                this.formatters.add(
+                /*~~>*/this.formatters.add(
                     new SQLFormatterDescriptor(ext));
             }
         }
@@ -69,7 +69,7 @@ public class SQLFormatterConfigurationRegistry implements SQLFormatterRegistry
         formatters.clear();
     }
 
-    public List<SQLFormatterDescriptor> getFormatters() {
+    public /*~~>*/List<SQLFormatterDescriptor> getFormatters() {
         return new ArrayList<>(formatters);
     }
 

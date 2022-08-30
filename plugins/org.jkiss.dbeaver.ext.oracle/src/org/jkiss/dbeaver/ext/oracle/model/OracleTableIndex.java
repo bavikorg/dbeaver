@@ -46,7 +46,7 @@ public class OracleTableIndex extends JDBCTableIndex<OracleSchema, OracleTablePh
 
     private Object tablespace;
     private boolean nonUnique;
-    private List<OracleTableIndexColumn> columns;
+    private /*~~>*/List<OracleTableIndexColumn> columns;
     private String indexDDL;
 
     public OracleTableIndex(
@@ -120,7 +120,7 @@ public class OracleTableIndex extends JDBCTableIndex<OracleSchema, OracleTablePh
     }
 
     @Override
-    public List<OracleTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor)
+    public /*~~>*/List<OracleTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor)
     {
         return columns;
     }
@@ -132,9 +132,9 @@ public class OracleTableIndex extends JDBCTableIndex<OracleSchema, OracleTablePh
         return DBUtils.findObject(columns, columnName);
     }
 
-    void setColumns(List<OracleTableIndexColumn> columns)
+    void setColumns(/*~~>*/List<OracleTableIndexColumn> columns)
     {
-        this.columns = columns;
+        /*~~>*/this.columns = columns;
     }
 
     public void addColumn(OracleTableIndexColumn column)

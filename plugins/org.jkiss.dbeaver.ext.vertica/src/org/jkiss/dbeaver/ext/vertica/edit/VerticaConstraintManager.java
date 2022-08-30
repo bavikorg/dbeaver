@@ -36,7 +36,7 @@ import java.util.Map;
 public class VerticaConstraintManager extends GenericPrimaryKeyManager {
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
         VerticaConstraint constraint = (VerticaConstraint) command.getObject();
         if (command.getObject().getConstraintType() == DBSEntityConstraintType.CHECK) {
             actions.add(
@@ -50,7 +50,7 @@ public class VerticaConstraintManager extends GenericPrimaryKeyManager {
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
         VerticaConstraint constraint = (VerticaConstraint) command.getObject();
 
         if (command.getProperties().containsKey(DBConstants.PROP_ID_ENABLED)) {

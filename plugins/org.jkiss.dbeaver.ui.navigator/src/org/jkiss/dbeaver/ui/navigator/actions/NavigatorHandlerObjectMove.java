@@ -48,7 +48,7 @@ public class NavigatorHandlerObjectMove extends NavigatorHandlerObjectBase {
     @Override
     public Object execute(ExecutionEvent event) throws ExecutionException {
         final ISelection selection = HandlerUtil.getCurrentSelection(event);
-        final List<DBNNode> nodes = NavigatorUtils.getSelectedNodes(selection);
+        final /*~~>*/List<DBNNode> nodes = NavigatorUtils.getSelectedNodes(selection);
         final DBNNode[][] consecutiveNodes = groupConsecutiveNodes(nodes);
 
         final int min = getNodePosition(nodes.get(0));
@@ -79,7 +79,7 @@ public class NavigatorHandlerObjectMove extends NavigatorHandlerObjectBase {
                 DBPOrderedObject orderedObject = (DBPOrderedObject) object;
                 try {
                     // Sibling objects - they are involved in reordering process
-                    List<DBSObject> siblingObjects = new ArrayList<>();
+                    /*~~>*/List<DBSObject> siblingObjects = new ArrayList<>();
                     for (DBNNode siblingNode : node.getParentNode().getChildren(new VoidProgressMonitor())) {
                         if (siblingNode instanceof DBNDatabaseNode) {
                             DBSObject siblingObject = ((DBNDatabaseNode) siblingNode).getObject();
@@ -150,9 +150,9 @@ public class NavigatorHandlerObjectMove extends NavigatorHandlerObjectBase {
      * @return an array of arrays containing consecutive nodes
      */
     @NotNull
-    private static DBNNode[][] groupConsecutiveNodes(@NotNull List<DBNNode> nodes) {
-        final List<DBNNode[]> ranges = new ArrayList<>();
-        final List<DBNNode> range = new ArrayList<>();
+    private static DBNNode[][] groupConsecutiveNodes(@NotNull /*~~>*/List<DBNNode> nodes) {
+        final /*~~>*/List<DBNNode[]> ranges = new ArrayList<>();
+        final /*~~>*/List<DBNNode> range = new ArrayList<>();
 
         for (int index = 1, length = nodes.size(); index <= length; index++) {
             range.add(nodes.get(index - 1));

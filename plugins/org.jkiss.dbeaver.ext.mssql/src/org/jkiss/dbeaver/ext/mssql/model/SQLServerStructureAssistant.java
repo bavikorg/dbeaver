@@ -113,11 +113,11 @@ public class SQLServerStructureAssistant implements DBSStructureAssistant<SQLSer
 
     @NotNull
     @Override
-    public List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull SQLServerExecutionContext executionContext,
+    public /*~~>*/List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull SQLServerExecutionContext executionContext,
                                                       @NotNull ObjectsSearchParams params) throws DBException {
         if (params.getMask().startsWith("%#") || params.getMask().startsWith("#")) {
             try (JDBCSession session = executionContext.openSession(monitor, DBCExecutionPurpose.META, "Find temp tables by name")) {
-                List<DBSObjectReference> objects = new ArrayList<>();
+                /*~~>*/List<DBSObjectReference> objects = new ArrayList<>();
                 searchTempTables(session, params, objects);
                 return objects;
             }
@@ -126,7 +126,7 @@ public class SQLServerStructureAssistant implements DBSStructureAssistant<SQLSer
         return findAllObjects(monitor, executionContext, params);
     }
 
-    private List<DBSObjectReference> findAllObjects(@NotNull DBRProgressMonitor monitor, @NotNull SQLServerExecutionContext executionContext,
+    private /*~~>*/List<DBSObjectReference> findAllObjects(@NotNull DBRProgressMonitor monitor, @NotNull SQLServerExecutionContext executionContext,
                                                     @NotNull ObjectsSearchParams params) throws DBException {
 
         DBSObject parentObject = params.getParentObject();
@@ -238,7 +238,7 @@ public class SQLServerStructureAssistant implements DBSStructureAssistant<SQLSer
         sqlBuilder.append("ORDER BY o.name");
         String template = sqlBuilder.toString();
 
-        List<DBSObjectReference> objects = new ArrayList<>();
+        /*~~>*/List<DBSObjectReference> objects = new ArrayList<>();
         try (JDBCSession session = executionContext.openSession(monitor, DBCExecutionPurpose.META, "Find objects by name")) {
             for (SQLServerDatabase database: databases) {
                 int rowsToFetch = params.getMaxResults() - objects.size();
@@ -316,7 +316,7 @@ public class SQLServerStructureAssistant implements DBSStructureAssistant<SQLSer
         return true;
     }
   
-    private void searchTempTables(@NotNull JDBCSession session, @NotNull ObjectsSearchParams params, @NotNull List<DBSObjectReference> objects) throws DBException {
+    private void searchTempTables(@NotNull JDBCSession session, @NotNull ObjectsSearchParams params, @NotNull /*~~>*/List<DBSObjectReference> objects) throws DBException {
         final SQLServerDatabase database = dataSource.getDatabase(session.getProgressMonitor(), SQLServerConstants.TEMPDB_DATABASE);
         final SQLServerSchema schema = database.getSchema(session.getProgressMonitor(), SQLServerConstants.DEFAULT_SCHEMA_NAME);
 

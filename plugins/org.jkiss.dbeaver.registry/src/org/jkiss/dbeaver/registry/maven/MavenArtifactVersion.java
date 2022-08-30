@@ -56,10 +56,10 @@ public class MavenArtifactVersion implements IMavenIdentifier {
     private String description;
     private String url;
     private MavenArtifactVersion parent;
-    private List<MavenArtifactVersion> imports;
-    private final List<MavenArtifactLicense> licenses = new ArrayList<>();
-    private final List<MavenProfile> profiles = new ArrayList<>();
-    private final List<MavenRepository> repositories = new ArrayList<>();
+    private /*~~>*/List<MavenArtifactVersion> imports;
+    private final /*~~>*/List<MavenArtifactLicense> licenses = new ArrayList<>();
+    private final /*~~>*/List<MavenProfile> profiles = new ArrayList<>();
+    private final /*~~>*/List<MavenRepository> repositories = new ArrayList<>();
 
     private IVariableResolver propertyResolver = new IVariableResolver() {
         @Override
@@ -75,7 +75,7 @@ public class MavenArtifactVersion implements IMavenIdentifier {
                     return artifact.getArtifactId();
             }
             for (MavenArtifactVersion v = MavenArtifactVersion.this; v != null; v = v.parent) {
-                for (MavenProfile profile : v.profiles) {
+                for (MavenProfile profile : /*~~>*/v.profiles) {
                     if (!profile.isActive()) {
                         continue;
                     }
@@ -154,23 +154,23 @@ public class MavenArtifactVersion implements IMavenIdentifier {
         return parent;
     }
 
-    public List<MavenArtifactLicense> getLicenses() {
+    public /*~~>*/List<MavenArtifactLicense> getLicenses() {
         return licenses;
     }
 
-    public List<MavenProfile> getProfiles() {
+    public /*~~>*/List<MavenProfile> getProfiles() {
         return profiles;
     }
 
-    public List<MavenArtifactDependency> getDependencies() {
-        List<MavenArtifactDependency> dependencies = new ArrayList<>();
+    public /*~~>*/List<MavenArtifactDependency> getDependencies() {
+        /*~~>*/List<MavenArtifactDependency> dependencies = new ArrayList<>();
         for (MavenProfile profile : profiles) {
-            if (profile.isActive() && !CommonUtils.isEmpty(profile.dependencies)) {
-                dependencies.addAll(profile.dependencies);
+            if (profile.isActive() && !CommonUtils.isEmpty(/*~~>*/profile.dependencies)) {
+                dependencies.addAll(/*~~>*/profile.dependencies);
             }
         }
         if (parent != null) {
-            List<MavenArtifactDependency> parentDependencies = parent.getDependencies();
+            /*~~>*/List<MavenArtifactDependency> parentDependencies = parent.getDependencies();
             if (!CommonUtils.isEmpty(parentDependencies)) {
                 dependencies.addAll(parentDependencies);
             }
@@ -390,15 +390,15 @@ public class MavenArtifactVersion implements IMavenIdentifier {
             // Dependencies
             Element dmElement = XMLUtils.getChildElement(element, "dependencyManagement");
             if (dmElement != null) {
-                profile.dependencyManagement = parseDependencies(monitor, dmElement, true, resolveOptionalDependencies);
+                /*~~>*/profile.dependencyManagement = parseDependencies(monitor, dmElement, true, resolveOptionalDependencies);
             }
-            profile.dependencies = parseDependencies(monitor, element, false, resolveOptionalDependencies);
+            /*~~>*/profile.dependencies = parseDependencies(monitor, element, false, resolveOptionalDependencies);
         }
     }
 
-    private List<MavenRepository> parseRepositories(Element element)
+    private /*~~>*/List<MavenRepository> parseRepositories(Element element)
     {
-        List<MavenRepository> repositories = new ArrayList<>();
+        /*~~>*/List<MavenRepository> repositories = new ArrayList<>();
         // Repositories
         Element repsElement = XMLUtils.getChildElement(element, "repositories");
         if (repsElement != null) {
@@ -424,12 +424,12 @@ public class MavenArtifactVersion implements IMavenIdentifier {
         return repositories;
     }
 
-    private List<MavenArtifactDependency> parseDependencies(
+    private /*~~>*/List<MavenArtifactDependency> parseDependencies(
         @NotNull DBRProgressMonitor monitor,
         @NotNull Element element,
         boolean depManagement,
         boolean resolveOptionalDependencies) {
-        List<MavenArtifactDependency> result = new ArrayList<>();
+        /*~~>*/List<MavenArtifactDependency> result = new ArrayList<>();
         Element dependenciesElement = XMLUtils.getChildElement(element, "dependencies");
         if (dependenciesElement != null) {
             for (Element dep : XMLUtils.getChildElementList(dependenciesElement, "dependency")) {
@@ -518,7 +518,7 @@ public class MavenArtifactVersion implements IMavenIdentifier {
                         }
                     }
                     if (dmInfo != null) {
-                        List<MavenArtifactReference> dmExclusions = dmInfo.getExclusions();
+                        /*~~>*/List<MavenArtifactReference> dmExclusions = dmInfo.getExclusions();
                         if (dmExclusions != null) {
                             for (MavenArtifactReference dmEx : dmExclusions) {
                                 dependency.addExclusion(dmEx);
@@ -540,8 +540,8 @@ public class MavenArtifactVersion implements IMavenIdentifier {
 
     private MavenArtifactDependency findDependencyManagement(String groupId, String artifactId) {
         for (MavenProfile profile : profiles) {
-            if (profile.isActive() && profile.dependencyManagement != null) {
-                for (MavenArtifactDependency dmArtifact : profile.dependencyManagement) {
+            if (profile.isActive() && /*~~>*/profile.dependencyManagement != null) {
+                for (MavenArtifactDependency dmArtifact : /*~~>*/profile.dependencyManagement) {
                     if (dmArtifact.getGroupId().equals(groupId) &&
                         dmArtifact.getArtifactId().equals(artifactId)) {
                         return dmArtifact;
@@ -575,9 +575,9 @@ public class MavenArtifactVersion implements IMavenIdentifier {
             result.put(rep.getId(), rep);
         }
         for (MavenArtifactVersion v = MavenArtifactVersion.this; v != null; v = v.parent) {
-            for (MavenProfile profile : v.profiles) {
+            for (MavenProfile profile : /*~~>*/v.profiles) {
                 if (profile.isActive()) {
-                    List<MavenRepository> pr = profile.getRepositories();
+                    /*~~>*/List<MavenRepository> pr = profile.getRepositories();
                     if (pr != null) {
                         for (MavenRepository repository : pr) {
                             result.put(repository.getId(), repository);

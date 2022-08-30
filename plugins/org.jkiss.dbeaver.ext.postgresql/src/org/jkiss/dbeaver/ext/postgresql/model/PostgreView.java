@@ -60,7 +60,7 @@ public class PostgreView extends PostgreViewBase
     }
 
     @Override
-    public List<? extends DBSTableIndex> getIndexes(DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<? extends DBSTableIndex> getIndexes(DBRProgressMonitor monitor) throws DBException
     {
         return null;
     }

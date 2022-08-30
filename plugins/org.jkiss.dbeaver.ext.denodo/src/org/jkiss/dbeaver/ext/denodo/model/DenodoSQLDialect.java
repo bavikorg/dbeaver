@@ -46,7 +46,7 @@ public class DenodoSQLDialect extends GenericSQLDialect implements TPRuleProvide
     }
 
     @Override
-    public void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull List<TPRule> rules, @NotNull RulePosition position) {
+    public void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull /*~~>*/List<TPRule> rules, @NotNull RulePosition position) {
         if (position == RulePosition.INITIAL || position == RulePosition.PARTITION) {
             rules.add(new SQLDollarQuoteRule(position == RulePosition.PARTITION, false, false, true));
         }

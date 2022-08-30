@@ -158,9 +158,9 @@ public class H2MetaModel extends GenericMetaModel
     public GenericTableConstraintColumn[] createConstraintColumnsImpl(JDBCSession session, GenericTableBase parent, GenericUniqueKey object, GenericMetaObject pkObject, JDBCResultSet dbResult) throws DBException {
         GenericDataSource dataSource = parent.getDataSource();
         if (!dataSource.isServerVersionAtLeast(2, 0) && dbResult != null) { // H2 Version 2 has COLUMN_NAME and works fine
-            List<GenericTableConstraintColumn> constraintColumns = new ArrayList<>();
+            /*~~>*/List<GenericTableConstraintColumn> constraintColumns = new ArrayList<>();
             String columnList = JDBCUtils.safeGetString(dbResult, "COLUMN_LIST");
-            List<? extends GenericTableColumn> attributes = parent.getAttributes(dbResult.getSession().getProgressMonitor());
+            /*~~>*/List<? extends GenericTableColumn> attributes = parent.getAttributes(dbResult.getSession().getProgressMonitor());
             if (CommonUtils.isNotEmpty(columnList) && !CommonUtils.isEmpty(attributes)) {
                 if (columnList.contains(",")) {
                     // We have a few columns in the key. Let's find them all.
@@ -178,7 +178,7 @@ public class H2MetaModel extends GenericMetaModel
         return super.createConstraintColumnsImpl(session, parent, object, pkObject, dbResult);
     }
 
-    private void findConstraintColumns(GenericUniqueKey object, GenericDataSource dataSource, List<GenericTableConstraintColumn> constraintColumns, String columnList, List<? extends GenericTableColumn> attributes) {
+    private void findConstraintColumns(GenericUniqueKey object, GenericDataSource dataSource, /*~~>*/List<GenericTableConstraintColumn> constraintColumns, String columnList, /*~~>*/List<? extends GenericTableColumn> attributes) {
         Optional<? extends GenericTableColumn> match = attributes.stream().filter(item -> DBUtils.getUnQuotedIdentifier(dataSource, item.getName()).equals(columnList)).findFirst();
         if (match.isPresent()) {
             GenericTableColumn tableColumn = match.get();

@@ -79,7 +79,7 @@ public class MySQLTableColumn extends JDBCTableColumn<MySQLTableBase> implements
     private long modifiers;
 
     private String fullTypeName;
-    private List<String> enumValues;
+    private /*~~>*/List<String> enumValues;
 
     public MySQLTableColumn(MySQLTableBase table)
     {
@@ -111,8 +111,8 @@ public class MySQLTableColumn extends JDBCTableColumn<MySQLTableBase> implements
             this.extraInfo = mySource.extraInfo;
             this.genExpression = mySource.genExpression;
             this.fullTypeName = mySource.fullTypeName;
-            if (mySource.enumValues != null) {
-                this.enumValues = new ArrayList<>(mySource.enumValues);
+            if (/*~~>*/mySource.enumValues != null) {
+                /*~~>*/this.enumValues = new ArrayList<>(/*~~>*/mySource.enumValues);
             }
         } else {
             this.collation = table.getContainer().getAdditionalInfo(monitor).getDefaultCollation();
@@ -195,8 +195,8 @@ public class MySQLTableColumn extends JDBCTableColumn<MySQLTableBase> implements
         }
     }
 
-    private static List<String> parseEnumValues(String typeName) {
-        List<String> values = new ArrayList<>();
+    private static /*~~>*/List<String> parseEnumValues(String typeName) {
+        /*~~>*/List<String> values = new ArrayList<>();
         StringBuilder value = new StringBuilder();
         int pos = 0;
         while (true) {
@@ -346,7 +346,7 @@ public class MySQLTableColumn extends JDBCTableColumn<MySQLTableBase> implements
         return keyType;
     }
 
-    public List<String> getEnumValues()
+    public /*~~>*/List<String> getEnumValues()
     {
         return enumValues;
     }

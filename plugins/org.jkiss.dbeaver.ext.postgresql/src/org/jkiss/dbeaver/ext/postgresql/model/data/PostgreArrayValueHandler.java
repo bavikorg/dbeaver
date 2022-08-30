@@ -134,7 +134,7 @@ public class PostgreArrayValueHandler extends JDBCArrayValueHandler {
         }
         if (itemType.getDataKind() == DBPDataKind.STRUCT) {
             // Items are structures. Parse them as CSV
-            List<Object> itemStrings = PostgreValueParser.parseArrayString(value, delimiter);
+            /*~~>*/List<Object> itemStrings = PostgreValueParser.parseArrayString(value, delimiter);
             Object[] itemValues = new Object[itemStrings.size()];
             DBDValueHandler itemValueHandler = DBUtils.findValueHandler(session, itemType);
             for (int i = 0; i < itemStrings.size(); i++) {
@@ -144,7 +144,7 @@ public class PostgreArrayValueHandler extends JDBCArrayValueHandler {
             }
             return new JDBCCollection(session.getProgressMonitor(), itemType, itemValueHandler, itemValues);
         } else {
-            List<Object> strings = PostgreValueParser.parseArrayString(value, delimiter);
+            /*~~>*/List<Object> strings = PostgreValueParser.parseArrayString(value, delimiter);
             Object[] contents = new Object[strings.size()];
             for (int i = 0; i < strings.size(); i++) {
                 contents[i] = PostgreValueParser.convertStringToValue(session, itemType, String.valueOf(strings.get(i)));

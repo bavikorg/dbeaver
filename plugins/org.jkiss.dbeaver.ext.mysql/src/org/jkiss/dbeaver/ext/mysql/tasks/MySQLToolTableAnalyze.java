@@ -35,7 +35,7 @@ public class MySQLToolTableAnalyze extends MySQLToolWithStatus<MySQLTableBase, M
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, MySQLToolTableAnalyzeSettings settings, List<DBEPersistAction> queries, MySQLTableBase object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, MySQLToolTableAnalyzeSettings settings, /*~~>*/List<DBEPersistAction> queries, MySQLTableBase object) throws DBCException {
         String sql = "ANALYZE TABLE " + object.getFullyQualifiedName(DBPEvaluationContext.DDL);
         queries.add(new SQLDatabasePersistAction(sql));
     }

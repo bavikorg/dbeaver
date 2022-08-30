@@ -380,7 +380,7 @@ public class DBeaverApplication extends EclipseApplicationImpl implements DBPApp
             return backedUpWorkspaces;
         }
 
-        List<String> workspaces = Stream.concat(recentWorkspaces.stream(), backedUpWorkspaces.stream())
+        /*~~>*/List<String> workspaces = Stream.concat(recentWorkspaces.stream(), backedUpWorkspaces.stream())
             .distinct()
             .limit(maxSize)
             .collect(Collectors.toList());
@@ -411,7 +411,7 @@ public class DBeaverApplication extends EclipseApplicationImpl implements DBPApp
         }
     }
 
-    private void saveWorkspacesToBackup(@NotNull List<? extends CharSequence> workspaces) {
+    private void saveWorkspacesToBackup(@NotNull /*~~>*/List<? extends CharSequence> workspaces) {
         try {
             if (!Files.exists(FILE_WITH_WORKSPACES.getParent())) {
                 Files.createDirectories(FILE_WITH_WORKSPACES.getParent());

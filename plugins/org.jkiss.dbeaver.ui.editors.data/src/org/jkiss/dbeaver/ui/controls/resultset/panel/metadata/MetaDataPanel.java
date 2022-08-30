@@ -57,7 +57,7 @@ public class MetaDataPanel implements IResultSetPanel {
 
     private IResultSetPresentation presentation;
     private MetaDataTable attributeList;
-    private List<DBDAttributeBinding> curAttributes;
+    private /*~~>*/List<DBDAttributeBinding> curAttributes;
     private Color colorDisabled;
     private transient boolean updateSelection = false;
 
@@ -139,7 +139,7 @@ public class MetaDataPanel implements IResultSetPanel {
         if (attributeList.isLoading()) {
             return;
         }
-        List<DBDAttributeBinding> newAttributes = Arrays.asList(presentation.getController().getModel().getAttributes());
+        /*~~>*/List<DBDAttributeBinding> newAttributes = Arrays.asList(presentation.getController().getModel().getAttributes());
         if (curAttributes != null && curAttributes.size() == newAttributes.size()) {
             boolean equals = true;
             for (int i = 0; i < curAttributes.size(); i++) {
@@ -178,7 +178,7 @@ public class MetaDataPanel implements IResultSetPanel {
             super(parent, SWT.SHEET, presentation.getController().getSite(), new TreeContentProvider() {
                 @Override
                 public Object[] getChildren(Object parentElement) {
-                    List<DBDAttributeBinding> nested = ((DBDAttributeBinding) parentElement).getNestedBindings();
+                    /*~~>*/List<DBDAttributeBinding> nested = ((DBDAttributeBinding) parentElement).getNestedBindings();
                     return nested == null ? new Object[0] : nested.toArray(new Object[0]);
                 }
 
@@ -212,7 +212,7 @@ public class MetaDataPanel implements IResultSetPanel {
 
         @NotNull
         @Override
-        protected String getListConfigId(List<Class<?>> classList) {
+        protected String getListConfigId(/*~~>*/List<Class<?>> classList) {
             final DBCExecutionContext executionContext = presentation.getController().getExecutionContext();
             if (executionContext == null) {
                 return "MetaData";

@@ -279,7 +279,7 @@ public abstract class OracleTablePhysical extends OracleTableBase implements DBS
         @Override
         public Object[] getPossibleValues(OracleTablePhysical object)
         {
-            final List<OracleTablespace> tablespaces = new ArrayList<>();
+            final /*~~>*/List<OracleTablespace> tablespaces = new ArrayList<>();
             try {
                 tablespaces.addAll(object.getDataSource().getTablespaces(new VoidProgressMonitor()));
             } catch (DBException e) {

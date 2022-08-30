@@ -31,6 +31,6 @@ public interface DBPDriverFileSource
 
     String getInstructions();
 
-    List<? extends DBPDriverFileInfo> getFiles();
+    /*~~>*/List<? extends DBPDriverFileInfo> getFiles();
 
 }

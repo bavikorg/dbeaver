@@ -222,7 +222,7 @@ public class SelectActiveSchemaHandler extends AbstractDataSourceHandler impleme
         static final int DB_LIST_READ_TIMEOUT = 3000;
 
         @Override
-        protected void fillContributionItems(List<IContributionItem> menuItems) {
+        protected void fillContributionItems(/*~~>*/List<IContributionItem> menuItems) {
             IWorkbenchWindow workbenchWindow = UIUtils.getActiveWorkbenchWindow();
             if (workbenchWindow.getActivePage() == null ||
                 SelectActiveDataSourceHandler.getDataSourceContainerProvider(workbenchWindow.getActivePage().getActiveEditor()) == null)

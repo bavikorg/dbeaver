@@ -75,10 +75,10 @@ class ReferencesResultsContainer implements IResultSetContainer {
 
     private DBSDataContainer dataContainer;
 
-    private final List<ReferenceKey> referenceKeys = new ArrayList<>();
+    private final /*~~>*/List<ReferenceKey> referenceKeys = new ArrayList<>();
     private ReferenceKey activeReferenceKey;
 
-    private List<ResultSetRow> lastSelectedRows;
+    private /*~~>*/List<ResultSetRow> lastSelectedRows;
 
     ReferencesResultsContainer(Composite parent, IResultSetController parentController) {
         this.parentController = parentController;
@@ -105,7 +105,7 @@ class ReferencesResultsContainer implements IResultSetContainer {
                 // Save active keys in virtual entity props
                 {
                     DBVEntity vEntityOwner = DBVUtils.getVirtualEntity(parentDataContainer, true);
-                    List<Map<String, Object>> activeAssociations = new ArrayList<>();
+                    /*~~>*/List<Map<String, Object>> activeAssociations = new ArrayList<>();
                     activeAssociations.add(activeReferenceKey.createMemo());
                     Object curActiveAssociations = vEntityOwner.getProperty(V_PROP_ACTIVE_ASSOCIATIONS);
                     if (!CommonUtils.equalObjects(curActiveAssociations, activeAssociations)) {
@@ -204,7 +204,7 @@ class ReferencesResultsContainer implements IResultSetContainer {
             fkCombo.removeAll();
             dataViewer.showEmptyPresentation();
         });
-        List<DBDAttributeBinding> visibleAttributes = parentController.getModel().getVisibleAttributes();
+        /*~~>*/List<DBDAttributeBinding> visibleAttributes = parentController.getModel().getVisibleAttributes();
         if (visibleAttributes.isEmpty()) {
             return;
         }
@@ -228,7 +228,7 @@ class ReferencesResultsContainer implements IResultSetContainer {
             allEntities.add((DBSEntity) parentDataContainer);
         }
 
-        List<ReferenceKeyMemo> refKeyMemos = new ArrayList<>();
+        /*~~>*/List<ReferenceKeyMemo> refKeyMemos = new ArrayList<>();
         {
             DBVEntity vEntityOwner = DBVUtils.getVirtualEntity(parentDataContainer, false);
             if (vEntityOwner != null) {
@@ -249,7 +249,7 @@ class ReferencesResultsContainer implements IResultSetContainer {
                 protected IStatus run(DBRProgressMonitor monitor) {
                     monitor.beginTask("Load references", allEntities.size());
                     try {
-                        List<ReferenceKey> refs = new ArrayList<>();
+                        /*~~>*/List<ReferenceKey> refs = new ArrayList<>();
                         for (DBSEntity entity : allEntities) {
                             monitor.subTask(entity.getName());
                             if (entity instanceof DBVEntity) {
@@ -263,7 +263,7 @@ class ReferencesResultsContainer implements IResultSetContainer {
                                     continue;
                                 }
                                 DBSEntityReferrer entityReferrer = (DBSEntityReferrer) association;
-                                List<? extends DBSEntityAttributeRef> attributeRefs = entityReferrer.getAttributeReferences(monitor);
+                                /*~~>*/List<? extends DBSEntityAttributeRef> attributeRefs = entityReferrer.getAttributeReferences(monitor);
                                 if (attributeRefs == null) {
                                     continue;
                                 }
@@ -290,7 +290,7 @@ class ReferencesResultsContainer implements IResultSetContainer {
                             {
                                 for (DBSEntityAssociation assoc : references) {
                                     if (assoc instanceof DBSEntityReferrer) {
-                                        List<? extends DBSEntityAttributeRef> attrs = ((DBSEntityReferrer) assoc).getAttributeReferences(monitor);
+                                        /*~~>*/List<? extends DBSEntityAttributeRef> attrs = ((DBSEntityReferrer) assoc).getAttributeReferences(monitor);
                                         if (!CommonUtils.isEmpty(attrs)) {
                                             ReferenceKey referenceKey = new ReferenceKey(monitor, true, entity, assoc, attrs);
                                             refs.add(referenceKey);
@@ -378,7 +378,7 @@ class ReferencesResultsContainer implements IResultSetContainer {
                     }
                     dataContainer = (DBSDataContainer) realEntity;
 
-                    List<ResultSetRow> selectedRows = parentController.getSelection().getSelectedRows();
+                    /*~~>*/List<ResultSetRow> selectedRows = parentController.getSelection().getSelectedRows();
                     if (!force && CommonUtils.equalObjects(lastSelectedRows, selectedRows)) {
                         return Status.OK_STATUS;
                     }
@@ -417,14 +417,14 @@ class ReferencesResultsContainer implements IResultSetContainer {
         private final boolean isReference;
         private final DBSEntity refEntity;
         private final DBSEntityAssociation refAssociation;
-        private final List<? extends DBSEntityAttributeRef> refAttributes;
+        private final /*~~>*/List<? extends DBSEntityAttributeRef> refAttributes;
         private DBSEntity targetEntity;
 
-        ReferenceKey(DBRProgressMonitor monitor, boolean isReference, DBSEntity refEntity, DBSEntityAssociation refAssociation, List<? extends DBSEntityAttributeRef> refAttributes) {
+        ReferenceKey(DBRProgressMonitor monitor, boolean isReference, DBSEntity refEntity, DBSEntityAssociation refAssociation, /*~~>*/List<? extends DBSEntityAttributeRef> refAttributes) {
             this.isReference = isReference;
             this.refEntity = refEntity;
             this.refAssociation = refAssociation;
-            this.refAttributes = refAttributes;
+            /*~~>*/this.refAttributes = refAttributes;
 
             if (refAssociation != null) {
                 if (isReference) {

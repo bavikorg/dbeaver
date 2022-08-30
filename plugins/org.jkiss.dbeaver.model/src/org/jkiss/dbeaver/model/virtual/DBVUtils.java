@@ -162,7 +162,7 @@ public abstract class DBVUtils {
     public static DBDAttributeTransformer[] findAttributeTransformers(@NotNull DBDAttributeBinding binding, @Nullable Boolean custom)
     {
         DBPDataSource dataSource = binding.getDataSource();
-        List<? extends DBDAttributeTransformerDescriptor> tdList =
+        /*~~>*/List<? extends DBDAttributeTransformerDescriptor> tdList =
             DBWorkbench.getPlatform().getValueHandlerRegistry().findTransformers(dataSource, binding.getAttribute(), custom);
         if (tdList == null || tdList.isEmpty()) {
             return null;
@@ -208,7 +208,7 @@ public abstract class DBVUtils {
     }
 
     @NotNull
-    public static List<DBDLabelValuePair> readDictionaryRows(
+    public static /*~~>*/List<DBDLabelValuePair> readDictionaryRows(
         @NotNull DBCSession session,
         @NotNull DBSEntityAttribute valueAttribute,
         @NotNull DBDValueHandler valueHandler,
@@ -216,9 +216,9 @@ public abstract class DBVUtils {
         boolean formatValues,
         boolean containsCount) throws DBCException
     {
-        List<DBDLabelValuePair> values = new ArrayList<>();
-        List<DBCAttributeMetaData> metaColumns = dbResult.getMeta().getAttributes();
-        List<DBDValueHandler> colHandlers = new ArrayList<>(metaColumns.size());
+        /*~~>*/List<DBDLabelValuePair> values = new ArrayList<>();
+        /*~~>*/List<DBCAttributeMetaData> metaColumns = dbResult.getMeta().getAttributes();
+        /*~~>*/List<DBDValueHandler> colHandlers = new ArrayList<>(metaColumns.size());
         for (DBCAttributeMetaData col : metaColumns) {
             colHandlers.add(DBUtils.findValueHandler(session, col));
         }
@@ -274,7 +274,7 @@ public abstract class DBVUtils {
     }
 
     @NotNull
-    public static List<DBVEntityAttribute> getCustomAttributes(@NotNull DBSEntity entity) {
+    public static /*~~>*/List<DBVEntityAttribute> getCustomAttributes(@NotNull DBSEntity entity) {
         DBVEntity vEntity = getVirtualEntity(entity, false);
         if (vEntity != null) {
             return vEntity.getCustomAttributes();
@@ -283,15 +283,15 @@ public abstract class DBVUtils {
     }
 
     @NotNull
-    public static List<DBSEntityAttribute> getAllAttributes(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntity entity) throws DBException {
-        List<DBSEntityAttribute> result = new ArrayList<>();
+    public static /*~~>*/List<DBSEntityAttribute> getAllAttributes(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntity entity) throws DBException {
+        /*~~>*/List<DBSEntityAttribute> result = new ArrayList<>();
         final Collection<? extends DBSEntityAttribute> realAttributes = entity.getAttributes(monitor);
         if (!CommonUtils.isEmpty(realAttributes)) {
             result.addAll(realAttributes);
         }
         DBVEntity vEntity = getVirtualEntity(entity, false);
         if (vEntity != null) {
-            List<DBVEntityAttribute> vAttributes = vEntity.getEntityAttributes();
+            /*~~>*/List<DBVEntityAttribute> vAttributes = vEntity.getEntityAttributes();
             if (!CommonUtils.isEmpty(vAttributes)) {
                 for (DBVEntityAttribute attr : vAttributes) {
                     if (attr.isCustom()) {
@@ -305,15 +305,15 @@ public abstract class DBVUtils {
     }
 
     @NotNull
-    public static List<DBSEntityConstraint> getAllConstraints(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntity entity) throws DBException {
-        List<DBSEntityConstraint> result = new ArrayList<>();
+    public static /*~~>*/List<DBSEntityConstraint> getAllConstraints(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntity entity) throws DBException {
+        /*~~>*/List<DBSEntityConstraint> result = new ArrayList<>();
         final Collection<? extends DBSEntityConstraint> realConstraints = entity.getConstraints(monitor);
         if (!CommonUtils.isEmpty(realConstraints)) {
             result.addAll(realConstraints);
         }
         DBVEntity vEntity = getVirtualEntity(entity, false);
         if (vEntity != null) {
-            List<DBVEntityConstraint> vConstraints = vEntity.getConstraints();
+            /*~~>*/List<DBVEntityConstraint> vConstraints = vEntity.getConstraints();
             if (!CommonUtils.isEmpty(vConstraints)) {
                 result.addAll(vConstraints);
             }
@@ -323,8 +323,8 @@ public abstract class DBVUtils {
     }
 
     @NotNull
-    public static List<DBSEntityAssociation> getAllAssociations(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntity entity) {
-        List<DBSEntityAssociation> result = new ArrayList<>();
+    public static /*~~>*/List<DBSEntityAssociation> getAllAssociations(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntity entity) {
+        /*~~>*/List<DBSEntityAssociation> result = new ArrayList<>();
         try {
             final Collection<? extends DBSEntityAssociation> realConstraints = entity.getAssociations(monitor);
             if (!CommonUtils.isEmpty(realConstraints)) {
@@ -336,7 +336,7 @@ public abstract class DBVUtils {
         if (!(entity instanceof DBVEntity)) {
             DBVEntity vEntity = getVirtualEntity(entity, false);
             if (vEntity != null) {
-                List<DBVEntityForeignKey> vFKs = vEntity.getForeignKeys();
+                /*~~>*/List<DBVEntityForeignKey> vFKs = vEntity.getForeignKeys();
                 if (!CommonUtils.isEmpty(vFKs)) {
                     result.addAll(vFKs);
                 }
@@ -347,8 +347,8 @@ public abstract class DBVUtils {
     }
 
     @NotNull
-    public static List<DBSEntityAssociation> getAllReferences(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntity onEntity) {
-        List<DBSEntityAssociation> result = new ArrayList<>();
+    public static /*~~>*/List<DBSEntityAssociation> getAllReferences(@NotNull DBRProgressMonitor monitor, @NotNull DBSEntity onEntity) {
+        /*~~>*/List<DBSEntityAssociation> result = new ArrayList<>();
         try {
             final Collection<? extends DBSEntityAssociation> realConstraints = onEntity.getReferences(monitor);
             if (!CommonUtils.isEmpty(realConstraints)) {
@@ -364,10 +364,10 @@ public abstract class DBVUtils {
     }
 
     @NotNull
-    public static List<DBVEntityForeignKey> getVirtualReferences(@NotNull DBSEntity onEntity) {
+    public static /*~~>*/List<DBVEntityForeignKey> getVirtualReferences(@NotNull DBSEntity onEntity) {
         DBNDatabaseNode entityNode = DBNUtils.getNodeByObject(onEntity);
         if (entityNode != null) {
-            List<DBVEntityForeignKey> globalRefs = DBVModel.getGlobalReferences(entityNode);
+            /*~~>*/List<DBVEntityForeignKey> globalRefs = DBVModel.getGlobalReferences(entityNode);
             if (!CommonUtils.isEmpty(globalRefs)) {
                 return globalRefs;
             }
@@ -484,7 +484,7 @@ public abstract class DBVUtils {
         return jexlEngine.createExpression(expression);
     }
 
-    public static boolean isIdentifyingAttributes(@NotNull DBRProgressMonitor monitor, @NotNull List<DBSEntityAttribute> attributes) throws DBException {
+    public static boolean isIdentifyingAttributes(@NotNull DBRProgressMonitor monitor, @NotNull /*~~>*/List<DBSEntityAttribute> attributes) throws DBException {
         if (attributes.isEmpty()) {
             return false;
         }
@@ -496,7 +496,7 @@ public abstract class DBVUtils {
             if (constraints != null) {
                 for (DBSEntityConstraint constraint : constraints) {
                     if (DBUtils.isIdentifierConstraint(monitor, constraint)) {
-                        List<? extends DBSEntityAttributeRef> attrRefs = ((DBSEntityReferrer) constraint).getAttributeReferences(monitor);
+                        /*~~>*/List<? extends DBSEntityAttributeRef> attrRefs = ((DBSEntityReferrer) constraint).getAttributeReferences(monitor);
                         if (attrRefs == null) {
                             continue;
                         }

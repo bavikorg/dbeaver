@@ -67,7 +67,7 @@ class SQLToolTaskWizardPageSettings extends ActiveWizardPage<SQLToolTaskWizard> 
 
     private SQLToolTaskWizard sqlWizard;
 
-    private List<DBSObject> selectedObjects = new ArrayList<>();
+    private /*~~>*/List<DBSObject> selectedObjects = new ArrayList<>();
     private PropertyTreeViewer taskOptionsViewer;
     private Object sqlPreviewPanel;
     private TableViewer objectsViewer;

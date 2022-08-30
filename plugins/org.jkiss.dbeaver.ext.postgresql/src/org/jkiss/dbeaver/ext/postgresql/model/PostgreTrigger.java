@@ -99,7 +99,7 @@ public class PostgreTrigger extends PostgreTriggerBase implements DBSEntityEleme
         } else {
             actionTiming = DBSActionTiming.AFTER;
         }
-        List<DBSManipulationType> mt = new ArrayList<>(1);
+        /*~~>*/List<DBSManipulationType> mt = new ArrayList<>(1);
         if (CommonUtils.isBitSet(tgType, TRIGGER_TYPE_INSERT)) {
             mt.add(DBSManipulationType.INSERT);
         }

@@ -38,12 +38,12 @@ import static org.mockito.Mockito.when;
 public class RequestBuilder {
     private final DataSource dataSource;
     private final DBSObject object;
-    private final List<? extends DBSObject> children;
+    private final /*~~>*/List<? extends DBSObject> children;
 
-    private RequestBuilder(@NotNull DataSource dataSource, @NotNull DBSObject object, @NotNull List<? extends DBSObject> children) {
+    private RequestBuilder(@NotNull DataSource dataSource, @NotNull DBSObject object, @NotNull /*~~>*/List<? extends DBSObject> children) {
         this.dataSource = dataSource;
         this.object = object;
-        this.children = children;
+        /*~~>*/this.children = children;
     }
 
     public static RequestBuilder databases(Builder.Consumer<DatabaseContainerBuilder> applier) throws DBException {

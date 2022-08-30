@@ -54,7 +54,7 @@ public class DB2UniqueKeyConfigurator implements DBEObjectConfigurator<DB2TableU
                 constraint.setConstraintType(editPage.getConstraintType());
                 constraint.setName(editPage.getConstraintName());
 
-                List<DB2TableKeyColumn> columns = new ArrayList<>(editPage.getSelectedAttributes().size());
+                /*~~>*/List<DB2TableKeyColumn> columns = new ArrayList<>(editPage.getSelectedAttributes().size());
                 DB2TableKeyColumn column;
                 int colIndex = 1;
                 for (DBSEntityAttribute tableColumn : editPage.getSelectedAttributes()) {

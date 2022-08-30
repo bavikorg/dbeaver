@@ -34,7 +34,7 @@ public class PostgreToolMViewRefresh extends PostgreToolWithStatus<PostgreMateri
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, PostgreToolMViewRefreshSettings settings, List<DBEPersistAction> queries, PostgreMaterializedView object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, PostgreToolMViewRefreshSettings settings, /*~~>*/List<DBEPersistAction> queries, PostgreMaterializedView object) throws DBCException {
         String sql = "REFRESH MATERIALIZED VIEW " + object.getFullyQualifiedName(DBPEvaluationContext.DDL) + " ";
         boolean isWithData = settings.isWithData();
         if (isWithData) {

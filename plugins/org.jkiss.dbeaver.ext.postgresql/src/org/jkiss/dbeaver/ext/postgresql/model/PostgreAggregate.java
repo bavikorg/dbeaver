@@ -67,11 +67,11 @@ public class PostgreAggregate implements PostgreObject, DBPOverloadedObject, DBP
     }
 
     @Property(viewable = true, order = 2)
-    public List<PostgreDataType> getInputTypes(DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<PostgreDataType> getInputTypes(DBRProgressMonitor monitor) throws DBException {
         if (function == null) {
             return null;
         }
-        List<PostgreDataType> result = new ArrayList<>();
+        /*~~>*/List<PostgreDataType> result = new ArrayList<>();
         for (PostgreProcedureParameter param : function.getInputParameters()) {
             result.add(param.getParameterType());
         }

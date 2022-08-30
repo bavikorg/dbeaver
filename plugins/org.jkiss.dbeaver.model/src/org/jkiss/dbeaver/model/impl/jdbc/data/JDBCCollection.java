@@ -402,7 +402,7 @@ public class JDBCCollection extends AbstractDatabaseList implements DBDValueClon
         }
         try {
             try (DBCResultSet resultSet = JDBCResultSetImpl.makeResultSet(session, null, dbResult, ModelMessages.model_jdbc_array_result_set, true)) {
-                List<Object> data = new ArrayList<>();
+                /*~~>*/List<Object> data = new ArrayList<>();
                 while (dbResult.next()) {
                     // Fetch second column - it contains value
                     data.add(valueHandler.fetchValueObject(session, resultSet, elementType, 1));
@@ -469,7 +469,7 @@ public class JDBCCollection extends AbstractDatabaseList implements DBDValueClon
             if (value.startsWith("[") && value.endsWith("]")) {
                 // FIXME: use real parser (nested arrays, quotes escape, etc)
                 String arrayString = value.substring(1, value.length() - 1);
-                List<Object> items = new ArrayList<>();
+                /*~~>*/List<Object> items = new ArrayList<>();
                 StringTokenizer st = new StringTokenizer(arrayString, ",", false);
                 while (st.hasMoreTokens()) {
                     String token = st.nextToken().trim();

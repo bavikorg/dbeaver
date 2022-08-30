@@ -160,7 +160,7 @@ public abstract class AbstractJob extends Job
     }
 
     private void runBlockCanceler() {
-        final List<DBRBlockingObject> activeBlocks = new ArrayList<>(
+        final /*~~>*/List<DBRBlockingObject> activeBlocks = new ArrayList<>(
             CommonUtils.safeList(progressMonitor.getActiveBlocks()));
         if (activeBlocks.isEmpty()) {
             // Nothing to cancel

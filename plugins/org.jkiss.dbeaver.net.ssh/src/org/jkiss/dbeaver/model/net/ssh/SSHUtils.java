@@ -65,7 +65,7 @@ public class SSHUtils {
                 JSch testSch = new JSch();
                 testSch.addIdentity(privKeyPath);
                 IdentityRepository ir = testSch.getIdentityRepository();
-                List<Identity> identities = ir.getIdentities();
+                /*~~>*/List<Identity> identities = ir.getIdentities();
                 for (Identity identity : identities) {
                     if (identity.isEncrypted()) {
                         return true;

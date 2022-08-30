@@ -86,7 +86,7 @@ public class DriverManagerDialog extends HelpEnabledDialog implements ISelection
 
     @Override
     protected Control createDialogArea(Composite parent) {
-        List<DBPDataSourceProviderDescriptor> enabledProviders = DataSourceProviderRegistry.getInstance().getEnabledDataSourceProviders();
+        /*~~>*/List<DBPDataSourceProviderDescriptor> enabledProviders = DataSourceProviderRegistry.getInstance().getEnabledDataSourceProviders();
         {
             DBPDataSourceProviderDescriptor manProvider = null;
             for (DBPDataSourceProviderDescriptor provider : DataSourceProviderRegistry.getInstance().getEnabledDataSourceProviders()) {
@@ -219,7 +219,7 @@ public class DriverManagerDialog extends HelpEnabledDialog implements ISelection
         }
         StringBuilder buf = new StringBuilder();
         DriverTreeViewer driverTreeViewer = (DriverTreeViewer) treeControl.getSelectorViewer();
-        List<Object> driverList = (List<Object>) driverTreeViewer.getInput();
+        /*~~>*/List<Object> driverList = (/*~~>*/List<Object>) driverTreeViewer.getInput();
 
         for (Object dObj : driverList) {
             if (dObj instanceof DriverTreeViewer.DriverCategory) {
@@ -372,7 +372,7 @@ public class DriverManagerDialog extends HelpEnabledDialog implements ISelection
     }
 
     private void deleteDriver() {
-        List<DBPDataSourceContainer> usedDS = DriverUtils.getUsedBy(selectedDriver, DataSourceRegistry.getAllDataSources());
+        /*~~>*/List<DBPDataSourceContainer> usedDS = DriverUtils.getUsedBy(selectedDriver, DataSourceRegistry.getAllDataSources());
         if (!usedDS.isEmpty()) {
             StringBuilder message = new StringBuilder(NLS.bind(UIConnectionMessages.dialog_driver_manager_message_cant_delete_text, selectedDriver.getName()));
             for (DBPDataSourceContainer ds : usedDS) {
@@ -392,7 +392,7 @@ public class DriverManagerDialog extends HelpEnabledDialog implements ISelection
     }
 
     private boolean undeleteDrivers() {
-        List<DriverDescriptor> drivers = new ArrayList<>();
+        /*~~>*/List<DriverDescriptor> drivers = new ArrayList<>();
 
         BaseDialog dialog = new BaseDialog(getShell(), "Restore deleted driver(s)", null) {
 

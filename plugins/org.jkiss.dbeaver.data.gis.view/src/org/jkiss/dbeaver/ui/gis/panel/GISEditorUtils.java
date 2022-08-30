@@ -26,9 +26,9 @@ public class GISEditorUtils {
 
     private static final int MAX_RECENT_SRID_SIZE = 10;
 
-    private static final List<Integer> recentSRIDs = new ArrayList<>();
+    private static final /*~~>*/List<Integer> recentSRIDs = new ArrayList<>();
 
-    public static List<Integer> getRecentSRIDs() {
+    public static /*~~>*/List<Integer> getRecentSRIDs() {
         return recentSRIDs;
     }
 

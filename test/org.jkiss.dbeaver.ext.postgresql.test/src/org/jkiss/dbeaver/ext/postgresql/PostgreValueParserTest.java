@@ -188,21 +188,21 @@ public class PostgreValueParserTest {
 
     @Test
     public void parseArrayString() throws DBCException {
-        List<String> stringList = new ArrayList<>();
+        /*~~>*/List<String> stringList = new ArrayList<>();
         stringList.add("A");
         stringList.add("B");
         Assert.assertEquals(stringList, PostgreValueParser.parseArrayString("{\"A\",\"B\"}", ","));
         Assert.assertNotEquals(stringList, PostgreValueParser.parseArrayString("{\"A\",\"B\",\"C\"}", ","));
         Assert.assertNotEquals(stringList, PostgreValueParser.parseArrayString("{\"A\",\"B\"}", "."));
 
-        List<String> intList = new ArrayList<>();
+        /*~~>*/List<String> intList = new ArrayList<>();
         intList.add("1");
         intList.add("22");
         intList.add("333");
         Assert.assertEquals(intList, PostgreValueParser.parseArrayString("{1,22,333}", ","));
         //Assert.assertEquals(intList, PostgreValueParser.parseArrayString("ARRAY[1,22,333]", ","));// todo: add array format support
 
-        List<String> doublesList = new ArrayList<>();
+        /*~~>*/List<String> doublesList = new ArrayList<>();
         doublesList.add("1.123");
         doublesList.add("2.1421324124421");
         Assert.assertEquals(doublesList, PostgreValueParser.parseArrayString("{1.123,2.1421324124421}", ","));
@@ -211,18 +211,18 @@ public class PostgreValueParserTest {
 
         //Infinity, -Infinity, NaN //todo
 
-        List<String> intNullList = new ArrayList<>(intList);
+        /*~~>*/List<String> intNullList = new ArrayList<>(intList);
         intNullList.add(null);
         Assert.assertEquals(intNullList, PostgreValueParser.parseArrayString("{1,22,333,NULL}", ","));
 
-        List<List<String>> int2List = new ArrayList<>();
+        /*~~>*/List</*~~>*/List<String>> int2List = new ArrayList<>();
         int2List.add(intList);
         int2List.add(intList);
         Assert.assertEquals(int2List, PostgreValueParser.parseArrayString("{{1,22,333},{1,22,333}}", ","));
         Assert.assertEquals(int2List, PostgreValueParser.parseArrayString("[1:2]={{1,22,333},{1,22,333}}", ",")); // "[1:2]=" do nothing
 //        Assert.assertEquals(int2List, PostgreValueParser.parseArrayString("ARRAY[[1,22,333],[1,22,333]]", ","));
 
-        List<List<List<String>>> int3List = new ArrayList<>();
+        /*~~>*/List</*~~>*/List</*~~>*/List<String>>> int3List = new ArrayList<>();
         int3List.add(int2List);
         int3List.add(int2List);
         Assert.assertEquals(int3List, PostgreValueParser.parseArrayString("{{{1,22,333},{1,22,333}},{{1,22,333},{1,22,333}}}", ","));

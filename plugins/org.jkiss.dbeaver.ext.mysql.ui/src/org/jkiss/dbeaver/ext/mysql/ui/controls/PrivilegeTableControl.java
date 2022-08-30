@@ -51,8 +51,8 @@ public class PrivilegeTableControl extends Composite {
     private ViewerColumnController<Object, Object> columnsController;
     private Table privTable;
 
-    private List<MySQLPrivilege> privileges;
-    private List<MySQLObjectPrivilege> currentPrivileges = new ArrayList<>();
+    private /*~~>*/List<MySQLPrivilege> privileges;
+    private /*~~>*/List<MySQLObjectPrivilege> currentPrivileges = new ArrayList<>();
 
     public PrivilegeTableControl(Composite parent, String title, boolean isStatic)
     {
@@ -183,8 +183,8 @@ public class PrivilegeTableControl extends Composite {
         super.notifyListeners(SWT.Modify, event);
     }
 
-    public void fillPrivileges(List<MySQLPrivilege> privs) {
-        this.privileges = privs;
+    public void fillPrivileges(/*~~>*/List<MySQLPrivilege> privs) {
+        /*~~>*/this.privileges = privs;
         boolean hasGrantOption = false;
         for (MySQLPrivilege privilege : privileges) {
             if (privilege.getName().equalsIgnoreCase(MySQLConstants.PRIVILEGE_GRANT_OPTION_NAME)) {
@@ -207,13 +207,13 @@ public class PrivilegeTableControl extends Composite {
         }
     }
 
-    public void fillGrants(List<MySQLGrant> grants, boolean editable) {
+    public void fillGrants(/*~~>*/List<MySQLGrant> grants, boolean editable) {
         // Other Privileges table must be disabled if table is in focus
         privTable.setEnabled(editable);
         fillGrants(grants);
     }
 
-    public void fillGrants(List<MySQLGrant> grants) {
+    public void fillGrants(/*~~>*/List<MySQLGrant> grants) {
         if (CommonUtils.isEmpty(privileges)) {
             return;
         }
@@ -255,7 +255,7 @@ public class PrivilegeTableControl extends Composite {
         drawColumns(currentPrivileges);
     }
 
-    private void drawColumns(List<?> objects) {
+    private void drawColumns(/*~~>*/List<?> objects) {
         tableViewer.setInput(objects);
         tableViewer.refresh();
         columnsController.repackColumns();

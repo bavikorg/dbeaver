@@ -67,7 +67,7 @@ public class NavigatorHandlerObjectDelete extends NavigatorHandlerObjectBase imp
         return null;
     }
 
-    public static boolean tryDeleteObjects(@NotNull IWorkbenchWindow window, @NotNull List<?> objects) {
+    public static boolean tryDeleteObjects(@NotNull IWorkbenchWindow window, @NotNull /*~~>*/List<?> objects) {
         if (containsNodesFromDifferentDataSources(objects)) {
             DBWorkbench.getPlatformUI().showError(
                 UINavigatorMessages.error_deleting_multiple_objects_from_different_datasources_title,
@@ -78,7 +78,7 @@ public class NavigatorHandlerObjectDelete extends NavigatorHandlerObjectBase imp
         return tryDeleteObjects(window, objects, NavigatorObjectsDeleter.of(objects, window));
     }
 
-    private static boolean containsNodesFromDifferentDataSources(@NotNull List<?> objects) {
+    private static boolean containsNodesFromDifferentDataSources(@NotNull /*~~>*/List<?> objects) {
         DBPDataSource dataSource = null;
         for (Object o: objects) {
             if (!(o instanceof DBNDatabaseNode)) {
@@ -100,7 +100,7 @@ public class NavigatorHandlerObjectDelete extends NavigatorHandlerObjectBase imp
         return false;
     }
 
-    private static boolean tryDeleteObjects(final IWorkbenchWindow window, final List<?> selectedObjects, final NavigatorObjectsDeleter deleter) {
+    private static boolean tryDeleteObjects(final IWorkbenchWindow window, final /*~~>*/List<?> selectedObjects, final NavigatorObjectsDeleter deleter) {
         final ConfirmNavigatorNodesDeleteDialog dialog = ConfirmNavigatorNodesDeleteDialog.of(
                 window.getShell(),
                 selectedObjects,
@@ -121,7 +121,7 @@ public class NavigatorHandlerObjectDelete extends NavigatorHandlerObjectBase imp
         }
     }
 
-    private static boolean deleteObjects(final IWorkbenchWindow window, NavigatorObjectsDeleter deleter, final List<?> selectedObjects) {
+    private static boolean deleteObjects(final IWorkbenchWindow window, NavigatorObjectsDeleter deleter, final /*~~>*/List<?> selectedObjects) {
         if (confirmDependenciesDelete(window, selectedObjects)) {
             deleter.delete();
             return true;
@@ -129,8 +129,8 @@ public class NavigatorHandlerObjectDelete extends NavigatorHandlerObjectBase imp
         return false;
     }
 
-    private static boolean confirmDependenciesDelete(final IWorkbenchWindow window, final List<?> selectedObjects) {
-        List<DBNNode> dependentObjectsListNodes = new ArrayList<>();
+    private static boolean confirmDependenciesDelete(final IWorkbenchWindow window, final /*~~>*/List<?> selectedObjects) {
+        /*~~>*/List<DBNNode> dependentObjectsListNodes = new ArrayList<>();
         try {
             UIUtils.runInProgressService(monitor -> {
                 for (Object obj : selectedObjects) {
@@ -141,7 +141,7 @@ public class NavigatorHandlerObjectDelete extends NavigatorHandlerObjectBase imp
                             DBEObjectManager<?> objectManager = DBWorkbench.getPlatform().getEditorsRegistry().getObjectManager(attribute.getClass());
                             if (objectManager instanceof DBEObjectWithDependencies) {
                                 try {
-                                    List<? extends DBSObject> dependentObjectsList = ((DBEObjectWithDependencies) objectManager).getDependentObjectsList(monitor, attribute);
+                                    /*~~>*/List<? extends DBSObject> dependentObjectsList = ((DBEObjectWithDependencies) objectManager).getDependentObjectsList(monitor, attribute);
                                     changeDependentObjectsList(monitor, dependentObjectsList);
                                     if (!CommonUtils.isEmpty(dependentObjectsList)) {
                                         for (Object object : dependentObjectsList) {
@@ -192,12 +192,12 @@ public class NavigatorHandlerObjectDelete extends NavigatorHandlerObjectBase imp
         }
     }
 
-    private static void changeDependentObjectsList(@NotNull DBRProgressMonitor monitor, List<? extends DBSObject> dependentObjectsList) throws DBException {
+    private static void changeDependentObjectsList(@NotNull DBRProgressMonitor monitor, /*~~>*/List<? extends DBSObject> dependentObjectsList) throws DBException {
         // Some indexes in some databases in fact duplicate existing keys, and therefore deleting keys will automatically delete indexes on the database side
         // Let's find this indexes and remove from dependent list
         if (!CommonUtils.isEmpty(dependentObjectsList)) {
-            List<? extends DBSObject> indexList = dependentObjectsList.stream().filter(o -> o instanceof DBSTableIndex).collect(Collectors.toList());
-            List<? extends DBSObject> constrList = dependentObjectsList.stream().filter(o -> o instanceof DBSTableConstraint).collect(Collectors.toList());
+            /*~~>*/List<? extends DBSObject> indexList = dependentObjectsList.stream().filter(o -> o instanceof DBSTableIndex).collect(Collectors.toList());
+            /*~~>*/List<? extends DBSObject> constrList = dependentObjectsList.stream().filter(o -> o instanceof DBSTableConstraint).collect(Collectors.toList());
             for (DBSObject constraint : constrList) {
                 for (DBSObject index : indexList) {
                     if (constraint instanceof DBSEntityReferrer && index instanceof DBSEntityReferrer) {

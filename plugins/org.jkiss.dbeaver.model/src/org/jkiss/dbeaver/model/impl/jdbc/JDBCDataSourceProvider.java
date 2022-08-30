@@ -88,7 +88,7 @@ public abstract class JDBCDataSourceProvider implements DBPDataSourceProvider {
             return null;
         }
 
-        List<DBPPropertyDescriptor> properties = new ArrayList<>();
+        /*~~>*/List<DBPPropertyDescriptor> properties = new ArrayList<>();
         for (DriverPropertyInfo desc : propDescs) {
             if (desc == null || DBConstants.DATA_SOURCE_PROPERTY_USER.equals(desc.name) || DBConstants.DATA_SOURCE_PROPERTY_PASSWORD.equals(desc.name)) {
                 // Skip user/password properties

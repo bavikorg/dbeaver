@@ -175,7 +175,7 @@ public class OracleLockManager extends LockGraphManager implements DBAServerLock
         throws DBException {
         try {
 
-            List<OracleLockItem> locks = new ArrayList<>();
+            /*~~>*/List<OracleLockItem> locks = new ArrayList<>();
 
             String sql = LOCK_ITEM_QUERY;
             if (!dataSource.isAtLeastV9()) {

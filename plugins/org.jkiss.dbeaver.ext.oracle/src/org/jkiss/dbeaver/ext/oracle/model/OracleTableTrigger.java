@@ -35,7 +35,7 @@ public class OracleTableTrigger extends OracleTrigger<OracleTableBase>
     private static final Log log = Log.getLog(OracleTableTrigger.class);
 
     private OracleSchema ownerSchema;
-    private List<OracleTriggerColumn> columns;
+    private /*~~>*/List<OracleTriggerColumn> columns;
 
     public OracleTableTrigger(OracleTableBase table, String name)
     {
@@ -78,7 +78,7 @@ public class OracleTableTrigger extends OracleTrigger<OracleTableBase>
         return columns;
     }
 
-    public void setColumns(@NotNull List<OracleTriggerColumn> columns) {
-        this.columns = columns;
+    public void setColumns(@NotNull /*~~>*/List<OracleTriggerColumn> columns) {
+        /*~~>*/this.columns = columns;
     }
 }

@@ -39,12 +39,12 @@ import java.util.List;
 public class DB2TablespaceChooser extends Dialog {
 
     private String selectedTablespace;
-    private List<String> listTablespaceNames;
+    private /*~~>*/List<String> listTablespaceNames;
 
-    public DB2TablespaceChooser(Shell parentShell, List<String> listTablespaceNames)
+    public DB2TablespaceChooser(Shell parentShell, /*~~>*/List<String> listTablespaceNames)
     {
         super(parentShell);
-        this.listTablespaceNames = listTablespaceNames;
+        /*~~>*/this.listTablespaceNames = listTablespaceNames;
     }
 
     @Override

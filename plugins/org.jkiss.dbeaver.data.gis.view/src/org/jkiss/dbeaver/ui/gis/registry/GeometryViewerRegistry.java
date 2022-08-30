@@ -52,8 +52,8 @@ public class GeometryViewerRegistry {
     private static final String KEY_IS_VISIBLE = "isVisible";
 
     private final Map<String, GeometryViewerDescriptor> viewers = new HashMap<>();
-    private final List<LeafletTilesDescriptor> predefinedTiles = new ArrayList<>();
-    private final List<LeafletTilesDescriptor> userDefinedTiles = new ArrayList<>();
+    private final /*~~>*/List<LeafletTilesDescriptor> predefinedTiles = new ArrayList<>();
+    private final /*~~>*/List<LeafletTilesDescriptor> userDefinedTiles = new ArrayList<>();
     private final Object tilesLock = new Object();
 
     @Nullable
@@ -193,7 +193,7 @@ public class GeometryViewerRegistry {
     }
 
     //viewers are read only, so it's ok to not synchronize access
-    public List<GeometryViewerDescriptor> getSupportedViewers(@NotNull DBPDataSource dataSource) {
+    public /*~~>*/List<GeometryViewerDescriptor> getSupportedViewers(@NotNull DBPDataSource dataSource) {
         return viewers.values().stream().filter(v -> v.supportedBy(dataSource)).collect(Collectors.toList());
     }
 
@@ -203,14 +203,14 @@ public class GeometryViewerRegistry {
     }
 
     @NotNull
-    public List<LeafletTilesDescriptor> getPredefinedLeafletTiles() {
+    public /*~~>*/List<LeafletTilesDescriptor> getPredefinedLeafletTiles() {
         synchronized (tilesLock) {
             return Collections.unmodifiableList(predefinedTiles);
         }
     }
 
     @NotNull
-    public List<LeafletTilesDescriptor> getUserDefinedLeafletTiles() {
+    public /*~~>*/List<LeafletTilesDescriptor> getUserDefinedLeafletTiles() {
         synchronized (tilesLock) {
             return Collections.unmodifiableList(userDefinedTiles);
         }

@@ -48,7 +48,7 @@ public class NavigatorExtensionsRegistry {
         return instance;
     }
 
-    private List<NavigatorNodeActionDescriptor> nodeActions = new ArrayList<>();
+    private /*~~>*/List<NavigatorNodeActionDescriptor> nodeActions = new ArrayList<>();
 
     public NavigatorExtensionsRegistry(IExtensionRegistry registry) {
         // Load node action handlers
@@ -70,7 +70,7 @@ public class NavigatorExtensionsRegistry {
         nodeActions.clear();
     }
 
-    public List<INavigatorNodeActionHandler> getNodeActions(INavigatorModelView view, DBNNode node) {
+    public /*~~>*/List<INavigatorNodeActionHandler> getNodeActions(INavigatorModelView view, DBNNode node) {
         return nodeActions.stream()
             .filter(nad -> (nad.appliesTo(node) || (node instanceof DBNDatabaseNode && nad.appliesTo(((DBNDatabaseNode) node).getObject())))
                 && nad.getHandler().isEnabledFor(view, node))

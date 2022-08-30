@@ -65,7 +65,7 @@ public class PostgreDataTypeCache extends JDBCObjectCache<PostgreSchema, Postgre
 
     void loadDefaultTypes(PostgreSchema schema) {
 
-        List<PostgreDataType> types = new ArrayList<>();
+        /*~~>*/List<PostgreDataType> types = new ArrayList<>();
         for (Field oidField : PostgreOid.class.getDeclaredFields()) {
             if (!Modifier.isPublic(oidField.getModifiers()) || !Modifier.isStatic(oidField.getModifiers())) {
                 continue;
@@ -157,7 +157,7 @@ public class PostgreDataTypeCache extends JDBCObjectCache<PostgreSchema, Postgre
     }
 
     @Override
-    public void setCache(List<PostgreDataType> postgreDataTypes) {
+    public void setCache(/*~~>*/List<PostgreDataType> postgreDataTypes) {
         super.setCache(postgreDataTypes);
         for (PostgreDataType dt : postgreDataTypes) {
             if (!dt.isAlias()) {

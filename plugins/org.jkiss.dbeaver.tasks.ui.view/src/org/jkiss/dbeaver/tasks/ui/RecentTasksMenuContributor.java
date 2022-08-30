@@ -37,7 +37,7 @@ public class RecentTasksMenuContributor extends DataSourceMenuContributor
     private static final int MAX_ITEMS = 5;
 
     @Override
-    protected void fillContributionItems(final List<IContributionItem> menuItems)
+    protected void fillContributionItems(final /*~~>*/List<IContributionItem> menuItems)
     {
         DBPProject project = NavigatorUtils.getSelectedProject();
         if (project == null) {

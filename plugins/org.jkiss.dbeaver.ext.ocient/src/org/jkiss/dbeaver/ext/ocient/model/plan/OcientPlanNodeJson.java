@@ -38,7 +38,7 @@ public class OcientPlanNodeJson extends OcientPlanNode implements DBPPropertySou
     private String name;
     private JsonObject object;
     private Map<String, String> nodeProps = new LinkedHashMap<>();
-    private List<OcientPlanNodeJson> nested = new ArrayList<>();
+    private /*~~>*/List<OcientPlanNodeJson> nested = new ArrayList<>();
 
     public OcientPlanNodeJson(OcientPlanNodeJson parent, String name, JsonObject object) {
         this.parent = parent;

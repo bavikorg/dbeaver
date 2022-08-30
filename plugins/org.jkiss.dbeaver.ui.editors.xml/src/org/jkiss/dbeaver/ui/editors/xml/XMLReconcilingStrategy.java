@@ -42,7 +42,7 @@ public class XMLReconcilingStrategy implements IReconcilingStrategy, IReconcilin
     private XMLEditor editor;
     private IDocument document;
 
-    private final List<Position> positions = new ArrayList<>();
+    private final /*~~>*/List<Position> positions = new ArrayList<>();
 
     /**
      * next character position - used locally and only valid while

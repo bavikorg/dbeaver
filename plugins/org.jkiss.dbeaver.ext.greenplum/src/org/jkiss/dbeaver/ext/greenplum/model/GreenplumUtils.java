@@ -69,7 +69,7 @@ public class GreenplumUtils {
         }
     }
 
-    static List<PostgreTableColumn> getDistributionTableColumns(@NotNull DBRProgressMonitor monitor, List<PostgreTableColumn> distributionColumns, @NotNull PostgreTableReal table) throws DBException {
+    static /*~~>*/List<PostgreTableColumn> getDistributionTableColumns(@NotNull DBRProgressMonitor monitor, /*~~>*/List<PostgreTableColumn> distributionColumns, @NotNull PostgreTableReal table) throws DBException {
         // Get primary key
         PostgreTableConstraint pk = null;
         Collection<PostgreTableConstraint> tableConstraints = CommonUtils.safeCollection(table.getConstraints(monitor));
@@ -85,7 +85,7 @@ public class GreenplumUtils {
             }
         }
         if (pk != null) {
-            List<DBSEntityAttribute> pkAttrs = DBUtils.getEntityAttributes(monitor, pk);
+            /*~~>*/List<DBSEntityAttribute> pkAttrs = DBUtils.getEntityAttributes(monitor, pk);
             if (!CommonUtils.isEmpty(pkAttrs)) {
                 distributionColumns = new ArrayList<>(pkAttrs.size());
                 for (DBSEntityAttribute attr : pkAttrs) {
@@ -132,7 +132,7 @@ public class GreenplumUtils {
         }
     }
 
-    static void addObjectModifiersToDDL(@NotNull DBRProgressMonitor monitor, @NotNull StringBuilder ddl, @NotNull PostgreTableReal table, List<PostgreTableColumn> distributionColumns, boolean supportsReplicatedDistribution) throws DBCException {
+    static void addObjectModifiersToDDL(@NotNull DBRProgressMonitor monitor, @NotNull StringBuilder ddl, @NotNull PostgreTableReal table, /*~~>*/List<PostgreTableColumn> distributionColumns, boolean supportsReplicatedDistribution) throws DBCException {
         ddl.append("\nDISTRIBUTED ");
         if (supportsReplicatedDistribution && table.isPersisted() && GreenplumUtils.isDistributedByReplicated(monitor, table)) {
             ddl.append("REPLICATED");

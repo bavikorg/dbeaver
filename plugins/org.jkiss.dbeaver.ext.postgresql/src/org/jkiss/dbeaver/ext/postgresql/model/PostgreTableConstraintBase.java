@@ -150,7 +150,7 @@ public abstract class PostgreTableConstraintBase extends JDBCTableConstraint<Pos
         return !isLocal;
     }
 
-    abstract void cacheAttributes(DBRProgressMonitor monitor, List<? extends PostgreTableConstraintColumn> children, boolean secondPass);
+    abstract void cacheAttributes(DBRProgressMonitor monitor, /*~~>*/List<? extends PostgreTableConstraintColumn> children, boolean secondPass);
 
     @Override
     @Property(hidden = true, editable = true, updatable = true, order = -1)

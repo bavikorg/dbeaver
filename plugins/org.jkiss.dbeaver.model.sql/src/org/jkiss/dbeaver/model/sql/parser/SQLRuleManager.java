@@ -68,7 +68,7 @@ public class SQLRuleManager {
 
     @NotNull
     public TPRule[] getRulesByType(@NotNull SQLTokenType requiredType) {
-        final List<TPRule> rules = new ArrayList<>();
+        final /*~~>*/List<TPRule> rules = new ArrayList<>();
         for (TPRule rule : allRules) {
             if (rule instanceof TPPredicateRule) {
                 final TPPredicateRule predicateRule = (TPPredicateRule) rule;
@@ -108,7 +108,7 @@ public class SQLRuleManager {
         final SQLBlockBeginToken blockBeginToken = new SQLBlockBeginToken();
         final SQLBlockEndToken blockEndToken = new SQLBlockEndToken();
 
-        List<TPRule> rules = new ArrayList<>();
+        /*~~>*/List<TPRule> rules = new ArrayList<>();
 
         if (ruleProvider != null) {
             ruleProvider.extendRules(dataSourceContainer, rules, TPRuleProvider.RulePosition.INITIAL);

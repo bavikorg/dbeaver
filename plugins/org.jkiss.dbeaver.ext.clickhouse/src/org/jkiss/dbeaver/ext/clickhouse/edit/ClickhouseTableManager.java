@@ -59,7 +59,7 @@ public class ClickhouseTableManager extends GenericTableManager {
                 }
             } else {
                 try {
-                    List<? extends GenericTableColumn> attributes = table.getAttributes(monitor);
+                    /*~~>*/List<? extends GenericTableColumn> attributes = table.getAttributes(monitor);
                     if (!CommonUtils.isEmpty(attributes)) {
                         ddl.append(" ENGINE = MergeTree()\n" +
                             "ORDER BY ").append(DBUtils.getQuotedIdentifier(attributes.get(0)));
@@ -81,7 +81,7 @@ public class ClickhouseTableManager extends GenericTableManager {
     protected void addObjectExtraActions(
         DBRProgressMonitor monitor,
         DBCExecutionContext executionContext,
-        List<DBEPersistAction> actions,
+        /*~~>*/List<DBEPersistAction> actions,
         NestedObjectCommand<GenericTableBase, PropertyHandler> command,
         Map<String, Object> options)
     {

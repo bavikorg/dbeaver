@@ -48,7 +48,7 @@ public class BaseChartDrawingSupplier extends DefaultDrawingSupplier {
 
     private static Paint[] getChartColorsDefinitions() {
         ColorRegistry colorRegistry = UIUtils.getActiveWorkbenchWindow().getWorkbench().getThemeManager().getCurrentTheme().getColorRegistry();
-        List<Paint> result = new ArrayList<>();
+        /*~~>*/List<Paint> result = new ArrayList<>();
         for (int i = 1; ; i++) {
             Color swtColor = colorRegistry.get(COLOR_PREF_ID_PREFIX + i);
             if (swtColor == null) {

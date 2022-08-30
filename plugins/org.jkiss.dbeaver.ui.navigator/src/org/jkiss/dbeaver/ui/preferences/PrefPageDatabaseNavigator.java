@@ -183,7 +183,7 @@ public class PrefPageDatabaseNavigator extends AbstractPrefPage implements IWork
                 .ordinal());
 
         String defEditorPage = store.getString(NavigatorPreferences.NAVIGATOR_DEFAULT_EDITOR_PAGE);
-        List<EntityEditorDescriptor> entityEditors = getAvailableEditorPages();
+        /*~~>*/List<EntityEditorDescriptor> entityEditors = getAvailableEditorPages();
         defaultEditorPageCombo.removeAll();
         defaultEditorPageCombo.add(UINavigatorMessages.pref_page_navigator_default_editor_page_last);
         defaultEditorPageCombo.select(0);
@@ -224,7 +224,7 @@ public class PrefPageDatabaseNavigator extends AbstractPrefPage implements IWork
         store.setValue(NavigatorPreferences.NAVIGATOR_CONNECTION_DOUBLE_CLICK,
             CommonUtils.fromOrdinal(NavigatorPreferences.DoubleClickBehavior.class, dsDoubleClickBehavior.getSelectionIndex()).name());
 
-        List<EntityEditorDescriptor> entityEditors = getAvailableEditorPages();
+        /*~~>*/List<EntityEditorDescriptor> entityEditors = getAvailableEditorPages();
         int defEditorIndex = defaultEditorPageCombo.getSelectionIndex();
         store.setValue(NavigatorPreferences.NAVIGATOR_DEFAULT_EDITOR_PAGE, defEditorIndex <= 0 ? "" : entityEditors.get(defEditorIndex - 1).getId());
 
@@ -233,9 +233,9 @@ public class PrefPageDatabaseNavigator extends AbstractPrefPage implements IWork
         return true;
     }
 
-    private List<EntityEditorDescriptor> getAvailableEditorPages() {
+    private /*~~>*/List<EntityEditorDescriptor> getAvailableEditorPages() {
         final EntityEditorsRegistry editorsRegistry = EntityEditorsRegistry.getInstance();
-        final List<EntityEditorDescriptor> editors = new ArrayList<>(editorsRegistry.getEntityEditors());
+        final /*~~>*/List<EntityEditorDescriptor> editors = new ArrayList<>(editorsRegistry.getEntityEditors());
         editors.removeIf(editor -> {
             if (editor.getType() != EntityEditorDescriptor.Type.editor) return true;
             for (AbstractDescriptor.ObjectType ot : editor.getObjectTypes()) {

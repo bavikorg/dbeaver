@@ -75,7 +75,7 @@ public class OracleConstraintManager extends SQLConstraintManager<OracleTableCon
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectCreateCommand command, Map<String, Object> options)
     {
     	OracleTableConstraint constraint = command.getObject();

@@ -72,7 +72,7 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
     private final DBSForeignKeyModifyRule[] supportedModifyRules;
     private final DBSEntityAssociation foreignKey;
     private DBSEntity curRefTable;
-    private List<DBSEntityConstraint> curConstraints;
+    private /*~~>*/List<DBSEntityConstraint> curConstraints;
     private DBNDatabaseNode ownerTableNode, ownerContainerNode;
     private Table tableList;
     private Combo uniqueKeyCombo;
@@ -83,10 +83,10 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
     private String fkName;
 
     private DBSEntityConstraint curConstraint;
-    private List<? extends DBSEntityAttribute> ownAttributes;
-    private List<DBSEntityAttribute> sourceAttributes;
-    private List<DBSEntityAttribute> refAttributes;
-    private final List<FKColumnInfo> fkColumns = new ArrayList<>();
+    private /*~~>*/List<? extends DBSEntityAttribute> ownAttributes;
+    private /*~~>*/List<DBSEntityAttribute> sourceAttributes;
+    private /*~~>*/List<DBSEntityAttribute> refAttributes;
+    private final /*~~>*/List<FKColumnInfo> fkColumns = new ArrayList<>();
     private DBSForeignKeyModifyRule onDeleteRule;
     private DBSForeignKeyModifyRule onUpdateRule;
 
@@ -97,7 +97,7 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
     private FKType preferredKeyType = FK_TYPE_PHYSICAL;
     private FKType selectedKeyType = FK_TYPE_PHYSICAL;
 
-    private final List<Control> physicalKeyComponents = new ArrayList<>();
+    private final /*~~>*/List<Control> physicalKeyComponents = new ArrayList<>();
 
     public static class FKType implements DBPNamedObject {
         private final String name;
@@ -185,7 +185,7 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
             }
         }
 
-        sourceAttributes = (List<DBSEntityAttribute>) options.get(SQLForeignKeyManager.OPTION_OWN_ATTRIBUTES);
+        sourceAttributes = (/*~~>*/List<DBSEntityAttribute>) options.get(SQLForeignKeyManager.OPTION_OWN_ATTRIBUTES);
     }
 
     public boolean isEnableCustomKeys() {
@@ -569,7 +569,7 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
 
     private void loadTableList(DBNDatabaseNode newContainerNode) {
         tableList.removeAll();
-        final List<DBNDatabaseNode> entities = new ArrayList<>();
+        final /*~~>*/List<DBNDatabaseNode> entities = new ArrayList<>();
         try {
             UIUtils.runInProgressService(monitor -> {
                 try {
@@ -592,7 +592,7 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
         }
 
     }
-    private void loadEntities(DBRProgressMonitor monitor, List<DBNDatabaseNode> entities, DBNDatabaseNode container) throws DBException {
+    private void loadEntities(DBRProgressMonitor monitor, /*~~>*/List<DBNDatabaseNode> entities, DBNDatabaseNode container) throws DBException {
         for (DBNNode childNode : container.getChildren(monitor)) {
             if (monitor.isCanceled()) {
                 break;
@@ -740,12 +740,12 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
         }
     }
 
-    private boolean isConstraintIndex(DBRProgressMonitor monitor, List<DBSEntityConstraint> constraints, DBSTableIndex index) throws DBException {
-        List<? extends DBSTableIndexColumn> iAttrs = index.getAttributeReferences(monitor);
+    private boolean isConstraintIndex(DBRProgressMonitor monitor, /*~~>*/List<DBSEntityConstraint> constraints, DBSTableIndex index) throws DBException {
+        /*~~>*/List<? extends DBSTableIndexColumn> iAttrs = index.getAttributeReferences(monitor);
 
         for (DBSEntityConstraint constraint : constraints) {
             if (constraint instanceof DBSEntityReferrer) {
-                List<? extends DBSEntityAttributeRef> cAttrs = ((DBSEntityReferrer) constraint).getAttributeReferences(monitor);
+                /*~~>*/List<? extends DBSEntityAttributeRef> cAttrs = ((DBSEntityReferrer) constraint).getAttributeReferences(monitor);
                 if (CommonUtils.equalObjects(iAttrs, cAttrs)) {
                     return true;
                 }
@@ -788,7 +788,7 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
 
             if (curConstraint instanceof DBSEntityReferrer) {
                 // Read column nodes with void monitor because we already cached them above
-                List<? extends DBSEntityAttributeRef> attributeReferences =
+                /*~~>*/List<? extends DBSEntityAttributeRef> attributeReferences =
                     CommonUtils.safeList(((DBSEntityReferrer) curConstraint).getAttributeReferences(monitor));
                 for (int i = 0; i < attributeReferences.size(); i++) {
                     DBSEntityAttributeRef pkColumn = attributeReferences.get(i);
@@ -854,8 +854,8 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
         UIUtils.packColumns(columnsTable, true);
     }
 
-    private static List<DBSEntityAttribute> getValidAttributes(DBSEntity table) throws DBException {
-        List<DBSEntityAttribute> result = new ArrayList<>();
+    private static /*~~>*/List<DBSEntityAttribute> getValidAttributes(DBSEntity table) throws DBException {
+        /*~~>*/List<DBSEntityAttribute> result = new ArrayList<>();
         for (DBSEntityAttribute attr : table.getAttributes(new VoidProgressMonitor())) {
             if (!DBUtils.isHiddenObject(attr) && !DBUtils.isPseudoAttribute(attr)) {
                 result.add(attr);
@@ -882,7 +882,7 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
         return true;
     }
 
-    public List<FKColumnInfo> getColumns()
+    public /*~~>*/List<FKColumnInfo> getColumns()
     {
         return fkColumns;
     }
@@ -1004,11 +1004,11 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
     }
 
     private void setSourceAttributes(Collection<? extends DBSEntityAttribute> srcAttributes) {
-        this.sourceAttributes = CommonUtils.isEmpty(srcAttributes) ? null : new ArrayList<>(srcAttributes);
+        /*~~>*/this.sourceAttributes = CommonUtils.isEmpty(srcAttributes) ? null : new ArrayList<>(srcAttributes);
     }
 
     private void setReferenceAttributes(Collection<? extends DBSEntityAttribute> refAttributes) {
-        this.refAttributes = CommonUtils.isEmpty(refAttributes) ? null : new ArrayList<>(refAttributes);
+        /*~~>*/this.refAttributes = CommonUtils.isEmpty(refAttributes) ? null : new ArrayList<>(refAttributes);
     }
 
     @Nullable
@@ -1053,7 +1053,7 @@ public class EditForeignKeyPage extends BaseObjectEditPage {
             log.error(e1);
             return null;
         }
-        List<DBVEntityForeignKeyColumn> columns = new ArrayList<>();
+        /*~~>*/List<DBVEntityForeignKeyColumn> columns = new ArrayList<>();
         for (FKColumnInfo tableColumn : editDialog.getColumns()) {
             columns.add(
                 new DBVEntityForeignKeyColumn(

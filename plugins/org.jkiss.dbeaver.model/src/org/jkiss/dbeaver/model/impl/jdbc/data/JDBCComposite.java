@@ -229,7 +229,7 @@ public abstract class JDBCComposite implements DBDComposite, DBDValueCloneable {
 
         @Nullable
         @Override
-        public List<? extends DBSEntityAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) {
+        public /*~~>*/List<? extends DBSEntityAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) {
             return Arrays.asList(attributes);
         }
     }

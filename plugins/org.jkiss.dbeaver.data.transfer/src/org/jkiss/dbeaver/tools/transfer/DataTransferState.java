@@ -24,9 +24,9 @@ import java.util.List;
  */
 public class DataTransferState {
 
-    private List<Throwable> loadErrors = new ArrayList<>();
+    private /*~~>*/List<Throwable> loadErrors = new ArrayList<>();
 
-    public List<Throwable> getLoadErrors() {
+    public /*~~>*/List<Throwable> getLoadErrors() {
         return loadErrors;
     }
 

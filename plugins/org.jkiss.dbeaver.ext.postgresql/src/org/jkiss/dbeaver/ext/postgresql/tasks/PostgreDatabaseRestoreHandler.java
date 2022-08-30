@@ -83,7 +83,7 @@ public class PostgreDatabaseRestoreHandler extends PostgreNativeToolHandler<Post
     }
 
     @Override
-    public void fillProcessParameters(PostgreDatabaseRestoreSettings settings, PostgreDatabaseRestoreInfo arg, List<String> cmd) throws IOException {
+    public void fillProcessParameters(PostgreDatabaseRestoreSettings settings, PostgreDatabaseRestoreInfo arg, /*~~>*/List<String> cmd) throws IOException {
         super.fillProcessParameters(settings, arg, cmd);
 
         if (settings.isCleanFirst()) {
@@ -103,14 +103,14 @@ public class PostgreDatabaseRestoreHandler extends PostgreNativeToolHandler<Post
     }
 
     @Override
-    protected List<String> getCommandLine(PostgreDatabaseRestoreSettings settings, PostgreDatabaseRestoreInfo arg) throws IOException {
-        List<String> cmd = new ArrayList<>();
+    protected /*~~>*/List<String> getCommandLine(PostgreDatabaseRestoreSettings settings, PostgreDatabaseRestoreInfo arg) throws IOException {
+        /*~~>*/List<String> cmd = new ArrayList<>();
         fillProcessParameters(settings, arg, cmd);
 
         if (settings.getFormat() != PostgreBackupRestoreSettings.ExportFormat.PLAIN) {
             cmd.add("--format=" + settings.getFormat().getId());
         }
-        List<DBSObject> databaseObjects = settings.getDatabaseObjects();
+        /*~~>*/List<DBSObject> databaseObjects = settings.getDatabaseObjects();
         if (!CommonUtils.isEmpty(databaseObjects)) {
             cmd.add("--dbname=" + databaseObjects.get(0).getName());
         }

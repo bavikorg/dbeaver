@@ -58,7 +58,7 @@ public class ViewerColumnController<COLUMN, ELEMENT> {
 
     private final String configId;
     private final ColumnViewer viewer;
-    private final List<ColumnInfo> columns = new ArrayList<>();
+    private final /*~~>*/List<ColumnInfo> columns = new ArrayList<>();
     private boolean clickOnHeader;
     private boolean isPacking, isInitializing;
     private DBIcon defaultIcon;
@@ -119,7 +119,7 @@ public class ViewerColumnController<COLUMN, ELEMENT> {
             @Nullable
             @Override
             public Object getCellValue(Object element, int columnIndex) {
-                List<ColumnInfo> visibleColumns = getVisibleColumns();
+                /*~~>*/List<ColumnInfo> visibleColumns = getVisibleColumns();
                 if (!visibleColumns.isEmpty()) {
                     ColumnInfo columnInfo = getVisibleColumns().get(columnIndex);
                     if (columnInfo.labelProvider instanceof ColumnBooleanLabelProvider) {
@@ -403,7 +403,7 @@ public class ViewerColumnController<COLUMN, ELEMENT> {
     private void createVisibleColumns()
     {
         boolean hasCustomDraw = false;
-        List<ColumnInfo> visibleColumns = getVisibleColumns();
+        /*~~>*/List<ColumnInfo> visibleColumns = getVisibleColumns();
         for (int i = 0; i < visibleColumns.size(); i++) {
             final ColumnInfo columnInfo = visibleColumns.get(i);
             columnInfo.order = i;
@@ -516,9 +516,9 @@ public class ViewerColumnController<COLUMN, ELEMENT> {
 
     }
 
-    public List<ColumnInfo> getVisibleColumns()
+    public /*~~>*/List<ColumnInfo> getVisibleColumns()
     {
-        List<ColumnInfo> visibleList = new ArrayList<>();
+        /*~~>*/List<ColumnInfo> visibleList = new ArrayList<>();
         for (ColumnInfo column : columns) {
             if (column.visible) {
                 visibleList.add(column);
@@ -725,7 +725,7 @@ public class ViewerColumnController<COLUMN, ELEMENT> {
 
             UIUtils.createControlLabel(composite, UINavigatorMessages.label_select_columns);
 
-            List<ColumnInfo> orderedList = new ArrayList<>(columns);
+            /*~~>*/List<ColumnInfo> orderedList = new ArrayList<>(columns);
             orderedList.sort(new ColumnInfoComparator());
             colTable = new Table(composite, SWT.BORDER | SWT.CHECK | SWT.H_SCROLL | SWT.V_SCROLL);
             colTable.setLayoutData(new GridData(GridData.FILL_BOTH));

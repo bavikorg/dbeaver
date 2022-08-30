@@ -77,7 +77,7 @@ public class SQLDialectRegistry
         dialects.clear();
     }
 
-    public List<SQLDialectDescriptor> getDialects() {
+    public /*~~>*/List<SQLDialectDescriptor> getDialects() {
         return new ArrayList<>(dialects.values());
     }
 
@@ -85,8 +85,8 @@ public class SQLDialectRegistry
         return dialects.get(id);
     }
 
-    public List<SQLDialectDescriptor> getRootDialects() {
-        List<SQLDialectDescriptor> roots = new ArrayList<>();
+    public /*~~>*/List<SQLDialectDescriptor> getRootDialects() {
+        /*~~>*/List<SQLDialectDescriptor> roots = new ArrayList<>();
         for (SQLDialectDescriptor dd : dialects.values()) {
             if (dd.getParentDialect() == null) {
                 roots.add(dd);

@@ -49,7 +49,7 @@ public class BinaryAttributeTransformer implements DBDAttributeTransformer {
     private static final String FORMAT_HEX = "hex";
 
     @Override
-    public void transformAttribute(@NotNull DBCSession session, @NotNull DBDAttributeBinding attribute, @NotNull List<Object[]> rows, @NotNull Map<String, Object> options) throws DBException {
+    public void transformAttribute(@NotNull DBCSession session, @NotNull DBDAttributeBinding attribute, @NotNull /*~~>*/List<Object[]> rows, @NotNull Map<String, Object> options) throws DBException {
         DBPDataSource dataSource = session.getDataSource();
         String formatterId = CommonUtils.toString(options.get(PROP_FORMAT), FORMAT_HEX);
 

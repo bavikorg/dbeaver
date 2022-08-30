@@ -130,7 +130,7 @@ public class PostgreNamespace implements DBSNamespace  {
 
     @NotNull
     @Override
-    public List<? extends DBSObject> getObjectsByType(@NotNull DBRProgressMonitor monitor, @NotNull DBSObjectType objectType) throws DBException {
+    public /*~~>*/List<? extends DBSObject> getObjectsByType(@NotNull DBRProgressMonitor monitor, @NotNull DBSObjectType objectType) throws DBException {
         if (objectType == RelationalObjectType.TYPE_TABLE ||
             objectType == RelationalObjectType.TYPE_VIEW)
         {

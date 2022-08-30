@@ -174,14 +174,14 @@ public class TabbedFolderPageForm extends TabbedFolderPage implements IRefreshab
             return;
         }
         curPropertySource = input.getPropertySource();
-        List<DBPPropertyDescriptor> allProps = formEditor.filterProperties(curPropertySource.getProperties());
+        /*~~>*/List<DBPPropertyDescriptor> allProps = formEditor.filterProperties(curPropertySource.getProperties());
 
         boolean firstInit = !formEditor.hasEditors();
         if (firstInit) {
             // Prepare property lists
-            List<DBPPropertyDescriptor> primaryProps = new ArrayList<>();
-            List<DBPPropertyDescriptor> secondaryProps = new ArrayList<>();
-            List<DBPPropertyDescriptor> specificProps = new ArrayList<>();
+            /*~~>*/List<DBPPropertyDescriptor> primaryProps = new ArrayList<>();
+            /*~~>*/List<DBPPropertyDescriptor> secondaryProps = new ArrayList<>();
+            /*~~>*/List<DBPPropertyDescriptor> specificProps = new ArrayList<>();
 
             if (formEditor.isEditableObject()) {
                 for (DBPPropertyDescriptor prop : allProps) {
@@ -338,7 +338,7 @@ public class TabbedFolderPageForm extends TabbedFolderPage implements IRefreshab
         return null;
     }
 
-    private void refreshPropertyValues(List<DBPPropertyDescriptor> allProps, boolean disableControls) {
+    private void refreshPropertyValues(/*~~>*/List<DBPPropertyDescriptor> allProps, boolean disableControls) {
         DBSObject databaseObject = input.getDatabaseObject();
         if (databaseObject == null) {
             // Disposed

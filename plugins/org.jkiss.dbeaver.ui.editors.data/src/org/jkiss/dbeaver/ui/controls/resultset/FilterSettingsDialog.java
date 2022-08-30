@@ -65,14 +65,14 @@ class FilterSettingsDialog extends HelpEnabledDialog {
     private final Comparator<DBDAttributeBinding> ALPHA_SORTER = Comparator.comparing(DBDAttributeBinding::getName);
 
     private final ResultSetViewer resultSetViewer;
-    private final List<DBDAttributeBinding> attributes;
+    private final /*~~>*/List<DBDAttributeBinding> attributes;
     private TreeViewer columnsViewer;
     private ViewerColumnController<Object, Object> columnsController;
     private DBDDataFilter dataFilter;
     private Text whereText;
     private Text orderText;
     // Keep constraints in a copy because we use this list as table viewer model
-    private java.util.List<DBDAttributeConstraint> constraints;
+    private /*~~>*//*~~>*/java.util.List<DBDAttributeConstraint> constraints;
     private ToolItem moveTopButton;
     private ToolItem moveUpButton;
     private ToolItem moveDownButton;
@@ -85,11 +85,11 @@ class FilterSettingsDialog extends HelpEnabledDialog {
         super(resultSetViewer.getControl().getShell(), IHelpContextIds.CTX_DATA_FILTER);
         this.resultSetViewer = resultSetViewer;
         this.dataFilter = new DBDDataFilter(resultSetViewer.getModel().getDataFilter());
-        this.constraints = new ArrayList<>(dataFilter.getConstraints());
-        this.constraints.sort(Comparator.comparingInt(DBDAttributeConstraintBase::getVisualPosition));
+        /*~~>*/this.constraints = new ArrayList<>(dataFilter.getConstraints());
+        /*~~>*/this.constraints.sort(Comparator.comparingInt(DBDAttributeConstraintBase::getVisualPosition));
         DBDAttributeBinding[] modelAttrs = resultSetViewer.getModel().getAttributes();
-        this.attributes = new ArrayList<>(modelAttrs.length);
-        Collections.addAll(this.attributes, modelAttrs);
+        /*~~>*/this.attributes = new ArrayList<>(modelAttrs.length);
+        Collections.addAll(/*~~>*/this.attributes, modelAttrs);
 
     }
 
@@ -242,7 +242,7 @@ class FilterSettingsDialog extends HelpEnabledDialog {
             columnsViewer.setContentProvider(new TreeContentProvider() {
                 @Override
                 public Object[] getChildren(Object parentElement) {
-                    final List<DBDAttributeBinding> nestedBindings = ((DBDAttributeBinding) parentElement).getNestedBindings();
+                    final /*~~>*/List<DBDAttributeBinding> nestedBindings = ((DBDAttributeBinding) parentElement).getNestedBindings();
                     if (nestedBindings == null || nestedBindings.isEmpty()) {
                         return null;
                     }
@@ -253,7 +253,7 @@ class FilterSettingsDialog extends HelpEnabledDialog {
 
                 @Override
                 public boolean hasChildren(Object element) {
-                    final List<DBDAttributeBinding> nestedBindings = ((DBDAttributeBinding) element).getNestedBindings();
+                    final /*~~>*/List<DBDAttributeBinding> nestedBindings = ((DBDAttributeBinding) element).getNestedBindings();
                     return nestedBindings != null && !nestedBindings.isEmpty();
                 }
             });

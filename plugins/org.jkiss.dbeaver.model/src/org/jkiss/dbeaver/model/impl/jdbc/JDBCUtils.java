@@ -734,7 +734,7 @@ public class JDBCUtils {
             SQLUtils.appendLikeCondition(sql, filter.getSingleMask(), false, dataSource != null ? dataSource.getSQLDialect() : null);
             return;
         }
-        List<String> include = filter.getInclude();
+        /*~~>*/List<String> include = filter.getInclude();
         if (!CommonUtils.isEmpty(include)) {
             if (columnAlias != null) {
                 firstClause = SQLUtils.appendFirstClause(sql, firstClause);
@@ -750,7 +750,7 @@ public class JDBCUtils {
             }
             sql.append(")");
         }
-        List<String> exclude = filter.getExclude();
+        /*~~>*/List<String> exclude = filter.getExclude();
         if (!CommonUtils.isEmpty(exclude)) {
             if (columnAlias != null) {
                 SQLUtils.appendFirstClause(sql, firstClause);

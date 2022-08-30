@@ -64,7 +64,7 @@ public abstract class AbstractLoadService<RESULT> implements ILoadService<RESULT
             return this.ownerJob.cancel();
         } else if (progressMonitor != null) {
             try {
-                List<DBRBlockingObject> activeBlocks = progressMonitor.getActiveBlocks();
+                /*~~>*/List<DBRBlockingObject> activeBlocks = progressMonitor.getActiveBlocks();
                 if (!CommonUtils.isEmpty(activeBlocks)) {
                     BlockCanceler.cancelBlock(progressMonitor, activeBlocks.get(activeBlocks.size() - 1), null);
                 }

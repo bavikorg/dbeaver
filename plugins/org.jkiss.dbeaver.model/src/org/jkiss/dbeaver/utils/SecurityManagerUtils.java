@@ -34,7 +34,7 @@ import java.util.PropertyPermission;
 import java.util.concurrent.Callable;
 
 public class SecurityManagerUtils {
-    private static final List<Permission> DEFAULT_PERMISSIONS = List.of(new SocketPermission("*", "connect"),
+    private static final /*~~>*/List<Permission> DEFAULT_PERMISSIONS = /*~~>*/List.of(new SocketPermission("*", "connect"),
         new NetPermission("*"),
         new ReflectPermission("*"),
         new AdminPermission(),
@@ -45,7 +45,7 @@ public class SecurityManagerUtils {
         new RuntimePermission("getenv.*")
     );
 
-    public static List<Permission> getDefaultPermissions() {
+    public static /*~~>*/List<Permission> getDefaultPermissions() {
         return new ArrayList<>(DEFAULT_PERMISSIONS);
     }
 
@@ -67,7 +67,7 @@ public class SecurityManagerUtils {
         }
     }
 
-    public static AccessControlContext controlContextOf(List<Permission> permissions) {
+    public static AccessControlContext controlContextOf(/*~~>*/List<Permission> permissions) {
 
         Permissions noPermissions = new Permissions();
         for (Permission permission : permissions) {
@@ -87,7 +87,7 @@ public class SecurityManagerUtils {
             && container.isAccessCheckRequired()
         ) {
             //unsecured connection created by user
-            var permissions = SecurityManagerUtils.getDefaultPermissions();
+            /*~~>*/var permissions = SecurityManagerUtils.getDefaultPermissions();
             permissions.addAll(getDriverFilesPermissions(driver));
             return SecurityManagerUtils.executeWithAccessControlContext(SecurityManagerUtils.controlContextOf(permissions), callable);
         } else {
@@ -95,9 +95,9 @@ public class SecurityManagerUtils {
         }
     }
 
-    private static List<Permission> getDriverFilesPermissions(DBPDriver driver) {
+    private static /*~~>*/List<Permission> getDriverFilesPermissions(DBPDriver driver) {
         var driverFilesPermissions = new ArrayList<Permission>();
-        var driverLibraries = driver.getDriverLibraries();
+        /*~~>*/var driverLibraries = driver.getDriverLibraries();
         for (DBPDriverLibrary driverLibrary : driverLibraries) {
             File libraryFile = driverLibrary.getLocalFile();
             if (libraryFile == null) {

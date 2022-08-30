@@ -53,7 +53,7 @@ public class FolderEditor extends EditorPart implements INavigatorModelView, IRe
     private static final Log log = Log.getLog(FolderEditor.class);
 
     private FolderListControl itemControl;
-    private final List<String> history = new ArrayList<>();
+    private final /*~~>*/List<String> history = new ArrayList<>();
     private int historyPosition = 0;
 
     @Override
@@ -196,7 +196,7 @@ public class FolderEditor extends EditorPart implements INavigatorModelView, IRe
                 final DBNNode rootNode = getRootNode();
                 final DBNNode parentNode = rootNode.getParentNode();
                 if (parentNode instanceof DBNProjectDatabases || parentNode instanceof DBNLocalFolder) {
-                    List<DBNNode> nodesWithParent = new ArrayList<>(items);
+                    /*~~>*/List<DBNNode> nodesWithParent = new ArrayList<>(items);
                     nodesWithParent.add(0, DBWorkbench.getPlatform().getNavigatorModel().getRoot());
                     items = nodesWithParent;
                 }

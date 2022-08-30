@@ -38,7 +38,7 @@ public class NotificationPopup extends AbstractWorkbenchNotificationPopup {
 
     public static final Color HYPERLINK_WIDGET_COLOR = new Color(Display.getDefault(), 12, 81, 172);
 
-    private List<AbstractNotification> notifications;
+    private /*~~>*/List<AbstractNotification> notifications;
 
     public NotificationPopup(Shell parent) {
         super(parent.getDisplay());
@@ -141,12 +141,12 @@ public class NotificationPopup extends AbstractWorkbenchNotificationPopup {
         super.createTitleArea(parent);
     }
 
-    public List<AbstractNotification> getNotifications() {
+    public /*~~>*/List<AbstractNotification> getNotifications() {
         return new ArrayList<>(notifications);
     }
 
-    public void setContents(List<AbstractNotification> notifications) {
-        this.notifications = notifications;
+    public void setContents(/*~~>*/List<AbstractNotification> notifications) {
+        /*~~>*/this.notifications = notifications;
     }
 
 }

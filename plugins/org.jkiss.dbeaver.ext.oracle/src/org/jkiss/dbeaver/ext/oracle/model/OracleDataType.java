@@ -452,7 +452,7 @@ public class OracleDataType extends OracleObject<DBSObject>
 
     @Override
     @Association
-    public List<OracleDataTypeAttribute> getAttributes(@NotNull DBRProgressMonitor monitor)
+    public /*~~>*/List<OracleDataTypeAttribute> getAttributes(@NotNull DBRProgressMonitor monitor)
         throws DBException
     {
         return attributeCache != null ? attributeCache.getAllObjects(monitor, this) : null;

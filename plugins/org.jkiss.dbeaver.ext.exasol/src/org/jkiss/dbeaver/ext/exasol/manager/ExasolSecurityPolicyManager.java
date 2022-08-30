@@ -64,7 +64,7 @@ public class ExasolSecurityPolicyManager
     
     
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectRenameCommand command, Map<String, Object> options)
     {
         ExasolSecurityPolicy obj = command.getObject();
@@ -77,7 +77,7 @@ public class ExasolSecurityPolicyManager
     }
     
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectDeleteCommand command, Map<String, Object> options)
     {
         final ExasolSecurityPolicy con = command.getObject();
@@ -87,7 +87,7 @@ public class ExasolSecurityPolicyManager
     }
     
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList,
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList,
                                           ObjectChangeCommand command, Map<String, Object> options)
     {
     	
@@ -116,7 +116,7 @@ public class ExasolSecurityPolicyManager
 
 
 	@Override
-	protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+	protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectCreateCommand command,
                                           Map<String, Object> options) {
 	}

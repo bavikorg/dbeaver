@@ -39,7 +39,7 @@ public class SQLScriptDataReceiver implements DBDDataReceiver {
         }
         if (dumpWriter != null) {
             DBCResultSetMetaData rsMeta = resultSet.getMeta();
-            List<DBCAttributeMetaData> attributes = rsMeta.getAttributes();
+            /*~~>*/List<DBCAttributeMetaData> attributes = rsMeta.getAttributes();
             rowSize = attributes.size();
             try {
                 dumpWriter.append("Columns:\t");

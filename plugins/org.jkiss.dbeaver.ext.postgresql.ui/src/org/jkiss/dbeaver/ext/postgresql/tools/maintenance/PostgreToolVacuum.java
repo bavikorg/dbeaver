@@ -40,7 +40,7 @@ public class PostgreToolVacuum implements IUserInterfaceTool
     @Override
     public void execute(IWorkbenchWindow window, IWorkbenchPart activePart, Collection<DBSObject> objects) throws DBException
     {
-        List<PostgreTableBase> tables = CommonUtils.filterCollection(objects, PostgreTableBase.class);
+        /*~~>*/List<PostgreTableBase> tables = CommonUtils.filterCollection(objects, PostgreTableBase.class);
         if (!tables.isEmpty()) {
             TaskConfigurationWizardDialog.openNewTaskDialog(
                     window,
@@ -48,7 +48,7 @@ public class PostgreToolVacuum implements IUserInterfaceTool
                     PostgreSQLTasks.TASK_TABLE_VACUUM,
                     new StructuredSelection(objects.toArray()));
         } else {
-            List<PostgreDatabase> databases = CommonUtils.filterCollection(objects, PostgreDatabase.class);
+            /*~~>*/List<PostgreDatabase> databases = CommonUtils.filterCollection(objects, PostgreDatabase.class);
             if (!databases.isEmpty()) {
                 TaskConfigurationWizardDialog.openNewTaskDialog(
                         window,

@@ -80,8 +80,8 @@ public class ScriptSelectorPanel extends AbstractPopupPanel {
     private final IFolder rootFolder;
 
     @NotNull
-    private final List<ResourceInfo> scriptFiles;
-    private List<ResourceInfo> projectScriptFiles;
+    private final /*~~>*/List<ResourceInfo> scriptFiles;
+    private /*~~>*/List<ResourceInfo> projectScriptFiles;
 
     private Text patternText;
     private TreeViewer scriptViewer;
@@ -92,7 +92,7 @@ public class ScriptSelectorPanel extends AbstractPopupPanel {
         @NotNull final IWorkbenchWindow workbenchWindow,
         @NotNull final SQLNavigatorContext navigatorContext,
         @NotNull final IFolder rootFolder,
-        @NotNull List<ResourceInfo> scriptFiles) {
+        @NotNull /*~~>*/List<ResourceInfo> scriptFiles) {
         super(workbenchWindow.getShell(),
             navigatorContext.getDataSourceContainer() == null ?
                 "Choose SQL script" :
@@ -102,11 +102,11 @@ public class ScriptSelectorPanel extends AbstractPopupPanel {
         this.navigatorContext = navigatorContext;
         this.rootFolder = rootFolder;
         try {
-            this.projectScriptFiles = SQLEditorUtils.getScriptsFromProject(navigatorContext.getProject());
+            /*~~>*/this.projectScriptFiles = SQLEditorUtils.getScriptsFromProject(navigatorContext.getProject());
         } catch (CoreException e) {
             log.error(e);
         }
-        this.scriptFiles = scriptFiles;
+        /*~~>*/this.scriptFiles = scriptFiles;
     }
 
     @Override
@@ -199,7 +199,7 @@ public class ScriptSelectorPanel extends AbstractPopupPanel {
             @Override
             public Object[] getChildren(Object parentElement) {
                 if (parentElement instanceof ResourceInfo) {
-                    final List<ResourceInfo> children = ((ResourceInfo) parentElement).getChildren();
+                    final /*~~>*/List<ResourceInfo> children = ((ResourceInfo) parentElement).getChildren();
                     return CommonUtils.isEmpty(children) ? null : children.toArray();
                 }
                 return null;
@@ -208,7 +208,7 @@ public class ScriptSelectorPanel extends AbstractPopupPanel {
             @Override
             public boolean hasChildren(Object element) {
                 if (element instanceof ResourceInfo) {
-                    final List<ResourceInfo> children = ((ResourceInfo) element).getChildren();
+                    final /*~~>*/List<ResourceInfo> children = ((ResourceInfo) element).getChildren();
                     return !CommonUtils.isEmpty(children);
                 }
                 return false;
@@ -321,7 +321,7 @@ public class ScriptSelectorPanel extends AbstractPopupPanel {
 
             @Override
             public void widgetDefaultSelected(SelectionEvent e) {
-                List<ResourceInfo> files = new ArrayList<>();
+                /*~~>*/List<ResourceInfo> files = new ArrayList<>();
                 for (Object item : ((IStructuredSelection)scriptViewer.getSelection()).toArray()) {
                     if (!((ResourceInfo)item).isDirectory()) {
                         files.add((ResourceInfo) item);
@@ -394,7 +394,7 @@ public class ScriptSelectorPanel extends AbstractPopupPanel {
         // No buttons
     }
 
-    public static void showTree(IWorkbenchWindow workbenchWindow, SQLNavigatorContext editorContext, IFolder rootFolder, List<ResourceInfo> scriptFiles) {
+    public static void showTree(IWorkbenchWindow workbenchWindow, SQLNavigatorContext editorContext, IFolder rootFolder, /*~~>*/List<ResourceInfo> scriptFiles) {
 //        List<ResourceInfo> sortedFiles = new ArrayList<>(scriptFiles);
 //        sortedFiles.sort((o1, o2) -> (int) (o2.getLocalFile().lastModified() - o1.getLocalFile().lastModified()));
         ScriptSelectorPanel selectorPanel = new ScriptSelectorPanel(workbenchWindow, editorContext, rootFolder, scriptFiles);

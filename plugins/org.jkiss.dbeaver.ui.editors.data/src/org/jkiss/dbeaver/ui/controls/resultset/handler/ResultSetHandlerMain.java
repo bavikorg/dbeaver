@@ -306,7 +306,7 @@ public class ResultSetHandlerMain extends AbstractHandler {
                 String columnNames = event.getParameter("columns");
 
                 IResultSetSelection selection = rsv.getSelection();
-                List<DBDAttributeBinding> attrs = selection.isEmpty() ? rsv.getModel().getVisibleAttributes() : selection.getSelectedAttributes();
+                /*~~>*/List<DBDAttributeBinding> attrs = selection.isEmpty() ? rsv.getModel().getVisibleAttributes() : selection.getSelectedAttributes();
                 if (!CommonUtils.isEmpty(columnNames) && attrs.size() == 1) {
                     attrs = new ArrayList<>();
                     for (String colName : columnNames.split(",")) {
@@ -347,7 +347,7 @@ public class ResultSetHandlerMain extends AbstractHandler {
             }
             case CMD_COPY_ROW_NAMES: {
                 StringBuilder buffer = new StringBuilder();
-                List<ResultSetRow> selectedRows = rsv.getSelection().getSelectedRows();
+                /*~~>*/List<ResultSetRow> selectedRows = rsv.getSelection().getSelectedRows();
                 ResultSetCopySettings settings = new ResultSetCopySettings();
                 if (selectedRows.size() > 1) {
                     ResultSetHandlerCopySpecial.CopyConfigDialog configDialog = new ResultSetHandlerCopySpecial.CopyConfigDialog(activeShell, "CopyGridNamesOptionsDialog");
@@ -487,7 +487,7 @@ public class ResultSetHandlerMain extends AbstractHandler {
                 break;
             }
             case CMD_EXPORT: {
-                List<Integer> selectedRows = new ArrayList<>();
+                /*~~>*/List<Integer> selectedRows = new ArrayList<>();
                 for (ResultSetRow selectedRow : rsv.getSelection().getSelectedRows()) {
                     selectedRows.add(selectedRow.getRowNumber());
                 }

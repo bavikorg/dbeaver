@@ -404,7 +404,7 @@ public class ContentPanelEditor extends BaseValueEditor<Control> implements IAda
                 MenuManager menuManager = new MenuManager();
                 ToolBar toolBar = toolItem.getParent();
                 menu = new Menu(toolBar);
-                List<StreamValueManagerDescriptor> managers = new ArrayList<>(streamManagers.keySet());
+                /*~~>*/List<StreamValueManagerDescriptor> managers = new ArrayList<>(streamManagers.keySet());
                 managers.sort(Comparator.comparing(StreamValueManagerDescriptor::getLabel));
                 for (StreamValueManagerDescriptor manager : managers) {
                     final CommandContributionItemParameter parameters = new CommandContributionItemParameter(

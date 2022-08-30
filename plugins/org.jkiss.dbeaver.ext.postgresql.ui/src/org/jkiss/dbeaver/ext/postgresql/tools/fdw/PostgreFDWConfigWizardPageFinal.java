@@ -137,7 +137,7 @@ class PostgreFDWConfigWizardPageFinal extends ActiveWizardPage<PostgreFDWConfigW
                         try {
                             monitor.beginTask("Generate FDW script", 2);
                             monitor.subTask("Read actions");
-                            List<DBEPersistAction> actions = getWizard().generateScript(monitor);
+                            /*~~>*/List<DBEPersistAction> actions = getWizard().generateScript(monitor);
                             monitor.subTask("Generate script");
                             script.append(
                                 SQLUtils.generateScript(

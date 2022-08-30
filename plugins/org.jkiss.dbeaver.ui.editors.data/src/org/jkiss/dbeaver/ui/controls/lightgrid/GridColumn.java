@@ -51,7 +51,7 @@ class GridColumn implements IGridColumn {
 	private final LightGrid grid;
     private final Object element;
     private final GridColumn parent;
-    private List<GridColumn> children;
+    private /*~~>*/List<GridColumn> children;
 
     private int level;
     private int width = DEFAULT_WIDTH;
@@ -370,7 +370,7 @@ class GridColumn implements IGridColumn {
     }
 
     @Override
-    public List<GridColumn> getChildren() {
+    public /*~~>*/List<GridColumn> getChildren() {
         return children;
     }
 

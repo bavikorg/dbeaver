@@ -36,7 +36,7 @@ public class DBCCompileLogBase implements DBCCompileLog {
     public static final int LOG_LEVEL_FATAL  = 6;
 
     private Throwable error;
-    private List<DBCCompileError> errorStack = new ArrayList<>();
+    private /*~~>*/List<DBCCompileError> errorStack = new ArrayList<>();
 
     public DBCCompileLogBase()
     {

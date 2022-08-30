@@ -413,8 +413,8 @@ public class JDBCSQLDialect extends BasicSQLDialect implements SQLDataTypeConver
         }
     }
 
-    private static List<String> makeStringList(String source) {
-        List<String> result = new ArrayList<>();
+    private static /*~~>*/List<String> makeStringList(String source) {
+        /*~~>*/List<String> result = new ArrayList<>();
         if (source != null && source.length() > 0) {
             StringTokenizer st = new StringTokenizer(source, ";,"); //$NON-NLS-1$
             while (st.hasMoreTokens()) {

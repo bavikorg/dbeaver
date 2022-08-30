@@ -350,8 +350,8 @@ public final class RuntimeUtils {
      * @return a list of separate, unquoted arguments
      */
     @NotNull
-    public static List<String> splitCommandLine(@NotNull String input, boolean escapesSupported) {
-        final List<String> arguments = new ArrayList<>();
+    public static /*~~>*/List<String> splitCommandLine(@NotNull String input, boolean escapesSupported) {
+        final /*~~>*/List<String> arguments = new ArrayList<>();
         final StringBuilder argument = new StringBuilder();
         CommandLineState state = CommandLineState.NONE;
         boolean escaped = false;

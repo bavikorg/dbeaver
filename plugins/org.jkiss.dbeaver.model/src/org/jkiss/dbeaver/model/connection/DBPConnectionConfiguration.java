@@ -104,7 +104,7 @@ public class DBPConnectionConfiguration implements DBPObject {
     @NotNull
     private final Map<DBPConnectionEventType, DBRShellCommand> events;
     @NotNull
-    private final List<DBWHandlerConfiguration> handlers;
+    private final /*~~>*/List<DBWHandlerConfiguration> handlers;
     private final DBPConnectionBootstrap bootstrap;
     private DBPConnectionType connectionType;
     private DBPDriverConfigurationType configurationType;
@@ -122,7 +122,7 @@ public class DBPConnectionConfiguration implements DBPObject {
         this.providerProperties = new LinkedHashMap<>();
         this.events = new LinkedHashMap<>();
         this.runtimeAttributes = new HashMap<>();
-        this.handlers = new ArrayList<>();
+        /*~~>*/this.handlers = new ArrayList<>();
         this.bootstrap = new DBPConnectionBootstrap();
         this.keepAliveInterval = 0;
         this.closeIdleInterval = 0;
@@ -149,9 +149,9 @@ public class DBPConnectionConfiguration implements DBPObject {
         for (Map.Entry<DBPConnectionEventType, DBRShellCommand> entry : info.events.entrySet()) {
             this.events.put(entry.getKey(), new DBRShellCommand(entry.getValue()));
         }
-        this.handlers = new ArrayList<>(info.handlers.size());
-        for (DBWHandlerConfiguration handler : info.handlers) {
-            this.handlers.add(new DBWHandlerConfiguration(handler));
+        /*~~>*/this.handlers = new ArrayList<>(/*~~>*/info.handlers.size());
+        for (DBWHandlerConfiguration handler : /*~~>*/info.handlers) {
+            /*~~>*/this.handlers.add(new DBWHandlerConfiguration(handler));
         }
         this.bootstrap = new DBPConnectionBootstrap(info.bootstrap);
         this.connectionColor = info.connectionColor;
@@ -317,13 +317,13 @@ public class DBPConnectionConfiguration implements DBPObject {
     // Network handlers
 
     @NotNull
-    public List<DBWHandlerConfiguration> getHandlers() {
+    public /*~~>*/List<DBWHandlerConfiguration> getHandlers() {
         return handlers;
     }
 
-    public void setHandlers(@NotNull List<DBWHandlerConfiguration> handlers) {
-        this.handlers.clear();
-        this.handlers.addAll(handlers);
+    public void setHandlers(@NotNull /*~~>*/List<DBWHandlerConfiguration> handlers) {
+        /*~~>*/this.handlers.clear();
+        /*~~>*/this.handlers.addAll(handlers);
     }
 
     public void updateHandler(DBWHandlerConfiguration handler) {
@@ -333,7 +333,7 @@ public class DBPConnectionConfiguration implements DBPObject {
                 return;
             }
         }
-        this.handlers.add(handler);
+        /*~~>*/this.handlers.add(handler);
     }
 
     @Nullable
@@ -516,7 +516,7 @@ public class DBPConnectionConfiguration implements DBPObject {
                 CommonUtils.equalObjects(this.properties, source.properties) &&
                 CommonUtils.equalObjects(this.providerProperties, source.providerProperties) &&
                 CommonUtils.equalObjects(this.events, source.events) &&
-                CommonUtils.equalObjects(this.handlers, source.handlers) &&
+                CommonUtils.equalObjects(/*~~>*/this.handlers, /*~~>*/source.handlers) &&
                 CommonUtils.equalObjects(this.bootstrap, source.bootstrap) &&
                 this.keepAliveInterval == source.keepAliveInterval &&
                 this.closeIdleInterval == source.closeIdleInterval;

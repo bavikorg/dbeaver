@@ -97,7 +97,7 @@ public class NavigatorHandlerRefresh extends AbstractHandler {
             // Nothing to refresh
             return false;
         }
-        final List<DBNNode> refreshObjects = new ArrayList<>();
+        final /*~~>*/List<DBNNode> refreshObjects = new ArrayList<>();
         final ISelection selection = HandlerUtil.getCurrentSelection(event);
 
         DBNNode rootNode = navigatorView.getRootNode();

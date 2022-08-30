@@ -50,7 +50,7 @@ public class ClientHomesSelector implements ISelectionProvider {
     private Combo homesCombo;
     //private Label versionLabel;
     private DBPDriver driver;
-    private List<String> homeIds = new ArrayList<>();
+    private /*~~>*/List<String> homeIds = new ArrayList<>();
     private String currentHomeId;
     private int currentHomeIndex;
 
@@ -119,7 +119,7 @@ public class ClientHomesSelector implements ISelectionProvider {
         this.currentHomeId = currentHome;
 
         this.homesCombo.removeAll();
-        this.homeIds.clear();
+        /*~~>*/this.homeIds.clear();
 
         Map<String, DBPNativeClientLocation> homes = new LinkedHashMap<>();
 

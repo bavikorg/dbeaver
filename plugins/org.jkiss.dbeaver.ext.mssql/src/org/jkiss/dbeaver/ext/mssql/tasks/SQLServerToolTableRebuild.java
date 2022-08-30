@@ -32,7 +32,7 @@ public class SQLServerToolTableRebuild extends SQLServerToolWithStatus<SQLServer
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, SQLServerToolTableRebuildSettings settings, List<DBEPersistAction> queries, SQLServerTableBase object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, SQLServerToolTableRebuildSettings settings, /*~~>*/List<DBEPersistAction> queries, SQLServerTableBase object) throws DBCException {
         queries.add(new SQLDatabasePersistAction("ALTER INDEX ALL ON " + object.getFullyQualifiedName(DBPEvaluationContext.DDL) + " REBUILD "));
     }
 }

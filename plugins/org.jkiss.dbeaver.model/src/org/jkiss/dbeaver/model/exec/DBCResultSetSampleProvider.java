@@ -29,6 +29,6 @@ public interface DBCResultSetSampleProvider extends DBCResultSet
 {
 
     @NotNull
-    List<Object[]> getSampleRows(DBCSession session, int maxRows) throws DBCException;
+    /*~~>*/List<Object[]> getSampleRows(DBCSession session, int maxRows) throws DBCException;
 
 }

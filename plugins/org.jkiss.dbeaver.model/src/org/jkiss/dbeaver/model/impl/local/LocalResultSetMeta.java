@@ -27,14 +27,14 @@ import java.util.List;
  */
 public class LocalResultSetMeta implements DBCResultSetMetaData {
 
-    private final List<DBCAttributeMetaData> attributes;
+    private final /*~~>*/List<DBCAttributeMetaData> attributes;
 
-    public LocalResultSetMeta(List<DBCAttributeMetaData> attributes) {
-        this.attributes = attributes;
+    public LocalResultSetMeta(/*~~>*/List<DBCAttributeMetaData> attributes) {
+        /*~~>*/this.attributes = attributes;
     }
 
     @Override
-    public List<DBCAttributeMetaData> getAttributes() {
+    public /*~~>*/List<DBCAttributeMetaData> getAttributes() {
         return attributes;
     }
 }

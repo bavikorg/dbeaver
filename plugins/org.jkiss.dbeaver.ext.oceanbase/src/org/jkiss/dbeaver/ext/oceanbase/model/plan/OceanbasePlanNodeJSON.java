@@ -42,7 +42,7 @@ class OceanbasePlanNodeJSON extends AbstractExecutionPlanNode implements DBCPlan
 
     private final OceanbasePlanNodeJSON parent;
     private final Map<String, String> nodeProps = new LinkedHashMap<>();
-    private final List<OceanbasePlanNodeJSON> nested = new ArrayList<>();
+    private final /*~~>*/List<OceanbasePlanNodeJSON> nested = new ArrayList<>();
 
     private String name;
     private JsonObject object;

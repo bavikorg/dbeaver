@@ -34,7 +34,7 @@ public class PostgreLock implements DBAServerLock {
      private String statement_in;
      
      private DBAServerLock hold = null;
-     private List<DBAServerLock> waiters = new ArrayList<>(0);
+     private /*~~>*/List<DBAServerLock> waiters = new ArrayList<>(0);
      
      public PostgreLock(ResultSet dbResult) {
     	 
@@ -100,8 +100,8 @@ public class PostgreLock implements DBAServerLock {
 
 
 	@Override
-	public List<DBAServerLock> waitThis() {
-		return this.waiters;
+	public /*~~>*/List<DBAServerLock> waitThis() {
+		return /*~~>*/this.waiters;
 	}
 
 	@Override

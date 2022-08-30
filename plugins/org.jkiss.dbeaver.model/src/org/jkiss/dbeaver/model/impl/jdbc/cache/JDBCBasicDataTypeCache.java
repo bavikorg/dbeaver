@@ -110,7 +110,7 @@ public class JDBCBasicDataTypeCache<OWNER extends DBSObject, OBJECT extends JDBC
     @SuppressWarnings("unchecked")
     public void fillStandardTypes(OWNER owner)
     {
-        List<OBJECT> standardTypes = new ArrayList<>();
+        /*~~>*/List<OBJECT> standardTypes = new ArrayList<>();
         Collections.addAll(standardTypes,
             makeDataType(owner, Types.INTEGER, "INTEGER", null, false, true, 0, 0, 0),
             makeDataType(owner, Types.FLOAT, "FLOAT", null, false, true, 0, 0, 0),

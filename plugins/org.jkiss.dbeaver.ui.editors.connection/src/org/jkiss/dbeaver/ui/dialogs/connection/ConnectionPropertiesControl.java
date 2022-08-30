@@ -54,8 +54,8 @@ public class ConnectionPropertiesControl extends PropertyTreeViewer {
 
     private static final String USER_PROPERTIES_CATEGORY = UIConnectionMessages.controls_connection_properties_category_user_properties;
 
-    private List<DBPPropertyDescriptor> driverProvidedProperties;
-    private List<DBPPropertyDescriptor> customProperties;
+    private /*~~>*/List<DBPPropertyDescriptor> driverProvidedProperties;
+    private /*~~>*/List<DBPPropertyDescriptor> customProperties;
 
     public ConnectionPropertiesControl(Composite parent, int style)
     {
@@ -135,8 +135,8 @@ public class ConnectionPropertiesControl extends PropertyTreeViewer {
         }
     }
 
-    private List<DBPPropertyDescriptor> getAllProperties(DBPDriver driver, boolean includeCustom) {
-        List<DBPPropertyDescriptor> propertyDescriptors = new ArrayList<>();
+    private /*~~>*/List<DBPPropertyDescriptor> getAllProperties(DBPDriver driver, boolean includeCustom) {
+        /*~~>*/List<DBPPropertyDescriptor> propertyDescriptors = new ArrayList<>();
         if (driverProvidedProperties != null) {
             propertyDescriptors.addAll(driverProvidedProperties);
         }
@@ -165,7 +165,7 @@ public class ConnectionPropertiesControl extends PropertyTreeViewer {
     {
         // Collect all driver (and all other) properties
         Set<String> propNames = new TreeSet<>();
-        List<DBPPropertyDescriptor> allProperties = getAllProperties(driver, false);
+        /*~~>*/List<DBPPropertyDescriptor> allProperties = getAllProperties(driver, false);
         for (DBPPropertyDescriptor prop : allProperties) {
             propNames.add(CommonUtils.toString(prop.getId()));
         }

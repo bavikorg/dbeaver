@@ -40,7 +40,7 @@ public interface DBEObjectReorderer<OBJECT_TYPE extends DBSObject> extends DBEOb
      * @param siblingObjects
      *@param newPosition new position  @throws DBException on any error
      */
-    void setObjectOrdinalPosition(DBECommandContext commandContext, OBJECT_TYPE object, List<OBJECT_TYPE> siblingObjects, int newPosition)
+    void setObjectOrdinalPosition(DBECommandContext commandContext, OBJECT_TYPE object, /*~~>*/List<OBJECT_TYPE> siblingObjects, int newPosition)
         throws DBException;
 
 }

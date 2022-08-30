@@ -51,9 +51,9 @@ public class HexPreferencesManager {
     private static final String TEXT_REGULAR = BinaryEditorMessages.editor_binary_hex_font_style_regular;
     private static final String SAMPLE_TEXT = BinaryEditorMessages.editor_binary_hex_sample_text;
 
-    private java.util.List<FontData> fontsListCurrent = null;
-    private java.util.List<FontData> fontsNonScalable = null;
-    private java.util.List<FontData> fontsScalable = null;
+    private /*~~>*//*~~>*/java.util.List<FontData> fontsListCurrent = null;
+    private /*~~>*//*~~>*/java.util.List<FontData> fontsNonScalable = null;
+    private /*~~>*//*~~>*/java.util.List<FontData> fontsScalable = null;
     private GC fontsGc = null;
     private java.util.Set<String> fontsRejected = null;
     private java.util.Map<String, Set<Integer>> fontsSorted = null;

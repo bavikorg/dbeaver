@@ -55,7 +55,7 @@ public class DashboardEditDialog extends BaseDialog {
     private Text updatePeriodText;
     private Text maxItemsText;
     //private Text maxAgeText;
-    private List<DashboardViewType> viewTypes;
+    private /*~~>*/List<DashboardViewType> viewTypes;
     private Combo dataTypeCombo;
     private Combo calcTypeCombo;
     private Combo valueTypeCombo;
@@ -69,7 +69,7 @@ public class DashboardEditDialog extends BaseDialog {
 
         this.dashboardDescriptor = dashboardDescriptor;
 
-        List<DBPNamedObject> dataSourceMappings = dashboardDescriptor.getDataSourceMappings();
+        /*~~>*/List<DBPNamedObject> dataSourceMappings = dashboardDescriptor.getDataSourceMappings();
         if (!dataSourceMappings.isEmpty()) {
             targetDatabase = dataSourceMappings.get(0);
         }

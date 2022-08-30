@@ -57,7 +57,7 @@ public class PostgreForeignServerManager extends SQLObjectEditor<PostgreForeignS
     @Override
     protected void addObjectCreateActions(
         DBRProgressMonitor monitor,
-        DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+        DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
         ObjectCreateCommand command,
         Map<String, Object> options) {
         final PostgreForeignServer foreignServer = command.getObject();
@@ -70,7 +70,7 @@ public class PostgreForeignServerManager extends SQLObjectEditor<PostgreForeignS
 
     @Override
     protected void addObjectDeleteActions(
-        DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+        DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
         ObjectDeleteCommand command,
         Map<String, Object> options) {
         actions.add(new SQLDatabasePersistAction("Drop extension", "DROP FOREIGN SERVER " + DBUtils.getQuotedIdentifier(command.getObject())));

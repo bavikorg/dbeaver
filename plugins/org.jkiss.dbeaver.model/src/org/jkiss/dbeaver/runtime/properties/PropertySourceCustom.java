@@ -31,7 +31,7 @@ import java.util.*;
  */
 public class PropertySourceCustom implements DBPPropertySource {
 
-    private List<DBPPropertyDescriptor> props = new ArrayList<>();
+    private /*~~>*/List<DBPPropertyDescriptor> props = new ArrayList<>();
 
     private Map<String, Object> originalValues = new TreeMap<>();
     private Map<String, Object> propValues = new TreeMap<>();

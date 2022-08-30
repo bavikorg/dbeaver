@@ -33,7 +33,7 @@ public class OracleToolMViewRefresh extends SQLToolExecuteHandler<OracleMaterial
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, OracleToolMViewRefreshSettings settings, List<DBEPersistAction> queries, OracleMaterializedView object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, OracleToolMViewRefreshSettings settings, /*~~>*/List<DBEPersistAction> queries, OracleMaterializedView object) throws DBCException {
         String method = "";
         if (settings.isFast()) method += "f";
         if (settings.isForce()) method += "?";

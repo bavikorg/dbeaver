@@ -111,10 +111,10 @@ public class XMLUtils {
 
     // Get list of all child elements of specified node
     @NotNull
-    public static List<Element> getChildElementList(
+    public static /*~~>*/List<Element> getChildElementList(
         Element parent,
         String nodeName) {
-        List<Element> list = new ArrayList<>();
+        /*~~>*/List<Element> list = new ArrayList<>();
         for (org.w3c.dom.Node node = parent.getFirstChild(); node != null; node = node.getNextSibling()) {
             if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE &&
                 nodeName.equals(node.getNodeName())) {
@@ -129,7 +129,7 @@ public class XMLUtils {
     public static Collection<Element> getChildElementListNS(
         Element parent,
         String nsURI) {
-        List<Element> list = new ArrayList<>();
+        /*~~>*/List<Element> list = new ArrayList<>();
         for (org.w3c.dom.Node node = parent.getFirstChild(); node != null; node = node.getNextSibling()) {
             if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE &&
                 node.getNamespaceURI().equals(nsURI)) {
@@ -144,7 +144,7 @@ public class XMLUtils {
         Element parent,
         String nodeName,
         String nsURI) {
-        List<Element> list = new ArrayList<>();
+        /*~~>*/List<Element> list = new ArrayList<>();
         for (org.w3c.dom.Node node = parent.getFirstChild(); node != null; node = node.getNextSibling()) {
             if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE &&
                 node.getLocalName().equals(nodeName) &&
@@ -160,7 +160,7 @@ public class XMLUtils {
     public static Collection<Element> getChildElementList(
         Element parent,
         String[] nodeNameList) {
-        List<Element> list = new ArrayList<>();
+        /*~~>*/List<Element> list = new ArrayList<>();
         for (org.w3c.dom.Node node = parent.getFirstChild(); node != null; node = node.getNextSibling()) {
             if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
                 for (int i = 0; i < nodeNameList.length; i++) {
@@ -268,7 +268,7 @@ public class XMLUtils {
     }
 
     public static Collection<Element> getChildElementList(Element element) {
-        List<Element> children = new ArrayList<>();
+        /*~~>*/List<Element> children = new ArrayList<>();
         for (org.w3c.dom.Node node = element.getFirstChild(); node != null; node = node.getNextSibling()) {
             if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
                 children.add((Element) node);

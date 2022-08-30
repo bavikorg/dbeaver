@@ -87,10 +87,10 @@ public class ObjectPropertiesEditor extends AbstractDatabaseObjectEditor<DBSObje
 
     private TabbedFolderComposite folderComposite;
     private ObjectEditorPageControl pageControl;
-    private final List<ITabbedFolderListener> folderListeners = new ArrayList<>();
+    private final /*~~>*/List<ITabbedFolderListener> folderListeners = new ArrayList<>();
     private String curFolderId;
 
-    private final List<ISaveablePart> nestedSaveable = new ArrayList<>();
+    private final /*~~>*/List<ISaveablePart> nestedSaveable = new ArrayList<>();
     private final Map<ITabbedFolder, IEditorActionBarContributor> pageContributors = new HashMap<>();
     private SashForm sashForm;
     private boolean activated = false;
@@ -537,7 +537,7 @@ public class ObjectPropertiesEditor extends AbstractDatabaseObjectEditor<DBSObje
 
     public TabbedFolderInfo[] collectFolders(IWorkbenchPart part)
     {
-        List<TabbedFolderInfo> tabList = new ArrayList<>();
+        /*~~>*/List<TabbedFolderInfo> tabList = new ArrayList<>();
         makeStandardPropertiesTabs(tabList);
         if (part instanceof IDatabaseEditor) {
             makeDatabaseEditorTabs((IDatabaseEditor)part, tabList);
@@ -545,7 +545,7 @@ public class ObjectPropertiesEditor extends AbstractDatabaseObjectEditor<DBSObje
         return tabList.toArray(new TabbedFolderInfo[0]);
     }
 
-    private void makeStandardPropertiesTabs(List<TabbedFolderInfo> tabList)
+    private void makeStandardPropertiesTabs(/*~~>*/List<TabbedFolderInfo> tabList)
     {
         if (!DBWorkbench.getPlatform().getPreferenceStore().getBoolean(NavigatorPreferences.ENTITY_EDITOR_DETACH_INFO)) {
             tabList.add(new TabbedFolderInfo(
@@ -559,7 +559,7 @@ public class ObjectPropertiesEditor extends AbstractDatabaseObjectEditor<DBSObje
         }
     }
 
-    private void makeDatabaseEditorTabs(final IDatabaseEditor part, final List<TabbedFolderInfo> tabList)
+    private void makeDatabaseEditorTabs(final IDatabaseEditor part, final /*~~>*/List<TabbedFolderInfo> tabList)
     {
         final DBNDatabaseNode node = part.getEditorInput() instanceof IDatabaseEditorInput ? ((IDatabaseEditorInput) part.getEditorInput()).getNavigatorNode() : null;
         if (node == null) {
@@ -587,7 +587,7 @@ public class ObjectPropertiesEditor extends AbstractDatabaseObjectEditor<DBSObje
         // Extra properties tab (show if we have extra properties only)
         {
             TabbedFolderPageProperties pageProperties = new TabbedFolderPageProperties(this, getEditorInput());
-            List<String> extraCategories = pageProperties.getExtraCategories();
+            /*~~>*/List<String> extraCategories = pageProperties.getExtraCategories();
             if (!extraCategories.isEmpty()) {
                 tabList.add(new TabbedFolderInfo(
                     PropertiesContributor.TAB_PROPERTIES,
@@ -600,7 +600,7 @@ public class ObjectPropertiesEditor extends AbstractDatabaseObjectEditor<DBSObje
         }
 
         // Query for entity editors
-        List<EntityEditorDescriptor> editors = EntityEditorsRegistry.getInstance().getEntityEditors(object, this, null);
+        /*~~>*/List<EntityEditorDescriptor> editors = EntityEditorsRegistry.getInstance().getEntityEditors(object, this, null);
         if (!CommonUtils.isEmpty(editors)) {
             for (EntityEditorDescriptor descriptor : editors) {
                 if (descriptor.getType() == EntityEditorDescriptor.Type.folder) {
@@ -616,7 +616,7 @@ public class ObjectPropertiesEditor extends AbstractDatabaseObjectEditor<DBSObje
         }
     }
 
-    private static void collectNavigatorTabs(DBRProgressMonitor monitor, IDatabaseEditor part, DBNNode node, List<TabbedFolderInfo> tabList)
+    private static void collectNavigatorTabs(DBRProgressMonitor monitor, IDatabaseEditor part, DBNNode node, /*~~>*/List<TabbedFolderInfo> tabList)
     {
         monitor.beginTask("Collect tabs", 1);
         // Add all nested folders as tabs
@@ -628,17 +628,17 @@ public class ObjectPropertiesEditor extends AbstractDatabaseObjectEditor<DBSObje
                 if (node instanceof DBNDatabaseNode && ((DBNDatabaseNode) node).getDataSourceContainer().getNavigatorSettings().isHideFolders()) {
                     if (children != null) {
                         // Folders are hidden in navigator. But we must show them here for all present child items
-                        Map<DBXTreeFolder, List<DBNNode>> childMap = new LinkedHashMap<>();
+                        Map<DBXTreeFolder, /*~~>*/List<DBNNode>> childMap = new LinkedHashMap<>();
                         for (DBNNode child : children) {
                             if (child instanceof DBNDatabaseNode) {
                                 DBXTreeNode meta = ((DBNDatabaseNode) child).getMeta();
                                 if (meta.getParent() instanceof DBXTreeFolder) {
-                                    List<DBNNode> itemList = childMap.computeIfAbsent((DBXTreeFolder) meta.getParent(), dbxTreeFolder -> new ArrayList<>());
+                                    /*~~>*/List<DBNNode> itemList = childMap.computeIfAbsent((DBXTreeFolder) meta.getParent(), dbxTreeFolder -> new ArrayList<>());
                                     itemList.add(child);
                                 }
                             }
                         }
-                        for (Map.Entry<DBXTreeFolder, List<DBNNode>> fe : childMap.entrySet()) {
+                        for (Map.Entry<DBXTreeFolder, /*~~>*/List<DBNNode>> fe : childMap.entrySet()) {
                             DBXTreeFolder folder = fe.getKey();
                             String nodeName = folder.getChildrenTypeLabel(((DBNDatabaseNode) node).getObject().getDataSource(), null);
                             tabList.add(
@@ -675,7 +675,7 @@ public class ObjectPropertiesEditor extends AbstractDatabaseObjectEditor<DBSObje
             // Add itself as tab (if it has child items)
             if (node instanceof DBNDatabaseNode) {
                 DBNDatabaseNode databaseNode = (DBNDatabaseNode)node;
-                List<DBXTreeNode> subNodes = databaseNode.getMeta().getChildren(databaseNode);
+                /*~~>*/List<DBXTreeNode> subNodes = databaseNode.getMeta().getChildren(databaseNode);
                 if (subNodes != null) {
                     for (DBXTreeNode child : subNodes) {
                         if (child instanceof DBXTreeItem) {

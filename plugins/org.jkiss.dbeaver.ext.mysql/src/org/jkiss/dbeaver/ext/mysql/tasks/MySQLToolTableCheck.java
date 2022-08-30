@@ -38,7 +38,7 @@ public class MySQLToolTableCheck extends MySQLToolWithStatus<MySQLTableBase, MyS
         return new MySQLToolTableCheckSettings();
     }
 
-    public void generateObjectQueries(DBCSession session, MySQLToolTableCheckSettings settings, List<DBEPersistAction> queries, MySQLTableBase object) {
+    public void generateObjectQueries(DBCSession session, MySQLToolTableCheckSettings settings, /*~~>*/List<DBEPersistAction> queries, MySQLTableBase object) {
         String sql = "CHECK TABLE " + object.getFullyQualifiedName(DBPEvaluationContext.DDL);
         String option = settings.getOption();
         if (!CommonUtils.isEmpty(option)) sql += " " + option;

@@ -43,7 +43,7 @@ public class DBNRegistry {
         return instance;
     }
 
-    private final List<DBNModelExtenderDescriptor> modelExtenders = new ArrayList<>();
+    private final /*~~>*/List<DBNModelExtenderDescriptor> modelExtenders = new ArrayList<>();
     private DBNModelExtenderDescriptor defaultApplication;
 
     private DBNRegistry(IExtensionRegistry registry) {
@@ -60,7 +60,7 @@ public class DBNRegistry {
         if (modelExtenders.isEmpty()) {
             return;
         }
-        List<DBNNode> extraNodes = null;
+        /*~~>*/List<DBNNode> extraNodes = null;
         for (DBNModelExtenderDescriptor med : modelExtenders) {
             try {
                 DBNNode[] enList = med.getInstance().getExtraNodes((DBNNode) parentNode);

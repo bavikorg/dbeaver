@@ -54,7 +54,7 @@ public class DB2TableUniqueKey extends JDBCTableConstraint<DB2Table> {
     private Boolean enableQueryOpt;
     private String remarks;
 
-    private List<DB2TableKeyColumn> columns;
+    private /*~~>*/List<DB2TableKeyColumn> columns;
 
     // -----------------
     // Constructor
@@ -112,14 +112,14 @@ public class DB2TableUniqueKey extends JDBCTableConstraint<DB2Table> {
     // -----------------
 
     @Override
-    public List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException
+    public /*~~>*/List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException
     {
         return columns;
     }
 
-    public void setColumns(List<DB2TableKeyColumn> columns)
+    public void setColumns(/*~~>*/List<DB2TableKeyColumn> columns)
     {
-        this.columns = columns;
+        /*~~>*/this.columns = columns;
     }
 
     // -----------------

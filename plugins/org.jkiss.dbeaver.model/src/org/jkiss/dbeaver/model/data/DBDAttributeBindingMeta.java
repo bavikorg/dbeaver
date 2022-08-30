@@ -49,7 +49,7 @@ public class DBDAttributeBindingMeta extends DBDAttributeBinding {
     @Nullable
     private String rowIdentifierStatus;
     @Nullable
-    private List<DBSEntityReferrer> referrers;
+    private /*~~>*/List<DBSEntityReferrer> referrers;
     @Nullable
     private DBDPseudoAttribute pseudoAttribute;
 
@@ -206,7 +206,7 @@ public class DBDAttributeBindingMeta extends DBDAttributeBinding {
 
     @Nullable
     @Override
-    public List<DBSEntityReferrer> getReferrers() {
+    public /*~~>*/List<DBSEntityReferrer> getReferrers() {
         return referrers;
     }
 
@@ -257,7 +257,7 @@ public class DBDAttributeBindingMeta extends DBDAttributeBinding {
     }
 
     @Override
-    public void lateBinding(@NotNull DBCSession session, List<Object[]> rows) throws DBException {
+    public void lateBinding(@NotNull DBCSession session, /*~~>*/List<Object[]> rows) throws DBException {
         DBSEntityAttribute entityAttribute = getEntityAttribute();
         if (entityAttribute != null) {
             referrers = DBUtils.getAttributeReferrers(session.getProgressMonitor(), entityAttribute, true);

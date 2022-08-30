@@ -39,7 +39,7 @@ public class ConnectionFolderSelector {
 
     private final Combo connectionFolderCombo;
     private DBPDataSourceFolder dataSourceFolder;
-    private final List<DBPDataSourceFolder> connectionFolders = new ArrayList<>();
+    private final /*~~>*/List<DBPDataSourceFolder> connectionFolders = new ArrayList<>();
 
     public ConnectionFolderSelector(Composite parent) {
         UIUtils.createControlLabel(parent, UIMessages.control_label_connection_folder);

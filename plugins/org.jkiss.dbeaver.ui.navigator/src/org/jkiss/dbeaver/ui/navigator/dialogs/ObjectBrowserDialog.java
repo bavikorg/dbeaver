@@ -140,14 +140,14 @@ public class ObjectBrowserDialog extends ObjectBrowserDialogBase {
     {
         ObjectBrowserDialog scDialog = new ObjectBrowserDialog(parentShell, title, rootNode, selectedNode, true, allowedTypes, resultTypes, leafTypes);
         if (scDialog.open() == IDialogConstants.OK_ID) {
-            List<DBNNode> result = scDialog.getSelectedObjects();
+            /*~~>*/List<DBNNode> result = scDialog.getSelectedObjects();
             return result.isEmpty() ? null : result.get(0);
         } else {
             return null;
         }
     }
 
-    public static List<DBNNode> selectObjects(Shell parentShell, String title, DBNNode rootNode, DBNNode selectedNode, Class<?>[] allowedTypes, Class<?>[] resultTypes, Class<?>[] leafTypes)
+    public static /*~~>*/List<DBNNode> selectObjects(Shell parentShell, String title, DBNNode rootNode, DBNNode selectedNode, Class<?>[] allowedTypes, Class<?>[] resultTypes, Class<?>[] leafTypes)
     {
         ObjectBrowserDialog scDialog = new ObjectBrowserDialog(parentShell, title, rootNode, selectedNode, false, allowedTypes, resultTypes, leafTypes);
         if (scDialog.open() == IDialogConstants.OK_ID) {

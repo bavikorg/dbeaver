@@ -28,7 +28,7 @@ import java.util.*;
  * A set of conditions about sequences of terms expressed in form of predicate pairs about term sequence prefix and suffix
  */
 public class TokenPredicateSet implements SQLTokenPredicateSet {
-    private final List<TokenPredicatesCondition> conditions = new ArrayList<>();
+    private final /*~~>*/List<TokenPredicatesCondition> conditions = new ArrayList<>();
     private final Trie<TokenEntry, SQLTokenPredicate> conditionsByPrefix = new Trie<>(ExactTokenEntryComparator.INSTANCE, TokenEntryMatchingComparator.INSTANCE);
     private final Trie<TokenEntry, SQLTokenPredicate> conditionsBySuffix = new Trie<>(ExactTokenEntryComparator.INSTANCE, TokenEntryMatchingComparator.INSTANCE);
     private int maxHeadLength = 0;
@@ -53,7 +53,7 @@ public class TokenPredicateSet implements SQLTokenPredicateSet {
      * @param cond condition to insert
      */
     public void add(@NotNull TokenPredicatesCondition cond) {
-        this.conditions.add(cond);
+        /*~~>*/this.conditions.add(cond);
         cond.getPrefixes().forEach(h -> conditionsByPrefix.add(h.iterator(), cond));
         cond.getSuffixes().forEach(t -> conditionsBySuffix.add(new ArrayDeque<TokenEntry>(t).descendingIterator(), cond));
         maxHeadLength = Math.max(maxHeadLength, cond.maxPrefixLength);

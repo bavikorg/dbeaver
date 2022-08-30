@@ -71,7 +71,7 @@ public class ClickhouseDataSource extends GenericDataSource {
         engineCache.getAllObjects(monitor, this);
     }
 
-    List<ClickhouseTableEngine> getTableEngines() {
+    /*~~>*/List<ClickhouseTableEngine> getTableEngines() {
         return engineCache.getCachedObjects();
     }
 

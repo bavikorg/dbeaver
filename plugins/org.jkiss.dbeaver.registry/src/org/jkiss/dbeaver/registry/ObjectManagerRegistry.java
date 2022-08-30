@@ -44,7 +44,7 @@ public class ObjectManagerRegistry implements DBERegistry {
         return instance;
     }
 
-    private List<ObjectManagerDescriptor> entityManagers = new ArrayList<ObjectManagerDescriptor>();
+    private /*~~>*/List<ObjectManagerDescriptor> entityManagers = new ArrayList<ObjectManagerDescriptor>();
     private Map<String, ObjectManagerDescriptor> entityManagerMap = new HashMap<>();
     private Map<String, Boolean> nullEntityManagerMap = new HashMap<>();
 

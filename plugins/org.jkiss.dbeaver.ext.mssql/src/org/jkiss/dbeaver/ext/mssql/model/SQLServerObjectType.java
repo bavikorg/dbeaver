@@ -122,8 +122,8 @@ public enum SQLServerObjectType implements DBSObjectType {
         }
     }
 
-    public static List<SQLServerObjectType> getTypesForClass(Class<?> theClass) {
-        List<SQLServerObjectType> result = new ArrayList<>();
+    public static /*~~>*/List<SQLServerObjectType> getTypesForClass(Class<?> theClass) {
+        /*~~>*/List<SQLServerObjectType> result = new ArrayList<>();
         for (SQLServerObjectType ot : SQLServerObjectType.values()) {
             if (ot.theClass == theClass) {
                 result.add(ot);

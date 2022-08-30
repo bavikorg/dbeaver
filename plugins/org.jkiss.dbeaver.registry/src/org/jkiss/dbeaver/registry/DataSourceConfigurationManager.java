@@ -33,7 +33,7 @@ public interface DataSourceConfigurationManager {
 
     boolean isSecure();
 
-    List<DBPDataSourceConfigurationStorage> getConfigurationStorages();
+    /*~~>*/List<DBPDataSourceConfigurationStorage> getConfigurationStorages();
 
     InputStream readConfiguration(@NotNull String name) throws DBException, IOException;
 

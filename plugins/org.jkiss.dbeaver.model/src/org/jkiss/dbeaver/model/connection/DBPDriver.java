@@ -57,7 +57,7 @@ public interface DBPDriver extends DBPNamedObject
     String getCategory();
 
     @NotNull
-    List<String> getCategories();
+    /*~~>*/List<String> getCategories();
 
     @NotNull
     String getFullName();
@@ -161,15 +161,15 @@ public interface DBPDriver extends DBPNamedObject
     DBPNativeClientLocationManager getNativeClientManager();
 
     @NotNull
-    List<DBPNativeClientLocation> getNativeClientLocations();
+    /*~~>*/List<DBPNativeClientLocation> getNativeClientLocations();
 
     @Nullable
     ClassLoader getClassLoader();
 
     @NotNull
-    List<? extends DBPDriverLibrary> getDriverLibraries();
+    /*~~>*/List<? extends DBPDriverLibrary> getDriverLibraries();
 
-    List<? extends DBPDriverFileSource> getDriverFileSources();
+    /*~~>*/List<? extends DBPDriverFileSource> getDriverFileSources();
 
     boolean needsExternalDependencies();
 

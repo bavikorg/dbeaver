@@ -206,7 +206,7 @@ class DataFilterRegistry {
             dataFilter.setAnyConstraint(anyConstraint);
             dataFilter.setOrder(this.order);
             dataFilter.setWhere(this.where);
-            List<DBDAttributeConstraint> offschemaConstraints = null; 
+            /*~~>*/List<DBDAttributeConstraint> offschemaConstraints = null; 
             boolean isDocumentSource = dataContainer.getDataSource() != null && Boolean.TRUE.equals(
                 dataContainer.getDataSource().getDataSourceFeature(DBPDataSource.FEATURE_DOCUMENT_DATA_SOURCE)
             );

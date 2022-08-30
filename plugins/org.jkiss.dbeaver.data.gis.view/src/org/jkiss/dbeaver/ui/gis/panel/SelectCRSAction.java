@@ -71,7 +71,7 @@ class SelectCRSAction extends Action {
                 menuManager.add(new SetCRSAction(valueEditor, GisConstants.SRID_3395));
                 menuManager.add(new SetCRSAction(valueEditor, GisConstants.SRID_SIMPLE));
                 menuManager.add(new Separator());
-                List<Integer> recentSRIDs = GISEditorUtils.getRecentSRIDs();
+                /*~~>*/List<Integer> recentSRIDs = GISEditorUtils.getRecentSRIDs();
                 if (!recentSRIDs.isEmpty()) {
                     for (Integer recentSRID : recentSRIDs) {
                         menuManager.add(new SetCRSAction(valueEditor, recentSRID));

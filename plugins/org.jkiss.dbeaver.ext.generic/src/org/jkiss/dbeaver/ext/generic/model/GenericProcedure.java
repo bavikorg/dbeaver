@@ -49,7 +49,7 @@ public class GenericProcedure extends AbstractProcedure<GenericDataSource, Gener
 
     private String specificName;
     private DBSProcedureType procedureType;
-    private List<GenericProcedureParameter> columns;
+    private /*~~>*/List<GenericProcedureParameter> columns;
     private String source;
     private GenericFunctionResultType functionResultType;
 
@@ -237,10 +237,10 @@ public class GenericProcedure extends AbstractProcedure<GenericDataSource, Gener
 
     public void addColumn(GenericProcedureParameter column)
     {
-        if (this.columns == null) {
-            this.columns = new ArrayList<>();
+        if (/*~~>*/this.columns == null) {
+            /*~~>*/this.columns = new ArrayList<>();
         }
-        this.columns.add(column);
+        /*~~>*/this.columns.add(column);
     }
 
     @NotNull

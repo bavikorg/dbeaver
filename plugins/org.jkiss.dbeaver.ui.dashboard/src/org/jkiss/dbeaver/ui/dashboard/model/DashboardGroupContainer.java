@@ -25,7 +25,7 @@ public interface DashboardGroupContainer {
 
     DashboardViewContainer getView();
 
-    List<? extends DashboardContainer> getItems();
+    /*~~>*/List<? extends DashboardContainer> getItems();
 
     void removeItem(DashboardContainer item);
 

@@ -38,7 +38,7 @@ public class DBDAttributeBindingType extends DBDAttributeBindingNested implement
 
     @NotNull
     private final DBSAttributeBase attribute;
-    private List<DBSEntityReferrer> referrers;
+    private /*~~>*/List<DBSEntityReferrer> referrers;
     private int ordinalPosition;
 
     public DBDAttributeBindingType(
@@ -165,12 +165,12 @@ public class DBDAttributeBindingType extends DBDAttributeBindingNested implement
 
     @Nullable
     @Override
-    public List<DBSEntityReferrer> getReferrers() {
+    public /*~~>*/List<DBSEntityReferrer> getReferrers() {
         return referrers;
     }
 
     @Override
-    public void lateBinding(@NotNull DBCSession session, List<Object[]> rows) throws DBException {
+    public void lateBinding(@NotNull DBCSession session, /*~~>*/List<Object[]> rows) throws DBException {
         referrers = findVirtualReferrers();
 
         super.lateBinding(session, rows);

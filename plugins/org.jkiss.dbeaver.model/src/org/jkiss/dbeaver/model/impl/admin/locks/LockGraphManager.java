@@ -57,7 +57,7 @@ public abstract class LockGraphManager {
         graph.getNodes().add(nodeRoot);
         graphIndex.put(root.getId(), graph);
 
-        List<DBAServerLock> current = new ArrayList<>();
+        /*~~>*/List<DBAServerLock> current = new ArrayList<>();
         Set<DBAServerLock> touched = new HashSet<>(); //Prevent Cycle
 
         current.add(root);

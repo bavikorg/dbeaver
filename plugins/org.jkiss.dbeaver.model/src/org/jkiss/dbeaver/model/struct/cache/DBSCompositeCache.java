@@ -26,7 +26,7 @@ import java.util.List;
  */
 public interface DBSCompositeCache<PARENT extends DBSObject, OBJECT extends DBSObject> {
 
-    List<OBJECT> getCachedObjects(PARENT forParent);
+    /*~~>*/List<OBJECT> getCachedObjects(PARENT forParent);
 
     void clearObjectCache(PARENT forParent);
 

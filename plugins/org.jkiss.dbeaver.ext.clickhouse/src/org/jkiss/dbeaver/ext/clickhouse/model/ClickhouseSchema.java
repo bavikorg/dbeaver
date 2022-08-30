@@ -49,13 +49,13 @@ public class ClickhouseSchema extends GenericSchema implements DBPObjectStatisti
     }
 
     @Override
-    public List<ClickhouseTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException {
-        return (List<ClickhouseTable>) super.getPhysicalTables(monitor);
+    public /*~~>*/List<ClickhouseTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException {
+        return (/*~~>*/List<ClickhouseTable>) super.getPhysicalTables(monitor);
     }
 
     @Override
-    public List<ClickhouseTable> getTables(DBRProgressMonitor monitor) throws DBException {
-        return (List<ClickhouseTable>) super.getTables(monitor);
+    public /*~~>*/List<ClickhouseTable> getTables(DBRProgressMonitor monitor) throws DBException {
+        return (/*~~>*/List<ClickhouseTable>) super.getTables(monitor);
     }
 
     @Override

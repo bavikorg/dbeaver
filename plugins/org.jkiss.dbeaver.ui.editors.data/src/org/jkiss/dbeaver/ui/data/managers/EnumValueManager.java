@@ -76,9 +76,9 @@ public abstract class EnumValueManager extends BaseValueManager {
 
     protected abstract boolean isMultiValue(IValueController valueController);
 
-    protected abstract List<String> getEnumValues(IValueController valueController);
+    protected abstract /*~~>*/List<String> getEnumValues(IValueController valueController);
 
-    protected abstract List<String> getSetValues(IValueController valueController, Object value);
+    protected abstract /*~~>*/List<String> getSetValues(IValueController valueController, Object value);
 
     private class EnumInlineEditor extends BaseValueEditor<Combo> {
         private final IValueController controller;
@@ -222,8 +222,8 @@ public abstract class EnumValueManager extends BaseValueManager {
     void fillSetList(IValueController valueController, org.eclipse.swt.widgets.List editor, Object value)
     {
         editor.removeAll();
-        List<String> enumValues = getEnumValues(valueController);
-        List<String> setValues = getSetValues(valueController, value);
+        /*~~>*/List<String> enumValues = getEnumValues(valueController);
+        /*~~>*/List<String> setValues = getSetValues(valueController, value);
         if (enumValues != null) {
             int[] selIndices = new int[setValues.size()];
             int selIndex = 0;

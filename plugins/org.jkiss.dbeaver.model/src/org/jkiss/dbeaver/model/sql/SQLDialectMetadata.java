@@ -46,25 +46,25 @@ public interface SQLDialectMetadata {
     SQLDialect createInstance() throws DBException;
 
     @NotNull
-    List<String> getReservedWords();
+    /*~~>*/List<String> getReservedWords();
 
     @NotNull
-    List<String> getDataTypes();
+    /*~~>*/List<String> getDataTypes();
 
     @NotNull
-    List<String> getFunctions();
+    /*~~>*/List<String> getFunctions();
 
     @NotNull
-    List<String> getDDLKeywords();
+    /*~~>*/List<String> getDDLKeywords();
 
     @NotNull
-    List<String> getDMLKeywords();
+    /*~~>*/List<String> getDMLKeywords();
 
     @NotNull
-    List<String> getExecuteKeywords();
+    /*~~>*/List<String> getExecuteKeywords();
 
     @NotNull
-    List<String> getTransactionKeywords();
+    /*~~>*/List<String> getTransactionKeywords();
 
     @NotNull
     String getScriptDelimiter();
@@ -75,7 +75,7 @@ public interface SQLDialectMetadata {
     SQLDialectMetadata getParentDialect();
 
     @NotNull
-    List<SQLDialectMetadata> getSubDialects(boolean addNested);
+    /*~~>*/List<SQLDialectMetadata> getSubDialects(boolean addNested);
 
     DBDInsertReplaceMethod[] getSupportedInsertReplaceMethods();
 

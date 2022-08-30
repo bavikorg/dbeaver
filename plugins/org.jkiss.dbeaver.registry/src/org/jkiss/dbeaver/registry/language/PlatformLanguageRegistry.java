@@ -36,7 +36,7 @@ public class PlatformLanguageRegistry
         return instance;
     }
 
-    private final List<PlatformLanguageDescriptor> descriptors = new ArrayList<>();
+    private final /*~~>*/List<PlatformLanguageDescriptor> descriptors = new ArrayList<>();
 
     private PlatformLanguageRegistry(IExtensionRegistry registry)
     {
@@ -50,7 +50,7 @@ public class PlatformLanguageRegistry
         }
     }
 
-    public List<PlatformLanguageDescriptor> getLanguages()
+    public /*~~>*/List<PlatformLanguageDescriptor> getLanguages()
     {
         return descriptors;
     }

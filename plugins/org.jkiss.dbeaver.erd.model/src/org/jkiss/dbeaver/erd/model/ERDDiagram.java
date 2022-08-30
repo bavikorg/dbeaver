@@ -51,7 +51,7 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
 
     private static class DataSourceInfo {
         int index;
-        List<ERDEntity> entities = new ArrayList<>();
+        /*~~>*/List<ERDEntity> entities = new ArrayList<>();
 
         public DataSourceInfo(int index) {
             this.index = index;
@@ -60,7 +60,7 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
 
     private final ERDContentProvider contentProvider;
     private String name;
-    private final List<ERDEntity> entities = new ArrayList<>();
+    private final /*~~>*/List<ERDEntity> entities = new ArrayList<>();
     private final Map<DBPDataSourceContainer, DataSourceInfo> dataSourceMap = new LinkedHashMap<>();
     private final Map<DBPDataSourceContainer, Map<DBSObjectContainer, Integer>> dataSourceContainerMap = new LinkedHashMap<>();
     private DBSObjectContainer rootObjectContainer;
@@ -70,8 +70,8 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
 
     private final Map<DBSEntity, ERDEntity> entityMap = new IdentityHashMap<>();
 
-    private final List<ERDNote> notes = new ArrayList<>();
-    private final List<String> errorMessages = new ArrayList<>();
+    private final /*~~>*/List<ERDNote> notes = new ArrayList<>();
+    private final /*~~>*/List<String> errorMessages = new ArrayList<>();
 
     public ERDDiagram(DBSObject container, String name, ERDContentProvider contentProvider) {
         super(container);
@@ -117,7 +117,7 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
 
             DBPDataSourceContainer dataSource = object.getDataSource().getContainer();
             DataSourceInfo dsInfo = dataSourceMap.computeIfAbsent(dataSource, dsc -> new DataSourceInfo(dataSourceMap.size()));
-            dsInfo.entities.add(entity);
+            /*~~>*/dsInfo.entities.add(entity);
 
             DBSObjectContainer container = DBUtils.getParentOfType(DBSObjectContainer.class, entity.getObject());
             if (container != null) {
@@ -167,8 +167,8 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
 
             DBPDataSourceContainer dataSource = entity.getObject().getDataSource().getContainer();
             DataSourceInfo dsInfo = dataSourceMap.get(dataSource);
-            dsInfo.entities.remove(entity);
-            if (dsInfo.entities.isEmpty()) {
+            /*~~>*/dsInfo.entities.remove(entity);
+            if (/*~~>*/dsInfo.entities.isEmpty()) {
                 dataSourceMap.remove(dataSource);
             }
 
@@ -182,11 +182,11 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
      * @return the Tables for the current schema
      */
     @Override
-    public List<ERDEntity> getEntities() {
+    public /*~~>*/List<ERDEntity> getEntities() {
         return entities;
     }
 
-    public List<ERDNote> getNotes() {
+    public /*~~>*/List<ERDNote> getNotes() {
         return notes;
     }
 
@@ -261,7 +261,7 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
 
     public ERDDiagram copy() {
         ERDDiagram copy = new ERDDiagram(object, name, contentProvider);
-        copy.entities.addAll(this.entities);
+        /*~~>*/copy.entities.addAll(/*~~>*/this.entities);
         copy.entityMap.putAll(this.entityMap);
         copy.layoutManualDesired = this.layoutManualDesired;
         copy.layoutManualAllowed = this.layoutManualAllowed;
@@ -271,7 +271,7 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
     public void fillEntities(DBRProgressMonitor monitor, Collection<DBSEntity> entities, DBSObject dbObject) throws DBException {
         // Load entities
         monitor.beginTask("Load entities metadata", entities.size());
-        List<ERDEntity> entityCache = new ArrayList<>();
+        /*~~>*/List<ERDEntity> entityCache = new ArrayList<>();
         for (DBSEntity table : entities) {
             if (monitor.isCanceled()) {
                 break;
@@ -327,8 +327,8 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
         return entityMap.get(table);
     }
 
-    public List<ERDEntity> getEntities(DBSEntity table) {
-        List<ERDEntity> result = new ArrayList<>();
+    public /*~~>*/List<ERDEntity> getEntities(DBSEntity table) {
+        /*~~>*/List<ERDEntity> result = new ArrayList<>();
         for (ERDEntity entity : entities) {
             if (entity.getObject() == table) {
                 result.add(entity);
@@ -360,9 +360,9 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
         this.rootObjectContainer = rootObjectContainer;
     }
 
-    public List<ERDEntity> getEntities(DBPDataSourceContainer dataSourceContainer) {
+    public /*~~>*/List<ERDEntity> getEntities(DBPDataSourceContainer dataSourceContainer) {
         DataSourceInfo dsInfo = dataSourceMap.get(dataSourceContainer);
-        return dsInfo == null ? Collections.emptyList() : dsInfo.entities;
+        return dsInfo == null ? Collections.emptyList() : /*~~>*/dsInfo.entities;
     }
 
     public int getDataSourceIndex(DBPDataSourceContainer dataSource) {
@@ -381,7 +381,7 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
     }
 
     public void clear() {
-        this.entities.clear();
+        /*~~>*/this.entities.clear();
         this.entityMap.clear();
     }
 
@@ -393,7 +393,7 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
         this.needsAutoLayout = needsAutoLayout;
     }
 
-    public void addInitRelationBends(ERDElement<?> sourceEntity, ERDElement<?> targetEntity, String relName, List<int[]> bends) {
+    public void addInitRelationBends(ERDElement<?> sourceEntity, ERDElement<?> targetEntity, String relName, /*~~>*/List<int[]> bends) {
         for (ERDAssociation rel : sourceEntity.getReferences()) {
             if (rel.getSourceEntity() == targetEntity && relName.equals(rel.getObject().getName())) {
                 rel.setInitBends(bends);
@@ -401,14 +401,14 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
         }
     }
 
-    public List<ERDObject<?>> getContents() {
-        List<ERDObject<?>> children = new ArrayList<>(entities.size() + notes.size());
+    public /*~~>*/List<ERDObject<?>> getContents() {
+        /*~~>*/List<ERDObject<?>> children = new ArrayList<>(entities.size() + notes.size());
         children.addAll(entities);
         children.addAll(notes);
         return children;
     }
 
-    public List<String> getErrorMessages() {
+    public /*~~>*/List<String> getErrorMessages() {
         return errorMessages;
     }
 
@@ -481,12 +481,12 @@ public class ERDDiagram extends ERDObject<DBSObject> implements ERDContainer {
             this.getEntities().stream().map(e -> e.toMap(context, fullInfo)).collect(Collectors.toList()));
 
         {
-            List<ERDElement<?>> allElements = new ArrayList<>();
+            /*~~>*/List<ERDElement<?>> allElements = new ArrayList<>();
             allElements.addAll(this.getEntities());
             allElements.addAll(this.getNotes());
 
 
-            List<Map<String, Object>> assocList = new ArrayList<>();
+            /*~~>*/List<Map<String, Object>> assocList = new ArrayList<>();
             for (ERDElement<?> element : allElements) {
                 for (ERDAssociation rel : element.getAssociations()) {
                     assocList.add(rel.toMap(context, fullInfo));

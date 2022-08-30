@@ -35,7 +35,7 @@ public interface DBAServerSessionDetails {
 
     DBPImage getDetailsIcon();
 
-    List<? extends DBPObject> getSessionDetails(DBCSession session, DBAServerSession serverSession) throws DBException;
+    /*~~>*/List<? extends DBPObject> getSessionDetails(DBCSession session, DBAServerSession serverSession) throws DBException;
 
     Class<?> getDetailsType();
 }

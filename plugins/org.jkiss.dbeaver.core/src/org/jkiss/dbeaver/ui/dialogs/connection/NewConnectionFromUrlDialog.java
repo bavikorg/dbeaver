@@ -101,7 +101,7 @@ public class NewConnectionFromUrlDialog extends BaseDialog {
                 @Override
                 protected IStatus run(DBRProgressMonitor monitor) {
                     UIUtils.asyncExec(() -> {
-                        final var drivers = getSuitableDrivers(urlText.getText());
+                        final /*~~>*/var drivers = getSuitableDrivers(urlText.getText());
 
                         url = urlText.getText();
                         driverViewer.getTree().setRedraw(false);
@@ -160,12 +160,12 @@ public class NewConnectionFromUrlDialog extends BaseDialog {
     }
 
     @NotNull
-    private List<Map.Entry<DBPDataSourceProviderDescriptor, List<DriverInfo>>> getSuitableDrivers(@NotNull String url) {
-        final Map<DBPDataSourceProviderDescriptor, List<DriverInfo>> result = new LinkedHashMap<>();
+    private /*~~>*/List<Map.Entry<DBPDataSourceProviderDescriptor, /*~~>*/List<DriverInfo>>> getSuitableDrivers(@NotNull String url) {
+        final Map<DBPDataSourceProviderDescriptor, /*~~>*/List<DriverInfo>> result = new LinkedHashMap<>();
         final Map<DBPDataSourceProviderDescriptor, Integer> scores = new HashMap<>();
 
         for (DBPDataSourceProviderDescriptor provider : DataSourceProviderRegistry.getInstance().getDataSourceProviders()) {
-            final List<DriverInfo> drivers = new ArrayList<>();
+            final /*~~>*/List<DriverInfo> drivers = new ArrayList<>();
 
             for (DBPDriver driver : provider.getEnabledDrivers()) {
                 if (CommonUtils.isEmpty(driver.getSampleURL()) || CommonUtils.isEmptyTrimmed(url)) {
@@ -224,7 +224,7 @@ public class NewConnectionFromUrlDialog extends BaseDialog {
         @SuppressWarnings("unchecked")
         public String getText(Object element) {
             if (element instanceof Map.Entry) {
-                final var entry = (Map.Entry<DBPDataSourceProviderDescriptor, List<DriverInfo>>) element;
+                final var entry = (Map.Entry<DBPDataSourceProviderDescriptor, /*~~>*/List<DriverInfo>>) element;
                 return entry.getKey().getName();
             }
             if (element instanceof DriverInfo) {
@@ -237,7 +237,7 @@ public class NewConnectionFromUrlDialog extends BaseDialog {
         @SuppressWarnings("unchecked")
         public Image getImage(Object element) {
             if (element instanceof Map.Entry) {
-                final var entry = (Map.Entry<DBPDataSourceProviderDescriptor, List<DriverInfo>>) element;
+                final var entry = (Map.Entry<DBPDataSourceProviderDescriptor, /*~~>*/List<DriverInfo>>) element;
                 return DBeaverIcons.getImage(entry.getKey().getIcon());
             }
             if (element instanceof DriverInfo) {
@@ -256,7 +256,7 @@ public class NewConnectionFromUrlDialog extends BaseDialog {
         @SuppressWarnings("unchecked")
         public Object[] getChildren(Object element) {
             if (element instanceof Map.Entry) {
-                final var entry = (Map.Entry<DBPDataSourceProviderDescriptor, List<DriverInfo>>) element;
+                final var entry = (Map.Entry<DBPDataSourceProviderDescriptor, /*~~>*/List<DriverInfo>>) element;
                 return entry.getValue().toArray();
             }
             return null;

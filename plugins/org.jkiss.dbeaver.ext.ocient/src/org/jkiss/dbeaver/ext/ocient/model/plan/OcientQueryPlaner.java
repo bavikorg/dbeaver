@@ -108,7 +108,7 @@ public class OcientQueryPlaner extends AbstractExecutionPlanSerializer implement
 
         {
             ExecutionPlanDeserializer<OcientPlanNodeJson> loader = new ExecutionPlanDeserializer<>();
-            List<OcientPlanNodeJson> rootNodes = loader.loadRoot(dataSource, jo,
+            /*~~>*/List<OcientPlanNodeJson> rootNodes = loader.loadRoot(dataSource, jo,
                 (datasource, node, parent) -> new OcientPlanNodeJson(parent, getNodeAttributes(node)));
             return new OcientExecutionPlan(query, rootNodes);
         }

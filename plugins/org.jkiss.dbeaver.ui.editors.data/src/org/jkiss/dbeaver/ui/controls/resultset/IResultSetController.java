@@ -107,7 +107,7 @@ public interface IResultSetController extends IDataController, DBPContextProvide
     @Nullable
     ResultSetSaveReport generateChangesReport();
 
-    List<DBEPersistAction> generateChangesScript(@NotNull DBRProgressMonitor monitor, @NotNull ResultSetSaveSettings settings);
+    /*~~>*/List<DBEPersistAction> generateChangesScript(@NotNull DBRProgressMonitor monitor, @NotNull ResultSetSaveSettings settings);
     
     void showDistinctFilter(DBDAttributeBinding curAttribute);
 
@@ -170,10 +170,10 @@ public interface IResultSetController extends IDataController, DBPContextProvide
     /**
      * Navigates to association. One of @association OR @attr must be specified.
      */
-    void navigateAssociation(@NotNull DBRProgressMonitor monitor, @NotNull ResultSetModel model, @NotNull DBSEntityAssociation association, @NotNull List<ResultSetRow> rows, boolean newWindow)
+    void navigateAssociation(@NotNull DBRProgressMonitor monitor, @NotNull ResultSetModel model, @NotNull DBSEntityAssociation association, @NotNull /*~~>*/List<ResultSetRow> rows, boolean newWindow)
         throws DBException;
 
-    void navigateReference(@NotNull DBRProgressMonitor monitor, @NotNull ResultSetModel bindingsModel, @NotNull DBSEntityAssociation association, @NotNull List<ResultSetRow> rows, boolean newWindow)
+    void navigateReference(@NotNull DBRProgressMonitor monitor, @NotNull ResultSetModel bindingsModel, @NotNull DBSEntityAssociation association, @NotNull /*~~>*/List<ResultSetRow> rows, boolean newWindow)
         throws DBException;
 
     int getHistoryPosition();

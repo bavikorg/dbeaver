@@ -28,6 +28,6 @@ import java.util.List;
 public interface DBSEntityReferrer extends DBSEntityConstraint {
 
     @Nullable
-    List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException;
+    /*~~>*/List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) throws DBException;
 
 }

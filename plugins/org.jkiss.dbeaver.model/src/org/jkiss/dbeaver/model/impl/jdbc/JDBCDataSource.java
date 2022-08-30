@@ -85,7 +85,7 @@ public abstract class JDBCDataSource
     private int databaseMajorVersion = 0;
     private int databaseMinorVersion = 0;
 
-    private final transient List<Connection> closingConnections = new ArrayList<>();
+    private final transient /*~~>*/List<Connection> closingConnections = new ArrayList<>();
 
     protected JDBCDataSource(@NotNull DBRProgressMonitor monitor, @NotNull DBPDataSourceContainer container, @NotNull SQLDialect dialect)
         throws DBException
@@ -398,7 +398,7 @@ public abstract class JDBCDataSource
 
     @NotNull
     @Override
-    public List<? extends JDBCRemoteInstance> getAvailableInstances() {
+    public /*~~>*/List<? extends JDBCRemoteInstance> getAvailableInstances() {
         JDBCRemoteInstance defaultInstance = getDefaultInstance();
         return defaultInstance == null ?
             Collections.emptyList() :

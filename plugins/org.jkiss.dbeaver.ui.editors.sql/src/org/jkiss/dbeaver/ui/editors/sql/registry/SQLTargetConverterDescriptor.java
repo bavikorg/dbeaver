@@ -37,7 +37,7 @@ public class SQLTargetConverterDescriptor extends AbstractContextDescriptor {
     private final String description;
     private final ObjectType implClass;
     private final DBPImage icon;
-    private List<DBPPropertyDescriptor> properties = new ArrayList<>();
+    private /*~~>*/List<DBPPropertyDescriptor> properties = new ArrayList<>();
 
     SQLTargetConverterDescriptor(IConfigurationElement config) {
         super(config);
@@ -48,7 +48,7 @@ public class SQLTargetConverterDescriptor extends AbstractContextDescriptor {
         this.implClass = new ObjectType(config.getAttribute("class"));
         this.icon = iconToImage(config.getAttribute("icon"));
 
-        this.properties.addAll(PropertyDescriptor.extractProperties(config));
+        /*~~>*/this.properties.addAll(PropertyDescriptor.extractProperties(config));
     }
 
     public String getId() {
@@ -67,7 +67,7 @@ public class SQLTargetConverterDescriptor extends AbstractContextDescriptor {
         return icon;
     }
 
-    public List<DBPPropertyDescriptor> getProperties() {
+    public /*~~>*/List<DBPPropertyDescriptor> getProperties() {
         return properties;
     }
 

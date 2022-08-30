@@ -24,6 +24,6 @@ import java.util.List;
  */
 public interface DBAServerSessionDetailsProvider {
 
-    List<DBAServerSessionDetails> getSessionDetails();
+    /*~~>*/List<DBAServerSessionDetails> getSessionDetails();
 
 }

@@ -79,7 +79,7 @@ public class SQLEditorUtils {
     @Nullable
     public static ResourceInfo findRecentScript(DBPProject project, @Nullable SQLNavigatorContext context) throws CoreException
     {
-        List<ResourceInfo> scripts = new ArrayList<>();
+        /*~~>*/List<ResourceInfo> scripts = new ArrayList<>();
         findScriptList(
             project,
             getScriptsFolder(project, false),
@@ -100,7 +100,7 @@ public class SQLEditorUtils {
         return recentFile;
     }
 
-    private static void findScriptList(@NotNull DBPProject project, IFolder folder, @Nullable DBPDataSourceContainer container, @NotNull List<ResourceInfo> result) {
+    private static void findScriptList(@NotNull DBPProject project, IFolder folder, @Nullable DBPDataSourceContainer container, @NotNull /*~~>*/List<ResourceInfo> result) {
         if (folder == null || container == null) {
             return;
         }
@@ -126,15 +126,15 @@ public class SQLEditorUtils {
         }
     }
 
-    public static List<ResourceInfo> findScriptTree(DBPProject project, IFolder folder, @Nullable DBPDataSourceContainer container)
+    public static /*~~>*/List<ResourceInfo> findScriptTree(DBPProject project, IFolder folder, @Nullable DBPDataSourceContainer container)
     {
-        List<ResourceInfo> result = new ArrayList<>();
+        /*~~>*/List<ResourceInfo> result = new ArrayList<>();
         findScriptList(project, folder, container, result);
         return result;
     }
 
     @NotNull
-    public static List<ResourceInfo> getScriptsFromProject(@NotNull DBPProject dbpProject) throws CoreException {
+    public static /*~~>*/List<ResourceInfo> getScriptsFromProject(@NotNull DBPProject dbpProject) throws CoreException {
         IFolder resourceDefaultRoot = DBPPlatformEclipse.getInstance().getWorkspace().getResourceDefaultRoot(dbpProject, ScriptsHandlerImpl.class, false);
         if (resourceDefaultRoot != null) {
             return getScriptsFromFolder(resourceDefaultRoot);
@@ -144,8 +144,8 @@ public class SQLEditorUtils {
     }
 
     @NotNull
-    private static List<ResourceInfo> getScriptsFromFolder(@NotNull IFolder folder) throws CoreException {
-        List<ResourceInfo> scripts = new ArrayList<>();
+    private static /*~~>*/List<ResourceInfo> getScriptsFromFolder(@NotNull IFolder folder) throws CoreException {
+        /*~~>*/List<ResourceInfo> scripts = new ArrayList<>();
         for (IResource member : folder.members()) {
             if (member instanceof IFile) {
                 IFile iFile = (IFile) member;
@@ -182,7 +182,7 @@ public class SQLEditorUtils {
                     // Create script folders according to connection folders
                     DBPDataSourceFolder conFolder = dataSourceContainer.getFolder();
                     if (conFolder != null) {
-                        List<DBPDataSourceFolder> conFolders = new ArrayList<>();
+                        /*~~>*/List<DBPDataSourceFolder> conFolders = new ArrayList<>();
                         for (DBPDataSourceFolder f = conFolder; f != null; f = f.getParent()) {
                             conFolders.add(0, f);
                         }
@@ -281,7 +281,7 @@ public class SQLEditorUtils {
         @Deprecated
         private final File localFile;
         private final DBPDataSourceContainer dataSource;
-        private final List<ResourceInfo> children;
+        private final /*~~>*/List<ResourceInfo> children;
         private String description;
 
         ResourceInfo(IFile file, DBPDataSourceContainer dataSource) {
@@ -289,20 +289,20 @@ public class SQLEditorUtils {
             IPath location = file.getLocation();
             this.localFile = location == null ? null : location.toFile();
             this.dataSource = dataSource;
-            this.children = null;
+            /*~~>*/this.children = null;
         }
         public ResourceInfo(IFolder folder) {
             this.resource = folder;
             IPath location = folder.getLocation();
             this.localFile = location == null ? null : location.toFile();
             this.dataSource = null;
-            this.children = new ArrayList<>();
+            /*~~>*/this.children = new ArrayList<>();
         }
         ResourceInfo(File localFile, DBPDataSourceContainer dataSource) {
             this.resource = null;
             this.localFile = localFile;
             this.dataSource = dataSource;
-            this.children = null;
+            /*~~>*/this.children = null;
         }
 
         public IResource getResource() {
@@ -324,7 +324,7 @@ public class SQLEditorUtils {
         public boolean isDirectory() {
             return resource instanceof IFolder;
         }
-        public List<ResourceInfo> getChildren() {
+        public /*~~>*/List<ResourceInfo> getChildren() {
             return children;
         }
 

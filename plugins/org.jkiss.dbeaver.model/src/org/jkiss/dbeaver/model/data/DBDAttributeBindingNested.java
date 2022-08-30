@@ -85,7 +85,7 @@ public abstract class DBDAttributeBindingNested extends DBDAttributeBinding impl
 
     @Nullable
     @Override
-    public List<DBSEntityReferrer> getReferrers() {
+    public /*~~>*/List<DBSEntityReferrer> getReferrers() {
         return null;
     }
 

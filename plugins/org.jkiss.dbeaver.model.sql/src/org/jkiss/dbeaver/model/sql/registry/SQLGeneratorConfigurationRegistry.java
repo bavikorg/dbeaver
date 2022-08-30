@@ -37,7 +37,7 @@ public class SQLGeneratorConfigurationRegistry
     private static final String TAG_GENERATOR = "generator"; //$NON-NLS-1$
 
     private static SQLGeneratorConfigurationRegistry instance = null;
-    private final List<SQLGeneratorDescriptor> generators = new ArrayList<>();
+    private final /*~~>*/List<SQLGeneratorDescriptor> generators = new ArrayList<>();
 
     public synchronized static SQLGeneratorConfigurationRegistry getInstance()
     {
@@ -58,7 +58,7 @@ public class SQLGeneratorConfigurationRegistry
         for (IConfigurationElement ext : extConfigs) {
             // Load generators
             if (TAG_GENERATOR.equals(ext.getName())) {
-                this.generators.add(
+                /*~~>*/this.generators.add(
                     new SQLGeneratorDescriptor(ext));
             }
         }
@@ -69,12 +69,12 @@ public class SQLGeneratorConfigurationRegistry
         generators.clear();
     }
 
-    public List<SQLGeneratorDescriptor> getAllGenerators() {
+    public /*~~>*/List<SQLGeneratorDescriptor> getAllGenerators() {
         return new ArrayList<>(generators);
     }
 
-    public List<SQLGeneratorDescriptor> getApplicableGenerators(Collection<?> objects, Object context) {
-        List<SQLGeneratorDescriptor> result = new ArrayList<>();
+    public /*~~>*/List<SQLGeneratorDescriptor> getApplicableGenerators(Collection<?> objects, Object context) {
+        /*~~>*/List<SQLGeneratorDescriptor> result = new ArrayList<>();
         for (SQLGeneratorDescriptor gen : generators) {
             for (Object object : objects) {
                 if (object instanceof DBPObject && gen.appliesTo((DBPObject) object, context)) {
@@ -100,7 +100,7 @@ public class SQLGeneratorConfigurationRegistry
     }
 
     @Nullable
-    public <T> SQLGenerator<T> createGenerator(DBPDataSource dataSource, List<T> objectsd) {
+    public <T> SQLGenerator<T> createGenerator(DBPDataSource dataSource, /*~~>*/List<T> objectsd) {
 /*
         SQLGeneratorDescriptor formatterDesc = getGenerator(formatterId);
         if (formatterDesc == null) {

@@ -36,8 +36,8 @@ public class EntityRemoveCommand extends Command {
     private DiagramPart diagramPart;
     private ERDEntity entity;
     private int index = -1;
-    private List<ERDAssociation> foreignKeyRelationships = new ArrayList<>();
-    private List<ERDAssociation> primaryKeyRelationships = new ArrayList<>();
+    private /*~~>*/List<ERDAssociation> foreignKeyRelationships = new ArrayList<>();
+    private /*~~>*/List<ERDAssociation> primaryKeyRelationships = new ArrayList<>();
     //private Rectangle bounds;
 
     public EntityRemoveCommand(EntityPart entityPart) {
@@ -57,7 +57,7 @@ public class EntityRemoveCommand extends Command {
 
     private void deleteRelationships(ERDEntity t) {
 
-        this.foreignKeyRelationships.addAll(t.getAssociations());
+        /*~~>*/this.foreignKeyRelationships.addAll(t.getAssociations());
 
         //for all relationships where current entity is foreign key
         for (ERDAssociation association : foreignKeyRelationships) {
@@ -66,7 +66,7 @@ public class EntityRemoveCommand extends Command {
         }
 
         //for all relationships where current entity is primary key
-        this.primaryKeyRelationships.addAll(t.getReferences());
+        /*~~>*/this.primaryKeyRelationships.addAll(t.getReferences());
         for (ERDAssociation r : primaryKeyRelationships) {
             r.getSourceEntity().removeAssociation(r, true);
             t.removeReferenceAssociation(r, true);

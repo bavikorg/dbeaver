@@ -33,7 +33,7 @@ public class PostgreToolBaseVacuum extends PostgreToolWithStatus<DBSObject, Post
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, PostgreToolBaseVacuumSettings settings, List<DBEPersistAction> queries, DBSObject object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, PostgreToolBaseVacuumSettings settings, /*~~>*/List<DBEPersistAction> queries, DBSObject object) throws DBCException {
         String sql = "VACUUM (";
         if(settings.isFull()) sql += "FULL, ";
         if(settings.isFreeze()) sql += "FREEZE, ";

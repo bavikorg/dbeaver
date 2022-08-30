@@ -24,11 +24,11 @@ import java.util.List;
 public class SMProjectPermissions {
     @Nullable
     private final String projectId;
-    private final List<SMProjectPermission> permissions;
+    private final /*~~>*/List<SMProjectPermission> permissions;
 
-    public SMProjectPermissions(@Nullable String projectId, List<SMProjectPermission> permissions) {
+    public SMProjectPermissions(@Nullable String projectId, /*~~>*/List<SMProjectPermission> permissions) {
         this.projectId = projectId;
-        this.permissions = permissions;
+        /*~~>*/this.permissions = permissions;
     }
 
     @Nullable
@@ -36,7 +36,7 @@ public class SMProjectPermissions {
         return projectId;
     }
 
-    public List<SMProjectPermission> getPermissions() {
+    public /*~~>*/List<SMProjectPermission> getPermissions() {
         return permissions;
     }
 }

@@ -270,7 +270,7 @@ public class StreamConsumerSettings implements IDataTransferSettings {
         if (mappings != null && !mappings.isEmpty()) {
             try {
                 runnableContext.run(true, true, monitor -> {
-                    final List<DataTransferPipe> pipes = dataTransferSettings.getDataPipes();
+                    final /*~~>*/List<DataTransferPipe> pipes = dataTransferSettings.getDataPipes();
                     for (DataTransferPipe pipe : pipes) {
                         final IDataTransferProducer<?> producer = pipe.getProducer();
                         if (producer != null) {

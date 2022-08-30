@@ -69,8 +69,8 @@ public class DataImporterCSV extends StreamImporterAbstract {
 
     @NotNull
     @Override
-    public List<StreamDataImporterColumnInfo> readColumnsInfo(StreamEntityMapping entityMapping, @NotNull InputStream inputStream) throws DBException {
-        List<StreamDataImporterColumnInfo> columnsInfo = new ArrayList<>();
+    public /*~~>*/List<StreamDataImporterColumnInfo> readColumnsInfo(StreamEntityMapping entityMapping, @NotNull InputStream inputStream) throws DBException {
+        /*~~>*/List<StreamDataImporterColumnInfo> columnsInfo = new ArrayList<>();
         Map<String, Object> processorProperties = getSite().getProcessorProperties();
         HeaderPosition headerPosition = getHeaderPosition(processorProperties);
 

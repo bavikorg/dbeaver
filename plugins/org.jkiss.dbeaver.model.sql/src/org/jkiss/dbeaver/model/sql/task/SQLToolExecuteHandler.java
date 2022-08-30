@@ -88,13 +88,13 @@ public abstract class SQLToolExecuteHandler<OBJECT_TYPE extends DBSObject, SETTI
     }
 
     private void executeTool(DBRProgressMonitor monitor, DBTTask task, SETTINGS settings, Log log, PrintStream outLog, DBTTaskExecutionListener listener) throws DBException, IOException {
-        List<OBJECT_TYPE> objectList = settings.getObjectList();
+        /*~~>*/List<OBJECT_TYPE> objectList = settings.getObjectList();
         Exception lastError = null;
 
         listener.taskStarted(task);
         try {
             monitor.beginTask("Execute tool '" + task.getType().getName() + "'", objectList.size());
-            List<Throwable> warnings = settings.getWarnings();
+            /*~~>*/List<Throwable> warnings = settings.getWarnings();
             if (!warnings.isEmpty()) {
                 Throwable throwable = warnings.get(0);
                 throw new DBCException("Tool execution error: " + throwable.getMessage(), throwable);
@@ -102,7 +102,7 @@ public abstract class SQLToolExecuteHandler<OBJECT_TYPE extends DBSObject, SETTI
             for (OBJECT_TYPE object : objectList) {
                 monitor.subTask("Process [" + DBUtils.getObjectFullName(object, DBPEvaluationContext.UI) + "]");
                 try (DBCSession session = DBUtils.openUtilSession(monitor, object, "Execute " + task.getType().getName())) {
-                    List<DBEPersistAction> queries = new ArrayList<>();
+                    /*~~>*/List<DBEPersistAction> queries = new ArrayList<>();
                     generateObjectQueries(session, settings, queries, object);
 
                     DBCExecutionContext context = session.getExecutionContext();
@@ -141,7 +141,7 @@ public abstract class SQLToolExecuteHandler<OBJECT_TYPE extends DBSObject, SETTI
                                             if (action.getType() != DBEPersistAction.ActionType.INITIALIZER && action.getType() != DBEPersistAction.ActionType.FINALIZER) {
                                                 SQLToolStatisticsSimple statisticsSimple = new SQLToolStatisticsSimple(object, false);
                                                 if (SQLToolExecuteHandler.this instanceof SQLToolRunStatisticsGenerator) {
-                                                    List<? extends SQLToolStatistics> executeStatistics =
+                                                    /*~~>*/List<? extends SQLToolStatistics> executeStatistics =
                                                             ((SQLToolRunStatisticsGenerator) SQLToolExecuteHandler.this).getExecuteStatistics(
                                                                     object,
                                                                     settings,
@@ -216,9 +216,9 @@ public abstract class SQLToolExecuteHandler<OBJECT_TYPE extends DBSObject, SETTI
     }
 
     public String generateScript(DBRProgressMonitor monitor, SETTINGS settings) throws DBCException {
-        List<DBEPersistAction> queries = new ArrayList<>();
+        /*~~>*/List<DBEPersistAction> queries = new ArrayList<>();
 
-        List<OBJECT_TYPE> objectList = settings.getObjectList();
+        /*~~>*/List<OBJECT_TYPE> objectList = settings.getObjectList();
         for (OBJECT_TYPE object : objectList) {
             try (DBCSession session = DBUtils.openUtilSession(monitor, object, "Generate tool queries")) {
                 generateObjectQueries(session, settings, queries, object);
@@ -237,7 +237,7 @@ public abstract class SQLToolExecuteHandler<OBJECT_TYPE extends DBSObject, SETTI
     @NotNull
     public abstract SETTINGS createToolSettings();
 
-    public abstract void generateObjectQueries(DBCSession session, SETTINGS settings, List<DBEPersistAction> queries, OBJECT_TYPE object) throws DBCException;
+    public abstract void generateObjectQueries(DBCSession session, SETTINGS settings, /*~~>*/List<DBEPersistAction> queries, OBJECT_TYPE object) throws DBCException;
 
     public boolean isRunInSeparateTransaction() {
         return false;

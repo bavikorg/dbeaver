@@ -53,7 +53,7 @@ public class DashboardRegistry {
         return instance;
     }
 
-    private final List<DashboardViewTypeDescriptor> viewTypeList = new ArrayList<>();
+    private final /*~~>*/List<DashboardViewTypeDescriptor> viewTypeList = new ArrayList<>();
     private final Map<String, DashboardMapQueryDescriptor> mapQueries = new LinkedHashMap<>();
     private final Map<String, DashboardDescriptor> dashboardList = new LinkedHashMap<>();
 
@@ -135,7 +135,7 @@ public class DashboardRegistry {
         return null;
     }
 
-    public List<DashboardDescriptor> getAllDashboards() {
+    public /*~~>*/List<DashboardDescriptor> getAllDashboards() {
         return new ArrayList<>(dashboardList.values());
     }
 
@@ -146,7 +146,7 @@ public class DashboardRegistry {
     /**
      * Find dashboard matchign source. Source can be {@link DBPDataSourceContainer}, {@link DBPDataSourceProviderDescriptor} or {@link DBPDriver}
      */
-    public List<DashboardDescriptor> getDashboards(DBPNamedObject source, boolean defaultOnly) {
+    public /*~~>*/List<DashboardDescriptor> getDashboards(DBPNamedObject source, boolean defaultOnly) {
         if (source instanceof DBPDataSourceContainer) {
             source = ((DBPDataSourceContainer) source).getDriver();
         }
@@ -161,7 +161,7 @@ public class DashboardRegistry {
             driverClass = ((DBPDriver)source).getDriverClassName();
         }
 
-        List<DashboardDescriptor> result = new ArrayList<>();
+        /*~~>*/List<DashboardDescriptor> result = new ArrayList<>();
         for (DashboardDescriptor dd : dashboardList.values()) {
             if (dd.matches(providerId, driverId, driverClass)) {
                 if (!defaultOnly || dd.isShowByDefault()) {
@@ -196,12 +196,12 @@ public class DashboardRegistry {
         saveConfigFile();
     }
 
-    public List<DashboardViewType> getAllViewTypes() {
+    public /*~~>*/List<DashboardViewType> getAllViewTypes() {
         return new ArrayList<>(viewTypeList);
     }
 
-    public List<DashboardViewType> getSupportedViewTypes(DashboardDataType dataType) {
-        List<DashboardViewType> result = new ArrayList<>();
+    public /*~~>*/List<DashboardViewType> getSupportedViewTypes(DashboardDataType dataType) {
+        /*~~>*/List<DashboardViewType> result = new ArrayList<>();
         for (DashboardViewType vt : viewTypeList) {
             if (ArrayUtils.contains(vt.getSupportedTypes(), dataType)) {
                 result.add(vt);
@@ -210,7 +210,7 @@ public class DashboardRegistry {
         return result;
     }
 
-    public List<DBPNamedObject> getAllSupportedSources() {
+    public /*~~>*/List<DBPNamedObject> getAllSupportedSources() {
         Set<DBPNamedObject> result = new LinkedHashSet<>();
         for (DashboardDescriptor dd : dashboardList.values()) {
             result.addAll(dd.getSupportedSources());

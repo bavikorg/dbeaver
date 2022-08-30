@@ -254,7 +254,7 @@ class PostgreBackupWizardPageObjects extends AbstractNativeToolWizardPage<Postgr
         return false;
     }
 
-    private List<PostgreTableBase> loadTables(final PostgreSchema catalog) {
+    private /*~~>*/List<PostgreTableBase> loadTables(final PostgreSchema catalog) {
         if (catalog != null) {
             curSchema = catalog;
         }
@@ -263,7 +263,7 @@ class PostgreBackupWizardPageObjects extends AbstractNativeToolWizardPage<Postgr
         }
         final boolean isCatalogChecked = isChecked(curSchema);
         final Set<PostgreTableBase> checkedObjects = this.checkedObjects.get(curSchema);
-        final List<PostgreTableBase> objects = new ArrayList<>();
+        final /*~~>*/List<PostgreTableBase> objects = new ArrayList<>();
         new AbstractJob("Load '" + curSchema.getName() + "' tables") {
             {
                 setUser(true);
@@ -306,10 +306,10 @@ class PostgreBackupWizardPageObjects extends AbstractNativeToolWizardPage<Postgr
     public void saveState() {
         super.saveState();
 
-        List<PostgreDatabaseBackupInfo> objects = wizard.getSettings().getExportObjects();
+        /*~~>*/List<PostgreDatabaseBackupInfo> objects = wizard.getSettings().getExportObjects();
         objects.clear();
-        List<PostgreSchema> schemas = new ArrayList<>();
-        List<PostgreTableBase> tables = new ArrayList<>();
+        /*~~>*/List<PostgreSchema> schemas = new ArrayList<>();
+        /*~~>*/List<PostgreTableBase> tables = new ArrayList<>();
         for (TableItem item : schemasTable.getItems()) {
             if (item.getChecked()) {
                 PostgreSchema schema = (PostgreSchema) item.getData();
@@ -353,7 +353,7 @@ class PostgreBackupWizardPageObjects extends AbstractNativeToolWizardPage<Postgr
                         if (data instanceof PostgreSchema) {
                             PostgreSchema postgreSchema = (PostgreSchema) data;
                             if (schemaItem.getChecked() && check && !checkedObjects.containsKey(postgreSchema)) {
-                                List<PostgreTableBase> tableBaseList = loadTables(postgreSchema);
+                                /*~~>*/List<PostgreTableBase> tableBaseList = loadTables(postgreSchema);
                                 if (!CommonUtils.isEmpty(tableBaseList)) {
                                     checkedObjects.put(postgreSchema, new HashSet<>(tableBaseList));
                                 }

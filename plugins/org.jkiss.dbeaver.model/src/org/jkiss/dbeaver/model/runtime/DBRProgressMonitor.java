@@ -47,6 +47,6 @@ public interface DBRProgressMonitor {
 
     void endBlock();
 
-    List<DBRBlockingObject> getActiveBlocks();
+    /*~~>*/List<DBRBlockingObject> getActiveBlocks();
 
 }

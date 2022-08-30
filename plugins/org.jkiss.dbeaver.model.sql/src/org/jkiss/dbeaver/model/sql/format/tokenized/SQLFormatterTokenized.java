@@ -40,7 +40,7 @@ public class SQLFormatterTokenized implements SQLFormatter {
 
     private SQLFormatterConfiguration formatterCfg;
 
-    private List<String> statementDelimiters = new ArrayList<>(2);
+    private /*~~>*/List<String> statementDelimiters = new ArrayList<>(2);
 
     private boolean isCompact;
 
@@ -62,7 +62,7 @@ public class SQLFormatterTokenized implements SQLFormatter {
             isSqlEndsWithNewLine = true;
         }
 
-        List<FormatterToken> list = fParser.parse(argSql);
+        /*~~>*/List<FormatterToken> list = fParser.parse(argSql);
         list = format(list);
 
         StringBuilder after = new StringBuilder(argSql.length() + 20);
@@ -85,7 +85,7 @@ public class SQLFormatterTokenized implements SQLFormatter {
         isCompact = compact;
     }
 
-    private List<FormatterToken> format(@NotNull List<FormatterToken> argList) {
+    private /*~~>*/List<FormatterToken> format(@NotNull /*~~>*/List<FormatterToken> argList) {
         if (argList.isEmpty()) {
             return argList;
         }
@@ -114,7 +114,7 @@ public class SQLFormatterTokenized implements SQLFormatter {
         return argList;
     }
 
-    private void insertSpaces(List<FormatterToken> argList) {
+    private void insertSpaces(/*~~>*/List<FormatterToken> argList) {
         FormatterToken token;
         for (int index = 1; index < argList.size(); index++) {
             FormatterToken prev = argList.get(index - 1);
@@ -160,7 +160,7 @@ public class SQLFormatterTokenized implements SQLFormatter {
         }
     }
 
-    private void trimSpacesBetweenBraces(List<FormatterToken> argList) {
+    private void trimSpacesBetweenBraces(/*~~>*/List<FormatterToken> argList) {
         for (int index = argList.size() - 1; index >= 4; index--) {
             if (index >= argList.size()) {
                 continue;
@@ -203,7 +203,7 @@ public class SQLFormatterTokenized implements SQLFormatter {
         }
     }
 
-    private void transformCase(List<FormatterToken> argList) {
+    private void transformCase(/*~~>*/List<FormatterToken> argList) {
         final DBPIdentifierCase keywordCase = formatterCfg.getKeywordCase();
         for (FormatterToken token : argList) {
             if (token.getType() == TokenType.KEYWORD) {
@@ -212,7 +212,7 @@ public class SQLFormatterTokenized implements SQLFormatter {
         }
     }
 
-    private boolean isEmptyAfterSpaceRemoving(List<FormatterToken> argList, int tokenPosition) {
+    private boolean isEmptyAfterSpaceRemoving(/*~~>*/List<FormatterToken> argList, int tokenPosition) {
         FormatterToken token = argList.get(tokenPosition);
         if (token.getType() == TokenType.SPACE) {
             argList.remove(tokenPosition);
@@ -221,7 +221,7 @@ public class SQLFormatterTokenized implements SQLFormatter {
         return false;
     }
 
-    private static void removeSpacesAroundCommentToken(List<? extends FormatterToken> argList) {
+    private static void removeSpacesAroundCommentToken(/*~~>*/List<? extends FormatterToken> argList) {
         // Remove extra tokens (spaces, etc)
         // We do not, however, remove spaces between comments which occupy the entire string.
         // That means, we do not delete spaces around comments if spaces contain line separator.
@@ -240,7 +240,7 @@ public class SQLFormatterTokenized implements SQLFormatter {
         }
     }
 
-    private void convertEmptyLinesIntoDelimiters(List<FormatterToken> argList) {
+    private void convertEmptyLinesIntoDelimiters(/*~~>*/List<FormatterToken> argList) {
         for (int i= 0; i < argList.size(); i++) {
             FormatterToken token = argList.get(i);
             if (token.getType() == TokenType.SPACE) {
@@ -262,7 +262,7 @@ public class SQLFormatterTokenized implements SQLFormatter {
         }
     }
 
-    private void concatenateDoublewordedKeywords(List<FormatterToken> argList) {
+    private void concatenateDoublewordedKeywords(/*~~>*/List<FormatterToken> argList) {
         for (int index = 0; index < argList.size() - 2; index++) {
             FormatterToken t0 = argList.get(index);
             FormatterToken t1 = argList.get(index + 1);
@@ -290,7 +290,7 @@ public class SQLFormatterTokenized implements SQLFormatter {
         }
     }
 
-    private static String getPrevDMLKeyword(List<FormatterToken> argList, int index) {
+    private static String getPrevDMLKeyword(/*~~>*/List<FormatterToken> argList, int index) {
         for (int i = index - 1; i >= 0; i--) {
             FormatterToken token = argList.get(i);
             if (token.getType() == TokenType.KEYWORD) {

@@ -40,7 +40,7 @@ public class SQLEditorParametersProvider implements SQLParametersProvider {
     }
 
     @Override
-    public Boolean prepareStatementParameters(@NotNull SQLScriptContext scriptContext, @NotNull SQLQuery sqlStatement, @NotNull List<SQLQueryParameter> parameters, boolean useDefaults) {
+    public Boolean prepareStatementParameters(@NotNull SQLScriptContext scriptContext, @NotNull SQLQuery sqlStatement, @NotNull /*~~>*/List<SQLQueryParameter> parameters, boolean useDefaults) {
         for (SQLQueryParameter param : parameters) {
             String paramName = param.getName();
             Object defValue = useDefaults ? scriptContext.getParameterDefaultValue(paramName) : null;

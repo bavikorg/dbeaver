@@ -31,19 +31,19 @@ public class ParseResult {
     private final String text;
     private final GrammarInfo grammar;
     private final ParserState boundary;
-    private final List<ParserState> results;
-    private final List<ParseTreeNode> trees;
+    private final /*~~>*/List<ParserState> results;
+    private final /*~~>*/List<ParseTreeNode> trees;
     
-    public ParseResult(String text, GrammarInfo grammar, ParserState boundary, List<ParserState> results) {
+    public ParseResult(String text, GrammarInfo grammar, ParserState boundary, /*~~>*/List<ParserState> results) {
         this.text = text;
         this.grammar = grammar;
         this.boundary = boundary;
-        this.results = results;
-        this.trees = new ArrayList<>(results.size());
+        /*~~>*/this.results = results;
+        /*~~>*/this.trees = new ArrayList<>(results.size());
     }
     
     public boolean isSuccess() {
-        return !this.results.isEmpty();
+        return !/*~~>*/this.results.isEmpty();
     }
 
     /**
@@ -51,11 +51,11 @@ public class ParseResult {
      * @param withWhitespaces true to include meaningless parts like whitespaces in a tree
      * @return a collection of parse trees. If there is no ambiguity in grammar then only one tree will be returned.
      */
-    public List<ParseTreeNode> getTrees(boolean withWhitespaces) {
-        if (this.trees.size() != this.results.size()) {
+    public /*~~>*/List<ParseTreeNode> getTrees(boolean withWhitespaces) {
+        if (/*~~>*/this.trees.size() != /*~~>*/this.results.size()) {
             this.collectOperations(withWhitespaces);
         }
-        return Collections.unmodifiableList(this.trees);
+        return Collections.unmodifiableList(/*~~>*/this.trees);
     }
 
     /**
@@ -65,7 +65,7 @@ public class ParseResult {
     private void collectOperations(boolean withWhitespaces) {
         //System.out.println("Results { ");
         for (ParserState result : results) {
-            List<ParserState> states = new ArrayList<>();
+            /*~~>*/List<ParserState> states = new ArrayList<>();
             for (ParserState state = result; state != null; state = state.getPrev()) {
                 states.add(state);
             }
@@ -91,7 +91,7 @@ public class ParseResult {
      * @param states
      * @return
      */
-    private ParseTreeNode makeParseTree(boolean withWhitespaces, List<ParserState> states) {
+    private ParseTreeNode makeParseTree(boolean withWhitespaces, /*~~>*/List<ParserState> states) {
         GrammarRule skipRule = this.grammar.findRule(this.grammar.getSkipRuleName());
         //System.out.println("Tree operations:");
         ParseTreeNode treeRoot = new ParseTreeNode(null, 0, this.text.length(), null, new ArrayList<>());

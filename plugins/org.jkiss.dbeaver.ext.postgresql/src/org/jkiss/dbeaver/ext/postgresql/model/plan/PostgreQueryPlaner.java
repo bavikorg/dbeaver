@@ -111,7 +111,7 @@ public class PostgreQueryPlaner extends AbstractExecutionPlanSerializer implemen
 
             ExecutionPlanDeserializer<PostgrePlanNodeExternal> loader = new ExecutionPlanDeserializer<>();
 
-            List<PostgrePlanNodeExternal> planNodes = loader.loadRoot(dataSource, jo,
+            /*~~>*/List<PostgrePlanNodeExternal> planNodes = loader.loadRoot(dataSource, jo,
                 (datasource, node, parent) -> new PostgrePlanNodeExternal((PostgreDataSource) datasource, node, parent));
 
             return new PostgreExecutionPlan(query, planNodes);

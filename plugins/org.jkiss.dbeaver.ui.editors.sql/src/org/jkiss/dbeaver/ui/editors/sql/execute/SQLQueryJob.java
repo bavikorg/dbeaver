@@ -90,7 +90,7 @@ public class SQLQueryJob extends DataSourceJob
     public static final Object STATS_RESULTS = new Object();
 
     private final DBSDataContainer dataContainer;
-    private final List<SQLScriptElement> queries;
+    private final /*~~>*/List<SQLScriptElement> queries;
     private final SQLScriptContext scriptContext;
     private final SQLResultsConsumer resultsConsumer;
     private final SQLQueryListener listener;
@@ -106,7 +106,7 @@ public class SQLQueryJob extends DataSourceJob
     private long rsMaxRows;
 
     private DBCStatement curStatement;
-    private final List<DBCResultSet> curResultSets = new ArrayList<>();
+    private final /*~~>*/List<DBCResultSet> curResultSets = new ArrayList<>();
     private Throwable lastError = null;
 
     private DBCStatistics statistics;
@@ -126,7 +126,7 @@ public class SQLQueryJob extends DataSourceJob
         @NotNull String name,
         @NotNull DBCExecutionContext executionContext,
         @Nullable DBSDataContainer dataContainer,
-        @NotNull List<SQLScriptElement> queries,
+        @NotNull /*~~>*/List<SQLScriptElement> queries,
         @NotNull SQLScriptContext scriptContext,
         @Nullable SQLResultsConsumer resultsConsumer,
         @Nullable SQLQueryListener listener)
@@ -134,7 +134,7 @@ public class SQLQueryJob extends DataSourceJob
         super(name, executionContext);
         this.dataContainer = dataContainer;
         this.partSite = partSite;
-        this.queries = queries;
+        /*~~>*/this.queries = queries;
         this.scriptContext = scriptContext;
         this.resultsConsumer = resultsConsumer;
         this.listener = listener;

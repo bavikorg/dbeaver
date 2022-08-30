@@ -40,7 +40,7 @@ public class MySQLGrant implements DBSObject, DBAPrivilegeGrant {
     public static final Pattern GLOBAL_GRANT_PATTERN = Pattern.compile("GRANT\\s+(.+)\\s+ON\\s+(.+)\\s+TO\\s+");
 
     private final MySQLUser user;
-    private final List<MySQLPrivilege> privileges;
+    private final /*~~>*/List<MySQLPrivilege> privileges;
     @Nullable
     private final String catalogName;
     @Nullable
@@ -48,10 +48,10 @@ public class MySQLGrant implements DBSObject, DBAPrivilegeGrant {
     private final boolean allPrivileges;
     private boolean grantOption;
 
-    public MySQLGrant(MySQLUser user, List<MySQLPrivilege> privileges, @Nullable String catalogName, @Nullable String tableName, boolean allPrivileges, boolean grantOption)
+    public MySQLGrant(MySQLUser user, /*~~>*/List<MySQLPrivilege> privileges, @Nullable String catalogName, @Nullable String tableName, boolean allPrivileges, boolean grantOption)
     {
         this.user = user;
-        this.privileges = privileges;
+        /*~~>*/this.privileges = privileges;
         this.catalogName = catalogName;
         this.tableName = tableName;
         this.allPrivileges = allPrivileges;

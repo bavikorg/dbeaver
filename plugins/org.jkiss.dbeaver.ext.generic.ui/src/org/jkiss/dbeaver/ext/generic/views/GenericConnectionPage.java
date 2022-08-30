@@ -76,7 +76,7 @@ public class GenericConnectionPage extends ConnectionPageWithAuth implements IDi
 
     private Composite settingsGroup;
 
-    private Map<String, List<Control>> propGroupMap = new HashMap<>();
+    private Map<String, /*~~>*/List<Control>> propGroupMap = new HashMap<>();
 
     private static final String GROUP_URL = "url"; //$NON-NLS-1$
     private static final String GROUP_HOST = "host"; //$NON-NLS-1$
@@ -563,7 +563,7 @@ public class GenericConnectionPage extends ConnectionPageWithAuth implements IDi
 
     private void showControlGroup(String group, boolean show)
     {
-        List<Control> controlList = propGroupMap.get(group);
+        /*~~>*/List<Control> controlList = propGroupMap.get(group);
         if (controlList != null) {
             for (Control control : controlList) {
                 Object gd = control.getLayoutData();
@@ -581,7 +581,7 @@ public class GenericConnectionPage extends ConnectionPageWithAuth implements IDi
 
     private void addControlToGroup(String group, Control control)
     {
-        List<Control> controlList = propGroupMap.computeIfAbsent(
+        /*~~>*/List<Control> controlList = propGroupMap.computeIfAbsent(
             group,
             k -> new ArrayList<>());
         controlList.add(control);

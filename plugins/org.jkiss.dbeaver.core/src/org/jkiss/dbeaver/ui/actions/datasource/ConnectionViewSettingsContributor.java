@@ -45,7 +45,7 @@ public class ConnectionViewSettingsContributor extends DataSourceMenuContributor
     private static final Log log = Log.getLog(ConnectionViewSettingsContributor.class);
 
     @Override
-    protected void fillContributionItems(final List<IContributionItem> menuItems) {
+    protected void fillContributionItems(final /*~~>*/List<IContributionItem> menuItems) {
         DBPDataSourceContainer dsContainer = AbstractDataSourceHandler.getDataSourceContainerFromPart(UIUtils.getActiveWorkbenchWindow().getActivePage().getActivePart());
         if (dsContainer == null) {
             return;

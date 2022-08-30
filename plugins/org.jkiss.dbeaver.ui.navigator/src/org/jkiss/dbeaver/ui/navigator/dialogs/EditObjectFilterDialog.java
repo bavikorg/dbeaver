@@ -111,7 +111,7 @@ public class EditObjectFilterDialog extends HelpEnabledDialog {
             namesCombo.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
             namesCombo.add(NULL_FILTER_NAME);
-            List<String> sfNames = new ArrayList<>();
+            /*~~>*/List<String> sfNames = new ArrayList<>();
             for (DBSObjectFilter sf : dsRegistry.getSavedFilters()) {
                 sfNames.add(sf.getName());
             }

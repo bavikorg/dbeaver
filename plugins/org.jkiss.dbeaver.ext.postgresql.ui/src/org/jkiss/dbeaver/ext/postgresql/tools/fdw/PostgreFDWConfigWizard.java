@@ -63,9 +63,9 @@ class PostgreFDWConfigWizard extends BaseWizard implements DBPContextProvider {
     private PostgreFDWConfigWizardPageConfig configPage;
     private PostgreDatabase database;
 
-    private List<DBPDataSourceContainer> availableDataSources = null;
-    private List<DBSEntity> proposedEntities = null;
-    private List<DBNDatabaseNode> selectedEntities;
+    private /*~~>*/List<DBPDataSourceContainer> availableDataSources = null;
+    private /*~~>*/List<DBSEntity> proposedEntities = null;
+    private /*~~>*/List<DBNDatabaseNode> selectedEntities;
     private DBPDataSourceContainer selectedDataSource;
     private PostgreSchema selectedSchema;
     private FDWInfo selectedFDW;
@@ -134,11 +134,11 @@ class PostgreFDWConfigWizard extends BaseWizard implements DBPContextProvider {
         super.addPages();
     }
 
-    public List<DBPDataSourceContainer> getAvailableDataSources() {
+    public /*~~>*/List<DBPDataSourceContainer> getAvailableDataSources() {
         return availableDataSources == null ? Collections.emptyList() : availableDataSources;
     }
 
-    public List<DBSEntity> getProposedEntities() {
+    public /*~~>*/List<DBSEntity> getProposedEntities() {
         return proposedEntities == null ? Collections.emptyList() : proposedEntities;
     }
 
@@ -146,12 +146,12 @@ class PostgreFDWConfigWizard extends BaseWizard implements DBPContextProvider {
         return selectedDataSource;
     }
 
-    public List<DBNDatabaseNode> getSelectedEntities() {
+    public /*~~>*/List<DBNDatabaseNode> getSelectedEntities() {
         return selectedEntities == null ? Collections.emptyList() : selectedEntities;
     }
 
-    public void setSelectedEntities(List<DBNDatabaseNode> entities) {
-        this.selectedEntities = entities;
+    public void setSelectedEntities(/*~~>*/List<DBNDatabaseNode> entities) {
+        /*~~>*/this.selectedEntities = entities;
         this.selectedDataSource = entities.isEmpty() ? null : entities.get(0).getDataSourceContainer();
     }
 
@@ -181,9 +181,9 @@ class PostgreFDWConfigWizard extends BaseWizard implements DBPContextProvider {
         DBNModel navModel = DBWorkbench.getPlatform().getNavigatorModel();
 
         // Check global FK references cache
-        Map<String, List<DBVEntityForeignKey>> grCache = DBVModel.getGlobalReferenceCache();
+        Map<String, /*~~>*/List<DBVEntityForeignKey>> grCache = DBVModel.getGlobalReferenceCache();
         monitor.beginTask("Check external references", grCache.size());
-        for (Map.Entry<String, List<DBVEntityForeignKey>> grEntry : grCache.entrySet()) {
+        for (Map.Entry<String, /*~~>*/List<DBVEntityForeignKey>> grEntry : grCache.entrySet()) {
             DBNDataSource refDataSource = navModel.getDataSourceByPath(
                 database.getDataSource().getContainer().getProject(),
                 grEntry.getKey());
@@ -254,7 +254,7 @@ class PostgreFDWConfigWizard extends BaseWizard implements DBPContextProvider {
     private void installFDW(DBRProgressMonitor monitor) throws DBException {
         monitor.beginTask("Generate FDW script", 2);
         monitor.subTask("Read actions");
-        List<DBEPersistAction> actions = generateScript(monitor);
+        /*~~>*/List<DBEPersistAction> actions = generateScript(monitor);
         monitor.subTask("Execute script");
         DBCExecutionContext context = DBUtils.getDefaultContext(getDatabase(), false);
         DBExecUtils.executeScript(monitor, context, "Install FDW", actions);
@@ -267,10 +267,10 @@ class PostgreFDWConfigWizard extends BaseWizard implements DBPContextProvider {
     }
 
 
-    List<DBEPersistAction> generateScript(DBRProgressMonitor monitor) throws DBException {
+    /*~~>*/List<DBEPersistAction> generateScript(DBRProgressMonitor monitor) throws DBException {
         PostgreDatabase database = getDatabase();
         PostgreDataSource curDataSource = database.getDataSource();
-        List<DBEPersistAction> actions = new ArrayList<>();
+        /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
 
         PostgreFDWConfigWizard.FDWInfo selectedFDW = getSelectedFDW();
         PropertySourceCustom propertySource = getFdwPropertySource();

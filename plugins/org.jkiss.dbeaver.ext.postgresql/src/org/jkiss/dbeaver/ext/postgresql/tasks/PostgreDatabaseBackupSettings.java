@@ -42,7 +42,7 @@ public class PostgreDatabaseBackupSettings extends PostgreBackupRestoreSettings 
 
     private static final Log log = Log.getLog(PostgreDatabaseBackupSettings.class);
 
-    private List<PostgreDatabaseBackupInfo> exportObjects = new ArrayList<>();
+    private /*~~>*/List<PostgreDatabaseBackupInfo> exportObjects = new ArrayList<>();
 
     private String compression;
     private String encoding;
@@ -56,12 +56,12 @@ public class PostgreDatabaseBackupSettings extends PostgreBackupRestoreSettings 
     private File outputFolder;
 
     @NotNull
-    public List<PostgreDatabaseBackupInfo> getExportObjects() {
+    public /*~~>*/List<PostgreDatabaseBackupInfo> getExportObjects() {
         return exportObjects;
     }
 
-    public void setExportObjects(List<PostgreDatabaseBackupInfo> exportObjects) {
-        this.exportObjects = exportObjects;
+    public void setExportObjects(/*~~>*/List<PostgreDatabaseBackupInfo> exportObjects) {
+        /*~~>*/this.exportObjects = exportObjects;
     }
 
     public String getCompression() {
@@ -147,7 +147,7 @@ public class PostgreDatabaseBackupSettings extends PostgreBackupRestoreSettings 
             }
             PostgreDatabaseBackupInfo info = objMap.computeIfAbsent(database, db -> new PostgreDatabaseBackupInfo(db, null, null));
             if (schema != null) {
-                List<PostgreSchema> schemas = info.getSchemas();
+                /*~~>*/List<PostgreSchema> schemas = info.getSchemas();
                 if (schemas == null) {
                     schemas = new ArrayList<>();
                     info.setSchemas(schemas);
@@ -157,7 +157,7 @@ public class PostgreDatabaseBackupSettings extends PostgreBackupRestoreSettings 
                 }
             }
             if (object instanceof PostgreTableBase) {
-                List<PostgreTableBase> tables = info.getTables();
+                /*~~>*/List<PostgreTableBase> tables = info.getTables();
                 if (tables == null) {
                     tables = new ArrayList<>();
                     info.setTables(tables);
@@ -184,13 +184,13 @@ public class PostgreDatabaseBackupSettings extends PostgreBackupRestoreSettings 
 
         if (store instanceof DBPPreferenceMap) {
             // Save input objects to task properties
-            List<Map<String, Object>> objectList = ((DBPPreferenceMap) store).getObject("exportObjects");
+            /*~~>*/List<Map<String, Object>> objectList = ((DBPPreferenceMap) store).getObject("exportObjects");
             if (!CommonUtils.isEmpty(objectList)) {
                 for (Map<String, Object> object : objectList) {
                     String catalogId = CommonUtils.toString(object.get("database"));
                     if (!CommonUtils.isEmpty(catalogId)) {
-                        List<String> schemaNames = (List<String>) object.get("schemas");
-                        List<String> tableNames = (List<String>) object.get("tables");
+                        /*~~>*/List<String> schemaNames = (/*~~>*/List<String>) object.get("schemas");
+                        /*~~>*/List<String> tableNames = (/*~~>*/List<String>) object.get("tables");
                         PostgreDatabaseBackupInfo exportInfo = loadDatabaseExportInfo(runnableContext, catalogId, schemaNames, tableNames);
                         if (exportInfo != null) {
                             exportObjects.add(exportInfo);
@@ -202,7 +202,7 @@ public class PostgreDatabaseBackupSettings extends PostgreBackupRestoreSettings 
     }
 
 
-    private PostgreDatabaseBackupInfo loadDatabaseExportInfo(DBRRunnableContext runnableContext, String catalogId, List<String> schemaNames, List<String> tableNames) {
+    private PostgreDatabaseBackupInfo loadDatabaseExportInfo(DBRRunnableContext runnableContext, String catalogId, /*~~>*/List<String> schemaNames, /*~~>*/List<String> tableNames) {
         PostgreDatabaseBackupInfo[] exportInfo = new PostgreDatabaseBackupInfo[1];
         try {
             runnableContext.run(true, true, monitor -> {
@@ -211,8 +211,8 @@ public class PostgreDatabaseBackupSettings extends PostgreBackupRestoreSettings 
                     if (database == null) {
                         throw new DBException("Database " + catalogId + " not found");
                     }
-                    List<PostgreSchema> schemas = null;
-                    List<PostgreTableBase> tables = null;
+                    /*~~>*/List<PostgreSchema> schemas = null;
+                    /*~~>*/List<PostgreTableBase> tables = null;
                     if (!CommonUtils.isEmpty(schemaNames)) {
                         schemas = new ArrayList<>();
                         for (String schemaName : schemaNames) {
@@ -262,19 +262,19 @@ public class PostgreDatabaseBackupSettings extends PostgreBackupRestoreSettings 
 
         if (store instanceof DBPPreferenceMap && !CommonUtils.isEmpty(exportObjects)) {
             // Save input objects to task properties
-            List<Map<String, Object>> objectList = new ArrayList<>();
+            /*~~>*/List<Map<String, Object>> objectList = new ArrayList<>();
             for (PostgreDatabaseBackupInfo object : exportObjects) {
                 Map<String, Object> objInfo = new LinkedHashMap<>();
                 objInfo.put("database", DBUtils.getObjectFullId(object.getDatabase()));
                 if (!CommonUtils.isEmpty(object.getSchemas())) {
-                    List<String> tableList = new ArrayList<>();
+                    /*~~>*/List<String> tableList = new ArrayList<>();
                     for (PostgreSchema schema : object.getSchemas()) {
                         tableList.add(schema.getName());
                     }
                     objInfo.put("schemas", tableList);
                 }
                 if (!CommonUtils.isEmpty(object.getTables())) {
-                    List<String> tableList = new ArrayList<>();
+                    /*~~>*/List<String> tableList = new ArrayList<>();
                     for (PostgreTableBase table : object.getTables()) {
                         tableList.add(table.getName());
                     }

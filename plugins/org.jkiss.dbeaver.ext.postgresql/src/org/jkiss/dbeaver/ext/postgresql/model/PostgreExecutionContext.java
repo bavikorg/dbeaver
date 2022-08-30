@@ -45,8 +45,8 @@ import java.util.List;
  * PostgreExecutionContext
  */
 public class PostgreExecutionContext extends JDBCExecutionContext implements DBCExecutionContextDefaults<PostgreDatabase, PostgreSchema> {
-    private final List<String> searchPath = new ArrayList<>();
-    private List<String> defaultSearchPath = new ArrayList<>();
+    private final /*~~>*/List<String> searchPath = new ArrayList<>();
+    private /*~~>*/List<String> defaultSearchPath = new ArrayList<>();
     private String activeUser;
     private long activeSchemaId;
     private boolean isolatedContext;
@@ -180,13 +180,13 @@ public class PostgreExecutionContext extends JDBCExecutionContext implements DBC
                 }
             }
             String searchPathStr = JDBCUtils.queryString(session, "SHOW search_path");
-            this.searchPath.clear();
+            /*~~>*/this.searchPath.clear();
             if (searchPathStr != null) {
                 for (String str : searchPathStr.split(",")) {
                     str = str.trim();
                     String spSchema = DBUtils.getUnQuotedIdentifier(getDataSource(), str);
                     if (!searchPath.contains(spSchema)) {
-                        this.searchPath.add(spSchema);
+                        /*~~>*/this.searchPath.add(spSchema);
                     }
                 }
                 if (activeSchemaId == 0) {
@@ -200,7 +200,7 @@ public class PostgreExecutionContext extends JDBCExecutionContext implements DBC
                     }
                 }
             } else {
-                this.searchPath.add(PostgreConstants.PUBLIC_SCHEMA_NAME);
+                /*~~>*/this.searchPath.add(PostgreConstants.PUBLIC_SCHEMA_NAME);
             }
 
             if (defaultSearchPath.isEmpty()) {
@@ -230,11 +230,11 @@ public class PostgreExecutionContext extends JDBCExecutionContext implements DBC
         return activeUser;
     }
 
-    public List<String> getSearchPath() {
+    public /*~~>*/List<String> getSearchPath() {
         return searchPath;
     }
 
-    List<String> getDefaultSearchPath() {
+    /*~~>*/List<String> getDefaultSearchPath() {
         return defaultSearchPath;
     }
 
@@ -244,7 +244,7 @@ public class PostgreExecutionContext extends JDBCExecutionContext implements DBC
     }
 
     private void setSearchPath(DBRProgressMonitor monitor, String defSchemaName) throws DBCException {
-        List<String> newSearchPath = new ArrayList<>(getDefaultSearchPath());
+        /*~~>*/List<String> newSearchPath = new ArrayList<>(getDefaultSearchPath());
         int schemaIndex = newSearchPath.indexOf(defSchemaName);
         /*if (schemaIndex == 0 || (schemaIndex == 1 && isUserFirstInPath(newSearchPath))) {
             // Already default schema
@@ -277,11 +277,11 @@ public class PostgreExecutionContext extends JDBCExecutionContext implements DBC
         }
     }
 
-    private static boolean isUserFirstInPath(List<String> newSearchPath) {
+    private static boolean isUserFirstInPath(/*~~>*/List<String> newSearchPath) {
         return !newSearchPath.isEmpty() && newSearchPath.get(0).equals(PostgreConstants.USER_VARIABLE);
     }
 
-    private void setUserInTheEndOfThePath(List<String> searchPath) {
+    private void setUserInTheEndOfThePath(/*~~>*/List<String> searchPath) {
         if (CommonUtils.isEmpty(searchPath)) {
             return;
         }

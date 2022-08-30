@@ -42,7 +42,7 @@ public class SQLPresentationDescriptor extends AbstractContextDescriptor {
     private final DBPImage icon;
     private final SQLEditorPresentation.ActivationType activationType;
     private final String toggleCommandId;
-    private final List<SQLPresentationPanelDescriptor> panels = new ArrayList<>();
+    private final /*~~>*/List<SQLPresentationPanelDescriptor> panels = new ArrayList<>();
 
     public SQLPresentationDescriptor(IConfigurationElement config)
     {
@@ -62,7 +62,7 @@ public class SQLPresentationDescriptor extends AbstractContextDescriptor {
         for (IConfigurationElement panelConfig : config.getChildren("panel")) {
             // Load functions
             SQLPresentationPanelDescriptor presentationDescriptor = new SQLPresentationPanelDescriptor(panelConfig);
-            this.panels.add(presentationDescriptor);
+            /*~~>*/this.panels.add(presentationDescriptor);
         }
     }
 
@@ -90,7 +90,7 @@ public class SQLPresentationDescriptor extends AbstractContextDescriptor {
         return toggleCommandId;
     }
 
-    public List<SQLPresentationPanelDescriptor> getPanels() {
+    public /*~~>*/List<SQLPresentationPanelDescriptor> getPanels() {
         return panels;
     }
 

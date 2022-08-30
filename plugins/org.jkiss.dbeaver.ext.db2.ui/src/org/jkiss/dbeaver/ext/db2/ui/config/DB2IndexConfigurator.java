@@ -42,7 +42,7 @@ import java.util.Map;
 public class DB2IndexConfigurator implements DBEObjectConfigurator<DB2Index> {
     private static final String CONS_IX_NAME = "%s_%s_IDX";
 
-    private static final List<DBSIndexType> IX_TYPES;
+    private static final /*~~>*/List<DBSIndexType> IX_TYPES;
 
     static {
         IX_TYPES = new ArrayList<>(DB2IndexType.values().length);

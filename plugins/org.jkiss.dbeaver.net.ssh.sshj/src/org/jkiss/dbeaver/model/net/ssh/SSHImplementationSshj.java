@@ -102,8 +102,8 @@ public class SSHImplementationSshj extends SSHImplementationAbstract {
                     }
                     break;
                 case AGENT: {
-                    List<SSHAgentIdentity> identities = getAgentData();
-                    List<AuthMethod> authMethods = new ArrayList<>();
+                    /*~~>*/List<SSHAgentIdentity> identities = getAgentData();
+                    /*~~>*/List<AuthMethod> authMethods = new ArrayList<>();
                     for (SSHAgentIdentity identity : identities) {
                         authMethods.add(new DBeaverAuthAgent(this, identity));
                     }

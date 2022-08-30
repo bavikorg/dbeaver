@@ -67,7 +67,7 @@ public class EntityPart extends NodePart {
     }
 
     @Override
-    protected List<ERDEntityAttribute> getModelChildren() {
+    protected /*~~>*/List<ERDEntityAttribute> getModelChildren() {
         return getEntity().getAttributes();
     }
 
@@ -284,7 +284,7 @@ public class EntityPart extends NodePart {
     }
 
     @Override
-    protected List<ERDAssociation> getModelSourceConnections() {
+    protected /*~~>*/List<ERDAssociation> getModelSourceConnections() {
         if (isAttributeAssociationsSupported()) {
             return super.getModelSourceConnections().stream()
                 .filter(erdAssociation -> erdAssociation.getObject().getConstraintType() == DBSEntityConstraintType.INHERITANCE)
@@ -294,7 +294,7 @@ public class EntityPart extends NodePart {
     }
 
     @Override
-    protected List<ERDAssociation> getModelTargetConnections() {
+    protected /*~~>*/List<ERDAssociation> getModelTargetConnections() {
         if (isAttributeAssociationsSupported()) {
             return super.getModelTargetConnections().stream()
                 .filter(erdAssociation -> erdAssociation.getObject().getConstraintType() == DBSEntityConstraintType.INHERITANCE)

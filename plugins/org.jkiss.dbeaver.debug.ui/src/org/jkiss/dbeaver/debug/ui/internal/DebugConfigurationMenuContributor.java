@@ -36,7 +36,7 @@ public class DebugConfigurationMenuContributor extends DataSourceMenuContributor
     private static final Log log = Log.getLog(DebugConfigurationMenuContributor.class);
 
     @Override
-    protected void fillContributionItems(final List<IContributionItem> menuItems)
+    protected void fillContributionItems(final /*~~>*/List<IContributionItem> menuItems)
     {
         // Fill recent debugs
         LaunchConfigurationManager launchConfigurationManager = DebugUIPlugin.getDefault().getLaunchConfigurationManager();

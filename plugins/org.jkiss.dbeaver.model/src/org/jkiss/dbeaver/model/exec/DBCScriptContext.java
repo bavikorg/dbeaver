@@ -63,7 +63,7 @@ public interface DBCScriptContext {
 
     void removeDefaultParameterValue(String name);
 
-    List<VariableInfo> getVariables();
+    /*~~>*/List<VariableInfo> getVariables();
 
     <T> T getData(String key);
 

@@ -38,7 +38,7 @@ import java.util.List;
  * GenericPrimaryKey
  */
 public class MySQLTableConstraint extends MySQLTableConstraintBase {
-    private List<MySQLTableConstraintColumn> columns;
+    private /*~~>*/List<MySQLTableConstraintColumn> columns;
     private String checkClause;
 
     public MySQLTableConstraint(MySQLTable table, String name, String remarks, DBSEntityConstraintType constraintType, boolean persisted)
@@ -55,13 +55,13 @@ public class MySQLTableConstraint extends MySQLTableConstraintBase {
     protected MySQLTableConstraint(DBRProgressMonitor monitor, MySQLTable table, DBSEntityConstraint source) throws DBException {
         super(table, source, false);
         if (source instanceof DBSEntityReferrer) {
-            List<? extends DBSEntityAttributeRef> columns = ((DBSEntityReferrer) source).getAttributeReferences(monitor);
+            /*~~>*/List<? extends DBSEntityAttributeRef> columns = ((DBSEntityReferrer) source).getAttributeReferences(monitor);
             if (columns != null) {
-                this.columns = new ArrayList<>(columns.size());
+                /*~~>*/this.columns = new ArrayList<>(columns.size());
                 for (DBSEntityAttributeRef col : columns) {
                     if (col.getAttribute() != null) {
                         MySQLTableColumn ownCol = table.getAttribute(monitor, col.getAttribute().getName());
-                        this.columns.add(new MySQLTableConstraintColumn(this, ownCol, col.getAttribute().getOrdinalPosition()));
+                        /*~~>*/this.columns.add(new MySQLTableConstraintColumn(this, ownCol, col.getAttribute().getOrdinalPosition()));
                     }
                 }
             }
@@ -69,7 +69,7 @@ public class MySQLTableConstraint extends MySQLTableConstraintBase {
     }
 
     @Override
-    public List<MySQLTableConstraintColumn> getAttributeReferences(DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLTableConstraintColumn> getAttributeReferences(DBRProgressMonitor monitor)
     {
         return columns;
     }
@@ -88,12 +88,12 @@ public class MySQLTableConstraint extends MySQLTableConstraintBase {
         if (columns == null) {
             columns = new ArrayList<>();
         }
-        this.columns.add(column);
+        /*~~>*/this.columns.add(column);
     }
 
-    void setColumns(List<MySQLTableConstraintColumn> columns)
+    void setColumns(/*~~>*/List<MySQLTableConstraintColumn> columns)
     {
-        this.columns = columns;
+        /*~~>*/this.columns = columns;
     }
 
     @NotNull

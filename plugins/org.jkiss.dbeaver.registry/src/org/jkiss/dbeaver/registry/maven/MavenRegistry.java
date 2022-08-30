@@ -48,7 +48,7 @@ public class MavenRegistry
     public static final String MAVEN_LOCAL_REPO_FOLDER = "maven-local";
 
     private static MavenRegistry instance = null;
-    private final List<String> ignoredArtifactVersions = new ArrayList<>();
+    private final /*~~>*/List<String> ignoredArtifactVersions = new ArrayList<>();
 
     public synchronized static MavenRegistry getInstance()
     {
@@ -59,7 +59,7 @@ public class MavenRegistry
         return instance;
     }
 
-    private final List<MavenRepository> repositories = new ArrayList<>();
+    private final /*~~>*/List<MavenRepository> repositories = new ArrayList<>();
     private MavenRepository localRepository;
     // Cache for not found artifact ids. Avoid multiple remote metadata reading
     private final Set<String> notFoundArtifacts = new HashSet<>();
@@ -112,17 +112,17 @@ public class MavenRegistry
             MavenRepository.RepositoryType.LOCAL);
     }
 
-    public void setCustomRepositories(List<MavenRepository> customRepositories) {
+    public void setCustomRepositories(/*~~>*/List<MavenRepository> customRepositories) {
         // Clear not-found cache
         notFoundArtifacts.clear();
         // Remove old custom repos
-        for (Iterator<MavenRepository> iter = this.repositories.iterator(); iter.hasNext(); ) {
+        for (Iterator<MavenRepository> iter = /*~~>*/this.repositories.iterator(); iter.hasNext(); ) {
             if (iter.next().getType() == MavenRepository.RepositoryType.CUSTOM) {
                 iter.remove();
             }
         }
         // Add new and reorder
-        this.repositories.addAll(customRepositories);
+        /*~~>*/this.repositories.addAll(customRepositories);
         sortRepositories();
     }
 
@@ -142,7 +142,7 @@ public class MavenRegistry
                             repoName,
                             repoURL,
                             MavenRepository.RepositoryType.CUSTOM);
-                        List<String> scopes = new ArrayList<>();
+                        /*~~>*/List<String> scopes = new ArrayList<>();
                         for (Element scopeElement : XMLUtils.getChildElementList(repoElement, "scope")) {
                             scopes.add(scopeElement.getAttribute("group"));
                         }
@@ -170,7 +170,7 @@ public class MavenRegistry
     }
 
     @NotNull
-    public List<MavenRepository> getRepositories() {
+    public /*~~>*/List<MavenRepository> getRepositories() {
         return repositories;
     }
 

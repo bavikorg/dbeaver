@@ -70,7 +70,7 @@ public class DBeaverInstanceServer implements IInstanceController {
     private static int portNumber;
     private static Registry registry;
     private static FileChannel configFileChannel;
-    private static final List<File> filesToConnect = new ArrayList<>();
+    private static final /*~~>*/List<File> filesToConnect = new ArrayList<>();
     private static final RMIClientSocketFactory CSF_DEFAULT = RMISocketFactory.getDefaultSocketFactory();
     private static final RMIServerSocketFactory SSF_LOCAL = port -> new ServerSocket(port, 0, InetAddress.getLoopbackAddress());
     private static boolean localRMI = false;

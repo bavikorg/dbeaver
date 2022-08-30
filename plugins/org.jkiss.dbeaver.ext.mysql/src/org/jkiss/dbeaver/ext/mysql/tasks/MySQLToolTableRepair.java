@@ -34,7 +34,7 @@ public class MySQLToolTableRepair extends MySQLToolWithStatus<MySQLTableBase, My
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, MySQLToolTableRepairSettings settings, List<DBEPersistAction> queries, MySQLTableBase object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, MySQLToolTableRepairSettings settings, /*~~>*/List<DBEPersistAction> queries, MySQLTableBase object) throws DBCException {
         String sql = "REPAIR TABLE " + object.getFullyQualifiedName(DBPEvaluationContext.DDL);
         boolean isQuick = settings.isQuick();
         boolean isExtended = settings.isExtended();

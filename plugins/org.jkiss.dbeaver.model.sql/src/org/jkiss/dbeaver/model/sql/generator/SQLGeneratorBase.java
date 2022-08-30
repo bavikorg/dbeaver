@@ -36,7 +36,7 @@ public abstract class SQLGeneratorBase<OBJECT> extends SQLGenerator<OBJECT> {
         if (CommonUtils.isEmpty(keyAttributes)) {
             return getAllAttributes(monitor, object);
         }
-        List<DBSAttributeBase> valueAttributes = new ArrayList<>(getAllAttributes(monitor, object));
+        /*~~>*/List<DBSAttributeBase> valueAttributes = new ArrayList<>(getAllAttributes(monitor, object));
         valueAttributes.removeIf(keyAttributes::contains);
         return valueAttributes;
     }

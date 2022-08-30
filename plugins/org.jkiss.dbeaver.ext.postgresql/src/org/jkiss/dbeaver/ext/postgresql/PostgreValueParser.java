@@ -109,7 +109,7 @@ public class PostgreValueParser {
                 return string;
             } else {
                 if (componentType instanceof PostgreDataType) {
-                    List<Object> itemStrings = parseArrayString(string, ",");
+                    /*~~>*/List<Object> itemStrings = parseArrayString(string, ",");
                     return startTransformListOfValuesIntoArray(session, (PostgreDataType)componentType, itemStrings);
                 } else {
                     log.error("Incorrect type '" + arrayType.getFullTypeName() + "'");
@@ -121,16 +121,16 @@ public class PostgreValueParser {
         }
     }
 
-    private static Object startTransformListOfValuesIntoArray(DBCSession session, PostgreDataType itemType, List list) throws DBCException {
+    private static Object startTransformListOfValuesIntoArray(DBCSession session, PostgreDataType itemType, /*~~>*/List list) throws DBCException {
         //If array is one dimensional, we will return array of that type. If array is multidimensional we will return array of JDBCCollections.
         return transformListOfValuesIntoArray(session, itemType, list, true);
     }
 
-    private static Object transformListOfValuesIntoArray(DBCSession session, PostgreDataType itemType, List list, boolean firstAttempt) throws DBCException { //transform into array
+    private static Object transformListOfValuesIntoArray(DBCSession session, PostgreDataType itemType, /*~~>*/List list, boolean firstAttempt) throws DBCException { //transform into array
         Object[] values = new Object[list.size()];
         for (int index = 0; index < list.size(); index++) {
-            if (list.get(index) instanceof List) {
-                values[index] = transformListOfValuesIntoArray(session, itemType, (List) list.get(index), false);
+            if (list.get(index) instanceof /*~~>*/List) {
+                values[index] = transformListOfValuesIntoArray(session, itemType, (/*~~>*/List) list.get(index), false);
             } else {
                 Object[] itemValues = new Object[list.size()];
                 for (int i = 0; i < list.size(); i++) {
@@ -210,8 +210,8 @@ public class PostgreValueParser {
 
     // Copied from pgjdbc array parser class
     // https://github.com/pgjdbc/pgjdbc/blob/master/pgjdbc/src/main/java/org/postgresql/jdbc/PgArray.java
-    public static List<Object> parseArrayString(String fieldString, String delimiter) throws DBCException {
-        List<Object> arrayList = new ArrayList<>();
+    public static /*~~>*/List<Object> parseArrayString(String fieldString, String delimiter) throws DBCException {
+        /*~~>*/List<Object> arrayList = new ArrayList<>();
         if (CommonUtils.isEmpty(fieldString)) {
             return arrayList;
         }
@@ -226,8 +226,8 @@ public class PostgreValueParser {
             boolean insideString = false;
             boolean wasInsideString = false; // needed for checking if NULL
             // value occurred
-            List<List<Object>> dims = new ArrayList<>(); // array dimension arrays
-            List<Object> curArray = arrayList; // currently processed array
+            /*~~>*/List</*~~>*/List<Object>> dims = new ArrayList<>(); // array dimension arrays
+            /*~~>*/List<Object> curArray = arrayList; // currently processed array
 
             // Starting with 8.0 non-standard (beginning index
             // isn't 1) bounds the dimensions are returned in the
@@ -259,8 +259,8 @@ public class PostgreValueParser {
                     if (dims.isEmpty()) {
                         dims.add(arrayList);
                     } else {
-                        List<Object> a = new ArrayList<>();
-                        List<Object> p = dims.get(dims.size() - 1);
+                        /*~~>*/List<Object> a = new ArrayList<>();
+                        /*~~>*/List<Object> p = dims.get(dims.size() - 1);
                         p.add(a);
                         dims.add(a);
                     }

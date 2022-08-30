@@ -80,14 +80,14 @@ public class ExasolSchemaManager
         return new ExasolSchema((ExasolDataSource) container, "NEW_SCHEMA", "");
     }
 
-    private void changeLimit(List<DBEPersistAction> actions, ExasolSchema schema, BigDecimal limit) {
+    private void changeLimit(/*~~>*/List<DBEPersistAction> actions, ExasolSchema schema, BigDecimal limit) {
         String script = String.format("ALTER SCHEMA %s SET RAW_SIZE_LIMIT = %d", DBUtils.getQuotedIdentifier(schema), limit.longValue());
         actions.add(
             new SQLDatabasePersistAction(ExasolMessages.manager_schema_raw_limit, script)
         );
     }
 
-    private void changeOwner(List<DBEPersistAction> actions, ExasolSchema schema, String owner) {
+    private void changeOwner(/*~~>*/List<DBEPersistAction> actions, ExasolSchema schema, String owner) {
         String script = "ALTER SCHEMA " + DBUtils.getQuotedIdentifier(schema) + " CHANGE OWNER  " + owner;
         actions.add(
             new SQLDatabasePersistAction(ExasolMessages.manager_schema_owner, script)
@@ -97,7 +97,7 @@ public class ExasolSchemaManager
 
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
         final ExasolSchema schema = command.getObject();
 
         String script = "CREATE SCHEMA " + DBUtils.getQuotedIdentifier(schema);
@@ -116,7 +116,7 @@ public class ExasolSchemaManager
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
     	if (command.getObject() instanceof ExasolVirtualSchema)
     	{
             actions.add(
@@ -131,7 +131,7 @@ public class ExasolSchemaManager
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectRenameCommand command, Map<String, Object> options) {
         ExasolSchema obj = command.getObject();
         actions.add(
@@ -143,7 +143,7 @@ public class ExasolSchemaManager
     }
 
     @Override
-    public void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) {
+    public void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) {
         ExasolSchema schema = command.getObject();
 
         if (command.getProperties().size() >= 1) {

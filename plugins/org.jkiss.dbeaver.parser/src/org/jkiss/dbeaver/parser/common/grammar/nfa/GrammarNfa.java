@@ -25,33 +25,33 @@ import org.jkiss.dbeaver.parser.common.grammar.GrammarRule;
  * Non-deterministic finite automaton representing a complete graph of the grammar
  */
 public class GrammarNfa {
-    private final List<GrammarNfaState> states = new ArrayList<>();
-    private final List<GrammarNfaTransition> transitions = new ArrayList<>();
+    private final /*~~>*/List<GrammarNfaState> states = new ArrayList<>();
+    private final /*~~>*/List<GrammarNfaTransition> transitions = new ArrayList<>();
 
     public GrammarNfaState createState(GrammarRule rule) {
-        GrammarNfaState state = new GrammarNfaState(this.states.size(), rule);
-        this.states.add(state);
+        GrammarNfaState state = new GrammarNfaState(/*~~>*/this.states.size(), rule);
+        /*~~>*/this.states.add(state);
         return state;
     }
 
     public GrammarNfaTransition createTransition(GrammarNfaState from, GrammarNfaState to,
             GrammarNfaOperation operation) {
         GrammarNfaTransition transition = new GrammarNfaTransition(from, to, operation);
-        this.transitions.add(transition);
+        /*~~>*/this.transitions.add(transition);
         from.getNext().add(transition);
         return transition;
     }
 
-    public List<GrammarNfaState> getStates() {
-        return this.states;
+    public /*~~>*/List<GrammarNfaState> getStates() {
+        return /*~~>*/this.states;
     }
 
-    public List<GrammarNfaTransition> getTransitions() {
-        return this.transitions;
+    public /*~~>*/List<GrammarNfaTransition> getTransitions() {
+        return /*~~>*/this.transitions;
     }
 
     public void removeTransition(GrammarNfaTransition n) {
-        this.transitions.remove(n);
+        /*~~>*/this.transitions.remove(n);
         n.getFrom().remove(n);
     }
 }

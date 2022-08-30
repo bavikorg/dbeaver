@@ -109,9 +109,9 @@ public class DB2StructureAssistant implements DBSStructureAssistant<DB2Execution
 
     @NotNull
     @Override
-    public List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull DB2ExecutionContext executionContext,
+    public /*~~>*/List<DBSObjectReference> findObjectsByMask(@NotNull DBRProgressMonitor monitor, @NotNull DB2ExecutionContext executionContext,
                                                       @NotNull ObjectsSearchParams params) throws DBException {
-        List<DB2ObjectType> db2ObjectTypes = new ArrayList<>(params.getObjectTypes().length);
+        /*~~>*/List<DB2ObjectType> db2ObjectTypes = new ArrayList<>(params.getObjectTypes().length);
         for (DBSObjectType dbsObjectType : params.getObjectTypes()) {
             if (dbsObjectType instanceof DB2ObjectType) {
                 db2ObjectTypes.add((DB2ObjectType) dbsObjectType);
@@ -136,9 +136,9 @@ public class DB2StructureAssistant implements DBSStructureAssistant<DB2Execution
     // Helpers
     // -----------------
 
-    private List<DBSObjectReference> searchAllObjects(final JDBCSession session, final DB2Schema schema, List<DB2ObjectType> db2ObjectTypes,
+    private /*~~>*/List<DBSObjectReference> searchAllObjects(final JDBCSession session, final DB2Schema schema, /*~~>*/List<DB2ObjectType> db2ObjectTypes,
                                                       @NotNull ObjectsSearchParams params) throws SQLException, DBException {
-        List<DBSObjectReference> objects = new ArrayList<>();
+        /*~~>*/List<DBSObjectReference> objects = new ArrayList<>();
 
         String searchObjectNameMask = params.getMask();
         if (!params.isCaseSensitive()) {
@@ -185,7 +185,7 @@ public class DB2StructureAssistant implements DBSStructureAssistant<DB2Execution
     // --------------
 
     private void searchTables(@NotNull JDBCSession session, @Nullable DBPNamedObject schema, @NotNull String mask,
-                              @NotNull List<DB2ObjectType> db2ObjectTypes, int maxResults, @NotNull Collection<? super DBSObjectReference> objects,
+                              @NotNull /*~~>*/List<DB2ObjectType> db2ObjectTypes, int maxResults, @NotNull Collection<? super DBSObjectReference> objects,
                               int nbResults, boolean searchInDefinitions) throws SQLException, DBException {
         String sql;
         if (schema != null) {
@@ -261,7 +261,7 @@ public class DB2StructureAssistant implements DBSStructureAssistant<DB2Execution
     }
 
     private void searchRoutines(@NotNull JDBCSession session, @Nullable DBPNamedObject schema, @NotNull String mask,
-                                @NotNull List<DB2ObjectType> db2ObjectTypes, int maxResults, Collection<? super DBSObjectReference> objects,
+                                @NotNull /*~~>*/List<DB2ObjectType> db2ObjectTypes, int maxResults, Collection<? super DBSObjectReference> objects,
                                 int nbResults, boolean searchInDefinitions) throws SQLException, DBException {
 
         StringBuilder baseSQL = new StringBuilder("SELECT ROUTINESCHEMA, ROUTINENAME" + LF + "FROM SYSCAT.ROUTINES" + LF +
@@ -321,8 +321,8 @@ public class DB2StructureAssistant implements DBSStructureAssistant<DB2Execution
         }
     }
 
-    private void searchColumns(JDBCSession session, DB2Schema schema, String searchObjectNameMask, List<DB2ObjectType> objectTypes,
-        int maxResults, List<DBSObjectReference> objects, int nbResults) throws SQLException, DBException
+    private void searchColumns(JDBCSession session, DB2Schema schema, String searchObjectNameMask, /*~~>*/List<DB2ObjectType> objectTypes,
+        int maxResults, /*~~>*/List<DBSObjectReference> objects, int nbResults) throws SQLException, DBException
     {
         String sql;
         if (schema != null) {
@@ -437,9 +437,9 @@ public class DB2StructureAssistant implements DBSStructureAssistant<DB2Execution
 
     }
 
-    private String buildTableSQL(String baseStatement, List<DB2ObjectType> objectTypes)
+    private String buildTableSQL(String baseStatement, /*~~>*/List<DB2ObjectType> objectTypes)
     {
-        List<Character> listChars = new ArrayList<>(objectTypes.size());
+        /*~~>*/List<Character> listChars = new ArrayList<>(objectTypes.size());
         for (DB2ObjectType objectType : objectTypes) {
             if (objectType.equals(DB2ObjectType.ALIAS)) {
                 listChars.add(DB2TableType.A.name().charAt(0));

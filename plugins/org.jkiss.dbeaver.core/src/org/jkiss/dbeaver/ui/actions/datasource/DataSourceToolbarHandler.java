@@ -45,7 +45,7 @@ import java.util.List;
 
 public class DataSourceToolbarHandler implements DBPRegistryListener, DBPEventListener, INavigatorListener {
 
-    private final List<DBPDataSourceRegistry> handledRegistries = new ArrayList<>();
+    private final /*~~>*/List<DBPDataSourceRegistry> handledRegistries = new ArrayList<>();
     private final IWorkbenchWindow workbenchWindow;
     private IWorkbenchPart activePart;
     private IPageListener pageListener;
@@ -113,7 +113,7 @@ public class DataSourceToolbarHandler implements DBPRegistryListener, DBPEventLi
     public void dispose() {
         DataSourceProviderRegistry.getInstance().removeDataSourceRegistryListener(this);
 
-        for (DBPDataSourceRegistry registry : this.handledRegistries) {
+        for (DBPDataSourceRegistry registry : /*~~>*/this.handledRegistries) {
             registry.removeDataSourceListener(this);
         }
         handledRegistries.clear();

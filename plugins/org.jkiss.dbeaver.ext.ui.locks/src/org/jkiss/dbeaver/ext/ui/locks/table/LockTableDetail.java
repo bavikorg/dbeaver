@@ -63,7 +63,7 @@ public class LockTableDetail extends DatabaseObjectListControl<DBAServerLockItem
 
     @NotNull
     @Override
-    protected String getListConfigId(List<Class<?>> classList) {
+    protected String getListConfigId(/*~~>*/List<Class<?>> classList) {
         return "LocksDetail/" + lockManager.getDataSource().getContainer().getDriver().getId();
     }
 

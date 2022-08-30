@@ -45,7 +45,7 @@ public class StringEditorTable {
     public static Table createEditableList(
         @NotNull Composite parent,
         @NotNull String name,
-        @Nullable List<String> values,
+        @Nullable /*~~>*/List<String> values,
         @Nullable  DBPImage icon,
         @Nullable IContentProposalProvider proposalProvider)
     {
@@ -157,7 +157,7 @@ public class StringEditorTable {
         return valueTable;
     }
 
-    public static void fillFilterValues(Table valueTable, List<String> values, DBPImage icon) {
+    public static void fillFilterValues(Table valueTable, /*~~>*/List<String> values, DBPImage icon) {
         valueTable.removeAll();
         if (!CommonUtils.isEmpty(values)) {
             for (String value : values) {
@@ -170,8 +170,8 @@ public class StringEditorTable {
         }
     }
 
-    public static List<String> collectValues(Table table) {
-        List<String> values = new ArrayList<>();
+    public static /*~~>*/List<String> collectValues(Table table) {
+        /*~~>*/List<String> values = new ArrayList<>();
         for (TableItem item : table.getItems()) {
             String value = item.getText().trim();
             if (value.isEmpty()) { //$NON-NLS-1$

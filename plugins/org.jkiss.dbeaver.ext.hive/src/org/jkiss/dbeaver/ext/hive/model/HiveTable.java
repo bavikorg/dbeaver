@@ -53,8 +53,8 @@ public class HiveTable extends GenericTable implements DBPImageProvider, DBPName
 
     @Nullable
     @Override
-    public synchronized List<HiveTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
-        return (List<HiveTableColumn>) super.getAttributes(monitor);
+    public synchronized /*~~>*/List<HiveTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
+        return (/*~~>*/List<HiveTableColumn>) super.getAttributes(monitor);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class HiveTable extends GenericTable implements DBPImageProvider, DBPName
     }
 
     public Collection<DBSIndexType> getTableIndexTypes() {
-        List<DBSIndexType> indexTypes = new ArrayList<>();
+        /*~~>*/List<DBSIndexType> indexTypes = new ArrayList<>();
         indexTypes.add(new DBSIndexType("COMPACT", "Compact"));
         indexTypes.add(new DBSIndexType("BITMAP", "Bitmap"));
         return indexTypes;
@@ -162,7 +162,7 @@ public class HiveTable extends GenericTable implements DBPImageProvider, DBPName
         }
 
         @Override
-        protected void cacheChildren(DBRProgressMonitor monitor, HiveIndex index, List<GenericTableIndexColumn> rows)
+        protected void cacheChildren(DBRProgressMonitor monitor, HiveIndex index, /*~~>*/List<GenericTableIndexColumn> rows)
         {
             index.setColumns(rows);
         }

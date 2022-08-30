@@ -49,7 +49,7 @@ public class PostgrePartitionManager extends PostgreTableManager {
 
     private String getParentTable(@NotNull DBRProgressMonitor monitor, @NotNull PostgreTablePartition partition) {
 
-        List<PostgreTableBase> superTables;
+        /*~~>*/List<PostgreTableBase> superTables;
         try {
             superTables = partition.getSuperTables(monitor);
         } catch (DBException e) {

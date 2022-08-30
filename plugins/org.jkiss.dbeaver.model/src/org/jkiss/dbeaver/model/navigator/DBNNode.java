@@ -266,7 +266,7 @@ public abstract class DBNNode implements DBPNamedObject, DBPNamedObjectLocalized
         return null;
     }
 
-    static void sortNodes(List<? extends DBNNode> nodes) {
+    static void sortNodes(/*~~>*/List<? extends DBNNode> nodes) {
         nodes.sort((Comparator<DBNNode>) (o1, o2) -> {
             boolean isFolder1 = o1 instanceof DBNLocalFolder;
             boolean isFolder2 = o2 instanceof DBNLocalFolder;
@@ -301,7 +301,7 @@ public abstract class DBNNode implements DBPNamedObject, DBPNamedObjectLocalized
     }
 
     public static boolean nodeHasStructureContainers(DBNNode node, DBXTreeNode meta) {
-        List<DBXTreeNode> children = meta.getChildren(node);
+        /*~~>*/List<DBXTreeNode> children = meta.getChildren(node);
         if (!CommonUtils.isEmpty(children)) {
             for (DBXTreeNode child : children) {
                 if (child instanceof DBXTreeFolder) {

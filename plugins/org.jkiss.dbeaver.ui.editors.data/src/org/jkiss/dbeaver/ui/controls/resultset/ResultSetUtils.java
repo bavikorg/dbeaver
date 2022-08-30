@@ -133,7 +133,7 @@ public class ResultSetUtils
         try {
             DBSEntityAttribute entityAttribute = binding.getEntityAttribute();
             if (entityAttribute != null) {
-                List<DBSEntityReferrer> refs = DBUtils.getAttributeReferrers(new VoidProgressMonitor(), entityAttribute, true);
+                /*~~>*/List<DBSEntityReferrer> refs = DBUtils.getAttributeReferrers(new VoidProgressMonitor(), entityAttribute, true);
                 DBSEntityReferrer constraint = refs.isEmpty() ? null : refs.get(0);
 
                 DBSEntity associatedEntity = getAssociatedEntity(constraint);

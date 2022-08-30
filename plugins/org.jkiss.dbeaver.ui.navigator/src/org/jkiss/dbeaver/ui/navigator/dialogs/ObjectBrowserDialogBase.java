@@ -59,7 +59,7 @@ public abstract class ObjectBrowserDialogBase extends Dialog {
     private final DBNNode rootNode;
     private final DBNNode selectedNode;
     private final boolean singleSelection;
-    private final List<DBNNode> selectedObjects = new ArrayList<>();
+    private final /*~~>*/List<DBNNode> selectedObjects = new ArrayList<>();
     private TreeNodeSpecial specialNode;
     private DatabaseNavigatorTree navigatorTree;
 
@@ -205,7 +205,7 @@ public abstract class ObjectBrowserDialogBase extends Dialog {
         super.okPressed();
     }
 
-    public List<DBNNode> getSelectedObjects()
+    public /*~~>*/List<DBNNode> getSelectedObjects()
     {
         return selectedObjects;
     }

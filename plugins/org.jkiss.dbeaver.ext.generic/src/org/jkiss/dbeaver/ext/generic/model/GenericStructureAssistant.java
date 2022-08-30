@@ -78,7 +78,7 @@ public class GenericStructureAssistant extends JDBCStructureAssistant<GenericExe
     @Override
     protected void findObjectsByMask(@NotNull GenericExecutionContext executionContext, @NotNull JDBCSession session,
                                      @NotNull DBSObjectType objectType, @NotNull ObjectsSearchParams params,
-                                     @NotNull List<DBSObjectReference> references) throws DBException, SQLException {
+                                     @NotNull /*~~>*/List<DBSObjectReference> references) throws DBException, SQLException {
         DBSObject parentObject = params.getParentObject();
         boolean globalSearch = params.isGlobalSearch();
         String objectNameMask = params.getMask();
@@ -97,7 +97,7 @@ public class GenericStructureAssistant extends JDBCStructureAssistant<GenericExe
         }
     }
 
-    private void findTablesByMask(JDBCSession session, GenericCatalog catalog, GenericSchema schema, String tableNameMask, int maxResults, List<DBSObjectReference> objects)
+    private void findTablesByMask(JDBCSession session, GenericCatalog catalog, GenericSchema schema, String tableNameMask, int maxResults, /*~~>*/List<DBSObjectReference> objects)
         throws SQLException, DBException
     {
         final GenericMetaObject tableObject = getDataSource().getMetaObject(GenericConstants.OBJECT_TABLE);
@@ -128,7 +128,7 @@ public class GenericStructureAssistant extends JDBCStructureAssistant<GenericExe
         }
     }
 
-    private void findProceduresByMask(JDBCSession session, GenericCatalog catalog, GenericSchema schema, String procNameMask, int maxResults, List<DBSObjectReference> objects)
+    private void findProceduresByMask(JDBCSession session, GenericCatalog catalog, GenericSchema schema, String procNameMask, int maxResults, /*~~>*/List<DBSObjectReference> objects)
         throws SQLException, DBException
     {
         final GenericMetaObject procObject = getDataSource().getMetaObject(GenericConstants.OBJECT_PROCEDURE);

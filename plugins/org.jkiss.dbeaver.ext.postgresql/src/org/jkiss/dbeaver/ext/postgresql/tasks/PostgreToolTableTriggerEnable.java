@@ -35,7 +35,7 @@ public class PostgreToolTableTriggerEnable extends PostgreToolWithStatus<Postgre
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, PostgreToolTableTriggerSettings settings, List<DBEPersistAction> queries, PostgreTriggerBase object) {
+    public void generateObjectQueries(DBCSession session, PostgreToolTableTriggerSettings settings, /*~~>*/List<DBEPersistAction> queries, PostgreTriggerBase object) {
         String sql;
         if (object instanceof PostgreEventTrigger) {
             sql = "ALTER EVENT TRIGGER " + DBUtils.getQuotedIdentifier(object) + " ENABLE";

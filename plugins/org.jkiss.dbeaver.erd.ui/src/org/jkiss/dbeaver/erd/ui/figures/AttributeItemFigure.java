@@ -121,7 +121,7 @@ public class AttributeItemFigure extends Figure
 
     @NotNull
     public EditableLabel getLabel() {
-        List children = getChildren();
+        /*~~>*/List children = getChildren();
         return (EditableLabel) children.get(children.size() == 1 ? 0 : 1);
     }
 

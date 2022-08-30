@@ -90,7 +90,7 @@ public class DBPConnectionType implements DBPDataSourcePermissionOwner {
     private boolean autoCloseTransactions;
 
     private final boolean predefined;
-    private List<DBPDataSourcePermission> connectionModifyRestrictions;
+    private /*~~>*/List<DBPDataSourcePermission> connectionModifyRestrictions;
 
     public DBPConnectionType(DBPConnectionType source) {
         this(
@@ -103,7 +103,7 @@ public class DBPConnectionType implements DBPDataSourcePermissionOwner {
             source.confirmDataChange,
             source.autoCloseTransactions,
             source.predefined,
-            source.connectionModifyRestrictions);
+            /*~~>*/source.connectionModifyRestrictions);
     }
 
     public DBPConnectionType(
@@ -129,7 +129,7 @@ public class DBPConnectionType implements DBPDataSourcePermissionOwner {
         boolean confirmDataChange,
         boolean autoCloseTransactions,
         boolean predefined,
-        List<DBPDataSourcePermission> connectionModifyRestrictions)
+        /*~~>*/List<DBPDataSourcePermission> connectionModifyRestrictions)
     {
         this.id = id;
         this.name = name;
@@ -141,7 +141,7 @@ public class DBPConnectionType implements DBPDataSourcePermissionOwner {
         this.autoCloseTransactions = autoCloseTransactions;
         this.predefined = predefined;
         if (connectionModifyRestrictions != null) {
-            this.connectionModifyRestrictions = new ArrayList<>(connectionModifyRestrictions);
+            /*~~>*/this.connectionModifyRestrictions = new ArrayList<>(connectionModifyRestrictions);
         }
     }
 
@@ -219,20 +219,20 @@ public class DBPConnectionType implements DBPDataSourcePermissionOwner {
     }
 
     @Override
-    public List<DBPDataSourcePermission> getModifyPermission() {
-        if (CommonUtils.isEmpty(this.connectionModifyRestrictions)) {
+    public /*~~>*/List<DBPDataSourcePermission> getModifyPermission() {
+        if (CommonUtils.isEmpty(/*~~>*/this.connectionModifyRestrictions)) {
             return Collections.emptyList();
         } else {
-            return new ArrayList<>(this.connectionModifyRestrictions);
+            return new ArrayList<>(/*~~>*/this.connectionModifyRestrictions);
         }
     }
 
     @Override
     public void setModifyPermissions(@Nullable Collection<DBPDataSourcePermission> permissions) {
         if (CommonUtils.isEmpty(permissions)) {
-            this.connectionModifyRestrictions = null;
+            /*~~>*/this.connectionModifyRestrictions = null;
         } else {
-            this.connectionModifyRestrictions = new ArrayList<>(permissions);
+            /*~~>*/this.connectionModifyRestrictions = new ArrayList<>(permissions);
         }
     }
 
@@ -265,7 +265,7 @@ public class DBPConnectionType implements DBPDataSourcePermissionOwner {
                 confirmDataChange == ct.confirmDataChange &&
                 autoCloseTransactions == ct.autoCloseTransactions &&
                 predefined == ct.predefined &&
-                CommonUtils.equalObjects(connectionModifyRestrictions, ct.connectionModifyRestrictions);
+                CommonUtils.equalObjects(connectionModifyRestrictions, /*~~>*/ct.connectionModifyRestrictions);
         }
         return false;
     }

@@ -36,8 +36,8 @@ public abstract class ERDElement<OBJECT> extends ERDObject<OBJECT> {
 
     static final Log log = Log.getLog(ERDElement.class);
 
-    private List<ERDAssociation> references;
-    private List<ERDAssociation> associations;
+    private /*~~>*/List<ERDAssociation> references;
+    private /*~~>*/List<ERDAssociation> associations;
 
     /**
      * Special constructore for creating lazy entities.
@@ -109,7 +109,7 @@ public abstract class ERDElement<OBJECT> extends ERDObject<OBJECT> {
      * @return Returns the associations.
      */
     @NotNull
-    public List<ERDAssociation> getAssociations() {
+    public /*~~>*/List<ERDAssociation> getAssociations() {
         return CommonUtils.safeList(associations);
     }
 
@@ -117,7 +117,7 @@ public abstract class ERDElement<OBJECT> extends ERDObject<OBJECT> {
      * @return Returns the references.
      */
     @NotNull
-    public List<ERDAssociation> getReferences() {
+    public /*~~>*/List<ERDAssociation> getReferences() {
         return CommonUtils.safeList(references);
     }
 

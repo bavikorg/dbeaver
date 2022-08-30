@@ -188,23 +188,23 @@ public class PostgreServerCockroachDB extends PostgreServerExtensionBase {
     }
 
     @Override
-    public List<PostgrePrivilege> readObjectPermissions(DBRProgressMonitor monitor, PostgreTableBase table, boolean includeNestedObjects) throws DBException {
+    public /*~~>*/List<PostgrePrivilege> readObjectPermissions(DBRProgressMonitor monitor, PostgreTableBase table, boolean includeNestedObjects) throws DBException {
         try (JDBCSession session = DBUtils.openMetaSession(monitor, table, "Load CockroachDB table grants")) {
             try (JDBCPreparedStatement dbStat = session.prepareStatement("SHOW GRANTS ON " + table.getFullyQualifiedName(DBPEvaluationContext.DDL))) {
                 try (JDBCResultSet resultSet = dbStat.executeQuery()) {
-                    List<PostgrePrivilege> permissions = new ArrayList<>();
-                    Map<String, List<PostgrePrivilegeGrant>> privilegeMap = new HashMap<>();
+                    /*~~>*/List<PostgrePrivilege> permissions = new ArrayList<>();
+                    Map<String, /*~~>*/List<PostgrePrivilegeGrant>> privilegeMap = new HashMap<>();
                     while (resultSet.next()) {
                         String databaseName = JDBCUtils.safeGetString(resultSet, "database_name");
                         String schemaName = JDBCUtils.safeGetString(resultSet, "schema_name");
                         String tableName = JDBCUtils.safeGetString(resultSet, "table_name");
                         String grantee = JDBCUtils.safeGetString(resultSet, "grantee");
                         String privilege = JDBCUtils.safeGetString(resultSet, "privilege_type");
-                        List<PostgrePrivilegeGrant> privList = privilegeMap.computeIfAbsent(grantee, k -> new ArrayList<>());
+                        /*~~>*/List<PostgrePrivilegeGrant> privList = privilegeMap.computeIfAbsent(grantee, k -> new ArrayList<>());
                         PostgrePrivilegeType privType = CommonUtils.valueOf(PostgrePrivilegeType.class, privilege, PostgrePrivilegeType.UNKNOWN);
                         privList.add(new PostgrePrivilegeGrant("", grantee, databaseName, schemaName, tableName, privType, true, true));
                     }
-                    for (Map.Entry<String, List<PostgrePrivilegeGrant>> entry : privilegeMap.entrySet()) {
+                    for (Map.Entry<String, /*~~>*/List<PostgrePrivilegeGrant>> entry : privilegeMap.entrySet()) {
                         PostgrePrivilege permission = new PostgreObjectPrivilege(table, entry.getKey(), entry.getValue());
                         permissions.add(permission);
                     }

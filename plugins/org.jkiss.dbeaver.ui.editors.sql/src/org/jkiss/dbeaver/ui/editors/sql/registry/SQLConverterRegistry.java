@@ -44,7 +44,7 @@ public class SQLConverterRegistry {
         return instance;
     }
 
-    private List<SQLTargetConverterDescriptor> targetConverters = new ArrayList<>();
+    private /*~~>*/List<SQLTargetConverterDescriptor> targetConverters = new ArrayList<>();
 
     private SQLConverterRegistry(IExtensionRegistry registry)
     {
@@ -59,7 +59,7 @@ public class SQLConverterRegistry {
     }
 
     @NotNull
-    public List<SQLTargetConverterDescriptor> getTargetConverters() {
+    public /*~~>*/List<SQLTargetConverterDescriptor> getTargetConverters() {
         return targetConverters;
     }
 

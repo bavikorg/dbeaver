@@ -171,23 +171,23 @@ public abstract class ObjectAttributeDescriptor {
 
     public abstract String getDescription();
 
-    public static List<ObjectPropertyDescriptor> extractAnnotations(
+    public static /*~~>*/List<ObjectPropertyDescriptor> extractAnnotations(
         @Nullable DBPPropertySource source,
         Class<?> theClass,
         IPropertyFilter filter,
         @Nullable String locale)
     {
-        List<ObjectPropertyDescriptor> annoProps = new ArrayList<ObjectPropertyDescriptor>();
+        /*~~>*/List<ObjectPropertyDescriptor> annoProps = new ArrayList<ObjectPropertyDescriptor>();
         extractAnnotations(source, null, theClass, annoProps, filter, locale);
         return annoProps;
     }
 
-    public static List<ObjectPropertyDescriptor> extractAnnotations(
+    public static /*~~>*/List<ObjectPropertyDescriptor> extractAnnotations(
         DBPPropertySource source,
         Collection<Class<?>> classList,
         IPropertyFilter filter)
     {
-        List<ObjectPropertyDescriptor> annoProps = new ArrayList<>();
+        /*~~>*/List<ObjectPropertyDescriptor> annoProps = new ArrayList<>();
         for (Class<?> objectClass : classList) {
             annoProps.addAll(ObjectAttributeDescriptor.extractAnnotations(source, objectClass, filter, null));
         }
@@ -199,7 +199,7 @@ public abstract class ObjectAttributeDescriptor {
         @Nullable DBPPropertySource source,
         @Nullable ObjectPropertyGroupDescriptor parent,
         Class<?> theClass,
-        List<ObjectPropertyDescriptor> annoProps,
+        /*~~>*/List<ObjectPropertyDescriptor> annoProps,
         IPropertyFilter filter,
         @Nullable String locale)
     {

@@ -55,7 +55,7 @@ public class TabbedFolderComposite extends Composite implements ITabbedFolderCon
     private TabbedFolderInfo[] folders;
 
     private final Map<TabbedFolderInfo, Composite> contentsMap = new HashMap<>();
-    private List<ITabbedFolderListener> listeners = new ArrayList<>();
+    private /*~~>*/List<ITabbedFolderListener> listeners = new ArrayList<>();
     private FolderPane[] folderPanes;
     private FolderPane lastActiveFolder = null;
 
@@ -274,8 +274,8 @@ public class TabbedFolderComposite extends Composite implements ITabbedFolderCon
 
         folderState = TabbedFoldersRegistry.getInstance().getFolderState(objectId);
 
-        List<List<TabbedFolderInfo>> groups = new ArrayList<>();
-        List<TabbedFolderInfo> curGroup = null;
+        /*~~>*/List</*~~>*/List<TabbedFolderInfo>> groups = new ArrayList<>();
+        /*~~>*/List<TabbedFolderInfo> curGroup = null;
         for (TabbedFolderInfo folder : folders) {
             if (folder.isEmbeddable()) {
                 groups.add(curGroup = new ArrayList<>());
@@ -291,7 +291,7 @@ public class TabbedFolderComposite extends Composite implements ITabbedFolderCon
 
         folderPanes = new FolderPane[groups.size()];
         for (int i = 0; i < groups.size(); i++) {
-            List<TabbedFolderInfo> group = groups.get(i);
+            /*~~>*/List<TabbedFolderInfo> group = groups.get(i);
             FolderPane folderPane = new FolderPane(compositePane, i >= groups.size() - 1);
             folderPane.setFolders(group.toArray(new TabbedFolderInfo[group.size()]));
             folderPanes[i] = folderPane;

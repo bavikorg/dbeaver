@@ -78,7 +78,7 @@ public class ExecuteBatchWithMultipleInsert extends ExecuteInsertBatchImpl {
 
     @NotNull
     @Override
-    public DBCStatistics processBatch(@NotNull DBCSession session, @Nullable List<DBEPersistAction> actions, Map<String, Object> options) throws DBCException {
+    public DBCStatistics processBatch(@NotNull DBCSession session, @Nullable /*~~>*/List<DBEPersistAction> actions, Map<String, Object> options) throws DBCException {
         int attributesLength = attributes.length;
         DBDValueHandler[] handlers = new DBDValueHandler[attributesLength];
         for (int i = 0; i < attributesLength; i++) {
@@ -98,7 +98,7 @@ public class ExecuteBatchWithMultipleInsert extends ExecuteInsertBatchImpl {
 
 
             int rowsCount = values.size();
-            List<Object> multiRowInsertBatchValuesList = new ArrayList<>();
+            /*~~>*/List<Object> multiRowInsertBatchValuesList = new ArrayList<>();
             for (int i = 0; i < rowsCount; i++) {
                 if (session.getProgressMonitor().isCanceled()) {
                     break;

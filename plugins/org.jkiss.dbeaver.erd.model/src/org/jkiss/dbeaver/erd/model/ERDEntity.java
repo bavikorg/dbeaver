@@ -50,9 +50,9 @@ public class ERDEntity extends ERDElement<DBSEntity> {
 
     private DBPDataSource dataSource;
     private String alias;
-    private List<ERDEntityAttribute> attributes;
+    private /*~~>*/List<ERDEntityAttribute> attributes;
 
-    private List<DBSEntityAssociation> unresolvedKeys;
+    private /*~~>*/List<DBSEntityAssociation> unresolvedKeys;
 
     private boolean primary = false;
     private ERDAttributeVisibility attributeVisibility;
@@ -129,7 +129,7 @@ public class ERDEntity extends ERDElement<DBSEntity> {
     }
 
     @NotNull
-    public List<ERDEntityAttribute> getAttributes() {
+    public /*~~>*/List<ERDEntityAttribute> getAttributes() {
         return CommonUtils.safeList(attributes);
     }
 
@@ -170,8 +170,8 @@ public class ERDEntity extends ERDElement<DBSEntity> {
     }
 
     @NotNull
-    public List<ERDEntityAttribute> getCheckedAttributes() {
-        List<ERDEntityAttribute> result = new ArrayList<>();
+    public /*~~>*/List<ERDEntityAttribute> getCheckedAttributes() {
+        /*~~>*/List<ERDEntityAttribute> result = new ArrayList<>();
         if (attributes != null) {
             for (ERDEntityAttribute attr : attributes) {
                 if (attr.isChecked()) {

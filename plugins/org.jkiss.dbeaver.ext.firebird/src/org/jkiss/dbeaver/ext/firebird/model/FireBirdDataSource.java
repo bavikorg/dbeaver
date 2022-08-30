@@ -149,18 +149,18 @@ public class FireBirdDataSource extends GenericDataSource
 	}
 
     @Override
-    public List<FireBirdTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException {
-        return (List<FireBirdTable>) super.getPhysicalTables(monitor);
+    public /*~~>*/List<FireBirdTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException {
+        return (/*~~>*/List<FireBirdTable>) super.getPhysicalTables(monitor);
     }
 
     @Override
-    public List<FireBirdTable> getTables(DBRProgressMonitor monitor) throws DBException {
-        return (List<FireBirdTable>) super.getTables(monitor);
+    public /*~~>*/List<FireBirdTable> getTables(DBRProgressMonitor monitor) throws DBException {
+        return (/*~~>*/List<FireBirdTable>) super.getTables(monitor);
     }
 
     @Override
-    public List<FireBirdProcedure> getProcedures(DBRProgressMonitor monitor) throws DBException {
-        return (List<FireBirdProcedure>) super.getProcedures(monitor);
+    public /*~~>*/List<FireBirdProcedure> getProcedures(DBRProgressMonitor monitor) throws DBException {
+        return (/*~~>*/List<FireBirdProcedure>) super.getProcedures(monitor);
     }
 
     @NotNull

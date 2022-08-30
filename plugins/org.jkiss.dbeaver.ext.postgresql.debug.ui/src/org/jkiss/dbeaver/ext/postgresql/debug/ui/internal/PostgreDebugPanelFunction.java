@@ -227,9 +227,9 @@ public class PostgreDebugPanelFunction implements DBGConfigurationPanel {
 
         if (selectedFunction != null) {
             @SuppressWarnings("unchecked")
-            List<String> paramValues = (List<String>) configuration.get(PostgreDebugConstants.ATTR_FUNCTION_PARAMETERS);
+            /*~~>*/List<String> paramValues = (/*~~>*/List<String>) configuration.get(PostgreDebugConstants.ATTR_FUNCTION_PARAMETERS);
             if (paramValues != null) {
-                List<PostgreProcedureParameter> parameters = selectedFunction.getInputParameters();
+                /*~~>*/List<PostgreProcedureParameter> parameters = selectedFunction.getInputParameters();
                 if (parameters.size() == paramValues.size()) {
                     for (int i = 0; i < parameters.size(); i++) {
                         PostgreProcedureParameter param = parameters.get(i);
@@ -275,7 +275,7 @@ public class PostgreDebugPanelFunction implements DBGConfigurationPanel {
             configuration.put(PostgreDebugConstants.ATTR_FUNCTION_OID, selectedFunction.getObjectId());
             configuration.put(PostgreDebugConstants.ATTR_DATABASE_NAME, selectedFunction.getDatabase().getName());
             configuration.put(PostgreDebugConstants.ATTR_SCHEMA_NAME, selectedFunction.getSchema().getName());
-            List<String> paramValues = new ArrayList<>();
+            /*~~>*/List<String> paramValues = new ArrayList<>();
             for (PostgreProcedureParameter param : selectedFunction.getInputParameters()) {
                 Object value = parameterValues.get(param);
                 paramValues.add(value == null ? null : value.toString());

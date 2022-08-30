@@ -45,7 +45,7 @@ public class NumericAttributeTransformer implements DBDAttributeTransformer {
     private static final String PROP_LENIENT = "lenient";
 
     @Override
-    public void transformAttribute(@NotNull DBCSession session, @NotNull DBDAttributeBinding attribute, @NotNull List<Object[]> rows, @NotNull Map<String, Object> options) throws DBException {
+    public void transformAttribute(@NotNull DBCSession session, @NotNull DBDAttributeBinding attribute, @NotNull /*~~>*/List<Object[]> rows, @NotNull Map<String, Object> options) throws DBException {
         final String type = CommonUtils.toString(options.get(PROP_TYPE), "double");
         final boolean lenient = CommonUtils.getBoolean(options.get(PROP_LENIENT), false);
 

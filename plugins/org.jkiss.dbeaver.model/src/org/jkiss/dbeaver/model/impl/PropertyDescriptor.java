@@ -100,14 +100,14 @@ public class PropertyDescriptor implements DBPPropertyDescriptor, IPropertyValue
     private String[] features;
 
     public static DBPPropertyDescriptor[] extractPropertyGroups(IConfigurationElement config) {
-        List<DBPPropertyDescriptor> props = new ArrayList<>();
+        /*~~>*/List<DBPPropertyDescriptor> props = new ArrayList<>();
         for (IConfigurationElement prop : ArrayUtils.safeArray(config.getChildren(PropertyDescriptor.TAG_PROPERTY_GROUP))) {
             props.addAll(PropertyDescriptor.extractProperties(prop));
         }
         return props.toArray(new DBPPropertyDescriptor[0]);
     }
 
-    public static List<DBPPropertyDescriptor> extractProperties(IConfigurationElement config) {
+    public static /*~~>*/List<DBPPropertyDescriptor> extractProperties(IConfigurationElement config) {
         String category = NAME_UNDEFINED;
         if (TAG_PROPERTY_GROUP.equals(config.getName())) {
             category = config.getAttribute(ATTR_LABEL);
@@ -115,7 +115,7 @@ public class PropertyDescriptor implements DBPPropertyDescriptor, IPropertyValue
                 category = NAME_UNDEFINED;
             }
         }
-        List<DBPPropertyDescriptor> properties = new ArrayList<>();
+        /*~~>*/List<DBPPropertyDescriptor> properties = new ArrayList<>();
         IConfigurationElement[] propElements = config.getChildren(PropertyDescriptor.TAG_PROPERTY);
         for (IConfigurationElement prop : propElements) {
             properties.add(new PropertyDescriptor(category, prop));

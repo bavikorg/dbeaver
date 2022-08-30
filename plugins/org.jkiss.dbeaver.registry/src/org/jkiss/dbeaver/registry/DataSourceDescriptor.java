@@ -110,7 +110,7 @@ public class DataSourceDescriptor
     private boolean savePassword;
     private boolean connectionReadOnly;
     private boolean forceUseSingleConnection = false;
-    private List<DBPDataSourcePermission> connectionModifyRestrictions;
+    private /*~~>*/List<DBPDataSourcePermission> connectionModifyRestrictions;
     private final Map<String, FilterMapping> filterMap = new HashMap<>();
     private DBDDataFormatterProfile formatterProfile;
     @Nullable
@@ -143,10 +143,10 @@ public class DataSourceDescriptor
     private volatile boolean disposed = false;
     private volatile boolean connecting = false;
 
-    private final List<DBRProcessDescriptor> childProcesses = new ArrayList<>();
+    private final /*~~>*/List<DBRProcessDescriptor> childProcesses = new ArrayList<>();
     private DBWNetworkHandler proxyHandler;
     private DBWTunnel tunnelHandler;
-    private final List<DBPDataSourceTask> users = new ArrayList<>();
+    private final /*~~>*/List<DBPDataSourceTask> users = new ArrayList<>();
 
     private transient final DBPExclusiveResource exclusiveLock = new SimpleExclusiveLock();
 
@@ -205,7 +205,7 @@ public class DataSourceDescriptor
         this.connectionInfo = source.connectionInfo;
         this.clientHome = source.clientHome;
 
-        this.connectionModifyRestrictions = source.connectionModifyRestrictions == null ? null : new ArrayList<>(source.connectionModifyRestrictions);
+        /*~~>*/this.connectionModifyRestrictions = /*~~>*/source.connectionModifyRestrictions == null ? null : new ArrayList<>(/*~~>*/source.connectionModifyRestrictions);
 
         this.connectionInfo = new DBPConnectionConfiguration(source.connectionInfo);
         for (Map.Entry<String, FilterMapping> fe : source.filterMap.entrySet()) {
@@ -379,20 +379,20 @@ public class DataSourceDescriptor
     }
 
     @Override
-    public List<DBPDataSourcePermission> getModifyPermission() {
-        if (CommonUtils.isEmpty(this.connectionModifyRestrictions)) {
+    public /*~~>*/List<DBPDataSourcePermission> getModifyPermission() {
+        if (CommonUtils.isEmpty(/*~~>*/this.connectionModifyRestrictions)) {
             return Collections.emptyList();
         } else {
-            return new ArrayList<>(this.connectionModifyRestrictions);
+            return new ArrayList<>(/*~~>*/this.connectionModifyRestrictions);
         }
     }
 
     @Override
     public void setModifyPermissions(@Nullable Collection<DBPDataSourcePermission> permissions) {
         if (CommonUtils.isEmpty(permissions)) {
-            this.connectionModifyRestrictions = null;
+            /*~~>*/this.connectionModifyRestrictions = null;
         } else {
-            this.connectionModifyRestrictions = new ArrayList<>(permissions);
+            /*~~>*/this.connectionModifyRestrictions = new ArrayList<>(permissions);
         }
     }
 
@@ -1099,7 +1099,7 @@ public class DataSourceDescriptor
     }
 
     private void releaseDataSourceUsers(DBRProgressMonitor monitor) {
-        List<DBPDataSourceTask> usersStamp;
+        /*~~>*/List<DBPDataSourceTask> usersStamp;
         synchronized (users) {
             usersStamp = new ArrayList<>(users);
         }
@@ -1427,7 +1427,7 @@ public class DataSourceDescriptor
                 CommonUtils.equalObjects(this.lockPasswordHash, source.lockPasswordHash) &&
                 CommonUtils.equalObjects(this.folder, source.folder) &&
                 CommonUtils.equalObjects(this.preferenceStore, source.preferenceStore) &&
-                CommonUtils.equalsContents(this.connectionModifyRestrictions, source.connectionModifyRestrictions);
+                CommonUtils.equalsContents(/*~~>*/this.connectionModifyRestrictions, /*~~>*/source.connectionModifyRestrictions);
     }
 
     public static class ContextInfo implements DBPObject {

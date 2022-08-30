@@ -53,7 +53,7 @@ public class DataSourceToolsContributor extends DataSourceMenuContributor
     private static final boolean SHOW_GROUPS_AS_SUBMENU = false;
 
     @Override
-    protected void fillContributionItems(List<IContributionItem> menuItems)
+    protected void fillContributionItems(/*~~>*/List<IContributionItem> menuItems)
     {
         IWorkbenchPage activePage = UIUtils.getActiveWorkbenchWindow().getActivePage();
         IWorkbenchPart activePart = activePage.getActivePart();
@@ -68,7 +68,7 @@ public class DataSourceToolsContributor extends DataSourceMenuContributor
                 if (selection instanceof IStructuredSelection && !selection.isEmpty()) {
                     selectedObject = RuntimeUtils.getObjectAdapter(((IStructuredSelection) selection).getFirstElement(), DBSObject.class);
 
-                    List<ToolDescriptor> tools = getAvailableTools((IStructuredSelection) selection);
+                    /*~~>*/List<ToolDescriptor> tools = getAvailableTools((IStructuredSelection) selection);
                     fillToolsMenu(menuItems, tools, selection);
                 }
             }
@@ -105,9 +105,9 @@ public class DataSourceToolsContributor extends DataSourceMenuContributor
         }
     }
 
-    private List<ToolDescriptor> getAvailableTools(IStructuredSelection selection) {
-        List<DBSObject> objects = NavigatorUtils.getSelectedObjects(selection);
-        List<ToolDescriptor> result = new ArrayList<>();
+    private /*~~>*/List<ToolDescriptor> getAvailableTools(IStructuredSelection selection) {
+        /*~~>*/List<DBSObject> objects = NavigatorUtils.getSelectedObjects(selection);
+        /*~~>*/List<ToolDescriptor> result = new ArrayList<>();
         if (!objects.isEmpty()) {
             for (ToolDescriptor descriptor : ToolsRegistry.getInstance().getTools()) {
                 if (descriptor.isSingleton() && objects.size() > 1) {
@@ -128,7 +128,7 @@ public class DataSourceToolsContributor extends DataSourceMenuContributor
         return result;
     }
 
-    private void findObjectNodes(DBXTreeNode meta, List<DBXTreeObject> editors, Set<DBXTreeNode> processedNodes) {
+    private void findObjectNodes(DBXTreeNode meta, /*~~>*/List<DBXTreeObject> editors, Set<DBXTreeNode> processedNodes) {
         if (processedNodes.contains(meta)) {
             return;
         }
@@ -139,7 +139,7 @@ public class DataSourceToolsContributor extends DataSourceMenuContributor
         if (meta.getRecursiveLink() != null) {
             return;
         }
-        List<DBXTreeNode> children = meta.getChildren(null);
+        /*~~>*/List<DBXTreeNode> children = meta.getChildren(null);
         if (children != null) {
             for (DBXTreeNode child : children) {
                 findObjectNodes(child, editors, processedNodes);
@@ -147,7 +147,7 @@ public class DataSourceToolsContributor extends DataSourceMenuContributor
         }
     }
 
-    private static void fillToolsMenu(List<IContributionItem> menuItems, List<ToolDescriptor> tools, ISelection selection)
+    private static void fillToolsMenu(/*~~>*/List<IContributionItem> menuItems, /*~~>*/List<ToolDescriptor> tools, ISelection selection)
     {
         boolean hasTools = false;
         if (!CommonUtils.isEmpty(tools)) {
@@ -192,7 +192,7 @@ public class DataSourceToolsContributor extends DataSourceMenuContributor
         }
     }
 
-    private static IMenuManager getGroupMenu(List<IContributionItem> rootItems, Map<ToolGroupDescriptor, IMenuManager> groupsMap, ToolGroupDescriptor group) {
+    private static IMenuManager getGroupMenu(/*~~>*/List<IContributionItem> rootItems, Map<ToolGroupDescriptor, IMenuManager> groupsMap, ToolGroupDescriptor group) {
         IMenuManager item = groupsMap.get(group);
         if (item == null) {
             item = new MenuManager(group.getLabel(), null, group.getId());

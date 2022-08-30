@@ -34,7 +34,7 @@ public class JDBCTableMetaData implements DBCEntityMetaData {
     private final String catalogName;
     private final String schemaName;
     private final String tableName;
-    private final List<JDBCColumnMetaData> columns = new ArrayList<>();
+    private final /*~~>*/List<JDBCColumnMetaData> columns = new ArrayList<>();
 
     JDBCTableMetaData(@NotNull JDBCResultSetMetaDataImpl resultSetMetaData, String catalogName, String schemaName, @NotNull String tableName)
     {
@@ -68,7 +68,7 @@ public class JDBCTableMetaData implements DBCEntityMetaData {
 
     @NotNull
     @Override
-    public List<JDBCColumnMetaData> getAttributes()
+    public /*~~>*/List<JDBCColumnMetaData> getAttributes()
     {
         return columns;
     }

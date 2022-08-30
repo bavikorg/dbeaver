@@ -36,7 +36,7 @@ public interface DBSObjectCache<OWNER extends DBSObject, OBJECT extends DBSObjec
         throws DBException;
 
     @NotNull
-    List<OBJECT> getCachedObjects();
+    /*~~>*/List<OBJECT> getCachedObjects();
 
     @Nullable
     OBJECT getObject(@NotNull DBRProgressMonitor monitor, @NotNull OWNER owner, @NotNull String name)
@@ -61,7 +61,7 @@ public interface DBSObjectCache<OWNER extends DBSObject, OBJECT extends DBSObjec
      * Set fullyCache flag to true.
      * @param objects new cache contents
      */
-    void setCache(List<OBJECT> objects);
+    void setCache(/*~~>*/List<OBJECT> objects);
 
     /**
      * Removes specified object from cache

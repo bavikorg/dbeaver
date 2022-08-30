@@ -32,6 +32,6 @@ public interface QMMetaListener {
      * Implementation must process all events in sync mode.
      * QM collector will clean all closed objects after listeners notification.
      */
-    void metaInfoChanged(@NotNull DBRProgressMonitor monitor, @NotNull List<QMMetaEvent> events);
+    void metaInfoChanged(@NotNull DBRProgressMonitor monitor, @NotNull /*~~>*/List<QMMetaEvent> events);
 
 }

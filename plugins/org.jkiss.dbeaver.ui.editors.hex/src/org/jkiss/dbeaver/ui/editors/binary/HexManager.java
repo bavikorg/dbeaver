@@ -47,8 +47,8 @@ public class HexManager {
     private BinaryContent content = null;
     private FontData fontData = null;  // when null uses default font
     private Font fontText = null;
-    private List<Listener> listOfStatusChangedListeners = null;
-    private List<SelectionListener> listOfLongListeners = null;
+    private /*~~>*/List<Listener> listOfStatusChangedListeners = null;
+    private /*~~>*/List<SelectionListener> listOfLongListeners = null;
 
     // visual controls
     private FindReplaceDialog findDialog = null;

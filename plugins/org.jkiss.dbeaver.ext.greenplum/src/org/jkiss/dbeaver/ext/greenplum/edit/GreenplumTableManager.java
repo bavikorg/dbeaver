@@ -72,7 +72,7 @@ public class GreenplumTableManager extends PostgreTableManager {
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectDeleteCommand command,
                                           Map<String, Object> options) {
         actions.add(createDeleteAction(command.getObject(), options));

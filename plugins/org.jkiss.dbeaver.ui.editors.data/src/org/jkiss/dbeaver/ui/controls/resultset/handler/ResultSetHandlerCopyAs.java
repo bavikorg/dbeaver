@@ -102,10 +102,10 @@ public class ResultSetHandlerCopyAs extends AbstractHandler implements IElementU
         ResultSetDataContainerOptions options = new ResultSetDataContainerOptions();
 
         IResultSetSelection rsSelection = resultSet.getSelection();
-        List<ResultSetRow> rsSelectedRows = rsSelection.getSelectedRows();
-        List<DBDAttributeBinding> rsSelectedAttributes = rsSelection.getSelectedAttributes();
+        /*~~>*/List<ResultSetRow> rsSelectedRows = rsSelection.getSelectedRows();
+        /*~~>*/List<DBDAttributeBinding> rsSelectedAttributes = rsSelection.getSelectedAttributes();
         if (rsSelectedRows.size() > 1 || rsSelectedAttributes.size() > 1) {
-            List<Integer> selectedRows = new ArrayList<>();
+            /*~~>*/List<Integer> selectedRows = new ArrayList<>();
             for (ResultSetRow selectedRow : rsSelectedRows) {
                 selectedRows.add(selectedRow.getRowNumber());
             }
@@ -260,7 +260,7 @@ public class ResultSetHandlerCopyAs extends AbstractHandler implements IElementU
         ResultSetDataContainerOptions options = new ResultSetDataContainerOptions();
         ResultSetDataContainer dataContainer = new ResultSetDataContainer(viewer, options);
 
-        List<DataTransferProcessorDescriptor> appProcessors = new ArrayList<>();
+        /*~~>*/List<DataTransferProcessorDescriptor> appProcessors = new ArrayList<>();
 
         for (final DataTransferNodeDescriptor consumerNode : DataTransferRegistry.getInstance().getAvailableConsumers(Collections.singleton(dataContainer))) {
             for (DataTransferProcessorDescriptor processor : consumerNode.getProcessors()) {

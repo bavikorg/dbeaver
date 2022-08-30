@@ -134,7 +134,7 @@ public class StreamTransferConsumer implements IDataTransferConsumer<StreamConsu
     private boolean firstRow = true;
     private TransferParameters parameters;
 
-    private final List<File> outputFiles = new ArrayList<>();
+    private final /*~~>*/List<File> outputFiles = new ArrayList<>();
     private StatOutputStream statStream;
     private DBCStatistics statistics;
 
@@ -534,7 +534,7 @@ public class StreamTransferConsumer implements IDataTransferConsumer<StreamConsu
     }
 
     @NotNull
-    public List<File> getOutputFiles() {
+    public /*~~>*/List<File> getOutputFiles() {
         return outputFiles;
     }
 

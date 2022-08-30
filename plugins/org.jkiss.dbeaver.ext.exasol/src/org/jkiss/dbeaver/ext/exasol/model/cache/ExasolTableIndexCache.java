@@ -114,7 +114,7 @@ public class ExasolTableIndexCache extends JDBCCompositeCache<ExasolSchema, Exas
 
 
 	@Override
-	protected void cacheChildren(DBRProgressMonitor monitor, ExasolTableIndex index,List<ExasolTableIndexColumn> cols) {
+	protected void cacheChildren(DBRProgressMonitor monitor, ExasolTableIndex index,/*~~>*/List<ExasolTableIndexColumn> cols) {
 		index.setColumns(cols);
 		
 	}

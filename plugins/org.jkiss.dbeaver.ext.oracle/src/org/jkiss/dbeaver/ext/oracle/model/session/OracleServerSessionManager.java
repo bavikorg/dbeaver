@@ -64,7 +64,7 @@ public class OracleServerSessionManager implements DBAServerSessionManager<Oracl
 
             try (JDBCPreparedStatement dbStat = ((JDBCSession) session).prepareStatement(generateSessionReadQuery(options))) {
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                    List<OracleServerSession> sessions = new ArrayList<>();
+                    /*~~>*/List<OracleServerSession> sessions = new ArrayList<>();
                     while (dbResult.next()) {
                         sessions.add(new OracleServerSession(dbResult));
                     }
@@ -110,11 +110,11 @@ public class OracleServerSessionManager implements DBAServerSessionManager<Oracl
     }
 
     @Override
-    public List<DBAServerSessionDetails> getSessionDetails() {
-        List<DBAServerSessionDetails> extDetails = new ArrayList<>();
+    public /*~~>*/List<DBAServerSessionDetails> getSessionDetails() {
+        /*~~>*/List<DBAServerSessionDetails> extDetails = new ArrayList<>();
         extDetails.add(new AbstractServerSessionDetails("Long Operations", "Displays the status of various operations that run for longer than 6 seconds (in absolute time)", DBIcon.TYPE_DATETIME) {
             @Override
-            public List<OracleServerLongOp> getSessionDetails(DBCSession session, DBAServerSession serverSession) throws DBException {
+            public /*~~>*/List<OracleServerLongOp> getSessionDetails(DBCSession session, DBAServerSession serverSession) throws DBException {
                 try {
                     try (JDBCPreparedStatement dbStat = ((JDBCSession) session).prepareStatement(
                         "SELECT * FROM GV$SESSION_LONGOPS WHERE INST_ID=? AND SID=? AND SERIAL#=?"))
@@ -123,7 +123,7 @@ public class OracleServerSessionManager implements DBAServerSessionManager<Oracl
                         dbStat.setLong(2, ((OracleServerSession) serverSession).getSid());
                         dbStat.setLong(3, ((OracleServerSession) serverSession).getSerial());
                         try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                            List<OracleServerLongOp> longOps = new ArrayList<>();
+                            /*~~>*/List<OracleServerLongOp> longOps = new ArrayList<>();
                             while (dbResult.next()) {
                                 longOps.add(new OracleServerLongOp(dbResult));
                             }
@@ -142,7 +142,7 @@ public class OracleServerSessionManager implements DBAServerSessionManager<Oracl
         });
         extDetails.add(new AbstractServerSessionDetails("Display Exec Plan", "Displays execute plan from dbms_xplan by SqlId and ChildNumber", DBIcon.TYPE_TEXT) {
             @Override
-            public List<OracleServerExecutePlan> getSessionDetails(DBCSession session, DBAServerSession serverSession) throws DBException {
+            public /*~~>*/List<OracleServerExecutePlan> getSessionDetails(DBCSession session, DBAServerSession serverSession) throws DBException {
                 try {
                     try (JDBCPreparedStatement dbStat = ((JDBCSession) session).prepareStatement(
                         "SELECT PLAN_TABLE_OUTPUT FROM TABLE(dbms_xplan.display_cursor(sql_id => ?, cursor_child_no => ?))"))
@@ -151,7 +151,7 @@ public class OracleServerSessionManager implements DBAServerSessionManager<Oracl
                         dbStat.setLong(2, ((OracleServerSession) serverSession).getSqlChildNumber());
                         try (JDBCResultSet dbResult = dbStat.executeQuery()) 
                         {
-							List<OracleServerExecutePlan> planItems = new ArrayList<>();
+							/*~~>*/List<OracleServerExecutePlan> planItems = new ArrayList<>();
 							while (dbResult.next()) {
                                 planItems.add(new OracleServerExecutePlan(dbResult));
                             }

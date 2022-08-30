@@ -35,7 +35,7 @@ public class PostgreToolBaseAnalyze extends PostgreToolWithStatus<DBSObject, Pos
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, PostgreToolBaseAnalyzeSettings settings, List<DBEPersistAction> queries, DBSObject object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, PostgreToolBaseAnalyzeSettings settings, /*~~>*/List<DBEPersistAction> queries, DBSObject object) throws DBCException {
         String sql = "ANALYZE VERBOSE";
         if(object instanceof PostgreTableBase){
             PostgreTableBase postObject = (PostgreTableBase) object;

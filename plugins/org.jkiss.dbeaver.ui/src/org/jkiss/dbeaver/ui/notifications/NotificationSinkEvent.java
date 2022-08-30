@@ -16,13 +16,13 @@ import java.util.List;
  * Copied from Mylyn sources
  */
 public class NotificationSinkEvent {
-    private final List<AbstractNotification> notifications;
+    private final /*~~>*/List<AbstractNotification> notifications;
 
-    public NotificationSinkEvent(List<AbstractNotification> notifications) {
-        this.notifications = notifications;
+    public NotificationSinkEvent(/*~~>*/List<AbstractNotification> notifications) {
+        /*~~>*/this.notifications = notifications;
     }
 
-    public List<AbstractNotification> getNotifications() {
-        return this.notifications;
+    public /*~~>*/List<AbstractNotification> getNotifications() {
+        return /*~~>*/this.notifications;
     }
 }

@@ -91,7 +91,7 @@ public class ExasolServerSessionEditor extends AbstractSessionEditor {
         @SuppressWarnings("unchecked")
 		@Override
         public void run() {
-            final List<DBAServerSession> sessions = getSessionsViewer().getSelectedSessions();
+            final /*~~>*/List<DBAServerSession> sessions = getSessionsViewer().getSelectedSessions();
             final String action = ExasolMessages.editors_exasol_session_editor_action_kill;
             if (UIUtils.confirmAction(getSite().getShell(), "Confirm kill session",
                 NLS.bind(ExasolMessages.editors_exasol_session_editor_confirm_action, action.toLowerCase(), sessions))) {

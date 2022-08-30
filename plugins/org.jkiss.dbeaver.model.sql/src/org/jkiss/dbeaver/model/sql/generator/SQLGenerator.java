@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class SQLGenerator<OBJECT> extends DBRRunnableWithResult<String> {
-    protected List<OBJECT> objects;
+    protected /*~~>*/List<OBJECT> objects;
     private boolean fullyQualifiedNames = true;
     private boolean compactSQL = false;
     private boolean showComments = true;
@@ -45,11 +45,11 @@ public abstract class SQLGenerator<OBJECT> extends DBRRunnableWithResult<String>
 
     private final Map<String, Object> generatorOptions = new LinkedHashMap<>();
 
-    public void initGenerator(List<OBJECT> objects) {
-        this.objects = objects;
+    public void initGenerator(/*~~>*/List<OBJECT> objects) {
+        /*~~>*/this.objects = objects;
     }
 
-    public List<OBJECT> getObjects() {
+    public /*~~>*/List<OBJECT> getObjects() {
         return objects;
     }
 

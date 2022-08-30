@@ -122,7 +122,7 @@ public class ScriptsHandlerImpl extends AbstractResourceHandler implements DBPRe
 
     @Nullable
     @Override
-    public List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource)
+    public /*~~>*/List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource)
     {
         if (resource.getResource() instanceof IFile) {
             DBPDataSourceContainer dataSource = EditorUtils.getFileDataSource((IFile) resource.getResource());

@@ -38,7 +38,7 @@ public class SQLInsertReplaceMethodRegistry {
         return instance;
     }
 
-    private final List<SQLInsertReplaceMethodDescriptor> insertMethods = new ArrayList<>();
+    private final /*~~>*/List<SQLInsertReplaceMethodDescriptor> insertMethods = new ArrayList<>();
 
     private SQLInsertReplaceMethodRegistry()
     {
@@ -50,7 +50,7 @@ public class SQLInsertReplaceMethodRegistry {
         for (IConfigurationElement ext : extConfigs) {
             // Load insert methods
             if (TAG_METHOD.equals(ext.getName())) {
-                this.insertMethods.add(new SQLInsertReplaceMethodDescriptor(ext));
+                /*~~>*/this.insertMethods.add(new SQLInsertReplaceMethodDescriptor(ext));
             }
         }
     }
@@ -60,7 +60,7 @@ public class SQLInsertReplaceMethodRegistry {
         insertMethods.clear();
     }
 
-    public List<SQLInsertReplaceMethodDescriptor> getInsertMethods() {
+    public /*~~>*/List<SQLInsertReplaceMethodDescriptor> getInsertMethods() {
         return new ArrayList<>(insertMethods);
     }
 

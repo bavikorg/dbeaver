@@ -79,8 +79,8 @@ public class DB2CurrentUserPrivileges {
         SEL_OBJECTS = sb.toString();
     }
 
-    private final List<String> listAuthorities;
-    private final List<String> listObjectPrivileges;
+    private final /*~~>*/List<String> listAuthorities;
+    private final /*~~>*/List<String> listObjectPrivileges;
 
     private final Boolean userIsAuthorisedForApplications;
     private final Boolean userIsAuthorisedForContainers;

@@ -45,7 +45,7 @@ class SQLToolTaskObjectSelectorDialog extends BaseDialog {
     private DBNProject projectNode;
     private TaskTypeDescriptor taskType;
     private DatabaseNavigatorTree dataSourceTree;
-    private List<DBSObject> selectedObjects = new ArrayList<>();
+    private /*~~>*/List<DBSObject> selectedObjects = new ArrayList<>();
     private static boolean showConnected;
 
     SQLToolTaskObjectSelectorDialog(Shell parentShell, DBNProject projectNode, TaskTypeDescriptor taskType) {
@@ -141,7 +141,7 @@ class SQLToolTaskObjectSelectorDialog extends BaseDialog {
         getButton(IDialogConstants.OK_ID).setEnabled(!selectedObjects.isEmpty());
     }
 
-    public List<DBSObject> getSelectedObjects() {
+    public /*~~>*/List<DBSObject> getSelectedObjects() {
         return selectedObjects;
     }
 

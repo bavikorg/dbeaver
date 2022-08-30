@@ -281,7 +281,7 @@ public class ExasolLockManager extends LockGraphManager
 	{
 		
 		try {
-			List<ExasolLockItem> locks = new ArrayList<>();
+			/*~~>*/List<ExasolLockItem> locks = new ArrayList<>();
 			
 			try (JDBCPreparedStatement dbStat = ((JDBCSession) session).prepareStatement(LOCK_ITEM_QUERY)) {
 				

@@ -75,11 +75,11 @@ public class DriverUtils {
         outputStream.flush();
     }
 
-    static List<File> extractZipArchives(List<File> files) {
+    static /*~~>*/List<File> extractZipArchives(/*~~>*/List<File> files) {
         if (files.isEmpty()) {
             return files;
         }
-        List<File> jarFiles = new ArrayList<>();
+        /*~~>*/List<File> jarFiles = new ArrayList<>();
         for (File inputFile : files) {
             jarFiles.add(inputFile);
             if (!inputFile.getName().toLowerCase(Locale.ENGLISH).endsWith(".zip")) {
@@ -119,7 +119,7 @@ public class DriverUtils {
         return jarFiles;
     }
 
-    private static void checkAndExtractEntry(File sourceFile, InputStream zipStream, ZipEntry zipEntry, List<File> jarFiles) throws IOException {
+    private static void checkAndExtractEntry(File sourceFile, InputStream zipStream, ZipEntry zipEntry, /*~~>*/List<File> jarFiles) throws IOException {
         String sourceName = sourceFile.getName();
         if (sourceName.endsWith(".zip")) {
             sourceName = sourceName.substring(0, sourceName.length() - 4);
@@ -146,8 +146,8 @@ public class DriverUtils {
         }
     }
 
-    public static List<DBPDataSourceContainer> getUsedBy(DBPDriver driver, List<DBPDataSourceContainer> containers) {
-        List<DBPDataSourceContainer> usedBy = new ArrayList<>();
+    public static /*~~>*/List<DBPDataSourceContainer> getUsedBy(DBPDriver driver, /*~~>*/List<DBPDataSourceContainer> containers) {
+        /*~~>*/List<DBPDataSourceContainer> usedBy = new ArrayList<>();
         for (DBPDataSourceContainer ds : containers) {
             if (ds.getDriver() == driver) {
                 usedBy.add(ds);
@@ -156,15 +156,15 @@ public class DriverUtils {
         return usedBy;
     }
 
-    public static List<DBPDriver> getRecentDrivers(List<DBPDriver> allDrivers, int total) {
-        List<DBPDataSourceContainer> allDataSources = DataSourceRegistry.getAllDataSources();
+    public static /*~~>*/List<DBPDriver> getRecentDrivers(/*~~>*/List<DBPDriver> allDrivers, int total) {
+        /*~~>*/List<DBPDataSourceContainer> allDataSources = DataSourceRegistry.getAllDataSources();
 
 //        Map<DBPDriver, Integer> connCountMap = new HashMap<>();
 //        for (DBPDriver driver : allDrivers) {
 //            connCountMap.put(driver, getUsedBy(driver, allDataSources).size());
 //        }
 
-        List<DBPDriver> recentDrivers = new ArrayList<>(allDrivers);
+        /*~~>*/List<DBPDriver> recentDrivers = new ArrayList<>(allDrivers);
         sortDriversByRating(allDataSources, recentDrivers);
         if (recentDrivers.size() > total) {
             return recentDrivers.subList(0, total);
@@ -172,7 +172,7 @@ public class DriverUtils {
         return recentDrivers;
     }
 
-    public static void sortDriversByRating(List<DBPDataSourceContainer> allDataSources, List<DBPDriver> drivers) {
+    public static void sortDriversByRating(/*~~>*/List<DBPDataSourceContainer> allDataSources, /*~~>*/List<DBPDriver> drivers) {
         try {
             drivers.sort(new DriverScoreComparator(allDataSources));
         } catch (Throwable e) {
@@ -180,10 +180,10 @@ public class DriverUtils {
         }
     }
 
-    public static List<DBPDriver> getAllDrivers() {
-        List<? extends DBPDataSourceProviderDescriptor> providers = DBWorkbench.getPlatform().getDataSourceProviderRegistry().getEnabledDataSourceProviders();
+    public static /*~~>*/List<DBPDriver> getAllDrivers() {
+        /*~~>*/List<? extends DBPDataSourceProviderDescriptor> providers = DBWorkbench.getPlatform().getDataSourceProviderRegistry().getEnabledDataSourceProviders();
 
-        List<DBPDriver> allDrivers = new ArrayList<>();
+        /*~~>*/List<DBPDriver> allDrivers = new ArrayList<>();
         for (DBPDataSourceProviderDescriptor dpd : providers) {
             allDrivers.addAll(dpd.getEnabledDrivers());
         }
@@ -201,10 +201,10 @@ public class DriverUtils {
     }
 
     public static class DriverScoreComparator extends DriverNameComparator {
-        private final List<DBPDataSourceContainer> dataSources;
+        private final /*~~>*/List<DBPDataSourceContainer> dataSources;
 
-        public DriverScoreComparator(List<DBPDataSourceContainer> dataSources) {
-            this.dataSources = dataSources;
+        public DriverScoreComparator(/*~~>*/List<DBPDataSourceContainer> dataSources) {
+            /*~~>*/this.dataSources = dataSources;
         }
 
         @Override

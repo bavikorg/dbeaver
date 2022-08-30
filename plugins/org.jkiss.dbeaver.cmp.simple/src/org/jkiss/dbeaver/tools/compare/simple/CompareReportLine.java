@@ -26,7 +26,7 @@ import java.util.List;
 class CompareReportLine {
     DBNDatabaseNode structure;
     DBNDatabaseNode[] nodes;
-    List<CompareReportProperty> properties;
+    /*~~>*/List<CompareReportProperty> properties;
     int depth;
     boolean hasDifference;
 }

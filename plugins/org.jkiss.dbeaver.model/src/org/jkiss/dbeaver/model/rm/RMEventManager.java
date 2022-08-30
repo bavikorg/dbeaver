@@ -27,7 +27,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class RMEventManager {
     private static final Log log = Log.getLog(RMEventManager.class);
 
-    private static final List<RMEventListener> listeners = new CopyOnWriteArrayList<>();
+    private static final /*~~>*/List<RMEventListener> listeners = new CopyOnWriteArrayList<>();
 
     public static synchronized void addEventListener(RMEventListener listener) {
         listeners.add(listener);

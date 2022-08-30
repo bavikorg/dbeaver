@@ -156,7 +156,7 @@ public class ExecuteInsertBatchImpl extends ExecuteBatchImpl {
             return query;
         }
         boolean hasKey = false;
-        List<Integer> usedAttributes = new ArrayList<Integer>();
+        /*~~>*/List<Integer> usedAttributes = new ArrayList<Integer>();
         for (int i = 0; i < attributes.length; i++) {
             DBSAttributeBase attribute = attributes[i];
             if (DBUtils.isPseudoAttribute(attribute) || (!useMultiRowInsert && (!allNulls && DBUtils.isNullValue(attributeValues[i])))) {

@@ -34,13 +34,13 @@ import java.util.Map;
  */
 public class MySQLPlanClassic extends MySQLPlanAbstract {
 
-    private List<MySQLPlanNodePlain> rootNodes;
+    private /*~~>*/List<MySQLPlanNodePlain> rootNodes;
 
     public MySQLPlanClassic(JDBCSession session, String query) throws DBCException {
         super((MySQLDataSource) session.getDataSource(), query);
         try (JDBCPreparedStatement dbStat = session.prepareStatement(getPlanQueryString())) {
             try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                List<MySQLPlanNodePlain> nodes = new ArrayList<>();
+                /*~~>*/List<MySQLPlanNodePlain> nodes = new ArrayList<>();
                 while (dbResult.next()) {
                     MySQLPlanNodePlain node = new MySQLPlanNodePlain(null, dbResult);
                     nodes.add(node);
@@ -53,9 +53,9 @@ public class MySQLPlanClassic extends MySQLPlanAbstract {
         }
     }
 
-    public MySQLPlanClassic(MySQLDataSource dataSource, String query, List<MySQLPlanNodePlain> rootNodes) {
+    public MySQLPlanClassic(MySQLDataSource dataSource, String query, /*~~>*/List<MySQLPlanNodePlain> rootNodes) {
         super(dataSource, query);
-        this.rootNodes = rootNodes;
+        /*~~>*/this.rootNodes = rootNodes;
     }
 
     @Override
@@ -77,21 +77,21 @@ public class MySQLPlanClassic extends MySQLPlanAbstract {
     }
 
     @Override
-    public List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
+    public /*~~>*/List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
         return rootNodes;
     }
 
-    private List<MySQLPlanNodePlain> convertToPlanTree(List<MySQLPlanNodePlain> srcNodes) {
-        List<MySQLPlanNodePlain> roots = new ArrayList<>();
+    private /*~~>*/List<MySQLPlanNodePlain> convertToPlanTree(/*~~>*/List<MySQLPlanNodePlain> srcNodes) {
+        /*~~>*/List<MySQLPlanNodePlain> roots = new ArrayList<>();
 
         if (srcNodes.size() == 1) {
             // Just one node
             roots.add(srcNodes.get(0));
         } else {
-            List<MySQLPlanNodePlain> parsed = new ArrayList<>();
+            /*~~>*/List<MySQLPlanNodePlain> parsed = new ArrayList<>();
             MySQLPlanNodePlain lastCompositeNode = null;
             for (int id = 1; ; id++) {
-                List<MySQLPlanNodePlain> nodes = getQueriesById(srcNodes, id);
+                /*~~>*/List<MySQLPlanNodePlain> nodes = getQueriesById(srcNodes, id);
                 if (nodes.isEmpty()) {
                     break;
                 }
@@ -132,8 +132,8 @@ public class MySQLPlanClassic extends MySQLPlanAbstract {
         return roots;
     }
 
-    private List<MySQLPlanNodePlain> getQueriesById(List<MySQLPlanNodePlain> srcNodes, int id) {
-        List<MySQLPlanNodePlain> subList = new ArrayList<>();
+    private /*~~>*/List<MySQLPlanNodePlain> getQueriesById(/*~~>*/List<MySQLPlanNodePlain> srcNodes, int id) {
+        /*~~>*/List<MySQLPlanNodePlain> subList = new ArrayList<>();
         for (MySQLPlanNodePlain node : srcNodes) {
             if (node.getId() != null && node.getId() == id) {
                 subList.add(node);
@@ -142,7 +142,7 @@ public class MySQLPlanClassic extends MySQLPlanAbstract {
         return subList;
     }
 
-    private MySQLPlanNodePlain joinNodes(List<MySQLPlanNodePlain> srcNodes, MySQLPlanNodePlain parent, List<MySQLPlanNodePlain> nodes) {
+    private MySQLPlanNodePlain joinNodes(/*~~>*/List<MySQLPlanNodePlain> srcNodes, MySQLPlanNodePlain parent, /*~~>*/List<MySQLPlanNodePlain> nodes) {
         MySQLPlanNodePlain leftNode = nodes.get(0);
         for (int i = 1; i < nodes.size(); i++) {
             MySQLPlanNodePlain rightNode = nodes.get(i);

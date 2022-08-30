@@ -75,7 +75,7 @@ public class MySQLExportSettings extends AbstractImportExportSettings<DBSObject>
     private boolean showViews;
     private boolean overrideCredentials;
 
-    public List<MySQLDatabaseExportInfo> exportObjects = new ArrayList<>();
+    public /*~~>*/List<MySQLDatabaseExportInfo> exportObjects = new ArrayList<>();
 
     @NotNull
     public DumpMethod getMethod() {
@@ -166,12 +166,12 @@ public class MySQLExportSettings extends AbstractImportExportSettings<DBSObject>
         this.showViews = showViews;
     }
 
-    public void setExportObjects(List<MySQLDatabaseExportInfo> exportObjects) {
-        this.exportObjects = exportObjects;
+    public void setExportObjects(/*~~>*/List<MySQLDatabaseExportInfo> exportObjects) {
+        /*~~>*/this.exportObjects = exportObjects;
     }
 
     @NotNull
-    public List<MySQLDatabaseExportInfo> getExportObjects() {
+    public /*~~>*/List<MySQLDatabaseExportInfo> getExportObjects() {
         return exportObjects;
     }
 
@@ -187,7 +187,7 @@ public class MySQLExportSettings extends AbstractImportExportSettings<DBSObject>
 
     @Override
     public void fillExportObjectsFromInput() {
-        Map<MySQLCatalog, List<MySQLTableBase>> objMap = new LinkedHashMap<>();
+        Map<MySQLCatalog, /*~~>*/List<MySQLTableBase>> objMap = new LinkedHashMap<>();
         for (DBSObject object : getDatabaseObjects()) {
             MySQLCatalog catalog = null;
             if (object instanceof MySQLCatalog) {
@@ -199,12 +199,12 @@ public class MySQLExportSettings extends AbstractImportExportSettings<DBSObject>
                 log.error("Can't determine export catalog");
                 continue;
             }
-            List<MySQLTableBase> tables = objMap.computeIfAbsent(catalog, mySQLCatalog -> new ArrayList<>());
+            /*~~>*/List<MySQLTableBase> tables = objMap.computeIfAbsent(catalog, mySQLCatalog -> new ArrayList<>());
             if (object instanceof MySQLTableBase) {
                 tables.add((MySQLTableBase) object);
             }
         }
-        for (Map.Entry<MySQLCatalog, List<MySQLTableBase>> entry : objMap.entrySet()) {
+        for (Map.Entry<MySQLCatalog, /*~~>*/List<MySQLTableBase>> entry : objMap.entrySet()) {
             getExportObjects().add(new MySQLDatabaseExportInfo(entry.getKey(), entry.getValue()));
         }
         updateDataSourceContainer();
@@ -237,12 +237,12 @@ public class MySQLExportSettings extends AbstractImportExportSettings<DBSObject>
 
         if (store instanceof DBPPreferenceMap) {
             // Save input objects to task properties
-            List<Map<String, Object>> objectList = ((DBPPreferenceMap) store).getObject("exportObjects");
+            /*~~>*/List<Map<String, Object>> objectList = ((DBPPreferenceMap) store).getObject("exportObjects");
             if (!CommonUtils.isEmpty(objectList)) {
                 for (Map<String, Object> object : objectList) {
                     String catalogId = CommonUtils.toString(object.get("catalog"));
                     if (!CommonUtils.isEmpty(catalogId)) {
-                        List<String> tableNames = (List<String>) object.get("tables");
+                        /*~~>*/List<String> tableNames = (/*~~>*/List<String>) object.get("tables");
                         MySQLDatabaseExportInfo exportInfo = loadDatabaseExportInfo(runnableContext, catalogId, tableNames);
                         if (exportInfo != null) {
                             exportObjects.add(exportInfo);
@@ -253,7 +253,7 @@ public class MySQLExportSettings extends AbstractImportExportSettings<DBSObject>
         }
     }
 
-    private MySQLDatabaseExportInfo loadDatabaseExportInfo(DBRRunnableContext runnableContext, String catalogId, List<String> tableNames) {
+    private MySQLDatabaseExportInfo loadDatabaseExportInfo(DBRRunnableContext runnableContext, String catalogId, /*~~>*/List<String> tableNames) {
         MySQLDatabaseExportInfo[] exportInfo = new MySQLDatabaseExportInfo[1];
         try {
             runnableContext.run(false, true, monitor -> {
@@ -262,7 +262,7 @@ public class MySQLExportSettings extends AbstractImportExportSettings<DBSObject>
                     if (catalog == null) {
                         throw new DBException("Catalog " + catalogId + " not found");
                     }
-                    List<MySQLTableBase> tables = null;
+                    /*~~>*/List<MySQLTableBase> tables = null;
                     if (!CommonUtils.isEmpty(tableNames)) {
                         tables = new ArrayList<>();
                         for (String tableName : tableNames) {
@@ -303,12 +303,12 @@ public class MySQLExportSettings extends AbstractImportExportSettings<DBSObject>
 
         if (store instanceof DBPPreferenceMap && !CommonUtils.isEmpty(exportObjects)) {
             // Save input objects to task properties
-            List<Map<String, Object>> objectList = new ArrayList<>();
+            /*~~>*/List<Map<String, Object>> objectList = new ArrayList<>();
             for (MySQLDatabaseExportInfo object : exportObjects) {
                 Map<String, Object> objInfo = new LinkedHashMap<>();
                 objInfo.put("catalog", DBUtils.getObjectFullId(object.getDatabase()));
                 if (!CommonUtils.isEmpty(object.getTables())) {
-                    List<String> tableList = new ArrayList<>();
+                    /*~~>*/List<String> tableList = new ArrayList<>();
                     for (MySQLTableBase table : object.getTables()) {
                         tableList.add(table.getName());
                     }

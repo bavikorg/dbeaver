@@ -131,7 +131,7 @@ public class DatabaseProducerPageInputObjects extends DataTransferPageNodeSettin
             return;
         }
 
-        java.util.List<DBSObject> containerObjects = new ArrayList<>();
+        /*~~>*//*~~>*/java.util.List<DBSObject> containerObjects = new ArrayList<>();
         try {
             getWizard().getContainer().run(true, true, mon -> {
                 try {
@@ -156,7 +156,7 @@ public class DatabaseProducerPageInputObjects extends DataTransferPageNodeSettin
         }
     }
 
-    private void autoAssignMappings(List<DBSObject> containerObjects) {
+    private void autoAssignMappings(/*~~>*/List<DBSObject> containerObjects) {
         boolean chooseConsumer = getWizard().getSettings().isConsumerOptional();
         boolean success = false;
 

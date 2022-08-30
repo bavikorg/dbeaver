@@ -27,6 +27,6 @@ import java.util.List;
  */
 public interface SQLToolRunListener {
 
-    void handleActionStatistics(DBPObject object, DBEPersistAction action, DBCSession session, List<? extends SQLToolStatistics> statistics);
+    void handleActionStatistics(DBPObject object, DBEPersistAction action, DBCSession session, /*~~>*/List<? extends SQLToolStatistics> statistics);
 
 }

@@ -137,7 +137,7 @@ public class ContentEditor extends MultiPageAbstractEditor implements IValueEdit
         {
             try {
                 if (editorParts == null) {
-                    List<IEditorPart> parts = new ArrayList<>();
+                    /*~~>*/List<IEditorPart> parts = new ArrayList<>();
                     if (value instanceof String || valueController.getValueType().getDataKind() == DBPDataKind.STRING) {
                         TextStreamValueManager valueManager = new TextStreamValueManager();
                         defaultPart = valueManager.createEditorPart(valueController);
@@ -203,7 +203,7 @@ public class ContentEditor extends MultiPageAbstractEditor implements IValueEdit
 
     }
 
-    private List<ContentPartInfo> contentParts = new ArrayList<>();
+    private /*~~>*/List<ContentPartInfo> contentParts = new ArrayList<>();
     private ColumnInfoPanel infoPanel;
     private boolean dirty;
     private boolean partsLoaded;
@@ -224,7 +224,7 @@ public class ContentEditor extends MultiPageAbstractEditor implements IValueEdit
         UIUtils.syncExec(() -> {
             try {
                 // Check for dirty parts
-                final List<IEditorPart> dirtyParts = new ArrayList<>();
+                final /*~~>*/List<IEditorPart> dirtyParts = new ArrayList<>();
                 for (ContentPartInfo partInfo : contentParts) {
                     if (partInfo.activated && partInfo.editorPart.isDirty()) {
                         dirtyParts.add(partInfo.editorPart);

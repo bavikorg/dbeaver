@@ -50,7 +50,7 @@ public class GenericDataSourceProvider extends JDBCDataSourceProvider {
     {
         metaModels.put(GenericConstants.META_MODEL_STANDARD, new GenericMetaModelDescriptor());
 
-        List<String> replacedModels = new ArrayList<>();
+        /*~~>*/List<String> replacedModels = new ArrayList<>();
         IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
         IConfigurationElement[] extElements = extensionRegistry.getConfigurationElementsFor(EXTENSION_ID);
         for (IConfigurationElement ext : extElements) {

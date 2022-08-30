@@ -45,7 +45,7 @@ public class ToolsRegistry
     }
 
     private final Map<String, ToolGroupDescriptor> toolGroups = new LinkedHashMap<String, ToolGroupDescriptor>();
-    private final List<ToolDescriptor> tools = new ArrayList<ToolDescriptor>();
+    private final /*~~>*/List<ToolDescriptor> tools = new ArrayList<ToolDescriptor>();
 
     private ToolsRegistry()
     {
@@ -62,7 +62,7 @@ public class ToolsRegistry
                     this.toolGroups.put(group.getId(), group);
                 }
                 for (IConfigurationElement toolElement : toolsElement.getChildren(TAG_TOOL)) {
-                    this.tools.add(
+                    /*~~>*/this.tools.add(
                         new ToolDescriptor(toolElement));
                 }
             }
@@ -79,7 +79,7 @@ public class ToolsRegistry
         return toolGroups.get(id);
     }
 
-    public List<ToolDescriptor> getTools() {
+    public /*~~>*/List<ToolDescriptor> getTools() {
         return tools;
     }
 

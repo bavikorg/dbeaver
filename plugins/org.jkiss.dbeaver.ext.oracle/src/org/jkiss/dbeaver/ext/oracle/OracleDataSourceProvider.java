@@ -151,9 +151,9 @@ public class OracleDataSourceProvider extends JDBCDataSourceProvider implements
     // Client manager
 
     @Override
-    public List<DBPNativeClientLocation> findLocalClientLocations()
+    public /*~~>*/List<DBPNativeClientLocation> findLocalClientLocations()
     {
-        List<DBPNativeClientLocation> homeIds = new ArrayList<>();
+        /*~~>*/List<DBPNativeClientLocation> homeIds = new ArrayList<>();
         for (OracleHomeDescriptor home : OCIUtils.getOraHomes()) {
             homeIds.add(home);
         }
@@ -163,7 +163,7 @@ public class OracleDataSourceProvider extends JDBCDataSourceProvider implements
     @Override
     public DBPNativeClientLocation getDefaultLocalClientLocation()
     {
-        List<OracleHomeDescriptor> oraHomes = OCIUtils.getOraHomes();
+        /*~~>*/List<OracleHomeDescriptor> oraHomes = OCIUtils.getOraHomes();
         if (!oraHomes.isEmpty()) {
             return oraHomes.get(0);
         }

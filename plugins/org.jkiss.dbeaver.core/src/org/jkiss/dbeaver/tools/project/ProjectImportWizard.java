@@ -212,7 +212,7 @@ public class ProjectImportWizard extends Wizard implements IImportWizard {
         }
         if (driver == null) {
             // Try to find existing driver by class name
-            List<DriverDescriptor> matchedDrivers = new ArrayList<>();
+            /*~~>*/List<DriverDescriptor> matchedDrivers = new ArrayList<>();
             for (DriverDescriptor tmpDriver : dataSourceProvider.getEnabledDrivers()) {
                 if (CommonUtils.equalObjects(tmpDriver.getDriverClassName(), driverClass)) {
                     matchedDrivers.add(tmpDriver);
@@ -265,7 +265,7 @@ public class ProjectImportWizard extends Wizard implements IImportWizard {
 
         // Add libraries (only for managable drivers with empty library list)
         if (CommonUtils.isEmpty(driver.getDriverLibraries())) {
-            List<String> libraryList = new ArrayList<>();
+            /*~~>*/List<String> libraryList = new ArrayList<>();
             for (Element libElement : XMLUtils.getChildElementList(driverElement, RegistryConstants.TAG_FILE)) {
                 libraryList.add(libElement.getAttribute(RegistryConstants.ATTR_PATH));
             }

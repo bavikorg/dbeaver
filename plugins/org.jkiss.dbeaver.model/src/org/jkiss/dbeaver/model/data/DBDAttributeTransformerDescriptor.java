@@ -36,7 +36,7 @@ public interface DBDAttributeTransformerDescriptor extends DBPRegistryDescriptor
 
     boolean isCustom();
 
-    List<DBPPropertyDescriptor> getProperties();
+    /*~~>*/List<DBPPropertyDescriptor> getProperties();
 
     DBPImage getIcon();
 }

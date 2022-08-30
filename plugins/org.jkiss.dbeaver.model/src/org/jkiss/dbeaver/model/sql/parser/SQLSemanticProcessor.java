@@ -203,12 +203,12 @@ public class SQLSemanticProcessor {
         }
         // ORDER
         if (filter.hasOrdering()) {
-            List<OrderByElement> orderByElements = select.getOrderByElements();
+            /*~~>*/List<OrderByElement> orderByElements = select.getOrderByElements();
             if (orderByElements == null) {
                 orderByElements = new ArrayList<>();
                 select.setOrderByElements(orderByElements);
             }
-            List<DBDAttributeConstraint> orderConstraints = filter.getOrderConstraints();
+            /*~~>*/List<DBDAttributeConstraint> orderConstraints = filter.getOrderConstraints();
             if (!CommonUtils.isEmpty(orderConstraints)) {
                 for (DBDAttributeConstraint co : orderConstraints) {
                     String columnName = co.getAttributeName();

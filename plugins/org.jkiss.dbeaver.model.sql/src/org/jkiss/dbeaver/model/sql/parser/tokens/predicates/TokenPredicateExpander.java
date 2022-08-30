@@ -33,14 +33,14 @@ class TokenPredicateExpander implements TokenPredicateNodeVisitor<ListNode<SQLTo
     private static final TokenPredicateExpander INSTANCE = new TokenPredicateExpander();
 
     @NotNull
-    public static List<List<TokenEntry>> expand(@Nullable TokenPredicateNode node) {
+    public static /*~~>*/List</*~~>*/List<TokenEntry>> expand(@Nullable TokenPredicateNode node) {
         return node == null
                 ? Collections.emptyList()
                 : StreamSupport.stream(node.apply(INSTANCE, null).spliterator(), false)
                 .filter(p -> p != null)
                 .map(path -> {
                     // expanding traverse walks in the left-to-right order, so we've got the rightmost entry  as head of the list
-                    List<TokenEntry> list = StreamSupport.stream(path.spliterator(), false).collect(Collectors.toList());
+                    /*~~>*/List<TokenEntry> list = StreamSupport.stream(path.spliterator(), false).collect(Collectors.toList());
                     Collections.reverse(list); //can be removed if collect token entries in reverse order (right-to-left)
                     return list;
                 })
@@ -55,7 +55,7 @@ class TokenPredicateExpander implements TokenPredicateNodeVisitor<ListNode<SQLTo
     @NotNull
     public ListNode<ListNode<SQLTokenEntry>> visitSequence(@NotNull SequenceTokenPredicateNode sequence, @NotNull ListNode<SQLTokenEntry> head) {
         ListNode<ListNode<SQLTokenEntry>> results = ListNode.of(head);
-        for (TokenPredicateNode child: sequence.childs) {
+        for (TokenPredicateNode child: /*~~>*/sequence.childs) {
             ListNode<ListNode<SQLTokenEntry>> step = null;
             for (ListNode<SQLTokenEntry> prefix: results) {
                 for (ListNode<SQLTokenEntry> childPath: child.apply(this, prefix)) {
@@ -71,7 +71,7 @@ class TokenPredicateExpander implements TokenPredicateNodeVisitor<ListNode<SQLTo
     @NotNull
     public ListNode<ListNode<SQLTokenEntry>> visitAlternative(@NotNull AlternativeTokenPredicateNode alternative, @NotNull ListNode<SQLTokenEntry> head) {
         ListNode<ListNode<SQLTokenEntry>> results = null;
-        for (TokenPredicateNode child: alternative.childs) {
+        for (TokenPredicateNode child: /*~~>*/alternative.childs) {
             for (ListNode<SQLTokenEntry> childPath: child.apply(this, head)) {
                 results = ListNode.push(results, childPath);
             }

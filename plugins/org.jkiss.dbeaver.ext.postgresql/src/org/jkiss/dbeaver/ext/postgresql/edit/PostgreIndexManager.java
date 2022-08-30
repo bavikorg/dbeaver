@@ -100,7 +100,7 @@ public class PostgreIndexManager extends SQLIndexManager<PostgreIndex, PostgreTa
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
         boolean hasDDL = false;
         PostgreIndex index = command.getObject();
         if (index.isPersisted()) {
@@ -124,7 +124,7 @@ public class PostgreIndexManager extends SQLIndexManager<PostgreIndex, PostgreTa
         }
     }
 
-    private static void addIndexCommentAction(List<DBEPersistAction> actions, PostgreIndex index) {
+    private static void addIndexCommentAction(/*~~>*/List<DBEPersistAction> actions, PostgreIndex index) {
         actions.add(new SQLDatabasePersistAction(
             "Comment index",
             "COMMENT ON INDEX " + index.getFullyQualifiedName(DBPEvaluationContext.DDL) +
@@ -137,7 +137,7 @@ public class PostgreIndexManager extends SQLIndexManager<PostgreIndex, PostgreTa
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
         PostgreIndex index = command.getObject();
         actions.add(
                 new SQLDatabasePersistAction(

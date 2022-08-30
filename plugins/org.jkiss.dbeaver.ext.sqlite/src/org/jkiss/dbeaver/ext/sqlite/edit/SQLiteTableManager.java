@@ -38,7 +38,7 @@ import java.util.Map;
 public class SQLiteTableManager extends GenericTableManager implements DBEObjectRenamer<GenericTableBase> {
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options)
     {
         final GenericDataSource dataSource = command.getObject().getDataSource();
         actions.add(

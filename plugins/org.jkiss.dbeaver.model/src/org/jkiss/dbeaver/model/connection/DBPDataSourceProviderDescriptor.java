@@ -37,7 +37,7 @@ public interface DBPDataSourceProviderDescriptor extends DBPNamedObject {
 
     boolean isDriversManagable();
 
-    List<? extends DBPDriver> getEnabledDrivers();
+    /*~~>*/List<? extends DBPDriver> getEnabledDrivers();
 
     String getPluginId();
 
@@ -48,7 +48,7 @@ public interface DBPDataSourceProviderDescriptor extends DBPNamedObject {
 
     boolean isTemporary();
 
-    List<? extends DBPDriver> getDrivers();
+    /*~~>*/List<? extends DBPDriver> getDrivers();
 
     DBPDataSourceProviderDescriptor getParentProvider();
 

@@ -33,7 +33,7 @@ import java.util.List;
 class ExasolDialectRules implements TPRuleProvider {
 
     @Override
-    public void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull List<TPRule> rules, @NotNull RulePosition position) {
+    public void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull /*~~>*/List<TPRule> rules, @NotNull RulePosition position) {
         if (position == TPRuleProvider.RulePosition.CONTROL) {
             final SQLControlToken defineToken = new SQLControlToken("exasol.define");
 

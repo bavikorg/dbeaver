@@ -48,7 +48,7 @@ public class OracleExecutionPlan extends AbstractExecutionPlan {
     private JDBCSession session;
     private String query;
     private Object savedQueryId;
-    private List<OraclePlanNode> rootNodes;
+    private /*~~>*/List<OraclePlanNode> rootNodes;
     private String planStmtId;
     private String planTableName;
 
@@ -64,9 +64,9 @@ public class OracleExecutionPlan extends AbstractExecutionPlan {
         this.savedQueryId = savedQueryId;
     }
 
-    public OracleExecutionPlan(String query, List<OraclePlanNode> nodes) {
+    public OracleExecutionPlan(String query, /*~~>*/List<OraclePlanNode> nodes) {
         this.query = query;
-        this.rootNodes = nodes;
+        /*~~>*/this.rootNodes = nodes;
     }
 
     @Override
@@ -108,7 +108,7 @@ public class OracleExecutionPlan extends AbstractExecutionPlan {
     }
 
     @Override
-    public List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
+    public /*~~>*/List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
         return rootNodes;
     }
 

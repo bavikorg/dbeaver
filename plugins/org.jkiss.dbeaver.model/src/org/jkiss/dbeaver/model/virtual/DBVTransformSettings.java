@@ -105,7 +105,7 @@ public class DBVTransformSettings {
             !CommonUtils.isEmpty(customTransformer);
     }
 
-    public boolean filterTransformers(List<? extends DBDAttributeTransformerDescriptor> descriptors) {
+    public boolean filterTransformers(/*~~>*/List<? extends DBDAttributeTransformerDescriptor> descriptors) {
         if (!hasValuableData()) {
             return false;
         }

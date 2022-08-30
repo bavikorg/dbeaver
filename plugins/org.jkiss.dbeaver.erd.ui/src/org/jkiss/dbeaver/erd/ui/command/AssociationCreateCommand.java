@@ -45,8 +45,8 @@ public class AssociationCreateCommand extends Command {
     protected ERDElement<?> sourceEntity;
     protected ERDElement<?> targetEntity;
 
-    protected List<ERDEntityAttribute> sourceAttributes;
-    protected List<ERDEntityAttribute> targetAttributes;
+    protected /*~~>*/List<ERDEntityAttribute> sourceAttributes;
+    protected /*~~>*/List<ERDEntityAttribute> targetAttributes;
     private ERDEditorPart editor;
 
     public AssociationCreateCommand() {
@@ -60,14 +60,14 @@ public class AssociationCreateCommand extends Command {
         return CommonUtils.isEmpty(targetAttributes) ? null : targetAttributes.get(0);
     }
 
-    public void setAttributes(List<ERDEntityAttribute> sourceAttributes, List<ERDEntityAttribute> targetAttributes) {
-        this.sourceAttributes = sourceAttributes;
-        this.targetAttributes = targetAttributes;
+    public void setAttributes(/*~~>*/List<ERDEntityAttribute> sourceAttributes, /*~~>*/List<ERDEntityAttribute> targetAttributes) {
+        /*~~>*/this.sourceAttributes = sourceAttributes;
+        /*~~>*/this.targetAttributes = targetAttributes;
 
     }
     public void setAttributes(ERDEntityAttribute sourceAttribute, ERDEntityAttribute targetAttribute) {
-        this.sourceAttributes = Collections.singletonList(sourceAttribute);
-        this.targetAttributes = Collections.singletonList(targetAttribute);
+        /*~~>*/this.sourceAttributes = Collections.singletonList(sourceAttribute);
+        /*~~>*/this.targetAttributes = Collections.singletonList(targetAttribute);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class AssociationCreateCommand extends Command {
 
     protected boolean isAssociationExists() {
         // Check for existence of relationship already
-        List<ERDAssociation> relationships = targetEntity.getReferences();
+        /*~~>*/List<ERDAssociation> relationships = targetEntity.getReferences();
         for (ERDAssociation currentRelationship : relationships) {
             if (currentRelationship.getSourceEntity().equals(sourceEntity)) {
                 return true;
@@ -145,8 +145,8 @@ public class AssociationCreateCommand extends Command {
             DBSEntity srcEntityObject = ((ERDEntity)sourceEntity).getObject();
             DBSEntity targetEntityObject = ((ERDEntity)targetEntity).getObject();
 
-            List<DBSEntityAttribute> srcAttrs = ERDUtils.getObjectsFromERD(sourceAttributes);
-            List<DBSEntityAttribute> refAttrs = ERDUtils.getObjectsFromERD(targetAttributes);
+            /*~~>*/List<DBSEntityAttribute> srcAttrs = ERDUtils.getObjectsFromERD(sourceAttributes);
+            /*~~>*/List<DBSEntityAttribute> refAttrs = ERDUtils.getObjectsFromERD(targetAttributes);
 
             try {
                 // Maybe we need to swap source and target
@@ -156,7 +156,7 @@ public class AssociationCreateCommand extends Command {
                     targetEntityObject = srcEntityObject;
                     srcEntityObject = tmpEntity;
 
-                    List<DBSEntityAttribute> tmpAttrs = refAttrs;
+                    /*~~>*/List<DBSEntityAttribute> tmpAttrs = refAttrs;
                     refAttrs = srcAttrs;
                     srcAttrs = tmpAttrs;
                 }
@@ -193,7 +193,7 @@ public class AssociationCreateCommand extends Command {
         this.editor = editor;
     }
 
-    protected boolean needToSwapForeignKeyDirection(DBRProgressMonitor monitor, List<DBSEntityAttribute> srcAttrs, List<DBSEntityAttribute> targetAttrs) throws DBException {
+    protected boolean needToSwapForeignKeyDirection(DBRProgressMonitor monitor, /*~~>*/List<DBSEntityAttribute> srcAttrs, /*~~>*/List<DBSEntityAttribute> targetAttrs) throws DBException {
         return !CommonUtils.isEmpty(srcAttrs) &&
             !CommonUtils.isEmpty(targetAttrs) &&
             !DBVUtils.isIdentifyingAttributes(monitor, srcAttrs) &&

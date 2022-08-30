@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 public class ExasolTablePartitionColumnCache extends AbstractObjectCache<ExasolTable, ExasolTablePartitionColumn> {
 
 	
-    private List<ExasolTablePartitionColumn> tablePartitionColumns;
+    private /*~~>*/List<ExasolTablePartitionColumn> tablePartitionColumns;
 
     public ExasolTablePartitionColumnCache() {
     	tablePartitionColumns = new ArrayList<ExasolTablePartitionColumn>();
@@ -88,7 +88,7 @@ public class ExasolTablePartitionColumnCache extends AbstractObjectCache<ExasolT
     }
 
 	public Collection<ExasolTableColumn> getAvailableTableColumns(ExasolTable owner, DBRProgressMonitor monitor) throws DBException {
-		List<ExasolTableColumn> cols = new ArrayList<ExasolTableColumn>();
+		/*~~>*/List<ExasolTableColumn> cols = new ArrayList<ExasolTableColumn>();
 		
 		cols = owner.getAttributes(monitor).stream()
 				.filter(c -> ! tablePartitionColumns.stream()

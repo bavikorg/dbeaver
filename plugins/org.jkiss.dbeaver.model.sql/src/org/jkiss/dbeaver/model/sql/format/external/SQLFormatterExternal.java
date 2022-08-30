@@ -108,7 +108,7 @@ public class SQLFormatterExternal implements SQLFormatter {
                     }
                     command = command.replace(GeneralUtils.variablePattern(VAR_FILE), tmpFile.getAbsolutePath());
                 }
-                List<String> commandList = ArgumentTokenizer.tokenize(command, false);
+                /*~~>*/List<String> commandList = ArgumentTokenizer.tokenize(command, false);
                 ProcessBuilder pb = new ProcessBuilder(commandList);
                 pb.redirectErrorStream(true);
                 process = pb.start();

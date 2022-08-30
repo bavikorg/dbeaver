@@ -24,21 +24,21 @@ import java.util.List;
 * Report
 */
 public class CompareReport {
-    private List<DBNDatabaseNode> nodes;
-    private List<CompareReportLine> reportLines;
+    private /*~~>*/List<DBNDatabaseNode> nodes;
+    private /*~~>*/List<CompareReportLine> reportLines;
 
-    CompareReport(List<DBNDatabaseNode> nodes, List<CompareReportLine> reportLines)
+    CompareReport(/*~~>*/List<DBNDatabaseNode> nodes, /*~~>*/List<CompareReportLine> reportLines)
     {
-        this.nodes = nodes;
-        this.reportLines = reportLines;
+        /*~~>*/this.nodes = nodes;
+        /*~~>*/this.reportLines = reportLines;
     }
 
-    public List<DBNDatabaseNode> getNodes()
+    public /*~~>*/List<DBNDatabaseNode> getNodes()
     {
         return nodes;
     }
 
-    public List<CompareReportLine> getReportLines()
+    public /*~~>*/List<CompareReportLine> getReportLines()
     {
         return reportLines;
     }

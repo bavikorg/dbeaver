@@ -98,10 +98,10 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
     private volatile LoadingJob<Collection<OBJECT_TYPE>> loadingJob;
 
     private Job lazyLoadingJob = null;
-    private Map<OBJECT_TYPE, List<ObjectColumn>> lazyObjects;
+    private Map<OBJECT_TYPE, /*~~>*/List<ObjectColumn>> lazyObjects;
     private final Map<OBJECT_TYPE, Map<String, Object>> lazyCache = new IdentityHashMap<>();
     private volatile boolean lazyLoadCanceled;
-    private List<OBJECT_TYPE> objectList = null;
+    private /*~~>*/List<OBJECT_TYPE> objectList = null;
     private Object focusObject;
     private ObjectColumn focusColumn;
 
@@ -224,7 +224,7 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
      * @param classList classes of objects in the list
      */
     @NotNull
-    protected abstract String getListConfigId(List<Class<?>> classList);
+    protected abstract String getListConfigId(/*~~>*/List<Class<?>> classList);
 
     protected int getDefaultListStyle() {
         return SWT.MULTI | SWT.FULL_SELECTION;
@@ -386,7 +386,7 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
 
             {
                 // Collect list of items' classes
-                final List<Class<?>> classList = new ArrayList<>();
+                final /*~~>*/List<Class<?>> classList = new ArrayList<>();
                 Class<?>[] baseTypes = getListBaseTypes(items);
                 if (!ArrayUtils.isEmpty(baseTypes)) {
                     Collections.addAll(classList, baseTypes);
@@ -422,7 +422,7 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
 
                 // Collect all properties
                 PropertySourceAbstract propertySource = getListPropertySource();
-                List<ObjectPropertyDescriptor> allProps = ObjectAttributeDescriptor.extractAnnotations(propertySource, classList, propertyFilter);
+                /*~~>*/List<ObjectPropertyDescriptor> allProps = ObjectAttributeDescriptor.extractAnnotations(propertySource, classList, propertyFilter);
                 if (!CommonUtils.isEmpty(items)) {
                     // Remove hidden properties (we need to check them against all items)
                     try {
@@ -487,7 +487,7 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
                 // Pack columns
                 sampleItems = true;
                 try {
-                    List<OBJECT_TYPE> sampleList;
+                    /*~~>*/List<OBJECT_TYPE> sampleList;
                     if (objectList.size() > 200) {
                         sampleList = objectList.subList(0, 100);
                     } else {
@@ -575,7 +575,7 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
         clearLazyCache();
     }
 
-    private void collectItemClasses(OBJECT_TYPE item, List<Class<?>> classList, Map<OBJECT_TYPE, Boolean> collectedSet) {
+    private void collectItemClasses(OBJECT_TYPE item, /*~~>*/List<Class<?>> classList, Map<OBJECT_TYPE, Boolean> collectedSet) {
         if (collectedSet.containsKey(item)) {
             log.warn("Cycled object tree: " + item);
             return;
@@ -639,7 +639,7 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
         if (lazyObjects == null) {
             lazyObjects = new LinkedHashMap<>();
         }
-        List<ObjectColumn> objectColumns = lazyObjects.get(object);
+        /*~~>*/List<ObjectColumn> objectColumns = lazyObjects.get(object);
         if (objectColumns == null) {
             objectColumns = new ArrayList<>();
             lazyObjects.put(object, objectColumns);
@@ -666,12 +666,12 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
     }
 
     @Nullable
-    private synchronized Map<OBJECT_TYPE, List<ObjectColumn>> obtainLazyObjects() {
+    private synchronized Map<OBJECT_TYPE, /*~~>*/List<ObjectColumn>> obtainLazyObjects() {
         synchronized (lazyCache) {
             if (lazyObjects == null) {
                 return null;
             }
-            Map<OBJECT_TYPE, List<ObjectColumn>> tmp = lazyObjects;
+            Map<OBJECT_TYPE, /*~~>*/List<ObjectColumn>> tmp = lazyObjects;
             lazyObjects = null;
             return tmp;
         }
@@ -688,7 +688,7 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
         if (element instanceof ObjectsGroupingWrapper) {
             if (objectColumn == groupingColumn) {
                 Object groupingKey = ((ObjectsGroupingWrapper) element).groupingKey;
-                List<Object> elements = ((ObjectsGroupingWrapper) element).groupedElements;
+                /*~~>*/List<Object> elements = /*~~>*/((ObjectsGroupingWrapper) element).groupedElements;
                 int groupElementsSize = 0;
                 if (!CommonUtils.isEmpty(elements)) {
                     groupElementsSize = elements.size();
@@ -1070,7 +1070,7 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
         public Image getImage(Object element) {
             if (element instanceof ObjectsGroupingWrapper) {
                 if (this.objectColumn == groupingColumn) {
-                    List<Object> groupedElements = ((ObjectsGroupingWrapper) element).groupedElements;
+                    /*~~>*/List<Object> groupedElements = /*~~>*/((ObjectsGroupingWrapper) element).groupedElements;
                     element = groupedElements.get(0);
                 } else {
                     return null;
@@ -1257,12 +1257,12 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
 
         @Override
         protected IStatus run(final DBRProgressMonitor monitor) {
-            final Map<OBJECT_TYPE, List<ObjectColumn>> objectMap = obtainLazyObjects();
+            final Map<OBJECT_TYPE, /*~~>*/List<ObjectColumn>> objectMap = obtainLazyObjects();
             if (isDisposed()) {
                 return Status.OK_STATUS;
             }
             monitor.beginTask(UINavigatorMessages.controls_object_list_monitor_load_lazy_props, objectMap.size());
-            for (Map.Entry<OBJECT_TYPE, List<ObjectColumn>> entry : objectMap.entrySet()) {
+            for (Map.Entry<OBJECT_TYPE, /*~~>*/List<ObjectColumn>> entry : objectMap.entrySet()) {
                 if (monitor.isCanceled() || isDisposed()) {
                     break;
                 }
@@ -1418,7 +1418,7 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
             }
             buf.append("\n");
         }
-        List<OBJECT_TYPE> elementList = itemsViewer.getStructuredSelection().toList();
+        /*~~>*/List<OBJECT_TYPE> elementList = itemsViewer.getStructuredSelection().toList();
         for (OBJECT_TYPE element : elementList) {
             Object object = getObjectValue(element);
             for (int i = 0; i < columnsCount; i++) {
@@ -1533,11 +1533,11 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
                 }
 
                 int columnIndex = groupingColumn.columnIndex;
-                final Map<Object, List<Object>> groups = new HashMap<>();
+                final Map<Object, /*~~>*/List<Object>> groups = new HashMap<>();
 
                 for (Object element : elements) {
                     final Object key = getCellValue(element, columnIndex);
-                    final List<Object> group = groups.computeIfAbsent(key, x -> new ArrayList<>());
+                    final /*~~>*/List<Object> group = groups.computeIfAbsent(key, x -> new ArrayList<>());
                     group.add(element);
                 }
 
@@ -1551,7 +1551,7 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
         @Override
         public Object[] getChildren(Object parentElement) {
             if (groupingColumn != null && parentElement instanceof ObjectsGroupingWrapper) {
-                return ((ObjectsGroupingWrapper) parentElement).groupedElements.toArray();
+                return /*~~>*/((ObjectsGroupingWrapper) parentElement).groupedElements.toArray();
             }
             return new Object[0];
         }
@@ -1567,11 +1567,11 @@ public abstract class ObjectListControl<OBJECT_TYPE> extends ProgressPageControl
 
     private static class ObjectsGroupingWrapper {
         private final Object groupingKey;
-        private final List<Object> groupedElements;
+        private final /*~~>*/List<Object> groupedElements;
 
-        private ObjectsGroupingWrapper(@Nullable Object groupingKey, @NotNull List<Object> groupedElements) {
+        private ObjectsGroupingWrapper(@Nullable Object groupingKey, @NotNull /*~~>*/List<Object> groupedElements) {
             this.groupingKey = groupingKey;
-            this.groupedElements = groupedElements;
+            /*~~>*/this.groupedElements = groupedElements;
         }
 
         @Override

@@ -111,7 +111,7 @@ public class PackageNavigateHandler extends AbstractHandler //implements IElemen
                 String procRegex = procedure.getProcedureType().name() + "\\s+" + procedure.getName();
                 final Collection<OracleProcedureArgument> parameters = procedure.getParameters(monitor);
                 if (parameters != null) {
-                    List<OracleProcedureArgument> inParams = new ArrayList<>();
+                    /*~~>*/List<OracleProcedureArgument> inParams = new ArrayList<>();
                     for (OracleProcedureArgument arg : parameters) {
                         if (arg.getParameterKind() != DBSProcedureParameterKind.OUT && !arg.isResultArgument()) {
                             inParams.add(arg);

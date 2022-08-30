@@ -209,7 +209,7 @@ public class EpochTimeAttributeTransformerTest {
 
         @Nullable
         @Override
-        public List<DBSEntityReferrer> getReferrers() {
+        public /*~~>*/List<DBSEntityReferrer> getReferrers() {
             return null;
         }
 

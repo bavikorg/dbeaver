@@ -69,7 +69,7 @@ public class SQLQuery implements SQLScriptElement {
     private int resultsOffset = -1;
     private int resultsMaxRows = -1;
     @Nullable
-    private List<SQLQueryParameter> parameters;
+    private /*~~>*/List<SQLQueryParameter> parameters;
 
     private Throwable parseError;
     private boolean parsed = false;
@@ -77,7 +77,7 @@ public class SQLQuery implements SQLScriptElement {
     private SQLQueryType type;
     private Statement statement;
     private SingleTableMeta singleTableMeta, rawSingleTableMetadata;
-    private List<SQLSelectItem> selectItems;
+    private /*~~>*/List<SQLSelectItem> selectItems;
     private String queryTitle;
     private String extraErrorMessage;
 
@@ -98,7 +98,7 @@ public class SQLQuery implements SQLScriptElement {
         if (preserveOriginal) {
             this.originalText = sourceQuery.originalText;
         }
-        this.parameters = sourceQuery.parameters;
+        /*~~>*/this.parameters = /*~~>*/sourceQuery.parameters;
         this.data = sourceQuery.data;
     }
 
@@ -166,7 +166,7 @@ public class SQLQuery implements SQLScriptElement {
                         }
                     }
                     // Extract select items info
-                    final List<SQLSelectItem> items = CommonUtils.safeList(plainSelect.getSelectItems()).stream()
+                    final /*~~>*/List<SQLSelectItem> items = CommonUtils.safeList(plainSelect.getSelectItems()).stream()
                         .filter(this::isValidSelectItem)
                         .map(item -> new SQLSelectItem(this, item))
                         .collect(Collectors.toList());
@@ -188,7 +188,7 @@ public class SQLQuery implements SQLScriptElement {
                 if (((Delete) statement).getTable() != null) {
                     fillSingleSource(((Delete) statement).getTable());
                 } else {
-                    List<Table> tables = ((Delete) statement).getTables();
+                    /*~~>*/List<Table> tables = ((Delete) statement).getTables();
                     if (tables != null && tables.size() == 1) {
                         fillSingleSource(tables.get(0));
                     }
@@ -350,7 +350,7 @@ public class SQLQuery implements SQLScriptElement {
         return parseError;
     }
 
-    public List<SQLQueryParameter> getParameters() {
+    public /*~~>*/List<SQLQueryParameter> getParameters() {
         return parameters;
     }
 
@@ -394,14 +394,14 @@ public class SQLQuery implements SQLScriptElement {
         return raw? rawSingleTableMetadata : singleTableMeta;
     }
 
-    public void setParameters(List<SQLQueryParameter> parameters) {
-        this.parameters = parameters;
+    public void setParameters(/*~~>*/List<SQLQueryParameter> parameters) {
+        /*~~>*/this.parameters = parameters;
     }
 
     public void reset() {
         this.text = this.originalText;
-        if (this.parameters != null) {
-            setParameters(this.parameters);
+        if (/*~~>*/this.parameters != null) {
+            setParameters(/*~~>*/this.parameters);
         }
     }
 
@@ -493,7 +493,7 @@ public class SQLQuery implements SQLScriptElement {
 
         @NotNull
         @Override
-        public List<? extends DBCAttributeMetaData> getAttributes() {
+        public /*~~>*/List<? extends DBCAttributeMetaData> getAttributes() {
             return Collections.emptyList();
         }
 

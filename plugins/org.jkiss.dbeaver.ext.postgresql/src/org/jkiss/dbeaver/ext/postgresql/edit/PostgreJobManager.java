@@ -69,7 +69,7 @@ public class PostgreJobManager extends SQLStructEditor<PostgreJob, PostgreDataSo
     }
 
     @Override
-    protected void addStructObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, StructCreateCommand command, Map<String, Object> options) {
+    protected void addStructObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, StructCreateCommand command, Map<String, Object> options) {
         final PostgreJob job = command.getObject();
         final StringJoiner values = new StringJoiner(", ", "(", ")");
 
@@ -79,7 +79,7 @@ public class PostgreJobManager extends SQLStructEditor<PostgreJob, PostgreDataSo
         values.add(SQLUtils.quoteString(job.getDataSource(), job.getHostAgent()));
         values.add(String.valueOf(job.isEnabled()));
 
-        final List<String> queries = new ArrayList<>();
+        final /*~~>*/List<String> queries = new ArrayList<>();
         final StringBuilder buffer = new StringBuilder();
 
         queries.add("INSERT INTO pgagent.pga_job(jobjclid, jobname, jobdesc, jobhostagent, jobenabled)\nVALUES " + values + "\nRETURNING jobid");
@@ -132,7 +132,7 @@ public class PostgreJobManager extends SQLStructEditor<PostgreJob, PostgreDataSo
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
         final PostgreJob job = command.getObject();
         final StringJoiner values = new StringJoiner(",\n\t");
 
@@ -161,7 +161,7 @@ public class PostgreJobManager extends SQLStructEditor<PostgreJob, PostgreDataSo
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
         final PostgreJob job = command.getObject();
         actions.add(new SQLDatabasePersistAction(
             "Delete job",
@@ -170,7 +170,7 @@ public class PostgreJobManager extends SQLStructEditor<PostgreJob, PostgreDataSo
     }
 
     @Override
-    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
+    protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectRenameCommand command, Map<String, Object> options) {
         final PostgreJob job = command.getObject();
         actions.add(new SQLDatabasePersistAction(
             "Rename job",

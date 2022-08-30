@@ -47,7 +47,7 @@ public class PairListControl<ELEMENT> extends Composite
 
     private Collection<ELEMENT> leftElements;
     private Collection<ELEMENT> rightElements;
-    private List<ELEMENT> movedElements = new ArrayList<>();
+    private /*~~>*/List<ELEMENT> movedElements = new ArrayList<>();
     private Font movedFont;
     private SelectionListener selListener;
 
@@ -216,7 +216,7 @@ public class PairListControl<ELEMENT> extends Composite
         Table fromTable = toRight ? leftList : rightList;
         Table toTable = toRight ? rightList : leftList;
         Collection<ELEMENT> checkList = toRight ? rightElements : leftElements;
-        List<ELEMENT> movedElements = new ArrayList<>();
+        /*~~>*/List<ELEMENT> movedElements = new ArrayList<>();
 
         for (TableItem item : fromTable.getSelection()) {
             ELEMENT element = (ELEMENT) item.getData();

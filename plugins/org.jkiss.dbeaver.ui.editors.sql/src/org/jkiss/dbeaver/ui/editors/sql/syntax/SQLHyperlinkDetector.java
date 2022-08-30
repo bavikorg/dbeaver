@@ -56,7 +56,7 @@ public class SQLHyperlinkDetector extends AbstractHyperlinkDetector {
             // Create hyperlinks based on references
             final SQLIdentifierDetector.WordRegion wordRegion = this.contextInformer.getWordRegion();
             final IRegion hlRegion = new Region(wordRegion.identStart, wordRegion.identEnd - wordRegion.identStart);
-            final List<DBSObjectReference> references = this.contextInformer.getObjectReferences();
+            final /*~~>*/List<DBSObjectReference> references = this.contextInformer.getObjectReferences();
             IHyperlink[] links = new IHyperlink[references.size()];
             for (int i = 0, objectsSize = references.size(); i < objectsSize; i++) {
                 links[i] = new EntityHyperlink(contextInformer.getEditor().getSite(), references.get(i), hlRegion);

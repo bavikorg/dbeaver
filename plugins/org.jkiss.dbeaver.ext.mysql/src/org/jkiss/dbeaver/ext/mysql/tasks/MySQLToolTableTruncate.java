@@ -34,7 +34,7 @@ public class MySQLToolTableTruncate extends MySQLToolWithStatus<MySQLTableBase, 
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, MySQLToolTableTruncateSettings settings, List<DBEPersistAction> queries, MySQLTableBase object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, MySQLToolTableTruncateSettings settings, /*~~>*/List<DBEPersistAction> queries, MySQLTableBase object) throws DBCException {
         String sql = "";
         boolean force = settings.isForce();
         if (force) {

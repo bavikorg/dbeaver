@@ -42,13 +42,13 @@ public abstract class MySQLToolWithStatus<OBJECT_TYPE extends DBSObject, SETTING
     extends SQLToolExecuteHandler<OBJECT_TYPE, SETTINGS> implements SQLToolRunStatisticsGenerator<OBJECT_TYPE, SETTINGS, DBEPersistAction>
 {
     @Override
-    public List<ToolStatus> getExecuteStatistics(OBJECT_TYPE object, SETTINGS settings, DBEPersistAction action, DBCSession session, DBCStatement dbStat) throws DBCException {
+    public /*~~>*/List<ToolStatus> getExecuteStatistics(OBJECT_TYPE object, SETTINGS settings, DBEPersistAction action, DBCSession session, DBCStatement dbStat) throws DBCException {
         DBCResultSet dbResult = dbStat.openResultSet();
         if (!(dbResult instanceof JDBCResultSet)) {
             return Collections.emptyList();
         }
         try {
-            List<ToolStatus> statusList = new ArrayList<>();
+            /*~~>*/List<ToolStatus> statusList = new ArrayList<>();
             while (dbResult.nextRow()) {
                 statusList.add(
                     new ToolStatus(

@@ -79,7 +79,7 @@ public class MySQLCommandChangeUser extends DBECommandComposite<MySQLUser, UserP
     @Override
     public DBEPersistAction[] getPersistActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, Map<String, Object> options)
     {
-        List<DBEPersistAction> actions = new ArrayList<>();
+        /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
         boolean newUser = !getObject().isPersisted();
         boolean includeUserPassword = true;
         if (newUser) {

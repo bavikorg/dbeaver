@@ -71,19 +71,19 @@ public class SQLServerProcedureManager extends SQLServerObjectManager<SQLServerP
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) throws DBException {
         createOrReplaceProcedureQuery(monitor, executionContext, actions, command.getObject(), true);
     }
 
     @Override
-    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList, ObjectChangeCommand command, Map<String, Object> options) throws DBException {
         if (command.getProperties().size() > 1 || command.getProperty(DBConstants.PROP_ID_DESCRIPTION) == null) {
             createOrReplaceProcedureQuery(monitor, executionContext, actionList, command.getObject(), false);
         }
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) {
         addDatabaseSwitchAction1(executionContext, actions, command.getObject().getContainer().getDatabase());
 
         actions.add(
@@ -93,7 +93,7 @@ public class SQLServerProcedureManager extends SQLServerObjectManager<SQLServerP
         addDatabaseSwitchAction2(executionContext, actions, command.getObject().getContainer().getDatabase());
     }
 
-    private void createOrReplaceProcedureQuery(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, SQLServerProcedure procedure, boolean create) throws DBException {
+    private void createOrReplaceProcedureQuery(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, SQLServerProcedure procedure, boolean create) throws DBException {
         addDatabaseSwitchAction1(executionContext, actions, procedure.getContainer().getDatabase());
 
         if (create) {
@@ -106,7 +106,7 @@ public class SQLServerProcedureManager extends SQLServerObjectManager<SQLServerP
     }
 
     @Override
-    protected void addObjectExtraActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, NestedObjectCommand<SQLServerProcedure, PropertyHandler> command, Map<String, Object> options) throws DBException {
+    protected void addObjectExtraActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, NestedObjectCommand<SQLServerProcedure, PropertyHandler> command, Map<String, Object> options) throws DBException {
         final SQLServerProcedure procedure = command.getObject();
         if (command.getProperty(DBConstants.PROP_ID_DESCRIPTION) != null) {
             SQLServerDatabase database = procedure.getContainer().getDatabase();

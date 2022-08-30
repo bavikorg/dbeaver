@@ -62,7 +62,7 @@ public class MySQLSessionManager implements DBAServerSessionManager<MySQLSession
         try {
             try (JDBCPreparedStatement dbStat = ((JDBCSession) session).prepareStatement(generateSessionReadQuery(options))) {
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                    List<MySQLSession> sessions = new ArrayList<>();
+                    /*~~>*/List<MySQLSession> sessions = new ArrayList<>();
                     while (dbResult.next()) {
                         MySQLSession sessionInfo = new MySQLSession(dbResult);
                         if (hideSleeping && "Sleep".equals(sessionInfo.getCommand())) {

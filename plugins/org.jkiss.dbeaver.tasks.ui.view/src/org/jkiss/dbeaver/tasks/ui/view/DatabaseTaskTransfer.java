@@ -27,22 +27,22 @@ import java.util.List;
 /**
  * Used to move DBTTask around
  */
-public final class DatabaseTaskTransfer extends LocalObjectTransfer<List<DBTTask>> {
+public final class DatabaseTaskTransfer extends LocalObjectTransfer</*~~>*/List<DBTTask>> {
 
 	public static class Data {
 		private Control sourceControl;
-		private List<DBTTask> tasks;
+		private /*~~>*/List<DBTTask> tasks;
 
-		public Data(Control sourceControl, List<DBTTask> tasks) {
+		public Data(Control sourceControl, /*~~>*/List<DBTTask> tasks) {
 			this.sourceControl = sourceControl;
-			this.tasks = tasks;
+			/*~~>*/this.tasks = tasks;
 		}
 
 		public Control getSourceControl() {
 			return sourceControl;
 		}
 
-		public List<DBTTask> getTasks() {
+		public /*~~>*/List<DBTTask> getTasks() {
 			return tasks;
 		}
 	}
@@ -69,11 +69,11 @@ public final class DatabaseTaskTransfer extends LocalObjectTransfer<List<DBTTask
 		return new String[] { TYPE_NAME };
 	}
 
-    public static List<DBTTask> getFromClipboard()
+    public static /*~~>*/List<DBTTask> getFromClipboard()
     {
         Clipboard clipboard = new Clipboard(Display.getDefault());
         try {
-            return (List<DBTTask>) clipboard.getContents(DatabaseTaskTransfer.getInstance());
+            return (/*~~>*/List<DBTTask>) clipboard.getContents(DatabaseTaskTransfer.getInstance());
         } finally {
             clipboard.dispose();
         }

@@ -262,7 +262,7 @@ public class SQLServerDialect extends JDBCSQLDialect implements TPRuleProvider {
 
     @Override
     public void generateStoredProcedureCall(StringBuilder sql, DBSProcedure proc, Collection<? extends DBSProcedureParameter> parameters) {
-        List<DBSProcedureParameter> inParameters = new ArrayList<>();
+        /*~~>*/List<DBSProcedureParameter> inParameters = new ArrayList<>();
         int maxParamLength = getMaxParameterLength(parameters, inParameters);
         String schemaName = proc.getContainer().getParentObject().getName();
         sql.append("USE [").append(schemaName).append("]\n");
@@ -335,7 +335,7 @@ public class SQLServerDialect extends JDBCSQLDialect implements TPRuleProvider {
     }
 
     @Override
-    public void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull List<TPRule> rules, @NotNull RulePosition position) {
+    public void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull /*~~>*/List<TPRule> rules, @NotNull RulePosition position) {
         if (position == RulePosition.FINAL) {
             rules.add(new SQLVariableRule(this));
         }

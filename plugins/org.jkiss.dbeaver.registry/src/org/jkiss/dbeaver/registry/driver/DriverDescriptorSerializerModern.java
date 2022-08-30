@@ -95,7 +95,7 @@ public class DriverDescriptorSerializerModern extends DriverDescriptorSerializer
                         }
 
                         if (!export) {
-                            List<DriverDescriptor.DriverFileInfo> files = driver.getResolvedFiles().get(lib);
+                            /*~~>*/List<DriverDescriptor.DriverFileInfo> files = driver.getResolvedFiles().get(lib);
                             if (!CommonUtils.isEmpty(files)) {
                                 json.name("files");
                                 json.beginObject();

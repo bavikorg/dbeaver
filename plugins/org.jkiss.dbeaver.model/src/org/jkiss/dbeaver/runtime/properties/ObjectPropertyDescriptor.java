@@ -225,7 +225,7 @@ public class ObjectPropertyDescriptor extends ObjectAttributeDescriptor implemen
     @Nullable
     @Override
     public String[] getFeatures() {
-        List<String> features = new ArrayList<>();
+        /*~~>*/List<String> features = new ArrayList<>();
         if (this.isRequired()) features.add(DBConstants.PROP_FEATURE_REQUIRED);
         if (this.isSpecific()) features.add(DBConstants.PROP_FEATURE_SPECIFIC);
         if (this.isOptional()) features.add(DBConstants.PROP_FEATURE_OPTIONAL);

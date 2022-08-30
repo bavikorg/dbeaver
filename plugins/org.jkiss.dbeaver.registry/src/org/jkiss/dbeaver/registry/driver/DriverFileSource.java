@@ -63,7 +63,7 @@ public class DriverFileSource implements DBPDriverFileSource
     private final String url;
     private final String name;
     private final String instructions;
-    private final List<FileInfo> files = new ArrayList<FileInfo>();
+    private final /*~~>*/List<FileInfo> files = new ArrayList<FileInfo>();
 
     DriverFileSource(IConfigurationElement config) {
         this.url = config.getAttribute(RegistryConstants.ATTR_URL);
@@ -78,7 +78,7 @@ public class DriverFileSource implements DBPDriverFileSource
         this.url = copyFrom.url;
         this.name = copyFrom.name;
         this.instructions = copyFrom.instructions;
-        this.files.addAll(copyFrom.files);
+        /*~~>*/this.files.addAll(/*~~>*/copyFrom.files);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class DriverFileSource implements DBPDriverFileSource
     }
 
     @Override
-    public List<FileInfo> getFiles() {
+    public /*~~>*/List<FileInfo> getFiles() {
         return files;
     }
 

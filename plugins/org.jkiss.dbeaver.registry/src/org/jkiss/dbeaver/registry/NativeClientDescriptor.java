@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class NativeClientDescriptor extends AbstractDescriptor {
 
-    private final List<NativeClientDistributionDescriptor> distributions = new ArrayList<>();
+    private final /*~~>*/List<NativeClientDistributionDescriptor> distributions = new ArrayList<>();
     private String id;
     private String label;
 
@@ -43,7 +43,7 @@ public class NativeClientDescriptor extends AbstractDescriptor {
         this.id = config.getAttribute(RegistryConstants.ATTR_ID);
         this.label = config.getAttribute(RegistryConstants.ATTR_LABEL);
         for (IConfigurationElement clientElement : config.getChildren("dist")) {
-            this.distributions.add(new NativeClientDistributionDescriptor(clientElement));
+            /*~~>*/this.distributions.add(new NativeClientDistributionDescriptor(clientElement));
         }
     }
 

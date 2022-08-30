@@ -94,7 +94,7 @@ public class StatisticsPresentation extends AbstractPresentation {
 
         if (controller.getModel().getRowCount() > 0) {
             ResultSetRow row = controller.getModel().getRow(0);
-            java.util.List<DBDAttributeBinding> visibleAttributes = controller.getModel().getVisibleAttributes();
+            /*~~>*//*~~>*/java.util.List<DBDAttributeBinding> visibleAttributes = controller.getModel().getVisibleAttributes();
             for (int i = 0; i < visibleAttributes.size(); i++) {
                 DBDAttributeBinding attr = visibleAttributes.get(i);
                 Object value = row.getValues()[i];

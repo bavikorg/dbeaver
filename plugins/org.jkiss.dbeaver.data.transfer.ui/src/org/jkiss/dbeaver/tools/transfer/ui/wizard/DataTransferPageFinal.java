@@ -106,7 +106,7 @@ class DataTransferPageFinal extends ActiveWizardPage<DataTransferWizard> impleme
 
         resultTable.removeAll();
         DataTransferSettings settings = getWizard().getSettings();
-        List<DataTransferPipe> dataPipes = settings.getDataPipes();
+        /*~~>*/List<DataTransferPipe> dataPipes = settings.getDataPipes();
 
         IDataTransferSettings consumerSettings = null, producerSettings = null;
 

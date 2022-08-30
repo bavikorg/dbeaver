@@ -37,7 +37,7 @@ public class AttributeTransformerDescriptor extends DataTypeAbstractDescriptor<D
     private final boolean applyByDefault;
     private final boolean custom;
     private final DBPImage icon;
-    private final List<DBPPropertyDescriptor> properties = new ArrayList<>();
+    private final /*~~>*/List<DBPPropertyDescriptor> properties = new ArrayList<>();
 
     public AttributeTransformerDescriptor(IConfigurationElement config)
     {
@@ -75,7 +75,7 @@ public class AttributeTransformerDescriptor extends DataTypeAbstractDescriptor<D
     }
 
     @Override
-    public List<DBPPropertyDescriptor> getProperties() {
+    public /*~~>*/List<DBPPropertyDescriptor> getProperties() {
         return properties;
     }
 

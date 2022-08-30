@@ -46,8 +46,8 @@ public class DatabaseObjectsTreeManager implements ICheckStateListener {
     private static class CollectInfo {
         DBNNode rootElement;
         boolean wasChecked;
-        final List<DBNNode> targetChildren = new ArrayList<>();
-        final List<DBNNode> targetContainers = new ArrayList<>();
+        final /*~~>*/List<DBNNode> targetChildren = new ArrayList<>();
+        final /*~~>*/List<DBNNode> targetContainers = new ArrayList<>();
     }
 
     public DatabaseObjectsTreeManager(DBRRunnableContext runnableContext, CheckboxTreeViewer viewer, Class<?>[] targetTypes) {
@@ -123,11 +123,11 @@ public class DatabaseObjectsTreeManager implements ICheckStateListener {
         // Run ui
         UIUtils.syncExec(() -> {
             if (change) {
-                for (DBNNode child : collectInfo.targetChildren) {
+                for (DBNNode child : /*~~>*/collectInfo.targetChildren) {
                     viewer.setChecked(child, collectInfo.wasChecked);
                 }
             }
-            for (DBNNode container : change ? collectInfo.targetContainers : Collections.singletonList(element)) {
+            for (DBNNode container : change ? /*~~>*/collectInfo.targetContainers : Collections.singletonList(element)) {
                 try {
                     DBNNode[] directChildren = container.getChildren(monitor);
                     if (directChildren != null) {
@@ -178,7 +178,7 @@ public class DatabaseObjectsTreeManager implements ICheckStateListener {
                         continue;
                     }
                 }
-                collectInfo.targetChildren.add(element);
+                /*~~>*/collectInfo.targetChildren.add(element);
                 return true;
             }
         }
@@ -205,8 +205,8 @@ public class DatabaseObjectsTreeManager implements ICheckStateListener {
                 }
             }
             if (foundChild) {
-                if (!collectInfo.targetContainers.contains(element)) {
-                    collectInfo.targetContainers.add(element);
+                if (!/*~~>*/collectInfo.targetContainers.contains(element)) {
+                    /*~~>*/collectInfo.targetContainers.add(element);
                     if (onlyChecked) {
                         checkedElements.put(element, Boolean.TRUE);
                     }

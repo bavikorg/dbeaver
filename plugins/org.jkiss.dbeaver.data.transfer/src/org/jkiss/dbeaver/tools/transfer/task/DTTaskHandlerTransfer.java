@@ -103,7 +103,7 @@ public class DTTaskHandlerTransfer implements DBTTaskHandler {
             throws InvocationTargetException, InterruptedException, DBException {
         int[] indexOfLastPipeWithDisabledReferentialIntegrity = new int[]{-1};
         DBException[] dbException = {null};
-        List<DataTransferPipe> dataPipes = settings.getDataPipes();
+        /*~~>*/List<DataTransferPipe> dataPipes = settings.getDataPipes();
 
         runnableContext.run(true, false, monitor -> {
             monitor.beginTask("Initialize pipes", dataPipes.size());
@@ -155,7 +155,7 @@ public class DTTaskHandlerTransfer implements DBTTaskHandler {
     }
 
     private void restoreReferentialIntegrity(@NotNull DBRRunnableContext runnableContext,
-                                             @NotNull List<DataTransferPipe> pipes) throws DBException {
+                                             @NotNull /*~~>*/List<DataTransferPipe> pipes) throws DBException {
         DBException[] firstDBException = {null};
         try {
             runnableContext.run(true, false, monitor -> {

@@ -36,8 +36,8 @@ public class PrivilegesPairList extends PairListControl<String> {
 
     public void setModel(Map<String, Boolean> privs)
     {
-        List<String> availPrivs = new ArrayList<>();
-        List<String> grantedPrivs = new ArrayList<>();
+        /*~~>*/List<String> availPrivs = new ArrayList<>();
+        /*~~>*/List<String> grantedPrivs = new ArrayList<>();
         for (Map.Entry<String,Boolean> priv : privs.entrySet()) {
             if (priv.getValue()) {
                 grantedPrivs.add(priv.getKey());

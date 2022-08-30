@@ -35,7 +35,7 @@ public class SSHImplementationRegistry
         return instance;
     }
 
-    private final List<SSHImplementationDescriptor> descriptors = new ArrayList<>();
+    private final /*~~>*/List<SSHImplementationDescriptor> descriptors = new ArrayList<>();
 
     private SSHImplementationRegistry(IExtensionRegistry registry)
     {
@@ -49,7 +49,7 @@ public class SSHImplementationRegistry
         }
     }
 
-    public List<SSHImplementationDescriptor> getDescriptors() {
+    public /*~~>*/List<SSHImplementationDescriptor> getDescriptors() {
         return descriptors;
     }
 

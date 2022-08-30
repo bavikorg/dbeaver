@@ -212,7 +212,7 @@ public class DiagramPart extends PropertyAwarePart {
         getFigure().repaint();
     }
 
-    private void resetConnectionConstraints(List sourceConnections) {
+    private void resetConnectionConstraints(/*~~>*/List sourceConnections) {
         if (!CommonUtils.isEmpty(sourceConnections)) {
             for (Object sc : sourceConnections) {
                 if (sc instanceof AbstractConnectionEditPart) {
@@ -230,7 +230,7 @@ public class DiagramPart extends PropertyAwarePart {
      * @return the children Model objects as a new ArrayList
      */
     @Override
-    protected List<?> getModelChildren()
+    protected /*~~>*/List<?> getModelChildren()
     {
         return getDiagram().getContents();
     }
@@ -264,7 +264,7 @@ public class DiagramPart extends PropertyAwarePart {
     public void setTableModelBounds()
     {
 
-        List<?> entityParts = getChildren();
+        /*~~>*/List<?> entityParts = getChildren();
 
         for (Object child : entityParts) {
             if (child instanceof NodePart) {
@@ -294,7 +294,7 @@ public class DiagramPart extends PropertyAwarePart {
      */
     public boolean setTableFigureBounds(boolean updateConstraint)
     {
-        List<?> nodeParts = getChildren();
+        /*~~>*/List<?> nodeParts = getChildren();
 
         for (Object child : nodeParts) {
             if (child instanceof NodePart) {
@@ -385,8 +385,8 @@ public class DiagramPart extends PropertyAwarePart {
         return null;
     }
 
-    public List<EntityPart> getEntityParts() {
-        List<EntityPart> result = new ArrayList<>();
+    public /*~~>*/List<EntityPart> getEntityParts() {
+        /*~~>*/List<EntityPart> result = new ArrayList<>();
         for (Object child : getChildren()) {
             if (child instanceof EntityPart) {
                 result.add((EntityPart)child);
@@ -407,7 +407,7 @@ public class DiagramPart extends PropertyAwarePart {
     }
 
     @NotNull
-    public Command createEntityAddCommand(List<ERDEntity> entities, Point location) {
+    public Command createEntityAddCommand(/*~~>*/List<ERDEntity> entities, Point location) {
         return new EntityAddCommand(this, entities, location);
     }
 

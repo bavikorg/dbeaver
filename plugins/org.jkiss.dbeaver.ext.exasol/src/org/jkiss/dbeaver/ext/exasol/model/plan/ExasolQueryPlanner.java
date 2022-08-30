@@ -124,7 +124,7 @@ public class ExasolQueryPlanner extends AbstractExecutionPlanSerializer implemen
 
             ExecutionPlanDeserializer<ExasolPlanNode> loader = new ExecutionPlanDeserializer<>();
 
-            List<ExasolPlanNode> rootNodes = loader.loadRoot(dataSource, jo, (datasource, node, parent) -> new ExasolPlanNode(parent, getNodeAttributes(node)));
+            /*~~>*/List<ExasolPlanNode> rootNodes = loader.loadRoot(dataSource, jo, (datasource, node, parent) -> new ExasolPlanNode(parent, getNodeAttributes(node)));
             return new ExasolPlanAnalyser(dataSource, query, rootNodes);
 
         } catch (Throwable e) {

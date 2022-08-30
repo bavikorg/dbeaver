@@ -48,7 +48,7 @@ public class PostgreServerTypeRegistry {
         }
     }
 
-    public List<PostgreServerType> getServerTypes() {
+    public /*~~>*/List<PostgreServerType> getServerTypes() {
         return new ArrayList<>(serverTypes.values());
     }
 

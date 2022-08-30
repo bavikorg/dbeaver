@@ -82,8 +82,8 @@ public class PlainTextFormatter {
 
     // returns number of rows
     public int printGrid(StringBuilder grid, ResultSetModel model) {
-        List<DBDAttributeBinding> attrs = model.getVisibleAttributes();
-        List<ResultSetRow> allRows = model.getAllRows();
+        /*~~>*/List<DBDAttributeBinding> attrs = model.getVisibleAttributes();
+        /*~~>*/List<ResultSetRow> allRows = model.getAllRows();
         int extraSpacesNum = extraSpaces ? 2 : 0;
         if (colWidths == null) {
             // Calculate column widths
@@ -257,7 +257,7 @@ public class PlainTextFormatter {
 
     public void printRecord(StringBuilder grid, ResultSetModel model, ResultSetRow currentRow) {
         String indent = extraSpaces ? " " : "";
-        List<DBDAttributeBinding> attrs = model.getVisibleAttributes();
+        /*~~>*/List<DBDAttributeBinding> attrs = model.getVisibleAttributes();
         String[] values = new String[attrs.size()];
 
         // Calculate column widths

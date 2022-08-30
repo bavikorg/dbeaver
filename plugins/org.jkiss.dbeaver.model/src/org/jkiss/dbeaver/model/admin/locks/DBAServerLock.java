@@ -36,6 +36,6 @@ public interface DBAServerLock extends DBPObject {
 
     Object getHoldID();
 
-    List<DBAServerLock> waitThis();
+    /*~~>*/List<DBAServerLock> waitThis();
 
 }

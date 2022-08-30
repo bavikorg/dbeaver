@@ -181,7 +181,7 @@ public class OracleQueryPlanner  extends AbstractExecutionPlanSerializer impleme
 
             IntKeyMap<OraclePlanNode> allNodes = new IntKeyMap<>();
 
-            List<OraclePlanNode> rootNodes = loader.loadRoot(dataSource, jo, (datasource, node, parent) -> {
+            /*~~>*/List<OraclePlanNode> rootNodes = loader.loadRoot(dataSource, jo, (datasource, node, parent) -> {
                 OraclePlanNode nodeOra = new OraclePlanNode(dataSource, allNodes, getNodeAttributes(node));
                 allNodes.put(nodeOra.getId(), nodeOra);
                 return nodeOra;

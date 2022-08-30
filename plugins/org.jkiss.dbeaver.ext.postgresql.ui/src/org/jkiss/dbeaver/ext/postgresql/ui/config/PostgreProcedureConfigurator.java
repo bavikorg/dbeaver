@@ -115,7 +115,7 @@ public class PostgreProcedureConfigurator implements DBEObjectConfigurator<Postg
         @Override
         protected void createExtraControls(Composite group) {
             {
-                List<PostgreLanguage> languages = new ArrayList<>();
+                /*~~>*/List<PostgreLanguage> languages = new ArrayList<>();
                 try {
                     languages.addAll(parent.getDatabase().getLanguages(monitor));
                 } catch (DBException e) {
@@ -132,7 +132,7 @@ public class PostgreProcedureConfigurator implements DBEObjectConfigurator<Postg
                 languageCombo.setText("sql");
             }
             {
-                List<PostgreDataType> dataTypes = new ArrayList<>(parent.getDatabase().getLocalDataTypes());
+                /*~~>*/List<PostgreDataType> dataTypes = new ArrayList<>(parent.getDatabase().getLocalDataTypes());
                 dataTypes.sort(Comparator.comparing(PostgreDataType::getName));
                 returnTypeCombo = UIUtils.createLabelCombo(group, "Return type", SWT.DROP_DOWN);
                 for (PostgreDataType dt : dataTypes) {

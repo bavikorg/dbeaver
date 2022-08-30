@@ -174,13 +174,13 @@ public class DerbyMetaModel extends GenericMetaModel
     @Override
     public GenericTableConstraintColumn[] createConstraintColumnsImpl(JDBCSession session, GenericTableBase parent, GenericUniqueKey object, GenericMetaObject pkObject, JDBCResultSet dbResult) throws DBException {
         try {
-            List<GenericTableConstraintColumn> derbyConstraintColumns = new ArrayList<>();
+            /*~~>*/List<GenericTableConstraintColumn> derbyConstraintColumns = new ArrayList<>();
             Object descriptor = JDBCUtils.safeGetObject(dbResult, "DESCRIPTOR");
             if (descriptor != null) {
                 Object baseColumnPositions = BeanUtils.invokeObjectMethod(descriptor, "baseColumnPositions");
                 int[] columnPositions = (int []) baseColumnPositions;
                 for (int pos : columnPositions) {
-                    List<? extends GenericTableColumn> attributes = parent.getAttributes(dbResult.getSession().getProgressMonitor());
+                    /*~~>*/List<? extends GenericTableColumn> attributes = parent.getAttributes(dbResult.getSession().getProgressMonitor());
                     if (!CommonUtils.isEmpty(attributes)) {
                         for (GenericTableColumn genericTableColumn : attributes) {
                             if (genericTableColumn.getOrdinalPosition() == pos) {

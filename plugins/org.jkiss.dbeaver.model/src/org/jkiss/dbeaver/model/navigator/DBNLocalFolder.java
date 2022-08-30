@@ -175,7 +175,7 @@ public class DBNLocalFolder extends DBNNode implements DBNContainer
         if (ArrayUtils.isEmpty(folder.getChildren())) {
             return ArrayUtils.toArray(DBNDataSource.class, getDataSources());
         }
-        final List<DBNNode> nodes = new ArrayList<>();
+        final /*~~>*/List<DBNNode> nodes = new ArrayList<>();
         for (DBPDataSourceFolder childFolder : folder.getChildren()) {
             nodes.add(getParentNode().getFolderNode(childFolder));
         }
@@ -184,9 +184,9 @@ public class DBNLocalFolder extends DBNNode implements DBNContainer
         return ArrayUtils.toArray(DBNNode.class, nodes);
     }
 
-    public List<DBNDataSource> getDataSources()
+    public /*~~>*/List<DBNDataSource> getDataSources()
     {
-        List<DBNDataSource> children = new ArrayList<>();
+        /*~~>*/List<DBNDataSource> children = new ArrayList<>();
         DBNProjectDatabases parent = getParentNode();
         for (DBNDataSource dataSource : parent.getDataSources()) {
             if (folder == dataSource.getDataSourceContainer().getFolder()) {
@@ -257,13 +257,13 @@ public class DBNLocalFolder extends DBNNode implements DBNContainer
         return false;
     }
 
-    public List<DBNDataSource> getNestedDataSources() {
-        List<DBNDataSource> result = new ArrayList<>();
+    public /*~~>*/List<DBNDataSource> getNestedDataSources() {
+        /*~~>*/List<DBNDataSource> result = new ArrayList<>();
         fillNestedDataSources(result);
         return result;
     }
 
-    private void fillNestedDataSources(List<DBNDataSource> dataSources) {
+    private void fillNestedDataSources(/*~~>*/List<DBNDataSource> dataSources) {
         for (DBNNode childFolder : getChildren(new VoidProgressMonitor())) {
             if (childFolder instanceof DBNLocalFolder) {
                 ((DBNLocalFolder) childFolder).fillNestedDataSources(dataSources);

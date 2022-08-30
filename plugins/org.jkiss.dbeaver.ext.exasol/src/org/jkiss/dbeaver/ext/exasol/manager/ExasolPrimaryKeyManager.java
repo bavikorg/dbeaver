@@ -71,7 +71,7 @@ public class ExasolPrimaryKeyManager
 	}
 	
 	@Override
-	protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+	protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectCreateCommand command, Map<String, Object> options)
 	{
 		ExasolTableUniqueKey obj = (ExasolTableUniqueKey) command.getObject();
@@ -91,7 +91,7 @@ public class ExasolPrimaryKeyManager
 	}
 	
 	@Override
-	protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList,
+	protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList,
                                           ObjectChangeCommand command, Map<String, Object> options)
 	{
 		final ExasolTableUniqueKey constraint = command.getObject();
@@ -110,7 +110,7 @@ public class ExasolPrimaryKeyManager
 	
 	
 	@Override
-	protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+	protected void addObjectRenameActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
 										  ObjectRenameCommand command, Map<String, Object> options)
 	{
 		final ExasolTableUniqueKey key = command.getObject();

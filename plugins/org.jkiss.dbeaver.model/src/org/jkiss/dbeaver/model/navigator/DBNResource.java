@@ -201,7 +201,7 @@ public class DBNResource extends DBNNode implements DBNNodeWithResource// implem
 
     protected DBNNode[] readChildNodes(DBRProgressMonitor monitor) throws DBException
     {
-        List<DBNNode> result = new ArrayList<>();
+        /*~~>*/List<DBNNode> result = new ArrayList<>();
         try {
             IResource contentLocation = getContentLocationResource();
             if (contentLocation instanceof IContainer && contentLocation.exists()) {
@@ -432,7 +432,7 @@ public class DBNResource extends DBNNode implements DBNNodeWithResource// implem
         return resource;
     }
 
-    protected void filterChildren(List<DBNNode> list)
+    protected void filterChildren(/*~~>*/List<DBNNode> list)
     {
 
     }

@@ -44,7 +44,7 @@ public class CompareObjectsExecutor {
 
     private CompareObjectsSettings settings;
 
-    private final List<DBNDatabaseNode> rootNodes;
+    private final /*~~>*/List<DBNDatabaseNode> rootNodes;
     private final Map<DBPDataSource, DataSourcePropertyFilter> dataSourceFilters = new IdentityHashMap<>();
 
     private final DBRProgressListener initializeFinisher;
@@ -54,11 +54,11 @@ public class CompareObjectsExecutor {
     private volatile IStatus initializeError;
     private final Map<Object, Map<DBPPropertyDescriptor, Object>> propertyValues = new IdentityHashMap<>();
 
-    private final List<CompareReportLine> reportLines = new ArrayList<>();
+    private final /*~~>*/List<CompareReportLine> reportLines = new ArrayList<>();
     private int reportDepth = 0;
     private CompareReportLine lastLine;
 
-    private void reportObjectsCompareBegin(List<DBNDatabaseNode> objects)
+    private void reportObjectsCompareBegin(/*~~>*/List<DBNDatabaseNode> objects)
     {
         reportDepth++;
         lastLine = new CompareReportLine();
@@ -96,10 +96,10 @@ public class CompareObjectsExecutor {
                 reportProperty.values[i] = valueMap.get(property);
             }
         }
-        if (lastLine.properties == null) {
-            lastLine.properties = new ArrayList<>();
+        if (/*~~>*/lastLine.properties == null) {
+            /*~~>*/lastLine.properties = new ArrayList<>();
         }
-        lastLine.properties.add(reportProperty);
+        /*~~>*/lastLine.properties.add(reportProperty);
 
         Object firstValue = reportProperty.values[0];
         for (int i = 1; i < rootNodes.size(); i++) {
@@ -118,7 +118,7 @@ public class CompareObjectsExecutor {
     public CompareObjectsExecutor(CompareObjectsSettings settings)
     {
         this.settings = settings;
-        this.rootNodes = settings.getNodes();
+        /*~~>*/this.rootNodes = settings.getNodes();
 
         initializeFinisher = new DBRProgressListener() {
             @Override
@@ -156,7 +156,7 @@ public class CompareObjectsExecutor {
         PropertiesContributor.getInstance().removeLazyListener(lazyPropertyLoadListener);
     }
 
-    public CompareReport compareObjects(DBRProgressMonitor monitor, List<DBNDatabaseNode> nodes)
+    public CompareReport compareObjects(DBRProgressMonitor monitor, /*~~>*/List<DBNDatabaseNode> nodes)
         throws DBException, InterruptedException
     {
         reportLines.clear();
@@ -166,7 +166,7 @@ public class CompareObjectsExecutor {
         return new CompareReport(rootNodes, reportLines);
     }
 
-    private void compareNodes(DBRProgressMonitor monitor, List<DBNDatabaseNode> nodes)
+    private void compareNodes(DBRProgressMonitor monitor, /*~~>*/List<DBNDatabaseNode> nodes)
         throws DBException, InterruptedException
     {
         reportObjectsCompareBegin(nodes);
@@ -185,7 +185,7 @@ public class CompareObjectsExecutor {
         }
     }
 
-    private void compareProperties(DBRProgressMonitor monitor, List<DBNDatabaseNode> nodes) throws DBException, InterruptedException
+    private void compareProperties(DBRProgressMonitor monitor, /*~~>*/List<DBNDatabaseNode> nodes) throws DBException, InterruptedException
     {
         boolean onlyStruct = settings.isCompareOnlyStructure();
 
@@ -219,7 +219,7 @@ public class CompareObjectsExecutor {
         boolean compareLazyProperties = false;
 
         DBNDatabaseNode firstNode = nodes.get(0);
-        List<ObjectPropertyDescriptor> properties = ObjectPropertyDescriptor.extractAnnotations(
+        /*~~>*/List<ObjectPropertyDescriptor> properties = ObjectPropertyDescriptor.extractAnnotations(
             null,
             firstNode.getObject().getClass(),
             getDataSourceFilter(firstNode), null);
@@ -288,11 +288,11 @@ public class CompareObjectsExecutor {
         }
     }
 
-    private void compareChildren(DBRProgressMonitor monitor, List<DBNDatabaseNode> nodes) throws DBException, InterruptedException
+    private void compareChildren(DBRProgressMonitor monitor, /*~~>*/List<DBNDatabaseNode> nodes) throws DBException, InterruptedException
     {
         // Compare children
         int nodeCount = nodes.size();
-        List<DBNDatabaseNode[]> allChildren = new ArrayList<>(nodeCount);
+        /*~~>*/List<DBNDatabaseNode[]> allChildren = new ArrayList<>(nodeCount);
         // Use submonitor to avoid huge number of tasks
         DBRProgressMonitor subMonitor = new SubTaskProgressMonitor(monitor);
         for (int i = 0; i < nodeCount; i++) {
@@ -342,7 +342,7 @@ public class CompareObjectsExecutor {
                 }
             }
 
-            List<DBNDatabaseNode> nodesToCompare = new ArrayList<>(nodeCount);
+            /*~~>*/List<DBNDatabaseNode> nodesToCompare = new ArrayList<>(nodeCount);
             for (int i = 0; i < nodeCount; i++) {
                 if (childIndexes[i] == -1) {
                     // Missing

@@ -124,7 +124,7 @@ public interface SQLDialect {
     @Nullable
     DBPKeywordType getKeywordType(@NotNull String word);
     @NotNull
-    List<String> getMatchedKeywords(@NotNull String word);
+    /*~~>*/List<String> getMatchedKeywords(@NotNull String word);
 
     boolean isKeywordStart(@NotNull String word);
 

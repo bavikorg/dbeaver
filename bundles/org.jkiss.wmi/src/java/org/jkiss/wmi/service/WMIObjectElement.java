@@ -44,7 +44,7 @@ public abstract class WMIObjectElement extends WMIQualifiedObject {
     }
 
     @Override
-    protected void readObjectQualifiers(List<WMIQualifier> qualifiers) throws WMIException
+    protected void readObjectQualifiers(/*~~>*/List<WMIQualifier> qualifiers) throws WMIException
     {
         getOwner().readQualifiers(this instanceof WMIObjectAttribute, getName(), qualifiers);
     }

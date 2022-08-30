@@ -45,7 +45,7 @@ public class RedshiftView extends PostgreView
 {
     private static final Log log = Log.getLog(RedshiftView.class);
 
-    private List<PostgreTableColumn> lateBindingColumns = null;
+    private /*~~>*/List<PostgreTableColumn> lateBindingColumns = null;
 
     public RedshiftView(PostgreSchema catalog) {
         super(catalog);
@@ -56,12 +56,12 @@ public class RedshiftView extends PostgreView
     }
 
     @Override
-    public List<? extends PostgreTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<? extends PostgreTableColumn> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
         if (lateBindingColumns != null) {
             return lateBindingColumns;
         }
 
-        List<? extends PostgreTableColumn> attrs = super.getAttributes(monitor);
+        /*~~>*/List<? extends PostgreTableColumn> attrs = super.getAttributes(monitor);
         if (isPersisted() && CommonUtils.isEmpty(attrs) && isViewVwithNoSchemaBinding(monitor)) {
             lateBindingColumns = readLateBindingColumns(monitor);
             if (!CommonUtils.isEmpty(lateBindingColumns)) {
@@ -85,7 +85,7 @@ public class RedshiftView extends PostgreView
         return viewDefinition.toLowerCase().contains("with no schema binding");
     }
 
-    private List<PostgreTableColumn> readLateBindingColumns(DBRProgressMonitor monitor) throws DBException {
+    private /*~~>*/List<PostgreTableColumn> readLateBindingColumns(DBRProgressMonitor monitor) throws DBException {
         try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Read redshift view late binding columns")) {
             try (JDBCPreparedStatement dbStat = session.prepareStatement("select * from pg_get_late_binding_view_cols() \n" +
                 "cols(view_schema name, view_name name, col_name name, col_type varchar, col_num int)\n" +
@@ -93,7 +93,7 @@ public class RedshiftView extends PostgreView
                 dbStat.setString(1, getSchema().getName());
                 dbStat.setString(2, getName());
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                    List<PostgreTableColumn> columns = new ArrayList<>();
+                    /*~~>*/List<PostgreTableColumn> columns = new ArrayList<>();
                     while (dbResult.next()) {
                         String colName = JDBCUtils.safeGetString(dbResult, "col_name");
                         String colType = JDBCUtils.safeGetString(dbResult, "col_type");

@@ -94,7 +94,7 @@ public class ExasolServerSessionManager implements DBAServerSessionManager<Exaso
 
         log.debug("read sessions");
 
-        List<ExasolServerSession> listSessions = new ArrayList<>();
+        /*~~>*/List<ExasolServerSession> listSessions = new ArrayList<>();
 
         //check dba view
         try {

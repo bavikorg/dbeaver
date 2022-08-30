@@ -35,15 +35,15 @@ public class NewConnectionDriverSelectorContributor extends DataSourceMenuContri
     private static final Log log = Log.getLog(NewConnectionDriverSelectorContributor.class);
 
     @Override
-    protected void fillContributionItems(final List<IContributionItem> menuItems)
+    protected void fillContributionItems(final /*~~>*/List<IContributionItem> menuItems)
     {
         IWorkbenchWindow window = UIUtils.getActiveWorkbenchWindow();
         if (window == null) {
             return;
         }
 
-        List<DBPDriver> allDrivers = DriverUtils.getAllDrivers();
-        List<DBPDriver> recentDrivers = DriverUtils.getRecentDrivers(allDrivers, 10);
+        /*~~>*/List<DBPDriver> allDrivers = DriverUtils.getAllDrivers();
+        /*~~>*/List<DBPDriver> recentDrivers = DriverUtils.getRecentDrivers(allDrivers, 10);
         for (DBPDriver driver : recentDrivers) {
             menuItems.add(new ActionContributionItem(new NewConnectionAction(window, driver)));
         }

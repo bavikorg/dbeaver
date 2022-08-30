@@ -72,7 +72,7 @@ class ViewerColumnRegistry {
         }
     }
 
-    private final Map<String, List<ColumnState>> columnsConfig = new TreeMap<>();
+    private final Map<String, /*~~>*/List<ColumnState>> columnsConfig = new TreeMap<>();
     private volatile ConfigSaver saver = null;
 
     public ViewerColumnRegistry() {
@@ -90,7 +90,7 @@ class ViewerColumnRegistry {
 
     void updateConfig(String controlId, Collection<? extends ColumnState> columns) {
         synchronized (columnsConfig) {
-            List<ColumnState> newStates = new ArrayList<>(columns.size());
+            /*~~>*/List<ColumnState> newStates = new ArrayList<>(columns.size());
             for (ColumnState state : columns) {
                 newStates.add(new ColumnState(state));
             }
@@ -137,7 +137,7 @@ class ViewerColumnRegistry {
                 XMLBuilder xml = new XMLBuilder(out, GeneralUtils.UTF8_ENCODING);
                 xml.setButify(true);
                 try (final XMLBuilder.Element e = xml.startElement("items")) {
-                    for (Map.Entry<String, List<ColumnState>> entry : columnsConfig.entrySet()) {
+                    for (Map.Entry<String, /*~~>*/List<ColumnState>> entry : columnsConfig.entrySet()) {
                         try (final XMLBuilder.Element e2 = xml.startElement("item")) {
                             xml.addAttribute("id", entry.getKey());
                             for (ColumnState column : entry.getValue()) {
@@ -164,7 +164,7 @@ class ViewerColumnRegistry {
 
     private class ColumnsParser extends SAXListener.BaseListener {
 
-        private List<ColumnState> curColumnState = null;
+        private /*~~>*/List<ColumnState> curColumnState = null;
 
         private ColumnsParser() {
         }

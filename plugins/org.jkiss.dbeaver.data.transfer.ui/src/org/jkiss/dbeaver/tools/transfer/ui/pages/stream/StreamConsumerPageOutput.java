@@ -354,7 +354,7 @@ public class StreamConsumerPageOutput extends DataTransferPageNodeSettings {
             .map(x -> x[0])
             .collect(Collectors.toCollection(LinkedHashSet::new));
 
-        final List<DataTransferPipe> pipes = getWizard().getSettings().getDataPipes();
+        final /*~~>*/List<DataTransferPipe> pipes = getWizard().getSettings().getDataPipes();
         if (pipes.size() == 1) {
             final DBSObject object = pipes.get(0).getProducer().getDatabaseObject();
             final SQLQueryContainer container = DBUtils.getAdapter(SQLQueryContainer.class, object);

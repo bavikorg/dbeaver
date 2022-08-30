@@ -90,11 +90,11 @@ public class MySQLUtils {
         return valueType == null ? java.sql.Types.OTHER : valueType;
     }
 
-    public static List<String> collectPrivilegeNames(ResultSet resultSet)
+    public static /*~~>*/List<String> collectPrivilegeNames(ResultSet resultSet)
     {
         // Now collect all privileges columns
         try {
-            List<String> privs = new ArrayList<>();
+            /*~~>*/List<String> privs = new ArrayList<>();
             ResultSetMetaData rsMetaData = resultSet.getMetaData();
             int colCount = rsMetaData.getColumnCount();
             for (int i = 0; i < colCount; i++) {
@@ -110,7 +110,7 @@ public class MySQLUtils {
         }
     }
 
-    public static Map<String, Boolean> collectPrivileges(List<String> privNames, ResultSet resultSet)
+    public static Map<String, Boolean> collectPrivileges(/*~~>*/List<String> privNames, ResultSet resultSet)
     {
         // Now collect all privileges columns
         Map<String, Boolean> privs = new TreeMap<>();

@@ -34,9 +34,9 @@ public class DBCStatistics implements DBCExecutionResult {
     private int statementsCount;
     private String queryText;
     private Map<String, Object> infoMap;
-    private List<String> messages;
+    private /*~~>*/List<String> messages;
     private Throwable error;
-    private List<Throwable> warnings;
+    private /*~~>*/List<Throwable> warnings;
 
     public DBCStatistics() {
         this.startTime = System.currentTimeMillis();
@@ -135,7 +135,7 @@ public class DBCStatistics implements DBCExecutionResult {
         this.queryText = queryText;
     }
 
-    public List<String> getMessages() {
+    public /*~~>*/List<String> getMessages() {
         return messages;
     }
 
@@ -179,8 +179,8 @@ public class DBCStatistics implements DBCExecutionResult {
         executeTime += stat.executeTime;
         fetchTime += stat.fetchTime;
         statementsCount += stat.statementsCount;
-        if (!CommonUtils.isEmpty(stat.messages)) {
-            for (String message : stat.messages) {
+        if (!CommonUtils.isEmpty(/*~~>*/stat.messages)) {
+            for (String message : /*~~>*/stat.messages) {
                 addMessage(message);
             }
         }
@@ -213,7 +213,7 @@ public class DBCStatistics implements DBCExecutionResult {
 
     @Nullable
     @Override
-    public List<Throwable> getWarnings() {
+    public /*~~>*/List<Throwable> getWarnings() {
         return warnings;
     }
 

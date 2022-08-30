@@ -41,7 +41,7 @@ public class DataTransferRegistry {
 
     private static final Log log = Log.getLog(DataTransferRegistry.class);
 
-    private final List<DataTransferNodeDescriptor> nodes = new ArrayList<>();
+    private final /*~~>*/List<DataTransferNodeDescriptor> nodes = new ArrayList<>();
     private final Map<String, DataTransferAttributeTransformerDescriptor> transformers = new LinkedHashMap<>();
     private final Map<String, DataTransferEventProcessorDescriptor> eventProcessors = new LinkedHashMap<>();
 
@@ -95,16 +95,16 @@ public class DataTransferRegistry {
         return instance;
     }
 
-    public List<DataTransferNodeDescriptor> getAvailableProducers(Collection<DBSObject> sourceObjects) {
+    public /*~~>*/List<DataTransferNodeDescriptor> getAvailableProducers(Collection<DBSObject> sourceObjects) {
         return getAvailableNodes(DataTransferNodeDescriptor.NodeType.PRODUCER, sourceObjects);
     }
 
-    public List<DataTransferNodeDescriptor> getAvailableConsumers(Collection<DBSObject> sourceObjects) {
+    public /*~~>*/List<DataTransferNodeDescriptor> getAvailableConsumers(Collection<DBSObject> sourceObjects) {
         return getAvailableNodes(DataTransferNodeDescriptor.NodeType.CONSUMER, sourceObjects);
     }
 
-    List<DataTransferNodeDescriptor> getAvailableNodes(DataTransferNodeDescriptor.NodeType nodeType, Collection<DBSObject> sourceObjects) {
-        List<DataTransferNodeDescriptor> result = new ArrayList<>();
+    /*~~>*/List<DataTransferNodeDescriptor> getAvailableNodes(DataTransferNodeDescriptor.NodeType nodeType, Collection<DBSObject> sourceObjects) {
+        /*~~>*/List<DataTransferNodeDescriptor> result = new ArrayList<>();
         for (DataTransferNodeDescriptor node : nodes) {
             if (node.getNodeType() == nodeType) {
                 for (DBSObject sourceObject : sourceObjects) {
@@ -118,8 +118,8 @@ public class DataTransferRegistry {
         return result;
     }
 
-    public List<DataTransferNodeDescriptor> getNodes(DataTransferNodeDescriptor.NodeType nodeType) {
-        List<DataTransferNodeDescriptor> result = new ArrayList<>();
+    public /*~~>*/List<DataTransferNodeDescriptor> getNodes(DataTransferNodeDescriptor.NodeType nodeType) {
+        /*~~>*/List<DataTransferNodeDescriptor> result = new ArrayList<>();
         for (DataTransferNodeDescriptor node : nodes) {
             if (node.getNodeType() == nodeType) {
                 result.add(node);
@@ -158,8 +158,8 @@ public class DataTransferRegistry {
     }
 
     @Nullable
-    public List<DataTransferProcessorDescriptor> getAvailableProcessors(Class<? extends IDataTransferNode> nodeType, Class<?> objectType) {
-        List<DataTransferProcessorDescriptor> processors = null;
+    public /*~~>*/List<DataTransferProcessorDescriptor> getAvailableProcessors(Class<? extends IDataTransferNode> nodeType, Class<?> objectType) {
+        /*~~>*/List<DataTransferProcessorDescriptor> processors = null;
         for (DataTransferNodeDescriptor node : nodes) {
             if (node.getNodeClass() == nodeType) {
                 if (node.appliesToType(objectType)) {
@@ -171,7 +171,7 @@ public class DataTransferRegistry {
     }
 
     @NotNull
-    public List<DataTransferAttributeTransformerDescriptor> getAttributeTransformers() {
+    public /*~~>*/List<DataTransferAttributeTransformerDescriptor> getAttributeTransformers() {
         return new ArrayList<>(transformers.values());
     }
 

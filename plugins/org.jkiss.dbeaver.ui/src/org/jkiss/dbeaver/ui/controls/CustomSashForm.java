@@ -104,7 +104,7 @@ public class CustomSashForm extends SashForm {
     protected boolean sashBorders[];    // Whether corresponding control needs a sash border
 
     protected boolean noHideUp, noHideDown;
-    protected List customSashFormListeners = null;
+    protected /*~~>*/List customSashFormListeners = null;
 
     protected static final int
             UP_RESTORE_ARROW = 0,

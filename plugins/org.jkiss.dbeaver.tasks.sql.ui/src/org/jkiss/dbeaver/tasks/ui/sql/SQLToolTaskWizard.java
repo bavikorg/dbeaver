@@ -54,7 +54,7 @@ class SQLToolTaskWizard extends TaskConfigurationWizard<SQLToolExecuteSettings> 
     private SQLToolTaskWizardPageStatus pageStatus;
     private SQLToolExecuteHandler taskHandler;
 
-    private List<DBSObject> objectList;
+    private /*~~>*/List<DBSObject> objectList;
 
     public SQLToolTaskWizard() {
     }
@@ -180,7 +180,7 @@ class SQLToolTaskWizard extends TaskConfigurationWizard<SQLToolExecuteSettings> 
         }
 
         @Override
-        public void handleActionStatistics(DBPObject object, DBEPersistAction action, DBCSession session, List<? extends SQLToolStatistics> statistics) {
+        public void handleActionStatistics(DBPObject object, DBEPersistAction action, DBCSession session, /*~~>*/List<? extends SQLToolStatistics> statistics) {
             pageStatus.addStatistics(object, statistics);
         }
     }

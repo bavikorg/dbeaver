@@ -34,7 +34,7 @@ public class PostgreObjectPrivilege extends PostgrePrivilege {
 
     private String grantee;
 
-    public PostgreObjectPrivilege(PostgrePrivilegeOwner owner, String grantee, List<PostgrePrivilegeGrant> privileges) {
+    public PostgreObjectPrivilege(PostgrePrivilegeOwner owner, String grantee, /*~~>*/List<PostgrePrivilegeGrant> privileges) {
         super(owner, privileges);
         this.grantee = grantee;
     }

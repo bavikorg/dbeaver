@@ -31,7 +31,7 @@ import org.eclipse.core.text.StringMatcher;
 public class TextMatcherExt {
 
     private final StringMatcher full;
-    private final List<StringMatcher> parts;
+    private final /*~~>*/List<StringMatcher> parts;
 
     /**
      *
@@ -46,7 +46,7 @@ public class TextMatcherExt {
         parts = splitPattern(pattern, ignoreCase, ignoreWildCards);
     }
 
-    private List<StringMatcher> splitPattern(String pattern,
+    private /*~~>*/List<StringMatcher> splitPattern(String pattern,
                                              boolean ignoreCase, boolean ignoreWildCards) {
         String pat = pattern.trim();
         if (pat.isEmpty()) {
@@ -63,7 +63,7 @@ public class TextMatcherExt {
         if (subPatterns.length <= 1) {
             return Collections.emptyList();
         }
-        List<StringMatcher> matchers = new ArrayList<>();
+        /*~~>*/List<StringMatcher> matchers = new ArrayList<>();
         for (String s : subPatterns) {
             if (s == null || s.isEmpty()) {
                 continue;

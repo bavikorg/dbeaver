@@ -53,7 +53,7 @@ public class PostgreIndex extends JDBCTableIndex<PostgreSchema, PostgreTableBase
     private boolean isCheckXMin;
     private boolean isReady;
     private String description;
-    private List<PostgreIndexColumn> columns = new ArrayList<>();
+    private /*~~>*/List<PostgreIndexColumn> columns = new ArrayList<>();
     private long amId;
     private long tablespaceId;
     private String predicateExpression;
@@ -126,7 +126,7 @@ public class PostgreIndex extends JDBCTableIndex<PostgreSchema, PostgreTableBase
         }
 
         for (PostgreIndexColumn sourceColumn : CommonUtils.safeCollection(srcIndex.getAttributeReferences(monitor))) {
-            this.columns.add(new PostgreIndexColumn(monitor, this, sourceColumn));
+            /*~~>*/this.columns.add(new PostgreIndexColumn(monitor, this, sourceColumn));
         }
     }
 
@@ -238,7 +238,7 @@ public class PostgreIndex extends JDBCTableIndex<PostgreSchema, PostgreTableBase
     }
 
     @Override
-    public List<PostgreIndexColumn> getAttributeReferences(DBRProgressMonitor monitor) {
+    public /*~~>*/List<PostgreIndexColumn> getAttributeReferences(DBRProgressMonitor monitor) {
         return columns;
     }
 
@@ -246,8 +246,8 @@ public class PostgreIndex extends JDBCTableIndex<PostgreSchema, PostgreTableBase
         return DBUtils.findObject(columns, columnName);
     }
 
-    void setColumns(List<PostgreIndexColumn> columns) {
-        this.columns = columns;
+    void setColumns(/*~~>*/List<PostgreIndexColumn> columns) {
+        /*~~>*/this.columns = columns;
     }
 
     public void addColumn(PostgreIndexColumn column) {

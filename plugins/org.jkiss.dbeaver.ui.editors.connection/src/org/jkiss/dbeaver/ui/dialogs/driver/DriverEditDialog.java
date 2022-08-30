@@ -93,7 +93,7 @@ public class DriverEditDialog extends HelpEnabledDialog {
     private Text driverDatabaseText;
     private PropertyTreeViewer parametersEditor;
     private ConnectionPropertiesControl connectionPropertiesEditor;
-    private final List<DBPDriverLibrary> origLibList;
+    private final /*~~>*/List<DBPDriverLibrary> origLibList;
     private PropertySourceCustom driverPropertySource;
     private PropertySourceCustom connectionPropertySource;
     private ClientHomesPanel clientHomesPanel;
@@ -114,7 +114,7 @@ public class DriverEditDialog extends HelpEnabledDialog {
         this.provider = this.driver.getProviderDescriptor();
         this.defaultCategory = driver.getCategory();
         this.newDriver = false;
-        this.origLibList = new ArrayList<>(driver.getDriverLibraries());
+        /*~~>*/this.origLibList = new ArrayList<>(driver.getDriverLibraries());
     }
 
     DriverEditDialog(Shell shell, DataSourceProviderDescriptor provider, String category) {
@@ -123,7 +123,7 @@ public class DriverEditDialog extends HelpEnabledDialog {
         this.driver = provider.createDriver();
         this.defaultCategory = category;
         this.newDriver = true;
-        this.origLibList = new ArrayList<>();
+        /*~~>*/this.origLibList = new ArrayList<>();
     }
 
     DriverEditDialog(Shell shell, DataSourceProviderDescriptor provider, DriverDescriptor driver) {
@@ -143,7 +143,7 @@ public class DriverEditDialog extends HelpEnabledDialog {
 
         this.defaultCategory = driver.getCategory();
         this.newDriver = true;
-        this.origLibList = new ArrayList<>();
+        /*~~>*/this.origLibList = new ArrayList<>();
     }
 
     public DriverDescriptor getDriver() {
@@ -459,7 +459,7 @@ public class DriverEditDialog extends HelpEnabledDialog {
                     UIUtils.runInProgressDialog(classFinder);
 
                     if (classListCombo != null && !classListCombo.isDisposed()) {
-                        List<String> classNames = classFinder.getDriverClassNames();
+                        /*~~>*/List<String> classNames = classFinder.getDriverClassNames();
                         classListCombo.setItems(classNames.toArray(new String[0]));
                         if (!RuntimeUtils.isMacOS()) {
                             classListCombo.setListVisible(true);

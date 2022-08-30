@@ -74,13 +74,13 @@ public class SQLGeneratorContributor extends CompoundContributionItem {
             return new IContributionItem[0];
         }
 
-        List<IContributionItem> menu = new ArrayList<>();
+        /*~~>*/List<IContributionItem> menu = new ArrayList<>();
         if (structuredSelection instanceof IResultSetSelection) {
             // Results
             makeResultSetContributions(menu, (IResultSetSelection) structuredSelection);
 
         } else {
-            List<DBPObject> objects = new ArrayList<>();
+            /*~~>*/List<DBPObject> objects = new ArrayList<>();
             for (Object obj : structuredSelection.toList()) {
                 DBSObject adaptedObject = GeneralUtils.adapt(obj, DBSObject.class);
                 if (adaptedObject != null) {
@@ -91,7 +91,7 @@ public class SQLGeneratorContributor extends CompoundContributionItem {
                     objects.add((DBPObject) obj);
                 }
             }
-            List<SQLGeneratorDescriptor> generators = SQLGeneratorConfigurationRegistry.getInstance().getApplicableGenerators(objects, structuredSelection);
+            /*~~>*/List<SQLGeneratorDescriptor> generators = SQLGeneratorConfigurationRegistry.getInstance().getApplicableGenerators(objects, structuredSelection);
             int lastGrand = 0;
             for (SQLGeneratorDescriptor gen : generators) {
                 int order = gen.getOrder();
@@ -106,18 +106,18 @@ public class SQLGeneratorContributor extends CompoundContributionItem {
         return menu.toArray(new IContributionItem[0]);
     }
 
-    private void makeResultSetContributions(List<IContributionItem> menu, IResultSetSelection rss) {
+    private void makeResultSetContributions(/*~~>*/List<IContributionItem> menu, IResultSetSelection rss) {
         final IResultSetController rsv = rss.getController();
         DBSDataContainer dataContainer = rsv.getDataContainer();
-        final List<DBDAttributeBinding> visibleAttributes = rsv.getModel().getVisibleAttributes();
+        final /*~~>*/List<DBDAttributeBinding> visibleAttributes = rsv.getModel().getVisibleAttributes();
         final DBSEntity entity = rsv.getModel().getSingleSource();
         if (dataContainer != null && !visibleAttributes.isEmpty() && entity != null) {
-            final List<ResultSetRow> selectedRows = new ArrayList<>(rss.getSelectedRows());
+            final /*~~>*/List<ResultSetRow> selectedRows = new ArrayList<>(rss.getSelectedRows());
             if (!CommonUtils.isEmpty(selectedRows)) {
 
-                List<IResultSetController> objects = new ArrayList<>();
+                /*~~>*/List<IResultSetController> objects = new ArrayList<>();
                 objects.add(rsv);
-                List<SQLGeneratorDescriptor> generators = SQLGeneratorConfigurationRegistry.getInstance().getApplicableGenerators(objects, rsv);
+                /*~~>*/List<SQLGeneratorDescriptor> generators = SQLGeneratorConfigurationRegistry.getInstance().getApplicableGenerators(objects, rsv);
                 for (SQLGeneratorDescriptor gen : generators) {
                     if (gen.isMultiObject() && selectedRows.size() < 2) {
                         continue;
@@ -142,7 +142,7 @@ public class SQLGeneratorContributor extends CompoundContributionItem {
         return object instanceof DBSTable || object instanceof DBPScriptObject;
     }
 
-    private static ContributionItem makeAction(String text, SQLGeneratorDescriptor sqlGenerator, List<?> objects) {
+    private static ContributionItem makeAction(String text, SQLGeneratorDescriptor sqlGenerator, /*~~>*/List<?> objects) {
         return new ActionContributionItem(
             new Action(text, DBeaverIcons.getImageDescriptor(UIIcon.SQL_TEXT)) {
                 @Override
@@ -187,7 +187,7 @@ public class SQLGeneratorContributor extends CompoundContributionItem {
     // Generators
 
     @NotNull
-    public static SQLGenerator<DBSEntity> SELECT_GENERATOR(final List<DBSEntity> entities, final boolean columnList) {
+    public static SQLGenerator<DBSEntity> SELECT_GENERATOR(final /*~~>*/List<DBSEntity> entities, final boolean columnList) {
         SQLGeneratorSelect generatorSelect = new SQLGeneratorSelect();
         generatorSelect.initGenerator(entities);
         generatorSelect.setColumnList(columnList);
@@ -195,7 +195,7 @@ public class SQLGeneratorContributor extends CompoundContributionItem {
     }
 
     @NotNull
-    public static SQLGenerator<DBSProcedure> CALL_GENERATOR(final List<DBSProcedure> entities) {
+    public static SQLGenerator<DBSProcedure> CALL_GENERATOR(final /*~~>*/List<DBSProcedure> entities) {
         SQLGeneratorProcedureCall procedureCall = new SQLGeneratorProcedureCall();
         procedureCall.initGenerator(entities);
         return procedureCall;

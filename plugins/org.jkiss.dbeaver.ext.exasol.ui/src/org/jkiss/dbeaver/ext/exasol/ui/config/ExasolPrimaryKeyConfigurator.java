@@ -54,7 +54,7 @@ public class ExasolPrimaryKeyConfigurator implements DBEObjectConfigurator<Exaso
                 constraint.setEnabled(editPage.isEnableConstraint());
                 constraint.setName(editPage.getConstraintName());
 
-                List<ExasolTableKeyColumn> constColumns = new ArrayList<ExasolTableKeyColumn>();
+                /*~~>*/List<ExasolTableKeyColumn> constColumns = new ArrayList<ExasolTableKeyColumn>();
                 int ordinalPosition = 0;
                 for(DBSEntityAttribute tableColumn  : editPage.getSelectedAttributes())
                 {

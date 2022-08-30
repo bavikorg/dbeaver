@@ -93,7 +93,7 @@ public class OracleAlterTableColumnTest {
         TestCommandContext commandContext = new TestCommandContext(executionContext, false);
 
         objectMaker.createNewObject(monitor, commandContext, oracleTableBase, null, Collections.emptyMap());
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
         String expectedDDL = "ALTER TABLE TEST_SCHEMA.TEST_TABLE ADD COLUMN4 INTEGER NULL;" + lineBreak;
@@ -109,7 +109,7 @@ public class OracleAlterTableColumnTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, "comment", "Test comment");
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -125,7 +125,7 @@ public class OracleAlterTableColumnTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, "required", true);
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -141,7 +141,7 @@ public class OracleAlterTableColumnTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, "defaultValue", "'Test value'");
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -158,7 +158,7 @@ public class OracleAlterTableColumnTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, "defaultValue", "42");
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -176,7 +176,7 @@ public class OracleAlterTableColumnTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, "maxLength", 50);
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -193,7 +193,7 @@ public class OracleAlterTableColumnTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, "maxLength", 33);
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -209,7 +209,7 @@ public class OracleAlterTableColumnTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, "precision", 22);
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -226,7 +226,7 @@ public class OracleAlterTableColumnTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, "scale", 17);
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -243,7 +243,7 @@ public class OracleAlterTableColumnTest {
             ((OracleTableColumnManager) objectMaker).renameObject(commandContext, testColumnChar, Collections.emptyMap(), "COLUMN33");
         }
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -257,7 +257,7 @@ public class OracleAlterTableColumnTest {
 
         objectMaker.deleteObject(commandContext, testColumnVarchar, Collections.emptyMap());
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, executionContext, Collections.emptyMap(), null);
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
         String expectedDDL = "ALTER TABLE TEST_SCHEMA.TEST_TABLE DROP COLUMN COLUMN1;" + lineBreak;

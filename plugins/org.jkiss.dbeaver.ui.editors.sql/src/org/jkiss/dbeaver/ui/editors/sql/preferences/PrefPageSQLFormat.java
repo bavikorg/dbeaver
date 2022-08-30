@@ -86,7 +86,7 @@ public class PrefPageSQLFormat extends TargetPrefPage
 
     private SQLEditorBase sqlViewer;
     private Composite formatterConfigPlaceholder;
-    private List<SQLFormatterDescriptor> formatters;
+    private /*~~>*/List<SQLFormatterDescriptor> formatters;
 
     private SQLFormatterConfigurator curConfigurator;
 

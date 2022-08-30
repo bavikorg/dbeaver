@@ -46,7 +46,7 @@ public class CompareReportRenderer {
 
         if (settings.isShowOnlyDifferences()) {
             // Mark differences on tree nodes
-            List<CompareReportLine> reportLines = report.getReportLines();
+            /*~~>*/List<CompareReportLine> reportLines = report.getReportLines();
             int reportLinesSize = reportLines.size();
             for (int i = 0; i < reportLinesSize; i++) {
                 if (reportLines.get(i).hasDifference) {
@@ -136,7 +136,7 @@ public class CompareReportRenderer {
         // Table body
         boolean showOnlyDifferences = settings.isShowOnlyDifferences();
         int objectCount = report.getNodes().size();
-        List<CompareReportLine> reportLines = report.getReportLines();
+        /*~~>*/List<CompareReportLine> reportLines = report.getReportLines();
         int reportLinesSize = reportLines.size();
         for (int i = 0; i < reportLinesSize; i++) {
             monitor.worked(1);
@@ -176,8 +176,8 @@ public class CompareReportRenderer {
 
             xml.endElement();
 
-            if (line.properties != null) {
-                for (CompareReportProperty reportProperty : line.properties) {
+            if (/*~~>*/line.properties != null) {
+                for (CompareReportProperty reportProperty : /*~~>*/line.properties) {
                     boolean differs = false;
                     Object firstValue = null;
                     boolean hasValue = false;

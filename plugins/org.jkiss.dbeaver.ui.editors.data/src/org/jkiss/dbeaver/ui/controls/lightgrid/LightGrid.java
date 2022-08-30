@@ -191,8 +191,8 @@ public abstract class LightGrid extends Canvas {
     private int focusItem = -1;
 
     private final Set<GridPos> selectedCells = new TreeSet<>(new GridPos.PosComparator());
-    private final List<GridPos> selectedCellsBeforeRangeSelect = new ArrayList<>();
-    private final List<GridColumn> selectedColumns = new ArrayList<>();
+    private final /*~~>*/List<GridPos> selectedCellsBeforeRangeSelect = new ArrayList<>();
+    private final /*~~>*/List<GridColumn> selectedColumns = new ArrayList<>();
     private final IntKeyMap<Boolean> selectedRows = new IntKeyMap<>();
 
     private boolean cellDragSelectionOccurring = false;
@@ -215,8 +215,8 @@ public abstract class LightGrid extends Canvas {
     /**
      * List of table columns in creation/index order.
      */
-    private final List<GridColumn> topColumns = new ArrayList<>();
-    private final List<GridColumn> columns = new ArrayList<>();
+    private final /*~~>*/List<GridColumn> topColumns = new ArrayList<>();
+    private final /*~~>*/List<GridColumn> columns = new ArrayList<>();
     private int maxColumnDepth = 0;
     protected IGridRow[] gridRows = new IGridRow[0];
     private final Map<RowLocation, RowExpandState> expandedRows = new HashMap<>();
@@ -490,7 +490,7 @@ public abstract class LightGrid extends Canvas {
     }
 
     private void collectRowsFromElements(
-        List<IGridRow> result,
+        /*~~>*/List<IGridRow> result,
         Object[] elements)
     {
         int index = 0;
@@ -518,7 +518,7 @@ public abstract class LightGrid extends Canvas {
         return rowState != null && rowState.isAnyColumnExpanded() ? rowState.getMaxLength() : 0;
     }
 
-    private int collectNestedRows(List<IGridRow> result, IGridRow parentRow, int index, int colLength) {
+    private int collectNestedRows(/*~~>*/List<IGridRow> result, IGridRow parentRow, int index, int colLength) {
         for (int i = 0; i < colLength; i++) {
             IGridRow nestedRow = new GridRowNested(parentRow, index++);
             result.add(nestedRow);
@@ -637,7 +637,7 @@ public abstract class LightGrid extends Canvas {
                     int clientWidth = getCurrentOrLastClientArea().width;
                     if (totalWidth > clientWidth && clientWidth != 0) {
                         int normalWidth = 0;
-                        List<GridColumn> fatColumns = new ArrayList<>();
+                        /*~~>*/List<GridColumn> fatColumns = new ArrayList<>();
                         for (GridColumn curColumn : columns) {
                             int curColumnWidthPercent = (int)((curColumn.getWidth() / (double)  clientWidth) * 100);
                             if (CommonUtils.isEmpty(curColumn.getChildren()) && curColumnWidthPercent > maxColumnDefWidth) {
@@ -708,7 +708,7 @@ public abstract class LightGrid extends Canvas {
         // Prepare rows
         Object[] initialElements = getContentProvider().getElements(false);
 
-        List<IGridRow> rows = new ArrayList<>(initialElements.length);
+        /*~~>*/List<IGridRow> rows = new ArrayList<>(initialElements.length);
         collectRowsFromElements(rows, initialElements);
         this.gridRows = rows.toArray(new IGridRow[0]);
     }
@@ -2617,7 +2617,7 @@ public abstract class LightGrid extends Canvas {
     }
 
     private void paintColumnsHeader(GC gc, @NotNull GridColumn column, int x, int y, int columnHeight, int level) {
-        List<GridColumn> children = column.getChildren();
+        /*~~>*/List<GridColumn> children = column.getChildren();
         int paintHeight = columnHeight;
         if (CommonUtils.isEmpty(children)) {
             paintHeight = columnHeight + (headerHeight - y - columnHeight);
@@ -2780,7 +2780,7 @@ public abstract class LightGrid extends Canvas {
      */
     @Nullable
     private Event updateCellSelection(
-        @NotNull List<GridPos> newCells,
+        @NotNull /*~~>*/List<GridPos> newCells,
         int stateMask,
         boolean dragging,
         boolean reverseDuplicateSelections,
@@ -2809,7 +2809,7 @@ public abstract class LightGrid extends Canvas {
             shiftSelectionAnchorItem = -1;
         }
 
-        List<GridPos> oldSelection = null;
+        /*~~>*/List<GridPos> oldSelection = null;
         if (!shift && !ctrl) {
             if (newCells.size() == 1 &&
                 newCells.size() == selectedCells.size() &&
@@ -3232,7 +3232,7 @@ public abstract class LightGrid extends Canvas {
                         }
                     }
                 }
-                List<GridPos> cells = new ArrayList<>();
+                /*~~>*/List<GridPos> cells = new ArrayList<>();
 
                 if (e.button == 1) {
                     if (shift) {
@@ -3302,7 +3302,7 @@ public abstract class LightGrid extends Canvas {
             }
 
             if (e.button == 1) {
-                List<GridPos> cells = new ArrayList<>();
+                /*~~>*/List<GridPos> cells = new ArrayList<>();
                 getCells(col, cells);
                 selectionEvent = updateCellSelection(cells, e.stateMask, false, true, EventSource.MOUSE);
             }
@@ -3668,7 +3668,7 @@ public abstract class LightGrid extends Canvas {
                         }
                     }
 
-                    List<GridPos> cells = new ArrayList<>();
+                    /*~~>*/List<GridPos> cells = new ArrayList<>();
 
                     getCells(intentItem, focusItem, cells);
 
@@ -3678,7 +3678,7 @@ public abstract class LightGrid extends Canvas {
                 final GridColumn prevHoveringColumn = hoveringColumn;
                 if (cellColumnDragSelectionOccurring && handleCellHover(e.x, e.y)) {
                     boolean dragging;
-                    List<GridPos> newSelected = new ArrayList<>();
+                    /*~~>*/List<GridPos> newSelected = new ArrayList<>();
 
                     GridColumn iterCol = hoveringColumn;
                     if (iterCol != null) {
@@ -4412,7 +4412,7 @@ public abstract class LightGrid extends Canvas {
         focusColumn = columns.get(0);
         focusItem = 0;
 
-        List<GridPos> cells = getAllCells();
+        /*~~>*/List<GridPos> cells = getAllCells();
         Event selectionEvent = updateCellSelection(cells, stateMask, false, true, EventSource.KEYBOARD);
 
         focusColumn = oldFocusColumn;
@@ -4464,12 +4464,12 @@ public abstract class LightGrid extends Canvas {
         return Collections.unmodifiableCollection(selectedCells);
     }
 
-    public List<GridCell> getCellSelection()
+    public /*~~>*/List<GridCell> getCellSelection()
     {
         if (isDisposed() || selectedCells.isEmpty()) {
             return Collections.emptyList();
         }
-        List<GridCell> cells = new ArrayList<>(selectedCells.size());
+        /*~~>*/List<GridCell> cells = new ArrayList<>(selectedCells.size());
         for (GridPos pos : selectedCells) {
         	GridCell cell = posToCell(pos);
         	if (cell != null)
@@ -4483,11 +4483,11 @@ public abstract class LightGrid extends Canvas {
     }
 
     @NotNull
-    public List<IGridColumn> getColumnSelection() {
+    public /*~~>*/List<IGridColumn> getColumnSelection() {
         if (selectedColumns.isEmpty()) {
             return Collections.emptyList();
         }
-        List<IGridColumn> selection = new ArrayList<>();
+        /*~~>*/List<IGridColumn> selection = new ArrayList<>();
         for (GridColumn col : selectedColumns) {
             selection.add(col);
         }
@@ -4515,7 +4515,7 @@ public abstract class LightGrid extends Canvas {
         return selectedRows.size();
     }
 
-    private void getCells(GridColumn col, List<GridPos> cells)
+    private void getCells(GridColumn col, /*~~>*/List<GridPos> cells)
     {
         if (col.getChildren() != null) {
             // Get cells for all leafs
@@ -4535,18 +4535,18 @@ public abstract class LightGrid extends Canvas {
         }
     }
 
-    private void getCells(int row, List<GridPos> cells)
+    private void getCells(int row, /*~~>*/List<GridPos> cells)
     {
         for (int i = 0; i < columns.size(); i++) {
             cells.add(new GridPos(i, row));
         }
     }
 
-    private List<GridPos> getAllCells()
+    private /*~~>*/List<GridPos> getAllCells()
     {
         int itemCount = getItemCount();
         int columnCount = columns.size();
-        List<GridPos> cells = new ArrayList<>(itemCount * columnCount);
+        /*~~>*/List<GridPos> cells = new ArrayList<>(itemCount * columnCount);
 
         for (int i = 0; i < itemCount; i++) {
             for (int k = 0; k < columnCount; k++) {
@@ -4556,15 +4556,15 @@ public abstract class LightGrid extends Canvas {
         return cells;
     }
 
-    private List<GridPos> getCells(int row)
+    private /*~~>*/List<GridPos> getCells(int row)
     {
-        List<GridPos> cells = new ArrayList<>();
+        /*~~>*/List<GridPos> cells = new ArrayList<>();
         getCells(row, cells);
         return cells;
     }
 
 
-    private void getCells(int startRow, int endRow, List<GridPos> cells)
+    private void getCells(int startRow, int endRow, /*~~>*/List<GridPos> cells)
     {
         boolean descending = (startRow < endRow);
 
@@ -4888,7 +4888,7 @@ public abstract class LightGrid extends Canvas {
             public void dragSetData (DragSourceEvent event) {
                 if (draggingColumn != null) {
                     if (GridColumnTransfer.INSTANCE.isSupportedType(event.dataType)) {
-                        List<Object> elements = new ArrayList<>();
+                        /*~~>*/List<Object> elements = new ArrayList<>();
                         if (isDragSingleColumn()) {
                             elements.add(draggingColumn.getElement());
                         } else {
@@ -4912,7 +4912,7 @@ public abstract class LightGrid extends Canvas {
                     }
                 } else if (draggingRow != null) {
                     if (GridColumnTransfer.INSTANCE.isSupportedType(event.dataType)) {
-                        List<Object> elements = new ArrayList<>();
+                        /*~~>*/List<Object> elements = new ArrayList<>();
                         if (isDragSingleRow()) {
                             elements.add(getRowElement(draggingRow));
                         } else {
@@ -4922,9 +4922,9 @@ public abstract class LightGrid extends Canvas {
                         }
                         event.data = elements;
                     } else if (TextTransfer.getInstance().isSupportedType(event.dataType)) {
-                        List<GridColumn> columns = selectedColumns;
+                        /*~~>*/List<GridColumn> columns = selectedColumns;
                         if (columns.isEmpty()) {
-                            columns = LightGrid.this.columns;
+                            columns = /*~~>*/LightGrid.this.columns;
                         }
                         Set<Integer> rows = selectedRows.keySet();
                         if (rows.isEmpty()) {
@@ -5060,7 +5060,7 @@ public abstract class LightGrid extends Canvas {
         return draggingRow != null && !selectedRows.containsKey(draggingRow);
     }
 
-    public final static class GridColumnTransfer extends LocalObjectTransfer<List<Object>> {
+    public final static class GridColumnTransfer extends LocalObjectTransfer</*~~>*/List<Object>> {
 
         public static final GridColumnTransfer INSTANCE = new GridColumnTransfer();
         private static final String TYPE_NAME = "LighGrid.GridColumn Transfer" + System.currentTimeMillis() + ":" + INSTANCE.hashCode();//$NON-NLS-1$

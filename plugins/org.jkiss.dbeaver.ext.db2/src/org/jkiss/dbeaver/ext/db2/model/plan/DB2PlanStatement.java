@@ -57,7 +57,7 @@ public class DB2PlanStatement {
 
     private Map<String, DB2PlanOperator> mapOperators;
     private Map<String, DB2PlanObject> mapDataObjects;
-    private List<DB2PlanStream> listStreams;
+    private /*~~>*/List<DB2PlanStream> listStreams;
 
     private DB2PlanNode rootNode;
 
@@ -103,7 +103,7 @@ public class DB2PlanStatement {
     // ----------------
     // Business Methods
     // ----------------
-    public List<DB2PlanNode> buildNodes()
+    public /*~~>*/List<DB2PlanNode> buildNodes()
     {
         // Based on streams, establish relationships between nodes
         // DF: Very Important!: The Stream MUST be order by STREAM_ID DESC for the viewer to display things right (from the list
@@ -251,7 +251,7 @@ public class DB2PlanStatement {
         return queryDegree;
     }
 
-    public List<DB2PlanStream> getListStreams()
+    public /*~~>*/List<DB2PlanStream> getListStreams()
     {
         return listStreams;
     }

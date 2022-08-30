@@ -88,7 +88,7 @@ public class OceanbasePlanAnalyzer extends AbstractExecutionPlanSerializer imple
         String query = getQuery(jo);
 
         ExecutionPlanDeserializer<OceanbasePlanNodeJSON> loader = new ExecutionPlanDeserializer<>();
-        List<OceanbasePlanNodeJSON> rootNodes = loader.loadRoot(dataSource, jo,
+        /*~~>*/List<OceanbasePlanNodeJSON> rootNodes = loader.loadRoot(dataSource, jo,
                 (datasource, node, parent) -> new OceanbasePlanNodeJSON(parent, getNodeAttributes(node)));
         return new OceanbasePlanJSON(dataSource, query, rootNodes);
     }

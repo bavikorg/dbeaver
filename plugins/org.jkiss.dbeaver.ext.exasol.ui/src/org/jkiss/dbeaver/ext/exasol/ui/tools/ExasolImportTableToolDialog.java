@@ -61,7 +61,7 @@ public class ExasolImportTableToolDialog extends ExasolBaseTableToolDialog {
 	}
 
 	@Override
-	protected void generateObjectCommand(List<String> sql, ExasolTableBase object)
+	protected void generateObjectCommand(/*~~>*/List<String> sql, ExasolTableBase object)
 	{
 		StringBuilder sb = new StringBuilder(256);
 

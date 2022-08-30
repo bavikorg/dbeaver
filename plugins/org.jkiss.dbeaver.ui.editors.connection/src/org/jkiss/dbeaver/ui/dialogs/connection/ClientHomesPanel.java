@@ -206,7 +206,7 @@ public class ClientHomesPanel extends Composite {
     }
 
     public Collection<DBPNativeClientLocation> getLocalLocations() {
-        List<DBPNativeClientLocation> homes = new ArrayList<>();
+        /*~~>*/List<DBPNativeClientLocation> homes = new ArrayList<>();
         for (TableItem item : homesTable.getItems()) {
             HomeInfo homeInfo = (HomeInfo) item.getData();
             if (!homeInfo.isProvided) {
@@ -250,7 +250,7 @@ public class ClientHomesPanel extends Composite {
     private TableItem createHomeItem(@NotNull DBPNativeClientLocationManager clientManager, @NotNull DBPNativeClientLocation clientLocation, boolean provided) {
         DBPNativeClientLocation defaultLocalClientLocation = clientManager.getDefaultLocalClientLocation();
         if (defaultLocalClientLocation == null) {
-            List<DBPNativeClientLocation> driverLocations = driver.getNativeClientLocations();
+            /*~~>*/List<DBPNativeClientLocation> driverLocations = driver.getNativeClientLocations();
             if (!CommonUtils.isEmpty(driverLocations)) {
                 defaultLocalClientLocation = driverLocations.get(0);
             }

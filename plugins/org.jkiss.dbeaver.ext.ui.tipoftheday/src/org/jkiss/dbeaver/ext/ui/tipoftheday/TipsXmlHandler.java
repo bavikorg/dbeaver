@@ -30,8 +30,8 @@ public class TipsXmlHandler extends DefaultHandler {
     private static final String TIP = "tip";
     private boolean tipTagStarted;
     private StringBuilder tipTagContent = new StringBuilder();
-    private List<String> tips = new ArrayList<>();
-    private static final List<String> HTML_TAGS = Arrays.asList("br", "b", "i", "u", "q", "a", "p", "div");
+    private /*~~>*/List<String> tips = new ArrayList<>();
+    private static final /*~~>*/List<String> HTML_TAGS = Arrays.asList("br", "b", "i", "u", "q", "a", "p", "div");
     private static final String TAG_BRACKET_BEGIN = "<";
     private static final String TAG_BRACKET_END = ">";
     private static final String SLASH = "/";
@@ -60,7 +60,7 @@ public class TipsXmlHandler extends DefaultHandler {
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if (qName.equalsIgnoreCase(TIP)) {
-            this.tips.add(tipTagContent.toString());
+            /*~~>*/this.tips.add(tipTagContent.toString());
             this.tipTagStarted = false;
             tipTagContent = new StringBuilder();
         }
@@ -70,7 +70,7 @@ public class TipsXmlHandler extends DefaultHandler {
         }
     }
 
-    public List<String> getTips() {
+    public /*~~>*/List<String> getTips() {
         return tips;
     }
 }

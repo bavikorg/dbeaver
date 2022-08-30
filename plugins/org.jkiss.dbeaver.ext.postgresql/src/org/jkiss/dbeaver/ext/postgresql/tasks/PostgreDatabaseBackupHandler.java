@@ -87,7 +87,7 @@ public class PostgreDatabaseBackupHandler extends PostgreNativeToolHandler<Postg
     }
 
     @Override
-    public void fillProcessParameters(PostgreDatabaseBackupSettings settings, PostgreDatabaseBackupInfo arg, List<String> cmd) throws IOException {
+    public void fillProcessParameters(PostgreDatabaseBackupSettings settings, PostgreDatabaseBackupInfo arg, /*~~>*/List<String> cmd) throws IOException {
         super.fillProcessParameters(settings, arg, cmd);
 
         cmd.add("--format=" + settings.getFormat().getId());
@@ -149,8 +149,8 @@ public class PostgreDatabaseBackupHandler extends PostgreNativeToolHandler<Postg
     }
 
     @Override
-    protected List<String> getCommandLine(PostgreDatabaseBackupSettings settings, PostgreDatabaseBackupInfo arg) throws IOException {
-        List<String> cmd = new ArrayList<>();
+    protected /*~~>*/List<String> getCommandLine(PostgreDatabaseBackupSettings settings, PostgreDatabaseBackupInfo arg) throws IOException {
+        /*~~>*/List<String> cmd = new ArrayList<>();
         fillProcessParameters(settings, arg, cmd);
         cmd.add(arg.getDatabase().getName());
 

@@ -170,7 +170,7 @@ public class EntityDiagram extends ERDDiagram implements ERDContainerDecorated {
         this.needsAutoLayout = needsAutoLayout;
     }
 
-    public void addInitRelationBends(ERDElement<?> sourceEntity, ERDElement<?> targetEntity, String relName, List<int[]> bends) {
+    public void addInitRelationBends(ERDElement<?> sourceEntity, ERDElement<?> targetEntity, String relName, /*~~>*/List<int[]> bends) {
         for (ERDAssociation rel : sourceEntity.getReferences()) {
             if (rel.getSourceEntity() == targetEntity && relName.equals(rel.getObject().getName())) {
                 rel.setInitBends(bends);
@@ -178,8 +178,8 @@ public class EntityDiagram extends ERDDiagram implements ERDContainerDecorated {
         }
     }
 
-    public List<ERDObject<?>> getContents() {
-        List<ERDObject<?>> children = super.getContents();
+    public /*~~>*/List<ERDObject<?>> getContents() {
+        /*~~>*/List<ERDObject<?>> children = super.getContents();
         children.sort((o1, o2) -> {
             NodeVisualInfo vi1 = o1 instanceof ERDNote ? noteVisuals.get(o1) : entityVisuals.get(o1.getObject());
             NodeVisualInfo vi2 = o2 instanceof ERDNote ? noteVisuals.get(o2) : entityVisuals.get(o2.getObject());

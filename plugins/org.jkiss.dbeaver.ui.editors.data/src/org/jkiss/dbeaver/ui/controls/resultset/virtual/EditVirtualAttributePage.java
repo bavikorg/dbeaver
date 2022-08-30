@@ -93,7 +93,7 @@ public class EditVirtualAttributePage extends BaseObjectEditPage implements IHel
         {
             DBPDataTypeProvider dataTypeProvider = DBUtils.getAdapter(DBPDataTypeProvider.class, dataSource);
             if (dataTypeProvider != null) {
-                List<DBSDataType> localDataTypes = new ArrayList<>(dataTypeProvider.getLocalDataTypes());
+                /*~~>*/List<DBSDataType> localDataTypes = new ArrayList<>(dataTypeProvider.getLocalDataTypes());
                 localDataTypes.sort(Comparator.comparing(DBSDataType::getFullTypeName));
                 for (DBSDataType dataType : localDataTypes) {
                     typeCombo.add(dataType.getFullTypeName());
@@ -140,7 +140,7 @@ public class EditVirtualAttributePage extends BaseObjectEditPage implements IHel
         gd.heightHint = expressionText.getLineHeight() * 5;
         expressionText.setLayoutData(gd);
 
-        List<String> expressionProposals = new ArrayList<>();
+        /*~~>*/List<String> expressionProposals = new ArrayList<>();
         if (viewer != null) {
             for (DBDAttributeBinding attr : viewer.getModel().getAttributes()) {
                 expressionProposals.add(attr.getLabel());

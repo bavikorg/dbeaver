@@ -140,7 +140,7 @@ public abstract class ERDEditorPart extends GraphicalEditorWithFlyoutPalette
     /**
      * the list of action ids that are to EditPart actions
      */
-    private List<String> editPartActionIDs = new ArrayList<>();
+    private /*~~>*/List<String> editPartActionIDs = new ArrayList<>();
 
     /**
      * the overview outline page
@@ -529,7 +529,7 @@ public abstract class ERDEditorPart extends GraphicalEditorWithFlyoutPalette
         // Setup zoom manager
         ZoomManager zoomManager = rootPart.getZoomManager();
 
-        List<String> zoomLevels = new ArrayList<>(3);
+        /*~~>*/List<String> zoomLevels = new ArrayList<>(3);
         zoomLevels.add(ZoomManager.FIT_ALL);
         zoomLevels.add(ZoomManager.FIT_WIDTH);
         zoomLevels.add(ZoomManager.FIT_HEIGHT);
@@ -599,7 +599,7 @@ public abstract class ERDEditorPart extends GraphicalEditorWithFlyoutPalette
      * @param actionIds the list of ids of actions to update
      */
     @Override
-    protected void updateActions(List actionIds)
+    protected void updateActions(/*~~>*/List actionIds)
     {
         for (Object actionId : actionIds) {
             IAction action = getActionRegistry().getAction(actionId);
@@ -707,7 +707,7 @@ public abstract class ERDEditorPart extends GraphicalEditorWithFlyoutPalette
 
     public void saveDiagramAs()
     {
-        List<ERDExportFormatRegistry.FormatDescriptor> allFormats = ERDExportFormatRegistry.getInstance().getFormats();
+        /*~~>*/List<ERDExportFormatRegistry.FormatDescriptor> allFormats = ERDExportFormatRegistry.getInstance().getFormats();
         String[] extensions = new String[allFormats.size()];
         String[] filterNames = new String[allFormats.size()];
         for (int i = 0; i < allFormats.size(); i++) {
@@ -1249,10 +1249,10 @@ public abstract class ERDEditorPart extends GraphicalEditorWithFlyoutPalette
                 }
 
                 if (entityDiagram != null) {
-                    List<String> errorMessages = entityDiagram.getErrorMessages();
+                    /*~~>*/List<String> errorMessages = entityDiagram.getErrorMessages();
                     if (!errorMessages.isEmpty()) {
                         // log.debug(message);
-                        List<Status> messageStatuses = new ArrayList<>(errorMessages.size());
+                        /*~~>*/List<Status> messageStatuses = new ArrayList<>(errorMessages.size());
                         for (String error : errorMessages) {
                             messageStatuses.add(new Status(Status.ERROR, ERDUIActivator.PLUGIN_ID, error));
                         }
@@ -1324,17 +1324,17 @@ public abstract class ERDEditorPart extends GraphicalEditorWithFlyoutPalette
         private boolean resultsFound;
         private Boolean isPrevStepWasFwd;
         @Nullable
-        private List<Object> results = null;
+        private /*~~>*/List<Object> results = null;
         @Nullable
         private ListIterator<Object> resultsIterator = null;
         @Nullable
         private Object currentItem = null;
         @Nullable
-        private List<ERDHighlightingHandle> highlightings = new LinkedList<>();
+        private /*~~>*/List<ERDHighlightingHandle> highlightings = new LinkedList<>();
         
         @Override
         public boolean performSearch(@NotNull String searchString, int options) {
-            if (this.results != null && this.searchString != null && this.searchString.equals(searchString)) {
+            if (/*~~>*/this.results != null && this.searchString != null && this.searchString.equals(searchString)) {
                 return findNextResult(options == SEARCH_NEXT);
             } else {
                 this.cancelSearch();
@@ -1365,7 +1365,7 @@ public abstract class ERDEditorPart extends GraphicalEditorWithFlyoutPalette
                         nodes.add((DBPNamedObject) node);
                     }
                     if (node instanceof EntityPart) {
-                        List<?> children = ((EntityPart) node).getChildren();
+                        /*~~>*/List<?> children = ((EntityPart) node).getChildren();
                         if (!CommonUtils.isEmpty(children)) {
                             for (Object child: children) {
                                 if (child instanceof DBPNamedObject && child instanceof EditPart) {

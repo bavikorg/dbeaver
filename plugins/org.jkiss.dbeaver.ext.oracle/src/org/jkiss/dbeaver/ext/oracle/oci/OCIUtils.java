@@ -48,7 +48,7 @@ public class OCIUtils
      * A list of Oracle client homes found in the system.
      * The first one is always a current Oracle home (from PATH) 
      */
-    private static final List<OracleHomeDescriptor> oraHomes = new ArrayList<>();
+    private static final /*~~>*/List<OracleHomeDescriptor> oraHomes = new ArrayList<>();
     private static boolean oraHomesSearched = false;
 
 /*
@@ -57,7 +57,7 @@ public class OCIUtils
     }
 */
 
-    public static List<OracleHomeDescriptor> getOraHomes()
+    public static /*~~>*/List<OracleHomeDescriptor> getOraHomes()
     {
         checkOraHomes();
         return oraHomes;

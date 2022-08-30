@@ -72,12 +72,12 @@ public class MySQLDataSource extends JDBCDataSource implements DBPObjectStatisti
     private static final Log log = Log.getLog(MySQLDataSource.class);
 
     private final JDBCBasicDataTypeCache<MySQLDataSource, JDBCDataType> dataTypeCache;
-    private List<MySQLEngine> engines;
+    private /*~~>*/List<MySQLEngine> engines;
     private final CatalogCache catalogCache = new CatalogCache();
-    private List<MySQLPrivilege> privileges;
-    private List<MySQLUser> users;
-    private List<MySQLCharset> charsets;
-    private List<MySQLPlugin> plugins;
+    private /*~~>*/List<MySQLPrivilege> privileges;
+    private /*~~>*/List<MySQLUser> users;
+    private /*~~>*/List<MySQLCharset> charsets;
+    private /*~~>*/List<MySQLPlugin> plugins;
     private Map<String, MySQLCollation> collations;
     private String defaultCharset, defaultCollation;
     private int lowerCaseTableNames = 1;
@@ -385,9 +385,9 @@ public class MySQLDataSource extends JDBCDataSource implements DBPObjectStatisti
         throws DBException {
         super.refreshObject(monitor);
 
-        this.engines = null;
+        /*~~>*/this.engines = null;
         this.catalogCache.clearCache();
-        this.users = null;
+        /*~~>*/this.users = null;
 
         this.initialize(monitor);
 
@@ -469,7 +469,7 @@ public class MySQLDataSource extends JDBCDataSource implements DBPObjectStatisti
         return mysqlConnection;
     }
 
-    public List<MySQLUser> getUsers(DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLUser> getUsers(DBRProgressMonitor monitor)
         throws DBException {
         if (users == null) {
             users = loadUsers(monitor);
@@ -482,12 +482,12 @@ public class MySQLDataSource extends JDBCDataSource implements DBPObjectStatisti
         return DBUtils.findObject(getUsers(monitor), name);
     }
 
-    private List<MySQLUser> loadUsers(DBRProgressMonitor monitor)
+    private /*~~>*/List<MySQLUser> loadUsers(DBRProgressMonitor monitor)
         throws DBException {
         try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load users")) {
             try (JDBCPreparedStatement dbStat = session.prepareStatement("SELECT * FROM mysql.user ORDER BY user")) {
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                    List<MySQLUser> userList = new ArrayList<>();
+                    /*~~>*/List<MySQLUser> userList = new ArrayList<>();
                     while (dbResult.next()) {
                         MySQLUser user = new MySQLUser(this, dbResult);
                         userList.add(user);
@@ -500,7 +500,7 @@ public class MySQLDataSource extends JDBCDataSource implements DBPObjectStatisti
         }
     }
 
-    public List<MySQLEngine> getEngines() {
+    public /*~~>*/List<MySQLEngine> getEngines() {
         return engines;
     }
 
@@ -557,7 +557,7 @@ public class MySQLDataSource extends JDBCDataSource implements DBPObjectStatisti
         return null;
     }
 
-    public List<MySQLPrivilege> getPrivileges(DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLPrivilege> getPrivileges(DBRProgressMonitor monitor)
         throws DBException {
         if (privileges == null) {
             privileges = loadPrivileges(monitor);
@@ -565,9 +565,9 @@ public class MySQLDataSource extends JDBCDataSource implements DBPObjectStatisti
         return privileges;
     }
 
-    public List<MySQLPrivilege> getPrivilegesByKind(DBRProgressMonitor monitor, MySQLPrivilege.Kind kind)
+    public /*~~>*/List<MySQLPrivilege> getPrivilegesByKind(DBRProgressMonitor monitor, MySQLPrivilege.Kind kind)
         throws DBException {
-        List<MySQLPrivilege> privs = new ArrayList<>();
+        /*~~>*/List<MySQLPrivilege> privs = new ArrayList<>();
         for (MySQLPrivilege priv : getPrivileges(monitor)) {
             if (priv.getKind() == kind) {
                 privs.add(priv);
@@ -581,12 +581,12 @@ public class MySQLDataSource extends JDBCDataSource implements DBPObjectStatisti
         return DBUtils.findObject(getPrivileges(monitor), name, true);
     }
 
-    private List<MySQLPrivilege> loadPrivileges(DBRProgressMonitor monitor)
+    private /*~~>*/List<MySQLPrivilege> loadPrivileges(DBRProgressMonitor monitor)
         throws DBException {
         try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load privileges")) {
             try (JDBCPreparedStatement dbStat = session.prepareStatement("SHOW PRIVILEGES")) {
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                    List<MySQLPrivilege> privileges = new ArrayList<>();
+                    /*~~>*/List<MySQLPrivilege> privileges = new ArrayList<>();
                     while (dbResult.next()) {
                         MySQLPrivilege user = new MySQLPrivilege(this, dbResult);
                         privileges.add(user);
@@ -599,38 +599,38 @@ public class MySQLDataSource extends JDBCDataSource implements DBPObjectStatisti
         }
     }
 
-    public List<MySQLParameter> getSessionStatus(DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLParameter> getSessionStatus(DBRProgressMonitor monitor)
         throws DBException {
         return loadParameters(monitor, true, false);
     }
 
-    public List<MySQLParameter> getGlobalStatus(DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLParameter> getGlobalStatus(DBRProgressMonitor monitor)
         throws DBException {
         return loadParameters(monitor, true, true);
     }
 
-    public List<MySQLParameter> getSessionVariables(DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLParameter> getSessionVariables(DBRProgressMonitor monitor)
         throws DBException {
         return loadParameters(monitor, false, false);
     }
 
-    public List<MySQLParameter> getGlobalVariables(DBRProgressMonitor monitor)
+    public /*~~>*/List<MySQLParameter> getGlobalVariables(DBRProgressMonitor monitor)
         throws DBException {
         return loadParameters(monitor, false, true);
     }
 
-    public List<MySQLDataSource> getInformation() {
+    public /*~~>*/List<MySQLDataSource> getInformation() {
         return Collections.singletonList(this);
     }
 
-    private List<MySQLParameter> loadParameters(DBRProgressMonitor monitor, boolean status, boolean global) throws DBException {
+    private /*~~>*/List<MySQLParameter> loadParameters(DBRProgressMonitor monitor, boolean status, boolean global) throws DBException {
         try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load status")) {
             try (JDBCPreparedStatement dbStat = session.prepareStatement(
                 "SHOW " +
                     (global ? "GLOBAL " : "") +
                     (status ? "STATUS" : "VARIABLES"))) {
                 try (JDBCResultSet dbResult = dbStat.executeQuery()) {
-                    List<MySQLParameter> parameters = new ArrayList<>();
+                    /*~~>*/List<MySQLParameter> parameters = new ArrayList<>();
                     while (dbResult.next()) {
                         MySQLParameter parameter = new MySQLParameter(
                             this,

@@ -126,7 +126,7 @@ public class PropertySourceEditable extends PropertySourceAbstract implements DB
             if (objectManager != null) {
                 DBSObjectCache cache = objectManager.getObjectsCache((DBSObject) editableValue);
                 if (cache != null && cache.isFullyCached()) {
-                    List<? extends DBSObject> cachedObjects = CommonUtils.copyList(cache.getCachedObjects());
+                    /*~~>*/List<? extends DBSObject> cachedObjects = CommonUtils.copyList(cache.getCachedObjects());
                     cache.setCache(cachedObjects);
                 }
             }

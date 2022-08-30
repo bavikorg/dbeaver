@@ -344,7 +344,7 @@ public class DashboardItem extends Composite implements DashboardContainer {
     }
 
     @Override
-    public List<? extends DashboardQuery> getQueryList() {
+    public /*~~>*/List<? extends DashboardQuery> getQueryList() {
         return dashboardConfig.getDashboardDescriptor().getQueries();
     }
 

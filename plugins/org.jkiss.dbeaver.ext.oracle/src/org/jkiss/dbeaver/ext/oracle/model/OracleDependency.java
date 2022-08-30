@@ -49,8 +49,8 @@ public class OracleDependency extends OracleObject<DBSObject> implements DBPUniq
     }
 
     @NotNull
-    public static List<OracleDependency> readDependencies(@NotNull DBRProgressMonitor monitor, @NotNull DBSObject object, boolean dependents) throws DBException {
-        List<OracleDependency> dependencies = new ArrayList<>();
+    public static /*~~>*/List<OracleDependency> readDependencies(@NotNull DBRProgressMonitor monitor, @NotNull DBSObject object, boolean dependents) throws DBException {
+        /*~~>*/List<OracleDependency> dependencies = new ArrayList<>();
 
         try (JDBCSession session = DBUtils.openMetaSession(monitor, object, "Load object dependencies")) {
             OracleDataSource dataSource = (OracleDataSource) object.getDataSource();

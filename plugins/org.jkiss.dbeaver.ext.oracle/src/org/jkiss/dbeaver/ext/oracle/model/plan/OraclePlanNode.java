@@ -42,7 +42,7 @@ public class OraclePlanNode extends AbstractExecutionPlanNode implements DBCPlan
 
     public final static String CAT_DETAILS = "Details";
     
-    private final static List<String> allowedKind = new ArrayList<>( 
+    private final static /*~~>*/List<String> allowedKind = new ArrayList<>( 
               Arrays.asList("result",
                             "project",
                             "filter",
@@ -103,7 +103,7 @@ public class OraclePlanNode extends AbstractExecutionPlanNode implements DBCPlan
     private String otherXml;
 
     private OraclePlanNode parent;
-    protected final List<OraclePlanNode> nested = new ArrayList<>();
+    protected final /*~~>*/List<OraclePlanNode> nested = new ArrayList<>();
     
 
 
@@ -323,7 +323,7 @@ public class OraclePlanNode extends AbstractExecutionPlanNode implements DBCPlan
     }
 
     private void addChild(OraclePlanNode node) {
-         this.nested.add(node);
+         /*~~>*/this.nested.add(node);
     }
 
     @Override

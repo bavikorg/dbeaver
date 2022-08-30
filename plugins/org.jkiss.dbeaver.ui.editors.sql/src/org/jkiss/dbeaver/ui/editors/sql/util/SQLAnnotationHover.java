@@ -41,7 +41,7 @@ public class SQLAnnotationHover extends AbstractSQLEditorTextHover
 {
     private static final Log log = Log.getLog(SQLAnnotationHover.class);
 
-    private List<Annotation> annotations = new ArrayList<>();
+    private /*~~>*/List<Annotation> annotations = new ArrayList<>();
     private SQLEditorBase editor;
     private IHyperlinkDetector[] hyperlinkDetectors;
 

@@ -71,7 +71,7 @@ public class AggregateColumnsPanel implements IResultSetPanel {
 
     private IDialogSettings panelSettings;
 
-    private final List<AggregateFunctionDescriptor> enabledFunctions = new ArrayList<>();
+    private final /*~~>*/List<AggregateFunctionDescriptor> enabledFunctions = new ArrayList<>();
 
     public AggregateColumnsPanel() {
     }
@@ -219,16 +219,16 @@ public class AggregateColumnsPanel implements IResultSetPanel {
     private void aggregateSelection(IResultSetSelection selection) {
         ResultSetModel model = presentation.getController().getModel();
         if (groupByColumns) {
-            Map<DBDAttributeBinding, List<Object>> attrValues = new LinkedHashMap<>();
+            Map<DBDAttributeBinding, /*~~>*/List<Object>> attrValues = new LinkedHashMap<>();
             for (Object element : selection.toList()) {
                 DBDAttributeBinding attr = selection.getElementAttribute(element);
                 ResultSetRow row = selection.getElementRow(element);
                 Object cellValue = model.getCellValue(attr, row);
-                List<Object> values = attrValues.computeIfAbsent(attr, k -> new ArrayList<>());
+                /*~~>*/List<Object> values = attrValues.computeIfAbsent(attr, k -> new ArrayList<>());
                 values.add(cellValue);
             }
 
-            for (Map.Entry<DBDAttributeBinding, List<Object>> entry : attrValues.entrySet()) {
+            for (Map.Entry<DBDAttributeBinding, /*~~>*/List<Object>> entry : attrValues.entrySet()) {
                 TreeItem attrItem = new TreeItem(aggregateTable, SWT.NONE);
                 attrItem.setText(entry.getKey().getName());
                 attrItem.setImage(DBeaverIcons.getImage(DBValueFormatting.getObjectImage(entry.getKey())));
@@ -236,7 +236,7 @@ public class AggregateColumnsPanel implements IResultSetPanel {
                 attrItem.setExpanded(true);
             }
         } else {
-            List<Object> allValues = new ArrayList<>(selection.size());
+            /*~~>*/List<Object> allValues = new ArrayList<>(selection.size());
             for (Object element : selection.toList()) {
                 DBDAttributeBinding attr = selection.getElementAttribute(element);
                 ResultSetRow row = selection.getElementRow(element);
@@ -248,7 +248,7 @@ public class AggregateColumnsPanel implements IResultSetPanel {
     }
 
     private void aggregateValues(TreeItem parentItem, Collection<Object> values) {
-        List<AggregateFunctionDescriptor> functions = enabledFunctions;
+        /*~~>*/List<AggregateFunctionDescriptor> functions = enabledFunctions;
         Map<IAggregateFunction, TreeItem> funcMap = new IdentityHashMap<>();
         for (AggregateFunctionDescriptor funcDesc : functions) {
             TreeItem funcItem = (parentItem == null) ?
@@ -354,7 +354,7 @@ public class AggregateColumnsPanel implements IResultSetPanel {
 
         @Override
         public void run() {
-            List<AggregateFunctionDescriptor> missingFunctions = new ArrayList<>();
+            /*~~>*/List<AggregateFunctionDescriptor> missingFunctions = new ArrayList<>();
             for (AggregateFunctionDescriptor func : FunctionsRegistry.getInstance().getAggregateFunctions()) {
                 if (!enabledFunctions.contains(func)) {
                     missingFunctions.add(func);

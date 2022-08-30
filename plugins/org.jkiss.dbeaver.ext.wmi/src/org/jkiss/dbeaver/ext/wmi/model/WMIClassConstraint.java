@@ -81,7 +81,7 @@ public class WMIClassConstraint implements DBSEntityConstraint, DBSEntityReferre
     }
 
     @Override
-    public List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor)
+    public /*~~>*/List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor)
     {
         return Collections.singletonList(this);
     }

@@ -230,11 +230,11 @@ public class ExasolDataSource extends JDBCDataSource implements IAdaptable {
 		} else {
 			this.priorityGroupCache = new DBSObjectCache<ExasolDataSource, ExasolPriorityGroup>() {
 				
-				List<ExasolPriorityGroup> groups;
+				/*~~>*/List<ExasolPriorityGroup> groups;
 				
 				
 				@Override
-				public void setCache(List<ExasolPriorityGroup> objects) {
+				public void setCache(/*~~>*/List<ExasolPriorityGroup> objects) {
 				}
 				
 				@Override
@@ -256,7 +256,7 @@ public class ExasolDataSource extends JDBCDataSource implements IAdaptable {
 				}
 				
 				@Override
-				public List<ExasolPriorityGroup> getCachedObjects() {
+				public /*~~>*/List<ExasolPriorityGroup> getCachedObjects() {
 					return groups;
 				}
 				
@@ -379,7 +379,7 @@ public class ExasolDataSource extends JDBCDataSource implements IAdaptable {
         String message = error.getMessage();
         if (!CommonUtils.isEmpty(message)) {
             Matcher matcher = ERROR_POSITION_PATTERN.matcher(message);
-            List<ErrorPosition> positions = new ArrayList<>();
+            /*~~>*/List<ErrorPosition> positions = new ArrayList<>();
             while (matcher.find()) {
                 DBPErrorAssistant.ErrorPosition pos = new DBPErrorAssistant.ErrorPosition();
                 pos.info = matcher.group(1);
@@ -547,7 +547,7 @@ public class ExasolDataSource extends JDBCDataSource implements IAdaptable {
 	
 	public Collection<ExasolGrantee> getAllGrantees(DBRProgressMonitor monitor) throws DBException
 	{
-	   	List<ExasolGrantee> grantees = new ArrayList<>();
+	   	/*~~>*/List<ExasolGrantee> grantees = new ArrayList<>();
 		grantees.addAll(this.getUsers(monitor));
 		grantees.addAll(this.getRoles(monitor));
 	   	return grantees;

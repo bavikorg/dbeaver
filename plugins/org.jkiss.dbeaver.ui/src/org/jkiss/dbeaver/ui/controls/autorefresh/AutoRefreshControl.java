@@ -213,7 +213,7 @@ public class AutoRefreshControl {
                     });
                     new MenuItem(schedulerMenu, SWT.SEPARATOR);
 
-                    List<Integer> presetList = new ArrayList<>();
+                    /*~~>*/List<Integer> presetList = new ArrayList<>();
                     for (int t : AUTO_REFRESH_DEFAULTS) presetList.add(t);
 
                     int defaultInterval = getRefreshSettings().getRefreshInterval();

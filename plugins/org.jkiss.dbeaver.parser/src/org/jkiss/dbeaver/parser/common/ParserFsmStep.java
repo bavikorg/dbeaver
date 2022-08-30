@@ -27,10 +27,10 @@ class ParserFsmStep {
     private final ParserFsmNode from;
     private final ParserFsmNode to;
     private final String pattern;
-    private final List<GrammarNfaOperation> operations;
+    private final /*~~>*/List<GrammarNfaOperation> operations;
 
-    public ParserFsmStep(ParserFsmNode from, ParserFsmNode to, String pattern, List<GrammarNfaOperation> operations) {
-        this.operations = operations;
+    public ParserFsmStep(ParserFsmNode from, ParserFsmNode to, String pattern, /*~~>*/List<GrammarNfaOperation> operations) {
+        /*~~>*/this.operations = operations;
         this.from = from;
         this.to = to;
         this.pattern = pattern;
@@ -48,7 +48,7 @@ class ParserFsmStep {
         return pattern;
     }
 
-    public List<GrammarNfaOperation> getOperations() {
+    public /*~~>*/List<GrammarNfaOperation> getOperations() {
         return operations;
     }    
 }

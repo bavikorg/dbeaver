@@ -94,7 +94,7 @@ public class GotoObjectDialog extends FilteredItemsSelectionDialog {
             return null;
         }
 
-        List<DBSObjectType> typesToSearch = new ArrayList<>();
+        /*~~>*/List<DBSObjectType> typesToSearch = new ArrayList<>();
         for (DBSObjectType type : structureAssistant.getSearchObjectTypes()) {
             Class<? extends DBSObject> typeClass = type.getTypeClass();
             if (DBSEntityElement.class.isAssignableFrom(typeClass)) {
@@ -193,7 +193,7 @@ public class GotoObjectDialog extends FilteredItemsSelectionDialog {
         DBRProgressMonitor monitor = RuntimeUtils.makeMonitor(progressMonitor);
         try {
             monitor.beginTask("Search for '" + nameMask + "'", 100);
-            List<DBSObjectType> typesToSearch = new ArrayList<>();
+            /*~~>*/List<DBSObjectType> typesToSearch = new ArrayList<>();
             for (DBSObjectType type : structureAssistant.getSearchObjectTypes()) {
                 if (!isValidObjectType(type)) {
                     // Skip attributes (columns), methods, etc
@@ -348,19 +348,19 @@ public class GotoObjectDialog extends FilteredItemsSelectionDialog {
         private final DBSStructureAssistant structureAssistant;
         private final DBRProgressMonitor monitor;
         private final DBCExecutionContext executionContext;
-        private final List<DBSObjectType> typesToSearch;
+        private final /*~~>*/List<DBSObjectType> typesToSearch;
         private final String nameMask;
-        private List<DBSObjectReference> result;
+        private /*~~>*/List<DBSObjectReference> result;
 
-        ObjectFinder(DBSStructureAssistant structureAssistant, DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBSObjectType> typesToSearch, String nameMask) {
+        ObjectFinder(DBSStructureAssistant structureAssistant, DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBSObjectType> typesToSearch, String nameMask) {
             this.structureAssistant = structureAssistant;
             this.monitor = monitor;
             this.executionContext = executionContext;
-            this.typesToSearch = typesToSearch;
+            /*~~>*/this.typesToSearch = typesToSearch;
             this.nameMask = nameMask;
         }
 
-        public List<DBSObjectReference> getResult() {
+        public /*~~>*/List<DBSObjectReference> getResult() {
             return result;
         }
 

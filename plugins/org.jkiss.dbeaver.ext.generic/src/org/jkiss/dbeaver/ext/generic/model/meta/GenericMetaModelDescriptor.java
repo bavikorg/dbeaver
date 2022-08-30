@@ -41,7 +41,7 @@ public class GenericMetaModelDescriptor extends AbstractDescriptor {
     private final Map<String, GenericMetaObject> objects = new HashMap<>();
     private String[] driverClass;
     private final String dialectId;
-    private List<String> modelReplacements;
+    private /*~~>*/List<String> modelReplacements;
 
     public GenericMetaModelDescriptor() {
         super("org.jkiss.dbeaver.ext.generic");
@@ -102,12 +102,12 @@ public class GenericMetaModelDescriptor extends AbstractDescriptor {
         return SQLDialectRegistry.getInstance().getDialect(dialectId);
     }
 
-    public List<String> getModelReplacements() {
+    public /*~~>*/List<String> getModelReplacements() {
         return CommonUtils.safeList(modelReplacements);
     }
 
-    public void setModelReplacements(List<String> modelReplacements) {
-        this.modelReplacements = modelReplacements;
+    public void setModelReplacements(/*~~>*/List<String> modelReplacements) {
+        /*~~>*/this.modelReplacements = modelReplacements;
     }
 
     public GenericMetaModel getInstance() throws DBException {

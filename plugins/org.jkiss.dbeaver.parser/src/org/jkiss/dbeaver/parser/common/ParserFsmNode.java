@@ -31,9 +31,9 @@ import org.jkiss.dbeaver.parser.common.grammar.nfa.GrammarNfaOperation;
  */
 class ParserFsmNode {
     private final int id;
-    private final List<ParserFsmStep> steps = new ArrayList<>();
+    private final /*~~>*/List<ParserFsmStep> steps = new ArrayList<>();
     private final Map<String, TermGroup> stepsByTermGroup = new HashMap<>();
-    private final List<ParserFsmStep> finalSteps = new ArrayList<>();
+    private final /*~~>*/List<ParserFsmStep> finalSteps = new ArrayList<>();
     private final boolean isEnd;
     private Pattern pattern;
 
@@ -43,12 +43,12 @@ class ParserFsmNode {
     private static class TermGroup {
         private final String groupName;
         private final String pattern;
-        private final List<ParserFsmStep> steps;
+        private final /*~~>*/List<ParserFsmStep> steps;
 
-        public TermGroup(String groupName, String pattern, List<ParserFsmStep> steps) {
+        public TermGroup(String groupName, String pattern, /*~~>*/List<ParserFsmStep> steps) {
             this.groupName = groupName;
             this.pattern = pattern;
-            this.steps = steps;
+            /*~~>*/this.steps = steps;
         }
     }
 
@@ -65,8 +65,8 @@ class ParserFsmNode {
         return this.id;
     }
 
-    public List<ParserFsmStep> getTransitions() {
-        return Collections.unmodifiableList(this.steps);
+    public /*~~>*/List<ParserFsmStep> getTransitions() {
+        return Collections.unmodifiableList(/*~~>*/this.steps);
     }
 
     /**
@@ -76,16 +76,16 @@ class ParserFsmNode {
      * @param pattern
      * @param operations
      */
-    public void connectTo(ParserFsmNode target, String pattern, List<GrammarNfaOperation> operations) {
-        this.steps.add(new ParserFsmStep(this, target, pattern, operations));
+    public void connectTo(ParserFsmNode target, String pattern, /*~~>*/List<GrammarNfaOperation> operations) {
+        /*~~>*/this.steps.add(new ParserFsmStep(this, target, pattern, operations));
     }
 
     /**
      * Prepare common recognizing pattern for all possible terminals associated with presented parsing steps
      */
     public void prepare() {
-        Map<String, List<ParserFsmStep>> stepsByTerm = new HashMap<>();
-        for (ParserFsmStep s : this.steps) {
+        Map<String, /*~~>*/List<ParserFsmStep>> stepsByTerm = new HashMap<>();
+        for (ParserFsmStep s : /*~~>*/this.steps) {
             if (s.getPattern() != null) {
                 stepsByTerm.computeIfAbsent(s.getPattern(), p -> new ArrayList<>()).add(s);
             } else {
@@ -93,7 +93,7 @@ class ParserFsmNode {
             }
         }
 
-        List<String> parts = new ArrayList<>(stepsByTerm.size());
+        /*~~>*/List<String> parts = new ArrayList<>(stepsByTerm.size());
         for (var step : stepsByTerm.entrySet()) {
             String groupName = "g" + this.stepsByTermGroup.size();
             parts.add("(?<" + groupName + ">(" + step.getKey() + "))");
@@ -113,7 +113,7 @@ class ParserFsmNode {
             for (TermGroup g : this.stepsByTermGroup.values()) {
                 int end = matcher.end(g.groupName);
                 if (end >= 0 && matcher.start(g.groupName) == position) {
-                    for (ParserFsmStep step : g.steps) {
+                    for (ParserFsmStep step : /*~~>*/g.steps) {
                         //if (s.getTo() != null) {
                         //    System.out.println("found " + g.pattern + " at " + position + "  " + s.getFrom().id + " --> " + s.getTo().id);
                         //}

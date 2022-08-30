@@ -34,7 +34,7 @@ interface DataSourceSerializer
         DBRProgressMonitor monitor,
         DataSourceConfigurationManager configurationManager,
         DBPDataSourceConfigurationStorage configurationStorage,
-        List<DataSourceDescriptor> localDataSources)
+        /*~~>*/List<DataSourceDescriptor> localDataSources)
         throws DBException, IOException;
 
     void parseDataSources(

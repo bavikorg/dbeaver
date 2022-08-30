@@ -150,7 +150,7 @@ public abstract class ObjectACLEditor<PRIVILEGE extends DBAPrivilege, PRIVILEGE_
 
             permissionTable = new ObjectListControl<DBAPrivilege>(permEditPanel, SWT.FULL_SELECTION | SWT.CHECK, new ListContentProvider()) {
                 @Override
-                protected String getListConfigId(List<Class<?>> classList) {
+                protected String getListConfigId(/*~~>*/List<Class<?>> classList) {
                     return ObjectACLEditor.this.getClass().getName();
                 }
 
@@ -229,7 +229,7 @@ public abstract class ObjectACLEditor<PRIVILEGE extends DBAPrivilege, PRIVILEGE_
     }
 
     private void handleSelectionChange() {
-        List<DBSObject> selectedObjects = NavigatorUtils.getSelectedObjects(roleOrObjectTable.getViewer().getSelection());
+        /*~~>*/List<DBSObject> selectedObjects = NavigatorUtils.getSelectedObjects(roleOrObjectTable.getViewer().getSelection());
         if (CommonUtils.isEmpty(selectedObjects)) {
             updateObjectPermissions(null);
         } else {
@@ -297,7 +297,7 @@ public abstract class ObjectACLEditor<PRIVILEGE extends DBAPrivilege, PRIVILEGE_
         }
     }
 
-    private void updateObjectPermissions(List<DBSObject> objects) {
+    private void updateObjectPermissions(/*~~>*/List<DBSObject> objects) {
 
         boolean hasBadObjects = CommonUtils.isEmpty(objects);
 

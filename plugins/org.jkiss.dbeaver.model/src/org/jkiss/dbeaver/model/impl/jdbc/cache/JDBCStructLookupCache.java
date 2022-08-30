@@ -141,7 +141,7 @@ public abstract class JDBCStructLookupCache<OWNER extends DBSObject, OBJECT exte
     }
 
     @Override
-    public void setCache(List<OBJECT> objects) {
+    public void setCache(/*~~>*/List<OBJECT> objects) {
         super.setCache(objects);
         this.missingNames.clear();
     }

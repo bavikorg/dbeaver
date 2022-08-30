@@ -30,16 +30,16 @@ public class ParseTreeNode {
     private final GrammarRule rule;
     private final int position;
     private final ParseTreeNode parent;
-    private final List<ParseTreeNode> children;
+    private final /*~~>*/List<ParseTreeNode> children;
 
     private int endPosition;
     
-    public ParseTreeNode(GrammarRule rule, int position, int endPosition, ParseTreeNode parent, List<ParseTreeNode> children) {
+    public ParseTreeNode(GrammarRule rule, int position, int endPosition, ParseTreeNode parent, /*~~>*/List<ParseTreeNode> children) {
         this.rule = rule;
         this.position = position;
         this.endPosition = endPosition;
         this.parent = parent;
-        this.children = children;
+        /*~~>*/this.children = children;
     }
        
     public GrammarRule getRule() {
@@ -62,7 +62,7 @@ public class ParseTreeNode {
         return parent;
     }
 
-    public List<ParseTreeNode> getChildren() {
+    public /*~~>*/List<ParseTreeNode> getChildren() {
         return children;
     }
     
@@ -86,7 +86,7 @@ public class ParseTreeNode {
 
     private void collectStringImpl(StringBuilder sb, String text, String indent) {
         sb.append(indent);
-        if (this.rule == null && this.children.size() == 0) {
+        if (this.rule == null && /*~~>*/this.children.size() == 0) {
             if (text != null && this.position >= 0 && this.endPosition >= this.position && this.endPosition <= text.length()) {
                 sb.append("'").append(text.substring(this.position, this.endPosition)).append("'");
             } else {
@@ -96,12 +96,12 @@ public class ParseTreeNode {
             sb.append(this.rule == null ? "<NULL>" : this.rule.getName());
         }
 
-        if (text != null || (this.rule == null && this.children.size() == 0)) {
+        if (text != null || (this.rule == null && /*~~>*/this.children.size() == 0)) {
             sb.append(" (").append(this.position).append("-").append(this.endPosition).append(")");
         }
         sb.append("\n");
         
-        for (ParseTreeNode child: this.children) {
+        for (ParseTreeNode child: /*~~>*/this.children) {
             child.collectStringImpl(sb, text, indent + "  ");
         }
     }
@@ -122,7 +122,7 @@ public class ParseTreeNode {
         @Override
         public ParseTreeNode next() {
             final ParseTreeNode node = queue.remove();
-            queue.addAll(node.children);
+            queue.addAll(/*~~>*/node.children);
             return node;
         }
     }

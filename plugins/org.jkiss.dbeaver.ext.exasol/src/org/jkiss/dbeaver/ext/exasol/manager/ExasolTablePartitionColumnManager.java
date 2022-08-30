@@ -57,7 +57,7 @@ public class ExasolTablePartitionColumnManager extends SQLObjectEditor<ExasolTab
 	}
 	
 	@Override
-	protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actionList,
+	protected void addObjectModifyActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actionList,
                                           ObjectChangeCommand command,
                                           Map<String, Object> options) throws DBException {
 		ExasolTable table = command.getObject().getTable();
@@ -75,7 +75,7 @@ public class ExasolTablePartitionColumnManager extends SQLObjectEditor<ExasolTab
 	}
 
 	@Override
-	protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+	protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
                                           ObjectCreateCommand command,
                                           Map<String, Object> options) {
 		ExasolTable table = command.getObject().getTable();
@@ -87,7 +87,7 @@ public class ExasolTablePartitionColumnManager extends SQLObjectEditor<ExasolTab
 	}
 
 	@Override
-	protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions,
+	protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions,
 										  ObjectDeleteCommand command,
 										  Map<String, Object> options) {
 		ExasolTablePartitionColumn col = command.getObject();

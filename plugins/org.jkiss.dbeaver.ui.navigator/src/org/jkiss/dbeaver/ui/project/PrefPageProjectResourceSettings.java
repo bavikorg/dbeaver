@@ -209,7 +209,7 @@ public class PrefPageProjectResourceSettings extends AbstractPrefPage implements
 
     @Override
     public boolean performOk() {
-        java.util.List<IResource> refreshedResources = new ArrayList<>();
+        /*~~>*//*~~>*/java.util.List<IResource> refreshedResources = new ArrayList<>();
 
         // Save roots
         DBPProject projectMeta = getProjectMeta();

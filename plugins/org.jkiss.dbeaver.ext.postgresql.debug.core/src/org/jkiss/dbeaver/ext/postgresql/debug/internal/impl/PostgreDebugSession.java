@@ -312,8 +312,8 @@ public class PostgreDebugSession extends DBGJDBCSession {
         }
     }
 
-    protected void runLocalProc(JDBCExecutionContext connection, PostgreProcedure function, List<String> paramValues, String name) throws DBGException {
-        List<PostgreProcedureParameter> parameters = function.getInputParameters();
+    protected void runLocalProc(JDBCExecutionContext connection, PostgreProcedure function, /*~~>*/List<String> paramValues, String name) throws DBGException {
+        /*~~>*/List<PostgreProcedureParameter> parameters = function.getInputParameters();
         log.debug("Run local proc");
         if (parameters.size() != paramValues.size()) {
             String unmatched = "Parameter value count (" + paramValues.size() + ") doesn't match actual function parameters (" + parameters.size() + ")";
@@ -377,7 +377,7 @@ public class PostgreDebugSession extends DBGJDBCSession {
         job.schedule();
     }
 
-    private void attachLocal(DBRProgressMonitor monitor, PostgreProcedure function, List<String> parameters) throws DBGException {
+    private void attachLocal(DBRProgressMonitor monitor, PostgreProcedure function, /*~~>*/List<String> parameters) throws DBGException {
 
         try {
             JDBCExecutionContext connection = (JDBCExecutionContext) controllerConnection.getOwnerInstance().openIsolatedContext(monitor, "Debug process session", null);
@@ -463,7 +463,7 @@ public class PostgreDebugSession extends DBGJDBCSession {
         } else {
             attachKind = PostgreDebugAttachKind.LOCAL;
             PostgreProcedure function = PostgreSqlDebugCore.resolveFunction(monitor, controllerConnection.getDataSource().getContainer(), configuration);
-            List<String> parameterValues = (List<String>) configuration.get(PostgreDebugConstants.ATTR_FUNCTION_PARAMETERS);
+            /*~~>*/List<String> parameterValues = (/*~~>*/List<String>) configuration.get(PostgreDebugConstants.ATTR_FUNCTION_PARAMETERS);
 
             attachLocal(monitor, function, parameterValues);
             log.debug("Local attached");
@@ -605,13 +605,13 @@ public class PostgreDebugSession extends DBGJDBCSession {
     }
 
     @Override
-    public List<DBGVariable<?>> getVariables(DBGStackFrame stack) throws DBGException {
+    public /*~~>*/List<DBGVariable<?>> getVariables(DBGStackFrame stack) throws DBGException {
         if (stack != null) {
             selectFrame(stack.getLevel());
         }
 
         log.debug("Get vars values");
-        List<DBGVariable<?>> vars = new ArrayList<>();
+        /*~~>*/List<DBGVariable<?>> vars = new ArrayList<>();
 
         String sql = SQL_GET_VARS.replaceAll("\\?sessionid", String.valueOf(sessionId));
         try (JDBCSession session = getControllerConnection().openSession(new VoidProgressMonitor(), DBCExecutionPurpose.UTIL, "Read debug variables")) {
@@ -681,8 +681,8 @@ public class PostgreDebugSession extends DBGJDBCSession {
     }
 
     @Override
-    public List<DBGStackFrame> getStack() throws DBGException {
-        List<DBGStackFrame> stack = new ArrayList<>(1);
+    public /*~~>*/List<DBGStackFrame> getStack() throws DBGException {
+        /*~~>*/List<DBGStackFrame> stack = new ArrayList<>(1);
         log.debug("Get stack");
 
         String sql = SQL_GET_STACK.replaceAll("\\?sessionid", String.valueOf(getSessionId()));

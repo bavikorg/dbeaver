@@ -53,7 +53,7 @@ public class HiveTableColumnManager extends GenericTableColumnManager {
     }
 
     @Override
-    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
+    protected void addObjectCreateActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectCreateCommand command, Map<String, Object> options) {
         HiveTable table = (HiveTable) command.getObject().getParentObject();
         actions.add(
                 new SQLDatabasePersistAction(
@@ -69,11 +69,11 @@ public class HiveTableColumnManager extends GenericTableColumnManager {
     }
 
     @Override
-    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
+    protected void addObjectDeleteActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, ObjectDeleteCommand command, Map<String, Object> options) throws DBException {
         HiveTableColumn hiveTableColumn = (HiveTableColumn) command.getObject();
         HiveTable table = (HiveTable) hiveTableColumn.getParentObject();
         try {
-            List<? extends GenericTableColumn> attributes = table.getAttributes(monitor);
+            /*~~>*/List<? extends GenericTableColumn> attributes = table.getAttributes(monitor);
             //It may not be the best option. Some of the column data may still be lost. It might be worth using a temporary table
             StringBuilder ddl = new StringBuilder();
             ddl.append("ALTER TABLE ").append(DBUtils.getObjectFullName(table, DBPEvaluationContext.DDL)).append(" REPLACE COLUMNS (");

@@ -169,8 +169,8 @@ class PreviewMappingDialog extends BaseProgressDialog {
             previewConsumer.close();
         }
 
-        List<Object[]> rows = previewConsumer.getRows();
-        List<String[]> strRows = new ArrayList<>(rows.size());
+        /*~~>*/List<Object[]> rows = previewConsumer.getRows();
+        /*~~>*/List<String[]> strRows = new ArrayList<>(rows.size());
         DBSObject target = mappingContainer.getTarget();
         if (target == null) {
             if (consumerSettings instanceof DatabaseConsumerSettings) {
@@ -273,7 +273,7 @@ class PreviewMappingDialog extends BaseProgressDialog {
             return ctlMonitor;
         }
 
-        public List<Object[]> getRows() {
+        public /*~~>*/List<Object[]> getRows() {
             return getPreviewRows();
         }
 

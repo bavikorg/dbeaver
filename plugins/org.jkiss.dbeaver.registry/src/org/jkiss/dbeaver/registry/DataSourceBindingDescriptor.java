@@ -72,13 +72,13 @@ public class DataSourceBindingDescriptor extends AbstractContextDescriptor {
         }
     }
 
-    private List<DataSourceInfo> dataSources = new ArrayList<>();
+    private /*~~>*/List<DataSourceInfo> dataSources = new ArrayList<>();
 
     public DataSourceBindingDescriptor(IConfigurationElement config) {
         super(config);
 
         for (IConfigurationElement dsConfig : config.getChildren("datasource")) {
-            this.dataSources.add(new DataSourceInfo(dsConfig));
+            /*~~>*/this.dataSources.add(new DataSourceInfo(dsConfig));
         }
     }
 

@@ -167,7 +167,7 @@ public class DatabaseMappingAttribute implements DatabaseMappingObject {
                 targetName = getSourceLabelOrName(source, true);
             }
             DBSEntity targetEntity = (DBSEntity) parent.getTarget();
-            List<? extends DBSEntityAttribute> targetAttributes = targetEntity.getAttributes(monitor);
+            /*~~>*/List<? extends DBSEntityAttribute> targetAttributes = targetEntity.getAttributes(monitor);
             if (CommonUtils.isEmpty(targetAttributes) && targetEntity instanceof DBPRefreshableObject) {
                 // Reload table attributes cache. It can be empty after table deleting
                 ((DBPRefreshableObject) targetEntity).refreshObject(monitor);
@@ -187,7 +187,7 @@ public class DatabaseMappingAttribute implements DatabaseMappingObject {
                 StreamDataImporterColumnInfo source = (StreamDataImporterColumnInfo) this.source;
 
                 if (!source.isMappingMetadataPresent()) {
-                    List<DBSEntityAttribute> suitableTargetAttributes = targetAttributes
+                    /*~~>*/List<DBSEntityAttribute> suitableTargetAttributes = targetAttributes
                         .stream()
                         .filter(attr -> !DBUtils.isPseudoAttribute(attr) && !DBUtils.isHiddenObject(attr))
                         .sorted(Comparator.comparing(DBSEntityAttribute::getOrdinalPosition))

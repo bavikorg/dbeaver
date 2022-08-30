@@ -43,8 +43,8 @@ import java.util.Objects;
 class TilesManagementDialog extends BaseDialog {
     private static final Log log = Log.getLog(TilesManagementDialog.class);
 
-    private final List<LeafletTilesDescriptor> predefinedTiles;
-    private final List<LeafletTilesDescriptor> userDefinedTiles;
+    private final /*~~>*/List<LeafletTilesDescriptor> predefinedTiles;
+    private final /*~~>*/List<LeafletTilesDescriptor> userDefinedTiles;
     @Nullable
     private final LeafletTilesDescriptor oldSelectedTileLayer;
     @Nullable
@@ -200,7 +200,7 @@ class TilesManagementDialog extends BaseDialog {
 
             private void reactOnCheck(@NotNull TreeItem item) {
                 if (isRootItem(item)) {
-                    List<LeafletTilesDescriptor> list = item.equals(userDefinedTilesRootItem) ? userDefinedTiles : predefinedTiles;
+                    /*~~>*/List<LeafletTilesDescriptor> list = item.equals(userDefinedTilesRootItem) ? userDefinedTiles : predefinedTiles;
                     LeafletTilesDescriptor lastSelectedDescriptor = null;
                     if (lastSelectedTreeItem != null && lastSelectedTreeItem.getData() instanceof LeafletTilesDescriptor) {
                         lastSelectedDescriptor = (LeafletTilesDescriptor) lastSelectedTreeItem.getData();
@@ -221,7 +221,7 @@ class TilesManagementDialog extends BaseDialog {
                 LeafletTilesDescriptor descriptor = ((LeafletTilesDescriptor) item.getData());
                 LeafletTilesDescriptor withFlippedVisibility = descriptor.withFlippedVisibility();
                 item.setData(withFlippedVisibility);
-                List<LeafletTilesDescriptor> tilesContainer = descriptor.isPredefined() ? predefinedTiles : userDefinedTiles;
+                /*~~>*/List<LeafletTilesDescriptor> tilesContainer = descriptor.isPredefined() ? predefinedTiles : userDefinedTiles;
                 replace(tilesContainer, descriptor, withFlippedVisibility);
                 boolean checkOnRoot = tilesContainer.stream().anyMatch(LeafletTilesDescriptor::isVisible);
                 if (descriptor.isPredefined()) {
@@ -260,7 +260,7 @@ class TilesManagementDialog extends BaseDialog {
         deleteTilesItem.setEnabled(!descriptor.isPredefined());
     }
 
-    private static void replace(@NotNull List<LeafletTilesDescriptor> list, @NotNull LeafletTilesDescriptor what, @NotNull LeafletTilesDescriptor with) {
+    private static void replace(@NotNull /*~~>*/List<LeafletTilesDescriptor> list, @NotNull LeafletTilesDescriptor what, @NotNull LeafletTilesDescriptor with) {
         for (int i = 0; i < list.size(); i++) {
             if (what.equals(list.get(i))) {
                 list.set(i, with);

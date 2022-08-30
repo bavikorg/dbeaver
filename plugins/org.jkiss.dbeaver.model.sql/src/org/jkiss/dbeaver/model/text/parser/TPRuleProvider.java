@@ -37,6 +37,6 @@ public interface TPRuleProvider {
         KEYWORDS
     }
 
-    void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull List<TPRule> rules, @NotNull RulePosition position);
+    void extendRules(@Nullable DBPDataSourceContainer dataSource, @NotNull /*~~>*/List<TPRule> rules, @NotNull RulePosition position);
 
 }

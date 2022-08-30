@@ -73,7 +73,7 @@ public class DBDAttributeValue {
         return values;
     }
 
-    public static DBSAttributeBase[] getAttributes(List<DBDAttributeValue> attrValues)
+    public static DBSAttributeBase[] getAttributes(/*~~>*/List<DBDAttributeValue> attrValues)
     {
         DBSAttributeBase[] attributes = new DBSAttributeBase[attrValues.size()];
         for (int i = 0; i < attributes.length; i++) {
@@ -82,7 +82,7 @@ public class DBDAttributeValue {
         return attributes;
     }
 
-    public static Object[] getValues(List<DBDAttributeValue> attrValues)
+    public static Object[] getValues(/*~~>*/List<DBDAttributeValue> attrValues)
     {
         Object[] values = new Object[attrValues.size()];
         for (int i = 0; i < values.length; i++) {
@@ -91,7 +91,7 @@ public class DBDAttributeValue {
         return values;
     }
 
-    public static DBDAttributeValue getAttributeValue(List<DBDAttributeValue> valueList, DBSEntityAttribute attribute) {
+    public static DBDAttributeValue getAttributeValue(/*~~>*/List<DBDAttributeValue> valueList, DBSEntityAttribute attribute) {
         for (DBDAttributeValue value : valueList) {
             if (CommonUtils.equalObjects(value.attribute.getName(), attribute.getName())) {
                 return value;

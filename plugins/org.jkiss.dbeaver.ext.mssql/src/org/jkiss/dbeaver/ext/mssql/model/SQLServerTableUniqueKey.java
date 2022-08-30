@@ -35,7 +35,7 @@ import java.util.List;
  */
 public class SQLServerTableUniqueKey extends JDBCTableConstraint<SQLServerTableBase> {
     private SQLServerTableIndex index;
-    private List<SQLServerTableUniqueKeyColumn> columns;
+    private /*~~>*/List<SQLServerTableUniqueKeyColumn> columns;
 
     public SQLServerTableUniqueKey(SQLServerTableBase table, String name, String remarks, DBSEntityConstraintType constraintType, SQLServerTableIndex index, boolean persisted) {
         super(table, name, remarks, constraintType, persisted);
@@ -54,7 +54,7 @@ public class SQLServerTableUniqueKey extends JDBCTableConstraint<SQLServerTableB
     }
 
     @Override
-    public List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) {
+    public /*~~>*/List<? extends DBSEntityAttributeRef> getAttributeReferences(DBRProgressMonitor monitor) {
         if (columns != null) {
             return columns;
         }
@@ -81,11 +81,11 @@ public class SQLServerTableUniqueKey extends JDBCTableConstraint<SQLServerTableB
         if (columns == null) {
             columns = new ArrayList<>();
         }
-        this.columns.add(column);
+        /*~~>*/this.columns.add(column);
     }
 
-    void setColumns(List<SQLServerTableUniqueKeyColumn> columns) {
-        this.columns = columns;
+    void setColumns(/*~~>*/List<SQLServerTableUniqueKeyColumn> columns) {
+        /*~~>*/this.columns = columns;
     }
 
 }

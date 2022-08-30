@@ -152,7 +152,7 @@ public class DatabaseProducerPageExtractSettings extends DataTransferPageNodeSet
 
             if (hasSelection) {
                 boolean supportsColumnsExport = true;
-                List<DBSObject> sourceObjects = getWizard().getSettings().getSourceObjects();
+                /*~~>*/List<DBSObject> sourceObjects = getWizard().getSettings().getSourceObjects();
                 if (!CommonUtils.isEmpty(sourceObjects)) {
                     DBSObject sourceObject = sourceObjects.get(0);
                     if (sourceObject instanceof IAdaptable) {

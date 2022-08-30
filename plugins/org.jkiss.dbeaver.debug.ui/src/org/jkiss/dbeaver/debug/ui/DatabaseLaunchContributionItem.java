@@ -75,7 +75,7 @@ public class DatabaseLaunchContributionItem extends ContributionItem {
         Object[] selected = extractSelectedObjects();
 
         int accelerator = 1;
-        List<ILaunchConfiguration> configurations = extractSharedConfigurations(selected);
+        /*~~>*/List<ILaunchConfiguration> configurations = extractSharedConfigurations(selected);
         for (ILaunchConfiguration configuration : configurations) {
             IAction action = DebugUIInternals.createConfigurationAction(configuration, mode, accelerator);
             if (action != null) {
@@ -90,7 +90,7 @@ public class DatabaseLaunchContributionItem extends ContributionItem {
         if (menu.getItemCount() > 0 && shortcutActions.size() > 0) {
             new MenuItem(menu, SWT.SEPARATOR);
         }
-        List<String> categories = new ArrayList<String>();
+        /*~~>*/List<String> categories = new ArrayList<String>();
         Set<IAction> actions = shortcutActions.keySet();
         for (IAction action : actions) {
             String category = shortcutActions.get(action);
@@ -175,8 +175,8 @@ public class DatabaseLaunchContributionItem extends ContributionItem {
         return NO_OBJECTS;
     }
 
-    protected List<ILaunchConfiguration> extractSharedConfigurations(Object[] selection) {
-        List<ILaunchConfiguration> configurations = new ArrayList<>();
+    protected /*~~>*/List<ILaunchConfiguration> extractSharedConfigurations(Object[] selection) {
+        /*~~>*/List<ILaunchConfiguration> configurations = new ArrayList<>();
         for (Object object : selection) {
             ILaunchConfiguration config = DebugUIInternals.isSharedConfig(object);
             if (config != null) {

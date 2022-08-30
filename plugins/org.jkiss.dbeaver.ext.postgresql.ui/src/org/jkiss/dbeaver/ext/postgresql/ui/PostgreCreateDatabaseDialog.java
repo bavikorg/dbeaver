@@ -47,11 +47,11 @@ import java.util.stream.Collectors;
 public class PostgreCreateDatabaseDialog extends BaseDialog
 {
     private final PostgreDataSource dataSource;
-    private List<PostgreRole> allUsers;
-    private List<PostgreCharset> allEncodings;
-    private List<PostgreCollation> allCollations;
-    private List<PostgreTablespace> allTablespaces;
-    private List<String> allTemplates;
+    private /*~~>*/List<PostgreRole> allUsers;
+    private /*~~>*/List<PostgreCharset> allEncodings;
+    private /*~~>*/List<PostgreCollation> allCollations;
+    private /*~~>*/List<PostgreTablespace> allTablespaces;
+    private /*~~>*/List<String> allTemplates;
 
     private String name;
     private PostgreRole owner;

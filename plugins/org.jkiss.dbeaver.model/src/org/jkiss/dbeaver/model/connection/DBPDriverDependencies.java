@@ -31,7 +31,7 @@ public interface DBPDriverDependencies
     class DependencyNode {
         public final DependencyNode owner;
         public final DBPDriverLibrary library;
-        public final List<DependencyNode> dependencies = new ArrayList<>();
+        public final /*~~>*/List<DependencyNode> dependencies = new ArrayList<>();
         public final int depth;
         public boolean duplicate;
 
@@ -47,9 +47,9 @@ public interface DBPDriverDependencies
         }
     }
 
-    List<DependencyNode> getLibraryList();
+    /*~~>*/List<DependencyNode> getLibraryList();
 
-    List<DependencyNode> getLibraryMap();
+    /*~~>*/List<DependencyNode> getLibraryMap();
 
     void resolveDependencies(DBRProgressMonitor monitor) throws DBException;
 }

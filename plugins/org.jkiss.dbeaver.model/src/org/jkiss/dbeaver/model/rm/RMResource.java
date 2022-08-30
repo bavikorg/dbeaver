@@ -30,7 +30,7 @@ public class RMResource extends RMObject {
     private long length;
     private Long lastModified;
 
-    private List<RMResourceChange> changes;
+    private /*~~>*/List<RMResourceChange> changes;
     private Map<String, Object> properties;
 
     public RMResource() {
@@ -75,12 +75,12 @@ public class RMResource extends RMObject {
         this.lastModified = lastModified;
     }
 
-    public List<RMResourceChange> getChanges() {
+    public /*~~>*/List<RMResourceChange> getChanges() {
         return changes;
     }
 
-    public void setChanges(List<RMResourceChange> changes) {
-        this.changes = changes;
+    public void setChanges(/*~~>*/List<RMResourceChange> changes) {
+        /*~~>*/this.changes = changes;
     }
 
     public Map<String, Object> getProperties() {

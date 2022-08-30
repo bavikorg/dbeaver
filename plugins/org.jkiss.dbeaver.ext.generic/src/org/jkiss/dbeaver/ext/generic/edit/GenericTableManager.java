@@ -85,7 +85,7 @@ public class GenericTableManager extends SQLTableManager<GenericTableBase, Gener
         boolean isView = false;
         Object navContainer = options.get(DBEObjectManager.OPTION_CONTAINER);
         if (navContainer instanceof DBNDatabaseFolder) {
-            List<DBXTreeNode> folderChildren = ((DBNDatabaseFolder) navContainer).getMeta().getChildren((DBNNode) navContainer);
+            /*~~>*/List<DBXTreeNode> folderChildren = ((DBNDatabaseFolder) navContainer).getMeta().getChildren((DBNNode) navContainer);
             if (folderChildren.size() == 1 && folderChildren.get(0) instanceof DBXTreeItem && ((DBXTreeItem) folderChildren.get(0)).getPropertyName().equals("views")) {
                 isView = true;
             }
@@ -116,7 +116,7 @@ public class GenericTableManager extends SQLTableManager<GenericTableBase, Gener
     }
 
     @Override
-    protected void addObjectExtraActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, List<DBEPersistAction> actions, NestedObjectCommand<GenericTableBase, PropertyHandler> command, Map<String, Object> options) throws DBException {
+    protected void addObjectExtraActions(DBRProgressMonitor monitor, DBCExecutionContext executionContext, /*~~>*/List<DBEPersistAction> actions, NestedObjectCommand<GenericTableBase, PropertyHandler> command, Map<String, Object> options) throws DBException {
         GenericTableBase tableBase = command.getObject();
         if (command.hasProperty(DBConstants.PROP_ID_DESCRIPTION)) {
             actions.add(new SQLDatabasePersistAction(

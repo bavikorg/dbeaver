@@ -29,31 +29,31 @@ import java.util.List;
 */
 public class PostgreDatabaseBackupInfo extends PostgreDatabaseBackupRestoreInfo {
     @Nullable
-    private List<PostgreSchema> schemas;
+    private /*~~>*/List<PostgreSchema> schemas;
     @Nullable
-    private List<PostgreTableBase> tables;
+    private /*~~>*/List<PostgreTableBase> tables;
 
-    public PostgreDatabaseBackupInfo(@NotNull PostgreDatabase database, @Nullable List<PostgreSchema> schemas, @Nullable List<PostgreTableBase> tables) {
+    public PostgreDatabaseBackupInfo(@NotNull PostgreDatabase database, @Nullable /*~~>*/List<PostgreSchema> schemas, @Nullable /*~~>*/List<PostgreTableBase> tables) {
         super(database);
-        this.schemas = schemas;
-        this.tables = tables;
+        /*~~>*/this.schemas = schemas;
+        /*~~>*/this.tables = tables;
     }
 
     @Nullable
-    public List<PostgreSchema> getSchemas() {
+    public /*~~>*/List<PostgreSchema> getSchemas() {
         return schemas;
     }
 
-    public void setSchemas(@Nullable List<PostgreSchema> schemas) {
-        this.schemas = schemas;
+    public void setSchemas(@Nullable /*~~>*/List<PostgreSchema> schemas) {
+        /*~~>*/this.schemas = schemas;
     }
 
     @Nullable
-    public List<PostgreTableBase> getTables() {
+    public /*~~>*/List<PostgreTableBase> getTables() {
         return tables;
     }
 
-    public void setTables(@Nullable List<PostgreTableBase> tables) {
-        this.tables = tables;
+    public void setTables(@Nullable /*~~>*/List<PostgreTableBase> tables) {
+        /*~~>*/this.tables = tables;
     }
 }

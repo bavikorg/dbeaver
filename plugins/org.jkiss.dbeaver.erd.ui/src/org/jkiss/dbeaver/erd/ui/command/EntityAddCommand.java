@@ -53,13 +53,13 @@ public class EntityAddCommand extends Command {
     private static final Log log = Log.getLog(EntityAddCommand.class);
 
     protected DiagramPart diagramPart;
-	protected List<ERDEntity> entities;
+	protected /*~~>*/List<ERDEntity> entities;
     protected Point location;
 
-    public EntityAddCommand(DiagramPart diagram, List<ERDEntity> entities, Point location)
+    public EntityAddCommand(DiagramPart diagram, /*~~>*/List<ERDEntity> entities, Point location)
     {
         this.diagramPart = diagram;
-        this.entities = entities;
+        /*~~>*/this.entities = entities;
         this.location = location;
     }
 

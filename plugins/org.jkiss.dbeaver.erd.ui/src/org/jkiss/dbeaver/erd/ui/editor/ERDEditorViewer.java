@@ -136,9 +136,9 @@ public class ERDEditorViewer extends Viewer
         }
 
         @Override
-        public List toList() {
-            List list = selection.toList();
-            List<Object> result = new ArrayList<>(list.size());
+        public /*~~>*/List toList() {
+            /*~~>*/List list = selection.toList();
+            /*~~>*/List<Object> result = new ArrayList<>(list.size());
             for (int i = 0; i < list.size(); i++) {
                 result.add(convertObject(list.get(i)));
             }

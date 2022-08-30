@@ -92,7 +92,7 @@ public abstract class AbstractResourceHandler implements DBPResourceHandler {
 
     @Nullable
     @Override
-    public List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource) {
+    public /*~~>*/List<DBPDataSourceContainer> getAssociatedDataSources(DBNResource resource) {
         return null;
     }
 

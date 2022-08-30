@@ -162,7 +162,7 @@ public class PostgreTableBaseTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, DBConstants.PROP_ID_DESCRIPTION, "Test comment");
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, postgreExecutionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, postgreExecutionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -181,7 +181,7 @@ public class PostgreTableBaseTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, DBConstants.PROP_ID_DESCRIPTION, "Test comment");
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, postgreExecutionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, postgreExecutionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -197,7 +197,7 @@ public class PostgreTableBaseTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, DBConstants.PROP_ID_DESCRIPTION, "Test comment");
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, postgreExecutionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, postgreExecutionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 
@@ -216,7 +216,7 @@ public class PostgreTableBaseTest {
         pse.collectProperties();
         pse.setPropertyValue(monitor, DBConstants.PROP_ID_DESCRIPTION, "Test comment");
 
-        List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, postgreExecutionContext, Collections.emptyMap(), null);
+        /*~~>*/List<DBEPersistAction> actions = DBExecUtils.getActionsListFromCommandContext(monitor, commandContext, postgreExecutionContext, Collections.emptyMap(), null);
 
         String script = SQLUtils.generateScript(testDataSource, actions.toArray(new DBEPersistAction[0]), false);
 

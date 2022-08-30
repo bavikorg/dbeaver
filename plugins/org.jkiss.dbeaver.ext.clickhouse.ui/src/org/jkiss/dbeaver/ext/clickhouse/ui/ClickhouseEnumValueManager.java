@@ -30,16 +30,16 @@ public class ClickhouseEnumValueManager extends EnumValueManager {
     }
 
     @Override
-    protected List<String> getEnumValues(IValueController controller) {
+    protected /*~~>*/List<String> getEnumValues(IValueController controller) {
         final DBSTypedObject type = controller.getValueType();
         if (type instanceof ClickhouseTableColumn) {
-            return List.copyOf(((ClickhouseTableColumn) type).getEnumEntries().keySet());
+            return /*~~>*/List.copyOf(((ClickhouseTableColumn) type).getEnumEntries().keySet());
         }
         return null;
     }
 
     @Override
-    protected List<String> getSetValues(IValueController controller, Object value) {
+    protected /*~~>*/List<String> getSetValues(IValueController controller, Object value) {
         return null;
     }
 }

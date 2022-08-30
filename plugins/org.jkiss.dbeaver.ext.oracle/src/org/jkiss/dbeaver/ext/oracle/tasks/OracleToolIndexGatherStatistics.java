@@ -33,7 +33,7 @@ public class OracleToolIndexGatherStatistics extends SQLToolExecuteHandler<Oracl
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, OracleToolIndexGatherStatisticsSettings settings, List<DBEPersistAction> queries, OracleTableIndex object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, OracleToolIndexGatherStatisticsSettings settings, /*~~>*/List<DBEPersistAction> queries, OracleTableIndex object) throws DBCException {
         String sql = "ALTER INDEX " + object.getFullyQualifiedName(DBPEvaluationContext.DDL) + " COMPUTE STATISTICS";
         queries.add(new SQLDatabasePersistAction(sql));
     }

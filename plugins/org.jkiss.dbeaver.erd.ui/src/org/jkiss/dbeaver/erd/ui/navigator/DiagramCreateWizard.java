@@ -117,7 +117,7 @@ public class DiagramCreateWizard extends Wizard implements INewWizard {
 	public boolean performFinish() {
         try {
             Collection<DBNNode> initialContent = pageContent.getInitialContent();
-            List<DBSObject> rootObjects = new ArrayList<>();
+            /*~~>*/List<DBSObject> rootObjects = new ArrayList<>();
             for (DBNNode node : initialContent) {
                 if (node instanceof DBNDatabaseNode) {
                     rootObjects.add(((DBNDatabaseNode) node).getObject());

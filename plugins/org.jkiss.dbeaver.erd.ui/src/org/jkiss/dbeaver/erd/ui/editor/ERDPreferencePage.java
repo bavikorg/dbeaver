@@ -64,8 +64,8 @@ public class ERDPreferencePage extends AbstractPrefPage implements IWorkbenchPre
     private Spinner spinnerGridWidth;
     private Spinner spinnerGridHeight;
 
-    private List<Button> visibilityButtons = new ArrayList<>();
-    private List<Button> styleButtons = new ArrayList<>();
+    private /*~~>*/List<Button> visibilityButtons = new ArrayList<>();
+    private /*~~>*/List<Button> styleButtons = new ArrayList<>();
 
     @NotNull
     @Override
@@ -223,7 +223,7 @@ public class ERDPreferencePage extends AbstractPrefPage implements IWorkbenchPre
                 ERDAttributeVisibility.setDefaultVisibility(store, (ERDAttributeVisibility) radio.getData());
             }
         }
-        List<ERDViewStyle> enabledStyles = new ArrayList<>();
+        /*~~>*/List<ERDViewStyle> enabledStyles = new ArrayList<>();
         for (Button check : styleButtons) {
             if (check.getSelection()) {
                 enabledStyles.add((ERDViewStyle) check.getData());

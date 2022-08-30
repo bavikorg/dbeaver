@@ -64,7 +64,7 @@ public class MySQLUserEditorPrivileges extends MySQLUserEditorAbstract
     private MySQLTableBase selectedTable;
     private PrivilegeTableControl tablePrivilegesTable;
     private PrivilegeTableControl otherPrivilegesTable;
-    private volatile List<MySQLGrant> grants;
+    private volatile /*~~>*/List<MySQLGrant> grants;
 
     private Font boldFont;
 
@@ -235,7 +235,7 @@ public class MySQLUserEditorPrivileges extends MySQLUserEditorAbstract
             }
         }
         if (!found) {
-            List<MySQLPrivilege> privileges = new ArrayList<>();
+            /*~~>*/List<MySQLPrivilege> privileges = new ArrayList<>();
             if (!privilege.isGrantOption()) {
                 privileges.add(privilege);
             }
@@ -279,7 +279,7 @@ public class MySQLUserEditorPrivileges extends MySQLUserEditorAbstract
         if (grants == null) {
             return;
         }
-        List<MySQLGrant> curGrants = new ArrayList<>();
+        /*~~>*/List<MySQLGrant> curGrants = new ArrayList<>();
         for (MySQLGrant grant : grants) {
             if (grant.matches(selectedCatalog) && grant.matches(selectedTable)) {
                 curGrants.add(grant);
@@ -302,9 +302,9 @@ public class MySQLUserEditorPrivileges extends MySQLUserEditorAbstract
         }
         isLoaded = true;
         LoadingJob.createService(
-            new DatabaseLoadService<java.util.List<MySQLPrivilege>>(MySQLUIMessages.editors_user_editor_privileges_service_load_privileges, getExecutionContext()) {
+            new DatabaseLoadService</*~~>*//*~~>*/java.util.List<MySQLPrivilege>>(MySQLUIMessages.editors_user_editor_privileges_service_load_privileges, getExecutionContext()) {
                 @Override
-                public java.util.List<MySQLPrivilege> evaluate(DBRProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+                public /*~~>*//*~~>*/java.util.List<MySQLPrivilege> evaluate(DBRProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
                     try {
                         return getDatabaseObject().getDataSource().getPrivileges(monitor);
                     } catch (DBException e) {
@@ -323,9 +323,9 @@ public class MySQLUserEditorPrivileges extends MySQLUserEditorAbstract
     }
 
     @Override
-    protected void processGrants(List<MySQLGrant> grantsTmp)
+    protected void processGrants(/*~~>*/List<MySQLGrant> grantsTmp)
     {
-        this.grants = new ArrayList<>(grantsTmp);
+        /*~~>*/this.grants = new ArrayList<>(grantsTmp);
         for (Iterator<MySQLGrant> i = grants.iterator(); i.hasNext();) {
             MySQLGrant grant = i.next();
             if (!grant.isAllPrivileges() && !grant.hasNonAdminPrivileges()) {
@@ -421,13 +421,13 @@ public class MySQLUserEditorPrivileges extends MySQLUserEditorAbstract
             };
         }
 
-        public ProgressVisualizer<java.util.List<MySQLPrivilege>> createPrivilegesLoadVisualizer() {
-            return new ProgressVisualizer<java.util.List<MySQLPrivilege>>() {
+        public ProgressVisualizer</*~~>*//*~~>*/java.util.List<MySQLPrivilege>> createPrivilegesLoadVisualizer() {
+            return new ProgressVisualizer</*~~>*//*~~>*/java.util.List<MySQLPrivilege>>() {
                 @Override
-                public void completeLoading(java.util.List<MySQLPrivilege> privs) {
+                public void completeLoading(/*~~>*//*~~>*/java.util.List<MySQLPrivilege> privs) {
                     super.completeLoading(privs);
-                    List<MySQLPrivilege> otherPrivs = new ArrayList<>();
-                    List<MySQLPrivilege> tablePrivs = new ArrayList<>();
+                    /*~~>*/List<MySQLPrivilege> otherPrivs = new ArrayList<>();
+                    /*~~>*/List<MySQLPrivilege> tablePrivs = new ArrayList<>();
                     for (MySQLPrivilege priv : privs) {
                         if (priv.getKind() == MySQLPrivilege.Kind.ADMIN) {
                             continue;

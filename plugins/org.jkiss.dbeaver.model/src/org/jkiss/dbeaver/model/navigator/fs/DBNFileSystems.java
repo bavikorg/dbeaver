@@ -120,7 +120,7 @@ public class DBNFileSystems extends DBNNode implements DBPHiddenObject, NIOListe
 
     protected DBNFileSystem[] readChildNodes(DBRProgressMonitor monitor) throws DBException {
         monitor.beginTask("Read available file systems", 1);
-        List<DBNFileSystem> result = new ArrayList<>();
+        /*~~>*/List<DBNFileSystem> result = new ArrayList<>();
         for (DBFFileSystemDescriptor fsProvider : DBWorkbench.getPlatform().getFileSystemRegistry().getFileSystemProviders()) {
             DBFVirtualFileSystem[] fsList = fsProvider.getInstance().getAvailableFileSystems(
                 monitor, getModel().getModelAuthContext());

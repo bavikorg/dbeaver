@@ -92,9 +92,9 @@ public abstract class NavigatorHandlerCopyAbstract extends AbstractHandler imple
 
         if (selection instanceof IStructuredSelection && !selection.isEmpty()) {
             final IStructuredSelection structSelection = (IStructuredSelection)selection;
-            List<DBNNode> selectedNodes = new ArrayList<>();
-            List<DBPNamedObject> selectedObjects = new ArrayList<>();
-            List<String> selectedFiles = new ArrayList<>();
+            /*~~>*/List<DBNNode> selectedNodes = new ArrayList<>();
+            /*~~>*/List<DBPNamedObject> selectedObjects = new ArrayList<>();
+            /*~~>*/List<String> selectedFiles = new ArrayList<>();
             StringBuilder buf = new StringBuilder();
             for (Iterator<?> iter = structSelection.iterator(); iter.hasNext(); ) {
                 Object object = iter.next();

@@ -127,7 +127,7 @@ public class StreamProducerPageSettings extends DataTransferPageNodeSettings {
     }
 
     private void chooseSourceFile(DataTransferPipe pipe) {
-        List<String> extensions = new ArrayList<>();
+        /*~~>*/List<String> extensions = new ArrayList<>();
         String extensionProp = CommonUtils.toString(propertySource.getPropertyValue(null, "extension"));
         for (String ext : extensionProp.split(",")) {
             extensions.add("*." + ext);
@@ -211,7 +211,7 @@ public class StreamProducerPageSettings extends DataTransferPageNodeSettings {
         IDataTransferConsumer<?, ?> originalConsumer = pipe.getConsumer();
 
         DataTransferSettings dtSettings = getWizard().getSettings();
-        List<DataTransferPipe> newPipes = new ArrayList<>(dtSettings.getDataPipes());
+        /*~~>*/List<DataTransferPipe> newPipes = new ArrayList<>(dtSettings.getDataPipes());
         newPipes.remove(pipe);
 
         for (File file : files) {
@@ -359,7 +359,7 @@ public class StreamProducerPageSettings extends DataTransferPageNodeSettings {
         boolean firstTime = filesTable.getItemCount() == 0;
         DataTransferSettings settings = getWizard().getSettings();
         filesTable.removeAll();
-        List<DataTransferPipe> dataPipes = settings.getDataPipes();
+        /*~~>*/List<DataTransferPipe> dataPipes = settings.getDataPipes();
         for (DataTransferPipe pipe : dataPipes) {
             TableItem item = new TableItem(filesTable, SWT.NONE);
             item.setData(pipe);

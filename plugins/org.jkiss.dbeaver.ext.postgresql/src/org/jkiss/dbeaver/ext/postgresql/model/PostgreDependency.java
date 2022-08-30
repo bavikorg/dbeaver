@@ -223,8 +223,8 @@ public class PostgreDependency implements PostgreObject, DBPOverloadedObject, DB
      * Reads list of dependent objects.
      * SQL query originally copy-pasted from pgAdmin sources with some modifications.
      */
-    public static List<PostgreDependency> readDependencies(DBRProgressMonitor monitor, PostgreObject object, boolean dependents) throws DBCException {
-        List<PostgreDependency> dependencies = new ArrayList<>();
+    public static /*~~>*/List<PostgreDependency> readDependencies(DBRProgressMonitor monitor, PostgreObject object, boolean dependents) throws DBCException {
+        /*~~>*/List<PostgreDependency> dependencies = new ArrayList<>();
 
         try (JDBCSession session = DBUtils.openMetaSession(monitor, object, "Load object dependencies")) {
             String queryObjId = dependents ? "objid" : "refobjid";

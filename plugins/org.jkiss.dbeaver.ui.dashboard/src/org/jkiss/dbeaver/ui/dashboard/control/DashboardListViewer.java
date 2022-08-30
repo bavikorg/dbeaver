@@ -119,7 +119,7 @@ public class DashboardListViewer extends StructuredViewer implements IDataSource
     }
 
     @Override
-    public List<? extends DashboardGroupContainer> getGroups() {
+    public /*~~>*/List<? extends DashboardGroupContainer> getGroups() {
         return dashContainer == null ? Collections.emptyList() : Collections.singletonList(dashContainer);
     }
 
@@ -157,7 +157,7 @@ public class DashboardListViewer extends StructuredViewer implements IDataSource
     }
 
     @Override
-    protected List getSelectionFromWidget() {
+    protected /*~~>*/List getSelectionFromWidget() {
         DashboardContainer selectedItem = dashContainer.getSelectedItem();
         return selectedItem == null ? Collections.emptyList() : Collections.singletonList(selectedItem);
     }
@@ -176,7 +176,7 @@ public class DashboardListViewer extends StructuredViewer implements IDataSource
     }
 
     @Override
-    protected void setSelectionToWidget(List l, boolean reveal) {
+    protected void setSelectionToWidget(/*~~>*/List l, boolean reveal) {
         if (l.isEmpty()) {
             dashContainer.setSelection(null);
         } else {

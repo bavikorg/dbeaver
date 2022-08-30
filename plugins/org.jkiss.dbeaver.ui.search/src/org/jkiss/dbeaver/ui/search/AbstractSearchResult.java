@@ -29,8 +29,8 @@ public abstract class AbstractSearchResult<OBJECT_TYPE> implements ISearchResult
 
 
     private ISearchQuery searchQuery;
-    private List<OBJECT_TYPE> objects = new ArrayList<>();
-    private final List<ISearchResultListener> listeners = new ArrayList<>();
+    private /*~~>*/List<OBJECT_TYPE> objects = new ArrayList<>();
+    private final /*~~>*/List<ISearchResultListener> listeners = new ArrayList<>();
 
     public AbstractSearchResult(ISearchQuery searchQuery) {
         this.searchQuery = searchQuery;
@@ -66,12 +66,12 @@ public abstract class AbstractSearchResult<OBJECT_TYPE> implements ISearchResult
         return searchQuery;
     }
 
-    public List<OBJECT_TYPE> getObjects() {
+    public /*~~>*/List<OBJECT_TYPE> getObjects() {
         return objects;
     }
 
-    public void addObjects(List<OBJECT_TYPE> objects) {
-        this.objects.addAll(objects);
+    public void addObjects(/*~~>*/List<OBJECT_TYPE> objects) {
+        /*~~>*/this.objects.addAll(objects);
         fireChange(new DatabaseSearchResultEvent(objects));
     }
 
@@ -86,14 +86,14 @@ public abstract class AbstractSearchResult<OBJECT_TYPE> implements ISearchResult
     }
 
     public class DatabaseSearchResultEvent extends SearchResultEvent {
-        private final List<OBJECT_TYPE> objects;
-        public DatabaseSearchResultEvent(List<OBJECT_TYPE> objects)
+        private final /*~~>*/List<OBJECT_TYPE> objects;
+        public DatabaseSearchResultEvent(/*~~>*/List<OBJECT_TYPE> objects)
         {
             super(AbstractSearchResult.this);
-            this.objects = objects;
+            /*~~>*/this.objects = objects;
         }
 
-        public List<OBJECT_TYPE> getObjects() {
+        public /*~~>*/List<OBJECT_TYPE> getObjects() {
             return objects;
         }
     }

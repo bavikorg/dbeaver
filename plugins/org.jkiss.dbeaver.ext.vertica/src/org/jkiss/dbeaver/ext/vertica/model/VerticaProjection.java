@@ -168,7 +168,7 @@ public class VerticaProjection extends JDBCTable<VerticaDataSource, VerticaSchem
     }
 
     @Override
-    public List<? extends DBSEntityAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
+    public /*~~>*/List<? extends DBSEntityAttribute> getAttributes(@NotNull DBRProgressMonitor monitor) throws DBException {
         return getContainer().projectionCache.getChildren(monitor, getContainer(), this);
     }
 

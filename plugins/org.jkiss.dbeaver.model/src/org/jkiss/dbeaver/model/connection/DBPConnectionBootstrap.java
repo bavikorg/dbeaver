@@ -33,11 +33,11 @@ public class DBPConnectionBootstrap {
     private String defaultSchemaName;
     private Boolean defaultAutoCommit;
     private Integer defaultTransactionIsolation;
-    private final List<String> initQueries;
+    private final /*~~>*/List<String> initQueries;
     private boolean ignoreErrors;
 
     public DBPConnectionBootstrap() {
-        this.initQueries = new ArrayList<>();
+        /*~~>*/this.initQueries = new ArrayList<>();
         this.ignoreErrors = false;
     }
 
@@ -46,11 +46,11 @@ public class DBPConnectionBootstrap {
         this.defaultSchemaName = info.defaultSchemaName;
         this.defaultAutoCommit = info.defaultAutoCommit;
         this.defaultTransactionIsolation = info.defaultTransactionIsolation;
-        this.initQueries = new ArrayList<>(info.initQueries);
+        /*~~>*/this.initQueries = new ArrayList<>(/*~~>*/info.initQueries);
         this.ignoreErrors = info.ignoreErrors;
     }
 
-    public List<String> getInitQueries() {
+    public /*~~>*/List<String> getInitQueries() {
         return initQueries;
     }
 
@@ -120,7 +120,7 @@ public class DBPConnectionBootstrap {
                 CommonUtils.equalObjects(this.defaultSchemaName, source.defaultSchemaName) &&
                 CommonUtils.equalObjects(this.defaultAutoCommit, source.defaultAutoCommit) &&
                 CommonUtils.equalObjects(this.defaultTransactionIsolation, source.defaultTransactionIsolation) &&
-                CommonUtils.equalObjects(this.initQueries, source.initQueries) &&
+                CommonUtils.equalObjects(/*~~>*/this.initQueries, /*~~>*/source.initQueries) &&
                 this.ignoreErrors == source.ignoreErrors;
     }
 

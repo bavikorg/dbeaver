@@ -99,7 +99,7 @@ public class TaskProcessorUI implements DBRRunnableContext, DBTTaskExecutionList
             DBPPlatformUI platformUI = DBWorkbench.getPlatformUI();
             StringBuilder completeMessage = new StringBuilder();
             completeMessage.append(task == null ? this.task.getType().getName() : task.getType().getName()).append(" ").append(TaskUIMessages.task_processor_ui_message_task_completed).append(" (").append(RuntimeUtils.formatExecutionTime(elapsedTime)).append(")");
-            List<String> objects = new ArrayList<>();
+            /*~~>*/List<String> objects = new ArrayList<>();
             if (settings instanceof AbstractNativeToolSettings) {
                 for (DBSObject databaseObject : ((AbstractNativeToolSettings<?>) settings).getDatabaseObjects()) {
                     objects.add(databaseObject.getName());

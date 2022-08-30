@@ -125,7 +125,7 @@ public class PostgreProcedure extends AbstractProcedure<PostgreDataSource, Postg
     private Object acl;
 
     private String overloadedName;
-    private List<PostgreProcedureParameter> params = new ArrayList<>();
+    private /*~~>*/List<PostgreProcedureParameter> params = new ArrayList<>();
 
     public PostgreProcedure(PostgreSchema schema) {
         super(schema, false);
@@ -332,12 +332,12 @@ public class PostgreProcedure extends AbstractProcedure<PostgreDataSource, Postg
     }
 
     @Override
-    public List<PostgreProcedureParameter> getParameters(@Nullable DBRProgressMonitor monitor) {
+    public /*~~>*/List<PostgreProcedureParameter> getParameters(@Nullable DBRProgressMonitor monitor) {
         return params;
     }
 
-    public List<PostgreProcedureParameter> getInputParameters() {
-        List<PostgreProcedureParameter> result = new ArrayList<>();
+    public /*~~>*/List<PostgreProcedureParameter> getInputParameters() {
+        /*~~>*/List<PostgreProcedureParameter> result = new ArrayList<>();
         for (PostgreProcedureParameter param : params) {
             if (param.getParameterKind().isInput()) {
                 result.add(param);
@@ -346,8 +346,8 @@ public class PostgreProcedure extends AbstractProcedure<PostgreDataSource, Postg
         return result;
     }
 
-    public List<PostgreProcedureParameter> getParameters(DBSProcedureParameterKind kind) {
-        List<PostgreProcedureParameter> result = new ArrayList<>();
+    public /*~~>*/List<PostgreProcedureParameter> getParameters(DBSProcedureParameterKind kind) {
+        /*~~>*/List<PostgreProcedureParameter> result = new ArrayList<>();
         for (PostgreProcedureParameter param : params) {
             if (param.getParameterKind() == kind) {
                 result.add(param);
@@ -435,7 +435,7 @@ public class PostgreProcedure extends AbstractProcedure<PostgreDataSource, Postg
             }
 
             if (CommonUtils.getOption(options, DBPScriptObject.OPTION_INCLUDE_PERMISSIONS)) {
-                List<DBEPersistAction> actions = new ArrayList<>();
+                /*~~>*/List<DBEPersistAction> actions = new ArrayList<>();
                 PostgreUtils.getObjectGrantPermissionActions(monitor, this, actions, options);
                 procDDL += "\n" + SQLUtils.generateScript(getDataSource(), actions.toArray(new DBEPersistAction[0]), false);
             }
@@ -457,7 +457,7 @@ public class PostgreProcedure extends AbstractProcedure<PostgreDataSource, Postg
             decl.append("\tRETURNS ");
             if (isReturnsSet()) {
                 // Check for TABLE parameters and construct
-                List<PostgreProcedureParameter> tableParams = getParameters(DBSProcedureParameterKind.TABLE);
+                /*~~>*/List<PostgreProcedureParameter> tableParams = getParameters(DBSProcedureParameterKind.TABLE);
                 if (!tableParams.isEmpty()) {
                     decl.append("TABLE (");
                     for (int i = 0; i < tableParams.size(); i++) {
@@ -611,14 +611,14 @@ public class PostgreProcedure extends AbstractProcedure<PostgreDataSource, Postg
         return procVolatile;
     }
 
-    public static String makeOverloadedName(PostgreSchema schema, String name, List<PostgreProcedureParameter> params, boolean quote, boolean showParamNames) {
+    public static String makeOverloadedName(PostgreSchema schema, String name, /*~~>*/List<PostgreProcedureParameter> params, boolean quote, boolean showParamNames) {
         final String selfName = (quote ? DBUtils.getQuotedIdentifier(schema.getDataSource(), name) : name);
         final StringJoiner signature = new StringJoiner(", ", "(", ")");
 
         // Function signature may only contain a limited set of arguments inside parenthesis.
         // Examples of such arguments are: 'in', 'out', 'inout' and 'variadic'.
         // In our case, they all have associated keywords, so we could abuse it.
-        final List<PostgreProcedureParameter> keywordParams = params.stream()
+        final /*~~>*/List<PostgreProcedureParameter> keywordParams = params.stream()
             .filter(x -> x.getArgumentMode().getKeyword() != null)
             .collect(Collectors.toList());
 
@@ -688,7 +688,7 @@ public class PostgreProcedure extends AbstractProcedure<PostgreDataSource, Postg
     }
 
     @Association
-    public List<PostgreDependency> getDependencies(DBRProgressMonitor monitor) throws DBCException {
+    public /*~~>*/List<PostgreDependency> getDependencies(DBRProgressMonitor monitor) throws DBCException {
         return PostgreDependency.readDependencies(monitor, this, true);
     }
 

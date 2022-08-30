@@ -26,7 +26,7 @@ import java.util.List;
  */
 public abstract class WMIQualifiedObject {
 
-    private volatile List<WMIQualifier> qualifiers;
+    private volatile /*~~>*/List<WMIQualifier> qualifiers;
 
     public Collection<WMIQualifier> getQualifiers()
         throws WMIException
@@ -53,6 +53,6 @@ public abstract class WMIQualifiedObject {
         return null;
     }
 
-    protected abstract void readObjectQualifiers(List<WMIQualifier> qualifiers) throws WMIException;
+    protected abstract void readObjectQualifiers(/*~~>*/List<WMIQualifier> qualifiers) throws WMIException;
 
 }

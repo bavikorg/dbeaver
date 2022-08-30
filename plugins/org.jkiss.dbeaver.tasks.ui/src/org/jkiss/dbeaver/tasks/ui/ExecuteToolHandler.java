@@ -47,7 +47,7 @@ public class ExecuteToolHandler implements IActionDelegate
     public void run(IAction action)
     {
         if (!selection.isEmpty()) {
-            List<DBSObject> selectedObjects = NavigatorUtils.getSelectedObjects(selection);
+            /*~~>*/List<DBSObject> selectedObjects = NavigatorUtils.getSelectedObjects(selection);
             executeTool(UIUtils.getActiveWorkbenchWindow().getActivePage().getActivePart(), selectedObjects);
         }
     }

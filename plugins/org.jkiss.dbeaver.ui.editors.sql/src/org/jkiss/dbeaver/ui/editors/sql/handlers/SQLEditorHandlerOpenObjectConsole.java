@@ -69,8 +69,8 @@ public class SQLEditorHandlerOpenObjectConsole extends AbstractHandler {
         SQLNavigatorContext navContext = null;
 
         ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
-        List<DBSObject> selectedObjects = NavigatorUtils.getSelectedObjects(currentSelection);
-        List<DBSEntity> entities = new ArrayList<>();
+        /*~~>*/List<DBSObject> selectedObjects = NavigatorUtils.getSelectedObjects(currentSelection);
+        /*~~>*/List<DBSEntity> entities = new ArrayList<>();
         for (DBSObject object : selectedObjects) {
             if (navContext == null) {
                 navContext = new SQLNavigatorContext(object);

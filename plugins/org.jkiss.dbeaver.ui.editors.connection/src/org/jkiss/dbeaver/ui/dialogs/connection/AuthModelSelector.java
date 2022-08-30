@@ -51,7 +51,7 @@ public class AuthModelSelector extends Composite {
 
     private IElementFilter<DBPAuthModelDescriptor> modelFilter;
     private IElementFilter<DBPAuthModelDescriptor> modelChangeFilter;
-    private List<? extends DBPAuthModelDescriptor> allAuthModels;
+    private /*~~>*/List<? extends DBPAuthModelDescriptor> allAuthModels;
     private DBPDataSourceContainer activeDataSource;
     private DBPAuthModelDescriptor selectedAuthModel;
     private Composite modelConfigPlaceholder;
@@ -93,11 +93,11 @@ public class AuthModelSelector extends Composite {
     public void loadSettings(DBPDataSourceContainer dataSourceContainer, DBPAuthModelDescriptor activeAuthModel, String defaultAuthModelId) {
         this.activeDataSource = dataSourceContainer;
         this.selectedAuthModel = activeAuthModel;
-        this.allAuthModels = activeDataSource.getDriver() == DriverDescriptor.NULL_DRIVER ?
+        /*~~>*/this.allAuthModels = activeDataSource.getDriver() == DriverDescriptor.NULL_DRIVER ?
             DataSourceProviderRegistry.getInstance().getAllAuthModels() :
             DataSourceProviderRegistry.getInstance().getApplicableAuthModels(activeDataSource.getDriver());
-        this.allAuthModels.removeIf(o -> modelFilter != null && !modelFilter.isValidElement(o));
-        this.allAuthModels.sort((Comparator<DBPAuthModelDescriptor>) (o1, o2) ->
+        /*~~>*/this.allAuthModels.removeIf(o -> modelFilter != null && !modelFilter.isValidElement(o));
+        /*~~>*/this.allAuthModels.sort((Comparator<DBPAuthModelDescriptor>) (o1, o2) ->
             o1.isDefaultModel() ? -1 :
                 o2.isDefaultModel() ? 1 :
                     o1.getName().compareTo(o2.getName()));

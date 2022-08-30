@@ -47,7 +47,7 @@ public class SelectSRIDDialog extends BaseDialog {
 
     private int selectedSRID;
     private Combo sridCombo;
-    private List<Integer> allSupportedCodes;
+    private /*~~>*/List<Integer> allSupportedCodes;
     private Text crsNameText;
     private Button detailsButton;
 

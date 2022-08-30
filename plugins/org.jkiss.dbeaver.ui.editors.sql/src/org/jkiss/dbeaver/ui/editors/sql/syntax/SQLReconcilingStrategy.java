@@ -184,7 +184,7 @@ public class SQLReconcilingStrategy implements IReconcilingStrategy, IReconcilin
             damagedRegionLength = rightBound.getOffset() + rightBound.getLength() - damagedRegionOffset;
         }
 
-        List<SQLScriptElement> parsedQueries = extractQueries(damagedRegionOffset, damagedRegionLength);
+        /*~~>*/List<SQLScriptElement> parsedQueries = extractQueries(damagedRegionOffset, damagedRegionLength);
         if (parsedQueries == null) {
             return;
         }
@@ -239,7 +239,7 @@ public class SQLReconcilingStrategy implements IReconcilingStrategy, IReconcilin
     }
 
     @Nullable
-    private List<SQLScriptElement> extractQueries(int offset, int length) {
+    private /*~~>*/List<SQLScriptElement> extractQueries(int offset, int length) {
         return editor.extractScriptQueries(offset, length, false, true, false);
     }
 

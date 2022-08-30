@@ -47,7 +47,7 @@ public class CSmartCombo<ITEM_TYPE> extends Composite {
     }
 
     protected final ILabelProvider labelProvider;
-    protected final List<ITEM_TYPE> items = new ArrayList<>();
+    protected final /*~~>*/List<ITEM_TYPE> items = new ArrayList<>();
     private TableFilter<ITEM_TYPE> tableFilter = null;
     private ITEM_TYPE selectedItem;
     private Label imageLabel;
@@ -314,15 +314,15 @@ public class CSmartCombo<ITEM_TYPE> extends Composite {
 
     public String getItemText(int index)
     {
-        return labelProvider.getText(this.items.get(index));
+        return labelProvider.getText(/*~~>*/this.items.get(index));
     }
 
     public int getItemCount()
     {
-        return this.items.size();
+        return /*~~>*/this.items.size();
     }
 
-    public List<ITEM_TYPE> getItems()
+    public /*~~>*/List<ITEM_TYPE> getItems()
     {
         return items;
     }
@@ -333,7 +333,7 @@ public class CSmartCombo<ITEM_TYPE> extends Composite {
 
     public int getSelectionIndex()
     {
-        return this.items.indexOf(this.selectedItem);
+        return /*~~>*/this.items.indexOf(this.selectedItem);
     }
 
     public String getText()
@@ -346,7 +346,7 @@ public class CSmartCombo<ITEM_TYPE> extends Composite {
         checkWidget();
         if (index < 0) {
             selectedItem = null;
-            this.items.clear();
+            /*~~>*/this.items.clear();
             this.select(-1);
         } else {
             if (selectedItem == items.get(index)) {
@@ -358,14 +358,14 @@ public class CSmartCombo<ITEM_TYPE> extends Composite {
                     selectedItem = null;
                 }
             }
-            this.items.remove(index);
+            /*~~>*/this.items.remove(index);
             this.select(getSelectionIndex());
         }
     }
 
     public void remove(ITEM_TYPE item)
     {
-        remove(this.items.indexOf(item));
+        remove(/*~~>*/this.items.indexOf(item));
     }
 
     public void removeAll()
@@ -386,7 +386,7 @@ public class CSmartCombo<ITEM_TYPE> extends Composite {
             itemImage = null;
             itemBackground = null;
         } else {
-            selectedItem = this.items.get(index);
+            selectedItem = /*~~>*/this.items.get(index);
             itemText = labelProvider.getText(selectedItem);
             try {
                 itemImage = labelProvider.getImage(selectedItem);
@@ -409,7 +409,7 @@ public class CSmartCombo<ITEM_TYPE> extends Composite {
 
     public void select(ITEM_TYPE item)
     {
-        select(this.items.indexOf(item));
+        select(/*~~>*/this.items.indexOf(item));
     }
 
     @Override
@@ -427,7 +427,7 @@ public class CSmartCombo<ITEM_TYPE> extends Composite {
         if (string == null) {
             string = "";
         }
-        for (int i = 0; i < this.items.size(); i++) {
+        for (int i = 0; i < /*~~>*/this.items.size(); i++) {
             if (this.labelProvider.getText(items.get(i)).equals(string)) {
                 select(i);
                 break;
@@ -568,7 +568,7 @@ public class CSmartCombo<ITEM_TYPE> extends Composite {
 
     private void createTableItems(Tree table) {
         TableFilter<ITEM_TYPE> filter = tableFilter != null && tableFilter.isEnabled() ? tableFilter : null;
-        for (ITEM_TYPE item : this.items) {
+        for (ITEM_TYPE item : /*~~>*/this.items) {
             if (filter != null && !filter.filter(item)) {
                 continue;
             }
@@ -620,7 +620,7 @@ public class CSmartCombo<ITEM_TYPE> extends Composite {
         createPopup();
 
         Point size = getSize();
-        int itemCount = this.items.size();
+        int itemCount = /*~~>*/this.items.size();
         itemCount = (itemCount == 0) ? this.visibleItemCount : Math.min(this.visibleItemCount, itemCount);
         Tree table = dropDownControl;
         int itemHeight = table.getItemHeight() * itemCount;

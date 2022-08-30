@@ -725,7 +725,7 @@ public class EntityEditor extends MultiPageDatabaseEditor
     @Override
     public int promptToSaveOnClose()
     {
-        List<String> changedSubEditors = new ArrayList<>();
+        /*~~>*/List<String> changedSubEditors = new ArrayList<>();
         final DBECommandContext commandContext = getCommandContext();
         if (commandContext != null && commandContext.isDirty()) {
             changedSubEditors.add(UINavigatorMessages.registry_entity_editor_descriptor_name);
@@ -818,7 +818,7 @@ public class EntityEditor extends MultiPageDatabaseEditor
         } else {
             object = databaseObject;
         }
-        List<EntityEditorDescriptor> descriptors = editorsRegistry.getEntityEditors(
+        /*~~>*/List<EntityEditorDescriptor> descriptors = editorsRegistry.getEntityEditors(
             object,
             this,
             position);
@@ -1010,7 +1010,7 @@ public class EntityEditor extends MultiPageDatabaseEditor
         // Make base node path
         DBNDatabaseNode node = getEditorInput().getNavigatorNode();
 
-        List<DBNDatabaseNode> nodeList = new ArrayList<>();
+        /*~~>*/List<DBNDatabaseNode> nodeList = new ArrayList<>();
         for (DBNNode n = node; n != null; n = n.getParentNode()) {
             if (n instanceof DBNDatabaseNode) {
                 nodeList.add(0, (DBNDatabaseNode)n);

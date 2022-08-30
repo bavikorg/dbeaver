@@ -39,7 +39,7 @@ public class FireBirdPlanAnalyser extends AbstractExecutionPlan {
 	private FireBirdDataSource dataSource;
 	private JDBCSession session;
 	private String query;
-	private List<FireBirdPlanNode> rootNodes;
+	private /*~~>*/List<FireBirdPlanNode> rootNodes;
 
 	public FireBirdPlanAnalyser(FireBirdDataSource dataSource, JDBCSession session, String query)
     {
@@ -77,7 +77,7 @@ public class FireBirdPlanAnalyser extends AbstractExecutionPlan {
 	}
 
 	@Override
-	public List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
+	public /*~~>*/List<? extends DBCPlanNode> getPlanNodes(Map<String, Object> options) {
 		return rootNodes;
 	}
 

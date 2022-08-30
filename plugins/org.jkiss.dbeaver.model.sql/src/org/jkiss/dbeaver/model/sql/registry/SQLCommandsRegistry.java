@@ -71,7 +71,7 @@ public class SQLCommandsRegistry
         commandHandlers.clear();
     }
 
-    public List<SQLCommandHandlerDescriptor> getCommandHandlers() {
+    public /*~~>*/List<SQLCommandHandlerDescriptor> getCommandHandlers() {
         return new ArrayList<>(commandHandlers.values());
     }
 

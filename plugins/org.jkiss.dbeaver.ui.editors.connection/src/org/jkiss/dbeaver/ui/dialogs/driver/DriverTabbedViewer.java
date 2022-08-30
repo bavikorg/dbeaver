@@ -61,23 +61,23 @@ public class DriverTabbedViewer extends StructuredViewer {
     private static final String PARAM_LAST_FOLDER = "folder";
 
     private final TabbedFolderComposite folderComposite;
-    private final List<DBPDataSourceContainer> dataSources;
+    private final /*~~>*/List<DBPDataSourceContainer> dataSources;
     private ViewerFilter[] curFilters;
     private Comparator<DBPDriver> listComparator;
 
-    public DriverTabbedViewer(Composite parent, int style, List<DBPDataSourceContainer> dataSources, Comparator<DBPDriver> driverComparator) {
+    public DriverTabbedViewer(Composite parent, int style, /*~~>*/List<DBPDataSourceContainer> dataSources, Comparator<DBPDriver> driverComparator) {
 
-        this.dataSources = dataSources;
+        /*~~>*/this.dataSources = dataSources;
         this.listComparator = driverComparator;
         //listComparator = new DriverUtils.DriverScoreComparator(dataSources);
 
-        List<DBPDriver> allDrivers = DriverUtils.getAllDrivers();
+        /*~~>*/List<DBPDriver> allDrivers = DriverUtils.getAllDrivers();
         //allDrivers.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
 
-        List<DBPDriver> ratedDrivers = new ArrayList<>(allDrivers);
+        /*~~>*/List<DBPDriver> ratedDrivers = new ArrayList<>(allDrivers);
         //DriverUtils.sortDriversByRating(dataSources, ratedDrivers);
 
-        List<DBPDriver> recentDrivers = DriverUtils.getRecentDrivers(allDrivers, 12);
+        /*~~>*/List<DBPDriver> recentDrivers = DriverUtils.getRecentDrivers(allDrivers, 12);
 
         folderComposite = new TabbedFolderComposite(parent, style) {
             @Override
@@ -92,7 +92,7 @@ public class DriverTabbedViewer extends StructuredViewer {
             }
         };
 
-        List<TabbedFolderInfo> folders = new ArrayList<>();
+        /*~~>*/List<TabbedFolderInfo> folders = new ArrayList<>();
         folders.add(
             new TabbedFolderInfo(
                 "all", UIConnectionMessages.dialog_driver_category_all_label, DBIcon.TREE_DATABASE, UIConnectionMessages.dialog_driver_category_all_tip, false,
@@ -102,7 +102,7 @@ public class DriverTabbedViewer extends StructuredViewer {
                 "popular", UIConnectionMessages.dialog_driver_category_popular_label, DBIcon.TREE_DATABASE, UIConnectionMessages.dialog_driver_category_popular_tip, false,
                 new DriverListFolder(null, recentDrivers)));
 
-        List<TabbedFolderInfo> extFolders = new ArrayList<>();
+        /*~~>*/List<TabbedFolderInfo> extFolders = new ArrayList<>();
         for (DriverCategoryDescriptor category : DriverManagerRegistry.getInstance().getCategories()) {
             if (category.isPromoted()) {
                 extFolders.add(
@@ -148,8 +148,8 @@ public class DriverTabbedViewer extends StructuredViewer {
         });
     }
 
-    private List<DBPDriver> getCategoryDrivers(DriverCategoryDescriptor category, List<DBPDriver> allDrivers) {
-        List<DBPDriver> drivers = new ArrayList<>();
+    private /*~~>*/List<DBPDriver> getCategoryDrivers(DriverCategoryDescriptor category, /*~~>*/List<DBPDriver> allDrivers) {
+        /*~~>*/List<DBPDriver> drivers = new ArrayList<>();
         for (DBPDriver driver : allDrivers) {
             if (driver.getCategories().contains(category.getId())) {
                 drivers.add(driver);
@@ -252,7 +252,7 @@ public class DriverTabbedViewer extends StructuredViewer {
     }
 
     @Override
-    protected List getSelectionFromWidget() {
+    protected /*~~>*/List getSelectionFromWidget() {
         return null;
     }
 
@@ -270,7 +270,7 @@ public class DriverTabbedViewer extends StructuredViewer {
     }
 
     @Override
-    protected void setSelectionToWidget(List l, boolean reveal) {
+    protected void setSelectionToWidget(/*~~>*/List l, boolean reveal) {
 
     }
 
@@ -283,12 +283,12 @@ public class DriverTabbedViewer extends StructuredViewer {
 
         private final DriverCategoryDescriptor category;
         private AdvancedListViewer viewer;
-        private final List<DBPDriver> drivers;
+        private final /*~~>*/List<DBPDriver> drivers;
         private boolean activated;
 
-        DriverListFolder(DriverCategoryDescriptor category, List<DBPDriver> drivers) {
+        DriverListFolder(DriverCategoryDescriptor category, /*~~>*/List<DBPDriver> drivers) {
             this.category = category;
-            this.drivers = new ArrayList<>(drivers);
+            /*~~>*/this.drivers = new ArrayList<>(drivers);
         }
 
         @Override
@@ -345,7 +345,7 @@ public class DriverTabbedViewer extends StructuredViewer {
             @Override
             public String getToolTipText(Object element) {
                 DBPDriver driver = (DBPDriver) element;
-                List<DBPDataSourceContainer> usedBy = DriverUtils.getUsedBy(driver, dataSources);
+                /*~~>*/List<DBPDataSourceContainer> usedBy = DriverUtils.getUsedBy(driver, dataSources);
 
                 StringBuilder toolTip = new StringBuilder();
                 toolTip.append(driver.getFullName());

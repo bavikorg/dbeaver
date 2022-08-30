@@ -33,7 +33,7 @@ import java.util.List;
 public class SelectDataSourceCombo extends CSmartSelector<DBPDataSourceContainer> {
 
     private static final Log log = Log.getLog(SelectDataSourceCombo.class);
-    private final List<DBRRunnableParametrized<DBPDataSourceContainer>> listeners = new ArrayList<>();
+    private final /*~~>*/List<DBRRunnableParametrized<DBPDataSourceContainer>> listeners = new ArrayList<>();
 
     public SelectDataSourceCombo(Composite comboGroup) {
         super(comboGroup, SWT.DROP_DOWN | SWT.READ_ONLY | SWT.BORDER, new DatabaseLabelProviders.ConnectionLabelProvider());
@@ -63,7 +63,7 @@ public class SelectDataSourceCombo extends CSmartSelector<DBPDataSourceContainer
     }
 
     protected void onDataSourceChange(DBPDataSourceContainer dataSource) {
-        List<DBRRunnableParametrized<DBPDataSourceContainer>> listenersCopy;
+        /*~~>*/List<DBRRunnableParametrized<DBPDataSourceContainer>> listenersCopy;
         synchronized (listeners) {
             listenersCopy = new ArrayList<>(listeners);
         }

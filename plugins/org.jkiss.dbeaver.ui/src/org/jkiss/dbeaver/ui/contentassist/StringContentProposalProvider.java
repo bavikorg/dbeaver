@@ -46,7 +46,7 @@ public class StringContentProposalProvider implements IContentProposalProvider {
         if (stopPropose && position < 2) {
             stopPropose = false;
         }
-        List<ContentProposal> list = new ArrayList<>();
+        /*~~>*/List<ContentProposal> list = new ArrayList<>();
         int startPos = 0;
         for (int i = position - 1; i >= 0; i--) {
             char ch = Character.toUpperCase(contents.charAt(i));

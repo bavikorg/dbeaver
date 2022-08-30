@@ -68,7 +68,7 @@ public class DatabaseConsumerPageLoadSettings extends DataTransferPageNodeSettin
     private Button useBatchCheck;
     private Button ignoreDuplicateRows;
     private Button useBulkLoadCheck;
-    private List<SQLInsertReplaceMethodDescriptor> availableInsertMethodsDescriptors;
+    private /*~~>*/List<SQLInsertReplaceMethodDescriptor> availableInsertMethodsDescriptors;
 
     public DatabaseConsumerPageLoadSettings() {
         super(DTUIMessages.database_consumer_wizard_name);
@@ -346,7 +346,7 @@ public class DatabaseConsumerPageLoadSettings extends DataTransferPageNodeSettin
         isDisablingReferentialIntegritySupported = false;
         disableReferentialIntegrityCheckboxTooltip = "";
 
-        List<DBPReferentialIntegrityController> riControllers = new ArrayList<>();
+        /*~~>*/List<DBPReferentialIntegrityController> riControllers = new ArrayList<>();
         for (DatabaseMappingContainer mappingContainer : getSettings().getDataMappings().values()) {
             if (mappingContainer.getTarget() instanceof DBPReferentialIntegrityController) {
                 riControllers.add((DBPReferentialIntegrityController) mappingContainer.getTarget());
@@ -445,7 +445,7 @@ public class DatabaseConsumerPageLoadSettings extends DataTransferPageNodeSettin
 
         DBPDataSource dataSource = containerNode.getDataSource();
 
-        List<SQLInsertReplaceMethodDescriptor> insertMethodsDescriptors = null;
+        /*~~>*/List<SQLInsertReplaceMethodDescriptor> insertMethodsDescriptors = null;
         if (dataSource != null) {
             SQLDialectDescriptor dialectDescriptor = SQLDialectRegistry.getInstance().getDialect(dataSource.getSQLDialect().getDialectId());
             insertMethodsDescriptors = dialectDescriptor.getSupportedInsertReplaceMethodsDescriptors();

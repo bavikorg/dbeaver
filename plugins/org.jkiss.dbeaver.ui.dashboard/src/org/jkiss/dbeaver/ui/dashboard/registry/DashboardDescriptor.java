@@ -64,8 +64,8 @@ public class DashboardDescriptor extends AbstractContextDescriptor implements DB
     private JexlExpression mapFormulaExpr;
 
     private String[] tags;
-    private final List<DataSourceMapping> dataSourceMappings = new ArrayList<>();
-    private final List<QueryMapping> queries = new ArrayList<>();
+    private final /*~~>*/List<DataSourceMapping> dataSourceMappings = new ArrayList<>();
+    private final /*~~>*/List<QueryMapping> queries = new ArrayList<>();
 
     private DashboardDataType dataType;
     private float widthRatio;
@@ -264,9 +264,9 @@ public class DashboardDescriptor extends AbstractContextDescriptor implements DB
         this.maxItems = source.maxItems;
         this.maxAge = source.maxAge;
 
-        this.dataSourceMappings.addAll(source.dataSourceMappings);
+        /*~~>*/this.dataSourceMappings.addAll(/*~~>*/source.dataSourceMappings);
 
-        this.queries.addAll(source.queries);
+        /*~~>*/this.queries.addAll(/*~~>*/source.queries);
 
         this.isCustom = source.isCustom;
     }
@@ -405,7 +405,7 @@ public class DashboardDescriptor extends AbstractContextDescriptor implements DB
         this.fetchType = fetchType;
     }
 
-    public List<QueryMapping> getQueries() {
+    public /*~~>*/List<QueryMapping> getQueries() {
         return queries;
     }
 
@@ -464,11 +464,11 @@ public class DashboardDescriptor extends AbstractContextDescriptor implements DB
         this.isCustom = custom;
     }
 
-    public List<DBPNamedObject> getDataSourceMappings() {
+    public /*~~>*/List<DBPNamedObject> getDataSourceMappings() {
         return getSupportedSources();
     }
 
-    public void setDataSourceMappings(List<DBPNamedObject> targets) {
+    public void setDataSourceMappings(/*~~>*/List<DBPNamedObject> targets) {
         dataSourceMappings.clear();
         for (DBPNamedObject target : targets) {
             if (target instanceof DBPDataSourceProviderDescriptor) {
@@ -491,10 +491,10 @@ public class DashboardDescriptor extends AbstractContextDescriptor implements DB
         return true;
     }
 
-    public List<DBPNamedObject> getSupportedSources() {
+    public /*~~>*/List<DBPNamedObject> getSupportedSources() {
         DBPPlatform platform = DBWorkbench.getPlatform();
 
-        List<DBPNamedObject> results = new ArrayList<>();
+        /*~~>*/List<DBPNamedObject> results = new ArrayList<>();
         for (DataSourceMapping dsm : dataSourceMappings) {
             if (dsm.dataSourceProvider != null) {
                 DBPDataSourceProviderDescriptor provider = platform.getDataSourceProviderRegistry().getDataSourceProvider(dsm.dataSourceProvider);

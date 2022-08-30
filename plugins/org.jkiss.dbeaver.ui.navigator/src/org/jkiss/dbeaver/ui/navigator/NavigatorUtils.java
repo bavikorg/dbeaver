@@ -119,11 +119,11 @@ public class NavigatorUtils {
     }
 
     @NotNull
-    public static List<DBNNode> getSelectedNodes(@NotNull ISelection selection) {
+    public static /*~~>*/List<DBNNode> getSelectedNodes(@NotNull ISelection selection) {
         if (selection.isEmpty()) {
             return Collections.emptyList();
         }
-        final List<DBNNode> nodes = new ArrayList<>();
+        final /*~~>*/List<DBNNode> nodes = new ArrayList<>();
         if (selection instanceof IStructuredSelection) {
             for (Object selectedObject : (IStructuredSelection) selection) {
                 if (selectedObject instanceof DBNNode) {
@@ -162,12 +162,12 @@ public class NavigatorUtils {
         return DBUtils.getFromObject(((IStructuredSelection)selection).getFirstElement());
     }
 
-    public static List<DBSObject> getSelectedObjects(ISelection selection)
+    public static /*~~>*/List<DBSObject> getSelectedObjects(ISelection selection)
     {
         if (selection.isEmpty()) {
             return Collections.emptyList();
         }
-        List<DBSObject> result = new ArrayList<>();
+        /*~~>*/List<DBSObject> result = new ArrayList<>();
         if (selection instanceof IStructuredSelection) {
             for (Iterator iter = ((IStructuredSelection)selection).iterator(); iter.hasNext(); ) {
                 DBSObject selectedObject = DBUtils.getFromObject(iter.next());
@@ -383,9 +383,9 @@ public class NavigatorUtils {
                 @Override
                 public void dragSetData(DragSourceEvent event) {
                     if (!selection.isEmpty()) {
-                        List<DBNNode> nodes = new ArrayList<>();
-                        List<DBPNamedObject> objects = new ArrayList<>();
-                        List<String> names = new ArrayList<>();
+                        /*~~>*/List<DBNNode> nodes = new ArrayList<>();
+                        /*~~>*/List<DBPNamedObject> objects = new ArrayList<>();
+                        /*~~>*/List<String> names = new ArrayList<>();
                         String lineSeparator = CommonUtils.getLineSeparator();
                         StringBuilder buf = new StringBuilder();
 

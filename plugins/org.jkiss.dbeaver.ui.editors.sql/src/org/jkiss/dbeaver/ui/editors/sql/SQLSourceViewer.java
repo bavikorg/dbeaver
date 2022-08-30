@@ -93,7 +93,7 @@ public class SQLSourceViewer<T extends DBPScriptObject & DBSObject> extends SQLE
             return sourceObject == null ? null : sourceObject.getObjectDefinitionText(monitor, getSourceOptions());
         } else {
             StringBuilder sql = new StringBuilder(100);
-            DBStructUtils.generateTableListDDL(monitor, sql, List.of((DBSEntity)sourceObject), getSourceOptions(), false);
+            DBStructUtils.generateTableListDDL(monitor, sql, /*~~>*/List.of((DBSEntity)sourceObject), getSourceOptions(), false);
             return sql.toString().trim();
         }
     }

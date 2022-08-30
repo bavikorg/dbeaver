@@ -31,7 +31,7 @@ public class DataSourceFolder implements DBPDataSourceFolder
 {
     private final DataSourceRegistry registry;
     private DataSourceFolder parent;
-    private List<DataSourceFolder> children = new ArrayList<>();
+    private /*~~>*/List<DataSourceFolder> children = new ArrayList<>();
     private String name;
     private String description;
 
@@ -69,11 +69,11 @@ public class DataSourceFolder implements DBPDataSourceFolder
 
     public void setParent(DBPDataSourceFolder parent) {
         if (this.parent != null) {
-            this.parent.children.remove(this);
+            /*~~>*/this.parent.children.remove(this);
         }
         this.parent = (DataSourceFolder) parent;
         if (this.parent != null) {
-            this.parent.children.add(this);
+            /*~~>*/this.parent.children.add(this);
         }
     }
 

@@ -73,7 +73,7 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
     private final SQLCompletionRequest request;
     private DBRProgressMonitor monitor;
 
-    private final List<SQLCompletionProposalBase> proposals = new ArrayList<>();
+    private final /*~~>*/List<SQLCompletionProposalBase> proposals = new ArrayList<>();
     private boolean searchFinished = false;
 
     public SQLCompletionAnalyzer(SQLCompletionRequest request) {
@@ -89,7 +89,7 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
         }
     }
 
-    public List<SQLCompletionProposalBase> getProposals() {
+    public /*~~>*/List<SQLCompletionProposalBase> getProposals() {
         return proposals;
     }
 
@@ -171,7 +171,7 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
 
         SQLCompletionRequest.QueryType queryType = request.getQueryType();
         Map<String, Object> parameters = new LinkedHashMap<>();
-        List<String> prevWords = wordDetector.getPrevWords();
+        /*~~>*/List<String> prevWords = wordDetector.getPrevWords();
         String previousWord = "";
         if (!CommonUtils.isEmpty(prevWords)) {
             previousWord = prevWords.get(0).toUpperCase(Locale.ENGLISH);
@@ -330,7 +330,7 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
 
         // Final filtering
         if (!searchFinished && !isInLiteral && !isInQuotedIdentifier) {
-            List<String> matchedKeywords = Collections.emptyList();
+            /*~~>*/List<String> matchedKeywords = Collections.emptyList();
             Set<String> allowedKeywords = null;
 
             SQLDialect sqlDialect = request.getContext().getDataSource().getSQLDialect();
@@ -499,7 +499,7 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
     }
 
     private void makeProposalsFromAttributeValues(DBPDataSource dataSource, SQLWordPartDetector wordDetector, boolean isInLiteral, DBSEntity entity) throws DBException {
-        List<String> prevWords = wordDetector.getPrevWords();
+        /*~~>*/List<String> prevWords = wordDetector.getPrevWords();
         if (!prevWords.isEmpty()) {
             // Column name?
             String columnName = prevWords.get(prevWords.size() - 1);
@@ -515,7 +515,7 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
             if (attribute != null) {
                 try (DBCSession session = request.getContext().getExecutionContext().openSession(monitor, DBCExecutionPurpose.META, "Read attribute values")) {
 
-                    List<DBDLabelValuePair> valueEnumeration = null;
+                    /*~~>*/List<DBDLabelValuePair> valueEnumeration = null;
 
                     // For dictionary reference read dictionary values
                     // Otherwise try to read plain attribute values
@@ -625,20 +625,20 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
         // Apply navigator object filters
         if (dataSource != null) {
             DBPDataSourceContainer dsContainer = dataSource.getContainer();
-            Map<DBSObject, Map<Class<?>, List<SQLCompletionProposalBase>>> containerMap = new HashMap<>();
+            Map<DBSObject, Map<Class<?>, /*~~>*/List<SQLCompletionProposalBase>>> containerMap = new HashMap<>();
             for (SQLCompletionProposalBase proposal : proposals) {
                 DBSObject container = proposal.getObjectContainer();
                 DBPNamedObject object = proposal.getObject();
                 if (object == null) {
                     continue;
                 }
-                Map<Class<?>, List<SQLCompletionProposalBase>> typeMap = containerMap.computeIfAbsent(container, k -> new HashMap<>());
+                Map<Class<?>, /*~~>*/List<SQLCompletionProposalBase>> typeMap = containerMap.computeIfAbsent(container, k -> new HashMap<>());
                 Class<?> objectType = object instanceof DBSObjectReference ? ((DBSObjectReference) object).getObjectClass() : object.getClass();
-                List<SQLCompletionProposalBase> list = typeMap.computeIfAbsent(objectType, k -> new ArrayList<>());
+                /*~~>*/List<SQLCompletionProposalBase> list = typeMap.computeIfAbsent(objectType, k -> new ArrayList<>());
                 list.add(proposal);
             }
-            for (Map.Entry<DBSObject, Map<Class<?>, List<SQLCompletionProposalBase>>> entry : containerMap.entrySet()) {
-                for (Map.Entry<Class<?>, List<SQLCompletionProposalBase>> typeEntry : entry.getValue().entrySet()) {
+            for (Map.Entry<DBSObject, Map<Class<?>, /*~~>*/List<SQLCompletionProposalBase>>> entry : containerMap.entrySet()) {
+                for (Map.Entry<Class<?>, /*~~>*/List<SQLCompletionProposalBase>> typeEntry : entry.getValue().entrySet()) {
                     DBSObjectFilter filter = dsContainer.getObjectFilter(typeEntry.getKey(), entry.getKey(), true);
                     if (filter != null && filter.isEnabled()) {
                         for (SQLCompletionProposalBase proposal : typeEntry.getValue()) {
@@ -700,7 +700,7 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
         }
     }
 
-    private static boolean hasProposal(List<SQLCompletionProposalBase> proposals, String displayName) {
+    private static boolean hasProposal(/*~~>*/List<SQLCompletionProposalBase> proposals, String displayName) {
         for (SQLCompletionProposalBase proposal : proposals) {
             if (displayName.equals(proposal.getDisplayString())) {
                 return true;
@@ -715,7 +715,7 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
             request.getContext().getSyntaxManager(),
             request.getWordDetector().getStartOffset(),
             2);
-        List<String> prevWords = joinTableDetector.getPrevWords();
+        /*~~>*/List<String> prevWords = joinTableDetector.getPrevWords();
 
         if (!CommonUtils.isEmpty(prevWords)) {
             DBPDataSource dataSource = request.getContext().getDataSource();
@@ -742,7 +742,7 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
 
     private void filterNonJoinableProposals(DBSEntity leftTable) {
         // Remove all table proposals which don't have FKs between them and leftTable
-        List<SQLCompletionProposalBase> joinableProposals = new ArrayList<>();
+        /*~~>*/List<SQLCompletionProposalBase> joinableProposals = new ArrayList<>();
         for (SQLCompletionProposalBase proposal : proposals) {
             if (proposal.getObject() instanceof DBSEntity) {
                 DBSEntity rightTable = (DBSEntity) proposal.getObject();
@@ -1106,7 +1106,7 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
         if (children != null && !children.isEmpty()) {
             //boolean isJoin = SQLConstants.KEYWORD_JOIN.equals(request.wordDetector.getPrevKeyWord());
 
-            List<DBSObject> matchedObjects = new ArrayList<>();
+            /*~~>*/List<DBSObject> matchedObjects = new ArrayList<>();
             final Map<String, Integer> scoredMatches = new HashMap<>();
             boolean simpleMode = request.isSimpleMode();
             boolean allObjects = !simpleMode && ALL_COLUMNS_PATTERN.equals(startPart);
@@ -1183,7 +1183,7 @@ public class SQLCompletionAnalyzer implements DBRRunnableParametrized<DBRProgres
                         return score2 - score1;
                     });
                 }
-                List<SQLCompletionProposalBase> childProposals = new ArrayList<>(matchedObjects.size());
+                /*~~>*/List<SQLCompletionProposalBase> childProposals = new ArrayList<>(matchedObjects.size());
                 for (DBSObject child : matchedObjects) {
                     SQLCompletionProposalBase proposal = makeProposalsFromObject(child, !(parent instanceof DBPDataSource), params);
                     if (!scoredMatches.isEmpty()) {

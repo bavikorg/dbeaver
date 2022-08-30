@@ -56,10 +56,10 @@ public interface GenericStructContainer extends DBSObjectContainer, DBSProcedure
 
     GenericObjectContainer.GenericSynonymCache getSynonymCache();
 
-    List<? extends GenericView> getViews(DBRProgressMonitor monitor) throws DBException;
-    List<? extends GenericTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException;
+    /*~~>*/List<? extends GenericView> getViews(DBRProgressMonitor monitor) throws DBException;
+    /*~~>*/List<? extends GenericTable> getPhysicalTables(DBRProgressMonitor monitor) throws DBException;
 
-    List<? extends GenericTableBase> getTables(DBRProgressMonitor monitor) throws DBException;
+    /*~~>*/List<? extends GenericTableBase> getTables(DBRProgressMonitor monitor) throws DBException;
 
     GenericTableBase getTable(DBRProgressMonitor monitor, String name) throws DBException;
 

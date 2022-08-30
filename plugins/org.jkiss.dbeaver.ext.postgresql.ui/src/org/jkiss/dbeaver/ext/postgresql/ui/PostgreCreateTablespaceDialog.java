@@ -52,7 +52,7 @@ public class PostgreCreateTablespaceDialog extends BaseDialog
     private static final String DIALOG_ID = "DBeaver.PostgreCreateTablespaceDialog";//$NON-NLS-1$
 
     private final PostgreTablespace newtablespace;
-    private List<PostgreRole> allUsers;
+    private /*~~>*/List<PostgreRole> allUsers;
     private PostgreRole owner;
     private String name = null;
     private String loc = null;
@@ -129,7 +129,7 @@ public class PostgreCreateTablespaceDialog extends BaseDialog
             @Override
             protected IStatus run(DBRProgressMonitor monitor) {
                 try {
-                    final List<String> userNames = new ArrayList<>();
+                    final /*~~>*/List<String> userNames = new ArrayList<>();
                     allUsers = new ArrayList<>(newtablespace.getDatabase().getUsers(monitor));
                     final PostgreRole dba = newtablespace.getDatabase().getDBA(monitor);
                     final String defUserName = dba == null ? "" : dba.getName(); //$NON-NLS-1$

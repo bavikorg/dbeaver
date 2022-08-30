@@ -55,7 +55,7 @@ public abstract class PostgrePlanNodeBase<NODE extends PostgrePlanNodeBase<?>> e
     
     static final String ATTR_OBJECT_NAME = "Object name";
 
-    private final static List<String> allowedKind = new ArrayList<>( 
+    private final static /*~~>*/List<String> allowedKind = new ArrayList<>( 
             Arrays.asList("result",
                           "project",
                           "index",
@@ -77,7 +77,7 @@ public abstract class PostgrePlanNodeBase<NODE extends PostgrePlanNodeBase<?>> e
 
     private final DBPDataSource dataSource;
     protected NODE parent;
-    protected final List<NODE> nested = new ArrayList<>();
+    protected final /*~~>*/List<NODE> nested = new ArrayList<>();
 
     protected String nodeType;
     private String entity;
@@ -182,7 +182,7 @@ public abstract class PostgrePlanNodeBase<NODE extends PostgrePlanNodeBase<?>> e
     }
 
     @Override
-    public List<NODE> getNested()
+    public /*~~>*/List<NODE> getNested()
     {
         return nested;
     }

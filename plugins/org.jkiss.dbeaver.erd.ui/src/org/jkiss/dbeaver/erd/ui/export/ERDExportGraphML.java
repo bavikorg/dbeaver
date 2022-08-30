@@ -85,7 +85,7 @@ public class ERDExportGraphML implements ERDExportFormatHandler
                 xml.addAttribute("id", "G");
 
                 // A list of diagram elements sorted according to their z-order
-                final List<ERDElement<?>> elements = Stream
+                final /*~~>*/List<ERDElement<?>> elements = Stream
                     .concat(
                         diagram.getEntities().stream().map(x -> new Pair<>(x, diagram.getVisualInfo(x.getObject()))),
                         diagram.getNotes().stream().map(x -> new Pair<>(x, diagram.getVisualInfo(x))))

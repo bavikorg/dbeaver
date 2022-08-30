@@ -114,7 +114,7 @@
                     this.algorithm.addPath(path);
                 }
 
-                final List<?> constraint = CommonUtils.safeList((List<?>) getConstraint(conn));
+                final /*~~>*/List<?> constraint = CommonUtils.safeList((/*~~>*/List<?>) getConstraint(conn));
 
                 Point start = conn.getSourceAnchor().getReferencePoint().getCopy();
                 Point end = conn.getTargetAnchor().getReferencePoint().getCopy();
@@ -158,7 +158,7 @@
             this.isDirty = false;
             this.algorithm.setClientArea(container);
             UIUtils.asyncExec(() -> {
-                    List<OrthogonalPath> updated = this.algorithm.solve();
+                    /*~~>*/List<OrthogonalPath> updated = this.algorithm.solve();
                     for (OrthogonalPath path : updated) {
                         if (path == null || path.getPoints() == null) {
                             continue;

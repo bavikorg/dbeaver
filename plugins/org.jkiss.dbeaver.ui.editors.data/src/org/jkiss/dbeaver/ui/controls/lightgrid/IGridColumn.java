@@ -32,6 +32,6 @@ public interface IGridColumn extends IGridItem {
 
     GridColumn getParent();
 
-    List<GridColumn> getChildren();
+    /*~~>*/List<GridColumn> getChildren();
 
 }

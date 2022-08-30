@@ -83,8 +83,8 @@ public class SQLQueryResult implements DBCExecutionResult
     private boolean hasResultSet;
     private Throwable error;
     private long queryTime;
-    private List<Throwable> warnings;
-    private List<ExecuteResult> executeResults = new ArrayList<>();
+    private /*~~>*/List<Throwable> warnings;
+    private /*~~>*/List<ExecuteResult> executeResults = new ArrayList<>();
 
     public SQLQueryResult(@NotNull SQLQuery statement)
     {
@@ -140,7 +140,7 @@ public class SQLQueryResult implements DBCExecutionResult
         this.queryTime = queryTime;
     }
 
-    public List<Throwable> getWarnings() {
+    public /*~~>*/List<Throwable> getWarnings() {
         return warnings;
     }
 
@@ -148,10 +148,10 @@ public class SQLQueryResult implements DBCExecutionResult
         if (warnings == null) {
             return;
         }
-        if (this.warnings == null) {
-            this.warnings = new ArrayList<>();
+        if (/*~~>*/this.warnings == null) {
+            /*~~>*/this.warnings = new ArrayList<>();
         }
-        Collections.addAll(this.warnings, warnings);
+        Collections.addAll(/*~~>*/this.warnings, warnings);
     }
 
     public ExecuteResult addExecuteResult(boolean resultSet) {
@@ -160,7 +160,7 @@ public class SQLQueryResult implements DBCExecutionResult
         return executeResult;
     }
 
-    public List<ExecuteResult> getExecuteResults() {
+    public /*~~>*/List<ExecuteResult> getExecuteResults() {
         return executeResults;
     }
 

@@ -37,7 +37,7 @@ public class DB2RunstatsTool extends DB2ToolWithStatus<DB2TableBase, DB2Runstats
     }
 
     @Override
-    public void generateObjectQueries(DBCSession session, DB2RunstatsToolSettings settings, List<DBEPersistAction> queries, DB2TableBase object) throws DBCException {
+    public void generateObjectQueries(DBCSession session, DB2RunstatsToolSettings settings, /*~~>*/List<DBEPersistAction> queries, DB2TableBase object) throws DBCException {
         String sql = "CALL SYSPROC.ADMIN_CMD('"; //$NON-NLS-1$
         sql += "RUNSTATS ON TABLE "; //$NON-NLS-1$
         sql += object.getFullyQualifiedName(DBPEvaluationContext.DDL);

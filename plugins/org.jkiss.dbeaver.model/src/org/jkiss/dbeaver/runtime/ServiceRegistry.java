@@ -60,20 +60,20 @@ public class ServiceRegistry {
         return instance;
     }
 
-    private final Map<String, List<ServiceDescriptor>> services = new HashMap<>();
+    private final Map<String, /*~~>*/List<ServiceDescriptor>> services = new HashMap<>();
 
     private ServiceRegistry(IExtensionRegistry registry) {
         IConfigurationElement[] extElements = registry.getConfigurationElementsFor(EXTENSION_ID);
         for (IConfigurationElement ext : extElements) {
             ServiceDescriptor service = new ServiceDescriptor(ext);
-            List<ServiceDescriptor> descriptors = services.computeIfAbsent(service.type.getImplName(), s -> new ArrayList<>());
+            /*~~>*/List<ServiceDescriptor> descriptors = services.computeIfAbsent(service.type.getImplName(), s -> new ArrayList<>());
             descriptors.add(service);
         }
     }
 
     @Nullable
     public <T> T getService(@NotNull Class<T> serviceType) {
-        List<ServiceDescriptor> descriptors = services.get(serviceType.getName());
+        /*~~>*/List<ServiceDescriptor> descriptors = services.get(serviceType.getName());
         if (!CommonUtils.isEmpty(descriptors)) {
             boolean headlessMode = DBWorkbench.getPlatform().getApplication().isHeadlessMode();
             for (ServiceDescriptor descriptor : descriptors) {

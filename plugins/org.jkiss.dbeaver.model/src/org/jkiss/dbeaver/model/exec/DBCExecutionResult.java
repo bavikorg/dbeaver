@@ -30,6 +30,6 @@ public interface DBCExecutionResult {
     Throwable getError();
 
     @Nullable
-    List<Throwable> getWarnings();
+    /*~~>*/List<Throwable> getWarnings();
 
 }

@@ -62,7 +62,7 @@ public final class HippieProposalProcessor {
                 return NO_PROPOSALS;
             }
 
-            List<String> result = new ArrayList<>();
+            /*~~>*/List<String> result = new ArrayList<>();
             for (String string : getSuggestions(document, offset, prefix)) {
                 if (!string.isEmpty()) {
                     result.add(prefix + string);
@@ -126,7 +126,7 @@ public final class HippieProposalProcessor {
      * editors
      * @throws BadLocationException if accessing the current document fails
      */
-    private List<String> getSuggestions(IDocument document, int offset, String prefix) throws BadLocationException {
+    private /*~~>*/List<String> getSuggestions(IDocument document, int offset, String prefix) throws BadLocationException {
         ArrayList<String> suggestions = createSuggestionsFromOpenDocument(document, offset, prefix);
         if (document != null) {
             suggestions.addAll(fEngine.getCompletionsForward(document, prefix, 0, false));

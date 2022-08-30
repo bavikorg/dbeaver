@@ -50,7 +50,7 @@ public class SQLServerTableIndex extends JDBCTableIndex<SQLServerSchema, SQLServ
     private boolean unique;
     private boolean primary;
     private String indexComment;
-    private List<SQLServerTableIndexColumn> columns;
+    private /*~~>*/List<SQLServerTableIndexColumn> columns;
     private long objectId;
     private String ddl;
 
@@ -78,11 +78,11 @@ public class SQLServerTableIndex extends JDBCTableIndex<SQLServerSchema, SQLServ
         if (source instanceof SQLServerTableIndex) {
             //this.cardinality = ((SQLServerTableIndex)source).cardinality;
         }
-        List<? extends DBSTableIndexColumn> columns = source.getAttributeReferences(monitor);
+        /*~~>*/List<? extends DBSTableIndexColumn> columns = source.getAttributeReferences(monitor);
         if (columns != null) {
-            this.columns = new ArrayList<>(columns.size());
+            /*~~>*/this.columns = new ArrayList<>(columns.size());
             for (DBSTableIndexColumn sourceColumn : columns) {
-                this.columns.add(new SQLServerTableIndexColumn(monitor, this, sourceColumn));
+                /*~~>*/this.columns.add(new SQLServerTableIndexColumn(monitor, this, sourceColumn));
             }
         }
     }
@@ -142,7 +142,7 @@ public class SQLServerTableIndex extends JDBCTableIndex<SQLServerSchema, SQLServ
     }
 
     @Override
-    public List<SQLServerTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor)
+    public /*~~>*/List<SQLServerTableIndexColumn> getAttributeReferences(DBRProgressMonitor monitor)
     {
         return columns;
     }
@@ -152,9 +152,9 @@ public class SQLServerTableIndex extends JDBCTableIndex<SQLServerSchema, SQLServ
         return DBUtils.findObject(columns, columnName);
     }
 
-    void setColumns(List<SQLServerTableIndexColumn> columns)
+    void setColumns(/*~~>*/List<SQLServerTableIndexColumn> columns)
     {
-        this.columns = columns;
+        /*~~>*/this.columns = columns;
     }
 
     public void addColumn(SQLServerTableIndexColumn column)

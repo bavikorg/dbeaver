@@ -53,7 +53,7 @@ public class ShowTipOfTheDayDialog extends BaseDialog {
 
     private static final String DIALOG_ID = "DBeaver." + ShowTipOfTheDayDialog.class.getSimpleName();
 
-    private final List<String> tips = new ArrayList<>();
+    private final /*~~>*/List<String> tips = new ArrayList<>();
     private Composite tipArea;
     private boolean displayShowOnStartup;
     private boolean showOnStartup;
@@ -72,7 +72,7 @@ public class ShowTipOfTheDayDialog extends BaseDialog {
     }
 
     public void addTip(String tip) {
-        this.tips.add(tip);
+        /*~~>*/this.tips.add(tip);
     }
 
     @Override

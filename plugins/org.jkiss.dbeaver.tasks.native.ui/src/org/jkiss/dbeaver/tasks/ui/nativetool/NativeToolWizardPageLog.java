@@ -144,7 +144,7 @@ public class NativeToolWizardPageLog extends WizardPage implements IWizardPageNa
             AbstractNativeToolWizard<?,?,?> wizard = (AbstractNativeToolWizard) getWizard();
 
             String lf = GeneralUtils.getDefaultLineSeparator();
-            List<String> command = processBuilder.command();
+            /*~~>*/List<String> command = processBuilder.command();
 
             // Dump command line
             StringBuilder cmdString = new StringBuilder();
